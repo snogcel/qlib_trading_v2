@@ -1,0 +1,22 @@
+python scripts/dump_bin.py dump_all --csv_path C:\\Projects\\qlib_trading_v2\\csv_data\\CRYPTODATA --qlib_dir C:\\Projects\\qlib_trading_v2\\qlib_data\\CRYPTODATA --include_fields open,close,high,low,volume --date_field_name timestamp --freq '1min'
+
+python scripts/dump_bin.py dump_all --csv_path C:\\Projects\\qlib_trading_v2\\csv_data\\CRYPTODATA_RESAMPLE\1d --qlib_dir C:\\Projects\\qlib_trading_v2\\qlib_data\\CRYPTODATA --include_fields open,close,high,low,volume --date_field_name timestamp --freq 'day'
+
+python scripts/dump_bin.py dump_all --csv_path C:\\Projects\\qlib_trading_v2\\csv_data\\CRYPTODATA_RESAMPLE\60min --qlib_dir C:\\Projects\\qlib_trading_v2\\qlib_data\\CRYPTODATA --include_fields open,close,high,low,volume --date_field_name timestamp --freq '60min'
+
+python scripts/dump_bin.py dump_all --csv_path C:\\Projects\\qlib_trading_v2\\csv_data\\CRYPTODATA_RESAMPLE\240min --qlib_dir C:\\Projects\\qlib_trading_v2\\qlib_data\\CRYPTODATA --include_fields open,close,high,low,volume --date_field_name timestamp --freq '240min'
+
+
+python scripts/dump_bin.py dump_all --csv_path C:\\Projects\\qlib_trading_v2\\csv_data\\GDELT_BTC_MERGED --qlib_dir C:\\Projects\\qlib_trading_v2\\qlib_data\\CRYPTODATA2 --include_fields RawVol_Back_To_The_70s,RawVol_Environment,RawVol_Geopolitical_Risk,RawVol_Monetary,RawVol_Roaring_20s,RawVol_Secular_Stagnation,RawVol_Social,CWT_Back_To_The_70s,CWT_Environment,CWT_Geopolitical_Risk,CWT_Monetary,CWT_Roaring_20s,CWT_Secular_Stagnation,CWT_Social,btc_dom,fg_index --date_field_name date --freq 'day'
+
+
+
+c:\Projects\qlib_trading\csv_data\GDELT_MERGED
+
+
+GDELT_FEAT	2017-01-31	2025-04-08
+
+#    BTC pairs (BCH, ETH, LTC, UNI)
+#    USDT pairs (AAVE, BCH, BTC, DOGE, ETH, LINK, LTC, SUSHI, UNI, YFI)
+#    USDC pairs (AAVE, AVAX, BAT, BCH, BTC, CRV, DOGE, DOT, ETH, GRT, LINK, LTC, MKR, SHIB, SUSHI, UNI, XTZ, YFI)
+#    USD pairs (AAVE, AVAX, BAT, BCH, BTC, CRV, DOGE, DOT, ETH, GRT, LINK, LTC, MKR, SHIB, SUSHI, UNI, USDC, USDT, XTZ, YFI)

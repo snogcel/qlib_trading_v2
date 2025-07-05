@@ -1,0 +1,15 @@
+artifact_uri: file:C:\Projects\qlib_trading_v2\scripts\data_collector\contrib\future_trading_date_collector\mlruns/676746564608551670/ccdda599b8c049bc93d1a52ad2a36929/artifacts
+end_time: 1748625359149
+entry_point_name: ''
+experiment_id: '676746564608551670'
+lifecycle_stage: active
+run_id: ccdda599b8c049bc93d1a52ad2a36929
+run_name: mlflow_recorder
+run_uuid: ccdda599b8c049bc93d1a52ad2a36929
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748625355679
+status: 4
+tags: []
+user_id: ledni

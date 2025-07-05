@@ -1,0 +1,77 @@
+start_time: !!str &start 2018-08-02
+end_time: !!str &end 2025-04-01
+train_end_time: !!str &tend 2023-12-31
+valid_start_time: !!str &vstart 2024-01-01
+valid_end_time: !!str &vend 2024-09-30
+test_start_time: !!str &tstart 2024-10-01
+# the instrument set
+instruments: &ins ["BTCUSDT","BTC_FEAT"]
+
+# begin simulator code
+simulator:
+  data_granularity: 60
+  time_per_step: 60
+  vol_limit: null
+env:
+  concurrency: 1
+  parallel_mode: dummy
+action_interpreter:
+  class: CategoricalActionInterpreter
+  kwargs:
+    values: 3
+    max_step: 24
+  module_path: qlib.rl.order_execution.interpreter
+state_interpreter:
+  class: FullHistoryStateInterpreter
+  kwargs:
+    data_dim: 20
+    data_ticks: 24  # 24 = 1440 min / 60 min
+    max_step: 24
+    processed_data_provider:
+      class: HandlerProcessedDataProvider
+      kwargs:
+        data_dir: ./data2/pickle/
+        feature_columns_today: ["$high", "$low", "$open", "$close", "$volume", "fg_index", "btc_dom", "fg_momentum_3d", "btc_momentum_3d", "fg_std_7d", "btc_std_7d",	"fg_zscore_14d", "btc_zscore_14d", "fg_extreme_greed", "fg_extreme_fear", "btc_dom_high", "btc_dom_low", "fg_btc_product", "fg_btc_spread", "fg_btc_corr_14d", "fg_ema_diff", "btc_ema_diff"]
+        feature_columns_yesterday: ["$high_1", "$low_1", "$open_1", "$close_1", "$volume_1", "fg_index", "btc_dom", "fg_momentum_3d", "btc_momentum_3d", "fg_std_7d", "btc_std_7d",	"fg_zscore_14d", "btc_zscore_14d", "fg_extreme_greed", "fg_extreme_fear", "btc_dom_high", "btc_dom_low", "fg_btc_product", "fg_btc_spread", "fg_btc_corr_14d", "fg_ema_diff", "btc_ema_diff"]
+        backtest: false
+      module_path: qlib.rl.data.native
+  module_path: qlib.rl.order_execution.interpreter
+reward:
+  class: PPOReward
+  kwargs:
+    max_step: 24
+    start_time_index: 0
+    end_time_index: 22  # 22 = (1440 - 60) min / 60 min - 1
+  module_path: qlib.rl.order_execution.reward
+data:
+  source:
+    order_dir: ./data2/orders
+    feature_root_dir: ./data2/pickle/
+    feature_columns_today: ["$high", "$low", "$open", "$close", "$volume", "fg_index", "btc_dom", "fg_momentum_3d", "btc_momentum_3d", "fg_std_7d", "btc_std_7d",	"fg_zscore_14d", "btc_zscore_14d", "fg_extreme_greed", "fg_extreme_fear", "btc_dom_high", "btc_dom_low", "fg_btc_product", "fg_btc_spread", "fg_btc_corr_14d", "fg_ema_diff", "btc_ema_diff"]
+    feature_columns_yesterday: ["$high_1", "$low_1", "$open_1", "$close_1", "$volume_1", "fg_index", "btc_dom", "fg_momentum_3d", "btc_momentum_3d", "fg_std_7d", "btc_std_7d",	"fg_zscore_14d", "btc_zscore_14d", "fg_extreme_greed", "fg_extreme_fear", "btc_dom_high", "btc_dom_low", "fg_btc_product", "fg_btc_spread", "fg_btc_corr_14d", "fg_ema_diff", "btc_ema_diff"]
+    total_time: 1440
+    default_start_time_index: 0
+    default_end_time_index: 1440
+    proc_data_dim: 5
+  num_workers: 0
+  queue_size: 20
+network:
+  class: Recurrent
+  module_path: qlib.rl.order_execution.network
+policy:
+  class: PPO  # PPO, DQN
+  kwargs:
+    lr: 0.0001
+  module_path: qlib.rl.order_execution.policy
+runtime:
+  seed: 42
+  use_cuda: false
+trainer:
+  max_epoch: 500
+  repeat_per_collect: 25
+  earlystop_patience: 50
+  episode_per_collect: 10000
+  batch_size: 1024
+  val_every_n_epoch: 4
+  checkpoint_path: ./outputs/ppo
+  checkpoint_every_n_iters: 1
