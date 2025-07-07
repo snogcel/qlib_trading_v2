@@ -5,7 +5,7 @@ valid_start_time: !!str &vstart 2024-01-01
 valid_end_time: !!str &vend 2024-09-30
 test_start_time: !!str &tstart 2024-10-01
 # the instrument set
-instruments: &ins ["BTCUSDT","BTC_FEAT"]
+instruments: &ins ["BTCUSDT"]
 
 # begin simulator code
 simulator:
@@ -13,18 +13,18 @@ simulator:
   time_per_step: 60
   vol_limit: null
 env:
-  concurrency: 1
+  concurrency: 32
   parallel_mode: dummy
 action_interpreter:
   class: CategoricalActionInterpreter
   kwargs:
-    values: 3
+    values: 14
     max_step: 24
   module_path: qlib.rl.order_execution.interpreter
 state_interpreter:
   class: FullHistoryStateInterpreter
   kwargs:
-    data_dim: 20
+    data_dim: 22
     data_ticks: 24  # 24 = 1440 min / 60 min
     max_step: 24
     processed_data_provider:
@@ -47,8 +47,8 @@ data:
   source:
     order_dir: ./data2/orders
     feature_root_dir: ./data2/pickle/
-    feature_columns_today: ["$high", "$low", "$open", "$close", "$volume", "fg_index", "btc_dom", "fg_momentum_3d", "btc_momentum_3d", "fg_std_7d", "btc_std_7d",	"fg_zscore_14d", "btc_zscore_14d", "fg_extreme_greed", "fg_extreme_fear", "btc_dom_high", "btc_dom_low", "fg_btc_product", "fg_btc_spread", "fg_btc_corr_14d", "fg_ema_diff", "btc_ema_diff"]
-    feature_columns_yesterday: ["$high_1", "$low_1", "$open_1", "$close_1", "$volume_1", "fg_index", "btc_dom", "fg_momentum_3d", "btc_momentum_3d", "fg_std_7d", "btc_std_7d",	"fg_zscore_14d", "btc_zscore_14d", "fg_extreme_greed", "fg_extreme_fear", "btc_dom_high", "btc_dom_low", "fg_btc_product", "fg_btc_spread", "fg_btc_corr_14d", "fg_ema_diff", "btc_ema_diff"]
+    feature_columns_today: ["$close0", "$volume0", "fg_index"]
+    feature_columns_yesterday: []
     total_time: 1440
     default_start_time_index: 0
     default_end_time_index: 1440

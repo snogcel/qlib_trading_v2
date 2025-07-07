@@ -87,8 +87,8 @@ backtest_conf:
     module_path: qlib.data.dataset
     kwargs:
         handler:
-            class: HighFreqGeneralBacktestHandler
-            module_path: qlib.contrib.data.highfreq_handler
+            class: CryptoHighFreqGeneralBacktestHandler
+            module_path: qlib_custom.custom_data_handler
             kwargs:
                 start_time: *start
                 end_time: *end

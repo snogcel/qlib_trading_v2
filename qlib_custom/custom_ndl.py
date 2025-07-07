@@ -117,7 +117,7 @@ class CustomNestedDataLoader(QlibDataLoader):
 
         df_merged.reset_index(inplace=True, drop=True)
         
-        df_merged = df_merged.set_index(['datetime', 'instrument'])
+        df_merged = df_merged.set_index(['instrument', 'datetime'])
 
         #s = df_merged.pop(('label','LABEL0'))
         #df_final = pd.concat([df_merged, s], axis=1)

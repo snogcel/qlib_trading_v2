@@ -16,30 +16,58 @@ DATA_KEY_TYPE = Literal["raw", "infer", "learn"]
 class CryptoHighFreqGeneralBacktestHandler(DataHandler):
     def __init__(
         self,
-        instruments="csi300",
+        instruments=None,
         start_time=None,
         end_time=None,
-        day_length=240,
-        freq="1min",
+        day_length=1440,
+        freq="60min",
         columns=["$close", "$vwap", "$volume"],
         inst_processors=None,
     ):
         self.day_length = day_length
-        self.columns = set(columns)
+        self.columns = set(columns)        
         data_loader = {
-            "class": "QlibDataLoader",
+            "class": "CustomNestedDataLoader",
+            "module_path": "qlib_custom.custom_ndl",
             "kwargs": {
-                "config": self.get_feature_config(),
-                "swap_level": False,
-                "freq": freq,
-                "inst_processors": inst_processors,
-            },
+                "dataloader_l": [                    
+                    {
+                        "class": "QlibDataLoader",  
+                        "module_path": "qlib.data.dataset.loader",                                                                      
+                        "kwargs": {
+                            "freq": freq,
+                            "config": {
+                                "feature": self.get_feature_config(),
+                            },                        
+                            "swap_level": False,                            
+                            "inst_processors": inst_processors,                            
+                        }
+                    },
+                    {
+                        "class": "gdelt_dataloader",
+                        "module_path": "qlib_custom.gdelt_loader",                        
+                        "kwargs": {
+                            "freq": "day",  # Replace with your FREQ variable
+                            "config": {
+                                "feature": gdelt_dataloader.get_feature_config(),                                
+                            },                             
+                            "swap_level": False,                            
+                            "inst_processors": [],                            
+                        }
+                    }
+                ],                
+                "instruments": ["BTCUSDT", "BTC_FEAT"],
+                "start_time": "20180201",
+                "end_time": "20250401",                
+            },            
+            "join": "left",                                                          
         }
+        dl = init_instance_by_config(data_loader)
         super().__init__(
             instruments=instruments,
             start_time=start_time,
             end_time=end_time,
-            data_loader=data_loader,
+            data_loader=dl,
         )
 
     def get_feature_config(self):
@@ -82,7 +110,7 @@ class CryptoHighFreqGeneralHandler(DataHandlerLP):
         fit_end_time=None,
         process_type="append",
         drop_raw=True,
-        day_length=240,
+        day_length=1440,
         freq="1min",
         columns=["$open", "$high", "$low", "$close", "$vwap"],
         inst_processors=None,
@@ -111,8 +139,7 @@ class CryptoHighFreqGeneralHandler(DataHandlerLP):
                                 "feature": self.get_feature_config(),
                             },                        
                             "swap_level": False,                            
-                            "inst_processors": inst_processors,
-                            #"instruments": ["BTCUSDT"],
+                            "inst_processors": inst_processors,                            
                         }
                     },
                     {
@@ -124,8 +151,7 @@ class CryptoHighFreqGeneralHandler(DataHandlerLP):
                                 "feature": gdelt_dataloader.get_feature_config(),                                
                             },                             
                             "swap_level": False,                            
-                            "inst_processors": [],
-                            #"instruments": ["BTC_FEAT"],
+                            "inst_processors": [],                            
                         }
                     }
                 ],                
