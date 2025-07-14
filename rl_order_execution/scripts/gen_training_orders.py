@@ -10,15 +10,21 @@ from pathlib import Path
 #DATA_PATH = Path(os.path.join("..", "data", "pickle", "backtest"))
 #OUTPUT_PATH = Path(os.path.join("..", "data", "orders"))
 
-MACRO_FEAT_PATH = ("/Projects/qlib_trading_v2/data/macro_features.pkl")
-DATA_PATH = Path("/Projects/qlib_trading_v2/data2/pickle/backtest")
-OUTPUT_PATH = Path("/Projects/qlib_trading_v2/data2/orders")
+MACRO_FEAT_PATH = ("/Projects/qlib_trading_v2/data3/macro_features.pkl")
+DATA_PATH = Path("/Projects/qlib_trading_v2/data3/pickle/backtest")
+FEAT_PATH = Path("/Projects/qlib_trading_v2/data3/pickle/feature")
+OUTPUT_PATH = Path("/Projects/qlib_trading_v2/data3/orders")
+
+BLACKLIST = ["2020-10-20","2023-03-23"]
 
 def generate_order(stock: str, start_idx: int, end_idx: int) -> bool:
     dataset = pd.read_pickle(DATA_PATH / f"{stock}.pkl")
-    df = dataset.handler.fetch(level=None).reset_index()    
+    df = dataset.handler.fetch(level=None).reset_index()
     df["date"] = df["datetime"].dt.date.astype("datetime64[ns]")
     df = df.dropna()
+
+    for blacklisted_date in BLACKLIST:
+        df = df[df.date != blacklisted_date]
 
     # or min(df["$volume0"]) < 1e-5:
     if len(df) == 0 or df.isnull().values.any(): 
@@ -43,25 +49,13 @@ def generate_order(stock: str, start_idx: int, end_idx: int) -> bool:
 
     df = df.groupby("date", group_keys=False).take(range(start_idx, end_idx)) #.droplevel(level=0)
    
-    # Convert tier label to numeric
-    # TIER_MAP = {"A": 3.0, "B": 2.0, "C": 1.0, "D": 0.0}
-
-    # if "signal_tier" in df:        
-    #    df["signal_tier"] = df["signal_tier"].map(TIER_MAP)        
-    
-    df.to_csv("df_audit.csv")
-    print(df)
-
     order_all = pd.DataFrame(df.groupby(level=(2, 0), group_keys=False).mean().dropna())
     order_all["amount"] = np.random.lognormal(-3.28, 1.14) * order_all["$volume0"]
     order_all = order_all[order_all["amount"] > 0.0]
     order_all["order_type"] = 0
     order_all = order_all.drop(columns=["$volume0"])
-
     order_all = order_all.rename(index={'datetime': 'date'})
-
-    print(order_all)    
-
+    
     order_train = order_all[order_all.index.get_level_values(0) <= pd.Timestamp("2023-12-31")]
     order_test = order_all[order_all.index.get_level_values(0) > pd.Timestamp("2024-01-01")]
     order_valid = order_test[order_test.index.get_level_values(0) <= pd.Timestamp("2024-10-01")]

@@ -165,6 +165,7 @@ cython_debug/
 /data/
 /data2/
 /data_backup/
+/data_backup2/
 /feature_studies/
 /logs/
 /logs_v2/
@@ -174,3 +175,10 @@ cython_debug/
 /outputs/
 /plots/
 /scratch_data/
+/data2_archive/
+/data3/
+/runs/
+
+*.xlsx
+*.csv
+*.zip

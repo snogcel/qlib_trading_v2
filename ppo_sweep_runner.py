@@ -22,7 +22,7 @@ from qlib.workflow import R
 from qlib.workflow.record_temp import SignalRecord, PortAnaRecord, SigAnaRecord
 
 
-provider_uri = "/Projects/qlib_trading_v2/qlib_data/CRYPTODATA"
+provider_uri = "/Projects/qlib_trading_v2/qlib_data/CRYPTO"
 
 SEED = 42
 MARKET = "all"
@@ -157,21 +157,22 @@ if __name__ == '__main__':
         },
         "dataset": {
             "class": "DatasetH",
-            "module_path": "qlib.data.dataset",
-            "kwargs": {
+            "module_path": "qlib.data.dataset",            
+            "kwargs": {                
                 "handler": {
                     "class": "DataHandlerLP",
-                    "module_path": "qlib.data.dataset",  # No need to customize this if using base
-                    "kwargs": {
+                    "module_path": "qlib.data.dataset",  # No need to customize this if using base                    
+                    "kwargs": {                                                                     
                         "instruments": ["BTCUSDT", "BTC_FEAT"],
                         "start_time": "20180201",
-                        "end_time": "20250401",
-                        "process_type": "append",
-                        "drop_raw": False,
+                        "end_time": "20250401", 
                         "data_loader": {
                             "class": "CustomNestedDataLoader",
-                            "module_path": "qlib_custom.custom_ndl",
+                            "module_path": "qlib_custom.custom_ndl",                            
                             "kwargs": {
+                                "instruments": ["BTCUSDT", "BTC_FEAT"],
+                                "start_time": "20180201",
+                                "end_time": "20250401",
                                 "dataloader_l": [
                                     {
                                         "class": "crypto_dataloader",
@@ -198,7 +199,9 @@ if __name__ == '__main__':
                                 ],
                                 "join": "left"
                             }
-                        }
+                        },                          
+                        "process_type": "append",
+                        "drop_raw": False,
                     }
                 },
                 "segments": {
@@ -264,9 +267,9 @@ if __name__ == '__main__':
     q_low = df_all["volatility"].rolling(rolling_window).quantile(0.01)
     q_high = df_all["volatility"].rolling(rolling_window).quantile(0.99)
 
-    df_all["vol_scaled"] = (df_all["volatility"] - q_low) / (q_high - q_low)
-    df_all["vol_scaled"] = df_all["vol_scaled"].clip(0.0, 1.0)
+    df_all["vol_scaled"] = ((df_all["volatility"] - q_low.shift(1)) / (q_high.shift(1) - q_low.shift(1))).clip(0.0, 1.0)
     df_all["vol_rank"] = df_all["volatility"].rank(pct=True)
+
     df_all["spread"] = df_all["q90"] - df_all["q10"]
     df_all["abs_q50"] = df_all["q50"].abs()
 
@@ -293,12 +296,21 @@ if __name__ == '__main__':
 
     df_to_pickle = df_cleaned.copy()
     
+
     # Drop column 'truth' from the copied DataFrame
     df_to_pickle.drop('truth', axis=1, inplace=True)
+    #df_to_pickle.set_index(["instrument", "datetime"], inplace=True)
 
-    df_to_pickle.to_pickle("./data/macro_features.pkl")
+    TIER_MAP = {"A": 3.0, "B": 2.0, "C": 1.0, "D": 0.0}
+    df_to_pickle["signal_tier"] = df_to_pickle["signal_tier"].map(TIER_MAP)
+
+    print("df_to_pickle: ", df_to_pickle)
+
+    df_to_pickle.to_pickle("./data2/macro_features.pkl")
 
     raise SystemExit()
+
+
 
     df_train_rl = df_cleaned.loc["2018-02-01":"2023-12-31"]
     df_val_rl   = df_cleaned.loc["2024-01-01":"2024-09-30"]

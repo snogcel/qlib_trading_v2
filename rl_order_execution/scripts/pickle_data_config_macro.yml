@@ -1,5 +1,5 @@
 env:
-  concurrency: 1
+  concurrency: 8
   parallel_mode: dummy
 # start & end time for training/validation/test datasets
 start_time: !!str &start 2018-08-02
@@ -38,52 +38,42 @@ feature_conf:
                 data_loader:
                     class: CustomNestedDataLoader
                     module_path: qlib_custom.custom_ndl
-                    join: left
-                    dataloader_l: 
-                    - class: QlibDataLoader
-                      module_path: qlib.data.dataset.loader                       
-                      kwargs:
-                        config: 
-                            feature: CryptoHighFreqGeneralHandler.get_feature_config()
-                        freq: 60min
-                        inst_processors: []
-                        instruments: ['BTCUSDT']
-                        start_time: *start
-                        end_time: *end
-                    # - class: gdelt_dataloader
-                    #   module_path: qlib_custom.gdelt_loader                      
-                    #   kwargs:
-                    #     config:
-                    #         feature: gdelt_dataloader.get_feature_config()
-                    #     freq: day
-                    #     inst_processors: []                                
-                    #     instruments: ['BTC_FEAT']
-                    #     start_time: *start
-                    #     end_time: *end
-                    - class: MacroFeatureLoader
-                      module_path: qlib_custom.macro_loader                      
-                      kwargs:
-                        pickle_path: ./data/macro_features.pkl
-                        freq: day
-                        swap_level: False
-                        inst_processors: []                                
-                infer_processors:
-                - class: HighFreqNorm
-                  module_path: qlib.contrib.data.highfreq_processor
-                  kwargs:
-                    fit_start_time: *start
-                    fit_end_time: *tend
-                    feature_save_dir: ./stat/  #  output path of statistics of features (for feature normalization)
-                    norm_groups: 
-                        price: 8
-                        volume: 2
-                inst_processors:
-                - class: TimeRangeFlt
-                  module_path: qlib.data.dataset.processor
-                  kwargs:
-                    start_time: *start
-                    end_time: *end
-                    freq: 60min
+                    kwargs:              
+                      instruments: ["BTCUSDT", "BTC_FEAT"]
+                      start_time: *start
+                      end_time: *end 
+                      dataloader_l: 
+                        - class: QlibDataLoader
+                          module_path: qlib.data.dataset.loader                       
+                          kwargs:
+                            config: 
+                                feature: CryptoHighFreqGeneralHandler.get_feature_config()
+                            freq: 60min
+                            inst_processors:
+                            - class: TimeRangeFlt
+                              module_path: qlib.data.dataset.processor
+                              kwargs:
+                                start_time: *start
+                                end_time: *end
+                                freq: 60min
+                            infer_processors:
+                            - class: HighFreqNorm
+                              module_path: qlib.contrib.data.highfreq_processor
+                              kwargs:
+                                fit_start_time: *start
+                                fit_end_time: *tend
+                                feature_save_dir: ./stat/  #  output path of statistics of features (for feature normalization)
+                                norm_groups: 
+                                    price: 8
+                                    volume: 2                                            
+                        - class: MacroFeatureLoader
+                          module_path: qlib_custom.macro_loader                      
+                          kwargs:
+                            pickle_path: ./data3/macro_features.pkl
+                            freq: day
+                            swap_level: False
+                            inst_processors: []                              
+                      join: left                    
         segments:
             train: !!python/tuple [*start, *tend]
             valid: !!python/tuple [*vstart, *vend]

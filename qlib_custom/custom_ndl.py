@@ -34,6 +34,7 @@ class CustomNestedDataLoader(QlibDataLoader):
             Return the original data instead of copy if possible.
         """
 
+        print("--DATA LOADER CONFIG--")
         print(dataloader_l)
 
         self.data_loader_l = [
@@ -101,17 +102,48 @@ class CustomNestedDataLoader(QlibDataLoader):
         return pd.MultiIndex.from_arrays(full_levels, names=names)
 
     def load(self, instruments=None, start_time=None, end_time=None) -> pd.DataFrame:
-        df_full = self.data_loader_l[0].load(instruments=["BTCUSDT"], start_time=start_time, end_time=end_time)
-        df_current = self.data_loader_l[1].load(instruments=["BTC_FEAT"], start_time=start_time, end_time=end_time)
+        df_full = self.data_loader_l[0].load(instruments=["BTCUSDT"], start_time=start_time, end_time=end_time)        
         
-        df_current = df_current.reset_index()
+        df_macro = self.data_loader_l[1].load(instruments=["BTCUSDT"], start_time=start_time, end_time=end_time) # loading macro_feature.pkl
+        df_macro.columns = pd.MultiIndex.from_product([['macro'], df_macro.columns])
+        df_current = df_macro.copy()
+
+        #df_current = self.data_loader_l[1].load(instruments=["BTC_FEAT"], start_time=start_time, end_time=end_time)
+
+
+
+        #df.sort_index(axis=1).drop('Col1', axis=1)
+
+        #df_current = df_current.sort_index(axis=1).reset_index()
+        #df_full = df_full.sort_index(axis=1).reset_index()
+
+        #df_current.index = df_macro.index.swaplevel("datetime", "instrument")
+        #df_current.sort_index(inplace=True)
+
+
+        
+        
+        
+        print(df_full.index)
+        print(df_full.columns)
+
+        
+        print(df_current.index)
+        print(df_current.columns)
+
+
+        print(df_full)
+        print(df_current)
+
+
+        df_current = df_current.sort_index(axis=1).reset_index()
         df_current = df_current.drop(columns=['instrument'])
-
-        df_full = df_full.reset_index()
-        df_full['date'] = pd.to_datetime(df_full['datetime']).dt.date
-
-        df_full = df_full.set_index('date')
         df_current = df_current.set_index('datetime')
+
+        df_full = df_full.sort_index(axis=1).reset_index()
+        df_full['date'] = pd.to_datetime(df_full['datetime']).dt.date
+        df_full = df_full.set_index('date')
+
 
         df_merged = pd.merge(left=df_full, right=df_current, left_index=True, right_index=True, how='left')
 
@@ -125,5 +157,6 @@ class CustomNestedDataLoader(QlibDataLoader):
         df_final = df_merged.copy()
         
         print("df_final: ", df_final)
+        # df_final.to_csv("df_final.csv")
 
         return df_final.sort_index(axis=1)

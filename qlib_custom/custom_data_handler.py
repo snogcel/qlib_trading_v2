@@ -25,43 +25,20 @@ class CryptoHighFreqGeneralBacktestHandler(DataHandler):
         inst_processors=None,
     ):
         self.day_length = day_length
-        self.columns = set(columns)        
+        self.columns = set(columns) 
         data_loader = {
-            "class": "CustomNestedDataLoader",
-            "module_path": "qlib_custom.custom_ndl",
+            "class": "QlibDataLoader",
+            "module_path": "qlib.data.dataset.loader", 
             "kwargs": {
-                "dataloader_l": [                    
-                    {
-                        "class": "QlibDataLoader",  
-                        "module_path": "qlib.data.dataset.loader",                                                                      
-                        "kwargs": {
-                            "freq": freq,
-                            "config": {
-                                "feature": self.get_feature_config(),
-                            },                        
-                            "swap_level": False,                            
-                            "inst_processors": inst_processors,                            
-                        }
-                    },
-                    {
-                        "class": "gdelt_dataloader",
-                        "module_path": "qlib_custom.gdelt_loader",                        
-                        "kwargs": {
-                            "freq": "day",  # Replace with your FREQ variable
-                            "config": {
-                                "feature": gdelt_dataloader.get_feature_config(),                                
-                            },                             
-                            "swap_level": False,                            
-                            "inst_processors": [],                            
-                        }
-                    }
-                ],                
-                "instruments": ["BTCUSDT", "BTC_FEAT"],
-                "start_time": "20180201",
-                "end_time": "20250401",                
-            },            
-            "join": "left",                                                          
+                "config": {
+                    "feature": self.get_feature_config(),
+                },
+                "swap_level": False,
+                "freq": freq,
+                "inst_processors": inst_processors,
+            },
         }
+        print(data_loader)
         dl = init_instance_by_config(data_loader)
         super().__init__(
             instruments=instruments,
@@ -93,6 +70,58 @@ class CryptoHighFreqGeneralBacktestHandler(DataHandler):
             fields += [template_paused.format("If(IsNull({0}), 0, {0})".format("$volume"))]
             names += ["$volume0"]
 
+        # custom VWAP stuff
+        fields += [
+            template_paused.format(
+                "If(IsNull({0}), 0, {0})".format("Sum($close * $volume, 3) / Sum($volume, 3)")
+            )
+        ]
+        names += ["$vwap_3h"]
+
+        fields += [
+            template_paused.format(
+                "If(IsNull({0}), 0, {0})".format("Sum($close * $volume, 6) / Sum($volume, 6)")
+            )
+        ]
+        names += ["$vwap_6h"]
+
+        fields += [
+            template_paused.format(
+                "If(IsNull({0}), 0, {0})".format("Sum($close * $volume, 12) / Sum($volume, 12)")
+            )
+        ]
+        names += ["$vwap_12h"]
+
+        fields += [
+            template_paused.format(
+                "If(IsNull({0}), 0, {0})".format("$close - ((Sum($close * $volume, 3) / Sum($volume, 3)) + 1e-5)")  # avoid divide-by-zero
+            )
+        ]
+        names += ["$vwap_diff_3h"]
+
+        fields += [
+            template_paused.format(
+                "If(IsNull({0}), 0, {0})".format("$close - ((Sum($close * $volume, 6) / Sum($volume, 6)) + 1e-5)")  # avoid divide-by-zero
+            )
+        ]
+        names += ["$vwap_diff_6h"]
+
+        fields += [
+            template_paused.format(
+                "If(IsNull({0}), 0, {0})".format("$close - ((Sum($close * $volume, 12) / Sum($volume, 12)) + 1e-5)")  # avoid divide-by-zero
+            )
+        ]
+        names += ["$vwap_diff_12h"]
+
+        fields += [
+            template_paused.format(
+                "If(IsNull({0}), 0, {0})".format(
+                    "(($close - ((Sum($close * $volume, 3) / Sum($volume, 3)) + 1e-5)) * 0.5 + ($close - ((Sum($close * $volume, 6) / Sum($volume, 6)) + 1e-5)) * 0.3 + ($close - ((Sum($close * $volume, 12) / Sum($volume, 12)) + 1e-5)) * 0.2)"
+                )
+            )
+        ]
+        names += ["$vwap_pressure"]
+
         return fields, names
 
 
@@ -104,8 +133,7 @@ class CryptoHighFreqGeneralHandler(DataHandlerLP):
         end_time=None,
         data_loader: Union[dict, str, DataLoader] = None,
         infer_processors: List = [],
-        learn_processors: List = [],   
-        shared_processors: List = [],
+        learn_processors: List = [],
         fit_start_time=None,
         fit_end_time=None,
         process_type="append",
@@ -113,17 +141,13 @@ class CryptoHighFreqGeneralHandler(DataHandlerLP):
         day_length=1440,
         freq="1min",
         columns=["$open", "$high", "$low", "$close", "$vwap"],
-        inst_processors=None,
-        **kwargs
+        inst_processors=None
     ):
         self.day_length = day_length
         self.columns = columns
 
-        # infer_processors = check_transform_proc(infer_processors, fit_start_time, fit_end_time)
-        # learn_processors = check_transform_proc(learn_processors, fit_start_time, fit_end_time)
-
-        # only_crypto = NameDFilter(name_rule_re='BTC_FEAT')
-        # only_feats = NameDFilter(name_rule_re='BTCUSDT')
+        infer_processors = check_transform_proc(infer_processors, fit_start_time, fit_end_time)
+        learn_processors = check_transform_proc(learn_processors, fit_start_time, fit_end_time)
 
         data_loader = {
             "class": "CustomNestedDataLoader",
@@ -142,18 +166,32 @@ class CryptoHighFreqGeneralHandler(DataHandlerLP):
                             "inst_processors": inst_processors,                            
                         }
                     },
+                    # {
+                    #     "class": "gdelt_dataloader",
+                    #     "module_path": "qlib_custom.gdelt_loader",                        
+                    #     "kwargs": {
+                    #         "freq": "day",  # Replace with your FREQ variable
+                    #         "config": {
+                    #             "feature": gdelt_dataloader.get_feature_config(),                                
+                    #         },                             
+                    #         "swap_level": False,                            
+                    #         "inst_processors": [],                            
+                    #     }
+                    # },
                     {
-                        "class": "gdelt_dataloader",
-                        "module_path": "qlib_custom.gdelt_loader",                        
+                        "class": "MacroFeatureLoader",
+                        "module_path": "qlib_custom.macro_loader",
                         "kwargs": {
-                            "freq": "day",  # Replace with your FREQ variable
+                            "pickle_path": "./data3/macro_features.pkl",
+                            "freq": "day",  # or "hour" if you've aligned it to that level                                                        
                             "config": {
-                                "feature": gdelt_dataloader.get_feature_config(),                                
-                            },                             
-                            "swap_level": False,                            
-                            "inst_processors": [],                            
+                                "feature": {
+                                    "fields": [],
+                                    "names": []
+                                }
+                            },
                         }
-                    }
+                    }                    
                 ],                
                 "instruments": ["BTCUSDT", "BTC_FEAT"],
                 "start_time": "20180201",
@@ -162,27 +200,15 @@ class CryptoHighFreqGeneralHandler(DataHandlerLP):
             "join": "left",                                                          
         }
 
-        dl = init_instance_by_config(data_loader)
-
-        print("nested_data_loader: ", dl)
-
-        # Setup preprocessor
-        self.infer_processors = []  # for lint
-        self.learn_processors = []  # for lint
-        self.shared_processors = []  # for lint
-        for pname in "infer_processors", "learn_processors", "shared_processors":
-            for proc in locals()[pname]:
-                getattr(self, pname).append(
-                    init_instance_by_config(
-                        proc,
-                        None if (isinstance(proc, dict) and "module_path" in proc) else processor_module,
-                        accept_types=processor_module.Processor,
-                    )
-                )
-
-        self.process_type = process_type
-        self.drop_raw = drop_raw
-        super().__init__(instruments, start_time, end_time, dl, **kwargs)
+        super().__init__(
+            instruments=instruments,
+            start_time=start_time,
+            end_time=end_time,
+            data_loader=data_loader,
+            infer_processors=infer_processors,
+            learn_processors=learn_processors,
+            drop_raw=drop_raw,
+        )
 
     def get_feature_config(self):
         fields = []
@@ -190,6 +216,9 @@ class CryptoHighFreqGeneralHandler(DataHandlerLP):
 
         template_if = "If(IsNull({1}), {0}, {1})"
         template_paused = f"Cut({{0}}, {self.day_length * 2}, None)"
+
+        # Because there is no vwap field in the yahoo data, a method similar to Simpson integration is used to approximate vwap
+        simpson_vwap = "($open + 2*$high + 2*$low + $close)/6"
 
         def get_normalized_price_feature(price_field, shift=0):
             # norm with the close price of 237th minute of yesterday.
@@ -235,5 +264,64 @@ class CryptoHighFreqGeneralHandler(DataHandlerLP):
             )
         ]
         names += ["$volume_1"]
+
+        # custom VWAP stuff
+        # fields += [
+        #     template_paused.format(
+        #         "If(IsNull({0}), 0, {0})".format("Sum($close * $volume, 3) / Sum($volume, 3)")
+        #     )
+        # ]
+        # names += ["$vwap_3h"]
+
+        # fields += [
+        #     template_paused.format(
+        #         "If(IsNull({0}), 0, {0})".format("Sum($close * $volume, 6) / Sum($volume, 6)")
+        #     )
+        # ]
+        # names += ["$vwap_6h"]
+
+        # fields += [
+        #     template_paused.format(
+        #         "If(IsNull({0}), 0, {0})".format("Sum($close * $volume, 12) / Sum($volume, 12)")
+        #     )
+        # ]
+        # names += ["$vwap_12h"]
+
+        # fields += [
+        #     template_paused.format(
+        #         "If(IsNull({0}), 0, {0})".format("$close - ((Sum($close * $volume, 3) / Sum($volume, 3)) + 1e-5)")  # avoid divide-by-zero
+        #     )
+        # ]
+        # names += ["$vwap_diff_3h"]
+
+        # fields += [
+        #     template_paused.format(
+        #         "If(IsNull({0}), 0, {0})".format("$close - ((Sum($close * $volume, 6) / Sum($volume, 6)) + 1e-5)")  # avoid divide-by-zero
+        #     )
+        # ]
+        # names += ["$vwap_diff_6h"]
+
+        # fields += [
+        #     template_paused.format(
+        #         "If(IsNull({0}), 0, {0})".format("$close - ((Sum($close * $volume, 12) / Sum($volume, 12)) + 1e-5)")  # avoid divide-by-zero
+        #     )
+        # ]
+        # names += ["$vwap_diff_12h"]
+
+        # fields += [
+        #     template_paused.format(
+        #         "If(IsNull({0}), 0, {0})".format(
+        #             "(($close - ((Sum($close * $volume, 3) / Sum($volume, 3)) + 1e-5)) * 0.5 + ($close - ((Sum($close * $volume, 6) / Sum($volume, 6)) + 1e-5)) * 0.3 + ($close - ((Sum($close * $volume, 12) / Sum($volume, 12)) + 1e-5)) * 0.2)"
+        #         )
+        #     )
+        # ]
+        # names += ["$vwap_pressure"]
+
+        """fields += [
+            template_paused.format(
+                "If(IsNull({0}), 0, {0})".format("$close0 / ($vwap_60 + 1e-5)")  # avoid divide-by-zero
+            )
+        ]
+        names += ["$vwap_ratio_60"] """
 
         return fields, names
