@@ -14,11 +14,12 @@ from qlib.constant import EPS
 from qlib.rl.data.base import ProcessedDataProvider
 from qlib.rl.interpreter import ActionInterpreter, StateInterpreter
 from qlib.rl.order_execution.state import SAOEState
+from qlib_custom.meta_trigger.simulator_state import SAOEExtendedState
 from qlib.typehint import TypedDict
 
 from qlib.utils import init_instance_by_config
 
-class CustomActionInterpreter(ActionInterpreter[SAOEState, int, float]):
+class CustomActionInterpreter(ActionInterpreter[SAOEExtendedState, int, float]):
     """Convert a discrete policy action to a continuous action, then multiplied by ``order.amount``.
 
     Parameters
@@ -46,7 +47,7 @@ class CustomActionInterpreter(ActionInterpreter[SAOEState, int, float]):
     def action_space(self) -> spaces.Discrete:
         return spaces.Discrete(len(self.action_values))
 
-    def interpret(self, state: SAOEState, action: int) -> float:
+    def interpret(self, state: SAOEExtendedState, action: int) -> float:
         assert 0 <= action < len(self.action_values)
 
         self.log("action/values", self.action_values[action])

@@ -33,7 +33,7 @@ from qlib_custom.meta_trigger.train_meta_dqn import train_meta_dqn_model
 
 from qlib_custom.custom_logger_callback import MetaDQNCheckpointManager
 from qlib_custom.logger.tensorboard_logger import TensorboardLogger
-logger = TensorboardLogger(name="ppo_training_baseline_test")
+logger = TensorboardLogger(name="ppo_training_baseline_test2")
 
 OUTPUT_PATH = Path("/Projects/qlib_trading_v2/data3/selected_orders")
 stock = "BTCUSDT"

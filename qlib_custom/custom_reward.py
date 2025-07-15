@@ -6,12 +6,10 @@ import numpy as np
 
 from qlib.backtest.decision import OrderDir
 from qlib.rl.order_execution.state import SAOEMetrics, SAOEState
+from qlib_custom.meta_trigger.simulator_state import SAOEExtendedState
 from qlib.rl.reward import Reward
 
-from qlib_custom.logger.tensorboard_logger import TensorboardLogger
-logger = TensorboardLogger(name="ppo_training")
-
-class HybridExecutionReward(Reward[SAOEState]):
+class HybridExecutionReward(Reward[SAOEExtendedState]):
     """
     Combines PA, VWAP alignment, pressure awareness, and execution dispersion into a unified reward signal.
     """
@@ -32,12 +30,12 @@ class HybridExecutionReward(Reward[SAOEState]):
         self.vwap_feature = vwap_feature
         self.pressure_feature = pressure_feature        
 
-    def reward(self, simulator_state: SAOEState) -> float:
+    def reward(self, simulator_state: SAOEExtendedState) -> float:
         order = simulator_state.order
         whole_order = order.amount
         assert whole_order > 0
 
-        last_step = simulator_state.history_steps.reset_index().iloc[-1].to_dict()
+        last_step = simulator_state.history_steps.reset_index().iloc[-1].to_dict()        
         pa = last_step["pa"] * last_step["amount"] / whole_order
         
         # VWAP deviation
@@ -65,9 +63,6 @@ class HybridExecutionReward(Reward[SAOEState]):
             + self.weight_penalty * dispersion_penalty
         )
 
-        # print(f"last step {cur_dt} breakdown: {breakdown}")
-        print(breakdown)
-
         # Safety check
         assert not np.isnan(total_reward), f"NaN reward for simulator state: {simulator_state}"
 
@@ -77,20 +72,6 @@ class HybridExecutionReward(Reward[SAOEState]):
         self.log("reward/pressure_penalty", pressure_penalty)
         self.log("reward/dispersion_penalty", dispersion_penalty)
         self.log("reward/avg", total_reward)
-
-        # Tensorboard Logging
-        metrics = {
-            "reward/pa": pa,
-            "reward/vwap_penalty": vwap_penalty,
-            "reward/pressure_penalty": pressure_penalty,
-            "reward/dispersion_penalty": dispersion_penalty,
-            "reward/avg": total_reward
-        }
-
-        #logger.log_scalars(metrics)
-    
-        #"execution/steps_per_episode": steps,        
-        #simulator_state.cur_step
 
         return total_reward
 
