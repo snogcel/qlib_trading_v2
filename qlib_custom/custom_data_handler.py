@@ -25,20 +25,57 @@ class CryptoHighFreqGeneralBacktestHandler(DataHandler):
         inst_processors=None,
     ):
         self.day_length = day_length
-        self.columns = set(columns) 
+        self.columns = set(columns)         
         data_loader = {
-            "class": "QlibDataLoader",
-            "module_path": "qlib.data.dataset.loader", 
+            "class": "CustomNestedDataLoader",
+            "module_path": "qlib_custom.custom_ndl",
             "kwargs": {
-                "config": {
-                    "feature": self.get_feature_config(),
-                },
-                "swap_level": False,
-                "freq": freq,
-                "inst_processors": inst_processors,
-            },
+                "dataloader_l": [                    
+                    {
+                        "class": "QlibDataLoader",  
+                        "module_path": "qlib.data.dataset.loader",                                                                      
+                        "kwargs": {
+                            "freq": freq,
+                            "config": {
+                                "feature": self.get_feature_config(),
+                            },                        
+                            "swap_level": False,                            
+                            "inst_processors": inst_processors,                            
+                        }
+                    },
+                    # {
+                    #     "class": "gdelt_dataloader",
+                    #     "module_path": "qlib_custom.gdelt_loader",                        
+                    #     "kwargs": {
+                    #         "freq": "day",  # Replace with your FREQ variable
+                    #         "config": {
+                    #             "feature": gdelt_dataloader.get_feature_config(),                                
+                    #         },                             
+                    #         "swap_level": False,                            
+                    #         "inst_processors": [],                            
+                    #     }
+                    # },
+                    {
+                        "class": "MacroFeatureLoader",
+                        "module_path": "qlib_custom.macro_loader",
+                        "kwargs": {
+                            "pickle_path": "./data3/macro_features.pkl",
+                            "freq": "day",  # or "hour" if you've aligned it to that level                                                        
+                            "config": {
+                                "feature": {
+                                    "fields": [],
+                                    "names": []
+                                }
+                            },
+                        }
+                    }                    
+                ],                
+                "instruments": ["BTCUSDT", "BTC_FEAT"],
+                "start_time": "20180201",
+                "end_time": "20250401",                
+            },            
+            "join": "left",                                                          
         }
-        print(data_loader)
         dl = init_instance_by_config(data_loader)
         super().__init__(
             instruments=instruments,
