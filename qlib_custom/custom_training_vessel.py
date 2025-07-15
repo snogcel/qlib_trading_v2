@@ -104,13 +104,11 @@ class CustomTrainingVessel(TrainingVesselBase):
         """
         self.policy.train()
 
-        print(vector_env)
-
-        with vector_env.collector_guard():
+        with vector_env.collector_guard():            
             collector = Collector(
                 self.policy, vector_env, VectorReplayBuffer(self.buffer_size, len(vector_env)), exploration_noise=True
             )
-
+            
             # Number of episodes collected in each training iteration can be overridden by fast dev run.
             if self.trainer.fast_dev_run is not None:
                 episodes = self.trainer.fast_dev_run

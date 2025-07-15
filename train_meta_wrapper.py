@@ -31,11 +31,9 @@ from qlib_custom.meta_trigger.experience_buffer import ExperienceBuffer
 from qlib_custom.meta_trigger.train_meta_dqn import train_meta_dqn_model
 
 
-from qlib_custom.custom_logger_callback import EpisodeLogger
+from qlib_custom.custom_logger_callback import MetaDQNCheckpointManager
 from qlib_custom.logger.tensorboard_logger import TensorboardLogger
-logger = TensorboardLogger(name="ppo_training")
-
-#from qlib.rl.order_execution.trainer import PPOTrainer
+logger = TensorboardLogger(name="ppo_training_baseline_test")
 
 OUTPUT_PATH = Path("/Projects/qlib_trading_v2/data3/selected_orders")
 stock = "BTCUSDT"
@@ -116,6 +114,7 @@ def train_and_test(
     reward: Reward,
     run_training: bool,
     run_backtest: bool,
+    meta_policy: MetaDQNPolicy
 ) -> None:
     order_root_path = Path(data_config["source"]["selected_order_dir"])
 
@@ -149,6 +148,7 @@ def train_and_test(
         callbacks: List[Callback] = []
         if "checkpoint_path" in trainer_config:                                    
             callbacks.append(MetricsWriter(dirpath=Path(trainer_config["checkpoint_path"])))
+            callbacks.append(MetaDQNCheckpointManager(meta_policy, Path(trainer_config["checkpoint_path"]) / "meta_checkpoints", frequency=1))
             callbacks.append(
                 Checkpoint(
                     dirpath=Path(trainer_config["checkpoint_path"]) / "checkpoints",
@@ -177,6 +177,7 @@ def train_and_test(
                 "concurrency": env_config["concurrency"],
                 "val_every_n_iters": trainer_config.get("val_every_n_epoch", None),
                 "callbacks": callbacks,
+                "logger": logger
             },
             vessel_kwargs={
                 "episode_per_iter": trainer_config["episode_per_collect"],
@@ -184,7 +185,7 @@ def train_and_test(
                     "batch_size": trainer_config["batch_size"],
                     "repeat": trainer_config["repeat_per_collect"],
                 },
-                "val_initial_states": valid_dataset,
+                "val_initial_states": valid_dataset
             },
         )
 
@@ -203,9 +204,13 @@ def train_and_test(
             initial_states=test_dataset,
             policy=policy,
             logger=CsvWriter(Path(trainer_config["checkpoint_path"])),
-            reward=reward,
-            finite_env_type=env_config["parallel_mode"],
-            concurrency=env_config["concurrency"],
+            reward=reward,            
+            trainer_kwargs={
+                "logger": logger,
+                "finite_env_type": env_config["parallel_mode"],
+                "concurrency": env_config["concurrency"],
+            },
+            vessel_kwargs={},
         )
 
 
@@ -299,6 +304,8 @@ def main(config: dict, run_training: bool, run_backtest: bool) -> None:
         import pickle
         pickle.dump(meta_buffer.buffer, f)
 
+    
+
     train_meta_dqn_model(
         buffer_path="./data3/meta_buffer.pkl",
         checkpoint_out="./checkpoints/meta_dqn.pt"
@@ -373,6 +380,7 @@ def main(config: dict, run_training: bool, run_backtest: bool) -> None:
         reward=reward,
         run_training=run_training,
         run_backtest=run_backtest,
+        meta_policy=meta_policy
     )
 
 if __name__ == "__main__":
@@ -383,7 +391,7 @@ if __name__ == "__main__":
     with open("./rl_order_execution/exp_configs/train_ppo.yml", "r") as f:
         config = yaml.safe_load(f)
 
-    main(config, run_training=True, run_backtest=False)
+    main(config, run_training=True, run_backtest=True)
 
 
 

@@ -1,11 +1,14 @@
 from __future__ import annotations
 
 import math
-from typing import Any, List, Optional, cast
+from typing import TYPE_CHECKING, Any, List, Optional, cast
 
 import numpy as np
 import pandas as pd
 from gym import spaces
+
+if TYPE_CHECKING:
+    from qlib.rl.utils.env_wrapper import EnvWrapper
 
 from qlib.constant import EPS
 from qlib.rl.data.base import ProcessedDataProvider
@@ -29,6 +32,8 @@ class CustomActionInterpreter(ActionInterpreter[SAOEState, int, float]):
         Total number of steps (an upper-bound estimation). For example, 390min / 30min-per-step = 13 steps.
     """
 
+    env: Optional[EnvWrapper] = None
+
     def __init__(self, values: int | List[float], max_step: Optional[int] = None) -> None:
         super().__init__()
 
@@ -44,9 +49,14 @@ class CustomActionInterpreter(ActionInterpreter[SAOEState, int, float]):
     def interpret(self, state: SAOEState, action: int) -> float:
         assert 0 <= action < len(self.action_values)
 
+        self.log("action/values", self.action_values[action])
+        self.log("action/bin_selected", action)
+
         if self.max_step is not None and state.cur_step >= self.max_step - 1:            
             return state.position
-        else:            
-            print("state.action_values: ", self.action_values[action])            
-            
+        else:                        
             return min(state.position, state.order.amount * self.action_values[action])
+        
+    def log(self, name: str, value: Any) -> None:
+        assert self.env is not None
+        self.env.logger.add_scalar(name, value)

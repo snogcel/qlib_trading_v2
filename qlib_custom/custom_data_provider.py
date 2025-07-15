@@ -20,7 +20,7 @@ import pandas as pd
 import numpy as np
 from pathlib import Path
 
-TIER_MAP = {"A": 3.0, "B": 2.0, "C": 1.0, "D": 0.0}
+
 
 class MacroAwareProcessedDataProvider(HandlerProcessedDataProvider):
     def __init__(self, macro_feature_path=None, *args, **kwargs):
@@ -32,6 +32,7 @@ class MacroAwareProcessedDataProvider(HandlerProcessedDataProvider):
         if self.macro_feature_path is None:
             return {}
         df = pd.read_pickle(self.macro_feature_path)
+        TIER_MAP = {"A": 3.0, "B": 2.0, "C": 1.0, "D": 0.0}
         df["signal_tier"] = df["signal_tier"].map(TIER_MAP) 
         return df
 

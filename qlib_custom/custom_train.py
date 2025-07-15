@@ -1,7 +1,9 @@
 
 from __future__ import annotations
 
-from typing import Any, Callable, Dict, List, Sequence, cast
+from typing import TYPE_CHECKING, Optional, Any, Callable, Dict, List, Sequence, cast
+
+from collections import defaultdict
 
 from tianshou.policy import BasePolicy
 
@@ -14,16 +16,14 @@ from qlib.rl.trainer import Trainer
 from qlib.rl.trainer.callbacks import Callback
 from qlib_custom.custom_training_vessel import CustomTrainingVessel
 
-from qlib_custom.custom_logger_callback import EpisodeLogger
-from qlib_custom.logger.tensorboard_logger import TensorboardLogger
-logger = TensorboardLogger(name="ppo_training8")
-
-class CustomTrainer(Trainer):
+class CustomTrainer(Trainer):    
     def __init__(
         self,
         **trainer_kwargs
     ):
         self.current_episode = 0
+        if 'logger' in trainer_kwargs:
+            self.logger = trainer_kwargs.pop('logger')
         super().__init__(**trainer_kwargs)
 
     def _stage_prefix(self) -> str:
@@ -31,19 +31,16 @@ class CustomTrainer(Trainer):
 
     def _metrics_callback(self, on_episode: bool, on_collect: bool, log_buffer: LogBuffer) -> None:               
         if on_episode:
-            # Update the global counter.
             self.current_episode = log_buffer.global_episode
-            logger.set_step(self.current_episode)                     
-            metrics = log_buffer.episode_metrics()                     
+            self.logger.set_step(self.current_episode)
+            raw_metrics = log_buffer.episode_metrics()
         elif on_collect:
-            # Update the latest metrics.
-            metrics = log_buffer.collect_metrics() 
+            raw_metrics = log_buffer.collect_metrics()
+        else:
+            return  # No metrics to process
 
-        logger.log_scalars({f"{self._stage_prefix()}/{name}": value for name, value in metrics.items()})
-        
-        if self.current_stage == "val":
-            metrics = {"val/" + name: value for name, value in metrics.items()}        
-
+        metrics = {f"{self._stage_prefix()}/{name}": value for name, value in raw_metrics.items()}
+        self.logger.log_scalars(metrics)
         self.metrics.update(metrics)
 
 
@@ -101,8 +98,7 @@ def backtest(
     policy: BasePolicy,
     logger: LogWriter | List[LogWriter],
     reward: Reward | None = None,
-    finite_env_type: FiniteEnvType = "subproc",
-    concurrency: int = 2,
+    **trainer_kwargs,
 ) -> None:
     """Backtest with the parallelism provided by RL framework.
 
@@ -140,9 +136,5 @@ def backtest(
         test_initial_states=initial_states,
         reward=cast(Reward, reward),  # ignore none
     )
-    trainer = CustomTrainer(
-        finite_env_type=finite_env_type,
-        concurrency=concurrency,
-        loggers=logger,
-    )
+    trainer = CustomTrainer(trainer_kwargs)
     trainer.test(vessel)
