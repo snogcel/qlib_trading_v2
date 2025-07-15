@@ -5,7 +5,7 @@ from typing import cast
 import numpy as np
 
 from qlib.backtest.decision import OrderDir
-from qlib.rl.order_execution.state import SAOEMetrics, SAOEState
+from qlib.rl.order_execution.state import SAOEMetrics
 from qlib_custom.meta_trigger.simulator_state import SAOEExtendedState
 from qlib.rl.reward import Reward
 
@@ -67,6 +67,12 @@ class HybridExecutionReward(Reward[SAOEExtendedState]):
         assert not np.isnan(total_reward), f"NaN reward for simulator state: {simulator_state}"
 
         # Logging for diagnostics
+        bin_idx = getattr(simulator_state, "current_bin", None)
+
+        if bin_idx is not None:
+            self.log(f"action_bin/reward_pa_bin_{bin_idx}", pa)
+            self.log(f"action_bin/reward_avg_bin_{bin_idx}", total_reward)
+
         self.log("reward/pa", pa)
         self.log("reward/vwap_penalty", vwap_penalty)
         self.log("reward/pressure_penalty", pressure_penalty)

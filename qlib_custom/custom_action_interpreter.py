@@ -13,7 +13,6 @@ if TYPE_CHECKING:
 from qlib.constant import EPS
 from qlib.rl.data.base import ProcessedDataProvider
 from qlib.rl.interpreter import ActionInterpreter, StateInterpreter
-from qlib.rl.order_execution.state import SAOEState
 from qlib_custom.meta_trigger.simulator_state import SAOEExtendedState
 from qlib.typehint import TypedDict
 
@@ -50,9 +49,9 @@ class CustomActionInterpreter(ActionInterpreter[SAOEExtendedState, int, float]):
     def interpret(self, state: SAOEExtendedState, action: int) -> float:
         assert 0 <= action < len(self.action_values)
 
-        self.log("action/values", self.action_values[action])
-        self.log("action/bin_selected", action)
-
+        if hasattr(state, "current_bin"):
+            self.env.simulator.current_bin = action # bin index            
+        
         if self.max_step is not None and state.cur_step >= self.max_step - 1:            
             return state.position
         else:                        

@@ -5,7 +5,7 @@ import pandas as pd
 
 from qlib.rl.order_execution.interpreter import FullHistoryStateInterpreter, FullHistoryObs, canonicalize
 from qlib.rl.data.base import ProcessedDataProvider
-from qlib.rl.order_execution.state import SAOEState
+from qlib_custom.meta_trigger.simulator_state import SAOEExtendedState
 from qlib.utils import init_instance_by_config
 
 class VWAPAwareInterpreter(FullHistoryStateInterpreter):
@@ -25,7 +25,7 @@ class VWAPAwareInterpreter(FullHistoryStateInterpreter):
             accept_types=ProcessedDataProvider,
         )
 
-    def interpret(self, state: SAOEState) -> FullHistoryObs:
+    def interpret(self, state: SAOEExtendedState) -> FullHistoryObs:
         processed = self.processed_data_provider.get_data(
             stock_id=state.order.stock_id,
             date=pd.Timestamp(state.order.start_time.date()),

@@ -15,7 +15,9 @@ from qlib.backtest.decision import OrderDir
 from qlib.constant import ONE_MIN
 from qlib.rl.data.native import load_handler_intraday_processed_data
 from qlib.rl.interpreter import ActionInterpreter, StateInterpreter
-from qlib.rl.order_execution import SingleAssetOrderExecutionSimple
+
+#from qlib.rl.order_execution import SingleAssetOrderExecutionSimple
+
 from qlib.rl.reward import Reward
 from qlib.rl.trainer import Checkpoint
 from qlib_custom.custom_train import CustomTrainer, backtest, train
@@ -26,11 +28,10 @@ from tianshou.policy import BasePolicy
 from torch.utils.data import Dataset
 
 from copy import deepcopy
+from qlib_custom.custom_simulator import CustomSingleAssetOrderExecutionSimple
 from qlib_custom.meta_trigger.meta_dqn_policy import MetaDQNPolicy
 from qlib_custom.meta_trigger.experience_buffer import ExperienceBuffer
 from qlib_custom.meta_trigger.train_meta_dqn import train_meta_dqn_model
-
-
 from qlib_custom.custom_logger_callback import MetaDQNCheckpointManager
 from qlib_custom.logger.tensorboard_logger import TensorboardLogger
 logger = TensorboardLogger(name="ppo_training_baseline_test2")
@@ -120,8 +121,8 @@ def train_and_test(
 
     data_granularity = simulator_config.get("data_granularity", 1)
 
-    def _simulator_factory_simple(order: Order) -> SingleAssetOrderExecutionSimple:
-        return SingleAssetOrderExecutionSimple(
+    def _simulator_factory_simple(order: Order) -> CustomSingleAssetOrderExecutionSimple:
+        return CustomSingleAssetOrderExecutionSimple(
             order=order,
             data_dir=data_config["source"]["feature_root_dir"],
             feature_columns_today=data_config["source"]["feature_columns_today"],

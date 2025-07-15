@@ -26,7 +26,7 @@ T = TypeVar("T")
 _logger = get_module_logger(__name__)
 
 class CustomTrainingVessel(TrainingVesselBase):
-    """The default implementation of training vessel.
+    """A custom implementation of the default implementation of training vessel.
 
     ``__init__`` accepts a sequence of initial states so that iterator can be created.
     ``train``, ``validate``, ``test`` each do one collect (and also update in train).
