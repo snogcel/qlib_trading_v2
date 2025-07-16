@@ -17,13 +17,13 @@ simulator:
   time_per_step: 60
   vol_limit: null
 env:
-  concurrency: 8
+  concurrency: 6
   parallel_mode: dummy
 action_interpreter:
   class: CustomActionInterpreter
   module_path: qlib_custom.custom_action_interpreter
   kwargs:
-    values: 8
+    values: 16
     max_step: 24  
 state_interpreter:
   class: FullHistoryStateInterpreter
@@ -55,12 +55,12 @@ data:
     order_dir: ./data3/orders
     selected_order_dir: ./data3/selected_orders 
     feature_root_dir: ./data3/pickle/
-    feature_columns_today: ["$close0", "$volume0", "$vwap_3h", "$vwap_6h", "$vwap_12h", "$vwap_diff_3h", "$vwap_diff_6h", "$vwap_diff_12h", "$vwap_pressure"]
-    feature_columns_yesterday: ["$close0", "$volume0", "$vwap_3h", "$vwap_6h", "$vwap_12h", "$vwap_diff_3h", "$vwap_diff_6h", "$vwap_diff_12h", "$vwap_pressure"]
+    feature_columns_today: ["$close0", "$volume0", "$vwap_3h", "$vwap_6h", "$vwap_12h", "$vwap_diff_3h", "$vwap_diff_6h", "$vwap_diff_12h", "$vwap_pressure", "tier_confidence", "q10", "q50", "q90", "side"]
+    feature_columns_yesterday: ["$close0", "$volume0", "$vwap_3h", "$vwap_6h", "$vwap_12h", "$vwap_diff_3h", "$vwap_diff_6h", "$vwap_diff_12h", "$vwap_pressure", "tier_confidence", "q10", "q50", "q90", "side"]
     total_time: 1440
     default_start_time_index: 0
     default_end_time_index: 1440
-    proc_data_dim: 9
+    proc_data_dim: 14
   num_workers: 0
   queue_size: 20
 network:

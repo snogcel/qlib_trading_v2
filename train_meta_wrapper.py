@@ -35,7 +35,7 @@ from qlib_custom.meta_trigger.experience_buffer import ExperienceBuffer
 from qlib_custom.meta_trigger.train_meta_dqn import train_meta_dqn_model
 from qlib_custom.custom_logger_callback import MetaDQNCheckpointManager
 from qlib_custom.logger.tensorboard_logger import TensorboardLogger
-logger = TensorboardLogger(name="ppo_training_baseline_test3")
+logger = TensorboardLogger(name="ppo_training_baseline_gate2")
 
 OUTPUT_PATH = Path("/Projects/qlib_trading_v2/data3/selected_orders")
 stock = "BTCUSDT"
@@ -260,6 +260,7 @@ def main(config: dict, run_training: bool, run_backtest: bool) -> None:
 
     meta_policy = None
     if meta_enabled:
+        macro_df = macro_df[["tier_confidence", "q10", "q50", "q90", "fg_index", "btc_dom", "momentum_5d", "momentum_10d", "side"]]
         input_dim = len(macro_df.columns)
         checkpoint_path = meta_conf.get("checkpoint_path") # ./checkpoints/meta_dqn.pt
         meta_policy = MetaDQNPolicy(input_dim=input_dim, checkpoint_path=checkpoint_path)
@@ -269,7 +270,7 @@ def main(config: dict, run_training: bool, run_backtest: bool) -> None:
         dt = pd.Timestamp(order["date"])
         inst = order["instrument"]
         try:
-            row = macro_df.loc[(inst, dt)]            
+            row = macro_df.loc[(inst, dt)]                        
             return row.to_numpy(dtype=np.float32)
         except KeyError:
             return None
@@ -285,12 +286,12 @@ def main(config: dict, run_training: bool, run_backtest: bool) -> None:
         features = extract_meta_features(order)    
         if features is None:
             continue
-        feature_dict = dict(zip(macro_df.columns, features))
-
-        print(feature_dict)
+        
+        feature_dict = dict(zip(macro_df.columns, features))        
 
         tier_score = feature_dict.get("tier_confidence", 0.0)
         force_execute = tier_score > 0.95  # optional override
+        # force_execute = tier_score > 0.0  # optional override
 
         rolling_spread_thresh = feature_dict.get("spread_thresh", 0.01) 
         q10 = feature_dict.get("q10", 0.0)
@@ -305,13 +306,18 @@ def main(config: dict, run_training: bool, run_backtest: bool) -> None:
         order.tier_confidence = feature_dict.get("tier_confidence")
         order.side = feature_dict.get("side")
 
-        print(f"decision: {decision}, force_execute: {force_execute}, q10: {q10}, q50: {q50}, q90: {q90}, order: {order}")
+        # print(f"decision: {decision}, force_execute: {force_execute}")
         
         if decision or force_execute:            
             selected_orders.append(order)
             # Log transition (mock reward until PPO finishes)
             reward = 0.0
             meta_buffer.add(features, action=1, reward=reward, next_state=None, done=True, direction=order.direction)
+
+    # === Wrap into PPO training ===
+    print(f"[Meta-DQN] Selected {len(selected_orders)} / {len(orders)} orders for training.")
+
+    raise SystemExit()
 
     # === Optional: Save buffer for later Meta-DQN training ===
     with open("./data3/meta_buffer.pkl", "wb") as f:
@@ -321,10 +327,9 @@ def main(config: dict, run_training: bool, run_backtest: bool) -> None:
     train_meta_dqn_model(
         buffer_path="./data3/meta_buffer.pkl",
         checkpoint_out="./checkpoints/meta_dqn.pt"
-    )
+    )    
 
-    # === Wrap into PPO training ===
-    print(f"[Meta-DQN] Selected {len(selected_orders)} / {len(orders)} orders for training.")
+    #raise SystemExit()
         
     selected_orders_df = pd.DataFrame(selected_orders)
     selected_orders_df.set_index(["date", "instrument"], inplace=True)  # or ["datetime", "instrument"] if needed    

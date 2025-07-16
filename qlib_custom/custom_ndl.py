@@ -104,11 +104,13 @@ class CustomNestedDataLoader(QlibDataLoader):
     def load(self, instruments=None, start_time=None, end_time=None) -> pd.DataFrame:
         df_full = self.data_loader_l[0].load(instruments=["BTCUSDT"], start_time=start_time, end_time=end_time)        
         
+        ## use this when working with micro
         df_macro = self.data_loader_l[1].load(instruments=["BTCUSDT"], start_time=start_time, end_time=end_time) # loading macro_feature.pkl
         df_macro.columns = pd.MultiIndex.from_product([['macro'], df_macro.columns])
         df_current = df_macro.copy()
 
-        #df_current = self.data_loader_l[1].load(instruments=["BTC_FEAT"], start_time=start_time, end_time=end_time)
+        ## use this when working with macro -- fugly
+        # df_current = self.data_loader_l[1].load(instruments=["BTC_FEAT"], start_time=start_time, end_time=end_time)
 
 
 

@@ -304,9 +304,25 @@ if __name__ == '__main__':
     TIER_MAP = {"A": 3.0, "B": 2.0, "C": 1.0, "D": 0.0}
     df_to_pickle["signal_tier"] = df_to_pickle["signal_tier"].map(TIER_MAP)
 
+    ## moved from train_meta_wrapper -- this is messy as fuck
+    df_to_pickle["signal_strength"] = df_to_pickle["abs_q50"] / df_to_pickle["signal_thresh"]
+    df_to_pickle["spread_quality"] = 1 - (df_to_pickle["spread"] / df_to_pickle["spread_thresh"])
+
+    df_to_pickle["tier_confidence"] = np.clip(((df_to_pickle["abs_q50"] / df_to_pickle["signal_thresh"]) + (1 - (df_to_pickle["spread"] / df_to_pickle["spread_thresh"]))) / 2, 0.0, 1.0)
+
+    df_to_pickle["side"] = np.where(
+        (df_to_pickle["q90"] - df_to_pickle["q50"]) > (df_to_pickle["spread_thresh"] / 2),
+        1,  # Buy
+        np.where(
+            (df_to_pickle["q10"] - df_to_pickle["q50"]) < (-df_to_pickle["spread_thresh"] / 2),
+            0,  # Sell
+            -1  # Hold or uncertain
+        )
+    )
+
     print("df_to_pickle: ", df_to_pickle)
 
-    df_to_pickle.to_pickle("./data2/macro_features.pkl")
+    df_to_pickle.to_pickle("./data3/macro_features.pkl")
 
     raise SystemExit()
 
