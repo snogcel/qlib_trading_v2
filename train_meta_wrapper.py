@@ -35,7 +35,7 @@ from qlib_custom.meta_trigger.experience_buffer import ExperienceBuffer
 from qlib_custom.meta_trigger.train_meta_dqn import train_meta_dqn_model
 from qlib_custom.custom_logger_callback import MetaDQNCheckpointManager
 from qlib_custom.logger.tensorboard_logger import TensorboardLogger
-logger = TensorboardLogger(name="ppo_training_baseline_gate2")
+logger = TensorboardLogger(name="ppo_training_baseline_reward3")
 
 OUTPUT_PATH = Path("/Projects/qlib_trading_v2/data3/selected_orders")
 stock = "BTCUSDT"
@@ -316,8 +316,6 @@ def main(config: dict, run_training: bool, run_backtest: bool) -> None:
 
     # === Wrap into PPO training ===
     print(f"[Meta-DQN] Selected {len(selected_orders)} / {len(orders)} orders for training.")
-
-    raise SystemExit()
 
     # === Optional: Save buffer for later Meta-DQN training ===
     with open("./data3/meta_buffer.pkl", "wb") as f:

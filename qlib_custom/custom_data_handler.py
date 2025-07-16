@@ -177,7 +177,7 @@ class CryptoHighFreqGeneralHandler(DataHandlerLP):
         drop_raw=True,
         day_length=1440,
         freq="1min",
-        columns=["$open", "$high", "$low", "$close", "$vwap"],
+        columns=["$open", "$high", "$low", "$close"],
         inst_processors=None
     ):
         self.day_length = day_length
@@ -303,56 +303,56 @@ class CryptoHighFreqGeneralHandler(DataHandlerLP):
         names += ["$volume_1"]
 
         # custom VWAP stuff
-        # fields += [
-        #     template_paused.format(
-        #         "If(IsNull({0}), 0, {0})".format("Sum($close * $volume, 3) / Sum($volume, 3)")
-        #     )
-        # ]
-        # names += ["$vwap_3h"]
+        fields += [
+            template_paused.format(
+                "If(IsNull({0}), 0, {0})".format("Sum($close * $volume, 3) / Sum($volume, 3)")
+            )
+        ]
+        names += ["$vwap_3h"]
 
-        # fields += [
-        #     template_paused.format(
-        #         "If(IsNull({0}), 0, {0})".format("Sum($close * $volume, 6) / Sum($volume, 6)")
-        #     )
-        # ]
-        # names += ["$vwap_6h"]
+        fields += [
+            template_paused.format(
+                "If(IsNull({0}), 0, {0})".format("Sum($close * $volume, 6) / Sum($volume, 6)")
+            )
+        ]
+        names += ["$vwap_6h"]
 
-        # fields += [
-        #     template_paused.format(
-        #         "If(IsNull({0}), 0, {0})".format("Sum($close * $volume, 12) / Sum($volume, 12)")
-        #     )
-        # ]
-        # names += ["$vwap_12h"]
+        fields += [
+            template_paused.format(
+                "If(IsNull({0}), 0, {0})".format("Sum($close * $volume, 12) / Sum($volume, 12)")
+            )
+        ]
+        names += ["$vwap_12h"]
 
-        # fields += [
-        #     template_paused.format(
-        #         "If(IsNull({0}), 0, {0})".format("$close - ((Sum($close * $volume, 3) / Sum($volume, 3)) + 1e-5)")  # avoid divide-by-zero
-        #     )
-        # ]
-        # names += ["$vwap_diff_3h"]
+        fields += [
+            template_paused.format(
+                "If(IsNull({0}), 0, {0})".format("$close - ((Sum($close * $volume, 3) / Sum($volume, 3)) + 1e-5)")  # avoid divide-by-zero
+            )
+        ]
+        names += ["$vwap_diff_3h"]
 
-        # fields += [
-        #     template_paused.format(
-        #         "If(IsNull({0}), 0, {0})".format("$close - ((Sum($close * $volume, 6) / Sum($volume, 6)) + 1e-5)")  # avoid divide-by-zero
-        #     )
-        # ]
-        # names += ["$vwap_diff_6h"]
+        fields += [
+            template_paused.format(
+                "If(IsNull({0}), 0, {0})".format("$close - ((Sum($close * $volume, 6) / Sum($volume, 6)) + 1e-5)")  # avoid divide-by-zero
+            )
+        ]
+        names += ["$vwap_diff_6h"]
 
-        # fields += [
-        #     template_paused.format(
-        #         "If(IsNull({0}), 0, {0})".format("$close - ((Sum($close * $volume, 12) / Sum($volume, 12)) + 1e-5)")  # avoid divide-by-zero
-        #     )
-        # ]
-        # names += ["$vwap_diff_12h"]
+        fields += [
+            template_paused.format(
+                "If(IsNull({0}), 0, {0})".format("$close - ((Sum($close * $volume, 12) / Sum($volume, 12)) + 1e-5)")  # avoid divide-by-zero
+            )
+        ]
+        names += ["$vwap_diff_12h"]
 
-        # fields += [
-        #     template_paused.format(
-        #         "If(IsNull({0}), 0, {0})".format(
-        #             "(($close - ((Sum($close * $volume, 3) / Sum($volume, 3)) + 1e-5)) * 0.5 + ($close - ((Sum($close * $volume, 6) / Sum($volume, 6)) + 1e-5)) * 0.3 + ($close - ((Sum($close * $volume, 12) / Sum($volume, 12)) + 1e-5)) * 0.2)"
-        #         )
-        #     )
-        # ]
-        # names += ["$vwap_pressure"]
+        fields += [
+            template_paused.format(
+                "If(IsNull({0}), 0, {0})".format(
+                    "(($close - ((Sum($close * $volume, 3) / Sum($volume, 3)) + 1e-5)) * 0.5 + ($close - ((Sum($close * $volume, 6) / Sum($volume, 6)) + 1e-5)) * 0.3 + ($close - ((Sum($close * $volume, 12) / Sum($volume, 12)) + 1e-5)) * 0.2)"
+                )
+            )
+        ]
+        names += ["$vwap_pressure"]
 
         """fields += [
             template_paused.format(
