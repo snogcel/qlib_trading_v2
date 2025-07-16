@@ -27,8 +27,9 @@ class MetaDQNPolicy(BasePolicy):
 
     def decide(self, feature_vector: dict) -> bool:
         state = torch.FloatTensor([list(feature_vector.values())])
-        q_values = self.model(state)
-        gap = q_values[0, 1] - q_values[0, 0]
+        with torch.no_grad():
+            q_values = self.model(state)
+            gap = q_values[0, 1] - q_values[0, 0]
         print(f"tier: {feature_vector['tier_confidence']}, q50: {feature_vector['q50']}, q_values: {q_values}, gap: {gap}")
         return gap > 0.3 and q_values[0, 1] > 0.0
 
