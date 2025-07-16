@@ -10,7 +10,8 @@ from typing import cast, List, Optional
 import numpy as np
 import pandas as pd
 import torch
-from qlib.backtest import Order
+
+from qlib_custom.custom_order import Order
 from qlib.backtest.decision import OrderDir
 from qlib.constant import ONE_MIN
 from qlib.rl.data.native import load_handler_intraday_processed_data
@@ -34,7 +35,7 @@ from qlib_custom.meta_trigger.experience_buffer import ExperienceBuffer
 from qlib_custom.meta_trigger.train_meta_dqn import train_meta_dqn_model
 from qlib_custom.custom_logger_callback import MetaDQNCheckpointManager
 from qlib_custom.logger.tensorboard_logger import TensorboardLogger
-logger = TensorboardLogger(name="ppo_training_baseline_test2")
+logger = TensorboardLogger(name="ppo_training_baseline_test3")
 
 OUTPUT_PATH = Path("/Projects/qlib_trading_v2/data3/selected_orders")
 stock = "BTCUSDT"
@@ -100,6 +101,11 @@ class LazyLoadDataset(Dataset):
             direction=OrderDir(int(row["order_type"])),
             start_time=date + self._ticks_index[self._default_start_time_index],
             end_time=date + self._ticks_index[self._default_end_time_index - 1] + ONE_MIN,
+            tier_confidence=row["tier_confidence"],
+            q10=row["q10"],
+            q50=row["q50"],
+            q90=row["q90"],
+            side=row["side"]
         )
 
         return order
@@ -233,20 +239,24 @@ def main(config: dict, run_training: bool, run_backtest: bool) -> None:
     macro_df = pd.read_pickle(macro_features_path)
     macro_df.index.set_names(["instrument", "datetime"], inplace=True)
 
-    macro_df["signal_strength"] = macro_df["abs_q50"] / macro_df["signal_thresh"]
-    macro_df["spread_quality"] = 1 - (macro_df["spread"] / macro_df["spread_thresh"])
+    # TODO -- move this to ppo_sweep_runner
 
-    macro_df["tier_confidence"] = np.clip(((macro_df["abs_q50"] / macro_df["signal_thresh"]) + (1 - (macro_df["spread"] / macro_df["spread_thresh"]))) / 2, 0.0, 1.0)
+    # macro_df["signal_strength"] = macro_df["abs_q50"] / macro_df["signal_thresh"]
+    # macro_df["spread_quality"] = 1 - (macro_df["spread"] / macro_df["spread_thresh"])
 
-    macro_df["side"] = np.where(
-        (macro_df["q90"] - macro_df["q50"]) > (macro_df["spread_thresh"] / 2),
-        1,  # Buy
-        np.where(
-            (macro_df["q10"] - macro_df["q50"]) < (-macro_df["spread_thresh"] / 2),
-            0,  # Sell
-            -1  # Hold or uncertain
-        )
-    )
+    # macro_df["tier_confidence"] = np.clip(((macro_df["abs_q50"] / macro_df["signal_thresh"]) + (1 - (macro_df["spread"] / macro_df["spread_thresh"]))) / 2, 0.0, 1.0)
+
+    # macro_df["side"] = np.where(
+    #     (macro_df["q90"] - macro_df["q50"]) > (macro_df["spread_thresh"] / 2),
+    #     1,  # Buy
+    #     np.where(
+    #         (macro_df["q10"] - macro_df["q50"]) < (-macro_df["spread_thresh"] / 2),
+    #         0,  # Sell
+    #         -1  # Hold or uncertain
+    #     )
+    # )
+
+    ###
 
     meta_policy = None
     if meta_enabled:
@@ -277,6 +287,8 @@ def main(config: dict, run_training: bool, run_backtest: bool) -> None:
             continue
         feature_dict = dict(zip(macro_df.columns, features))
 
+        print(feature_dict)
+
         tier_score = feature_dict.get("tier_confidence", 0.0)
         force_execute = tier_score > 0.95  # optional override
 
@@ -290,11 +302,12 @@ def main(config: dict, run_training: bool, run_backtest: bool) -> None:
 
         order.direction = OrderDir.BUY if feature_dict.get("side") == 1 else OrderDir.SELL
         order.order_type = 1 if feature_dict.get("side") == 1 else 0
+        order.tier_confidence = feature_dict.get("tier_confidence")
+        order.side = feature_dict.get("side")
 
-        print(f"decision: {decision}, force_execute: {force_execute}, q10: {q10}, q50: {q50}, q90: {q90}, direction: {order.direction}")
+        print(f"decision: {decision}, force_execute: {force_execute}, q10: {q10}, q50: {q50}, q90: {q90}, order: {order}")
         
-        if decision or force_execute:
-            print("selected: ", order)
+        if decision or force_execute:            
             selected_orders.append(order)
             # Log transition (mock reward until PPO finishes)
             reward = 0.0
@@ -304,9 +317,7 @@ def main(config: dict, run_training: bool, run_backtest: bool) -> None:
     with open("./data3/meta_buffer.pkl", "wb") as f:
         import pickle
         pickle.dump(meta_buffer.buffer, f)
-
-    
-
+   
     train_meta_dqn_model(
         buffer_path="./data3/meta_buffer.pkl",
         checkpoint_out="./checkpoints/meta_dqn.pt"
@@ -316,7 +327,7 @@ def main(config: dict, run_training: bool, run_backtest: bool) -> None:
     print(f"[Meta-DQN] Selected {len(selected_orders)} / {len(orders)} orders for training.")
         
     selected_orders_df = pd.DataFrame(selected_orders)
-    selected_orders_df.set_index(["date", "instrument"], inplace=True)  # or ["datetime", "instrument"] if needed
+    selected_orders_df.set_index(["date", "instrument"], inplace=True)  # or ["datetime", "instrument"] if needed    
 
     order_train = selected_orders_df[selected_orders_df.index.get_level_values(0) <= pd.Timestamp("2023-12-31")]
     order_test = selected_orders_df[selected_orders_df.index.get_level_values(0) > pd.Timestamp("2024-01-01")]
@@ -329,7 +340,7 @@ def main(config: dict, run_training: bool, run_backtest: bool) -> None:
         if len(order) > 0:
             order.to_pickle(path / f"{stock}.pkl.target")
             #order.to_csv(path / f"{stock}.csv")
-    
+
     ##
     ## COPIED FROM train_onpolicy.py
     ##

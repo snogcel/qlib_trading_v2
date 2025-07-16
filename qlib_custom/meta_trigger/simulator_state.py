@@ -10,7 +10,8 @@ from typing import NamedTuple, Optional
 
 import numpy as np
 import pandas as pd
-from qlib.backtest import Order
+
+from qlib_custom.custom_order import Order
 from qlib.rl.order_execution.state import SAOEMetrics
 from qlib.typehint import TypedDict
 

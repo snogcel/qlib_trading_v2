@@ -21,14 +21,16 @@ class HybridExecutionReward(Reward[SAOEExtendedState]):
         weight_pressure=0.3,
         weight_penalty=1.0,
         vwap_feature="$vwap_3h",
-        pressure_feature="$vwap_pressure"
+        pressure_feature="$vwap_pressure",
+        confidence_feature="tier_confidence"
     ) -> None:
         self.weight_pa = weight_pa
         self.weight_vwap = weight_vwap
         self.weight_pressure = weight_pressure
         self.weight_penalty = weight_penalty
         self.vwap_feature = vwap_feature
-        self.pressure_feature = pressure_feature        
+        self.pressure_feature = pressure_feature
+        self.tier_confidence = confidence_feature
 
     def reward(self, simulator_state: SAOEExtendedState) -> float:
         order = simulator_state.order
@@ -49,6 +51,9 @@ class HybridExecutionReward(Reward[SAOEExtendedState]):
         # Pressure signal
         pressure = features.loc[cur_dt, self.pressure_feature]
         pressure_penalty = -abs(pressure)
+
+        # Confidence Tiering
+        tier_confidence = features.loc[cur_dt, self.tier_confidence]
 
         # Execution clumping penalty (quadratic dispersion)
         breakdown = simulator_state.history_exec.loc[last_step["datetime"] :]
@@ -77,6 +82,7 @@ class HybridExecutionReward(Reward[SAOEExtendedState]):
         self.log("reward/vwap_penalty", vwap_penalty)
         self.log("reward/pressure_penalty", pressure_penalty)
         self.log("reward/dispersion_penalty", dispersion_penalty)
+        self.log("reward/tier_confidence", tier_confidence)
         self.log("reward/avg", total_reward)
 
         return total_reward
