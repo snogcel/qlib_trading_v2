@@ -12,7 +12,83 @@ from qlib.utils import init_instance_by_config
 
 from qlib.utils import load_dataset, init_instance_by_config, time_to_slc_point
 
-class CustomNestedDataLoader(QlibDataLoader):
+class CustomNestedDataLoader(DataLoader):
+    """
+    We have multiple DataLoader, we can use this class to combine them.
+    """
+
+    def __init__(self, dataloader_l: List[Dict], join="left") -> None:
+        """
+
+        Parameters
+        ----------
+        dataloader_l : list[dict]
+            A list of dataloader, for exmaple
+
+            .. code-block:: python
+
+                nd = NestedDataLoader(
+                    dataloader_l=[
+                        {
+                            "class": "qlib.contrib.data.loader.Alpha158DL",
+                        }, {
+                            "class": "qlib.contrib.data.loader.Alpha360DL",
+                            "kwargs": {
+                                "config": {
+                                    "label": ( ["Ref($close, -2)/Ref($close, -1) - 1"], ["LABEL0"])
+                                }
+                            }
+                        }
+                    ]
+                )
+        join :
+            it will pass to pd.concat when merging it.
+        """
+        
+        super().__init__()
+        self.data_loader_l = [
+            (dl if isinstance(dl, DataLoader) else init_instance_by_config(dl)) for dl in dataloader_l
+        ]
+        self.join = join
+
+    def load(self, instruments=None, start_time=None, end_time=None) -> pd.DataFrame:
+        df_full = None
+        for dl in self.data_loader_l:
+            try:
+                df_current = dl.load(instruments, start_time, end_time)
+            except KeyError:
+                warnings.warn(
+                    "If the value of `instruments` cannot be processed, it will set instruments to None to get all the data."
+                )
+                df_current = dl.load(instruments=None, start_time=start_time, end_time=end_time)
+            if df_full is None:
+                df_full = df_current
+            else:
+                current_columns = df_current.columns.tolist()
+                full_columns = df_full.columns.tolist()               
+
+                columns_to_drop = [col for col in current_columns if col in full_columns]
+                df_full.drop(columns=columns_to_drop, inplace=True)
+
+                df_current = df_current.sort_index(axis=1).reset_index(level="instrument", drop=True) # BTC_FEAT, not specific to any crypto
+                #df_current = df_current.drop(columns=['instrument'])
+                #df_current = df_current.set_index('datetime')
+
+                df_full = df_full.sort_index(axis=1).reset_index(level="instrument", drop=False)
+                #df_full['date'] = pd.to_datetime(df_full['datetime']).dt.date
+                #df_full = df_full.set_index('datetime')
+
+                df_merged = pd.merge(left=df_full, right=df_current, left_index=True, right_index=True, how=self.join)
+                df_merged.reset_index(drop=False, inplace=True)               
+                df_merged.set_index(['instrument', 'datetime'], inplace=True)
+
+                print(df_merged)
+                
+        return df_merged.sort_index(axis=1)
+
+
+
+class OLD_CustomNestedDataLoader(QlibDataLoader):
     """
     We have multiple DataLoader, we can use this class to combine them.
     """
@@ -105,12 +181,12 @@ class CustomNestedDataLoader(QlibDataLoader):
         df_full = self.data_loader_l[0].load(instruments=["BTCUSDT"], start_time=start_time, end_time=end_time)        
         
         ## use this when working with micro
-        df_macro = self.data_loader_l[1].load(instruments=["BTCUSDT"], start_time=start_time, end_time=end_time) # loading macro_feature.pkl
-        df_macro.columns = pd.MultiIndex.from_product([['macro'], df_macro.columns])
-        df_current = df_macro.copy()
+        #df_macro = self.data_loader_l[1].load(instruments=["BTCUSDT"], start_time=start_time, end_time=end_time) # loading macro_feature.pkl
+        #df_macro.columns = pd.MultiIndex.from_product([['macro'], df_macro.columns])
+        #df_current = df_macro.copy()
 
         ## use this when working with macro -- fugly
-        # df_current = self.data_loader_l[1].load(instruments=["BTC_FEAT"], start_time=start_time, end_time=end_time)
+        df_current = self.data_loader_l[1].load(instruments=["BTC_FEAT"], start_time=start_time, end_time=end_time)
 
 
 
@@ -159,6 +235,6 @@ class CustomNestedDataLoader(QlibDataLoader):
         df_final = df_merged.copy()
         
         print("df_final: ", df_final)
-        # df_final.to_csv("df_final.csv")
+        df_final.to_csv("df_final.csv")
 
         return df_final.sort_index(axis=1)

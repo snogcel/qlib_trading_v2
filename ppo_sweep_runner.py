@@ -9,11 +9,13 @@ from qlib.utils import init_instance_by_config, flatten_dict
 from sklearn.metrics import mean_squared_error as MSE
 from sklearn.metrics import r2_score, accuracy_score
 from qlib.data.dataset.handler import DataHandlerLP
+from qlib_custom.custom_ndl import CustomNestedDataLoader
 from qlib_custom.custom_signal_env import SignalEnv
 from qlib_custom.custom_tier_logging import TierLoggingCallback
 from qlib_custom.custom_multi_quantile import QuantileLGBModel
 from qlib_custom.gdelt_handler import gdelt_handler, gdelt_dataloader
 from qlib_custom.crypto_handler import crypto_handler, crypto_dataloader
+
 
 from stable_baselines3 import PPO
 from stable_baselines3.common.vec_env import DummyVecEnv
@@ -21,8 +23,22 @@ from stable_baselines3.common.vec_env import DummyVecEnv
 from qlib.workflow import R
 from qlib.workflow.record_temp import SignalRecord, PortAnaRecord, SigAnaRecord
 
+from qlib.data.dataset.processor import Processor
+from qlib.utils import get_callable_kwargs
+from qlib.data.dataset import processor as processor_module
+from inspect import getfullargspec
 
-provider_uri = "/Projects/qlib_trading_v2/qlib_data/CRYPTO"
+train_start_time = "2018-08-02"
+train_end_time = "2023-12-31"
+valid_start_time = "2024-01-01"
+valid_end_time = "2024-09-30"
+test_start_time = "2024-10-01"
+test_end_time = "2025-04-01"
+
+fit_start_time = None
+fit_end_time = None
+
+provider_uri = "/Projects/qlib_trading_v2/qlib_data/CRYPTO_DATA"
 
 SEED = 42
 MARKET = "all"
@@ -59,6 +75,29 @@ class EntropyAwarePPO(PPO):
 
 
 
+def check_transform_proc(proc_l, fit_start_time, fit_end_time):
+        new_l = []
+        for p in proc_l:
+            if not isinstance(p, Processor):
+                klass, pkwargs = get_callable_kwargs(p, processor_module)
+                args = getfullargspec(klass).args
+                if "fit_start_time" in args and "fit_end_time" in args:
+                    assert (
+                        fit_start_time is not None and fit_end_time is not None
+                    ), "Make sure `fit_start_time` and `fit_end_time` are not None."
+                    pkwargs.update(
+                        {
+                            "fit_start_time": fit_start_time,
+                            "fit_end_time": fit_end_time,
+                        }
+                    )
+                proc_config = {"class": klass.__name__, "kwargs": pkwargs}
+                if isinstance(p, dict) and "module_path" in p:
+                    proc_config["module_path"] = p["module_path"]
+                new_l.append(proc_config)
+            else:
+                new_l.append(p)
+        return new_l
 
 # ==========================
 # Reward Calculation Logic
@@ -124,22 +163,109 @@ def evaluate_agent(env, agent, name="experiment"):
     plt.close()
 
 
+
+
 if __name__ == '__main__': 
 
-    gdelt_handler_kwargs = {
-        "start_time": "20180201",
-        "end_time": "20250401",
-        "fit_start_time": "20180201",
-        "fit_end_time": "20231231",
-        "instruments": ["BTC_FEAT"]
+    _learn_processors = [{"class": "DropnaLabel"},]
+    _infer_processors = []
+
+    infer_processors = check_transform_proc(_infer_processors, fit_start_time, fit_end_time)
+    learn_processors = check_transform_proc(_learn_processors, fit_start_time, fit_end_time)
+
+    
+
+    # loader_config = {
+    #     "feature": crypto_dataloader.get_feature_config(),
+    #     "label": crypto_dataloader.get_label_config()
+    # }
+
+    # freq_config = {
+    #     "feature": "day", 
+    #     "label": "day"
+    # }
+
+    # data_loader_config = {
+    #     "class": "QlibDataLoader",
+    #     "kwargs": {
+    #         "config": loader_config,
+    #         "freq": freq_config,
+    #         "inst_processors": inst_processors,                         
+    #     },
+    # }
+
+    # generic version for later usage...
+
+    # data_loader_config = {
+    #     "class": "QlibDataLoader",
+    #     "kwargs": {
+    #         "config": loader_config,
+    #         "freq": freq_config,
+    #         "inst_processors": inst_processors,                         
+    #     },
+    # }
+    
+    freq_config = {
+        "feature": "day", 
+        "label": "day"
     }
 
-    crypto_handler_kwargs = {
-        "start_time": "20180201",
-        "end_time": "20250401",
-        "fit_start_time": "20180201",
-        "fit_end_time": "20231231",
-        "instruments": ["BTCUSDT"]
+    inst_processors = [
+        {
+            "class": "TimeRangeFlt",
+            "module_path": "qlib.data.dataset.processor",
+            "kwargs": {
+                "start_time": train_start_time,
+                "end_time": test_end_time,
+                "freq": "day"
+            }
+        }
+    ]
+
+    crypto_data_loader = {
+        "class": "crypto_dataloader",
+        "module_path": "qlib_custom.crypto_loader",
+        "kwargs": {
+            "config": {
+                "feature": crypto_dataloader.get_feature_config(),
+                "label": crypto_dataloader.get_label_config(),                                                
+            },                                            
+            "freq": freq_config["label"],  # "day"
+            "inst_processors": inst_processors
+        }
+    }
+
+    gdelt_data_loader = {
+        "class": "gdelt_dataloader",
+        "module_path": "qlib_custom.gdelt_loader",
+        "kwargs": {
+            "config": {
+                "feature": gdelt_dataloader.get_feature_config()
+            },
+            "freq": freq_config["feature"],  # "day"
+            "inst_processors": inst_processors
+        }
+    }
+
+    nd = CustomNestedDataLoader(dataloader_l=[crypto_data_loader, gdelt_data_loader], join="left")
+    #nd.load(instruments=["BTCUSDT", "BTC_FEAT"], start_time=train_start_time, end_time=test_end_time)
+    
+    handler_config = {
+        "instruments": ["BTCUSDT", "BTC_FEAT"],
+        "start_time": train_start_time,
+        "end_time": test_end_time,                
+        "data_loader": nd,        
+        "infer_processors": infer_processors,
+        "learn_processors": learn_processors,
+        "shared_processors": [],
+        "process_type": DataHandlerLP.PTYPE_A,
+        "drop_raw": False 
+    }
+
+    dataset_handler_config = {
+        "class": "DataHandlerLP",
+        "module_path": "qlib.data.dataset.handler",
+        "kwargs": handler_config,
     }
 
     task_config = {        
@@ -157,58 +283,14 @@ if __name__ == '__main__':
         },
         "dataset": {
             "class": "DatasetH",
-            "module_path": "qlib.data.dataset",            
-            "kwargs": {                
-                "handler": {
-                    "class": "DataHandlerLP",
-                    "module_path": "qlib.data.dataset",  # No need to customize this if using base                    
-                    "kwargs": {                                                                     
-                        "instruments": ["BTCUSDT", "BTC_FEAT"],
-                        "start_time": "20180201",
-                        "end_time": "20250401", 
-                        "data_loader": {
-                            "class": "CustomNestedDataLoader",
-                            "module_path": "qlib_custom.custom_ndl",                            
-                            "kwargs": {
-                                "instruments": ["BTCUSDT", "BTC_FEAT"],
-                                "start_time": "20180201",
-                                "end_time": "20250401",
-                                "dataloader_l": [
-                                    {
-                                        "class": "crypto_dataloader",
-                                        "module_path": "qlib_custom.crypto_loader",
-                                        "kwargs": {
-                                            "config": {
-                                                "feature": crypto_dataloader.get_feature_config()
-                                            },
-                                            "freq": "day",  # Replace with your FREQ variable
-                                            "inst_processors": []
-                                        }
-                                    },
-                                    {
-                                        "class": "gdelt_dataloader",
-                                        "module_path": "qlib_custom.gdelt_loader",
-                                        "kwargs": {
-                                            "config": {
-                                                "feature": gdelt_dataloader.get_feature_config()
-                                            },
-                                            "freq": "day",  # Replace with your FREQ variable
-                                            "inst_processors": []
-                                        }
-                                    }
-                                ],
-                                "join": "left"
-                            }
-                        },                          
-                        "process_type": "append",
-                        "drop_raw": False,
-                    }
-                },
+            "module_path": "qlib.data.dataset",                        
+            "kwargs": {
+                "handler": dataset_handler_config,
                 "segments": {
-                    "train": ("20180201", "20231231"),
-                    "valid": ("20240101", "20240930"),
-                    "test": ("20241001", "20250401")
-                }
+                    "train": (train_start_time, train_end_time),
+                    "valid": (valid_start_time, valid_end_time),
+                    "test": (test_start_time, test_end_time),
+                },
             }
         },
         "task": {
@@ -263,6 +345,7 @@ if __name__ == '__main__':
         X_all["$realized_vol_10d"].rename("volatility"),
     ], axis=1).dropna()
 
+    
     rolling_window = 20
     q_low = df_all["volatility"].rolling(rolling_window).quantile(0.01)
     q_high = df_all["volatility"].rolling(rolling_window).quantile(0.99)
@@ -290,6 +373,11 @@ if __name__ == '__main__':
             return "D"
     
     df_all["signal_tier"] = df_all.apply(classify, axis=1)
+
+    print(df_all)
+    df_all.to_csv("df_all.csv")
+    raise SystemExit()
+
     df_cleaned = df_all.dropna(subset=["signal_tier"])    
 
     df_cleaned.to_csv("df_cleaned.csv")
@@ -297,8 +385,7 @@ if __name__ == '__main__':
     df_to_pickle = df_cleaned.copy()
     
 
-    # Drop column 'truth' from the copied DataFrame
-    df_to_pickle.drop('truth', axis=1, inplace=True)
+    
     #df_to_pickle.set_index(["instrument", "datetime"], inplace=True)
 
     TIER_MAP = {"A": 3.0, "B": 2.0, "C": 1.0, "D": 0.0}
@@ -310,17 +397,61 @@ if __name__ == '__main__':
 
     df_to_pickle["tier_confidence"] = np.clip(((df_to_pickle["abs_q50"] / df_to_pickle["signal_thresh"]) + (1 - (df_to_pickle["spread"] / df_to_pickle["spread_thresh"]))) / 2, 0.0, 1.0)
 
-    df_to_pickle["side"] = np.where(
-        (df_to_pickle["q90"] - df_to_pickle["q50"]) > (df_to_pickle["spread_thresh"] / 2),
-        1,  # Buy
-        np.where(
-            (df_to_pickle["q10"] - df_to_pickle["q50"]) < (-df_to_pickle["spread_thresh"] / 2),
-            0,  # Sell
-            -1  # Hold or uncertain
-        )
-    )
+    # df_to_pickle["side"] = np.where(
+    #     (df_to_pickle["q90"] - df_to_pickle["q50"]) > (df_to_pickle["spread_thresh"] / 2),
+    #     1,  # Buy
+    #     np.where(
+    #         (df_to_pickle["q10"] - df_to_pickle["q50"]) < (-df_to_pickle["spread_thresh"] / 2),
+    #         0,  # Sell
+    #         -1  # Hold or uncertain
+    #     )
+    # )
+
+    def prob_up_piecewise(row):
+        q10, q50, q90 = row["q10"], row["q50"], row["q90"]
+        if q90 <= 0:
+            return 0.0
+        if q10 >= 0:
+            return 1.0
+        # 0 lies between q10 and q50
+        if q10 < 0 <= q50:
+            cdf0 = 0.10 + 0.40 * (0 - q10) / (q50 - q10)
+            return 1 - cdf0
+        # 0 lies between q50 and q90
+        cdf0 = 0.50 + 0.40 * (0 - q50) / (q90 - q50)
+        return 1 - cdf0
+
+
+    # Step 1: Compute probability of upside
+    q10 = df_to_pickle["q10"]
+    q50 = df_to_pickle["q50"]
+    q90 = df_to_pickle["q90"]
+
+    #den = (q90 - q10).replace(0, np.nan)
+    #prob_up = ((0 - q10) / den).clip(0, 1).fillna(0.5)
+
+    df_to_pickle["prob_up"] = df_to_pickle.apply(prob_up_piecewise, axis=1)
+    prob_up = df_to_pickle["prob_up"]
+
+    # Step 2: Define thresholds
+    signal_thresh = df_to_pickle["signal_thresh"]
+    # signal_thresh = 0.005
+
+    # Step 3: Create masks
+    buy_mask = (q50 > signal_thresh) & (prob_up > 0.5)
+    sell_mask = (q50 < -signal_thresh) & (prob_up < 0.5)
+
+    # Step 4: Assign side
+    df_to_pickle["side"] = -1  # default to HOLD
+    df_to_pickle.loc[buy_mask, "side"] = 1
+    df_to_pickle.loc[sell_mask, "side"] = 0  # or -1 if you prefer SELL = -1
+
 
     print("df_to_pickle: ", df_to_pickle)
+    df_to_pickle.to_csv("df_to_pickle_v9.csv")
+
+    # Drop column 'truth' from the copied DataFrame
+    df_to_pickle.drop('truth', axis=1, inplace=True)
 
     df_to_pickle.to_pickle("./data3/macro_features.pkl")
 

@@ -1,24 +1,49 @@
 from qlib.data.dataset.loader import QlibDataLoader
+from typing import Tuple, Union, List, Dict
 
 class crypto_dataloader(QlibDataLoader):
     """Dataloader to pull Crypto Data"""
 
-    def __init__(self, config=None, **kwargs):
+    def __init__(
+        self,
+        config: Tuple[list, tuple, dict],
+        filter_pipe: List = None,
+        swap_level: bool = True,
+        freq: Union[str, dict] = "day",
+        inst_processors: Union[dict, list] = None,
+        **kwargs
+    ):
+        
+        self.filter_pipe = filter_pipe
+        self.swap_level = swap_level
+        self.freq = freq
+
+        # sample
+        self.inst_processors = inst_processors if inst_processors is not None else {}
+        assert isinstance(
+            self.inst_processors, (dict, list)
+        ), f"inst_processors(={self.inst_processors}) must be dict or list"
+
         _config = {
             "feature": self.get_feature_config(),
-            "label": kwargs.pop("label", self.get_label_config()),           
+            "label": kwargs.pop("label", self.get_label_config()),          
         }
+
         if config is not None:
             _config.update(config)
-        super().__init__(config=_config, **kwargs)
+
+        super().__init__(config=_config, freq=freq)
 
     @staticmethod
     def get_feature_config(
         config={
             "kbar": {},
             "price": {
-                "windows": [0],
+                "windows": [0, 1, 2, 3, 4],
                 "feature": [],
+            },
+            'volume': { # whether to use raw volume features
+                'windows': [0, 1, 2, 3, 4], # use volume at n days ago
             },
             "rolling": {
                 "windows": [10, 15], # rolling windows size
@@ -329,5 +354,6 @@ class crypto_dataloader(QlibDataLoader):
 
         return fields, names
 
-    def get_label_config(self):
-        return ["Log(Ref($close, -1) / $close)"], ["LABEL0"]
+    @staticmethod
+    def get_label_config():        
+        return ["Ref($close, -2)/Ref($close, -1) - 1"], ["LABEL0"]
