@@ -141,6 +141,44 @@ class gdelt_dataloader(QlibDataLoader):
             "Mean($btc_dom, 3) - Mean($btc_dom, 7)"
         ]
 
+        fields += [
+            "$cwt_roaring_20s",
+            "$cwt_monetary",
+            "$cwt_back_to_the_70s",
+            "$cwt_secular_stagnation",
+            "$cwt_environment",
+            "$cwt_geopolitical_risk",
+            "$cwt_social",
+
+            # Rolling z-score (window = 10)
+            "($cwt_roaring_20s - Mean($cwt_roaring_20s, 10)) / Std($cwt_roaring_20s, 10)",
+            "($cwt_monetary - Mean($cwt_monetary, 10)) / Std($cwt_monetary, 10)",
+            "($cwt_back_to_the_70s - Mean($cwt_back_to_the_70s, 10)) / Std($cwt_back_to_the_70s, 10)",
+            "($cwt_secular_stagnation - Mean($cwt_secular_stagnation, 10)) / Std($cwt_secular_stagnation, 10)",
+            "($cwt_environment - Mean($cwt_environment, 10)) / Std($cwt_environment, 10)",
+            "($cwt_geopolitical_risk - Mean($cwt_geopolitical_risk, 10)) / Std($cwt_geopolitical_risk, 10)",
+            "($cwt_social - Mean($cwt_social, 10)) / Std($cwt_social, 10)",
+
+            # CWT momentum (1-day delta)
+            "$cwt_monetary - Ref($cwt_monetary, -1)",
+            "$cwt_roaring_20s - Ref($cwt_roaring_20s, -1)",
+            "$cwt_secular_stagnation - Ref($cwt_secular_stagnation, -1)",
+            "$cwt_back_to_the_70s - Ref($cwt_back_to_the_70s, -1)",
+            "$cwt_geopolitical_risk - Ref($cwt_geopolitical_risk, -1)",
+            "$cwt_environment - Ref($cwt_environment, -1)",
+            "$cwt_social - Ref($cwt_social, -1)",
+
+            # ── Narrative turbulence (7-theme average change in CWT)
+            "(Abs($cwt_monetary - Ref($cwt_monetary, -1)) + Abs($cwt_roaring_20s - Ref($cwt_roaring_20s, -1)) + Abs($cwt_secular_stagnation - Ref($cwt_secular_stagnation, -1)) + Abs($cwt_back_to_the_70s - Ref($cwt_back_to_the_70s, -1)) + Abs($cwt_geopolitical_risk - Ref($cwt_geopolitical_risk, -1)) + Abs($cwt_environment - Ref($cwt_environment, -1)) + Abs($cwt_social - Ref($cwt_social, -1))) / 7",
+
+            # (Optional) binary anomaly flag — replace threshold dynamically if needed
+            "If((Abs($cwt_monetary - Ref($cwt_monetary, -1)) + Abs($cwt_roaring_20s - Ref($cwt_roaring_20s, -1)) + Abs($cwt_secular_stagnation - Ref($cwt_secular_stagnation, -1)) + Abs($cwt_back_to_the_70s - Ref($cwt_back_to_the_70s, -1)) + Abs($cwt_geopolitical_risk - Ref($cwt_geopolitical_risk, -1)) + Abs($cwt_environment - Ref($cwt_environment, -1)) + Abs($cwt_social - Ref($cwt_social, -1))) / 7 > 0.05, 1, 0)",
+
+            # Additional...
+            # "Std([$cwt_monetary, $cwt_roaring_20s, $cwt_secular_stagnation, $cwt_back_to_the_70s, $cwt_geopolitical_risk, $cwt_environment, $cwt_social], 5)"
+
+        ]
+
         names = [
             "fg_index",                                                 # ← original
             "btc_dom",                                                  # ← original
@@ -161,6 +199,36 @@ class gdelt_dataloader(QlibDataLoader):
             "btc_ema_diff"
         ]
 
+        names += [
+            "$cwt_roaring_20s",
+            "$cwt_monetary",
+            "$cwt_back_to_the_70s",
+            "$cwt_secular_stagnation",
+            "$cwt_environment",
+            "$cwt_geopolitical_risk",
+            "$cwt_social",
+
+            "$z_cwt_roaring_20s",
+            "$z_cwt_monetary",
+            "$z_cwt_back_to_the_70s",
+            "$z_cwt_secular_stagnation",
+            "$z_cwt_environment",
+            "$z_cwt_geopolitical_risk",
+            "$z_cwt_social",
+
+            "$delta_cwt_monetary",
+            "$delta_cwt_roaring_20s",
+            "$delta_cwt_secular_stagnation",
+            "$delta_cwt_back_to_the_70s",
+            "$delta_cwt_geopolitical_risk",
+            "$delta_cwt_environment",
+            "$delta_cwt_social",
+
+            "$cni",
+
+            "$narrative_anomaly_flag",
+
+        ]
 
         return fields, names
     
