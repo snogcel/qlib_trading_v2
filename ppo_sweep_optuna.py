@@ -15,6 +15,7 @@ from qlib_custom.custom_tier_logging import TierLoggingCallback
 from qlib_custom.custom_multi_quantile import QuantileLGBModel
 from qlib_custom.gdelt_handler import gdelt_handler, gdelt_dataloader
 from qlib_custom.crypto_handler import crypto_handler, crypto_dataloader
+from qlib_custom.custom_multi_quantile import QuantileLGBModel, MultiQuantileModel
 
 import optuna
 import lightgbm as lgbm
@@ -294,9 +295,9 @@ if __name__ == '__main__':
             "kwargs": {
                 "quantiles": [0.1, 0.5, 0.9],
                 "lgb_params": {
-                    0.1: {"learning_rate": 0.08971845032956545, "max_depth": 3, "n_estimators": 953, "seed": SEED},
-                    0.5: {"learning_rate": 0.022554447458683766, "max_depth": 5, "n_estimators": 556, "seed": SEED},
-                    0.9: {"learning_rate": 0.018590766014390355, "max_depth": 4, "n_estimators": 333, "seed": SEED}
+                    0.1: {'learning_rate': 0.03915802868187673, 'colsample_bytree': 0.6224232548522113, 'subsample': 0.7322459139253197, 'lambda_l1': 6.957072141326349, 'lambda_l2': 0.004366116342801104, 'max_depth': 10, 'seed': SEED},
+                    0.5: {'learning_rate': 0.08751145729062904, 'colsample_bytree': 0.5897687601362188, 'subsample': 0.754061620932527, 'lambda_l1': 1.9808527398597983e-06, 'lambda_l2': 2.91987558633637e-05, 'max_depth': 10, 'seed': SEED},
+                    0.9: {'learning_rate': 0.028047164919345058, 'colsample_bytree': 0.841009708338563, 'subsample': 0.6210307287531586, 'lambda_l1': 2.9139063969227813e-08, 'lambda_l2': 6.363456739796053, 'max_depth': 10, 'seed': SEED}
                 }
             }
         },
@@ -332,9 +333,10 @@ if __name__ == '__main__':
     def objective(trial):
 
         params = {
-            "early_stopping_rounds": 50,
+            "early_stopping_rounds": 500,
             "random_state": SEED,
-            "objective": "regression",
+            "objective": "quantile",
+            "alpha": 0.90,
             "metric": ["l2","l1"],
             "learning_rate": trial.suggest_float("learning_rate", 0.01, 0.1, log=True),
             "colsample_bytree": trial.suggest_float("colsample_bytree", 0.5, 1.0),
@@ -349,7 +351,7 @@ if __name__ == '__main__':
         }
 
         # create the LightGBM regressor with the optimized parameters
-        model = lgbm.LGBMRegressor(**params) 
+        model = lgbm.LGBMRegressor(**params)
 
         # perform cross-validation using the optimized LightGBM regressor
         lgbm_model, mean_score = cross_validation_fcn(df_train, model, early_stopping_flag=True)
@@ -373,12 +375,207 @@ if __name__ == '__main__':
     X_val, y_val = df_valid["feature"], df_valid["label"]
     X_test, y_test = df_test["feature"], df_test["label"]
 
+    #X_train.to_csv("X_train.csv")
+    #raise SystemExit()
 
+    params = {
+        "objective": "quantile",   # <-- Quantile Regression
+        # "alpha": 0.9,              # <-- 90th percentile
+        "boosting_type": "gbdt",
+        "num_leaves": 64,
+        "learning_rate": 0.05,
+        "n_estimators": 100,
+        "min_data_in_leaf": 20,
+        "feature_fraction": 0.8,
+        "verbose": -1,
+        "seed": 42
+    }
+
+    #class QuantileLGBModel(LGBModel):
+    #    def __init__(self, alpha=0.9, **kwargs):
+    #        super().__init__(loss="mse", **kwargs)  # temporary placeholder for base class
+    #        self.params["objective"] = "quantile"
+    #        self.params["alpha"] = alpha
+
+    model_high = QuantileLGBModel(alpha=0.9, **params)
+    model_mid = QuantileLGBModel(alpha=0.5, **params)
+    model_low = QuantileLGBModel(alpha=0.1, **params)
+
+    # === Train & Predict ===
+    model_high.fit(dataset)
+    model_mid.fit(dataset)
+    model_low.fit(dataset)
+
+    pred_high = model_high.predict(dataset)
+    pred_mid = model_mid.predict(dataset)
+    pred_low = model_low.predict(dataset)
+
+    pred_high_df = pd.DataFrame(pred_high)
+    pred_mid_df = pd.DataFrame(pred_mid)
+    pred_low_df = pd.DataFrame(pred_low)
+
+
+
+    """ Q10 empirical coverage: 12.04%
+    Quantile Loss (Q10): 0.004361147907999706
+
+    Q50 empirical coverage: 47.70%
+    Quantile Loss (Q50): 0.009353854407782193
+
+    Q90 empirical coverage: 88.40%
+    Quantile Loss (Q90): 0.004735724045881803 """
+
+
+    feat_importance_high = model_high.get_feature_importance(importance_type='gain')
+    feature_names_high = model_high.model.feature_name()
+
+    feat_importance_mid = model_mid.get_feature_importance(importance_type='gain')
+    feature_names_mid = model_mid.model.feature_name()
+
+    feat_importance_low = model_low.get_feature_importance(importance_type='gain')
+    feature_names_low = model_low.model.feature_name()
+
+    print("Feature Importance (Q90): ", feat_importance_high)
+    print("Feature Importance (Q50): ", feat_importance_mid)
+    print("Feature Importance (Q10): ", feat_importance_low)
+
+
+    #feat_importance = model_high.model.feature_importance(importance_type='gain')
+
+    #importance = model_high.feature_importance(importance_type='gain')
+    
+
+
+
+    
+
+    def quantile_loss(y_true, y_pred, quantile):
+        # Step 1: Ensure both are Series or DataFrames with matching structure
+        if isinstance(y_pred, pd.DataFrame) and y_pred.shape[1] == 1:
+            y_pred = y_pred.iloc[:, 0]  # convert to Series
+
+        if isinstance(y_true, pd.DataFrame) and y_true.shape[1] == 1:
+            y_true = y_true.iloc[:, 0]
+
+        # Step 2: Align index names (important in pandas!)
+        y_pred.index.names = y_true.index.names
+
+        # Step 3: Align values (intersection of shared index)
+        y_true_aligned, y_pred_aligned = y_true.align(y_pred, join='inner')
+
+        errors = y_true_aligned - y_pred_aligned
+        #print("Aligned quantile_errors:\n", errors.head())  # sample output
+            
+        coverage = (y_true < y_pred).mean()
+        #print(f"Q90 empirical coverage: {coverage:.2%}")
+
+        return np.mean(np.maximum(quantile * errors, (quantile - 1) * errors)), coverage
+
+
+    loss, coverage = quantile_loss(y_test, pred_high_df, 0.90)
+    print(f"Quantile Loss (Q90): {loss}, coverage: {coverage:.2%}")
+
+    loss, coverage = quantile_loss(y_test, pred_mid_df, 0.50)
+    print(f"Quantile Loss (Q50): {loss}, coverage: {coverage:.2%}")
+
+    loss, coverage = quantile_loss(y_test, pred_low_df, 0.10)
+    print(f"Quantile Loss (Q10): {loss}, coverage: {coverage:.2%}")
+    
+
+    import matplotlib.pyplot as plt
+
+    # Filter for one instrument (e.g., BTCUSDT)
+    instrument = "BTCUSDT"
+
+    # Extract each series for this instrument
+    q10 = pred_low_df.xs(instrument, level="instrument").squeeze()
+    q50 = pred_mid_df.xs(instrument, level="instrument").squeeze()
+    q90 = pred_high_df.xs(instrument, level="instrument").squeeze()
+    y_true = y_test.xs(instrument, level="instrument").squeeze()
+
+    # Sort by time for better plotting
+    df_plot = pd.DataFrame({
+        "Q10": q10,
+        "Q50": q50,
+        "Q90": q90,
+        "True": y_true
+    }).dropna().sort_index()
+
+    # Plot
+    plt.figure(figsize=(14, 6))
+    plt.plot(df_plot.index, df_plot["True"], label="True", color="black", linewidth=1.5)
+    plt.plot(df_plot.index, df_plot["Q50"], label="Q50 (Median)", color="blue", linestyle="--")
+    plt.fill_between(
+        df_plot.index,
+        df_plot["Q10"],
+        df_plot["Q90"],
+        color="skyblue",
+        alpha=0.3,
+        label="Q10-Q90 Band"
+    )
+
+    plt.title("Prediction Interval: Q10-Q90 with Median vs. True Values")
+    plt.xlabel("Time")
+    plt.ylabel("Target")
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
+
+    """ Q90 empirical coverage: 89.28%
+    Quantile Loss (Q90): 0.0052691501181583045
+
+    Q50 empirical coverage: 50.11%
+    Quantile Loss (Q50): 0.010022451474169703
+
+    Q10 empirical coverage: 8.53%
+    Quantile Loss (Q10): 0.004958847070057403 """
+
+
+    """ Q90 empirical coverage: 89.06%
+    Quantile Loss (Q90): 0.005318127952459868
+
+    Q50 empirical coverage: 51.42%
+    Quantile Loss (Q50): 0.00992663853241363
+
+    Q90 empirical coverage: 8.75%
+    Quantile Loss (Q10): 0.004950012925536299 """
+
+
+    # Compute the root mean squared error (RMSE) between the predicted and actual target values for the test data
+    # print("RMSE:", np.sqrt(MSE(pred, y_test)))
+
+    # Compute the R-squared (coefficient of determination) between the predicted and actual target values for the test data
+    # print("R2: ", r2_score(y_test, pred))
+
+    # print(pred_signal)
+
+    # raise SystemExit()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     # Create an optimization study with Optuna library
     study = optuna.create_study(direction="minimize",study_name="lgbm_opt")
 
     # Optimize the study using a user-defined objective function, for a total of 50 trials
-    study.optimize(objective, n_trials=100)
+    study.optimize(objective, n_trials=1000)
 
     # get best hyperparameters and score
     best_params_lr = study.best_params

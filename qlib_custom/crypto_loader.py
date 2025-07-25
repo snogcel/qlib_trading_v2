@@ -40,14 +40,14 @@ class crypto_dataloader(QlibDataLoader):
             "kbar": {},
             "price": {
                 "windows": [0, 1, 2, 3, 4],
-                "feature": [],
+                "feature": ["OPEN"],
             },
-            'volume': { # whether to use raw volume features
-                'windows': [0, 1, 2, 3, 4], # use volume at n days ago
+            "volume": { # whether to use raw volume features
+                "windows": [0, 2, 4, 8, 16], # use volume at n days ago
             },
             "rolling": {
-                "windows": [10, 15], # rolling windows size
-                "include": [], # rolling operator to use
+                "windows": [0, 2, 4, 8, 16], # rolling windows size
+                "include": ["ROC","STD"], # rolling operator to use
             },
         }
     ):
@@ -118,24 +118,28 @@ class crypto_dataloader(QlibDataLoader):
                 #"(EMA(Greater(Greater($high - $low, Abs($high - Ref($close, 1))), Abs($low - Ref($close, 1))), 30))",
                 
                 # ── Volatility of price (log return std)
-                "Std(Log($close / Ref($close, -1)), 5)",
-                "Std(Log($close / Ref($close, -1)), 10)",
-                "Std(Log($close / Ref($close, -1)), 20)",
+                "Std(Log($close / Ref($close, 1)), 5)",
+                "Std(Log($close / Ref($close, 1)), 10)",
+                "Std(Log($close / Ref($close, 1)), 20)",
 
                 # ── Relative volatility (short/long)
-                "Std(Log($close / Ref($close, -1)), 5) / Std(Log($close / Ref($close, -1)), 20)",
+                "Std(Log($close / Ref($close, 1)), 5) / Std(Log($close / Ref($close, 1)), 20)",
 
                 # ── Rolling price momentum for directional context
-                "$close / Ref($close, -5) - 1",
-                "$close / Ref($close, -10) - 1",
+                "$close / Ref($close, 5) - 1",
+                "$close / Ref($close, 10) - 1",
 
                 # ── Approximate average true range (ATR-like)
                 #"Mean(Abs($high - $low), 14) / Mean($close, 14)",
                 "Mean(Abs($high - $low), 14) / $close",
 
                 # ── Optional: high-volatility regime flag
-                "If(Std(Log($close / Ref($close, -1)), 5) / Std(Log($close / Ref($close, -1)), 20) > 1.25, 1, 0)"
+                "If(Std(Log($close / Ref($close, 1)), 5) / Std(Log($close / Ref($close, 1)), 20) > 1.25, 1, 0)",
 
+                # "Ref($close, -1)",
+                # "Ref($close, -2)",
+                # "$close",                
+                # "Ref($close, 1)",
             ]
             names += [
                 ###"KMID",
@@ -155,19 +159,23 @@ class crypto_dataloader(QlibDataLoader):
                 #"CCI_15",
                 #"BOLL_Z_15",
                 #"ATR_30",
-                "$realized_vol_5d",
-                "$realized_vol_10d",
-                "$realized_vol_20d",
+                "$realized_vol_5",
+                "$realized_vol_10",
+                "$realized_vol_20",
 
                 "$relative_volatility_index",  # S/L ratio
 
-                "$momentum_5d",
-                "$momentum_10d",
+                "$momentum_5",
+                "$momentum_10",
 
                 "$approx_atr14",
 
-                "$high_vol_flag"  # Regime flag for dynamic logic
+                "$high_vol_flag",  # Regime flag for dynamic logic
 
+                # "$close_prev_1",
+                # "$close_prev_2",
+                # "$close_zero",
+                # "$close_next_1",
             ]
         if "price" in config:
             windows = config["price"].get("windows", range(5))
@@ -357,3 +365,7 @@ class crypto_dataloader(QlibDataLoader):
     @staticmethod
     def get_label_config():        
         return ["Ref($close, -2)/Ref($close, -1) - 1"], ["LABEL0"]
+    
+    @staticmethod
+    def get_debug_label_config():        
+        return ["Ref($close, 9)"], ["LABEL0"]
