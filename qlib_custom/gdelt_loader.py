@@ -124,12 +124,15 @@ class gdelt_dataloader(QlibDataLoader):
         fields = [
             "$fg_index/100",
             "$btc_dom/100",
-            # "$fg_index - Ref($fg_index, -3)",
-            # "$btc_dom - Ref($btc_dom, -3)",
-            # "Std($fg_index, 7)",
-            # "Std($btc_dom, 7)",
-            # "($fg_index - Mean($fg_index, 14)) / Std($fg_index, 14)",
-            # "($btc_dom - Mean($btc_dom, 14)) / Std($btc_dom, 14)",
+            #"$fg_index - Ref($fg_index, 3)",
+            #"$btc_dom - Ref($btc_dom, 3)",
+
+            "Std($fg_index, 7)",
+            "Std($btc_dom, 7)",
+            
+            "($fg_index - Mean($fg_index, 14)) / Std($fg_index, 14)",
+            "($btc_dom - Mean($btc_dom, 14)) / Std($btc_dom, 14)",
+
             # "If($fg_index > 80, 1, 0)",
             # "If($fg_index < 20, 1, 0)",
             # "If($btc_dom > 60, 1, 0)",
@@ -142,34 +145,34 @@ class gdelt_dataloader(QlibDataLoader):
         ]
 
         fields += [
-            "$cwt_roaring_20s",
-            "$cwt_monetary",
-            "$cwt_back_to_the_70s",
-            "$cwt_secular_stagnation",
-            "$cwt_environment",
-            "$cwt_geopolitical_risk",
-            "$cwt_social",
+            #"$cwt_roaring_20s",
+            #"$cwt_monetary",
+            #"$cwt_back_to_the_70s",
+            #"$cwt_secular_stagnation",
+            #"$cwt_environment",
+            #"$cwt_geopolitical_risk",
+            #"$cwt_social",
 
             # Rolling z-score (window = 10)
             # "($cwt_roaring_20s - Mean($cwt_roaring_20s, 10)) / Std($cwt_roaring_20s, 10)",
             # "($cwt_monetary - Mean($cwt_monetary, 10)) / Std($cwt_monetary, 10)",
             # "($cwt_back_to_the_70s - Mean($cwt_back_to_the_70s, 10)) / Std($cwt_back_to_the_70s, 10)",
             # "($cwt_secular_stagnation - Mean($cwt_secular_stagnation, 10)) / Std($cwt_secular_stagnation, 10)",
-            # "($cwt_environment - Mean($cwt_environment, 10)) / Std($cwt_environment, 10)",
+            #"($cwt_environment - Mean($cwt_environment, 10)) / Std($cwt_environment, 10)",
             # "($cwt_geopolitical_risk - Mean($cwt_geopolitical_risk, 10)) / Std($cwt_geopolitical_risk, 10)",
-            # "($cwt_social - Mean($cwt_social, 10)) / Std($cwt_social, 10)",
+            #"($cwt_social - Mean($cwt_social, 10)) / Std($cwt_social, 10)",
 
             # CWT momentum (1-day delta)
-            # "$cwt_monetary - Ref($cwt_monetary, -1)",
-            # "$cwt_roaring_20s - Ref($cwt_roaring_20s, -1)",
-            # "$cwt_secular_stagnation - Ref($cwt_secular_stagnation, -1)",
-            # "$cwt_back_to_the_70s - Ref($cwt_back_to_the_70s, -1)",
-            # "$cwt_geopolitical_risk - Ref($cwt_geopolitical_risk, -1)",
-            # "$cwt_environment - Ref($cwt_environment, -1)",
-            # "$cwt_social - Ref($cwt_social, -1)",
+            # "$cwt_monetary - Ref($cwt_monetary, 1)",
+            # "$cwt_roaring_20s - Ref($cwt_roaring_20s, 1)",
+            # "$cwt_secular_stagnation - Ref($cwt_secular_stagnation, 1)",
+            # "$cwt_back_to_the_70s - Ref($cwt_back_to_the_70s, 1)",
+            # "$cwt_geopolitical_risk - Ref($cwt_geopolitical_risk, 1)",
+            #"$cwt_environment - Ref($cwt_environment, 1)",
+            #"$cwt_social - Ref($cwt_social, 1)",
 
             # ── Narrative turbulence (7-theme average change in CWT)
-            # "(Abs($cwt_monetary - Ref($cwt_monetary, -1)) + Abs($cwt_roaring_20s - Ref($cwt_roaring_20s, -1)) + Abs($cwt_secular_stagnation - Ref($cwt_secular_stagnation, -1)) + Abs($cwt_back_to_the_70s - Ref($cwt_back_to_the_70s, -1)) + Abs($cwt_geopolitical_risk - Ref($cwt_geopolitical_risk, -1)) + Abs($cwt_environment - Ref($cwt_environment, -1)) + Abs($cwt_social - Ref($cwt_social, -1))) / 7",
+            #"(Abs($cwt_monetary - Ref($cwt_monetary, 1)) + Abs($cwt_roaring_20s - Ref($cwt_roaring_20s, 1)) + Abs($cwt_secular_stagnation - Ref($cwt_secular_stagnation, 1)) + Abs($cwt_back_to_the_70s - Ref($cwt_back_to_the_70s, 1)) + Abs($cwt_geopolitical_risk - Ref($cwt_geopolitical_risk, 1)) + Abs($cwt_environment - Ref($cwt_environment, 1)) + Abs($cwt_social - Ref($cwt_social, 1))) / 7",
 
             # (Optional) binary anomaly flag — replace threshold dynamically if needed
             # "If((Abs($cwt_monetary - Ref($cwt_monetary, -1)) + Abs($cwt_roaring_20s - Ref($cwt_roaring_20s, -1)) + Abs($cwt_secular_stagnation - Ref($cwt_secular_stagnation, -1)) + Abs($cwt_back_to_the_70s - Ref($cwt_back_to_the_70s, -1)) + Abs($cwt_geopolitical_risk - Ref($cwt_geopolitical_risk, -1)) + Abs($cwt_environment - Ref($cwt_environment, -1)) + Abs($cwt_social - Ref($cwt_social, -1))) / 7 > 0.05, 1, 0)",
@@ -184,10 +187,10 @@ class gdelt_dataloader(QlibDataLoader):
             "$btc_dom",                                                  # ← original
             # "fg_momentum_3d",
             # "btc_momentum_3d",
-            # "fg_std_7d",
-            # "btc_std_7d",
-            # "fg_zscore_14d",
-            # "btc_zscore_14d",
+            "fg_std_7d",
+            "btc_std_7d",
+            "fg_zscore_14d",
+            "btc_zscore_14d",
             # "fg_extreme_greed",
             # "fg_extreme_fear",
             # "btc_dom_high",
@@ -200,35 +203,88 @@ class gdelt_dataloader(QlibDataLoader):
         ]
 
         names += [
-            "$cwt_roaring_20s",
-            "$cwt_monetary",
-            "$cwt_back_to_the_70s",
-            "$cwt_secular_stagnation",
-            "$cwt_environment",
-            "$cwt_geopolitical_risk",
-            "$cwt_social",
+            #"$cwt_roaring_20s",
+            #"$cwt_monetary",
+            #"$cwt_back_to_the_70s",
+            #"$cwt_secular_stagnation",
+            #"$cwt_environment",
+            #"$cwt_geopolitical_risk",
+            #"$cwt_social",
 
-            # "$z_cwt_roaring_20s",
-            # "$z_cwt_monetary",
-            # "$z_cwt_back_to_the_70s",
-            # "$z_cwt_secular_stagnation",
-            # "$z_cwt_environment",
-            # "$z_cwt_geopolitical_risk",
-            # "$z_cwt_social",
+            #"$z_cwt_roaring_20s",
+            #"$z_cwt_monetary",
+            #"$z_cwt_back_to_the_70s",
+            #"$z_cwt_secular_stagnation",
+            #"$z_cwt_environment_10d",
+            #"$z_cwt_geopolitical_risk",
+            #"$z_cwt_social_10d",
 
-            # "$delta_cwt_monetary",
-            # "$delta_cwt_roaring_20s",
-            # "$delta_cwt_secular_stagnation",
-            # "$delta_cwt_back_to_the_70s",
-            # "$delta_cwt_geopolitical_risk",
-            # "$delta_cwt_environment",
-            # "$delta_cwt_social",
+            #"$delta_cwt_monetary",
+            #"$delta_cwt_roaring_20s",
+            #"$delta_cwt_secular_stagnation",
+            #"$delta_cwt_back_to_the_70s",
+            #"$delta_cwt_geopolitical_risk",
+            #"$delta_cwt_environment",
+            #"$delta_cwt_social",
 
-            # "$cni",
+            #"$cni",
 
             # "$narrative_anomaly_flag",
 
         ]
+
+        windows = [1,2,3,4,5,10]
+       
+        # fields += ["($cwt_roaring_20s - Mean($cwt_roaring_20s, %d)) / Std($cwt_roaring_20s, %d)" % (d, d) for d in windows]
+        # names += ["$cwt_roaring_20s_zscore_%d" % d for d in windows]
+
+        # fields += ["($cwt_monetary - Mean($cwt_monetary, %d)) / Std($cwt_monetary, %d)" % (d, d) for d in windows]
+        # names += ["$cwt_monetary_zscore_%d" % d for d in windows]
+
+        # fields += ["($cwt_back_to_the_70s - Mean($cwt_back_to_the_70s, %d)) / Std($cwt_back_to_the_70s, %d)" % (d, d) for d in windows]
+        # names += ["$cwt_back_to_the_70s_zscore_%d" % d for d in windows]
+
+        # fields += ["($cwt_secular_stagnation - Mean($cwt_secular_stagnation, %d)) / Std($cwt_secular_stagnation, %d)" % (d, d) for d in windows]
+        # names += ["$cwt_secular_stagnation_zscore_%d" % d for d in windows]
+
+        # fields += ["($cwt_environment - Mean($cwt_environment, %d)) / Std($cwt_environment, %d)" % (d, d) for d in windows]
+        # names += ["$cwt_environment_zscore_%d" % d for d in windows]
+
+        # fields += ["($cwt_geopolitical_risk - Mean($cwt_geopolitical_risk, %d)) / Std($cwt_geopolitical_risk, %d)" % (d, d) for d in windows]
+        # names += ["$cwt_geopolitical_risk_zscore_%d" % d for d in windows]
+
+        # fields += ["($cwt_social - Mean($cwt_social, %d)) / Std($cwt_social, %d)" % (d, d) for d in windows]
+        # names += ["$cwt_social_zscore_%d" % d for d in windows]
+
+
+
+        # fields += ["Mean($cwt_monetary, %d)" % d for d in windows]
+        # names += ["$cwt_monetary_MA%d" % d for d in windows]
+
+        # fields += ["Mean($cwt_back_to_the_70s, %d)" % d for d in windows]
+        # names += ["$cwt_back_to_the_70s_MA%d" % d for d in windows]
+
+        # fields += ["Mean($cwt_secular_stagnation, %d)" % d for d in windows]
+        # names += ["$cwt_secular_stagnation_MA%d" % d for d in windows]
+
+        # fields += ["Mean($cwt_environment, %d)" % d for d in windows]
+        # names += ["$cwt_environment_MA%d" % d for d in windows]
+
+        # fields += ["Mean($cwt_geopolitical_risk, %d)" % d for d in windows]
+        # names += ["$cwt_geopolitical_risk_MA%d" % d for d in windows]
+
+        # fields += ["Mean($cwt_social, %d)" % d for d in windows]
+        # names += ["$cwt_social_MA%d" % d for d in windows]
+
+
+
+        # "$cwt_roaring_20s",
+            # "$cwt_monetary",
+            # "$cwt_back_to_the_70s",
+            # "$cwt_secular_stagnation",
+            # "$cwt_environment",
+            # "$cwt_geopolitical_risk",
+            # "$cwt_social",
 
         return fields, names
     

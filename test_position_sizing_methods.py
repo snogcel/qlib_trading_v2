@@ -1,0 +1,298 @@
+"""
+Test and compare different position sizing methods
+"""
+
+import pandas as pd
+import numpy as np
+from hummingbot_backtester import HummingbotQuantileBacktester
+import matplotlib.pyplot as plt
+
+def create_test_data():
+    """Create synthetic test data with different market scenarios"""
+    np.random.seed(42)
+    n_samples = 2000
+    
+    # Create different market regimes
+    dates = pd.date_range('2023-01-01', periods=n_samples, freq='H')
+    
+    # Regime 1: Bull market (first 500 samples)
+    bull_q10 = np.random.normal(0.002, 0.008, 500)
+    bull_q50 = np.random.normal(0.012, 0.010, 500)
+    bull_q90 = np.random.normal(0.022, 0.012, 500)
+    bull_confidence = np.random.uniform(6, 9, 500)
+    
+    # Regime 2: Bear market (samples 500-1000)
+    bear_q10 = np.random.normal(-0.025, 0.012, 500)
+    bear_q50 = np.random.normal(-0.015, 0.010, 500)
+    bear_q90 = np.random.normal(-0.005, 0.008, 500)
+    bear_confidence = np.random.uniform(5, 8, 500)
+    
+    # Regime 3: Sideways/volatile (samples 1000-1500)
+    side_q10 = np.random.normal(-0.015, 0.020, 500)
+    side_q50 = np.random.normal(0.001, 0.015, 500)
+    side_q90 = np.random.normal(0.017, 0.020, 500)
+    side_confidence = np.random.uniform(3, 6, 500)
+    
+    # Regime 4: High confidence signals (samples 1500-2000)
+    high_q10 = np.random.normal(-0.005, 0.006, 500)
+    high_q50 = np.random.normal(0.018, 0.008, 500)
+    high_q90 = np.random.normal(0.030, 0.010, 500)
+    high_confidence = np.random.uniform(8, 10, 500)
+    
+    # Combine all regimes
+    q10 = np.concatenate([bull_q10, bear_q10, side_q10, high_q10])
+    q50 = np.concatenate([bull_q50, bear_q50, side_q50, high_q50])
+    q90 = np.concatenate([bull_q90, bear_q90, side_q90, high_q90])
+    confidence = np.concatenate([bull_confidence, bear_confidence, side_confidence, high_confidence])
+    
+    # Ensure q10 <= q50 <= q90
+    for i in range(len(q10)):
+        q_sorted = sorted([q10[i], q50[i], q90[i]])
+        q10[i], q50[i], q90[i] = q_sorted
+    
+    # Create signal thresholds and spreads
+    signal_thresh = np.random.uniform(0.008, 0.015, n_samples)
+    spread_thresh = np.random.uniform(0.020, 0.040, n_samples)
+    
+    # Generate actual returns for validation
+    actual_returns = []
+    for i in range(n_samples):
+        # Returns should be somewhat correlated with q50 predictions
+        noise = np.random.normal(0, 0.01)
+        actual_return = q50[i] * 0.7 + noise  # 70% signal, 30% noise
+        actual_returns.append(actual_return)
+    
+    test_data = pd.DataFrame({
+        'q10': q10,
+        'q50': q50,
+        'q90': q90,
+        'abs_q50': abs(q50),
+        'tier_confidence': confidence,
+        'signal_thresh': signal_thresh,
+        'spread_thresh': spread_thresh,
+        'truth': actual_returns
+    }, index=dates)
+    
+    return test_data
+
+def test_sizing_methods():
+    """Test different position sizing methods"""
+    print("=== POSITION SIZING METHOD COMPARISON ===")
+    
+    # Create test data
+    test_data = create_test_data()
+    print(f"Created {len(test_data)} test samples")
+    
+    # Create price data
+    price_data = pd.DataFrame({
+        'close': 50000 * (1 + test_data['truth']).cumprod()
+    }, index=test_data.index)
+    
+    # Test different sizing methods
+    sizing_methods = ['simple', 'kelly', 'volatility', 'sharpe', 'risk_parity', 'enhanced']
+    
+    results = {}
+    
+    for method in sizing_methods:
+        print(f"\nTesting {method} sizing method...")
+        
+        # Create backtester with this sizing method
+        backtester = HummingbotQuantileBacktester(
+            initial_balance=100000.0,
+            max_position_pct=0.5,
+            sizing_method=method
+        )
+        
+        # Run backtest
+        try:
+            backtest_results = backtester.run_backtest(
+                df=test_data,
+                price_data=price_data,
+                price_col='close',
+                return_col='truth'
+            )
+            
+            # Calculate metrics
+            metrics = backtester.calculate_metrics(backtest_results)
+            
+            results[method] = {
+                'total_return': metrics['total_return'],
+                'sharpe_ratio': metrics['sharpe_ratio'],
+                'max_drawdown': metrics['max_drawdown'],
+                'total_trades': metrics['total_trades'],
+                'win_rate': metrics['win_rate'],
+                'volatility': metrics['volatility']
+            }
+            
+            print(f"  Return: {metrics['total_return']:.2%}")
+            print(f"  Sharpe: {metrics['sharpe_ratio']:.2f}")
+            print(f"  Max DD: {metrics['max_drawdown']:.2%}")
+            print(f"  Trades: {metrics['total_trades']}")
+            
+        except Exception as e:
+            print(f"  Error: {e}")
+            results[method] = None
+    
+    return results, test_data, price_data
+
+def analyze_position_sizes():
+    """Analyze position sizes generated by different methods"""
+    print("\n=== POSITION SIZE ANALYSIS ===")
+    
+    # Create sample scenarios
+    # scenarios = [
+    #     {'name': 'Strong Bull', 'q10': 0.005, 'q50': 0.015, 'q90': 0.025, 'confidence': 8.5},
+    #     {'name': 'Weak Bull', 'q10': -0.002, 'q50': 0.008, 'q90': 0.018, 'confidence': 4.2},
+    #     {'name': 'Strong Bear', 'q10': -0.030, 'q50': -0.018, 'q90': -0.005, 'confidence': 7.8},
+    #     {'name': 'High Uncertainty', 'q10': -0.025, 'q50': 0.002, 'q90': 0.030, 'confidence': 3.1},
+    #     {'name': 'Perfect Signal', 'q10': 0.008, 'q50': 0.020, 'q90': 0.032, 'confidence': 9.8}
+    # ]
+
+    scenarios = [
+        {'name': 'signal_tier_3.0', 'target_vol': 0.005500, 'spread_thresh': 0.010070, 'signal_thresh':	0.000898, 'q10': -0.004367, 'q50': 0.000390, 'q90': 0.004750, 'confidence': 3.0},
+        {'name': 'signal_tier_2.5', 'target_vol': 0.005484, 'spread_thresh': 0.009901, 'signal_thresh':	0.000958, 'q10': -0.007358, 'q50': 0.000555, 'q90': 0.007864, 'confidence': 2.5},
+        {'name': 'signal_tier_2.0', 'target_vol': 0.005370, 'spread_thresh': 0.010138, 'signal_thresh':	0.000904, 'q10': -0.004488, 'q50': 0.000209, 'q90': 0.004723, 'confidence': 2.0},
+        {'name': 'signal_tier_1.5', 'target_vol': 0.005760, 'spread_thresh': 0.010436, 'signal_thresh':	0.000970, 'q10': -0.004752, 'q50': 0.000644, 'q90': 0.005279, 'confidence': 1.5},
+        {'name': 'signal_tier_1.0', 'target_vol': 0.007377, 'spread_thresh': 0.010908, 'signal_thresh':	0.000985, 'q10': -0.005100, 'q50': -0.000610, 'q90': 0.004655, 'confidence': 1.0},
+        {'name': 'signal_tier_0.0', 'target_vol': 0.006347, 'spread_thresh': 0.010208, 'signal_thresh':	0.000922, 'q10': -0.004922, 'q50': 0.000068, 'q90': 0.005087, 'confidence': 0.0}
+    ]
+    	
+
+    sizing_methods = ['simple', 'kelly', 'volatility', 'sharpe', 'enhanced']
+    
+    analysis_results = []
+    
+    for scenario in scenarios:
+        print(f"\n{scenario['name']}:")
+        print(f"  Q10: {scenario['q10']:.3f}, Q50: {scenario['q50']:.3f}, Q90: {scenario['q90']:.3f}")
+        print(f"  Confidence: {scenario['confidence']:.1f}")
+        
+        scenario_results = {'scenario': scenario['name']}
+        
+        for method in sizing_methods:
+            backtester = HummingbotQuantileBacktester(sizing_method=method)
+            
+            # Create a test row
+            test_row = pd.Series({
+                'q10': scenario['q10'],
+                'q50': scenario['q50'],
+                'q90': scenario['q90'],
+                'tier_confidence': scenario['confidence'],                
+                'spread_thresh': scenario['spread_thresh'],
+                'signal_thresh': scenario['signal_thresh'],
+                'target_vol': scenario['target_vol']
+            })
+            
+            try:
+                position_size = backtester.calculate_target_pct(
+                    scenario['q10'], scenario['q50'], scenario['q90'],
+                    abs(scenario['q50']), scenario['confidence'],
+                    scenario['spread_thresh'], scenario['signal_thresh'], method,
+                    scenario['target_vol']
+                )
+                
+                scenario_results[method] = position_size
+                print(f"    {method:12}: {position_size:.3f} ({position_size*100:.1f}%)")
+                
+            except Exception as e:
+                print(f"    {method:12}: Error - {e}")
+                scenario_results[method] = 0
+        
+        analysis_results.append(scenario_results)
+    
+    return analysis_results
+
+def create_comparison_plots(results, test_data):
+    """Create comparison plots for different sizing methods"""
+    if not results:
+        return
+    
+    # Filter out failed methods
+    valid_results = {k: v for k, v in results.items() if v is not None}
+    
+    if not valid_results:
+        print("No valid results to plot")
+        return
+    
+    fig, axes = plt.subplots(2, 2, figsize=(15, 10))
+    
+    methods = list(valid_results.keys())
+    
+    # Plot 1: Total Returns
+    returns = [valid_results[method]['total_return'] for method in methods]
+    axes[0, 0].bar(methods, returns)
+    axes[0, 0].set_title('Total Returns by Sizing Method')
+    axes[0, 0].set_ylabel('Total Return')
+    axes[0, 0].tick_params(axis='x', rotation=45)
+    
+    # Plot 2: Sharpe Ratios
+    sharpes = [valid_results[method]['sharpe_ratio'] for method in methods]
+    axes[0, 1].bar(methods, sharpes)
+    axes[0, 1].set_title('Sharpe Ratios by Sizing Method')
+    axes[0, 1].set_ylabel('Sharpe Ratio')
+    axes[0, 1].tick_params(axis='x', rotation=45)
+    
+    # Plot 3: Max Drawdowns
+    drawdowns = [abs(valid_results[method]['max_drawdown']) for method in methods]
+    axes[1, 0].bar(methods, drawdowns, color='red', alpha=0.7)
+    axes[1, 0].set_title('Max Drawdowns by Sizing Method')
+    axes[1, 0].set_ylabel('Max Drawdown')
+    axes[1, 0].tick_params(axis='x', rotation=45)
+    
+    # Plot 4: Risk-Adjusted Returns (Return/Volatility)
+    risk_adj_returns = [valid_results[method]['total_return'] / valid_results[method]['volatility'] 
+                       for method in methods if valid_results[method]['volatility'] > 0]
+    valid_methods = [method for method in methods if valid_results[method]['volatility'] > 0]
+    
+    if risk_adj_returns:
+        axes[1, 1].bar(valid_methods, risk_adj_returns, color='green', alpha=0.7)
+        axes[1, 1].set_title('Risk-Adjusted Returns')
+        axes[1, 1].set_ylabel('Return/Volatility')
+        axes[1, 1].tick_params(axis='x', rotation=45)
+    
+    plt.tight_layout()
+    plt.savefig('position_sizing_comparison.png', dpi=300, bbox_inches='tight')
+    plt.show()
+    
+    print("Comparison plots saved as 'position_sizing_comparison.png'")
+
+def main():
+    """Main function to run all tests"""
+    print("Starting position sizing method comparison...")
+    
+    # Test different sizing methods
+    results, test_data, price_data = test_sizing_methods()
+    
+    # Analyze position sizes for different scenarios
+    position_analysis = analyze_position_sizes()
+    
+    # Create comparison plots
+    create_comparison_plots(results, test_data)
+    
+    # Summary
+    print(f"\n{'='*60}")
+    print("SUMMARY")
+    print(f"{'='*60}")
+    
+    valid_results = {k: v for k, v in results.items() if v is not None}
+    
+    if valid_results:
+        # Best method by different criteria
+        best_return = max(valid_results.keys(), key=lambda x: valid_results[x]['total_return'])
+        best_sharpe = max(valid_results.keys(), key=lambda x: valid_results[x]['sharpe_ratio'])
+        best_drawdown = min(valid_results.keys(), key=lambda x: abs(valid_results[x]['max_drawdown']))
+        
+        print(f"Best Total Return: {best_return} ({valid_results[best_return]['total_return']:.2%})")
+        print(f"Best Sharpe Ratio: {best_sharpe} ({valid_results[best_sharpe]['sharpe_ratio']:.2f})")
+        print(f"Best Max Drawdown: {best_drawdown} ({valid_results[best_drawdown]['max_drawdown']:.2%})")
+        
+        # Recommendation
+        if best_sharpe == best_return:
+            print(f"\nRecommendation: {best_sharpe} method provides the best risk-adjusted returns")
+        else:
+            print(f"\nRecommendation: Consider {best_sharpe} for risk-adjusted returns or {best_return} for maximum returns")
+    
+    return results, position_analysis
+
+if __name__ == "__main__":
+    results, analysis = main()

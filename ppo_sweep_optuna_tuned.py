@@ -286,6 +286,36 @@ if __name__ == '__main__':
         "kwargs": handler_config,
     }
 
+    GENERIC_LGBM_PARAMS = {
+        # Core quantile settings
+        "objective": "quantile",
+        "metric": ["l2", "l1"],
+        "boosting_type": "gbdt",
+        "device": "cpu",
+        "verbose": -1,
+        "random_state": 42,
+        
+        # Conservative learning settings for feature exploration
+        "learning_rate": 0.05,           # Moderate learning rate
+        "num_leaves": 64,                # Balanced complexity
+        "max_depth": 8,                  # Reasonable depth for GDELT features
+        
+        # Regularization (moderate to prevent overfitting)
+        "lambda_l1": 0.1,
+        "lambda_l2": 0.1,
+        "min_data_in_leaf": 20,
+        "feature_fraction": 0.8,         # Use 80% of features per tree
+        "bagging_fraction": 0.8,         # Use 80% of data per iteration
+        "bagging_freq": 5,
+        
+        # Early stopping
+        "early_stopping_rounds": 100,
+        "num_boost_round": 1000,         # Let early stopping decide
+
+        # Set seed for reproducibility
+        "seed": SEED
+    }
+
 
     # finalized model after tuning
     task_config = {        
@@ -295,9 +325,9 @@ if __name__ == '__main__':
             "kwargs": {
                 "quantiles": [0.1, 0.5, 0.9],
                 "lgb_params": {
-                    0.1: {'learning_rate': 0.03915802868187673, 'colsample_bytree': 0.6224232548522113, 'subsample': 0.7322459139253197, 'lambda_l1': 6.957072141326349, 'lambda_l2': 0.004366116342801104, 'max_depth': 10, 'seed': SEED},
-                    0.5: {'learning_rate': 0.08751145729062904, 'colsample_bytree': 0.5897687601362188, 'subsample': 0.754061620932527, 'lambda_l1': 1.9808527398597983e-06, 'lambda_l2': 2.91987558633637e-05, 'max_depth': 10, 'seed': SEED},
-                    0.9: {'learning_rate': 0.028047164919345058, 'colsample_bytree': 0.841009708338563, 'subsample': 0.6210307287531586, 'lambda_l1': 2.9139063969227813e-08, 'lambda_l2': 6.363456739796053, 'max_depth': 10, 'seed': SEED}
+                    0.1: GENERIC_LGBM_PARAMS,
+                    0.5: GENERIC_LGBM_PARAMS,
+                    0.9: GENERIC_LGBM_PARAMS
                 }
             }
         },
@@ -448,7 +478,7 @@ if __name__ == '__main__':
 
     # Plot
     plt.figure(figsize=(14, 6))
-    plt.plot(df_plot.index, df_plot["True"], label="True", color="black", linewidth=1.5)
+    plt.plot(df_plot.index, df_plot["True"], label="True", color="red", linewidth=1.5)
     plt.plot(df_plot.index, df_plot["Q50"], label="Q50 (Median)", color="blue", linestyle="--")
     plt.fill_between(
         df_plot.index,
@@ -556,27 +586,44 @@ if __name__ == '__main__':
     X_all = pd.concat([X_train, X_val], axis=0, join='outer', ignore_index=False)
     preds = pd.concat([preds_train, preds_valid], axis=0, join='outer', ignore_index=False)
     
-    df_all = pd.concat([
+    # Include ALL features from X_all instead of just a subset
+    print(f"Available features in X_all: {len(X_all.columns)}")
+    print(f"Feature columns: {list(X_all.columns)}")
+    
+    # Start with predictions and truth
+    df_all_components = [
         preds["quantile_0.10"].rename("q10"),
         preds["quantile_0.50"].rename("q50"),
         preds["quantile_0.90"].rename("q90"),
         y_all["LABEL0"].rename("truth"),
-        X_all["$fg_index"], # sentiment
-        X_all["$btc_dom"], # capital flow
-        X_all["$momentum_5"],
-        X_all["$momentum_10"],
-        X_all["$realized_vol_10"].rename("volatility"),
-    ], axis=1).dropna()
+    ]
+    
+    # Add ALL features from X_all
+    for col in X_all.columns:
+        df_all_components.append(X_all[col])
+    
+    df_all = pd.concat(df_all_components, axis=1).dropna()
+    
+    print(f"Total features in df_all: {len(df_all.columns)}")
+    print(f"GDELT features found: {[col for col in df_all.columns if 'cwt_' in col]}")
+    print(f"Technical indicators found: {[col for col in df_all.columns if any(x in col for x in ['ROC', 'STD', 'OPEN', 'VOLUME'])]}")
 
+    # Feature Set
+    # X_all.to_csv("X_all.csv")
+    # y_all.to_csv("y_all.csv")
+
+    # raise SystemExit()
+
+    df_all.to_csv("df_all_macro_analysis_prep.csv")
 
     # Used for EntropyAwarePPO and potentially for higher volatility coins in the future - originally designed to cover 20 days, not 20 hours
-    rolling_window = 20
+    rolling_window = 48
 
-    q_low = df_all["volatility"].rolling(rolling_window).quantile(0.01)
-    q_high = df_all["volatility"].rolling(rolling_window).quantile(0.99)
+    q_low = df_all["$realized_vol_12"].rolling(rolling_window).quantile(0.01)
+    q_high = df_all["$realized_vol_12"].rolling(rolling_window).quantile(0.99)
 
-    df_all["vol_scaled"] = ((df_all["volatility"] - q_low.shift(1)) / (q_high.shift(1) - q_low.shift(1))).clip(0.0, 1.0)
-    df_all["vol_rank"] = df_all["volatility"].rank(pct=True)
+    df_all["vol_scaled"] = ((df_all["$realized_vol_12"] - q_low.shift(1)) / (q_high.shift(1) - q_low.shift(1))).clip(0.0, 1.0)
+    df_all["vol_rank"] = df_all["$realized_vol_12"].rolling(rolling_window).rank(pct=True)
 
     df_all["spread"] = df_all["q90"] - df_all["q10"]
     df_all["abs_q50"] = df_all["q50"].abs()
@@ -627,20 +674,28 @@ if __name__ == '__main__':
     beta = 1.0
     df_all["spread_sigmoid"] = 1/(1+np.exp(-beta*df_all["spread_rel_clipped"]))
 
-    def classify_signal(row):
-        if pd.isna(row["spread_thresh"]) or pd.isna(row["signal_thresh"]):
-            return np.nan  # or "D" for startup grace period
-        if row["abs_q50"] >= row["signal_thresh"] and row["spread"] < row["spread_thresh"]:
-            return 3.0
-        elif row["abs_q50"] >= row["signal_thresh"]:
-            return 2.0
-        elif row["spread"] < row["spread_thresh"]:
-            return 1.0
-        else:
+    def prob_up_piecewise(row):
+        q10, q50, q90 = row["q10"], row["q50"], row["q90"]
+        if q90 <= 0:
             return 0.0
-    
-    df_all["signal_tier"] = df_all.apply(classify_signal, axis=1)
-      
+        if q10 >= 0:
+            return 1.0
+        # 0 lies between q10 and q50
+        if q10 < 0 <= q50:
+            cdf0 = 0.10 + 0.40 * (0 - q10) / (q50 - q10)
+            return 1 - cdf0
+        # 0 lies between q50 and q90
+        cdf0 = 0.50 + 0.40 * (0 - q50) / (q90 - q50)
+        return 1 - cdf0
+
+    # Step 1: Compute probability of upside
+    q10 = df_all["q10"]
+    q50 = df_all["q50"]
+    q90 = df_all["q90"]
+
+    df_all["prob_up"] = df_all.apply(prob_up_piecewise, axis=1)
+    prob_up = df_all["prob_up"]
+
     # New Feature Research
 
     # - Signal Strength Score
@@ -656,6 +711,26 @@ if __name__ == '__main__':
         a2 * df_all["signal_tanh"] +
         a3 * df_all["signal_sigmoid"]
     )
+    
+    def classify_signal(row):        
+        if pd.isna(row["spread_thresh"]) or pd.isna(row["signal_thresh"]):
+            return np.nan  # or "D" for startup grace period
+        if row["abs_q50"] >= row["signal_thresh"] and row["spread"] < row["spread_thresh"]:
+            return 3.0
+        elif row["abs_q50"] >= row["signal_thresh"]:
+            return 2.5
+        elif row["spread"] < row["spread_thresh"] and row["signal_score"] > 0:
+            return 2.0
+        elif row["average_open"] > 1 and row["prob_up"] > 0.5:
+            return 1.5
+        elif row["average_open"] < 1 and row["prob_up"] < 0.5:
+            return 1.0
+        else:
+            return 0.0
+    
+    df_all['average_open'] = df_all.apply(lambda row: (row['OPEN1'] + row['OPEN2'] + row['OPEN3']) / 3, axis=1)
+    df_all["signal_tier"] = df_all.apply(classify_signal, axis=1)
+    
 
     # - Spread Quality Score
     # Invert cost so higher is better:
@@ -681,34 +756,16 @@ if __name__ == '__main__':
 
     # - If you weight both equally: γ1=γ2=1, then tier_confidence ∈ [1,10] with highest when signal high & spread low.
 
-    def prob_up_piecewise(row):
-        q10, q50, q90 = row["q10"], row["q50"], row["q90"]
-        if q90 <= 0:
-            return 0.0
-        if q10 >= 0:
-            return 1.0
-        # 0 lies between q10 and q50
-        if q10 < 0 <= q50:
-            cdf0 = 0.10 + 0.40 * (0 - q10) / (q50 - q10)
-            return 1 - cdf0
-        # 0 lies between q50 and q90
-        cdf0 = 0.50 + 0.40 * (0 - q50) / (q90 - q50)
-        return 1 - cdf0
-
-    # Step 1: Compute probability of upside
-    q10 = df_all["q10"]
-    q50 = df_all["q50"]
-    q90 = df_all["q90"]
-
-    df_all["prob_up"] = df_all.apply(prob_up_piecewise, axis=1)
-    prob_up = df_all["prob_up"]
+    
 
     # Step 2: Define thresholds
     signal_thresh = df_all["signal_thresh"]
 
     # Step 3: Create masks
-    buy_mask = (q50 > signal_thresh) & (prob_up > 0.5)
-    sell_mask = (q50 < -signal_thresh) & (prob_up < 0.5)
+    # buy_mask = (q50 > signal_thresh) & (prob_up > 0.5)
+    # sell_mask = (q50 < -signal_thresh) & (prob_up < 0.5)
+    buy_mask = (q50 > 0) & (prob_up > 0.5)
+    sell_mask = (q50 < 0) & (prob_up < 0.5)
 
     # Step 4: Assign side
     df_all["side"] = -1  # default to HOLD
@@ -716,7 +773,7 @@ if __name__ == '__main__':
     df_all.loc[sell_mask, "side"] = 0  # or -1 if you prefer SELL = -1
 
     print("df_to_pickle: ", df_all)
-    df_all.to_csv("df_all_macro_analysis.csv")    
+    df_all.to_csv("df_all_macro_analysis.csv")
 
     # Calculate the correlation matrix
     ML_correlation_matrix = df_all.corr()        
@@ -727,7 +784,7 @@ if __name__ == '__main__':
     correlation_matrix.to_csv("correlation_matrix.csv")
     
     raise SystemExit()
-
+    
     # Drop column 'truth' from the copied DataFrame
     # df_all.drop('truth', axis=1, inplace=True)
 

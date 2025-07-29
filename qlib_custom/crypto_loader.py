@@ -39,15 +39,15 @@ class crypto_dataloader(QlibDataLoader):
         config={
             "kbar": {},
             "price": {
-                "windows": [0, 1, 2, 3, 4],
-                "feature": ["OPEN"],
+                "windows": [1, 2, 3],
+                "feature": ['OPEN'],
             },
-            "volume": { # whether to use raw volume features
-                "windows": [0, 2, 4, 8, 16], # use volume at n days ago
-            },
+            #"volume": { # whether to use raw volume features
+            #    "windows": [4, 12, 24, 32, 64], # use volume at n hours ago
+            #},
             "rolling": {
-                "windows": [0, 2, 4, 8, 16], # rolling windows size
-                "include": ["ROC","STD"], # rolling operator to use
+                "windows": [1, 2, 3], # rolling windows size
+                "include": ['RSV'], # rolling operator to use
             },
         }
     ):
@@ -70,112 +70,50 @@ class crypto_dataloader(QlibDataLoader):
             }
         }
 
-        feat_candidates = [
-                "($close-$open)/$open",
-                "($high-$low)/$open",
-                "($close-$open)/($high-$low+1e-12)",
-                "($high-Greater($open, $close))/$open",
-                "($high-Greater($open, $close))/($high-$low+1e-12)",
-                "(Less($open, $close)-$low)/$open",
-                "(Less($open, $close)-$low)/($high-$low+1e-12)",
-                "(2*$close-$high-$low)/$open",
-                "(2*$close-$high-$low)/($high-$low+1e-12)"
-        ]
-
-        feat_names = [
-                "KMID",
-                "KLEN",
-                "KMID2",
-                "KUP",
-                "KUP2",
-                "KLOW",
-                "KLOW2",
-                "KSFT",
-                "KSFT2"
-        ]
-
         """
         fields = []
         names = []
         if "kbar" in config:
             fields += [
-                ###"($close-$open)/$open",
-                #"($high-$low)/$open",
-                #"($close-$open)/($high-$low+1e-12)",
-                ###"($high-Greater($open, $close))/$open",
-                ###"($high-Greater($open, $close))/($high-$low+1e-12)",
-                #"(Less($open, $close)-$low)/$open",
-                ###"(Less($open, $close)-$low)/($high-$low+1e-12)",
-                #"(2*$close-$high-$low)/$open",
-                ###"(2*$close-$high-$low)/($high-$low+1e-12)",
-                #"(EMA($close,5) - EMA($close,26))-EMA(EMA($close, 5) - EMA($close, 26), 10)",
-                #"($close - Ref($close, 9))",
-                #"(Log($close/Ref($close, 1)))",
-                #"Mean(($close / Ref($close, 1) - 1), 15) / Std(($close / Ref($close, 1) - 1), 15)",
-                #"((Sum(Abs($high - Ref($low, 1)), 16) - Sum(Abs($low - Ref($high, 1)), 16)) / Sum(Greater(Greater($high - $low, Abs($high - Ref($close, 1))), Abs($low - Ref($close, 1))), 16))",
-                #"(($high + $low + $close)/3 - Mean(($high + $low + $close)/3, 15)) / (0.015 * Std(($high + $low + $close)/3, 15))",
-                #"($close - Mean($close, 15)) / Std($close, 15)",
-                #"(EMA(Greater(Greater($high - $low, Abs($high - Ref($close, 1))), Abs($low - Ref($close, 1))), 30))",
                 
                 # ── Volatility of price (log return std)
-                "Std(Log($close / Ref($close, 1)), 5)",
-                "Std(Log($close / Ref($close, 1)), 10)",
-                "Std(Log($close / Ref($close, 1)), 20)",
+                # "Std(Log($close / Ref($close, 1)), 4)", # 5 x 24 hours = 120
+                "Std(Log($close / Ref($close, 1)), 12)", # 10 x 24 hours = 240
+                "Std(Log($close / Ref($close, 1)), 6)", # 20 x 24 hours = 480
+                "Std(Log($close / Ref($close, 1)), 3)",
 
                 # ── Relative volatility (short/long)
-                "Std(Log($close / Ref($close, 1)), 5) / Std(Log($close / Ref($close, 1)), 20)",
+                # "Std(Log($close / Ref($close, 1)), 5) / Std(Log($close / Ref($close, 1)), 20)", # 120 short / 480 long
 
                 # ── Rolling price momentum for directional context
-                "$close / Ref($close, 5) - 1",
-                "$close / Ref($close, 10) - 1",
+                # "$close / Ref($close, 5) - 1", # 5 x 24 hours = 120
+                # "$close / Ref($close, 10) - 1", # 10 x 24 hours = 240
 
                 # ── Approximate average true range (ATR-like)
-                #"Mean(Abs($high - $low), 14) / Mean($close, 14)",
-                "Mean(Abs($high - $low), 14) / $close",
+                #"Mean(Abs($high - $low), 15) / Mean($close, 14)",
+                "Mean(Abs($high - $low), 12) / $close", # 12 x 24 hours = 360
+                "Mean(Abs($high - $low), 24) / $close", # 24 x 24 hours = 360
 
                 # ── Optional: high-volatility regime flag
-                "If(Std(Log($close / Ref($close, 1)), 5) / Std(Log($close / Ref($close, 1)), 20) > 1.25, 1, 0)",
-
-                # "Ref($close, -1)",
-                # "Ref($close, -2)",
-                # "$close",                
-                # "Ref($close, 1)",
+                # "If(Std(Log($close / Ref($close, 1)), 5) / Std(Log($close / Ref($close, 1)), 20) > 1.25, 1, 0)", # 120 short / 480 long
+                               
             ]
-            names += [
-                ###"KMID",
-                #"KLEN",
-                #"KMID2",
-                ###"KUP",
-                ###"KUP2",
-                #"KLOW",
-                ###"KLOW2",
-                #"KSFT",
-                ###"KSFT2",
-                #"MACD_HIST",
-                #"MOM_9",
-                #"LOG_RETURN_1",
-                #"TREND_STRENGTH_15",
-                #"VI_DIFF_16",
-                #"CCI_15",
-                #"BOLL_Z_15",
-                #"ATR_30",
-                "$realized_vol_5",
-                "$realized_vol_10",
-                "$realized_vol_20",
+            names += [                
+                # "$realized_vol_4",
+                "$realized_vol_12",
+                "$realized_vol_6",
+                "$realized_vol_3",
 
-                "$relative_volatility_index",  # S/L ratio
+                # "$relative_volatility_index",  # S/L ratio
 
-                "$momentum_5",
-                "$momentum_10",
+                # "$momentum_5",
+                # "$momentum_10",
 
-                "$approx_atr14",
+                "$approx_atr_12",
+                "$approx_atr_24",
 
-                "$high_vol_flag",  # Regime flag for dynamic logic
+                # "$high_vol_flag",  # Regime flag for dynamic logic
 
-                # "$close_prev_1",
-                # "$close_prev_2",
-                # "$close_zero",
-                # "$close_next_1",
             ]
         if "price" in config:
             windows = config["price"].get("windows", range(5))
@@ -365,6 +303,29 @@ class crypto_dataloader(QlibDataLoader):
     @staticmethod
     def get_label_config():        
         return ["Ref($close, -2)/Ref($close, -1) - 1"], ["LABEL0"]
+        
+        # return ["$close", "Ref($close, -1)/$close - 1", "Ref($close, -2)/Ref($close, -1) - 1"], ["LABEL_CLOSE", "LABEL_RETURN", "LABEL0"]
+        # return ["$close"], ["LABEL0"]
+        
+        return [
+            # Micro (technical signals)
+            "Ref($close, -1)/Ref($close, 0) - 1",            # Next hour
+            
+            # Short-term (combined signals)  
+            "Ref($close, -4)/Ref($close, -1) - 1",           # 3-hour ahead
+            
+            # Medium-term (GDELT optimal)
+            "Ref($close, -24)/Ref($close, -1) - 1",          # 1-day ahead
+            
+            # Regime detection
+            "Ref($close, -168)/Ref($close, -1) - 1",         # 1-week ahead
+            
+            # Volatility prediction (for your entropy system)
+            "Ref($close, -24).rolling(24).std()",            # 1-day vol forecast
+            
+        ], [
+            "LABEL_1H", "LABEL_3H", "LABEL_1D", "LABEL_1W", "LABEL_VOL"
+        ]
     
     @staticmethod
     def get_debug_label_config():        
