@@ -5,7 +5,7 @@ Test unified regime features with actual trading data
 
 import pandas as pd
 import numpy as np
-from qlib_custom.regime_features import RegimeFeatureEngine, create_regime_features
+from src.features.regime_features import RegimeFeatureEngine, create_regime_features
 
 def test_with_actual_data():
     """Test regime features with actual trading data"""

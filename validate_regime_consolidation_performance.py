@@ -5,7 +5,7 @@ Validate that regime feature consolidation maintains trading performance
 
 import pandas as pd
 import numpy as np
-from qlib_custom.regime_features import create_regime_features
+from src.features.regime_features import create_regime_features
 import sys
 import os
 
