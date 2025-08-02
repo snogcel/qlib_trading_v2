@@ -27,7 +27,7 @@ class MultiQuantileModel(Model):
         self,
         dataset: DatasetH,
         num_boost_round=None,
-        early_stopping_rounds=0,
+        early_stopping_rounds=50,
         verbose_eval=20,
         evals_result=None,
         reweighter=None,
@@ -39,6 +39,7 @@ class MultiQuantileModel(Model):
         for q in self.quantiles:
             evals_result = {}
             model = QuantileLGBModel(alpha=q, **self.lgb_params[q])
+            print(self.lgb_params[q])
             model.fit(dataset, num_boost_round, early_stopping_rounds, verbose_eval, evals_result, reweighter, **kwargs)
             self.models[q] = model 
             self.evals_result_dict[q] = evals_result          

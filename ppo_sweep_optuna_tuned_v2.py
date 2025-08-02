@@ -14,7 +14,9 @@ from qlib_custom.custom_signal_env import SignalEnv
 from qlib_custom.custom_tier_logging import TierLoggingCallback
 from qlib_custom.custom_multi_quantile import QuantileLGBModel
 from qlib_custom.gdelt_handler import gdelt_handler, gdelt_dataloader
-from qlib_custom.crypto_handler import crypto_handler, crypto_dataloader
+# from qlib_custom.crypto_handler import crypto_handler, crypto_dataloader
+from qlib_custom.crypto_loader_optimized import crypto_dataloader_optimized as crypto_dataloader
+
 from qlib_custom.custom_multi_quantile import QuantileLGBModel, MultiQuantileModel
 
 import optuna
@@ -216,6 +218,296 @@ def evaluate_agent(env, agent, name="experiment"):
 
 
 
+# def volatility_hybrid_features(df):
+#     """
+#     Use raw vol for prediction, scaled vol for position sizing
+#     """
+#     # Raw volatility for signal generation (better predictive power)
+#     df['vol_signal'] = df['$realized_vol_3']
+#     df['vol_raw_decile'] = df['vol_signal'].apply(get_vol_raw_decile)
+    
+#     # Scaled volatility for risk management (bounded, easier to use)
+#     rolling_window = 30
+#     q_low = df['$realized_vol_3'].rolling(rolling_window).quantile(0.01)
+#     q_high = df['$realized_vol_3'].rolling(rolling_window).quantile(0.99)
+#     df['vol_risk'] = ((df['$realized_vol_3'] - q_low.shift(1)) / 
+#                      (q_high.shift(1) - q_low.shift(1))).clip(0.0, 1.0)
+    
+#     # Volatility momentum (rate of change)
+#     df['vol_momentum'] = df['vol_signal'].pct_change(periods=3)
+    
+#     # Volatility regime classification
+#     df['vol_regime'] = pd.cut(df['vol_signal'], 
+#                              bins=[0, df['vol_signal'].quantile(0.3), 
+#                                   df['vol_signal'].quantile(0.7), 
+#                                   df['vol_signal'].max()],
+#                              labels=['low', 'medium', 'high'])
+    
+#     return df
+
+
+def prob_up_piecewise(row):
+        q10, q50, q90 = row["q10"], row["q50"], row["q90"]
+        if q90 <= 0:
+            return 0.0
+        if q10 >= 0:
+            return 1.0
+        # 0 lies between q10 and q50
+        if q10 < 0 <= q50:
+            cdf0 = 0.10 + 0.40 * (0 - q10) / (q50 - q10)
+            return 1 - cdf0
+        # 0 lies between q50 and q90
+        cdf0 = 0.50 + 0.40 * (0 - q50) / (q90 - q50)
+        return 1 - cdf0
+
+# For position sizing with vol_raw deciles
+def kelly_with_vol_raw_deciles(vol_raw, signal_rel, base_size=0.1):
+    """
+    Kelly position sizing using vol_raw deciles
+    """
+    vol_decile = get_vol_raw_decile(vol_raw)
+        
+    # Base Kelly calculation
+    risk_measure = abs(signal_rel)
+    if risk_measure > 0:
+        # Use vol_raw as reward proxy (validated as better predictor)
+        reward_proxy = vol_raw * 100  # Scale to reasonable range
+        reward_risk_ratio = reward_proxy / risk_measure
+    else:
+        reward_risk_ratio = 0
+    
+    kelly_fraction = reward_risk_ratio * base_size
+    
+    # Volatility-based risk adjustments
+    if vol_decile >= 9:  # Extreme volatility (top 10%)
+        risk_adjustment = 0.6  # Very conservative
+    elif vol_decile >= 8:  # Very high volatility (top 20%)
+        risk_adjustment = 0.7
+    elif vol_decile >= 6:  # High volatility (top 40%)
+        risk_adjustment = 0.85
+    elif vol_decile <= 1:  # Very low volatility (bottom 20%)
+        risk_adjustment = 1.1  # Slightly more aggressive
+    else:
+        risk_adjustment = 1.0
+    
+    return kelly_fraction * risk_adjustment
+
+
+
+def adaptive_threshold_strategy(df):
+    """
+    Static threshold strategy - validation showed this performs better than adaptive
+    """
+    df["spread"] = df["q90"] - df["q10"]
+    df["abs_q50"] = df["q50"].abs()
+
+    # Use static 90th percentile threshold (validated as optimal)
+    df["signal_thresh_adaptive"] = df['abs_q50'].rolling(30, min_periods=10).quantile(0.90)
+
+    df["spread_thresh"] = df["spread"].rolling(30, min_periods=10).quantile(0.90).bfill()
+
+    df["signal_rel"] = (df["abs_q50"] - df["signal_thresh_adaptive"]) / (df["signal_thresh_adaptive"] + 1e-12)
+    
+    return df
+
+# Decile thresholds 
+DECILE_THRESHOLDS = {
+    'vol_scaled': [0, 0.040228406, 0.100592005, 0.157576793, 0.219366829, 0.292197243, 0.380154782, 0.489959571, 0.650306095, 0.911945255, 1.0],
+    'signal_rel': [-0.999993358, -0.91041967, -0.818028064, -0.724570109, -0.622671906, -0.513578004, -0.389794626, -0.24133338, -0.056341543, 0.170259192, 10.29764677],
+    'signal_sigmoid': [0.268942684, 0.286913927, 0.30618247, 0.326387409, 0.349174012, 0.374355133, 0.403766741, 0.439957683, 0.485918339, 0.542462272, 0.952574127],
+    'spread_sigmoid': [0.26804337, 0.373168477, 0.395796349, 0.412297581, 0.426721108, 0.440736902, 0.455622943, 0.472894296, 0.495122994, 0.524053256, 0.880797078],
+    'prob_up': [0, 0.415979264, 0.454552117, 0.476363803, 0.492890165, 0.507965346, 0.523119476, 0.539739655, 0.560176208, 0.593712855, 1.0],
+    'btc_dom': [0.358800002, 0.38939998, 0.4082, 0.4437, 0.4923, 0.5194, 0.53349996, 0.563800004, 0.6172, 0.6593, 0.71],
+    'fg_index': [0.05, 0.2, 0.24, 0.3, 0.39, 0.46, 0.52, 0.61, 0.7, 0.76, 0.95],
+    'vol_raw': [0.000143, 0.001617, 0.002237, 0.002822, 0.003430, 0.004130, 0.004968, 0.006053, 0.007647, 0.010491, 0.127162]
+}
+
+def get_decile_rank(value, thresholds):
+    """Convert a value to its decile rank (0-9)"""
+    for i, threshold in enumerate(thresholds[1:], 1):
+        if value <= threshold:
+            return i - 1
+    return 9
+
+VOL_RAW_THRESHOLDS = [
+    0.000143,   # 0th percentile
+    0.001617,   # 10th percentile  
+    0.002237,   # 20th percentile
+    0.002822,   # 30th percentile
+    0.003430,   # 40th percentile
+    0.004130,   # 50th percentile
+    0.004968,   # 60th percentile
+    0.006053,   # 70th percentile
+    0.007647,   # 80th percentile
+    0.010491,   # 90th percentile
+    0.127162,   # 100th percentile
+]
+
+def get_vol_raw_decile(vol_raw_value):
+    """Convert vol_raw value to decile rank (0-9) - Updated for 6-day volatility"""
+    for i, threshold in enumerate(VOL_RAW_THRESHOLDS[1:], 1):
+        if vol_raw_value <= threshold:
+            return i - 1
+    return 9
+
+# def classify_signal_corrected(row):
+#     """
+#     Simplified signal classification based on validation results
+#     """
+#     # Only use proven predictive features
+#     abs_q50 = row.get("abs_q50", 0)
+
+#     signal_thresh = row.get("signal_thresh_adaptive", 0.01)
+#     prob_up = row.get("prob_up", 0.5)
+    
+#     # Base signal strength (validated)
+#     if abs_q50 >= signal_thresh:
+#         base_tier = 3.0
+#     elif abs_q50 >= signal_thresh * 0.75:
+#         base_tier = 2.0
+#     elif abs_q50 >= signal_thresh * 0.5:
+#         base_tier = 1.0
+#     else:
+#         base_tier = 0.0
+    
+#     # Directional confidence boost
+#     prob_confidence = abs(prob_up - 0.5) * 2  # 0 to 1 scale
+#     confidence_multiplier = 0.8 + (prob_confidence * 0.4)  # 0.8 to 1.2 range
+    
+#     return base_tier * confidence_multiplier
+
+
+# # Helper function to add vol_raw features to your dataframe (UPDATED for optimized loader)
+# def add_vol_raw_features(df):
+#     """
+#     Add vol_raw decile features to dataframe
+#     Compatible with optimized crypto loader
+#     """
+    
+#     # Check if vol_raw already exists (from optimized loader)
+#     if 'vol_raw' not in df.columns:
+#         # Fallback: use $realized_vol_6 if vol_raw not available (optimized loader uses vol_6)
+#         if '$realized_vol_6' in df.columns:
+#             df['vol_raw'] = df['$realized_vol_6']
+#         elif '$realized_vol_3' in df.columns:
+#             df['vol_raw'] = df['$realized_vol_3']
+#         else:
+#             print("Warning: No volatility column found for vol_raw")
+#             return df
+    
+#     # Check if vol_raw_decile already exists (from optimized loader)
+#     if 'vol_raw_decile' not in df.columns:
+#         df['vol_raw_decile'] = df['vol_raw'].apply(get_vol_raw_decile)
+    
+#     # Check if regime flags already exist (from optimized loader)
+#     if 'vol_extreme_high' not in df.columns:
+#         df['vol_extreme_high'] = (df['vol_raw_decile'] >= 8).astype(int)
+#     if 'vol_high' not in df.columns:
+#         df['vol_high'] = (df['vol_raw_decile'] >= 6).astype(int)
+#     if 'vol_low' not in df.columns:
+#         df['vol_low'] = (df['vol_raw_decile'] <= 2).astype(int)
+#     if 'vol_extreme_low' not in df.columns:
+#         df['vol_extreme_low'] = (df['vol_raw_decile'] <= 1).astype(int)
+    
+#     # Check if vol_risk already exists (from optimized loader)
+#     if 'vol_risk' not in df.columns:
+#         # Use $realized_vol_6 instead of $realized_vol_3 (which was removed in optimization)
+#         vol_col = '$realized_vol_6' if '$realized_vol_6' in df.columns else 'vol_raw'
+        
+#         rolling_window = 30
+#         q_low = df[vol_col].rolling(rolling_window).quantile(0.01)
+#         q_high = df[vol_col].rolling(rolling_window).quantile(0.99)
+#         df['vol_risk'] = ((df[vol_col] - q_low.shift(1)) / 
+#                          (q_high.shift(1) - q_low.shift(1))).clip(0.0, 1.0)
+    
+#     # Check if vol_raw_momentum already exists (from optimized loader)
+#     if 'vol_raw_momentum' not in df.columns:
+#         df['vol_raw_momentum'] = df['vol_raw'].pct_change(periods=3)
+    
+#     return df
+
+def classify_signal_with_vol_raw_deciles(row):
+    """
+    Signal classification using optimal volatility insights
+    """
+    # Primary signal components (validated)
+    abs_q50 = row.get("abs_q50", 0)
+    signal_thresh = row.get("signal_thresh_adaptive", 0.01)
+    prob_up = row.get("prob_up", 0.5)
+    
+    # Use raw volatility for regime detection (better predictor)
+    vol_raw = row.get("vol_raw", row.get("$realized_vol_3", 0.01))
+    vol_scaled = row.get("vol_scaled", row.get("vol_risk", 0.3))  # For position sizing (bounded 0-1)
+    vol_decile = row.get("vol_raw_decile", -1)
+   
+    # Base signal strength
+    if abs_q50 >= signal_thresh:
+        base_tier = 3.0
+    elif abs_q50 >= signal_thresh * 0.8:
+        base_tier = 2.0
+    elif abs_q50 >= signal_thresh * 0.6:
+        base_tier = 1.0
+    else:
+        base_tier = 0.0
+    
+    # Volatility regime adjustments using deciles
+    if vol_decile >= 8:  # Top 20% volatility (deciles 8-9)
+        vol_regime = 'extreme_high'
+        vol_multiplier = 1.3 if base_tier >= 2.0 else 0.7  # Boost strong signals, reduce weak ones
+    elif vol_decile >= 6:  # High volatility (deciles 6-7)
+        vol_regime = 'high'
+        vol_multiplier = 1.15 if base_tier >= 2.0 else 0.85
+    elif vol_decile >= 4:  # Medium-high volatility (deciles 4-5)
+        vol_regime = 'medium_high'
+        vol_multiplier = 1.05 if base_tier >= 2.0 else 0.95
+    elif vol_decile >= 2:  # Medium-low volatility (deciles 2-3)
+        vol_regime = 'medium_low'
+        vol_multiplier = 1.0  # Neutral
+    else:  # Low volatility (deciles 0-1)
+        vol_regime = 'low'
+        vol_multiplier = 0.9  # Slightly reduce all signals in low vol
+    
+    # Directional confidence
+    prob_confidence = abs(prob_up - 0.5) * 2
+    confidence_multiplier = 0.9 + (prob_confidence * 0.2)
+
+    # Minor boost from signal_tanh (only if it adds value)
+    #if base_tier > 0:
+    #    tanh_boost = 1.0 + (signal_tanh * 0.05)  # Very small adjustment
+    #    return base_tier * tanh_boost
+    
+    # return base_tier
+
+    final_tier = base_tier * vol_multiplier * confidence_multiplier
+
+    # print(f"final_tier: {final_tier}, abs_q50: {abs_q50}, signal_thresh: {signal_thresh}, vol_decile: {vol_decile}, base_tier: {base_tier}, vol_multiplier: {vol_multiplier}, confidence_multiplier: {confidence_multiplier}")    
+    
+    return {
+        'signal_tier': round(final_tier * 10) / 10,
+        'vol_regime': vol_regime,
+        'vol_decile': vol_decile,
+        'vol_multiplier': vol_multiplier
+    }
+
+
+def signal_classification(row):
+    """
+    Ultra-simple version - just use what works
+    """
+    abs_q50 = row.get("abs_q50", 0)
+    signal_thresh = row.get("signal_thresh_adaptive", 0.01)
+    
+    # Just use the validated threshold approach
+    if abs_q50 >= signal_thresh:
+        return 3  # Strong signal
+    elif abs_q50 >= signal_thresh * 0.8:
+        return 2  # Medium signal
+    elif abs_q50 >= signal_thresh * 0.6:
+        return 1  # Weak signal
+    else:
+        return 0  # No signal
+
+
 if __name__ == '__main__': 
 
     _learn_processors = [{"class": "DropnaLabel"},]
@@ -310,7 +602,7 @@ if __name__ == '__main__':
         
         # Early stopping
         "early_stopping_rounds": 50,
-        "num_boost_round": 1000,         # Let early stopping decide
+        "num_boost_round": 2250,         # Let early stopping decide
 
         # Set seed for reproducibility
         "seed": SEED
@@ -321,9 +613,9 @@ if __name__ == '__main__':
         # 0.5: {'learning_rate': 0.02753370821225369, 'max_depth': -1, 'lambda_l1': 0.1, 'lambda_l2': 0.1, **GENERIC_LGBM_PARAMS},
         # 0.9: {'learning_rate': 0.09355380738420341, 'max_depth': 10, 'num_leaves': 249, 'lambda_l1': 0.1, 'lambda_l2': 0.1, **GENERIC_LGBM_PARAMS}
 
-        0.1: {'learning_rate': 0.03915802868187673, 'max_depth': 5, **GENERIC_LGBM_PARAMS},
-        0.5: {'learning_rate': 0.02753370821225369, 'max_depth': 5, **GENERIC_LGBM_PARAMS},                
-        0.9: {'learning_rate': 0.028047164919345058, 'max_depth': 5, **GENERIC_LGBM_PARAMS} 
+        0.1: {'learning_rate': 0.026, 'max_depth': 7, **GENERIC_LGBM_PARAMS},
+        0.5: {'learning_rate': 0.027, 'max_depth': 7, **GENERIC_LGBM_PARAMS},                
+        0.9: {'learning_rate': 0.028, 'max_depth': 7, **GENERIC_LGBM_PARAMS} 
     }
 
     # "lgb_params": {
@@ -332,7 +624,7 @@ if __name__ == '__main__':
     #     0.9: {"learning_rate": 0.018590766014390355, "max_depth": 4, "n_estimators": 333, "seed": SEED}
     # }
 
-    print(multi_quantile_params[0.1])
+    # print(multi_quantile_params[0.1])
 
     #"lgb_params": {
     #    0.1: {'learning_rate': 0.03915802868187673, 'colsample_bytree': 0.6224232548522113, 'subsample': 0.7322459139253197, 'lambda_l1': 6.957072141326349, 'lambda_l2': 0.004366116342801104, 'max_depth': 10, 'seed': SEED},
@@ -561,25 +853,25 @@ if __name__ == '__main__':
     }).dropna().sort_index()
 
     # Plot
-    plt.figure(figsize=(14, 6))
-    plt.plot(df_plot.index, df_plot["True"], label="True", color="red", linewidth=1.5)
-    plt.plot(df_plot.index, df_plot["Q50"], label="Q50 (Median)", color="blue", linestyle="--")
-    plt.fill_between(
-        df_plot.index,
-        df_plot["Q10"],
-        df_plot["Q90"],
-        color="skyblue",
-        alpha=0.3,
-        label="Q10-Q90 Band"
-    )
+    # plt.figure(figsize=(14, 6))
+    # plt.plot(df_plot.index, df_plot["True"], label="True", color="red", linewidth=1.5)
+    # plt.plot(df_plot.index, df_plot["Q50"], label="Q50 (Median)", color="blue", linestyle="--")
+    # plt.fill_between(
+    #     df_plot.index,
+    #     df_plot["Q10"],
+    #     df_plot["Q90"],
+    #     color="skyblue",
+    #     alpha=0.3,
+    #     label="Q10-Q90 Band"
+    # )
 
-    plt.title("Prediction Interval: Q10-Q90 with Median vs. True Values")
-    plt.xlabel("Time")
-    plt.ylabel("Target")
-    plt.legend()
-    plt.grid(True)
-    plt.tight_layout()
-    plt.show()
+    # plt.title("Prediction Interval: Q10-Q90 with Median vs. True Values")
+    # plt.xlabel("Time")
+    # plt.ylabel("Target")
+    # plt.legend()
+    # plt.grid(True)
+    # plt.tight_layout()
+    # plt.show()
 
     isTuning = False
     if isTuning is True:
@@ -732,188 +1024,93 @@ if __name__ == '__main__':
     print(f"GDELT features found: {[col for col in df_all.columns if 'cwt_' in col]}")
     print(f"Technical indicators found: {[col for col in df_all.columns if any(x in col for x in ['ROC', 'STD', 'OPEN', 'VOLUME'])]}")
 
-    # Feature Set
-    # X_all.to_csv("X_all.csv")
-    # y_all.to_csv("y_all.csv")
 
-    # raise SystemExit()
+
 
     df_all.to_csv("df_all_macro_analysis_prep.csv")
-
-    # Used for EntropyAwarePPO and potentially for higher volatility coins in the future - originally designed to cover 20 days, not 20 hours
-    rolling_window = 48
-
-    q_low = df_all["$realized_vol_6"].rolling(rolling_window).quantile(0.01)
-    q_high = df_all["$realized_vol_6"].rolling(rolling_window).quantile(0.99)
-
-    df_all["vol_scaled"] = ((df_all["$realized_vol_6"] - q_low.shift(1)) / (q_high.shift(1) - q_low.shift(1))).clip(0.0, 1.0)
-    df_all["vol_rank"] = df_all["$realized_vol_6"].rolling(rolling_window).rank(pct=True)
-
-    df_all["spread"] = df_all["q90"] - df_all["q10"]
-    df_all["abs_q50"] = df_all["q50"].abs()
-
-
-    span = 30  # signal / spread thresholds - half‐life of roughly 30 hours
-    min_span = 10
     
-    # using pandas
-    df_all["signal_thresh"] = (
-        df_all["abs_q50"]
-        .rolling(window=span, min_periods=min_span)
-        .quantile(0.85)
-        .fillna(method="bfill")
-    )
+    # Add vol_raw features to your dataframe
+    # df_all = add_vol_raw_features(df_all)
+    df_all = adaptive_threshold_strategy(df_all)
 
-    df_all["spread_thresh"] = (
-        df_all["spread"]
-        .rolling(window=span, min_periods=min_span)
-        .quantile(0.85)
-        .fillna(method="bfill")
-    )
 
-    df_all["signal_rel"] = (df_all["abs_q50"] - df_all["signal_thresh"]) / (df_all["signal_thresh"] + 1e-12)
+    # Apply the new signal classification
+    df_all["prob_up"] = df_all.apply(prob_up_piecewise, axis=1)
+    df_all['signal_tier'] = df_all.apply(signal_classification, axis=1)    
 
-    cap = 3.0
-    df_all["signal_rel_clipped"] = df_all["signal_rel"].clip(-cap, cap)
+    # Apply Kelly sizing
+    df_all['kelly_position_size'] = df_all.apply(
+        lambda row: kelly_with_vol_raw_deciles(row['vol_raw'], row['signal_rel']), 
+        axis=1
+    )    
 
+    # keep
     alpha = 1.0  # controls “steepness”
-    df_all["signal_tanh"] = np.tanh(df_all["signal_rel_clipped"] / alpha)
+    cap = 3.0
+    df_all["signal_tanh"] = np.tanh(df_all["signal_rel"].clip(-cap, cap) / alpha)
 
-    beta = 1.0  # larger => steeper transition
-    df_all["signal_sigmoid"] = 1 / (1 + np.exp(-beta * df_all["signal_rel_clipped"]))
-    
-    df_all["spread_rel"] = (df_all["spread"] - df_all["spread_thresh"]) / (df_all["spread_thresh"] + 1e-12)
 
-    df_all["spread_tier"] = (
-        pd.qcut(-df_all["spread_rel"], 10, labels=False)  # 0 = tightest, 9 = loosest
-        .add(1)                                          # shift to 1–10
-    )
 
-    cap = 2.0
-    df_all["spread_rel_clipped"] = df_all["spread_rel"].clip(-cap, cap)
-
-    alpha = 1.0
-    df_all["spread_tanh"] = np.tanh(df_all["spread_rel_clipped"]/alpha)
-
-    beta = 1.0
-    df_all["spread_sigmoid"] = 1/(1+np.exp(-beta*df_all["spread_rel_clipped"]))
-
-    def prob_up_piecewise(row):
-        q10, q50, q90 = row["q10"], row["q50"], row["q90"]
-        if q90 <= 0:
-            return 0.0
-        if q10 >= 0:
-            return 1.0
-        # 0 lies between q10 and q50
-        if q10 < 0 <= q50:
-            cdf0 = 0.10 + 0.40 * (0 - q10) / (q50 - q10)
-            return 1 - cdf0
-        # 0 lies between q50 and q90
-        cdf0 = 0.50 + 0.40 * (0 - q50) / (q90 - q50)
-        return 1 - cdf0
 
     # Step 1: Compute probability of upside
+    prob_up = df_all["prob_up"]
     q10 = df_all["q10"]
     q50 = df_all["q50"]
     q90 = df_all["q90"]
 
-    df_all["prob_up"] = df_all.apply(prob_up_piecewise, axis=1)
-    prob_up = df_all["prob_up"]
-
-    # New Feature Research
-
-    # - Signal Strength Score
-    # Blend raw and smooth transforms to get a continuous “go” metric:
-
-    a1 = 0.4
-    a2 = 0.3
-    a3 = 0.3
-    cap = 3
-
-    df_all["signal_score"] = (
-        a1 * df_all["signal_rel"].clip(-cap, cap) +
-        a2 * df_all["signal_tanh"] +
-        a3 * df_all["signal_sigmoid"]
-    )
-    
-    def classify_signal(row):        
-        if pd.isna(row["spread_thresh"]) or pd.isna(row["signal_thresh"]):
-            return np.nan  # or "D" for startup grace period
-        if row["abs_q50"] >= row["signal_thresh"] and row["spread"] < row["spread_thresh"]:
-            return 3.0
-        elif row["abs_q50"] >= row["signal_thresh"]:
-            return 2.5
-        elif row["spread"] < row["spread_thresh"] and row["signal_score"] > 0:
-            return 2.0
-        elif row["average_open"] > 1 and row["prob_up"] > 0.5:
-            return 1.5
-        elif row["average_open"] < 1 and row["prob_up"] < 0.5:
-            return 1.0
-        else:
-            return 0.0
-    
-    df_all["average_open"] = df_all.apply(lambda row: (row['OPEN1'] + row['OPEN2'] + row['OPEN3']) / 3, axis=1)
-    df_all["signal_tier"] = df_all.apply(classify_signal, axis=1)
-    
-
-    # - Spread Quality Score
-    # Invert cost so higher is better:
-
-    b1 = 0.5
-    b2 = 0.5
-
-    df_all["spread_score"] = (
-        b1 * (-df_all["spread_rel"].clip(-cap, cap)) +
-        b2 * (1 - df_all["spread_sigmoid"])
-    )
-
-    # - Tier Confidence
-    # Combine signal & spread tiers into a single 1–10 rank:
-
-    y1 = 1
-    y2 = 1
-
-    df_all["tier_confidence"] = (
-        y1 * df_all["signal_tier"] +
-        y2 * (10 - df_all["spread_tier"])
-    ) / (y1 + y2)
-
-    # - If you weight both equally: γ1=γ2=1, then tier_confidence ∈ [1,10] with highest when signal high & spread low.
-
-    
-
     # Step 2: Define thresholds
-    signal_thresh = df_all["signal_thresh"]
+    signal_thresh = df_all["signal_thresh_adaptive"]
 
     # Step 3: Create masks
-    # buy_mask = (q50 > signal_thresh) & (prob_up > 0.5)
-    # sell_mask = (q50 < -signal_thresh) & (prob_up < 0.5)
-    buy_mask = (q50 > 0) & (prob_up > 0.5)
-    sell_mask = (q50 < 0) & (prob_up < 0.5)
+    buy_mask = (q50 > signal_thresh) & (prob_up > 0.5)
+    sell_mask = (q50 < -signal_thresh) & (prob_up < 0.5)
+    # buy_mask = (q50 > 0) & (prob_up > 0.5)
+    # sell_mask = (q50 < 0) & (prob_up < 0.5)
 
     # Step 4: Assign side
     df_all["side"] = -1  # default to HOLD
     df_all.loc[buy_mask, "side"] = 1
     df_all.loc[sell_mask, "side"] = 0  # or -1 if you prefer SELL = -1
 
-    print("df_to_pickle: ", df_all)
-    df_all.to_csv("df_all_macro_analysis.csv")
 
-    # Calculate the correlation matrix
+
     ML_correlation_matrix = df_all.corr()        
     ML_correlation_matrix.to_csv("ML_correlation_matrix.csv")
 
-    Xy_df = pd.concat([X_all, y_all], axis=0, join='outer', ignore_index=False)
-    correlation_matrix = Xy_df.corr()
-    correlation_matrix.to_csv("correlation_matrix.csv")
-    
-    raise SystemExit()
-    
-    # Drop column 'truth' from the copied DataFrame
-    # df_all.drop('truth', axis=1, inplace=True)
 
-    df_cleaned = df_all.dropna(subset=["signal_tier", "vol_scaled"])
+    # Calculate the correlation matrix
+
+    # Xy_df = pd.concat([X_all, y_all], axis=0, join='outer', ignore_index=False)
+    # correlation_matrix = Xy_df.corr()
+    # correlation_matrix.to_csv("correlation_matrix.csv")
+        
+    # Drop redundant columns (updated for optimized loader)
+    # Note: $realized_vol_3 may not exist in optimized loader (removed due to correlation)
+    columns_to_drop = []
+    if '$realized_vol_3' in df_all.columns:
+        columns_to_drop.append('$realized_vol_3')
+    #if 'abs_q50' in df_all.columns:
+    #    columns_to_drop.append('abs_q50')
+    #if 'signal_rel' in df_all.columns:
+    #    columns_to_drop.append('signal_rel')
+    #if 'spread' in df_all.columns:
+    #    columns_to_drop.append('spread') # 7/30/25 -- seeing some strong correlations with other features, reducing noise.
+    
+    if columns_to_drop:
+        df_all.drop(columns_to_drop, axis=1, inplace=True)
+        print(f"Dropped columns: {columns_to_drop}")
+    
+    df_all.to_csv("df_all_macro_analysis.csv")
+
+
+
+    df_cleaned = df_all.dropna(subset=["vol_risk","vol_scaled","vol_raw_momentum","signal_thresh_adaptive","signal_tanh"])
+
     df_cleaned.to_pickle("./data3/macro_features.pkl") # pickled features used in "train_meta_wrapper.py" process
+
+
+    raise SystemExit()
+
 
     df_train_rl = df_cleaned.loc[("BTCUSDT","2018-02-01"):("BTCUSDT","2023-12-31")]
     df_val_rl   = df_cleaned.loc[("BTCUSDT","2024-01-01"):("BTCUSDT","2024-09-30")]

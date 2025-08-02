@@ -59,34 +59,48 @@ def main(price_file: str = None):
     df = df.tail(6600)  # Last 5k observations
     print(f"Using {len(df)} observations for backtest")
     
-    # Test different configurations with position management styles
+    # Test different configurations using VALIDATED sizing methods
+    # Based on validation results: spread predicts volatility, thresholds are meaningful
     configs = {
-        'conservative': {
-            'long_threshold': 0.7,
-            'short_threshold': 0.7,
-            'max_position_pct': 0.2,
-            'fee_rate': 0.001,
-            'neutral_close_threshold': 0.6,  # Close positions more readily
-            'min_confidence_hold': 0.0,      # Higher confidence required
-            'opposing_signal_threshold': 0.3  # Close on weaker opposing signals
-        },
-        'moderate': {
+        'conservative_validated': {
             'long_threshold': 0.6,
             'short_threshold': 0.6,
-            'max_position_pct': 0.3,
+            'max_position_pct': 0.15,         # Small positions for safety
             'fee_rate': 0.001,
-            'neutral_close_threshold': 0.7,  # Default neutral handling
-            'min_confidence_hold': 0.0,      # Moderate confidence required
-            'opposing_signal_threshold': 0.4  # Standard opposing signal threshold
+            'neutral_close_threshold': 0.6,   # Close positions readily
+            'min_confidence_hold': 2.0,       # Higher confidence required
+            'opposing_signal_threshold': 0.3,
+            'sizing_method': 'kelly'          # Validated Kelly (best Sharpe: 3.98)
         },
-        'aggressive': {
-            'long_threshold': 0.5,
-            'short_threshold': 0.5,
-            'max_position_pct': 0.5,
+        'moderate_validated': {
+            'long_threshold': 0.6,
+            'short_threshold': 0.6,
+            'max_position_pct': 0.25,         # Medium positions
             'fee_rate': 0.001,
-            'neutral_close_threshold': 0.8,  # Hold positions longer
-            'min_confidence_hold': 0.0,      # Lower confidence required
-            'opposing_signal_threshold': 0.5  # Only close on strong opposing signals
+            'neutral_close_threshold': 0.7,
+            'min_confidence_hold': 1.0,
+            'opposing_signal_threshold': 0.4,
+            'sizing_method': 'enhanced'       # Enhanced with validated features
+        },
+        'aggressive_validated': {
+            'long_threshold': 0.6,
+            'short_threshold': 0.6,
+            'max_position_pct': 0.35,         # Larger positions
+            'fee_rate': 0.001,
+            'neutral_close_threshold': 0.8,   # Hold positions longer
+            'min_confidence_hold': 0.5,
+            'opposing_signal_threshold': 0.5,
+            'sizing_method': 'volatility'     # Volatility method (highest return: 11.44%)
+        },
+        'hybrid_best': {
+            'long_threshold': 0.6,
+            'short_threshold': 0.6,
+            'max_position_pct': 0.3,          # Balanced position size
+            'fee_rate': 0.001,
+            'neutral_close_threshold': 0.7,
+            'min_confidence_hold': 1.5,       # Balanced confidence
+            'opposing_signal_threshold': 0.4,
+            'sizing_method': 'enhanced'       # Best of both worlds
         }
     }
     
@@ -97,11 +111,14 @@ def main(price_file: str = None):
         print(f"Running {config_name.upper()} Hummingbot backtest...")
         print(f"{'='*60}")
         
+        # Extract sizing method from config
+        sizing_method = config.pop('sizing_method', 'kelly')
+        
         # Create backtester
         backtester = HummingbotQuantileBacktester(
             initial_balance=10000.0,
             trading_pair="BTCUSDT",
-            sizing_method="volatility",
+            sizing_method=sizing_method,
             **config
         )
         

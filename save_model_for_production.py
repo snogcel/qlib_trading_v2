@@ -9,8 +9,8 @@ import qlib
 from qlib.constant import REG_US
 from qlib_custom.custom_multi_quantile import MultiQuantileModel
 from qlib_custom.custom_ndl import CustomNestedDataLoader
-from qlib_custom.crypto_loader import crypto_dataloader
-from qlib_custom.gdelt_loader import gdelt_dataloader
+from qlib_custom.crypto_loader_optimized import crypto_dataloader_optimized
+from qlib_custom.gdelt_loader_optimized import gdelt_dataloader_optimized
 from qlib.data.dataset.handler import DataHandlerLP
 from qlib.data.dataset import DatasetH
 from qlib.utils import init_instance_by_config
@@ -49,42 +49,47 @@ def save_trained_model():
     GENERIC_LGBM_PARAMS = {
         # Core quantile settings
         "objective": "quantile",
-        "metric": ["l2", "l1"],
+        "metric": ["l1", "l2"], # , "l2", "l1" # "rmse"
         "boosting_type": "gbdt",
         "device": "cpu",
         "verbose": -1,
         "random_state": 42,
         
         # Conservative learning settings for feature exploration
-        "learning_rate": 0.05,           # Moderate learning rate
-        "num_leaves": 64,                # Balanced complexity
-        "max_depth": 8,                  # Reasonable depth for GDELT features
+        # "learning_rate": 0.05,           # Moderate learning rate
+        # "num_leaves": 64,                # Balanced complexity
+        # "max_depth": 8,                  # Reasonable depth for GDELT features
         
         # Regularization (moderate to prevent overfitting)
-        "lambda_l1": 0.1,
-        "lambda_l2": 0.1,
-        "min_data_in_leaf": 20,
-        "feature_fraction": 0.8,         # Use 80% of features per tree
-        "bagging_fraction": 0.8,         # Use 80% of data per iteration
-        "bagging_freq": 5,
+        # "lambda_l1": 0.1,
+        # "lambda_l2": 0.1,
+        # "min_data_in_leaf": 20,
+        # "feature_fraction": 0.8,         # Use 80% of features per tree
+        # "bagging_fraction": 0.8,         # Use 80% of data per iteration
+        # "bagging_freq": 5,
         
         # Early stopping
-        "early_stopping_rounds": 100,
-        "num_boost_round": 1000,         # Let early stopping decide
+        "early_stopping_rounds": 50,
+        "num_boost_round": 2250,         # Let early stopping decide
 
+        # Set seed for reproducibility
         "seed": SEED
     }
 
-    lgb_params = {
-        0.1: GENERIC_LGBM_PARAMS,
-        0.5: GENERIC_LGBM_PARAMS,
-        0.9: GENERIC_LGBM_PARAMS
+    multi_quantile_params = {
+        # 0.1: {'learning_rate': 0.060555113429817814, 'colsample_bytree': 0.7214813020361056, 'subsample': 0.7849919729082881, 'lambda_l1': 8.722794281828277e-05, 'lambda_l2': 3.220667556916701e-05, 'max_depth': 10, 'num_leaves': 224, **GENERIC_LGBM_PARAMS},
+        # 0.5: {'learning_rate': 0.02753370821225369, 'max_depth': -1, 'lambda_l1': 0.1, 'lambda_l2': 0.1, **GENERIC_LGBM_PARAMS},
+        # 0.9: {'learning_rate': 0.09355380738420341, 'max_depth': 10, 'num_leaves': 249, 'lambda_l1': 0.1, 'lambda_l2': 0.1, **GENERIC_LGBM_PARAMS}
+
+        0.1: {'learning_rate': 0.026, 'max_depth': 7, **GENERIC_LGBM_PARAMS},
+        0.5: {'learning_rate': 0.027, 'max_depth': 7, **GENERIC_LGBM_PARAMS},                
+        0.9: {'learning_rate': 0.028, 'max_depth': 7, **GENERIC_LGBM_PARAMS} 
     }
     
     # Create model
     model = MultiQuantileModel(
         quantiles=[0.1, 0.5, 0.9],
-        lgb_params=lgb_params
+        lgb_params=multi_quantile_params
     )
     
     # Setup data pipeline (same as training)
@@ -101,12 +106,12 @@ def save_trained_model():
     }]
     
     crypto_data_loader = {
-        "class": "crypto_dataloader",
-        "module_path": "qlib_custom.crypto_loader",
+        "class": "crypto_dataloader_optimized",
+        "module_path": "qlib_custom.crypto_loader_optimized",
         "kwargs": {
             "config": {
-                "feature": crypto_dataloader.get_feature_config(),
-                "label": crypto_dataloader.get_label_config(),
+                "feature": crypto_dataloader_optimized.get_feature_config(),
+                "label": crypto_dataloader_optimized.get_label_config(),
             },
             "freq": freq_config["feature"],
             "inst_processors": inst_processors
@@ -114,11 +119,11 @@ def save_trained_model():
     }
     
     gdelt_data_loader = {
-        "class": "gdelt_dataloader", 
-        "module_path": "qlib_custom.gdelt_loader",
+        "class": "gdelt_dataloader_optimized", 
+        "module_path": "qlib_custom.gdelt_loader_optimized",
         "kwargs": {
             "config": {
-                "feature": gdelt_dataloader.get_feature_config()
+                "feature": gdelt_dataloader_optimized.get_feature_config()
             },
             "freq": freq_config["label"],
             "inst_processors": inst_processors
@@ -180,8 +185,8 @@ def save_trained_model():
         "quantiles": [0.1, 0.5, 0.9],
         "training_period": f"{train_start_time} to {train_end_time}",
         "validation_period": f"{valid_start_time} to {valid_end_time}",
-        "features": crypto_dataloader.get_feature_config()[1],  # feature names
-        "lgb_params": lgb_params,
+        "features": crypto_dataloader_optimized.get_feature_config()[1],  # feature names
+        "lgb_params": multi_quantile_params,
         "seed": SEED
     }
     
@@ -214,8 +219,8 @@ def create_feature_pipeline_config():
             }
         },
         "features": {
-            "crypto": crypto_dataloader.get_feature_config()[1],
-            "gdelt": gdelt_dataloader.get_feature_config()[1] if hasattr(gdelt_dataloader, 'get_feature_config') else []
+            "crypto": crypto_dataloader_optimized.get_feature_config()[1],
+            "gdelt": gdelt_dataloader_optimized.get_feature_config()[1]
         },
         "thresholds": {
             "signal_thresh_percentile": 0.85,
