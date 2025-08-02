@@ -1,0 +1,153 @@
+{
+  "pipeline_version": "1.0_validated",
+  "description": "Production trading configuration using validated Kelly methods and proven features",
+  
+  "feature_validation": {
+    "validated_features": [
+      "q10", "q50", "q90",
+      "spread",
+      "signal_thresh_adaptive", 
+      "spread_thresh",
+      "signal_tier",
+      "fg_index",
+      "vol_scaled"
+    ],
+    "validation_results": {
+      "spread_vol_correlation": 0.6086,
+      "spread_return_correlation": 0.4364,
+      "signal_thresh_significance": "T-stat: 7.10, p < 0.000001",
+      "spread_thresh_performance": "Tight spread: +0.025% vs Wide spread: -0.12%"
+    },
+    "removed_features": [
+      "signal_rel_clipped",
+      "signal_sigmoid", 
+      "signal_score",
+      "spread_rel",
+      "spread_rel_clipped",
+      "spread_tanh",
+      "spread_sigmoid",
+      "spread_score",
+      "spread_tier"
+    ]
+  },
+  
+  "sizing_methods": {
+    "kelly_validated": {
+      "description": "Validated Kelly using proven features",
+      "base_kelly_fraction": 0.25,
+      "signal_quality_multiplier": 1.3,
+      "spread_risk_multiplier": 1.2,
+      "combined_quality_bonus": 1.15,
+      "test_performance": {
+        "sharpe_ratio": 3.984,
+        "total_return": 0.0691,
+        "max_drawdown": -0.0272
+      }
+    },
+    "enhanced_validated": {
+      "description": "Enhanced ensemble with validated features",
+      "weights": {
+        "kelly": 0.4,
+        "volatility": 0.3,
+        "sharpe": 0.15,
+        "risk_parity": 0.15
+      },
+      "signal_quality_multiplier": 1.4,
+      "spread_multiplier": 1.3,
+      "validation_bonus": 1.2
+    },
+    "volatility_baseline": {
+      "description": "Volatility-adjusted sizing for higher returns",
+      "target_volatility": 0.009,
+      "confidence_scaling": 1.5,
+      "test_performance": {
+        "total_return": 0.1144,
+        "sharpe_ratio": 3.402,
+        "max_drawdown": -0.0726
+      }
+    }
+  },
+  
+  "trading_configurations": {
+    "conservative_validated": {
+      "sizing_method": "kelly_validated",
+      "max_position_pct": 0.15,
+      "long_threshold": 0.6,
+      "short_threshold": 0.6,
+      "neutral_close_threshold": 0.6,
+      "min_confidence_hold": 2.0,
+      "opposing_signal_threshold": 0.3,
+      "use_case": "Capital preservation with steady returns"
+    },
+    "moderate_validated": {
+      "sizing_method": "enhanced_validated", 
+      "max_position_pct": 0.25,
+      "long_threshold": 0.6,
+      "short_threshold": 0.6,
+      "neutral_close_threshold": 0.7,
+      "min_confidence_hold": 1.0,
+      "opposing_signal_threshold": 0.4,
+      "use_case": "Balanced risk-return profile"
+    },
+    "aggressive_validated": {
+      "sizing_method": "volatility_baseline",
+      "max_position_pct": 0.35,
+      "long_threshold": 0.6,
+      "short_threshold": 0.6,
+      "neutral_close_threshold": 0.8,
+      "min_confidence_hold": 0.5,
+      "opposing_signal_threshold": 0.5,
+      "use_case": "Higher returns with acceptable risk"
+    }
+  },
+  
+  "regime_adjustments": {
+    "fear_greed_thresholds": {
+      "extreme_fear": 0.2,
+      "extreme_greed": 0.8,
+      "contrarian_boost": 1.3,
+      "fade_multiplier": 0.7
+    },
+    "volatility_adjustments": {
+      "high_vol_threshold": 0.8,
+      "low_vol_threshold": 0.2,
+      "high_vol_reduction": 0.8,
+      "low_vol_boost": 1.1
+    },
+    "signal_quality_tiers": {
+      "tier_A": "strong_signal + tight_spread",
+      "tier_B": "strong_signal_only", 
+      "tier_C": "tight_spread_only",
+      "tier_D": "neither_condition"
+    }
+  },
+  
+  "risk_management": {
+    "max_portfolio_risk": 0.5,
+    "fee_rate": 0.001,
+    "slippage_rate": 0.0005,
+    "position_limits": {
+      "conservative": 0.15,
+      "moderate": 0.25,
+      "aggressive": 0.35
+    }
+  },
+  
+  "backtesting": {
+    "initial_balance": 100000.0,
+    "trading_pair": "BTCUSDT",
+    "lookback_periods": {
+      "quick_test": 1000,
+      "validation": 5000,
+      "full_backtest": "all"
+    }
+  },
+  
+  "production_settings": {
+    "recommended_config": "moderate_validated",
+    "fallback_config": "conservative_validated",
+    "rebalance_frequency": "hourly",
+    "validation_frequency": "daily",
+    "feature_monitoring": true
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "data_source": {
+    "provider_uri": "/Projects/qlib_trading_v2/qlib_data/CRYPTO_DATA",
+    "instruments": [
+      "BTCUSDT",
+      "GDELT_BTC_FEAT"
+    ],
+    "freq_config": {
+      "feature": "60min",
+      "label": "day"
+    }
+  },
+  "features": {
+    "crypto": [
+      "$realized_vol_6",
+      "$relative_volatility_index",
+      "$momentum_5",
+      "$momentum_10",
+      "$momentum_25",
+      "$high_vol_flag",
+      "vol_extreme_high",
+      "vol_high",
+      "vol_low",
+      "vol_extreme_low",
+      "vol_raw",
+      "vol_raw_decile",
+      "vol_risk",
+      "vol_scaled",
+      "vol_raw_momentum",
+      "vol_momentum_scaled",
+      "OPEN1",
+      "VOLUME1",
+      "RSV1",
+      "RSV2",
+      "RSV3"
+    ],
+    "gdelt": [
+      "$fg_index",
+      "$btc_dom",
+      "fg_std_7d",
+      "btc_std_7d",
+      "fg_zscore_14d",
+      "btc_zscore_14d",
+      "fg_extreme_greed",
+      "fg_extreme_fear",
+      "btc_dom_high",
+      "btc_dom_low"
+    ]
+  },
+  "thresholds": {
+    "signal_thresh_percentile": 0.9,
+    "spread_thresh_percentile": 0.9,
+    "rolling_window": 30,
+    "min_window": 10
+  }
+}
