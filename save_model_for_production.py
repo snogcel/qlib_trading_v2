@@ -223,8 +223,8 @@ def create_feature_pipeline_config():
             "gdelt": gdelt_dataloader_optimized.get_feature_config()[1]
         },
         "thresholds": {
-            "signal_thresh_percentile": 0.85,
-            "spread_thresh_percentile": 0.85,
+            "signal_thresh_percentile": 0.90,
+            "spread_thresh_percentile": 0.90,
             "rolling_window": 30,
             "min_window": 10
         }

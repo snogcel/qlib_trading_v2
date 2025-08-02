@@ -95,11 +95,11 @@ def main(price_file: str = None):
         'hybrid_best': {
             'long_threshold': 0.6,
             'short_threshold': 0.6,
-            'max_position_pct': 0.3,          # Balanced position size
+            'max_position_pct': 0.35,          # Balanced position size
             'fee_rate': 0.001,
-            'neutral_close_threshold': 0.7,
-            'min_confidence_hold': 1.5,       # Balanced confidence
-            'opposing_signal_threshold': 0.4,
+            'neutral_close_threshold': 0.5,
+            'min_confidence_hold': 0,       # Balanced confidence
+            'opposing_signal_threshold': 0.6,
             'sizing_method': 'enhanced'       # Best of both worlds
         }
     }
@@ -111,15 +111,16 @@ def main(price_file: str = None):
         print(f"Running {config_name.upper()} Hummingbot backtest...")
         print(f"{'='*60}")
         
-        # Extract sizing method from config
-        sizing_method = config.pop('sizing_method', 'kelly')
+        # Extract sizing method from config (without modifying original)
+        sizing_method = config.get('sizing_method', 'kelly')
+        config_copy = {k: v for k, v in config.items() if k != 'sizing_method'}
         
         # Create backtester
         backtester = HummingbotQuantileBacktester(
             initial_balance=10000.0,
             trading_pair="BTCUSDT",
             sizing_method=sizing_method,
-            **config
+            **config_copy
         )
         
         try:

@@ -294,19 +294,219 @@ def kelly_with_vol_raw_deciles(vol_raw, signal_rel, base_size=0.1):
 
 
 
-def adaptive_threshold_strategy(df):
+def ensure_vol_risk_available(df):
     """
-    Static threshold strategy - validation showed this performs better than adaptive
+    Ensure vol_risk is available - use existing feature from crypto_loader_optimized
+    vol_risk = Std(Log(close/close_prev), 6)² (VARIANCE, not std dev)
+    This represents the squared volatility = variance, which is key for risk measurement
     """
+    if 'vol_risk' not in df.columns:
+        print("⚠️  vol_risk not found in data - this should come from crypto_loader_optimized")
+        print("   vol_risk = Std(Log($close / Ref($close, 1)), 6) * Std(Log($close / Ref($close, 1)), 6)")
+        
+        # Fallback calculation if not available (but this shouldn't happen)
+        if 'vol_raw' in df.columns:
+            df['vol_risk'] = df['vol_raw'] ** 2  # Convert std dev to variance
+            print("   ✅ Created vol_risk from vol_raw (vol_raw²)")
+        else:
+            print("   ❌ Cannot create vol_risk - missing vol_raw")
+            df['vol_risk'] = 0.0001  # Small default value
+    else:
+        print(f"✅ vol_risk available from crypto_loader_optimized ({df['vol_risk'].notna().sum():,} valid values)")
+    
+    return df
+
+def identify_market_regimes(df):
+    """
+    Identify market regimes using volatility and momentum features
+    Creates regime interaction features for enhanced signal quality
+    """
+    # Ensure we have vol_risk (variance measure from crypto_loader_optimized)
+    df = ensure_vol_risk_available(df)
+    
+    # Volatility regimes (using vol_risk for consistency)
+    df['vol_regime_low'] = (df['vol_risk'] < 0.3).astype(int)
+    df['vol_regime_medium'] = ((df['vol_risk'] >= 0.3) & (df['vol_risk'] < 0.7)).astype(int)
+    df['vol_regime_high'] = (df['vol_risk'] >= 0.7).astype(int)
+    
+    # Momentum regimes (using existing momentum features if available)
+    if 'vol_raw_momentum' in df.columns:
+        momentum = df['vol_raw_momentum']
+    else:
+        # Calculate simple momentum if not available
+        momentum = df['vol_raw'].rolling(24).mean() / df['vol_raw'].rolling(168).mean() - 1
+        df['vol_raw_momentum'] = momentum
+    
+    df['momentum_regime_trending'] = (abs(momentum) > 0.1).astype(int)
+    df['momentum_regime_ranging'] = (abs(momentum) <= 0.1).astype(int)
+    
+    # Combined regime classification
+    df['regime_low_vol_trending'] = df['vol_regime_low'] * df['momentum_regime_trending']
+    df['regime_low_vol_ranging'] = df['vol_regime_low'] * df['momentum_regime_ranging']
+    df['regime_high_vol_trending'] = df['vol_regime_high'] * df['momentum_regime_trending']
+    df['regime_high_vol_ranging'] = df['vol_regime_high'] * df['momentum_regime_ranging']
+    
+    # Regime stability (how long in current regime)
+    df['regime_stability'] = df.groupby(
+        (df['vol_regime_high'] != df['vol_regime_high'].shift()).cumsum()
+    ).cumcount() + 1
+    
+    return df
+
+def q50_regime_aware_signals(df, transaction_cost_bps=20, base_info_ratio=1.5):
+    """
+    Generate Q50-centric signals with variance-based regime awareness
+    Uses vol_risk as VARIANCE (not std dev) for superior risk assessment
+    """
+    df = df.copy()
+    
+    # Ensure we have regime features
+    df = identify_market_regimes(df)
+    
+    # Calculate core signal metrics
     df["spread"] = df["q90"] - df["q10"]
     df["abs_q50"] = df["q50"].abs()
-
-    # Use static 90th percentile threshold (validated as optimal)
-    df["signal_thresh_adaptive"] = df['abs_q50'].rolling(30, min_periods=10).quantile(0.90)
-
-    df["spread_thresh"] = df["spread"].rolling(30, min_periods=10).quantile(0.90).bfill()
-
+    
+    # ENHANCED: Use vol_risk (variance) for superior risk assessment
+    # Traditional info ratio: signal / spread (prediction uncertainty only)
+    # Enhanced info ratio: signal / total_risk (market + prediction uncertainty)
+    df['market_variance'] = df['vol_risk']  # This is already variance from crypto_loader
+    df['prediction_variance'] = (df['spread'] / 2) ** 2  # Convert spread to variance
+    df['total_risk'] = np.sqrt(df['market_variance'] + df['prediction_variance'])
+    df['enhanced_info_ratio'] = df['abs_q50'] / np.maximum(df['total_risk'], 0.001)
+    
+    # Keep traditional info ratio for compatibility
+    df['info_ratio'] = df['abs_q50'] / np.maximum(df['spread'], 0.001)
+    
+    print(f"📊 Enhanced vs Traditional Info Ratio:")
+    print(f"   Traditional (signal/spread): {df['info_ratio'].mean():.3f}")
+    print(f"   Enhanced (signal/total_risk): {df['enhanced_info_ratio'].mean():.3f}")
+    
+    # MAGNITUDE-BASED economic threshold using quantile information
+    base_transaction_cost = transaction_cost_bps / 10000
+    
+    # Calculate potential gains and losses from quantile distribution
+    df['potential_gain'] = np.where(df['q50'] > 0, df['q90'], np.abs(df['q10']))
+    df['potential_loss'] = np.where(df['q50'] > 0, np.abs(df['q10']), df['q90'])
+    
+    # Calculate probability-weighted expected value
+    # Use existing prob_up (already calculated with prob_up_piecewise)
+    if 'prob_up' not in df.columns:
+        print("⚠️  prob_up not found, calculating...")
+        df['prob_up'] = df.apply(prob_up_piecewise, axis=1)
+    
+    df['expected_value'] = (df['prob_up'] * df['potential_gain'] - 
+                           (1 - df['prob_up']) * df['potential_loss'])
+    
+    print(f"📊 Expected Value Analysis:")
+    print(f"   Mean expected value: {df['expected_value'].mean():.4f}")
+    print(f"   Positive expected value: {(df['expected_value'] > 0).mean()*100:.1f}%")
+    print(f"   Mean potential gain: {df['potential_gain'].mean():.4f}")
+    print(f"   Mean potential loss: {df['potential_loss'].mean():.4f}")
+    
+    # Use lower base cost (5 bps instead of 20 bps) - more realistic for crypto
+    realistic_transaction_cost = 0.0005  # 5 bps
+    
+    # VARIANCE-BASED threshold scaling (more sensitive than std dev)
+    # vol_risk is variance, so small changes have big impact
+    variance_multiplier = 1.0 + df['vol_risk'] * 500  # Reduced multiplier for more trading
+    
+    # Variance-based regime identification (more granular)
+    vol_risk_30th = df['vol_risk'].quantile(0.30)
+    vol_risk_70th = df['vol_risk'].quantile(0.70)
+    vol_risk_90th = df['vol_risk'].quantile(0.90)
+    
+    df['variance_regime_low'] = (df['vol_risk'] <= vol_risk_30th).astype(int)
+    df['variance_regime_medium'] = ((df['vol_risk'] > vol_risk_30th) & (df['vol_risk'] <= vol_risk_70th)).astype(int)
+    df['variance_regime_high'] = ((df['vol_risk'] > vol_risk_70th) & (df['vol_risk'] <= vol_risk_90th)).astype(int)
+    df['variance_regime_extreme'] = (df['vol_risk'] > vol_risk_90th).astype(int)
+    
+    # Regime-aware threshold adjustments using variance regimes
+    regime_multipliers = pd.Series(1.0, index=df.index)
+    
+    # Low variance: can accept lower thresholds (predictable environment)
+    regime_multipliers -= df['variance_regime_low'] * 0.3  # -30% threshold
+    
+    # High variance: require higher thresholds
+    regime_multipliers += df['variance_regime_high'] * 0.4  # +40% threshold
+    
+    # Extreme variance: much higher thresholds (very risky)
+    regime_multipliers += df['variance_regime_extreme'] * 0.8  # +80% threshold
+    
+    # Trending markets: lower thresholds (momentum helps)
+    regime_multipliers -= df['momentum_regime_trending'] * 0.1  # -10% in trending
+    
+    # Ensure multipliers stay reasonable
+    regime_multipliers = regime_multipliers.clip(0.3, 3.0)
+    
+    # Combined effective threshold using magnitude-based approach
+    # df['signal_thresh_adaptive'] = (realistic_transaction_cost * regime_multipliers * variance_multiplier)
+    df['signal_thresh_adaptive'] = (realistic_transaction_cost * regime_multipliers * variance_multiplier)
+    
+    # Variance-aware information ratio threshold
+    info_ratio_threshold = pd.Series(base_info_ratio, index=df.index)
+    
+    # Low variance: can accept lower info ratios (stable environment)
+    info_ratio_threshold -= df['variance_regime_low'] * 0.4
+    
+    # Extreme variance: require much higher info ratios (unstable environment)
+    info_ratio_threshold += df['variance_regime_extreme'] * 1.0
+    
+    df['effective_info_ratio_threshold'] = info_ratio_threshold.clip(0.5, 3.0)
+    
+    # MAGNITUDE-BASED trading conditions
+    # Method 1: Traditional threshold approach (for comparison)
+    df['economically_significant_traditional'] = df['abs_q50'] > df['signal_thresh_adaptive']
+    
+    # Method 2: Expected value approach (more trading opportunities)
+    df['economically_significant_expected_value'] = df['expected_value'] > realistic_transaction_cost
+    
+    # Method 3: Combined approach - use expected value but with minimum signal strength
+    min_signal_strength = df['abs_q50'].quantile(0.2)  # 20th percentile as minimum
+    df['economically_significant_combined'] = (
+        (df['expected_value'] > realistic_transaction_cost) & 
+        (df['abs_q50'] > min_signal_strength)
+    )
+    
+    # Choose the expected value approach for more trading opportunities
+    df['economically_significant'] = df['economically_significant_expected_value']
+    
+    # Signal quality filter using enhanced info ratio
+    df['high_quality'] = df['enhanced_info_ratio'] > df['effective_info_ratio_threshold']
+    df['tradeable'] = df['economically_significant'] # & df['high_quality']
+    
+    # Print comparison
+    trad_count = df['economically_significant_traditional'].sum()
+    exp_val_count = df['economically_significant_expected_value'].sum()
+    combined_count = df['economically_significant_combined'].sum()
+    
+    print(f"📊 Economic Significance Comparison:")
+    print(f"   Traditional threshold: {trad_count:,} ({trad_count/len(df)*100:.1f}%)")
+    print(f"   Expected value: {exp_val_count:,} ({exp_val_count/len(df)*100:.1f}%)")
+    print(f"   Combined approach: {combined_count:,} ({combined_count/len(df)*100:.1f}%)")
+    print(f"   Improvement: {((exp_val_count/max(trad_count,1) - 1)*100):+.1f}% more opportunities")
+    
+    # VARIANCE-BASED interaction features for model training
+    df['q50_x_low_variance'] = df['q50'] * df['variance_regime_low']
+    df['q50_x_high_variance'] = df['q50'] * df['variance_regime_high']
+    df['q50_x_extreme_variance'] = df['q50'] * df['variance_regime_extreme']
+    df['q50_x_trending'] = df['q50'] * df['momentum_regime_trending']
+    df['spread_x_high_variance'] = df['spread'] * df['variance_regime_high']
+    df['vol_risk_x_abs_q50'] = df['vol_risk'] * df['abs_q50']  # Variance × signal strength
+    df['enhanced_info_ratio_x_trending'] = df['enhanced_info_ratio'] * df['momentum_regime_trending']
+    
+    # Variance risk metrics
+    df['signal_to_variance_ratio'] = df['abs_q50'] / np.maximum(df['vol_risk'], 0.0001)
+    df['variance_adjusted_signal'] = df['q50'] / np.sqrt(np.maximum(df['vol_risk'], 0.0001))
+    
+    # Keep legacy columns for compatibility
     df["signal_rel"] = (df["abs_q50"] - df["signal_thresh_adaptive"]) / (df["signal_thresh_adaptive"] + 1e-12)
+    
+    # Print regime distribution
+    print(f"🏛️ Variance-Based Regime Distribution:")
+    print(f"   Low Variance: {df['variance_regime_low'].sum():,} ({df['variance_regime_low'].mean()*100:.1f}%)")
+    print(f"   High Variance: {df['variance_regime_high'].sum():,} ({df['variance_regime_high'].mean()*100:.1f}%)")
+    print(f"   Extreme Variance: {df['variance_regime_extreme'].sum():,} ({df['variance_regime_extreme'].mean()*100:.1f}%)")
     
     return df
 
@@ -1031,7 +1231,7 @@ if __name__ == '__main__':
     
     # Add vol_raw features to your dataframe
     # df_all = add_vol_raw_features(df_all)
-    df_all = adaptive_threshold_strategy(df_all)
+    df_all = q50_regime_aware_signals(df_all)
 
 
     # Apply the new signal classification
@@ -1052,25 +1252,73 @@ if __name__ == '__main__':
 
 
 
-    # Step 1: Compute probability of upside
-    prob_up = df_all["prob_up"]
-    q10 = df_all["q10"]
+    # Q50-CENTRIC SIGNAL GENERATION (replaces problematic threshold approach)
+    print("🔄 Generating Q50-centric regime-aware signals...")
+    
+    # Generate signals using pure Q50 logic with regime awareness
     q50 = df_all["q50"]
-    q90 = df_all["q90"]
-
-    # Step 2: Define thresholds
-    signal_thresh = df_all["signal_thresh_adaptive"]
-
-    # Step 3: Create masks
-    buy_mask = (q50 > signal_thresh) & (prob_up > 0.5)
-    sell_mask = (q50 < -signal_thresh) & (prob_up < 0.5)
-    # buy_mask = (q50 > 0) & (prob_up > 0.5)
-    # sell_mask = (q50 < 0) & (prob_up < 0.5)
-
-    # Step 4: Assign side
+    
+    # Economic significance: must exceed regime-adjusted transaction costs
+    economically_significant = df_all['economically_significant']
+    
+    # Signal quality: information ratio must be high enough for regime
+    high_quality = df_all['high_quality']
+    
+    # Combined trading condition
+    tradeable = economically_significant # & high_quality
+    
+    # Pure Q50 directional logic (no complex prob_up calculation needed!)
+    buy_mask = tradeable & (q50 > 0)
+    sell_mask = tradeable & (q50 < 0)
+    
+    # Assign side using Q50-centric approach
     df_all["side"] = -1  # default to HOLD
-    df_all.loc[buy_mask, "side"] = 1
-    df_all.loc[sell_mask, "side"] = 0  # or -1 if you prefer SELL = -1
+    df_all.loc[buy_mask, "side"] = 1   # LONG when q50 > 0 and tradeable
+    df_all.loc[sell_mask, "side"] = 0  # SHORT when q50 < 0 and tradeable
+    
+    # prob_up is already calculated properly with prob_up_piecewise earlier in the script
+    # No need to override it here - keep the original sophisticated calculation
+    
+    # VARIANCE-ENHANCED signal strength using enhanced info ratio
+    df_all['signal_strength'] = np.where(
+        tradeable,
+        df_all['abs_q50'] * np.minimum(df_all['enhanced_info_ratio'] / df_all['effective_info_ratio_threshold'], 2.0),
+        0.0
+    )
+    
+    # Additional variance-based metrics for position sizing
+    # Calculate for all signals, then apply tradeable filter
+    base_position_size = 0.1 / np.maximum(df_all['vol_risk'] * 1000, 0.1)  # Inverse variance scaling
+    df_all['position_size_suggestion'] = np.where(
+        tradeable,
+        base_position_size.clip(0.01, 0.5),  # Apply limits only to tradeable signals
+        0.0  # Zero for non-tradeable
+    )
+    
+    # Print signal summary
+    signal_counts = df_all['side'].value_counts()
+    total_signals = len(df_all)
+    print(f"✅ Q50-centric signals generated:")
+    for side, count in signal_counts.items():
+        side_name = {1: 'LONG', 0: 'SHORT', -1: 'HOLD'}[side]
+        print(f"   {side_name}: {count:,} ({count/total_signals*100:.1f}%)")
+    
+    # Show signal quality for trading signals
+    trading_signals = df_all[df_all['side'] != -1]
+    if len(trading_signals) > 0:
+        avg_info_ratio = trading_signals['info_ratio'].mean()
+        avg_enhanced_info_ratio = trading_signals['enhanced_info_ratio'].mean()
+        avg_abs_q50 = trading_signals['abs_q50'].mean()
+        avg_vol_risk = trading_signals['vol_risk'].mean()
+        avg_position_size = trading_signals['position_size_suggestion'].mean()
+        
+        print(f"🎯 Trading signal quality:")
+        print(f"   Average Info Ratio (traditional): {avg_info_ratio:.2f}")
+        print(f"   Average Enhanced Info Ratio (variance-aware): {avg_enhanced_info_ratio:.2f}")
+        print(f"   Average |Q50|: {avg_abs_q50:.4f}")
+        print(f"   Average Vol_Risk (variance): {avg_vol_risk:.6f} (√ = {np.sqrt(avg_vol_risk):.3f})")
+        print(f"   Average Signal Strength: {trading_signals['signal_strength'].mean():.4f}")
+        print(f"   Average Position Size Suggestion: {avg_position_size:.3f}")
 
 
 
@@ -1104,7 +1352,7 @@ if __name__ == '__main__':
 
 
 
-    df_cleaned = df_all.dropna(subset=["vol_risk","vol_scaled","vol_raw_momentum","signal_thresh_adaptive","signal_tanh"])
+    df_cleaned = df_all.dropna(subset=["vol_risk","vol_scaled","vol_raw_momentum","signal_thresh_adaptive","signal_tanh","enhanced_info_ratio"])
 
     df_cleaned.to_pickle("./data3/macro_features.pkl") # pickled features used in "train_meta_wrapper.py" process
 
