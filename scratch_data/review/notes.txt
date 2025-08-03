@@ -1,0 +1,96 @@
+    # Trial 17 finished with value: 1.0277787446975708 and parameters: {'tier_A': 1.2264196151177191, 'tier_B': 0.8946567850131599, 'tier_C': 1.0682735230212668, 'tier_D': 0.7959912079010019}. Best is trial 17 with value: 1.0277787446975708.
+
+    custom_weights = {
+        "A": 1.2264196151177191,
+        "B": 0.8946567850131599,
+        "C": 1.0682735230212668,
+        "D": 0.7959912079010019
+    }
+
+    # df_val_rl
+
+    # Step 151552: Entropy = -0.9539
+    # ------------------------------------------
+    # | time/                   |              |
+    # |    fps                  | 792          |
+    # |    iterations           | 74           |
+    # |    time_elapsed         | 191          |
+    # |    total_timesteps      | 151552       |
+    # | train/                  |              |
+    # |    approx_kl            | 0.0065518254 |
+    # |    clip_fraction        | 0.0667       |
+    # |    clip_range           | 0.2          |
+    # |    entropy_loss         | -0.954       |
+    # |    explained_variance   | 0.569        |
+    # |    learning_rate        | 0.0003       |
+    # |    loss                 | 0.0183       |
+    # |    n_updates            | 730          |
+    # |    policy_gradient_loss | -0.00402     |
+    # |    std                  | 0.628        |
+    # |    value_loss           | 0.0113       |
+    # ------------------------------------------
+
+    """ 
+    tier
+    A    0.453593
+    B    0.096402
+    C    0.011134
+    D    0.049666
+    Name: reward, dtype: float32
+
+    tier
+    A    0.796156
+    B    0.436166
+    C    0.514688
+    D    0.722057
+    Name: position, dtype: float64
+
+    tier
+    A    0.569729
+    B    0.221021
+    C    0.021633
+    D    0.068784
+    Name: efficiency, dtype: float64 """
+
+    # df_test_rl
+    # Step 151552: Entropy = -0.9539
+    # ------------------------------------------
+    # | time/                   |              |
+    # |    fps                  | 780          |
+    # |    iterations           | 74           |
+    # |    time_elapsed         | 194          |
+    # |    total_timesteps      | 151552       |
+    # | train/                  |              |
+    # |    approx_kl            | 0.0065518254 |
+    # |    clip_fraction        | 0.0667       |
+    # |    clip_range           | 0.2          |
+    # |    entropy_loss         | -0.954       |
+    # |    explained_variance   | 0.569        |
+    # |    learning_rate        | 0.0003       |
+    # |    loss                 | 0.0183       |
+    # |    n_updates            | 730          |
+    # |    policy_gradient_loss | -0.00402     |
+    # |    std                  | 0.628        |
+    # |    value_loss           | 0.0113       |
+    # ------------------------------------------
+    """ 
+    tier
+    A    0.020848
+    B    0.025146
+    C   -0.040276
+    D   -0.010340
+    Name: reward, dtype: float32
+
+    tier
+    A    0.819080
+    B    0.346715
+    C    0.608590
+    D    0.698421
+    Name: position, dtype: float64
+
+    tier
+    A    0.025453
+    B    0.072528
+    C   -0.066180
+    D   -0.014805
+    Name: efficiency, dtype: float64 """

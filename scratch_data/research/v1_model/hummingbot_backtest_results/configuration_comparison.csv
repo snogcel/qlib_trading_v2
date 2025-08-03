@@ -1,0 +1,4 @@
+,total_return,sharpe_ratio,max_drawdown,total_trades,win_rate
+conservative,-0.1082,-5.8424,-0.1105,1925.0,0.1969
+moderate,0.0348,0.6743,-0.0764,1503.0,0.191
+aggressive,0.1878,1.3333,-0.0829,1125.0,0.1511

@@ -1,0 +1,38 @@
+
+=== QUANTILE TRADING STRATEGY BACKTEST REPORT ===
+
+PERFORMANCE SUMMARY:
+- Total Return: 0.00%
+- Annualized Return: 0.00%
+- Volatility (Annualized): 0.00%
+- Sharpe Ratio: 0.06
+- Maximum Drawdown: 0.01%
+
+TRADING STATISTICS:
+- Total Trades: 9
+- Win Rate: 55.56%
+- Average Win: $3.56
+- Average Loss: $-3.29
+- Profit Factor: 1.35
+
+DATA INFORMATION:
+- Data Frequency: hourly
+- Prediction Horizon: 24.0 hours
+- Periods Per Year: 252
+- Total Observations: 10,795
+
+TIER PERFORMANCE:
+      pnl_sum  pnl_mean  pnl_count  tier_confidence_mean
+tier                                                    
+0      4.7826    0.0006       8275                   5.0
+1     -1.7438   -0.0011       1586                   5.0
+2      0.0000    0.0000        572                   5.0
+3      1.5864    0.0044        362                   5.0
+
+CONFIGURATION:
+- Initial Capital: $100,000.00
+- Position Limit: 30.0%
+- Fee Rate: 0.100%
+- Slippage Rate: 0.0500%
+- Long Threshold: 0.70
+- Short Threshold: 0.70

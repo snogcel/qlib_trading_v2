@@ -246,12 +246,83 @@ class RegimeFeatureEngine:
         # Clip to reasonable range
         return pd.Series(multiplier, index=regime_volatility.index).clip(0.1, 5.0).rename('regime_multiplier')
     
+    def add_temporal_quantile_features(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Add economically-justified temporal quantile features
+        Each feature captures a specific market inefficiency with clear economic rationale
+        
+        Economic Thesis: Market information doesn't instantly reflect in prices,
+        creating temporal patterns in quantile predictions that can be exploited.
+        
+        Returns:
+            pd.DataFrame: df with economically-justified temporal features added
+        """
+        print("⏰ Adding economically-justified temporal quantile features...")
+        
+        # Ensure required quantile columns exist
+        required_cols = ['q10', 'q50', 'q90']
+        for col in required_cols:
+            if col not in df.columns:
+                print(f"⚠️  Missing required column: {col}")
+                return df
+        
+        # FEATURE 1: MOMENTUM PERSISTENCE (Information Flow Theory)
+        # Economic Rationale: Information doesn't instantly reflect in prices
+        # Supply/Demand: Persistent directional pressure indicates sustained order flow imbalance
+        df['q50_momentum_3'] = df['q50'].rolling(3, min_periods=2).apply(
+            lambda x: x.iloc[-1] - x.iloc[0] if len(x) >= 2 else 0
+        )
+        
+        # FEATURE 2: UNCERTAINTY EVOLUTION (Market Microstructure Theory)
+        # Economic Rationale: Prediction uncertainty reflects market liquidity conditions
+        # Supply/Demand: Widening spreads suggest increasing disagreement between buyers/sellers
+        if 'spread' not in df.columns:
+            df['spread'] = df['q90'] - df['q10']
+        df['spread_momentum_3'] = df['spread'].rolling(3, min_periods=2).apply(
+            lambda x: x.iloc[-1] - x.iloc[0] if len(x) >= 2 else 0
+        )
+        
+        # FEATURE 3: CONSENSUS STABILITY (Information Aggregation Theory)
+        # Economic Rationale: Stable predictions indicate strong market consensus
+        # Supply/Demand: Low volatility in predictions suggests balanced order flow
+        df['q50_stability_6'] = df['q50'].rolling(6, min_periods=3).std().fillna(0)
+        
+        # FEATURE 4: REGIME PERSISTENCE (Behavioral Finance)
+        # Economic Rationale: Market regimes persist due to behavioral biases and momentum
+        # Supply/Demand: Persistent directional bias indicates sustained pressure
+        q50_positive = (df['q50'] > 0).astype(int)
+        df['q50_regime_persistence'] = q50_positive.groupby(
+            (q50_positive != q50_positive.shift()).cumsum()
+        ).cumcount() + 1
+        
+        # FEATURE 5: PREDICTION CONFIDENCE (Risk Management Theory)
+        # Economic Rationale: Position size should reflect prediction confidence
+        # Supply/Demand: Narrow spreads relative to signal suggest strong consensus
+        df['prediction_confidence'] = 1.0 / (1.0 + df['spread'] / np.maximum(np.abs(df['q50']), 0.001))
+        
+        # FEATURE 6: DIRECTIONAL CONSISTENCY (Trend Following Theory)
+        # Economic Rationale: Consistent directional predictions indicate trend strength
+        # Supply/Demand: Persistent direction suggests sustained order flow imbalance
+        df['q50_direction_consistency'] = df['q50'].rolling(6, min_periods=3).apply(
+            lambda x: (np.sign(x) == np.sign(x.iloc[-1])).mean() if len(x) >= 3 else 0.5
+        ).fillna(0.5)
+        
+        print(f"✅ Added 6 economically-justified temporal features:")
+        print(f"   • q50_momentum_3: Information flow persistence")
+        print(f"   • spread_momentum_3: Market uncertainty evolution") 
+        print(f"   • q50_stability_6: Consensus stability measure")
+        print(f"   • q50_regime_persistence: Behavioral momentum")
+        print(f"   • prediction_confidence: Risk-adjusted confidence")
+        print(f"   • q50_direction_consistency: Trend strength indicator")
+        
+        return df
+
     def generate_all_regime_features(self, df: pd.DataFrame) -> pd.DataFrame:
         """
         Generate all unified regime features at once
         
         Returns:
-            pd.DataFrame: Original df with 7 new regime features
+            pd.DataFrame: Original df with 7 regime features + temporal quantile features
         """
         print("🏛️  Generating unified regime features...")
         
@@ -276,11 +347,111 @@ class RegimeFeatureEngine:
         result_df['regime_stability'] = regime_stability
         result_df['regime_multiplier'] = regime_multiplier
         
+        # Add temporal quantile features (Phase 1 enhancement)
+        result_df = self.add_temporal_quantile_features(result_df)
+        
         # Print summary statistics
         self._print_regime_summary(result_df)
         
         return result_df
     
+    def validate_economic_logic(self, df: pd.DataFrame) -> Dict:
+        """
+        Validate that temporal features behave according to economic theory
+        Following thesis-first principle: each feature must have explainable behavior
+        
+        Returns:
+            Dict: Validation results with economic rationale
+        """
+        print("\n🧪 VALIDATING ECONOMIC LOGIC OF TEMPORAL FEATURES:")
+        
+        validations = []
+        
+        # Test 1: Momentum should correlate with actual Q50 changes
+        if 'q50_momentum_3' in df.columns:
+            actual_momentum = df['q50'].diff(3)
+            predicted_momentum = df['q50_momentum_3']
+            
+            # Remove NaN values for correlation
+            valid_mask = ~(actual_momentum.isna() | predicted_momentum.isna())
+            if valid_mask.sum() > 10:
+                correlation = actual_momentum[valid_mask].corr(predicted_momentum[valid_mask])
+                
+                validations.append({
+                    'test': 'Q50 momentum captures actual momentum',
+                    'result': correlation > 0.7,
+                    'value': f"{correlation:.3f}",
+                    'economic_rationale': 'Information flow persistence theory',
+                    'status': '✅' if correlation > 0.7 else '⚠️'
+                })
+        
+        # Test 2: Prediction confidence should be lower during high volatility
+        if 'prediction_confidence' in df.columns and 'vol_risk' in df.columns:
+            high_vol_periods = df['vol_risk'] > df['vol_risk'].quantile(0.8)
+            low_vol_periods = df['vol_risk'] < df['vol_risk'].quantile(0.2)
+            
+            avg_confidence_high_vol = df.loc[high_vol_periods, 'prediction_confidence'].mean()
+            avg_confidence_low_vol = df.loc[low_vol_periods, 'prediction_confidence'].mean()
+            
+            validations.append({
+                'test': 'Lower confidence during high volatility',
+                'result': avg_confidence_high_vol < avg_confidence_low_vol,
+                'value': f"High vol: {avg_confidence_high_vol:.3f}, Low vol: {avg_confidence_low_vol:.3f}",
+                'economic_rationale': 'Market microstructure theory',
+                'status': '✅' if avg_confidence_high_vol < avg_confidence_low_vol else '⚠️'
+            })
+        
+        # Test 3: Regime persistence should be higher during trending periods
+        if 'q50_regime_persistence' in df.columns and 'q50_momentum_3' in df.columns:
+            high_momentum_periods = np.abs(df['q50_momentum_3']) > df['q50_momentum_3'].abs().quantile(0.8)
+            low_momentum_periods = np.abs(df['q50_momentum_3']) < df['q50_momentum_3'].abs().quantile(0.2)
+            
+            avg_persistence_trending = df.loc[high_momentum_periods, 'q50_regime_persistence'].mean()
+            avg_persistence_ranging = df.loc[low_momentum_periods, 'q50_regime_persistence'].mean()
+            
+            validations.append({
+                'test': 'Higher persistence during trending periods',
+                'result': avg_persistence_trending > avg_persistence_ranging,
+                'value': f"Trending: {avg_persistence_trending:.1f}, Ranging: {avg_persistence_ranging:.1f}",
+                'economic_rationale': 'Behavioral finance momentum theory',
+                'status': '✅' if avg_persistence_trending > avg_persistence_ranging else '⚠️'
+            })
+        
+        # Test 4: Spread momentum should correlate with volatility changes
+        if 'spread_momentum_3' in df.columns and 'vol_risk' in df.columns:
+            vol_change = df['vol_risk'].diff(3)
+            spread_momentum = df['spread_momentum_3']
+            
+            valid_mask = ~(vol_change.isna() | spread_momentum.isna())
+            if valid_mask.sum() > 10:
+                correlation = vol_change[valid_mask].corr(spread_momentum[valid_mask])
+                
+                validations.append({
+                    'test': 'Spread momentum correlates with volatility changes',
+                    'result': correlation > 0.3,
+                    'value': f"{correlation:.3f}",
+                    'economic_rationale': 'Market microstructure uncertainty theory',
+                    'status': '✅' if correlation > 0.3 else '⚠️'
+                })
+        
+        # Print validation results
+        for validation in validations:
+            print(f"   {validation['status']} {validation['test']}")
+            print(f"      Value: {validation['value']}")
+            print(f"      Rationale: {validation['economic_rationale']}")
+        
+        # Summary
+        passed = sum(1 for v in validations if v['result'])
+        total = len(validations)
+        print(f"\n📊 Economic Logic Validation: {passed}/{total} tests passed")
+        
+        return {
+            'validations': validations,
+            'passed': passed,
+            'total': total,
+            'success_rate': passed / total if total > 0 else 0
+        }
+
     def _print_regime_summary(self, df: pd.DataFrame):
         """Print summary of regime feature distributions"""
         print("\n📊 REGIME FEATURE SUMMARY:")
@@ -315,6 +486,21 @@ class RegimeFeatureEngine:
         print(f"\n📈 Average regime stability: {stability_mean:.3f}")
         print(f"⚖️  Multiplier range: [{multiplier_stats['min']:.2f}, {multiplier_stats['max']:.2f}]")
         print(f"   Average multiplier: {multiplier_stats['mean']:.2f}")
+        
+        # Temporal feature summary if they exist
+        temporal_features = ['q50_momentum_3', 'spread_momentum_3', 'q50_stability_6', 
+                           'prediction_confidence', 'q50_regime_persistence', 'q50_direction_consistency']
+        
+        existing_temporal = [f for f in temporal_features if f in df.columns]
+        if existing_temporal:
+            print(f"\n⏰ Temporal Features Summary:")
+            for feature in existing_temporal:
+                stats = df[feature].describe()
+                print(f"   {feature}: mean={stats['mean']:.4f}, std={stats['std']:.4f}")
+        
+        # Run economic logic validation if temporal features exist
+        if existing_temporal:
+            self.validate_economic_logic(df)
 
 
 # Convenience functions for backward compatibility
@@ -324,6 +510,15 @@ def create_regime_features(df: pd.DataFrame, **kwargs) -> pd.DataFrame:
     """
     engine = RegimeFeatureEngine(**kwargs)
     return engine.generate_all_regime_features(df)
+
+
+def add_temporal_quantile_features(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Convenience function to add just temporal quantile features
+    Phase 1 enhancement - can be used independently
+    """
+    engine = RegimeFeatureEngine()
+    return engine.add_temporal_quantile_features(df)
 
 
 def get_regime_multiplier(df: pd.DataFrame, **kwargs) -> pd.Series:

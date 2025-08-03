@@ -1,0 +1,23 @@
+{
+  "total_return": -0.10819825371434566,
+  "annualized_return": -0.1410013221604336,
+  "volatility": 0.025960534213662654,
+  "sharpe_ratio": -5.842427296362802,
+  "max_drawdown": -0.11054647786023329,
+  "total_trades": 1925,
+  "total_holds": 4675,
+  "total_periods": 6600,
+  "trade_frequency": 0.2916666666666667,
+  "hold_frequency": 0.7083333333333334,
+  "hold_reasons": {
+    "HOLD_NO_POSITION": 4617,
+    "HOLD_POSITION": 45,
+    "SHORT_NO_POSITION": 7,
+    "LONG_HOLD": 2,
+    "LONG_NO_POSITION": 4
+  },
+  "win_rate": 0.19688311688311688,
+  "final_balance": 8918.017462856544,
+  "final_position": 0.0,
+  "final_portfolio_value": 8918.017462856544
+}

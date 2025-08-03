@@ -2,6 +2,12 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+import sys
+
+# Add project root to Python path for src imports
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if project_root not in sys.path:
+    sys.path.append(project_root)
 
 import qlib
 from qlib.constant import REG_US, REG_CN 
@@ -9,15 +15,18 @@ from qlib.utils import init_instance_by_config, flatten_dict
 from sklearn.metrics import mean_squared_error as MSE
 from sklearn.metrics import r2_score, accuracy_score
 from qlib.data.dataset.handler import DataHandlerLP
+
+# Fixed imports using new src structure
 from src.data.nested_data_loader import CustomNestedDataLoader
 from src.models.signal_environment import SignalEnv
-from src.rl_execution.custom_tier_logging import TierLoggingCallback
-from src.models.multi_quantile import QuantileLGBModel
-from qlib_custom.gdelt_handler import gdelt_handler, gdelt_dataloader
-# from qlib_custom.crypto_handler import crypto_handler, crypto_dataloader
+from src.models.multi_quantile import QuantileLGBModel, MultiQuantileModel
 from src.data.crypto_loader import crypto_dataloader_optimized as crypto_dataloader
 
-from src.models.multi_quantile import QuantileLGBModel, MultiQuantileModel
+# GDELT functionality now in gdelt_loader.py
+from src.data.gdelt_loader import gdelt_dataloader_optimized as gdelt_dataloader
+
+# TierLoggingCallback moved to RL execution folder
+from src.rl_execution.custom_tier_logging import TierLoggingCallback
 
 import optuna
 import lightgbm as lgbm
@@ -734,8 +743,8 @@ if __name__ == '__main__':
     ]
 
     crypto_data_loader = {
-        "class": "crypto_dataloader",
-        "module_path": "qlib_custom.crypto_loader",
+        "class": "crypto_dataloader_optimized",
+        "module_path": "src.data.crypto_loader",
         "kwargs": {
             "config": {
                 "feature": crypto_dataloader.get_feature_config(),
@@ -747,8 +756,8 @@ if __name__ == '__main__':
     }
 
     gdelt_data_loader = {
-        "class": "gdelt_dataloader",
-        "module_path": "qlib_custom.gdelt_loader",
+        "class": "gdelt_dataloader_optimized",
+        "module_path": "src.data.gdelt_loader",
         "kwargs": {
             "config": {
                 "feature": gdelt_dataloader.get_feature_config()
@@ -869,7 +878,7 @@ if __name__ == '__main__':
     task_config = {        
         "model": {
             "class": "MultiQuantileModel",
-            "module_path": "qlib_custom.custom_multi_quantile",
+            "module_path": "src.models.multi_quantile",
             "kwargs": {
                 "quantiles": [0.1, 0.5, 0.9],
                 "lgb_params": multi_quantile_params

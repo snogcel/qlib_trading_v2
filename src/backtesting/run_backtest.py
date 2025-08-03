@@ -4,7 +4,7 @@ Run Hummingbot-compatible backtest on your quantile predictions
 
 import pandas as pd
 import numpy as np
-from src.backtesting.backtester import HummingbotQuantileBacktester
+from backtester import HummingbotQuantileBacktester
 
 def main(price_file: str = None):
     """
@@ -134,7 +134,7 @@ def main(price_file: str = None):
             print(backtester.generate_report(results))
             
             # Save results
-            backtester.save_results(results, f"./hummingbot_backtest_results/{config_name}")
+            backtester.save_results(results, f"./results/backtests/hummingbot/{config_name}")
             
             # Store for comparison
             results_summary[config_name] = {
@@ -161,7 +161,7 @@ def main(price_file: str = None):
         print(comparison_df)
         
         # Save comparison
-        comparison_df.to_csv("./hummingbot_backtest_results/configuration_comparison.csv")
+        comparison_df.to_csv("./results/backtests/hummingbot/configuration_comparison.csv")
         
         # Find best configuration
         best_config = max(results_summary.keys(), 
@@ -172,5 +172,5 @@ def main(price_file: str = None):
 
 if __name__ == "__main__":
     # Use the real BTC price data
-    price_file = r"C:\Projects\qlib_trading_v2\csv_data\CRYPTODATA_RESAMPLE\60min\BTCUSDT.csv"
+    price_file = r"C:\Projects\qlib_trading_v2\data\processed\CRYPTODATA_RESAMPLE\60min\BTCUSDT.csv"
     main(price_file)

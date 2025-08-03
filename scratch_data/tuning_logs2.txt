@@ -1,0 +1,613 @@
+📐 Tuning for q=0.1
+[I 2025-06-27 03:55:04,020] A new study created in memory with name: no-name-f7188786-3f3a-4bb9-ab1a-51f7a22e978f
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[105]   train's quantile: 0.00370386    valid's quantile: 0.00358926
+[27320:MainThread](2025-06-27 03:55:04,205) INFO - qlib.workflow - [exp.py:258] - Experiment 397207806859170157 starts running ...
+[27320:MainThread](2025-06-27 03:55:04,852) INFO - qlib.workflow - [recorder.py:345] - Recorder b84e81fff9a645789b5bfbe0c2a6064f starts running under Experiment 397207806859170157 ...
+[I 2025-06-27 03:55:05,025] Trial 0 finished with value: 0.003589264861361668 and parameters: {'lr': 0.04370861069626263, 'depth': 10}. Best is trial 0 with value: 0.003589264861361668.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[60]    train's quantile: 0.0038094     valid's quantile: 0.00360365
+[I 2025-06-27 03:55:05,173] Trial 1 finished with value: 0.003603654959022233 and parameters: {'lr': 0.07587945476302646, 'depth': 7}. Best is trial 0 with value: 0.003589264861361668.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[205]   train's quantile: 0.00449716    valid's quantile: 0.00349181
+[I 2025-06-27 03:55:05,355] Trial 2 finished with value: 0.003491807618252665 and parameters: {'lr': 0.02404167763981929, 'depth': 4}. Best is trial 2 with value: 0.003491807618252665.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[344]   train's quantile: 0.00362133    valid's quantile: 0.00365115
+[I 2025-06-27 03:55:05,900] Trial 3 finished with value: 0.0036511458072272583 and parameters: {'lr': 0.015227525095137952, 'depth': 9}. Best is trial 2 with value: 0.003491807618252665.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[65]    train's quantile: 0.00381266    valid's quantile: 0.00365023
+[I 2025-06-27 03:55:06,084] Trial 4 finished with value: 0.0036502319242564655 and parameters: {'lr': 0.0641003510568888, 'depth': 8}. Best is trial 2 with value: 0.003491807618252665.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[418]   train's quantile: 0.00367309    valid's quantile: 0.00367395
+[I 2025-06-27 03:55:06,801] Trial 5 finished with value: 0.003673954143745703 and parameters: {'lr': 0.011852604486622221, 'depth': 10}. Best is trial 2 with value: 0.003491807618252665.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[75]    train's quantile: 0.00439626    valid's quantile: 0.00346033
+[I 2025-06-27 03:55:06,905] Trial 6 finished with value: 0.0034603323721358967 and parameters: {'lr': 0.08491983767203796, 'depth': 4}. Best is trial 6 with value: 0.0034603323721358967.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[310]   train's quantile: 0.00428266    valid's quantile: 0.00353747
+[I 2025-06-27 03:55:07,158] Trial 7 finished with value: 0.00353746976200004 and parameters: {'lr': 0.02636424704863906, 'depth': 4}. Best is trial 6 with value: 0.0034603323721358967.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[193]   train's quantile: 0.00356289    valid's quantile: 0.003657
+[I 2025-06-27 03:55:07,486] Trial 8 finished with value: 0.003657002831427419 and parameters: {'lr': 0.0373818018663584, 'depth': 7}. Best is trial 6 with value: 0.0034603323721358967.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[129]   train's quantile: 0.00411602    valid's quantile: 0.00357943
+[I 2025-06-27 03:55:07,644] Trial 9 finished with value: 0.00357943198385018 and parameters: {'lr': 0.048875051677790424, 'depth': 5}. Best is trial 6 with value: 0.0034603323721358967.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[118]   train's quantile: 0.00449548    valid's quantile: 0.00339307
+[I 2025-06-27 03:55:07,749] Trial 10 finished with value: 0.0033930729560289604 and parameters: {'lr': 0.09801964666730802, 'depth': 3}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[67]    train's quantile: 0.00467958    valid's quantile: 0.00343715
+[I 2025-06-27 03:55:07,830] Trial 11 finished with value: 0.0034371475459059205 and parameters: {'lr': 0.09725833997090795, 'depth': 3}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[145]   train's quantile: 0.00430021    valid's quantile: 0.00341304
+[I 2025-06-27 03:55:07,948] Trial 12 finished with value: 0.003413044140746596 and parameters: {'lr': 0.09918356423396688, 'depth': 3}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[65]    train's quantile: 0.00467867    valid's quantile: 0.00342123
+[I 2025-06-27 03:55:08,031] Trial 13 finished with value: 0.0034212281249659006 and parameters: {'lr': 0.09891610524586035, 'depth': 3}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[169]   train's quantile: 0.00365584    valid's quantile: 0.00359101
+[I 2025-06-27 03:55:08,217] Trial 14 finished with value: 0.003591006635375414 and parameters: {'lr': 0.08261380585443324, 'depth': 5}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[97]    train's quantile: 0.0038165     valid's quantile: 0.00367396
+[I 2025-06-27 03:55:08,398] Trial 15 finished with value: 0.0036739593957953853 and parameters: {'lr': 0.06333563501490069, 'depth': 6}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[163]   train's quantile: 0.00433028    valid's quantile: 0.00341214
+[I 2025-06-27 03:55:08,522] Trial 16 finished with value: 0.0034121357111517258 and parameters: {'lr': 0.08916562702921467, 'depth': 3}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[66]    train's quantile: 0.00410091    valid's quantile: 0.00353059
+[I 2025-06-27 03:55:08,644] Trial 17 finished with value: 0.0035305942803986884 and parameters: {'lr': 0.08720850508389323, 'depth': 5}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[122]   train's quantile: 0.00357788    valid's quantile: 0.00362372
+[I 2025-06-27 03:55:08,847] Trial 18 finished with value: 0.0036237186608655374 and parameters: {'lr': 0.0720901381014723, 'depth': 6}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[99]    train's quantile: 0.00456425    valid's quantile: 0.00341646
+[I 2025-06-27 03:55:08,944] Trial 19 finished with value: 0.003416459180580992 and parameters: {'lr': 0.08976725153285717, 'depth': 3}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[228]   train's quantile: 0.00388328    valid's quantile: 0.00343272
+[I 2025-06-27 03:55:09,134] Trial 20 finished with value: 0.003432723199707646 and parameters: {'lr': 0.07287442359476011, 'depth': 4}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[139]   train's quantile: 0.00434318    valid's quantile: 0.00343248
+[I 2025-06-27 03:55:09,251] Trial 21 finished with value: 0.0034324759708063775 and parameters: {'lr': 0.09979339641013689, 'depth': 3}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[71]    train's quantile: 0.00468822    valid's quantile: 0.00345071
+[I 2025-06-27 03:55:09,335] Trial 22 finished with value: 0.0034507107129976935 and parameters: {'lr': 0.09255712173035743, 'depth': 3}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[104]   train's quantile: 0.00426104    valid's quantile: 0.00343962
+[I 2025-06-27 03:55:09,454] Trial 23 finished with value: 0.0034396174063100107 and parameters: {'lr': 0.07947366253841742, 'depth': 4}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[91]    train's quantile: 0.00385827    valid's quantile: 0.00356332
+[I 2025-06-27 03:55:09,597] Trial 24 finished with value: 0.0035633154808677485 and parameters: {'lr': 0.0930310488711314, 'depth': 5}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[211]   train's quantile: 0.00439389    valid's quantile: 0.00340896
+[I 2025-06-27 03:55:09,754] Trial 25 finished with value: 0.003408955218465845 and parameters: {'lr': 0.06451716747577774, 'depth': 3}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[140]   train's quantile: 0.00419976    valid's quantile: 0.00348411
+[I 2025-06-27 03:55:09,902] Trial 26 finished with value: 0.0034841149785428617 and parameters: {'lr': 0.06249044385696949, 'depth': 4}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[216]   train's quantile: 0.00443542    valid's quantile: 0.0034416
+[I 2025-06-27 03:55:10,061] Trial 27 finished with value: 0.003441600988484479 and parameters: {'lr': 0.054737685424976736, 'depth': 3}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[98]    train's quantile: 0.00380091    valid's quantile: 0.00357912
+[I 2025-06-27 03:55:10,233] Trial 28 finished with value: 0.003579121641092822 and parameters: {'lr': 0.06998455914439206, 'depth': 6}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[155]   train's quantile: 0.00410688    valid's quantile: 0.00357077
+[I 2025-06-27 03:55:10,482] Trial 29 finished with value: 0.003570767293213144 and parameters: {'lr': 0.040379488313752786, 'depth': 5}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[96]    train's quantile: 0.00362014    valid's quantile: 0.00363837
+[I 2025-06-27 03:55:10,705] Trial 30 finished with value: 0.0036383655313481137 and parameters: {'lr': 0.05459715737098404, 'depth': 9}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[92]    train's quantile: 0.00460274    valid's quantile: 0.00344504
+[I 2025-06-27 03:55:10,800] Trial 31 finished with value: 0.003445035651242252 and parameters: {'lr': 0.09293225394479523, 'depth': 3}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[201]   train's quantile: 0.0043438     valid's quantile: 0.00341286
+[I 2025-06-27 03:55:10,942] Trial 32 finished with value: 0.0034128645295675923 and parameters: {'lr': 0.07844991765519686, 'depth': 3}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[100]   train's quantile: 0.00425832    valid's quantile: 0.00351088
+[I 2025-06-27 03:55:11,068] Trial 33 finished with value: 0.003510884026492395 and parameters: {'lr': 0.08079650845929989, 'depth': 4}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[118]   train's quantile: 0.00426593    valid's quantile: 0.0034835
+[I 2025-06-27 03:55:11,198] Trial 34 finished with value: 0.0034834951845283805 and parameters: {'lr': 0.06681710922577996, 'depth': 4}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[100]   train's quantile: 0.00462383    valid's quantile: 0.00342339
+[I 2025-06-27 03:55:11,298] Trial 35 finished with value: 0.003423385959996866 and parameters: {'lr': 0.07764623477595875, 'depth': 3}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[78]    train's quantile: 0.00349182    valid's quantile: 0.00374475
+[I 2025-06-27 03:55:11,489] Trial 36 finished with value: 0.003744749177244451 and parameters: {'lr': 0.08617029774205709, 'depth': 8}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[110]   train's quantile: 0.00437223    valid's quantile: 0.00348316
+[I 2025-06-27 03:55:11,620] Trial 37 finished with value: 0.0034831595981050386 and parameters: {'lr': 0.05902304784535051, 'depth': 4}. Best is trial 10 with value: 0.0033930729560289604.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[134]   train's quantile: 0.00449841    valid's quantile: 0.00338847
+[I 2025-06-27 03:55:11,737] Trial 38 finished with value: 0.003388474229913704 and parameters: {'lr': 0.07555423584917885, 'depth': 3}. Best is trial 38 with value: 0.003388474229913704.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[72]    train's quantile: 0.00449237    valid's quantile: 0.00342441
+[I 2025-06-27 03:55:11,839] Trial 39 finished with value: 0.0034244077879948273 and parameters: {'lr': 0.07493229922289033, 'depth': 4}. Best is trial 38 with value: 0.003388474229913704.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[283]   train's quantile: 0.00415219    valid's quantile: 0.00337566
+[I 2025-06-27 03:55:12,030] Trial 40 finished with value: 0.0033756601758732365 and parameters: {'lr': 0.08843022747146786, 'depth': 3}. Best is trial 40 with value: 0.0033756601758732365.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[148]   train's quantile: 0.00436341    valid's quantile: 0.00339897
+[I 2025-06-27 03:55:12,151] Trial 41 finished with value: 0.0033989656053076984 and parameters: {'lr': 0.08907593232418257, 'depth': 3}. Best is trial 40 with value: 0.0033756601758732365.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[126]   train's quantile: 0.00405445    valid's quantile: 0.00344685
+[I 2025-06-27 03:55:12,287] Trial 42 finished with value: 0.0034468542628807095 and parameters: {'lr': 0.08388612089217365, 'depth': 4}. Best is trial 40 with value: 0.0033756601758732365.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[74]    train's quantile: 0.0046703     valid's quantile: 0.00344109
+[I 2025-06-27 03:55:12,380] Trial 43 finished with value: 0.00344108991831542 and parameters: {'lr': 0.09408876793307296, 'depth': 3}. Best is trial 40 with value: 0.0033756601758732365.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[156]   train's quantile: 0.00449821    valid's quantile: 0.00345385
+[I 2025-06-27 03:55:12,509] Trial 44 finished with value: 0.00345385064648908 and parameters: {'lr': 0.06845808081972585, 'depth': 3}. Best is trial 40 with value: 0.0033756601758732365.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[232]   train's quantile: 0.00449648    valid's quantile: 0.0033803
+[I 2025-06-27 03:55:12,674] Trial 45 finished with value: 0.003380304949673556 and parameters: {'lr': 0.0476404736663144, 'depth': 3}. Best is trial 40 with value: 0.0033756601758732365.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[202]   train's quantile: 0.00356687    valid's quantile: 0.00365097
+[I 2025-06-27 03:55:13,072] Trial 46 finished with value: 0.0036509673895237112 and parameters: {'lr': 0.028413276734322698, 'depth': 10}. Best is trial 40 with value: 0.0033756601758732365.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[110]   train's quantile: 0.00374354    valid's quantile: 0.003686
+[I 2025-06-27 03:55:13,300] Trial 47 finished with value: 0.0036860032896837715 and parameters: {'lr': 0.04985750181394885, 'depth': 7}. Best is trial 40 with value: 0.0033756601758732365.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[151]   train's quantile: 0.00451527    valid's quantile: 0.00355404
+[I 2025-06-27 03:55:13,464] Trial 48 finished with value: 0.0035540408298411165 and parameters: {'lr': 0.03202754805485966, 'depth': 4}. Best is trial 40 with value: 0.0033756601758732365.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[174]   train's quantile: 0.0039023     valid's quantile: 0.00357841
+[I 2025-06-27 03:55:13,662] Trial 49 finished with value: 0.0035784130224431458 and parameters: {'lr': 0.04962395964104287, 'depth': 5}. Best is trial 40 with value: 0.0033756601758732365.
+  CRPS: 0.003376, Params: {'lr': 0.08843022747146786, 'depth': 3}
+
+📐 Tuning for q=0.5
+[I 2025-06-27 03:55:13,666] A new study created in memory with name: no-name-340f4c99-b076-480c-bf76-d6100364b1bc
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[169]   train's quantile: 0.00844021    valid's quantile: 0.00741582
+[I 2025-06-27 03:55:13,986] Trial 0 finished with value: 0.007415822853833844 and parameters: {'lr': 0.04370861069626263, 'depth': 10}. Best is trial 0 with value: 0.007415822853833844.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[89]    train's quantile: 0.00911056    valid's quantile: 0.00742489
+[I 2025-06-27 03:55:14,162] Trial 1 finished with value: 0.007424887698170724 and parameters: {'lr': 0.07587945476302646, 'depth': 7}. Best is trial 0 with value: 0.007415822853833844.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[215]   train's quantile: 0.0106975     valid's quantile: 0.00733639
+[I 2025-06-27 03:55:14,340] Trial 2 finished with value: 0.007336385460327019 and parameters: {'lr': 0.02404167763981929, 'depth': 4}. Best is trial 2 with value: 0.007336385460327019.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[204]   train's quantile: 0.00986118    valid's quantile: 0.00748335
+[I 2025-06-27 03:55:14,692] Trial 3 finished with value: 0.007483352443615106 and parameters: {'lr': 0.015227525095137952, 'depth': 9}. Best is trial 2 with value: 0.007336385460327019.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[57]    train's quantile: 0.00971142    valid's quantile: 0.00740244
+[I 2025-06-27 03:55:14,850] Trial 4 finished with value: 0.007402440719500597 and parameters: {'lr': 0.0641003510568888, 'depth': 8}. Best is trial 2 with value: 0.007336385460327019.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[260]   train's quantile: 0.0098274     valid's quantile: 0.00743187
+[I 2025-06-27 03:55:15,316] Trial 5 finished with value: 0.007431871970523531 and parameters: {'lr': 0.011852604486622221, 'depth': 10}. Best is trial 2 with value: 0.007336385460327019.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[44]    train's quantile: 0.0109445     valid's quantile: 0.00741566
+[I 2025-06-27 03:55:15,394] Trial 6 finished with value: 0.0074156554682247265 and parameters: {'lr': 0.08491983767203796, 'depth': 4}. Best is trial 2 with value: 0.007336385460327019.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[171]   train's quantile: 0.0107721     valid's quantile: 0.00740588
+[I 2025-06-27 03:55:15,545] Trial 7 finished with value: 0.0074058820522160205 and parameters: {'lr': 0.02636424704863906, 'depth': 4}. Best is trial 2 with value: 0.007336385460327019.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[155]   train's quantile: 0.00933771    valid's quantile: 0.00742282
+[I 2025-06-27 03:55:15,820] Trial 8 finished with value: 0.007422823784216834 and parameters: {'lr': 0.0373818018663584, 'depth': 7}. Best is trial 2 with value: 0.007336385460327019.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[99]    train's quantile: 0.0102426     valid's quantile: 0.00735979
+[I 2025-06-27 03:55:15,985] Trial 9 finished with value: 0.007359785658887384 and parameters: {'lr': 0.048875051677790424, 'depth': 5}. Best is trial 2 with value: 0.007336385460327019.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[68]    train's quantile: 0.011062      valid's quantile: 0.00734194
+[I 2025-06-27 03:55:16,086] Trial 10 finished with value: 0.007341942987949745 and parameters: {'lr': 0.09506228898073485, 'depth': 3}. Best is trial 2 with value: 0.007336385460327019.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[78]    train's quantile: 0.0110467     valid's quantile: 0.00742356
+[I 2025-06-27 03:55:16,195] Trial 11 finished with value: 0.007423558272639591 and parameters: {'lr': 0.09725833997090795, 'depth': 3}. Best is trial 2 with value: 0.007336385460327019.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[46]    train's quantile: 0.011488      valid's quantile: 0.00741353
+[I 2025-06-27 03:55:16,290] Trial 12 finished with value: 0.007413526791968393 and parameters: {'lr': 0.06090517816132632, 'depth': 3}. Best is trial 2 with value: 0.007336385460327019.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[87]    train's quantile: 0.00945458    valid's quantile: 0.00733291
+[I 2025-06-27 03:55:16,460] Trial 13 finished with value: 0.0073329078132871464 and parameters: {'lr': 0.09799399360138576, 'depth': 5}. Best is trial 13 with value: 0.0073329078132871464.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[105]   train's quantile: 0.0106101     valid's quantile: 0.00739907
+[I 2025-06-27 03:55:16,701] Trial 14 finished with value: 0.007399071171502528 and parameters: {'lr': 0.028670807011001567, 'depth': 5}. Best is trial 13 with value: 0.0073329078132871464.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[130]   train's quantile: 0.00892841    valid's quantile: 0.00732238
+[I 2025-06-27 03:55:16,930] Trial 15 finished with value: 0.007322378032040432 and parameters: {'lr': 0.07465423439275776, 'depth': 6}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[42]    train's quantile: 0.0102195     valid's quantile: 0.00747294
+[I 2025-06-27 03:55:17,063] Trial 16 finished with value: 0.007472944846573932 and parameters: {'lr': 0.07790207183738722, 'depth': 6}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[32]    train's quantile: 0.0103456     valid's quantile: 0.00750647
+[I 2025-06-27 03:55:17,189] Trial 17 finished with value: 0.007506466928172023 and parameters: {'lr': 0.0869637144826834, 'depth': 6}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[52]    train's quantile: 0.0104547     valid's quantile: 0.00744251
+[I 2025-06-27 03:55:17,311] Trial 18 finished with value: 0.007442509983258526 and parameters: {'lr': 0.07095778842955917, 'depth': 5}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[58]    train's quantile: 0.00938856    valid's quantile: 0.00750375
+[I 2025-06-27 03:55:17,490] Trial 19 finished with value: 0.007503747296526146 and parameters: {'lr': 0.08652153090412766, 'depth': 8}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[38]    train's quantile: 0.0101434     valid's quantile: 0.00737318
+[I 2025-06-27 03:55:17,615] Trial 20 finished with value: 0.007373176902560161 and parameters: {'lr': 0.09844243723662906, 'depth': 6}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[53]    train's quantile: 0.0110368     valid's quantile: 0.00738559
+[I 2025-06-27 03:55:17,715] Trial 21 finished with value: 0.007385589095145875 and parameters: {'lr': 0.05515067241262732, 'depth': 4}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[31]    train's quantile: 0.0109523     valid's quantile: 0.0074966
+[I 2025-06-27 03:55:17,820] Trial 22 finished with value: 0.0074965997469468 and parameters: {'lr': 0.06648786507303552, 'depth': 5}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[146]   train's quantile: 0.0109735     valid's quantile: 0.00739593
+[I 2025-06-27 03:55:17,993] Trial 23 finished with value: 0.007395933617287277 and parameters: {'lr': 0.023011083288138452, 'depth': 4}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[85]    train's quantile: 0.0102343     valid's quantile: 0.00738157
+[I 2025-06-27 03:55:18,184] Trial 24 finished with value: 0.007381565804680805 and parameters: {'lr': 0.03629228955805815, 'depth': 6}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[78]    train's quantile: 0.00956382    valid's quantile: 0.00744753
+[I 2025-06-27 03:55:18,382] Trial 25 finished with value: 0.007447525398627136 and parameters: {'lr': 0.055809903412165976, 'depth': 7}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[45]    train's quantile: 0.0104652     valid's quantile: 0.00746553
+[I 2025-06-27 03:55:18,497] Trial 26 finished with value: 0.007465533925283787 and parameters: {'lr': 0.07911933202092611, 'depth': 5}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[71]    train's quantile: 0.0104322     valid's quantile: 0.00732628
+[I 2025-06-27 03:55:18,612] Trial 27 finished with value: 0.007326284188216755 and parameters: {'lr': 0.09226803533168262, 'depth': 4}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[29]    train's quantile: 0.0106732     valid's quantile: 0.00745746
+[I 2025-06-27 03:55:18,714] Trial 28 finished with value: 0.007457460473536709 and parameters: {'lr': 0.08971261860057908, 'depth': 5}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[32]    train's quantile: 0.0100606     valid's quantile: 0.00748314
+[I 2025-06-27 03:55:18,861] Trial 29 finished with value: 0.0074831410446214814 and parameters: {'lr': 0.09222423273464174, 'depth': 8}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[52]    train's quantile: 0.00996974    valid's quantile: 0.00740298
+[I 2025-06-27 03:55:19,003] Trial 30 finished with value: 0.007402982047104525 and parameters: {'lr': 0.0818118193457015, 'depth': 6}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[31]    train's quantile: 0.0112393     valid's quantile: 0.00743659
+[I 2025-06-27 03:55:19,088] Trial 31 finished with value: 0.007436587852412556 and parameters: {'lr': 0.072596186792654, 'depth': 4}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[42]    train's quantile: 0.010779      valid's quantile: 0.0073893
+[I 2025-06-27 03:55:19,185] Trial 32 finished with value: 0.007389301081987738 and parameters: {'lr': 0.0946882695942167, 'depth': 4}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[182]   train's quantile: 0.0111112     valid's quantile: 0.00735538
+[I 2025-06-27 03:55:19,340] Trial 33 finished with value: 0.00735538444476809 and parameters: {'lr': 0.042556835255085704, 'depth': 3}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[40]    train's quantile: 0.0107636     valid's quantile: 0.0074832
+[I 2025-06-27 03:55:19,455] Trial 34 finished with value: 0.007483203483130457 and parameters: {'lr': 0.07160761977338487, 'depth': 5}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[51]    train's quantile: 0.0094914     valid's quantile: 0.00750446
+[I 2025-06-27 03:55:19,606] Trial 35 finished with value: 0.007504463382353689 and parameters: {'lr': 0.0990781020474138, 'depth': 7}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[42]    train's quantile: 0.010895      valid's quantile: 0.00736505
+[I 2025-06-27 03:55:19,702] Trial 36 finished with value: 0.00736505102390711 and parameters: {'lr': 0.08317016896902954, 'depth': 4}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[220]   train's quantile: 0.011256      valid's quantile: 0.00741121
+[I 2025-06-27 03:55:19,886] Trial 37 finished with value: 0.007411212339010817 and parameters: {'lr': 0.019098605580700454, 'depth': 3}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[42]    train's quantile: 0.0100442     valid's quantile: 0.00745281
+[I 2025-06-27 03:55:20,059] Trial 38 finished with value: 0.007452813093155777 and parameters: {'lr': 0.06264504331829945, 'depth': 9}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[67]    train's quantile: 0.010618      valid's quantile: 0.00744724
+[I 2025-06-27 03:55:20,197] Trial 39 finished with value: 0.007447240832203685 and parameters: {'lr': 0.04665916351907658, 'depth': 5}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[28]    train's quantile: 0.0111872     valid's quantile: 0.00735842
+[I 2025-06-27 03:55:20,286] Trial 40 finished with value: 0.007358416730839801 and parameters: {'lr': 0.0897881058641898, 'depth': 4}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[31]    train's quantile: 0.011479      valid's quantile: 0.00741967
+[I 2025-06-27 03:55:20,361] Trial 41 finished with value: 0.007419667946074898 and parameters: {'lr': 0.09329106830624788, 'depth': 3}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[365]   train's quantile: 0.0113091     valid's quantile: 0.00737687
+[I 2025-06-27 03:55:20,621] Trial 42 finished with value: 0.007376869011876685 and parameters: {'lr': 0.01134058075365603, 'depth': 3}. Best is trial 15 with value: 0.007322378032040432.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[114]   train's quantile: 0.0100523     valid's quantile: 0.00732006
+[I 2025-06-27 03:55:20,745] Trial 43 finished with value: 0.007320057184984502 and parameters: {'lr': 0.09461350073127846, 'depth': 4}. Best is trial 43 with value: 0.007320057184984502.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[19]    train's quantile: 0.0113431     valid's quantile: 0.00744676
+[I 2025-06-27 03:55:20,815] Trial 44 finished with value: 0.007446755893598258 and parameters: {'lr': 0.0997154327171817, 'depth': 4}. Best is trial 43 with value: 0.007320057184984502.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[15]    train's quantile: 0.0112574     valid's quantile: 0.00744606
+[I 2025-06-27 03:55:20,897] Trial 45 finished with value: 0.007446056919505818 and parameters: {'lr': 0.0899015319241572, 'depth': 5}. Best is trial 43 with value: 0.007320057184984502.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[88]    train's quantile: 0.0093145     valid's quantile: 0.0074322
+[I 2025-06-27 03:55:21,058] Trial 46 finished with value: 0.007432201251936389 and parameters: {'lr': 0.08071873478211494, 'depth': 6}. Best is trial 43 with value: 0.007320057184984502.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[123]   train's quantile: 0.0103523     valid's quantile: 0.00740456
+[I 2025-06-27 03:55:21,234] Trial 47 finished with value: 0.007404564617507549 and parameters: {'lr': 0.0313927288894988, 'depth': 5}. Best is trial 43 with value: 0.007320057184984502.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[29]    train's quantile: 0.0111153     valid's quantile: 0.00740723
+[I 2025-06-27 03:55:21,299] Trial 48 finished with value: 0.007407229999891625 and parameters: {'lr': 0.08683558777540652, 'depth': 4}. Best is trial 43 with value: 0.007320057184984502.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[145]   train's quantile: 0.00825367    valid's quantile: 0.00738105
+[I 2025-06-27 03:55:21,560] Trial 49 finished with value: 0.0073810493814678935 and parameters: {'lr': 0.07529886697259933, 'depth': 7}. Best is trial 43 with value: 0.007320057184984502.
+  CRPS: 0.007320, Params: {'lr': 0.09461350073127846, 'depth': 4}
+
+📐 Tuning for q=0.9
+[I 2025-06-27 03:55:21,563] A new study created in memory with name: no-name-08adaa7a-ecad-4588-93df-7e1f0090fb85
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[60]    train's quantile: 0.00397685    valid's quantile: 0.00364618
+[I 2025-06-27 03:55:21,750] Trial 0 finished with value: 0.0036461783960808564 and parameters: {'lr': 0.04370861069626263, 'depth': 10}. Best is trial 0 with value: 0.0036461783960808564.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[30]    train's quantile: 0.00426564    valid's quantile: 0.00361734
+[I 2025-06-27 03:55:21,865] Trial 1 finished with value: 0.0036173432342897984 and parameters: {'lr': 0.07587945476302646, 'depth': 7}. Best is trial 1 with value: 0.0036173432342897984.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[269]   train's quantile: 0.00431034    valid's quantile: 0.00352454
+[I 2025-06-27 03:55:22,091] Trial 2 finished with value: 0.003524538984204969 and parameters: {'lr': 0.02404167763981929, 'depth': 4}. Best is trial 2 with value: 0.003524538984204969.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[257]   train's quantile: 0.00379356    valid's quantile: 0.00360518
+[I 2025-06-27 03:55:22,529] Trial 3 finished with value: 0.0036051781762001895 and parameters: {'lr': 0.015227525095137952, 'depth': 9}. Best is trial 2 with value: 0.003524538984204969.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[50]    train's quantile: 0.00396213    valid's quantile: 0.00364251
+[I 2025-06-27 03:55:22,682] Trial 4 finished with value: 0.0036425054813268368 and parameters: {'lr': 0.0641003510568888, 'depth': 8}. Best is trial 2 with value: 0.003524538984204969.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[329]   train's quantile: 0.0037459     valid's quantile: 0.00354488
+[I 2025-06-27 03:55:23,215] Trial 5 finished with value: 0.0035448761754814594 and parameters: {'lr': 0.011852604486622221, 'depth': 10}. Best is trial 2 with value: 0.003524538984204969.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[70]    train's quantile: 0.00428412    valid's quantile: 0.0035075
+[I 2025-06-27 03:55:23,298] Trial 6 finished with value: 0.0035074991562111905 and parameters: {'lr': 0.08491983767203796, 'depth': 4}. Best is trial 6 with value: 0.0035074991562111905.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[170]   train's quantile: 0.00444204    valid's quantile: 0.00352838
+[I 2025-06-27 03:55:23,444] Trial 7 finished with value: 0.0035283846831824428 and parameters: {'lr': 0.02636424704863906, 'depth': 4}. Best is trial 6 with value: 0.0035074991562111905.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[114]   train's quantile: 0.00386525    valid's quantile: 0.00359773
+[I 2025-06-27 03:55:23,640] Trial 8 finished with value: 0.0035977340130166156 and parameters: {'lr': 0.0373818018663584, 'depth': 7}. Best is trial 6 with value: 0.0035074991562111905.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[97]    train's quantile: 0.00416314    valid's quantile: 0.00353057
+[I 2025-06-27 03:55:23,776] Trial 9 finished with value: 0.0035305715037967722 and parameters: {'lr': 0.048875051677790424, 'depth': 5}. Best is trial 6 with value: 0.0035074991562111905.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[45]    train's quantile: 0.00467388    valid's quantile: 0.0036016
+[I 2025-06-27 03:55:23,846] Trial 10 finished with value: 0.0036015970402614155 and parameters: {'lr': 0.09801964666730802, 'depth': 3}. Best is trial 6 with value: 0.0035074991562111905.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[61]    train's quantile: 0.00406153    valid's quantile: 0.00352328
+[I 2025-06-27 03:55:23,953] Trial 11 finished with value: 0.0035232782418868924 and parameters: {'lr': 0.08948522184742393, 'depth': 5}. Best is trial 6 with value: 0.0035074991562111905.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[55]    train's quantile: 0.00415384    valid's quantile: 0.0034897
+[I 2025-06-27 03:55:24,058] Trial 12 finished with value: 0.00348970003102233 and parameters: {'lr': 0.09556456490674431, 'depth': 5}. Best is trial 12 with value: 0.00348970003102233.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[72]    train's quantile: 0.00407117    valid's quantile: 0.00360485
+[I 2025-06-27 03:55:24,175] Trial 13 finished with value: 0.003604845894978601 and parameters: {'lr': 0.07709396062878669, 'depth': 5}. Best is trial 12 with value: 0.00348970003102233.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[139]   train's quantile: 0.00437124    valid's quantile: 0.00359536
+[I 2025-06-27 03:55:24,289] Trial 14 finished with value: 0.0035953583959628197 and parameters: {'lr': 0.08710396130910066, 'depth': 3}. Best is trial 12 with value: 0.00348970003102233.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[44]    train's quantile: 0.00417431    valid's quantile: 0.00355457
+[I 2025-06-27 03:55:24,409] Trial 15 finished with value: 0.003554574889433401 and parameters: {'lr': 0.06497983141954258, 'depth': 6}. Best is trial 12 with value: 0.00348970003102233.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[40]    train's quantile: 0.00404697    valid's quantile: 0.00349073
+[I 2025-06-27 03:55:24,519] Trial 16 finished with value: 0.0034907273155422767 and parameters: {'lr': 0.09739370191158478, 'depth': 6}. Best is trial 12 with value: 0.00348970003102233.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[53]    train's quantile: 0.00395475    valid's quantile: 0.00354434
+[I 2025-06-27 03:55:24,635] Trial 17 finished with value: 0.0035443374372578834 and parameters: {'lr': 0.09946011312178113, 'depth': 6}. Best is trial 12 with value: 0.00348970003102233.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[72]    train's quantile: 0.00374518    valid's quantile: 0.00355823
+[I 2025-06-27 03:55:24,845] Trial 18 finished with value: 0.0035582291893829785 and parameters: {'lr': 0.06387078571176352, 'depth': 8}. Best is trial 12 with value: 0.00348970003102233.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[60]    train's quantile: 0.00393668    valid's quantile: 0.00355647
+[I 2025-06-27 03:55:24,974] Trial 19 finished with value: 0.0035564715878328946 and parameters: {'lr': 0.07503011914410902, 'depth': 6}. Best is trial 12 with value: 0.00348970003102233.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[75]    train's quantile: 0.00347682    valid's quantile: 0.00368975
+[I 2025-06-27 03:55:25,167] Trial 20 finished with value: 0.0036897525643978767 and parameters: {'lr': 0.0920725050896144, 'depth': 8}. Best is trial 12 with value: 0.00348970003102233.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[52]    train's quantile: 0.00444064    valid's quantile: 0.00350413
+[I 2025-06-27 03:55:25,253] Trial 21 finished with value: 0.003504125452257864 and parameters: {'lr': 0.08339140952141554, 'depth': 4}. Best is trial 12 with value: 0.00348970003102233.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[30]    train's quantile: 0.00446953    valid's quantile: 0.00356312
+[I 2025-06-27 03:55:25,343] Trial 22 finished with value: 0.0035631183119223253 and parameters: {'lr': 0.08083580411218955, 'depth': 5}. Best is trial 12 with value: 0.00348970003102233.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[47]    train's quantile: 0.00441019    valid's quantile: 0.00359665
+[I 2025-06-27 03:55:25,441] Trial 23 finished with value: 0.003596650801558358 and parameters: {'lr': 0.09963037984391385, 'depth': 4}. Best is trial 12 with value: 0.00348970003102233.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[73]    train's quantile: 0.00457052    valid's quantile: 0.00352653
+[I 2025-06-27 03:55:25,535] Trial 24 finished with value: 0.0035265330849018088 and parameters: {'lr': 0.09267776802248115, 'depth': 3}. Best is trial 12 with value: 0.00348970003102233.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[58]    train's quantile: 0.00406629    valid's quantile: 0.00356017
+[I 2025-06-27 03:55:25,669] Trial 25 finished with value: 0.003560168522117065 and parameters: {'lr': 0.06802508165474266, 'depth': 6}. Best is trial 12 with value: 0.00348970003102233.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[102]   train's quantile: 0.00407436    valid's quantile: 0.00357773
+[I 2025-06-27 03:55:25,812] Trial 26 finished with value: 0.003577730998436554 and parameters: {'lr': 0.05640312871179383, 'depth': 5}. Best is trial 12 with value: 0.00348970003102233.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[79]    train's quantile: 0.00428082    valid's quantile: 0.00348548
+[I 2025-06-27 03:55:25,918] Trial 27 finished with value: 0.0034854800816724357 and parameters: {'lr': 0.08286210265178032, 'depth': 4}. Best is trial 27 with value: 0.0034854800816724357.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[41]    train's quantile: 0.00390334    valid's quantile: 0.00362901
+[I 2025-06-27 03:55:26,053] Trial 28 finished with value: 0.003629007113991911 and parameters: {'lr': 0.09457109021771778, 'depth': 7}. Best is trial 27 with value: 0.0034854800816724357.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[94]    train's quantile: 0.00400225    valid's quantile: 0.003518
+[I 2025-06-27 03:55:26,204] Trial 29 finished with value: 0.0035180017162467314 and parameters: {'lr': 0.07128992814815607, 'depth': 5}. Best is trial 27 with value: 0.0034854800816724357.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[53]    train's quantile: 0.00397355    valid's quantile: 0.0035088
+[I 2025-06-27 03:55:26,331] Trial 30 finished with value: 0.003508800294540096 and parameters: {'lr': 0.08084558216010189, 'depth': 6}. Best is trial 27 with value: 0.0034854800816724357.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[74]    train's quantile: 0.00430166    valid's quantile: 0.00354125
+[I 2025-06-27 03:55:26,434] Trial 31 finished with value: 0.003541254506194048 and parameters: {'lr': 0.08639333098168922, 'depth': 4}. Best is trial 27 with value: 0.0034854800816724357.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[68]    train's quantile: 0.00432852    valid's quantile: 0.00351361
+[I 2025-06-27 03:55:26,532] Trial 32 finished with value: 0.003513606955132695 and parameters: {'lr': 0.07987758005840419, 'depth': 4}. Best is trial 27 with value: 0.0034854800816724357.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[60]    train's quantile: 0.00465532    valid's quantile: 0.00357842
+[I 2025-06-27 03:55:26,618] Trial 33 finished with value: 0.003578419499894743 and parameters: {'lr': 0.09306263851727323, 'depth': 3}. Best is trial 27 with value: 0.0034854800816724357.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[83]    train's quantile: 0.00433213    valid's quantile: 0.00356728
+[I 2025-06-27 03:55:26,738] Trial 34 finished with value: 0.003567284364309373 and parameters: {'lr': 0.0850838936987789, 'depth': 4}. Best is trial 27 with value: 0.0034854800816724357.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[78]    train's quantile: 0.00421781    valid's quantile: 0.00358213
+[I 2025-06-27 03:55:26,873] Trial 35 finished with value: 0.003582134274319976 and parameters: {'lr': 0.058689650887959924, 'depth': 5}. Best is trial 27 with value: 0.0034854800816724357.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[51]    train's quantile: 0.0043809     valid's quantile: 0.00355323
+[I 2025-06-27 03:55:26,967] Trial 36 finished with value: 0.003553225167682212 and parameters: {'lr': 0.09588067337900184, 'depth': 4}. Best is trial 27 with value: 0.0034854800816724357.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[82]    train's quantile: 0.00464621    valid's quantile: 0.00357068
+[I 2025-06-27 03:55:27,057] Trial 37 finished with value: 0.003570676763219106 and parameters: {'lr': 0.07251196808749075, 'depth': 3}. Best is trial 27 with value: 0.0034854800816724357.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[24]    train's quantile: 0.00424294    valid's quantile: 0.00360555
+[I 2025-06-27 03:55:27,183] Trial 38 finished with value: 0.003605552362825163 and parameters: {'lr': 0.08818261472474452, 'depth': 7}. Best is trial 27 with value: 0.0034854800816724357.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[101]   train's quantile: 0.00419548    valid's quantile: 0.00353805
+[I 2025-06-27 03:55:27,327] Trial 39 finished with value: 0.003538052981319892 and parameters: {'lr': 0.047138110264701154, 'depth': 5}. Best is trial 27 with value: 0.0034854800816724357.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[98]    train's quantile: 0.00410856    valid's quantile: 0.00357298
+[I 2025-06-27 03:55:27,503] Trial 40 finished with value: 0.003572975517384208 and parameters: {'lr': 0.03787307017450448, 'depth': 6}. Best is trial 27 with value: 0.0034854800816724357.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[71]    train's quantile: 0.00426847    valid's quantile: 0.00352791
+[I 2025-06-27 03:55:27,614] Trial 41 finished with value: 0.003527912770558267 and parameters: {'lr': 0.08436425886040688, 'depth': 4}. Best is trial 27 with value: 0.0034854800816724357.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[56]    train's quantile: 0.00441758    valid's quantile: 0.00350167
+[I 2025-06-27 03:55:27,707] Trial 42 finished with value: 0.0035016722386379063 and parameters: {'lr': 0.08265684016825244, 'depth': 4}. Best is trial 27 with value: 0.0034854800816724357.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[40]    train's quantile: 0.00449044    valid's quantile: 0.00356569
+[I 2025-06-27 03:55:27,800] Trial 43 finished with value: 0.003565686960311746 and parameters: {'lr': 0.0904072192908948, 'depth': 4}. Best is trial 27 with value: 0.0034854800816724357.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[42]    train's quantile: 0.00428753    valid's quantile: 0.00358967
+[I 2025-06-27 03:55:27,916] Trial 44 finished with value: 0.0035896724246800727 and parameters: {'lr': 0.08154566314232578, 'depth': 5}. Best is trial 27 with value: 0.0034854800816724357.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[75]    train's quantile: 0.00462543    valid's quantile: 0.00358853
+[I 2025-06-27 03:55:28,007] Trial 45 finished with value: 0.003588529636519906 and parameters: {'lr': 0.07685506548613015, 'depth': 3}. Best is trial 27 with value: 0.0034854800816724357.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[39]    train's quantile: 0.00374901    valid's quantile: 0.00356987
+[I 2025-06-27 03:55:28,161] Trial 46 finished with value: 0.0035698650124062663 and parameters: {'lr': 0.09550168484543296, 'depth': 10}. Best is trial 27 with value: 0.0034854800816724357.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[50]    train's quantile: 0.00419856    valid's quantile: 0.00355487
+[I 2025-06-27 03:55:28,281] Trial 47 finished with value: 0.0035548678911096975 and parameters: {'lr': 0.08967792432244842, 'depth': 5}. Best is trial 27 with value: 0.0034854800816724357.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[297]   train's quantile: 0.00462455    valid's quantile: 0.00360822
+[I 2025-06-27 03:55:28,470] Trial 48 finished with value: 0.0036082162604314824 and parameters: {'lr': 0.020629366286588742, 'depth': 3}. Best is trial 27 with value: 0.0034854800816724357.
+Training until validation scores don't improve for 50 rounds
+Early stopping, best iteration is:
+[64]    train's quantile: 0.00434825    valid's quantile: 0.00352823
+[I 2025-06-27 03:55:28,571] Trial 49 finished with value: 0.003528227468907053 and parameters: {'lr': 0.08364266289920344, 'depth': 4}. Best is trial 27 with value: 0.0034854800816724357.
+  CRPS: 0.003485, Params: {'lr': 0.08286210265178032, 'depth': 4}

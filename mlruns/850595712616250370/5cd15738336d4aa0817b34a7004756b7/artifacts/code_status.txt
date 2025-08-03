@@ -1,0 +1,154 @@
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   .gitignore
+	deleted:    FEATURE_DOCUMENTATION.md
+	deleted:    FEATURE_STANDARDIZATION_PLAN.md
+	deleted:    HUMMINGBOT_INTEGRATION_ROADMAP.md
+	deleted:    PROJECT_CLEANUP_PLAN.md
+	deleted:    SYSTEM_VALIDATION_SPEC.md
+	deleted:    TRADING_SYSTEM_PRINCIPLES.md
+	deleted:    advanced_position_sizing.py
+	deleted:    analyze_signal_features.py
+	deleted:    data_clean_stack_v1.py
+	deleted:    df_final.csv
+	deleted:    hummingbot_backtester.py
+	deleted:    hummingbot_bridge.py
+	deleted:    ppo_sweep_optuna.py
+	deleted:    ppo_sweep_optuna_tuned.py
+	deleted:    ppo_sweep_optuna_tuned_v2.py
+	deleted:    ppo_sweep_runner.py
+	deleted:    qlib_custom/crypto_handler.py
+	deleted:    qlib_custom/crypto_loader.py
+	deleted:    qlib_custom/crypto_loader_optimized.py
+	deleted:    qlib_custom/custom_action_interpreter.py
+	deleted:    qlib_custom/custom_data_handler.py
+	deleted:    qlib_custom/custom_data_provider.py
+	deleted:    qlib_custom/custom_exchange.py
+	deleted:    qlib_custom/custom_logger_callback.py
+	deleted:    qlib_custom/custom_multi_quantile.py
+	deleted:    qlib_custom/custom_ndl.py
+	deleted:    qlib_custom/custom_order.py
+	deleted:    qlib_custom/custom_reward.py
+	deleted:    qlib_custom/custom_signal_env.py
+	deleted:    qlib_custom/custom_simulator.py
+	deleted:    qlib_custom/custom_state_interpreter.py
+	deleted:    qlib_custom/custom_tier_logging.py
+	deleted:    qlib_custom/custom_train.py
+	deleted:    qlib_custom/custom_training_vessel.py
+	deleted:    qlib_custom/gdelt_handler.py
+	deleted:    qlib_custom/gdelt_loader.py
+	deleted:    qlib_custom/gdelt_loader_optimized.py
+	deleted:    qlib_custom/logger/tensorboard_logger.py
+	deleted:    qlib_custom/macro_loader.py
+	deleted:    qlib_custom/meta_trigger/experience_buffer.py
+	deleted:    qlib_custom/meta_trigger/meta_dqn_model.py
+	deleted:    qlib_custom/meta_trigger/meta_dqn_policy.py
+	deleted:    qlib_custom/meta_trigger/simulator_state.py
+	deleted:    qlib_custom/meta_trigger/train_meta_dqn.py
+	deleted:    qlib_custom/regime_features.py
+	modified:   qlib_data/CRYPTO/instruments/all.txt
+	deleted:    qlib_data_import.txt
+	deleted:    realtime_predictor.py
+	deleted:    regime_feature_consolidation_analysis.py
+	deleted:    rl_order_execution/README.md
+	deleted:    rl_order_execution/exp_configs/backtest_opds.yml
+	deleted:    rl_order_execution/exp_configs/backtest_ppo.yml
+	deleted:    rl_order_execution/exp_configs/backtest_twap.yml
+	deleted:    rl_order_execution/exp_configs/train_opds copy.yml
+	deleted:    rl_order_execution/exp_configs/train_opds.yml
+	deleted:    rl_order_execution/exp_configs/train_ppo copy.yml
+	deleted:    rl_order_execution/exp_configs/train_ppo.yml
+	deleted:    rl_order_execution/order_execution_env.py
+	modified:   rl_order_execution/scripts/gen_training_orders.py
+	modified:   rl_order_execution/scripts/merge_selected_orders.py
+	deleted:    rl_order_execution/workflow.py
+	deleted:    run_hummingbot_backtest.py
+	deleted:    save_model_for_production.py
+	deleted:    simple_regime_validation.py
+	modified:   src/backtesting/run_backtest.py
+	modified:   src/features/regime_features.py
+	modified:   src/training_pipeline.py
+	deleted:    test_position_sizing_methods.py
+	deleted:    test_unified_regime_features.py
+	deleted:    train_meta_wrapper.py
+	deleted:    troubleshoot_dataloader.py
+	deleted:    troubleshoot_dataloader_2.py
+	deleted:    validate_adaptive_thresholds.py
+	deleted:    validate_regime_consolidation_performance.py
+	deleted:    validate_spread_predictive_power.py
+	deleted:    validated_backtest_results/summary_report.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	Research/
+	Tests/Features/ML_correlation_matrix.xlsx
+	Tests/integration/
+	Tests/unit/
+	Tests/validation/
+	archive/analysis/magnitude_based_threshold_analysis.py
+	archive/analysis/signal_analysis_csv_guide.md
+	archive/analysis/signal_threshold_analysis.py
+	archive/analysis/volatility_features_corrected_analysis.py
+	archive/analysis/volatility_features_final_summary.py
+	archive/analysis/volatility_features_summary.py
+	archive/documentation/q50_regime_integration_summary.md
+	archive/documentation/quantiles_to_probabilities_fix_summary.md
+	archive/documentation/regression_fixes_summary.md
+	archive/research/dqn_trading_research_analysis.md
+	archive/research/phase1_temporal_features_summary.md
+	archive/research/quantile_deep_learning_research_analysis.md
+	archive/research/regime_feature_recommendations.md
+	archive/research/regime_features_fix_summary.py
+	archive/research/research_consolidation_final.md
+	archive/research/research_synthesis_and_implementation.md
+	archive/research/whitepapers/
+	archive/validation/test_24_7_trading.py
+	archive/validation/test_backtest_fix.py
+	archive/validation/test_comprehensive_backtest.py
+	archive/validation/test_feature_optimization.py
+	archive/validation/test_fixed_spread_validation.py
+	archive/validation/test_magnitude_based_threshold.py
+	archive/validation/test_position_management.py
+	archive/validation/test_position_sizing_methods.py
+	archive/validation/test_signal_analysis_output.py
+	archive/validation/test_sizing_methods.py
+	archive/validation/test_vol_scaled_implementation.py
+	data3/
+	docs/FEATURE_DOCUMENTATION.md
+	docs/FEATURE_OPTIMIZATION_GUIDE.md
+	docs/FEATURE_STANDARDIZATION_PLAN.md
+	docs/HUMMINGBOT_INTEGRATION_ROADMAP.md
+	docs/IMPORT_MIGRATION_TRACKER.md
+	docs/QUANTILE_ENHANCEMENT_ROADMAP.md
+	docs/SYSTEM_VALIDATION_SPEC.md
+	docs/TRADING_SYSTEM_PRINCIPLES.md
+	docs/completed/
+	docs/integration/
+	docs/research/
+	folder_cleanup_plan.py
+	mlruns/
+	qlib_custom/qlib_custom_files.zip
+	qlib_data/CRYPTO_DATA/
+	rl_order_execution/scripts/pickle_data_config_macro_backup.yml
+	scratch_data/
+	scripts/analysis/
+	scripts/data_management/cleanup_commands.sh
+	scripts/execute_cleanup.py
+	scripts/maintenance/
+	src/backtesting/backtest_summary.py
+	src/backtesting/quantile_backtester.py
+	src/backtesting/run_complete_backtest_workflow.py
+	src/models/model_evaluation_suite.py
+	src/production/integrated_validated_pipeline.py
+	src/production/regime_aware_kelly.py
+	src/production/validated_kelly_with_spread.py
+	src/rl_execution/components/
+	src/rl_execution/order_execution_trainer.py
+	~$Planning.xlsx
+	~WRL2184.tmp
+
+no changes added to commit (use "git add" and/or "git commit -a")

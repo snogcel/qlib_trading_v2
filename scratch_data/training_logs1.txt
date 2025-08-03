@@ -1,0 +1,99 @@
+[2615 rows x 26 columns]
+[1796:MainThread](2025-06-27 04:25:37,626) INFO - qlib.timer - [log.py:127] - Time cost: 17.249s | Loading data Done
+[1796:MainThread](2025-06-27 04:25:37,626) INFO - qlib.timer - [log.py:127] - Time cost: 0.000s | fit & process data Done
+[1796:MainThread](2025-06-27 04:25:37,627) INFO - qlib.timer - [log.py:127] - Time cost: 17.250s | Init data Done
+Training until validation scores don't improve for 0 rounds
+[20]    train's quantile: 0.00520139    valid's quantile: 0.00363402
+[40]    train's quantile: 0.00491339    valid's quantile: 0.00346669
+[60]    train's quantile: 0.00474982    valid's quantile: 0.00339565
+[80]    train's quantile: 0.00462697    valid's quantile: 0.00338984
+[100]   train's quantile: 0.00454144    valid's quantile: 0.0033846
+[120]   train's quantile: 0.00447586    valid's quantile: 0.00337839
+[140]   train's quantile: 0.0044255     valid's quantile: 0.00337661
+[160]   train's quantile: 0.00438385    valid's quantile: 0.00336548
+[180]   train's quantile: 0.00433066    valid's quantile: 0.00336562
+[200]   train's quantile: 0.00428498    valid's quantile: 0.00336046
+[220]   train's quantile: 0.00423876    valid's quantile: 0.00335776
+[240]   train's quantile: 0.00422514    valid's quantile: 0.00335614
+[260]   train's quantile: 0.00420385    valid's quantile: 0.00335786
+[280]   train's quantile: 0.00418654    valid's quantile: 0.00335379
+[300]   train's quantile: 0.00417204    valid's quantile: 0.00335794
+[320]   train's quantile: 0.00415239    valid's quantile: 0.00335966
+[340]   train's quantile: 0.00412975    valid's quantile: 0.0033563
+[360]   train's quantile: 0.00410651    valid's quantile: 0.00335979
+[380]   train's quantile: 0.00409183    valid's quantile: 0.00335891
+[400]   train's quantile: 0.00408435    valid's quantile: 0.00335942
+[420]   train's quantile: 0.0040556     valid's quantile: 0.00336614
+[440]   train's quantile: 0.00404166    valid's quantile: 0.00336157
+[460]   train's quantile: 0.00402352    valid's quantile: 0.00336198
+[480]   train's quantile: 0.00399803    valid's quantile: 0.0033718
+[500]   train's quantile: 0.00398795    valid's quantile: 0.00337017
+[520]   train's quantile: 0.00398208    valid's quantile: 0.0033681
+[540]   train's quantile: 0.00396164    valid's quantile: 0.00336887
+[560]   train's quantile: 0.00395655    valid's quantile: 0.00337007
+[580]   train's quantile: 0.00394479    valid's quantile: 0.00337588
+[600]   train's quantile: 0.00393368    valid's quantile: 0.00338456
+[620]   train's quantile: 0.00392706    valid's quantile: 0.0033818
+[640]   train's quantile: 0.00391288    valid's quantile: 0.00338682
+[660]   train's quantile: 0.00390241    valid's quantile: 0.00339092
+[680]   train's quantile: 0.00388669    valid's quantile: 0.00339118
+[700]   train's quantile: 0.00387619    valid's quantile: 0.00339303
+[720]   train's quantile: 0.00386136    valid's quantile: 0.00338926
+[740]   train's quantile: 0.00384941    valid's quantile: 0.0033899
+[760]   train's quantile: 0.00384405    valid's quantile: 0.00339229
+[780]   train's quantile: 0.00383604    valid's quantile: 0.00339342
+[800]   train's quantile: 0.00382816    valid's quantile: 0.0033966
+[820]   train's quantile: 0.00381919    valid's quantile: 0.00339631
+[840]   train's quantile: 0.00381608    valid's quantile: 0.00339725
+[860]   train's quantile: 0.00381374    valid's quantile: 0.00339629
+[880]   train's quantile: 0.00380756    valid's quantile: 0.0033947
+[900]   train's quantile: 0.00380228    valid's quantile: 0.00339075
+[920]   train's quantile: 0.00379864    valid's quantile: 0.00338997
+[940]   train's quantile: 0.00379281    valid's quantile: 0.00339262
+[1796:MainThread](2025-06-27 04:25:37,907) INFO - qlib.workflow - [exp.py:258] - Experiment 397207806859170157 starts running ...
+[1796:MainThread](2025-06-27 04:25:38,167) INFO - qlib.workflow - [recorder.py:345] - Recorder c4f5063ea45749279f0b5054b015c4ff starts running under Experiment 397207806859170157 ...
+Training until validation scores don't improve for 0 rounds
+[20]    train's quantile: 0.0123145     valid's quantile: 0.007871
+[40]    train's quantile: 0.0117027     valid's quantile: 0.00763028
+[60]    train's quantile: 0.0113116     valid's quantile: 0.00746666
+[80]    train's quantile: 0.0110386     valid's quantile: 0.0074132
+[100]   train's quantile: 0.0108221     valid's quantile: 0.00738872
+[120]   train's quantile: 0.0106847     valid's quantile: 0.00739012
+[140]   train's quantile: 0.010569      valid's quantile: 0.00737973
+[160]   train's quantile: 0.0104708     valid's quantile: 0.00737889
+[180]   train's quantile: 0.010393      valid's quantile: 0.0073819
+[200]   train's quantile: 0.0103018     valid's quantile: 0.007377
+[220]   train's quantile: 0.0102037     valid's quantile: 0.00736724
+[240]   train's quantile: 0.010151      valid's quantile: 0.00736476
+[260]   train's quantile: 0.0100807     valid's quantile: 0.00736628
+[280]   train's quantile: 0.0100153     valid's quantile: 0.00736918
+[300]   train's quantile: 0.00998589    valid's quantile: 0.00736669
+[320]   train's quantile: 0.00991516    valid's quantile: 0.00737813
+[340]   train's quantile: 0.00985159    valid's quantile: 0.00736681
+[360]   train's quantile: 0.00976761    valid's quantile: 0.00735598
+[380]   train's quantile: 0.00970781    valid's quantile: 0.00735215
+[400]   train's quantile: 0.00964504    valid's quantile: 0.00734341
+[420]   train's quantile: 0.0096112     valid's quantile: 0.00734201
+[440]   train's quantile: 0.00954361    valid's quantile: 0.00733834
+[460]   train's quantile: 0.0094803     valid's quantile: 0.00733967
+[480]   train's quantile: 0.00945034    valid's quantile: 0.00732852
+[500]   train's quantile: 0.00938131    valid's quantile: 0.00733116
+[520]   train's quantile: 0.00933768    valid's quantile: 0.00733378
+[540]   train's quantile: 0.00929627    valid's quantile: 0.00734007
+Training until validation scores don't improve for 0 rounds
+[20]    train's quantile: 0.00616682    valid's quantile: 0.00448559
+[40]    train's quantile: 0.00554125    valid's quantile: 0.00411069
+[60]    train's quantile: 0.0051933     valid's quantile: 0.00383533
+[80]    train's quantile: 0.00497125    valid's quantile: 0.00368064
+[100]   train's quantile: 0.00480932    valid's quantile: 0.00360305
+[120]   train's quantile: 0.00471684    valid's quantile: 0.00355674
+[140]   train's quantile: 0.00464417    valid's quantile: 0.00354054
+[160]   train's quantile: 0.00458548    valid's quantile: 0.00353473
+[180]   train's quantile: 0.00453677    valid's quantile: 0.00352746
+[200]   train's quantile: 0.00450014    valid's quantile: 0.00352406
+[220]   train's quantile: 0.00446987    valid's quantile: 0.00351491
+[240]   train's quantile: 0.00443759    valid's quantile: 0.00351248
+[260]   train's quantile: 0.00441964    valid's quantile: 0.00351181
+[280]   train's quantile: 0.0044036     valid's quantile: 0.00351163
+[300]   train's quantile: 0.00438237    valid's quantile: 0.00351023
+[320]   train's quantile: 0.00435699    valid's quantile: 0.0035108
