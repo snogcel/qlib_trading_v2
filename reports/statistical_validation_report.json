@@ -1,0 +1,58 @@
+{
+  "validation_timestamp": "2025-08-03T13:48:45.452027",
+  "execution_time_seconds": 13.514436960220337,
+  "overall_status": "FAILED",
+  "return_code": 1,
+  "feature_categories": {
+    "Core Signal Features": [
+      "Q50 (Primary Signal)",
+      "Q50-Centric Signal Generation",
+      "Signal Classification & Tiers"
+    ],
+    "Risk & Volatility Features": [
+      "Vol_Risk (Variance-Based)",
+      "Volatility Regime Detection",
+      "Enhanced Information Ratio"
+    ],
+    "Position Sizing Features": [
+      "Kelly Criterion with Vol_Raw Deciles",
+      "Variance-Based Position Scaling"
+    ],
+    "Regime & Market Features": [
+      "Unified Regime Feature Engine",
+      "Variance-Based Interaction Features"
+    ],
+    "Technical Features": [
+      "Probability Calculations"
+    ],
+    "Threshold & Control Features": [
+      "Magnitude-Based Economic Thresholds",
+      "Adaptive Regime-Aware Thresholds"
+    ],
+    "Data Pipeline Features": [
+      "Data Pipeline Integration"
+    ],
+    "System Performance": [
+      "Overall System Performance"
+    ]
+  },
+  "validation_framework": {
+    "time_series_aware_cv": "Implemented",
+    "out_of_sample_testing": "Implemented",
+    "regime_robustness": "Implemented",
+    "feature_stability": "Implemented",
+    "economic_logic_validation": "Implemented"
+  },
+  "compliance": {
+    "system_validation_spec": false,
+    "principle_coverage_framework": false,
+    "feature_documentation_alignment": true
+  },
+  "recommendations": [
+    "\u274c Some statistical validation tests failed",
+    "\ud83d\udd27 Review failed tests and fix underlying issues",
+    "\ud83d\udccb Ensure all required dependencies are installed",
+    "\ud83e\uddea Re-run tests after fixes to verify resolution",
+    "\ud83d\udcca Consider reducing test complexity if data issues exist"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "validation_timestamp": "2025-08-03T09:55:19.237492",
+  "alignment_status": "NEEDS_ATTENTION",
+  "test_results": {
+    "passed": false,
+    "stdout": "",
+    "stderr": "c:\\Projects\\qlib_trading_v2\\.conda\\python.exe: No module named pytest\n"
+  },
+  "parameter_alignment": {},
+  "recommendations": [
+    "\u274c Fix failing alignment tests"
+  ],
+  "documentation_valid": true,
+  "parameters_aligned": true
+}
