@@ -43,11 +43,13 @@ class RegimeFeatureEngine:
             pd.Series: Categorical volatility regime
         """
         if 'vol_risk' not in df.columns:
-            print("⚠️  vol_risk not found, using fallback volatility calculation")
-            # Fallback to basic volatility if vol_risk not available
-            vol_col = df.get('volatility', df.get('$realized_vol_6', 0.01))
-        else:
-            vol_col = df['vol_risk']
+            raise ValueError(
+                "vol_risk column not found in DataFrame. "
+                "This is a critical feature that must be provided by crypto_loader. "
+                "Check your data pipeline - do not proceed with fallback volatility measures."
+            )
+        
+        vol_col = df['vol_risk']
         
         # Calculate dynamic thresholds if not cached
         if self._vol_thresholds is None:
@@ -84,8 +86,11 @@ class RegimeFeatureEngine:
             pd.Series: Categorical sentiment regime
         """
         if '$fg_index' not in df.columns:
-            print("⚠️  $fg_index not found, using neutral sentiment")
-            return pd.Series('neutral', index=df.index, name='regime_sentiment')
+            raise ValueError(
+                "$fg_index column not found in DataFrame. "
+                "This is a critical sentiment feature that must be provided by crypto_loader. "
+                "Check your data pipeline - do not proceed with fallback sentiment measures."
+            )
         
         fg_index = df['$fg_index']
         
@@ -114,8 +119,11 @@ class RegimeFeatureEngine:
             pd.Series: Categorical dominance regime
         """
         if '$btc_dom' not in df.columns:
-            print("⚠️  $btc_dom not found, using balanced dominance")
-            return pd.Series('balanced', index=df.index, name='regime_dominance')
+            raise ValueError(
+                "$btc_dom column not found in DataFrame. "
+                "This is a critical dominance feature that must be provided by crypto_loader. "
+                "Check your data pipeline - do not proceed with fallback dominance measures."
+            )
         
         btc_dom = df['$btc_dom']
         

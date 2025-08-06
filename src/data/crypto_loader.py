@@ -72,7 +72,7 @@ class crypto_dataloader_optimized(QlibDataLoader):
                 'Std(Log($close / Ref($close, 1)), 6)',
                 
                 # ── Relative volatility (short/long)
-                'Std(Log($close / Ref($close, 1)), 5) / Std(Log($close / Ref($close, 1)), 20)', # 5 short / 20 long
+                'Std(Log($close / Ref($close, 1)), 5) / Std(Log($close / Ref($close, 1)), 20)', 
 
                 # ── Rolling price momentum for directional context
                 '$close / Ref($close, 5) - 1', # 5 hours
@@ -80,51 +80,49 @@ class crypto_dataloader_optimized(QlibDataLoader):
                 '$close / Ref($close, 25) - 1', # 25 hours
 
                 # ── High-volatility regime flag
-                "If(Std(Log($close / Ref($close, 1)), 5) / Std(Log($close / Ref($close, 1)), 20) > 1.25, 1, 0)", # 5 hours short / 20 hours long
+                "If(Std(Log($close / Ref($close, 1)), 5) / Std(Log($close / Ref($close, 1)), 20) > 1.25, 1, 0)", 
                 
-                # 180 days
-                'If(Std(Log($close / Ref($close, 1)), 6) > Quantile(Std(Log($close / Ref($close, 1)), 6), 180, 0.9), 1, 0)', 
-                'If(Std(Log($close / Ref($close, 1)), 6) > Quantile(Std(Log($close / Ref($close, 1)), 6), 180, 0.7), 1, 0)', 
-                'If(Std(Log($close / Ref($close, 1)), 6) < Quantile(Std(Log($close / Ref($close, 1)), 6), 180, 0.3), 1, 0)', 
-                'If(Std(Log($close / Ref($close, 1)), 6) < Quantile(Std(Log($close / Ref($close, 1)), 6), 180, 0.1), 1, 0)', 
-
-                'Std(Log($close / Ref($close, 1)), 6)',  #realized_vol_6
-                'Rank(Std(Log($close / Ref($close, 1)), 6), 180) / 180 * 10', # remove?
-                'Std(Log($close / Ref($close, 1)), 6) * Std(Log($close / Ref($close, 1)), 6)', #realized_vol_6
+                #'If(Std(Log($close / Ref($close, 1)), 6) > Quantile(Std(Log($close / Ref($close, 1)), 6), 180, 0.9), 1, 0)', 
+                #'If(Std(Log($close / Ref($close, 1)), 6) > Quantile(Std(Log($close / Ref($close, 1)), 6), 180, 0.7), 1, 0)', 
+                #'If(Std(Log($close / Ref($close, 1)), 6) < Quantile(Std(Log($close / Ref($close, 1)), 6), 180, 0.3), 1, 0)', 
+                #'If(Std(Log($close / Ref($close, 1)), 6) < Quantile(Std(Log($close / Ref($close, 1)), 6), 180, 0.1), 1, 0)', 
+                
+                'Std(Log($close / Ref($close, 1)), 6)',
+                'Rank(Std(Log($close / Ref($close, 1)), 6), 180) / 180 * 10',
+                'Std(Log($close / Ref($close, 1)), 6) * Std(Log($close / Ref($close, 1)), 6)',
                 '(Std(Log($close / Ref($close, 1)), 6) - Quantile(Std(Log($close / Ref($close, 1)), 6), 30, 0.01)) / (Quantile(Std(Log($close / Ref($close, 1)), 6), 30, 0.99) - Quantile(Std(Log($close / Ref($close, 1)), 6), 30, 0.01))',
                 'Std(Log($close / Ref($close, 1)), 6) - Ref(Std(Log($close / Ref($close, 1)), 6), 1)',
                 '(Std(Log($close / Ref($close, 1)), 6) - Ref(Std(Log($close / Ref($close, 1)), 6), 1)) * 2000'
             ]
 
             names += [
+                
+                # realized_vol_6
                 '$realized_vol_6', 
+
+                # ── Relative volatility (short/long)
                 '$relative_volatility_index', 
 
+                # ── Rolling price momentum for directional context
                 '$momentum_5', 
                 '$momentum_10', 
                 '$momentum_25',
-                
-                # 5 - 20 hours
+
+                # ── High-volatility regime flag
                 '$high_vol_flag', 
-
-                # 180 days
-                'vol_extreme_high', # "If(Std(Log($close / Ref($close, 1)), 6) > Quantile(Std(Log($close / Ref($close, 1)), 6), 168, 0.9), 1, 0)",  # vol_extreme_high
-                'vol_high', # "If(Std(Log($close / Ref($close, 1)), 6) > Quantile(Std(Log($close / Ref($close, 1)), 6), 168, 0.7), 1, 0)",  # vol_high
-                'vol_low', # "If(Std(Log($close / Ref($close, 1)), 6) < Quantile(Std(Log($close / Ref($close, 1)), 6), 168, 0.3), 1, 0)",  # vol_low
-                'vol_extreme_low', # "If(Std(Log($close / Ref($close, 1)), 6) < Quantile(Std(Log($close / Ref($close, 1)), 6), 168, 0.1), 1, 0)",  # vol_extreme_low
-
+                
+                # ── replaced by Regime
+                #'vol_extreme_high', # "If(Std(Log($close / Ref($close, 1)), 6) > Quantile(Std(Log($close / Ref($close, 1)), 6), 168, 0.9), 1, 0)", 
+                #'vol_high', # "If(Std(Log($close / Ref($close, 1)), 6) > Quantile(Std(Log($close / Ref($close, 1)), 6), 168, 0.7), 1, 0)", 
+                #'vol_low', # "If(Std(Log($close / Ref($close, 1)), 6) < Quantile(Std(Log($close / Ref($close, 1)), 6), 168, 0.3), 1, 0)", 
+                #'vol_extreme_low', # "If(Std(Log($close / Ref($close, 1)), 6) < Quantile(Std(Log($close / Ref($close, 1)), 6), 168, 0.1), 1, 0)", 
+                
                 'vol_raw', # "Std(Log($close / Ref($close, 1)), 6)"
-
-                # this is a decile?
-
                 'vol_raw_decile', # "Rank(Std(Log($close / Ref($close, 1)), 6), 180) / 180 * 10"
                 'vol_risk', # "Std(Log($close / Ref($close, 1)), 6) * Std(Log($close / Ref($close, 1)), 6)"
-
-                # should this be on the same 180 day basis?
                 'vol_scaled', # "(Std(Log($close / Ref($close, 1)), 6) - Quantile(Std(Log($close / Ref($close, 1)), 6), 30, 0.01)) / (Quantile(Std(Log($close / Ref($close, 1)), 6), 30, 0.99) - Quantile(Std(Log($close / Ref($close, 1)), 6), 30, 0.01))",
-
                 'vol_raw_momentum', # "Std(Log($close / Ref($close, 1)), 6) - Ref(Std(Log($close / Ref($close, 1)), 6), 1)"                 
-                'vol_momentum_scaled' # "(Std(Log($close / Ref($close, 1)), 6) - Ref(Std(Log($close / Ref($close, 1)), 6), 1)) * 2000",  # vol_momentum_scaled (strong signal)
+                'vol_momentum_scaled' # "(Std(Log($close / Ref($close, 1)), 6) - Ref(Std(Log($close / Ref($close, 1)), 6), 1)) * 2000", 
             ]
             
         if "price" in config:

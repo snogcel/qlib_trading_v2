@@ -52,21 +52,23 @@ class gdelt_dataloader_optimized(QlibDataLoader):
             'Std($btc_dom, 7)', 
             '($fg_index - Mean($fg_index, 14)) / Std($fg_index, 14)', 
             '($btc_dom - Mean($btc_dom, 14)) / Std($btc_dom, 14)', 
-            'If($fg_index > 80, 1, 0)', 
-            'If($fg_index < 20, 1, 0)', 
-            'If($btc_dom > 60, 1, 0)', 
-            'If($btc_dom < 40, 1, 0)']
+            #'If($fg_index > 80, 1, 0)', 
+            #'If($fg_index < 20, 1, 0)', 
+            #'If($btc_dom > 60, 1, 0)', 
+            #'If($btc_dom < 40, 1, 0)'
+        ]
+        
         names = [
-            '$fg_index', 
-            '$btc_dom', 
-            'fg_std_7d', 
-            'btc_std_7d', 
-            'fg_zscore_14d', 
-            'btc_zscore_14d', 
-            'fg_extreme_greed', 
-            'fg_extreme_fear', 
-            'btc_dom_high', 
-            'btc_dom_low'
+            '$fg_index', # $fg_index/100
+            '$btc_dom', # $btc_dom/100
+            'fg_std_7d', # Std($fg_index, 7)
+            'btc_std_7d', # Std($btc_dom, 7)
+            'fg_zscore_14d', # ($fg_index - Mean($fg_index, 14)) / Std($fg_index, 14)
+            'btc_zscore_14d', # ($btc_dom - Mean($btc_dom, 14)) / Std($btc_dom, 14)
+            #'fg_extreme_greed', # REPLACED WITH regime_features.py
+            #'fg_extreme_fear', # REPLACED WITH regime_features.py
+            #'btc_dom_high', # REPLACED WITH regime_features.py
+            #'btc_dom_low' # REPLACED WITH regime_features.py
         ]
         
         return fields, names

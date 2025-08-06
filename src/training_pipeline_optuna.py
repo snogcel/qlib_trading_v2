@@ -27,7 +27,6 @@ from src.features.position_sizing import AdvancedPositionSizer
 # TierLoggingCallback moved to RL execution folder
 from src.rl_execution.custom_tier_logging import TierLoggingCallback
 
-import kolo
 import optuna
 import lightgbm as lgbm
 
@@ -56,7 +55,6 @@ fit_end_time = None
 
 provider_uri = "/Projects/qlib_trading_v2/qlib_data/CRYPTO_DATA"
 
-
 SEED = 42
 MARKET = "all"
 BENCHMARK = "BTCUSDT"
@@ -64,6 +62,52 @@ EXP_NAME = "crypto_exp_101"
 FREQ = "day"
 
 qlib.init(provider_uri=provider_uri, region=REG_US)
+
+def cross_validation_fcn(df_train, model, early_stopping_flag=False):
+    """
+    Performs cross-validation on a given model using KFold and returns the average
+    mean squared error (MSE) score across all folds.
+
+    Parameters:
+    - X_train: the training data to use for cross-validation
+    - model: the machine learning model to use for cross-validation
+    - early_stopping_flag: a boolean flag to indicate whether early stopping should be used
+
+    Returns:
+    - model: the trained machine learning model
+    - mean_mse: the average MSE score across all folds
+    """
+    
+    tscv = TimeSeriesSplit(n_splits=5)
+    X, y = df_train["feature"], df_train["label"]
+
+    mse_list = []
+    for fold, (train_idx, val_idx) in enumerate(tscv.split(X)):
+        X_train, X_val = X.iloc[train_idx], X.iloc[val_idx]
+        y_train, y_val = y.iloc[train_idx], y.iloc[val_idx]
+
+        print(f"Fold {fold+1}: Train [{X_train.index[0]} to {X_train.index[-1]}], "
+            f"Valid [{X_val.index[0]} to {X_val.index[-1]}]")
+
+        # Train your model here
+        if early_stopping_flag:
+            # Use early stopping if enabled
+            model.fit(X_train, y_train, eval_set=[(X_val, y_val)],
+                      callbacks=[lgbm.early_stopping(stopping_rounds=100, verbose=True)])
+        else:
+            model.fit(X_train, y_train)
+            
+        # Make predictions on the validation set and calculate the MSE score
+        y_pred = model.predict(X_val)
+        y_pred_df = pd.DataFrame(y_pred)
+
+        y_pred_df.index = X_val.index
+
+        mse = MSE(y_val, y_pred_df)
+        mse_list.append(mse)
+        
+    # Return the trained model and the average MSE score
+    return model, np.mean(mse_list)
 
 def adaptive_entropy_coef(vol_scaled, base=0.005, min_coef=0.001, max_coef=0.02):
     """
@@ -111,7 +155,6 @@ def check_transform_proc(proc_l, fit_start_time, fit_end_time):
                 new_l.append(p)
         return new_l
 
-# TODO - Remove
 def prob_up_piecewise(row):
         q10, q50, q90 = row["q10"], row["q50"], row["q90"]
         if q90 <= 0:
@@ -266,6 +309,10 @@ def q50_regime_aware_signals(df, transaction_cost_bps=20, base_info_ratio=1.5):
     df['potential_loss'] = np.where(df['q50'] > 0, np.abs(df['q10']), df['q90'])
     
     # Calculate probability-weighted expected value
+    # Use existing prob_up (throw exception if missing)
+    if prob_up is None:
+        raise ValueError("prob_up cannot be None.")
+    
     df['expected_value'] = (df['prob_up'] * df['potential_gain'] - 
                            (1 - df['prob_up']) * df['potential_loss'])
     
@@ -334,7 +381,6 @@ def q50_regime_aware_signals(df, transaction_cost_bps=20, base_info_ratio=1.5):
     
     # Method 3: Combined approach - use expected value but with minimum signal strength
     min_signal_strength = df['abs_q50'].quantile(0.2)  # 20th percentile as minimum
-
     df['economically_significant_combined'] = (
         (df['expected_value'] > realistic_transaction_cost) & 
         (df['abs_q50'] > min_signal_strength)
@@ -369,7 +415,10 @@ def q50_regime_aware_signals(df, transaction_cost_bps=20, base_info_ratio=1.5):
     
     # Variance risk metrics
     df['signal_to_variance_ratio'] = df['abs_q50'] / np.maximum(df['vol_risk'], 0.0001)
-    df['variance_adjusted_signal'] = df['q50'] / np.sqrt(np.maximum(df['vol_risk'], 0.0001))   
+    df['variance_adjusted_signal'] = df['q50'] / np.sqrt(np.maximum(df['vol_risk'], 0.0001))
+    
+    # Keep legacy columns for compatibility
+    df["signal_rel"] = (df["abs_q50"] - df["signal_thresh_adaptive"]) / (df["signal_thresh_adaptive"] + 1e-12)
     
     # Print regime distribution
     print(f"🏛️ Variance-Based Regime Distribution:")
@@ -398,25 +447,6 @@ def get_decile_rank(value, thresholds):
             return i - 1
     return 9
 
-# =============================================================================
-# DEPRECATED FEATURES: vol_raw_decile system
-# =============================================================================
-# Date: 2025-08-04
-# Reason: Feature was disabled in pipeline but still referenced in tests/docs
-# Replacement: Use regime_volatility from RegimeFeatureEngine instead
-# 
-# The new regime system provides:
-# - regime_volatility: categorical (ultra_low, low, medium, high, extreme)  
-# - Better integration with sentiment and dominance regimes
-# - More stable thresholds based on vol_risk percentiles
-#
-# Migration: Replace vol_raw_decile usage with:
-#   from src.features.regime_features import RegimeFeatureEngine
-#   regime_engine = RegimeFeatureEngine()
-#   df['regime_volatility'] = regime_engine.calculate_regime_volatility(df)
-# =============================================================================
-
-# DEPRECATED: Static thresholds replaced by dynamic regime classification
 VOL_RAW_THRESHOLDS = [
     0.000143,   # 0th percentile
     0.001617,   # 10th percentile  
@@ -432,16 +462,7 @@ VOL_RAW_THRESHOLDS = [
 ]
 
 def get_vol_raw_decile(vol_raw_value):
-    """
-    DEPRECATED: Convert vol_raw value to decile rank (0-9)
-    
-    This function is no longer used in the active pipeline.
-    Use RegimeFeatureEngine.calculate_regime_volatility() instead.
-    
-    Migration example:
-        # OLD: vol_decile = get_vol_raw_decile(vol_raw_value)
-        # NEW: regime_volatility = regime_engine.calculate_regime_volatility(df)
-    """
+    """Convert vol_raw value to decile rank (0-9) - Updated for 6-day volatility"""
     for i, threshold in enumerate(VOL_RAW_THRESHOLDS[1:], 1):
         if vol_raw_value <= threshold:
             return i - 1
@@ -631,19 +652,6 @@ if __name__ == '__main__':
         }
     }
 
-    model = init_instance_by_config(task_config["model"])
-    dataset = init_instance_by_config(task_config["dataset"])
-
-    # prepare segments
-    df_train, df_valid, df_test = dataset.prepare(
-        segments=["train", "valid", "test"], col_set=["feature", "label"], data_key=DataHandlerLP.DK_L
-    )
-
-    # split data
-    X_train, y_train = df_train["feature"], df_train["label"]
-    X_val, y_val = df_valid["feature"], df_valid["label"]
-    #X_test, y_test = df_test["feature"], df_test["label"]
-
     # define the objective function for Optuna optimization
     def objective(trial):
 
@@ -708,6 +716,19 @@ if __name__ == '__main__':
             
         return mean_score
 
+    model = init_instance_by_config(task_config["model"])
+    dataset = init_instance_by_config(task_config["dataset"])
+
+    # prepare segments
+    df_train, df_valid, df_test = dataset.prepare(
+        segments=["train", "valid", "test"], col_set=["feature", "label"], data_key=DataHandlerLP.DK_L
+    )
+
+    # split data
+    X_train, y_train = df_train["feature"], df_train["label"]
+    X_val, y_val = df_valid["feature"], df_valid["label"]
+    #X_test, y_test = df_test["feature"], df_test["label"]
+    
     model.fit(dataset=dataset)
     preds = model.predict(dataset, "valid")    
 
@@ -784,21 +805,18 @@ if __name__ == '__main__':
     print(f"Total features in df_all: {len(df_all.columns)}")
     print(f"GDELT features found: {[col for col in df_all.columns if 'cwt_' in col]}")
     print(f"Technical indicators found: {[col for col in df_all.columns if any(x in col for x in ['ROC', 'STD', 'OPEN', 'VOLUME'])]}")
-
-    # Standalone functions for now to allow pipeline clarity
-    df_all["prob_up"] = df_all.apply(prob_up_piecewise, axis=1)
-
+    
     # build interaction / regime signals    
     df_all = q50_regime_aware_signals(df_all)
 
+    # Standalone functions for now to allow pipeline clarity
+    df_all["prob_up"] = df_all.apply(prob_up_piecewise, axis=1)
     df_all["signal_tier"] = df_all.apply(signal_classification, axis=1)    
     df_all["kelly_position_size"] = df_all.apply(kelly_sizing, axis=1)    
     
-    # signal_thresh is a suspect variable
     alpha = 1.0  # controls “steepness”
     cap = 3.0
-    signal_rel = (df_all["abs_q50"] - df_all["signal_thresh_adaptive"]) / (df_all["signal_thresh_adaptive"] + 1e-12)
-    signal_tanh = np.tanh(signal_rel.clip(-cap, cap) / alpha)
+    df_all["signal_tanh"] = np.tanh(df_all["signal_rel"].clip(-cap, cap) / alpha)
     
     # Generate signals using pure Q50 logic with regime awareness
     q50 = df_all["q50"]
@@ -872,8 +890,8 @@ if __name__ == '__main__':
         df_all.drop(columns_to_drop, axis=1, inplace=True)
         print(f"Dropped columns: {columns_to_drop}")
     
-    df_all.to_csv("./df_all_macro_analysis.csv")
+    df_all.to_csv("./temp/df_all_macro_analysis.csv")
 
-    df_cleaned = df_all.dropna(subset=["vol_risk","vol_scaled","vol_raw_momentum","signal_thresh_adaptive","enhanced_info_ratio"])
+    df_cleaned = df_all.dropna(subset=["vol_risk","vol_scaled","vol_raw_momentum","signal_thresh_adaptive","signal_tanh","enhanced_info_ratio"])
 
     df_cleaned.to_pickle("./data3/macro_features.pkl") # pickled features used in "train_meta_wrapper.py" process

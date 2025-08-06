@@ -18,10 +18,81 @@ class AdvancedPositionSizer:
         self.historical_returns = []
         self.historical_predictions = []
     
+    def prob_up_piecewise(self, q10: float, q50: float, q90: float) -> float:
+        """
+        Calculate probability of upside movement using your PPO logic
+        Exact implementation from ppo_sweep_optuna_tuned.py
+        """
+        if q90 <= 0:
+            return 0.0
+        if q10 >= 0:
+            return 1.0
+        # 0 lies between q10 and q50
+        if q10 < 0 <= q50:
+            cdf0 = 0.10 + 0.40 * (0 - q10) / (q50 - q10)
+            return 1 - cdf0
+        # 0 lies between q50 and q90
+        cdf0 = 0.50 + 0.40 * (0 - q50) / (q90 - q50)
+        return 1 - cdf0
+
+    def quantiles_to_probabilities(self, q10: float, q50: float, q90: float,
+                                  spread_thresh: float = None) -> Tuple[float, float, float]:
+        """
+        Convert quantile predictions to [short_prob, neutral_prob, long_prob]
+        Based on validated prob_up_piecewise logic with improved spread handling
+        
+        Args:
+            q10, q50, q90: Quantile predictions
+            spread_thresh: 90th percentile of historical spreads (validated static threshold)
+        """
+        # Calculate probability of upside movement (exact match with training script)
+        if q90 <= 0:
+            prob_up = 0.0
+        elif q10 >= 0:
+            prob_up = 1.0
+        elif q10 < 0 <= q50:
+            cdf0 = 0.10 + 0.40 * (0 - q10) / (q50 - q10)
+            prob_up = 1 - cdf0
+        else:
+            cdf0 = 0.50 + 0.40 * (0 - q50) / (q90 - q50)
+            prob_up = 1 - cdf0
+        
+        prob_down = 1 - prob_up
+        
+        # Use spread for neutral probability weighting
+        spread = q90 - q10
+        
+        # Improved spread normalization based on validation results
+        if spread_thresh is not None and spread_thresh > 0:
+            # Use validated static 90th percentile threshold
+            spread_normalized = min(spread / spread_thresh, 1.0)
+        else:
+            # Dynamic fallback: use recent spread statistics if no threshold provided
+            # This is more robust than a fixed 0.02 threshold
+            spread_normalized = min(spread / max(spread * 2, 0.01), 1.0)
+        
+        # Neutral weight: higher spread = more uncertainty = higher neutral probability
+        neutral_weight = spread_normalized * 0.3  # max 30% neutral
+        
+        # Redistribute probabilities (ensure they sum to 1.0)
+        prob_up_adj = prob_up * (1 - neutral_weight)
+        prob_down_adj = prob_down * (1 - neutral_weight)
+        prob_neutral = neutral_weight
+        
+        # Validation: ensure probabilities sum to 1.0 (within floating point precision)
+        total_prob = prob_up_adj + prob_down_adj + prob_neutral
+        if abs(total_prob - 1.0) > 1e-10:
+            # Normalize if there's a significant deviation
+            prob_up_adj /= total_prob
+            prob_down_adj /= total_prob
+            prob_neutral /= total_prob
+        
+        return prob_down_adj, prob_neutral, prob_up_adj
+
     def kelly_criterion_sizing(self, q10: float, q50: float, q90: float, 
                               tier_confidence: float, historical_data: pd.DataFrame = None) -> float:
         """
-        Kelly Criterion: Optimal position size based on win probability and payoff ratio
+        Kelly Criterion: Optimal position size based on win probability and payoff ratio -- a great example of why validation is good
         
         Kelly % = (bp - q) / b
         where:

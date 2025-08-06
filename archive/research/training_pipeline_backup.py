@@ -21,13 +21,15 @@ from src.data.nested_data_loader import CustomNestedDataLoader
 from src.models.signal_environment import SignalEnv
 from src.models.multi_quantile import QuantileLGBModel, MultiQuantileModel
 from src.data.crypto_loader import crypto_dataloader_optimized as crypto_dataloader
-from src.data.gdelt_loader import gdelt_dataloader_optimized as gdelt_dataloader
 from src.features.position_sizing import AdvancedPositionSizer
+
+
+# GDELT functionality now in gdelt_loader.py
+from src.data.gdelt_loader import gdelt_dataloader_optimized as gdelt_dataloader
 
 # TierLoggingCallback moved to RL execution folder
 from src.rl_execution.custom_tier_logging import TierLoggingCallback
 
-import kolo
 import optuna
 import lightgbm as lgbm
 
@@ -64,6 +66,54 @@ EXP_NAME = "crypto_exp_101"
 FREQ = "day"
 
 qlib.init(provider_uri=provider_uri, region=REG_US)
+
+
+
+def cross_validation_fcn(df_train, model, early_stopping_flag=False):
+    """
+    Performs cross-validation on a given model using KFold and returns the average
+    mean squared error (MSE) score across all folds.
+
+    Parameters:
+    - X_train: the training data to use for cross-validation
+    - model: the machine learning model to use for cross-validation
+    - early_stopping_flag: a boolean flag to indicate whether early stopping should be used
+
+    Returns:
+    - model: the trained machine learning model
+    - mean_mse: the average MSE score across all folds
+    """
+    
+    tscv = TimeSeriesSplit(n_splits=5)
+    X, y = df_train["feature"], df_train["label"]
+
+    mse_list = []
+    for fold, (train_idx, val_idx) in enumerate(tscv.split(X)):
+        X_train, X_val = X.iloc[train_idx], X.iloc[val_idx]
+        y_train, y_val = y.iloc[train_idx], y.iloc[val_idx]
+
+        print(f"Fold {fold+1}: Train [{X_train.index[0]} to {X_train.index[-1]}], "
+            f"Valid [{X_val.index[0]} to {X_val.index[-1]}]")
+
+        # Train your model here
+        if early_stopping_flag:
+            # Use early stopping if enabled
+            model.fit(X_train, y_train, eval_set=[(X_val, y_val)],
+                      callbacks=[lgbm.early_stopping(stopping_rounds=100, verbose=True)])
+        else:
+            model.fit(X_train, y_train)
+            
+        # Make predictions on the validation set and calculate the MSE score
+        y_pred = model.predict(X_val)
+        y_pred_df = pd.DataFrame(y_pred)
+
+        y_pred_df.index = X_val.index
+
+        mse = MSE(y_val, y_pred_df)
+        mse_list.append(mse)
+        
+    # Return the trained model and the average MSE score
+    return model, np.mean(mse_list)
 
 def adaptive_entropy_coef(vol_scaled, base=0.005, min_coef=0.001, max_coef=0.02):
     """
@@ -138,6 +188,7 @@ def kelly_sizing(row) -> float:
     spread = q90 - q10
     abs_q50 = abs(q50)
 
+    # prob_up = self.prob_up_piecewise(q10, q50, q90)
     if prob_up is None:
         raise ValueError("prob_up cannot be None.")
     
@@ -191,14 +242,35 @@ def kelly_sizing(row) -> float:
 
     return max(0.001, min(final_kelly, max_position_pct))
 
+def ensure_vol_risk_available(df):
+    """
+    Ensure vol_risk is available - use existing feature from crypto_loader_optimized
+    vol_risk = Std(Log(close/close_prev), 6)² (VARIANCE, not std dev)
+    This represents the squared volatility = variance, which is key for risk measurement
+    """
+    if 'vol_risk' not in df.columns:
+        print("⚠️  vol_risk not found in data - this should come from crypto_loader_optimized")
+        print("   vol_risk = Std(Log($close / Ref($close, 1)), 6) * Std(Log($close / Ref($close, 1)), 6)")
+        
+        # Fallback calculation if not available (but this shouldn't happen)
+        if 'vol_raw' in df.columns:
+            df['vol_risk'] = df['vol_raw'] ** 2  # Convert std dev to variance
+            print("   ✅ Created vol_risk from vol_raw (vol_raw²)")
+        else:
+            print("   ❌ Cannot create vol_risk - missing vol_raw")
+            df['vol_risk'] = 0.0001  # Small default value
+    else:
+        print(f"✅ vol_risk available from crypto_loader_optimized ({df['vol_risk'].notna().sum():,} valid values)")
+    
+    return df
+
 def identify_market_regimes(df):
     """
     Identify market regimes using volatility and momentum features
     Creates regime interaction features for enhanced signal quality
     """
     # Ensure we have vol_risk (variance measure from crypto_loader_optimized)
-    if df['vol_risk'] is None:
-        raise ValueError("vol_risk cannot be None.")    
+    df = ensure_vol_risk_available(df)
     
     # Volatility regimes (using vol_risk for consistency)
     df['vol_regime_low'] = (df['vol_risk'] < 0.3).astype(int)
@@ -266,6 +338,11 @@ def q50_regime_aware_signals(df, transaction_cost_bps=20, base_info_ratio=1.5):
     df['potential_loss'] = np.where(df['q50'] > 0, np.abs(df['q10']), df['q90'])
     
     # Calculate probability-weighted expected value
+    # Use existing prob_up (already calculated with prob_up_piecewise)
+    if 'prob_up' not in df.columns:
+        print("⚠️  prob_up not found, calculating...")
+        df['prob_up'] = df.apply(prob_up_piecewise, axis=1)
+    
     df['expected_value'] = (df['prob_up'] * df['potential_gain'] - 
                            (1 - df['prob_up']) * df['potential_loss'])
     
@@ -334,7 +411,6 @@ def q50_regime_aware_signals(df, transaction_cost_bps=20, base_info_ratio=1.5):
     
     # Method 3: Combined approach - use expected value but with minimum signal strength
     min_signal_strength = df['abs_q50'].quantile(0.2)  # 20th percentile as minimum
-
     df['economically_significant_combined'] = (
         (df['expected_value'] > realistic_transaction_cost) & 
         (df['abs_q50'] > min_signal_strength)
@@ -369,7 +445,10 @@ def q50_regime_aware_signals(df, transaction_cost_bps=20, base_info_ratio=1.5):
     
     # Variance risk metrics
     df['signal_to_variance_ratio'] = df['abs_q50'] / np.maximum(df['vol_risk'], 0.0001)
-    df['variance_adjusted_signal'] = df['q50'] / np.sqrt(np.maximum(df['vol_risk'], 0.0001))   
+    df['variance_adjusted_signal'] = df['q50'] / np.sqrt(np.maximum(df['vol_risk'], 0.0001))
+    
+    # Keep legacy columns for compatibility
+    df["signal_rel"] = (df["abs_q50"] - df["signal_thresh_adaptive"]) / (df["signal_thresh_adaptive"] + 1e-12)
     
     # Print regime distribution
     print(f"🏛️ Variance-Based Regime Distribution:")
@@ -398,25 +477,6 @@ def get_decile_rank(value, thresholds):
             return i - 1
     return 9
 
-# =============================================================================
-# DEPRECATED FEATURES: vol_raw_decile system
-# =============================================================================
-# Date: 2025-08-04
-# Reason: Feature was disabled in pipeline but still referenced in tests/docs
-# Replacement: Use regime_volatility from RegimeFeatureEngine instead
-# 
-# The new regime system provides:
-# - regime_volatility: categorical (ultra_low, low, medium, high, extreme)  
-# - Better integration with sentiment and dominance regimes
-# - More stable thresholds based on vol_risk percentiles
-#
-# Migration: Replace vol_raw_decile usage with:
-#   from src.features.regime_features import RegimeFeatureEngine
-#   regime_engine = RegimeFeatureEngine()
-#   df['regime_volatility'] = regime_engine.calculate_regime_volatility(df)
-# =============================================================================
-
-# DEPRECATED: Static thresholds replaced by dynamic regime classification
 VOL_RAW_THRESHOLDS = [
     0.000143,   # 0th percentile
     0.001617,   # 10th percentile  
@@ -432,20 +492,151 @@ VOL_RAW_THRESHOLDS = [
 ]
 
 def get_vol_raw_decile(vol_raw_value):
-    """
-    DEPRECATED: Convert vol_raw value to decile rank (0-9)
-    
-    This function is no longer used in the active pipeline.
-    Use RegimeFeatureEngine.calculate_regime_volatility() instead.
-    
-    Migration example:
-        # OLD: vol_decile = get_vol_raw_decile(vol_raw_value)
-        # NEW: regime_volatility = regime_engine.calculate_regime_volatility(df)
-    """
+    """Convert vol_raw value to decile rank (0-9) - Updated for 6-day volatility"""
     for i, threshold in enumerate(VOL_RAW_THRESHOLDS[1:], 1):
         if vol_raw_value <= threshold:
             return i - 1
     return 9
+
+# def classify_signal_corrected(row):
+#     """
+#     Simplified signal classification based on validation results
+#     """
+#     # Only use proven predictive features
+#     abs_q50 = row.get("abs_q50", 0)
+
+#     signal_thresh = row.get("signal_thresh_adaptive", 0.01)
+#     prob_up = row.get("prob_up", 0.5)
+    
+#     # Base signal strength (validated)
+#     if abs_q50 >= signal_thresh:
+#         base_tier = 3.0
+#     elif abs_q50 >= signal_thresh * 0.75:
+#         base_tier = 2.0
+#     elif abs_q50 >= signal_thresh * 0.5:
+#         base_tier = 1.0
+#     else:
+#         base_tier = 0.0
+    
+#     # Directional confidence boost
+#     prob_confidence = abs(prob_up - 0.5) * 2  # 0 to 1 scale
+#     confidence_multiplier = 0.8 + (prob_confidence * 0.4)  # 0.8 to 1.2 range
+    
+#     return base_tier * confidence_multiplier
+
+
+# # Helper function to add vol_raw features to your dataframe (UPDATED for optimized loader)
+# def add_vol_raw_features(df):
+#     """
+#     Add vol_raw decile features to dataframe
+#     Compatible with optimized crypto loader
+#     """
+    
+#     # Check if vol_raw already exists (from optimized loader)
+#     if 'vol_raw' not in df.columns:
+#         # Fallback: use $realized_vol_6 if vol_raw not available (optimized loader uses vol_6)
+#         if '$realized_vol_6' in df.columns:
+#             df['vol_raw'] = df['$realized_vol_6']
+#         elif '$realized_vol_3' in df.columns:
+#             df['vol_raw'] = df['$realized_vol_3']
+#         else:
+#             print("Warning: No volatility column found for vol_raw")
+#             return df
+    
+#     # Check if vol_raw_decile already exists (from optimized loader)
+#     if 'vol_raw_decile' not in df.columns:
+#         df['vol_raw_decile'] = df['vol_raw'].apply(get_vol_raw_decile)
+    
+#     # Check if regime flags already exist (from optimized loader)
+#     if 'vol_extreme_high' not in df.columns:
+#         df['vol_extreme_high'] = (df['vol_raw_decile'] >= 8).astype(int)
+#     if 'vol_high' not in df.columns:
+#         df['vol_high'] = (df['vol_raw_decile'] >= 6).astype(int)
+#     if 'vol_low' not in df.columns:
+#         df['vol_low'] = (df['vol_raw_decile'] <= 2).astype(int)
+#     if 'vol_extreme_low' not in df.columns:
+#         df['vol_extreme_low'] = (df['vol_raw_decile'] <= 1).astype(int)
+    
+#     # Check if vol_risk already exists (from optimized loader)
+#     if 'vol_risk' not in df.columns:
+#         # Use $realized_vol_6 instead of $realized_vol_3 (which was removed in optimization)
+#         vol_col = '$realized_vol_6' if '$realized_vol_6' in df.columns else 'vol_raw'
+        
+#         rolling_window = 30
+#         q_low = df[vol_col].rolling(rolling_window).quantile(0.01)
+#         q_high = df[vol_col].rolling(rolling_window).quantile(0.99)
+#         df['vol_risk'] = ((df[vol_col] - q_low.shift(1)) / 
+#                          (q_high.shift(1) - q_low.shift(1))).clip(0.0, 1.0)
+    
+#     # Check if vol_raw_momentum already exists (from optimized loader)
+#     if 'vol_raw_momentum' not in df.columns:
+#         df['vol_raw_momentum'] = df['vol_raw'].pct_change(periods=3)
+    
+#     return df
+
+def classify_signal_with_vol_raw_deciles(row):
+    """
+    Signal classification using optimal volatility insights
+    """
+    # Primary signal components (validated)
+    abs_q50 = row.get("abs_q50", 0)
+    signal_thresh = row.get("signal_thresh_adaptive", 0.01)
+    prob_up = row.get("prob_up", 0.5)
+    
+    # Use raw volatility for regime detection (better predictor)
+    vol_raw = row.get("vol_raw", row.get("$realized_vol_3", 0.01))
+    vol_scaled = row.get("vol_scaled", row.get("vol_risk", 0.3))  # For position sizing (bounded 0-1)
+    vol_decile = row.get("vol_raw_decile", -1)
+   
+    # Base signal strength
+    if abs_q50 >= signal_thresh:
+        base_tier = 3.0
+    elif abs_q50 >= signal_thresh * 0.8:
+        base_tier = 2.0
+    elif abs_q50 >= signal_thresh * 0.6:
+        base_tier = 1.0
+    else:
+        base_tier = 0.0
+    
+    # Volatility regime adjustments using deciles
+    if vol_decile >= 8:  # Top 20% volatility (deciles 8-9)
+        vol_regime = 'extreme_high'
+        vol_multiplier = 1.3 if base_tier >= 2.0 else 0.7  # Boost strong signals, reduce weak ones
+    elif vol_decile >= 6:  # High volatility (deciles 6-7)
+        vol_regime = 'high'
+        vol_multiplier = 1.15 if base_tier >= 2.0 else 0.85
+    elif vol_decile >= 4:  # Medium-high volatility (deciles 4-5)
+        vol_regime = 'medium_high'
+        vol_multiplier = 1.05 if base_tier >= 2.0 else 0.95
+    elif vol_decile >= 2:  # Medium-low volatility (deciles 2-3)
+        vol_regime = 'medium_low'
+        vol_multiplier = 1.0  # Neutral
+    else:  # Low volatility (deciles 0-1)
+        vol_regime = 'low'
+        vol_multiplier = 0.9  # Slightly reduce all signals in low vol
+    
+    # Directional confidence
+    prob_confidence = abs(prob_up - 0.5) * 2
+    confidence_multiplier = 0.9 + (prob_confidence * 0.2)
+
+    # Minor boost from signal_tanh (only if it adds value)
+    #if base_tier > 0:
+    #    tanh_boost = 1.0 + (signal_tanh * 0.05)  # Very small adjustment
+    #    return base_tier * tanh_boost
+    
+    # return base_tier
+
+    final_tier = base_tier * vol_multiplier * confidence_multiplier
+
+    # print(f"final_tier: {final_tier}, abs_q50: {abs_q50}, signal_thresh: {signal_thresh}, vol_decile: {vol_decile}, base_tier: {base_tier}, vol_multiplier: {vol_multiplier}, confidence_multiplier: {confidence_multiplier}")    
+    
+    return {
+        'signal_tier': round(final_tier * 10) / 10,
+        'vol_regime': vol_regime,
+        'vol_decile': vol_decile,
+        'vol_multiplier': vol_multiplier
+    }
+
 
 def signal_classification(row):
     """
@@ -463,6 +654,7 @@ def signal_classification(row):
         return 1  # Weak signal
     else:
         return 0  # No signal
+
 
 def quantile_loss(y_true, y_pred, quantile):
     # Step 1: Ensure both are Series or DataFrames with matching structure
@@ -485,6 +677,7 @@ def quantile_loss(y_true, y_pred, quantile):
     #print(f"Q90 empirical coverage: {coverage:.2%}")
 
     return np.mean(np.maximum(quantile * errors, (quantile - 1) * errors)), coverage
+
 
 if __name__ == '__main__': 
 
@@ -556,31 +749,34 @@ if __name__ == '__main__':
         "kwargs": handler_config,
     }
 
-    CORE_LGBM_PARAMS = {
+    GENERIC_LGBM_PARAMS = {
+        # Core quantile settings
         "objective": "quantile",
         "metric": ["l1", "l2"], # , "l2", "l1" # "rmse"
         "boosting_type": "gbdt",
         "device": "cpu",
         "verbose": -1,
         "random_state": 42,
-        "early_stopping_rounds": 50,
-        "num_boost_round": 2250,         # Let early stopping decide
-        "seed": SEED
-    }
-
-    GENERIC_LGBM_PARAMS = {       
+        
         # Conservative learning settings for feature exploration
-        "learning_rate": 0.05,           # Moderate learning rate
-        "num_leaves": 64,                # Balanced complexity
-        "max_depth": 8,                  # Reasonable depth for GDELT features
+        # "learning_rate": 0.05,           # Moderate learning rate
+        # "num_leaves": 64,                # Balanced complexity
+        # "max_depth": 8,                  # Reasonable depth for GDELT features
         
         # Regularization (moderate to prevent overfitting)
-        "lambda_l1": 0.1,
-        "lambda_l2": 0.1,
-        "min_data_in_leaf": 20,
-        "feature_fraction": 0.8,         # Use 80% of features per tree
-        "bagging_fraction": 0.8,         # Use 80% of data per iteration
-        "bagging_freq": 5,
+        # "lambda_l1": 0.1,
+        # "lambda_l2": 0.1,
+        # "min_data_in_leaf": 20,
+        # "feature_fraction": 0.8,         # Use 80% of features per tree
+        # "bagging_fraction": 0.8,         # Use 80% of data per iteration
+        # "bagging_freq": 5,
+        
+        # Early stopping
+        "early_stopping_rounds": 50,
+        "num_boost_round": 2250,         # Let early stopping decide
+
+        # Set seed for reproducibility
+        "seed": SEED
     }
 
     multi_quantile_params = {
@@ -588,10 +784,57 @@ if __name__ == '__main__':
         # 0.5: {'learning_rate': 0.02753370821225369, 'max_depth': -1, 'lambda_l1': 0.1, 'lambda_l2': 0.1, **GENERIC_LGBM_PARAMS},
         # 0.9: {'learning_rate': 0.09355380738420341, 'max_depth': 10, 'num_leaves': 249, 'lambda_l1': 0.1, 'lambda_l2': 0.1, **GENERIC_LGBM_PARAMS}
 
-        0.1: {'learning_rate': 0.026, 'max_depth': 7, **CORE_LGBM_PARAMS},
-        0.5: {'learning_rate': 0.027, 'max_depth': 7, **CORE_LGBM_PARAMS},                
-        0.9: {'learning_rate': 0.028, 'max_depth': 7, **CORE_LGBM_PARAMS} 
+        0.1: {'learning_rate': 0.026, 'max_depth': 7, **GENERIC_LGBM_PARAMS},
+        0.5: {'learning_rate': 0.027, 'max_depth': 7, **GENERIC_LGBM_PARAMS},                
+        0.9: {'learning_rate': 0.028, 'max_depth': 7, **GENERIC_LGBM_PARAMS} 
     }
+
+    # "lgb_params": {
+    #     0.1: {"learning_rate": 0.08971845032956545, "max_depth": 3, "n_estimators": 953, "seed": SEED},
+    #     0.5: {"learning_rate": 0.022554447458683766, "max_depth": 5, "n_estimators": 556, "seed": SEED},
+    #     0.9: {"learning_rate": 0.018590766014390355, "max_depth": 4, "n_estimators": 333, "seed": SEED}
+    # }
+
+    # print(multi_quantile_params[0.1])
+
+    #"lgb_params": {
+    #    0.1: {'learning_rate': 0.03915802868187673, 'colsample_bytree': 0.6224232548522113, 'subsample': 0.7322459139253197, 'lambda_l1': 6.957072141326349, 'lambda_l2': 0.004366116342801104, 'max_depth': 10, 'seed': SEED},
+    #    0.5: {'learning_rate': 0.08751145729062904, 'colsample_bytree': 0.5897687601362188, 'subsample': 0.754061620932527, 'lambda_l1': 1.9808527398597983e-06, 'lambda_l2': 2.91987558633637e-05, 'max_depth': 10, 'seed': SEED},
+    #    0.9: {'learning_rate': 0.028047164919345058, 'colsample_bytree': 0.841009708338563, 'subsample': 0.6210307287531586, 'lambda_l1': 2.9139063969227813e-08, 'lambda_l2': 6.363456739796053, 'max_depth': 10, 'seed': SEED}
+    #}
+
+    # 0.1 - Best hyperparameters: {'learning_rate': 0.04083809126843124, 'max_depth': 10, 'num_leaves': 224}
+    # 0.1 - Best hyperparameters: {'learning_rate': 0.05628507997416036, 'max_depth': 10, 'num_leaves': 163}
+    # model params:  {'boosting_type': 'gbdt', 'class_weight': None, 'colsample_bytree': 1.0, 'importance_type': 'split', 'learning_rate': 0.04083809126843124, 'max_depth': 10, 'min_child_samples': 20, 'min_child_weight': 0.001, 'min_split_gain': 0.0, 'n_estimators': 100, 'n_jobs': None, 'num_leaves': 224, 'objective': None, 'random_state': None, 'reg_alpha': 0.0, 'reg_lambda': 0.0, 'subsample': 1.0, 'subsample_for_bin': 200000, 'subsample_freq': 0}
+    # model params:  {'boosting_type': 'gbdt', 'class_weight': None, 'colsample_bytree': 1.0, 'importance_type': 'split', 'learning_rate': 0.05628507997416036, 'max_depth': -1, 'min_child_samples': 20, 'min_child_weight': 0.001, 'min_split_gain': 0.0, 'n_estimators': 100, 'n_jobs': None, 'num_leaves': 163, 'objective': None, 'random_state': None, 'reg_alpha': 0.0, 'reg_lambda': 0.0, 'subsample': 1.0, 'subsample_for_bin': 200000, 'subsample_freq': 0}
+
+    # 0.1 - Best hyperparameters: {'lambda_l1': 4.511969685016852, 'lambda_l2': 0.0006936273081692159}
+
+    # 0.5 - Best hyperparameters: {'learning_rate': 0.022341989097031445, 'max_depth': 6, 'num_leaves': 197}
+    # 0.5 - Best hyperparameters: {'learning_rate': 0.02753370821225369, 'max_depth': 6, 'num_leaves': 185}
+    # model params:  {'boosting_type': 'gbdt', 'class_weight': None, 'colsample_bytree': 1.0, 'importance_type': 'split', 'learning_rate': 0.022341989097031445, 'max_depth': 6, 'min_child_samples': 20, 'min_child_weight': 0.001, 'min_split_gain': 0.0, 'n_estimators': 100, 'n_jobs': None, 'num_leaves': 197, 'objective': None, 'random_state': None, 'reg_alpha': 0.0, 'reg_lambda': 0.0, 'subsample': 1.0, 'subsample_for_bin': 200000, 'subsample_freq': 0}
+    # model params:  {'boosting_type': 'gbdt', 'class_weight': None, 'colsample_bytree': 1.0, 'importance_type': 'split', 'learning_rate': 0.02753370821225369, 'max_depth': -1, 'min_child_samples': 20, 'min_child_weight': 0.001, 'min_split_gain': 0.0, 'n_estimators': 100, 'n_jobs': None, 'num_leaves': 185, 'objective': None, 'random_state': None, 'reg_alpha': 0.0, 'reg_lambda': 0.0, 'subsample': 1.0, 'subsample_for_bin': 200000, 'subsample_freq': 0}
+
+    # 0.9 - Best hyperparameters: {'learning_rate': 0.0785666821118603, 'max_depth': 10, 'num_leaves': 161}. Best is trial 108 with value: 8.212406822184678e-05.
+    # 0.9 - Best hyperparameters: {'learning_rate': 0.09355380738420341, 'max_depth': 10, 'num_leaves': 249}
+    # 0.9 - Best hyperparameters: {'learning_rate': 0.10239714752158131, 'max_depth': 10, 'num_leaves': 203}
+
+
+    # Best hyperparameters: {'learning_rate': 0.060555113429817814, 'colsample_bytree': 0.7214813020361056, 'subsample': 0.7849919729082881, 'lambda_l1': 8.722794281828277e-05, 'lambda_l2': 3.220667556916701e-05, 'max_depth': 10, 'num_leaves': 224}
+    # Best MSE: 0.0001
+    # Number of finished trials:  100
+    # Best trial:
+    # Value: 8.446865714285136e-05
+    # Params:
+    #     learning_rate: 0.060555113429817814
+    #     colsample_bytree: 0.7214813020361056
+    #     subsample: 0.7849919729082881
+    #     lambda_l1: 8.722794281828277e-05
+    #     lambda_l2: 3.220667556916701e-05
+    #     max_depth: 10
+    #     num_leaves: 224
+    # model params:  {'boosting_type': 'gbdt', 'class_weight': None, 'colsample_bytree': 0.7214813020361056, 'importance_type': 'split', 'learning_rate': 0.060555113429817814, 'max_depth': 10, 'min_child_samples': 20, 'min_child_weight': 0.001, 'min_split_gain': 0.0, 'n_estimators': 100, 'n_jobs': None, 'num_leaves': 224, 'objective': None, 'random_state': None, 'reg_alpha': 0.0, 'reg_lambda': 0.0, 'subsample': 0.7849919729082881, 'subsample_for_bin': 200000, 'subsample_freq': 0, 'lambda_l1': 8.722794281828277e-05, 'lambda_l2': 3.220667556916701e-05}
+
 
     # finalized model after tuning
     task_config = {        
@@ -630,19 +873,6 @@ if __name__ == '__main__':
             ]
         }
     }
-
-    model = init_instance_by_config(task_config["model"])
-    dataset = init_instance_by_config(task_config["dataset"])
-
-    # prepare segments
-    df_train, df_valid, df_test = dataset.prepare(
-        segments=["train", "valid", "test"], col_set=["feature", "label"], data_key=DataHandlerLP.DK_L
-    )
-
-    # split data
-    X_train, y_train = df_train["feature"], df_train["label"]
-    X_val, y_val = df_valid["feature"], df_valid["label"]
-    #X_test, y_test = df_test["feature"], df_test["label"]
 
     # define the objective function for Optuna optimization
     def objective(trial):
@@ -684,7 +914,8 @@ if __name__ == '__main__':
             "lambda_l1": trial.suggest_loguniform("lambda_l1", 1e-8, 10.0),
             "lambda_l2": trial.suggest_loguniform("lambda_l2", 1e-8, 10.0),
             "max_depth": trial.suggest_int("max_depth", 4, 10),
-            "num_leaves": trial.suggest_int("num_leaves", 20, 512),           
+            "num_leaves": trial.suggest_int("num_leaves", 20, 512),
+            
             # "max_depth": trial.suggest_int("max_depth", 4, 10),
            
 
@@ -708,10 +939,23 @@ if __name__ == '__main__':
             
         return mean_score
 
+    model = init_instance_by_config(task_config["model"])
+    dataset = init_instance_by_config(task_config["dataset"])
+
+    # prepare segments
+    df_train, df_valid, df_test = dataset.prepare(
+        segments=["train", "valid", "test"], col_set=["feature", "label"], data_key=DataHandlerLP.DK_L
+    )
+
+    # split data
+    X_train, y_train = df_train["feature"], df_train["label"]
+    X_val, y_val = df_valid["feature"], df_valid["label"]
+    #X_test, y_test = df_test["feature"], df_test["label"]
+
     model.fit(dataset=dataset)
+
     preds = model.predict(dataset, "valid")    
 
-    # Calculate feature importance
     feat_importance_high = model.models[0.9].get_feature_importance(importance_type='gain')    
     feature_names_high = model.models[0.9].model.feature_name()
 
@@ -721,19 +965,28 @@ if __name__ == '__main__':
     feat_importance_low = model.models[0.1].get_feature_importance(importance_type='gain')
     feature_names_low = model.models[0.1].model.feature_name()
 
-    # Output quantile Loss and Feature Importance
+    print("Feature Importance (Q90): ", feat_importance_high)
+    print("Feature Importance (Q50): ", feat_importance_mid)
+    print("Feature Importance (Q10): ", feat_importance_low)
+    
+    
+
+
+
+    # Output Quantile Loss 
     loss, coverage = quantile_loss(y_val, preds["quantile_0.90"], 0.90)    
-    feat_importance_high.to_csv(f"./temp/feat_importance_high_{loss}_{coverage}.csv")
+    feat_importance_high.to_csv(f"feat_importance_high_{loss}_{coverage}.csv")
     print(f"Quantile Loss (Q90): {loss}, coverage: {coverage:.2%}")
 
     loss, coverage = quantile_loss(y_val, preds["quantile_0.50"], 0.50)    
-    feat_importance_mid.to_csv(f"./temp/feat_importance_mid_{loss}_{coverage}.csv")
+    feat_importance_mid.to_csv(f"feat_importance_mid_{loss}_{coverage}.csv")
     print(f"Quantile Loss (Q50): {loss}, coverage: {coverage:.2%}")
 
     loss, coverage = quantile_loss(y_val, preds["quantile_0.10"], 0.10)
-    feat_importance_low.to_csv("./temp/feat_importance_low.csv")
+    feat_importance_low.to_csv("feat_importance_low.csv")
     feat_importance_low.to_csv(f"feat_importance_low_{loss}_{coverage}.csv")
     print(f"Quantile Loss (Q10): {loss}, coverage: {coverage:.2%}")    
+   
 
     # Filter for one instrument (e.g., BTCUSDT)
     instrument = "BTCUSDT"
@@ -751,6 +1004,122 @@ if __name__ == '__main__':
         "Q90": q90,
         "True": y_true
     }).dropna().sort_index()
+
+    isTuning = False
+    if isTuning is True:
+        # Create an optimization study with Optuna library
+        study = optuna.create_study(direction="minimize",study_name="lgbm_opt")
+
+        # Optimize the study using a user-defined objective function, for a total of 100 trials
+        study.optimize(objective, n_trials=100)
+
+        # get best hyperparameters and score
+        best_params_lr = study.best_params
+        best_score_lr = study.best_value
+
+        # print best hyperparameters and score
+        print(f"Best hyperparameters: {best_params_lr}")
+        print(f"Best MSE: {best_score_lr:.4f}")
+
+        # Print the number of finished trials in the study
+        print("Number of finished trials: ", len(study.trials))
+
+        # Print the best trial in the study, which represents the set of hyperparameters that yielded the lowest objective value
+        print("Best trial:")
+        trial = study.best_trial
+
+        # Extract the best set of hyperparameters from the best trial and store them in a variable
+        hp_lgbm = study.best_params
+
+        # Add the best number of estimators (trees) to the set of hyperparameters
+        # hp_lgbm["n_estimators"] = study.best_trial.user_attrs['best_iteration']
+
+        # Print the objective value and the set of hyperparameters of the best trial
+        print("  Value: {}".format(trial.value))
+        print("  Params: ")
+
+        for key, value in trial.params.items():
+            print("    {}: {}".format(key, value))
+
+        # insert identified params into final paramset for model creation
+        # params = {
+        #     "metric": "rmse",
+        #     "early_stopping_rounds": 50,
+        #     "objective": "regression",
+        #     "metric": ["l2","l1"],
+        #     "random_state": SEED,
+        #     "colsample_bytree": trial.params["colsample_bytree"],
+        #     "subsample": trial.params["subsample"],
+        #     "lambda_l1": trial.params["lambda_l1"],
+        #     "lambda_l2": trial.params["lambda_l2"],
+        #     "learning_rate": trial.params["learning_rate"],
+        #     "max_depth": trial.params["max_depth"],
+        #     "num_leaves": trial.params["num_leaves"],
+        #     "device": "cpu",
+        #     "boosting_type": "gbdt",
+        # }
+
+        params = {
+            "objective": "quantile",
+            "metric": ["l2","l1"],
+            "boosting_type": "gbdt",
+            "device": "cpu",
+            "verbose": -1,
+            
+            "alpha": 0.10,                      
+
+            # Regularization (moderate to prevent overfitting)
+            # "lambda_l1": 0.1,
+            # "lambda_l2": 0.1,
+
+            "lambda_l1": 4.511969685016852, 
+            "lambda_l2": 0.0006936273081692159,
+            
+            # "min_data_in_leaf": 20,
+            # "feature_fraction": 0.8,         # Use 80% of features per tree
+            # "bagging_fraction": 0.8,         # Use 80% of data per iteration
+            # "bagging_freq": 5,
+            
+            "colsample_bytree": trial.suggest_float("colsample_bytree", 0.5, 1.0),
+            "subsample": trial.suggest_float("subsample", 0.5, 1.0),
+            
+            #"lambda_l1": trial.suggest_loguniform("lambda_l1", 1e-8, 10.0),
+            #"lambda_l2": trial.suggest_loguniform("lambda_l2", 1e-8, 10.0),
+
+            "learning_rate": 0.05628507997416036,
+            "max_depth": 10,
+            "num_leaves": 163,
+
+            # "max_depth": trial.params["max_depth"],
+
+            # Early stopping
+            "early_stopping_rounds": 1,
+            "num_boost_round": 1000,         # Let early stopping decide
+
+            # Set seed for reproducibility
+            "seed": SEED
+        }
+
+        # Create a LightGBM regression model using the best set of hyperparameters found during the optimization process
+        lgbm_model = lgbm.LGBMRegressor(**hp_lgbm)
+                
+        print("model params: ", lgbm_model.get_params())
+
+        # Fit the model to the training data
+        lgbm_model.fit(X_train, y_train, callbacks=[
+            lgbm.log_evaluation(period=20)
+        ])
+
+        # Use the trained model to make predictions on the test data
+        y_pred_lgbm = lgbm_model.predict(X_val)
+
+        y_pred_df = pd.DataFrame(y_pred_lgbm)
+        y_pred_df.index = X_val.index
+
+        X_val.to_csv("X_val.csv")
+        y_val.to_csv("y_val.csv")
+        y_pred_df.to_csv("y_pred_df.csv")
+   
 
     # fit to tuned model
     model.fit(dataset=dataset)
@@ -785,20 +1154,26 @@ if __name__ == '__main__':
     print(f"GDELT features found: {[col for col in df_all.columns if 'cwt_' in col]}")
     print(f"Technical indicators found: {[col for col in df_all.columns if any(x in col for x in ['ROC', 'STD', 'OPEN', 'VOLUME'])]}")
 
-    # Standalone functions for now to allow pipeline clarity
-    df_all["prob_up"] = df_all.apply(prob_up_piecewise, axis=1)
 
-    # build interaction / regime signals    
+
+
+    df_all.to_csv("df_all_macro_analysis_prep.csv")
+    
+    # build interaction / regime signals
     df_all = q50_regime_aware_signals(df_all)
 
+    # Standalone functions for now to allow pipeline clarity
+    df_all["prob_up"] = df_all.apply(prob_up_piecewise, axis=1)
     df_all["signal_tier"] = df_all.apply(signal_classification, axis=1)    
     df_all["kelly_position_size"] = df_all.apply(kelly_sizing, axis=1)    
     
-    # signal_thresh is a suspect variable
+    # keep
     alpha = 1.0  # controls “steepness”
     cap = 3.0
-    signal_rel = (df_all["abs_q50"] - df_all["signal_thresh_adaptive"]) / (df_all["signal_thresh_adaptive"] + 1e-12)
-    signal_tanh = np.tanh(signal_rel.clip(-cap, cap) / alpha)
+    df_all["signal_tanh"] = np.tanh(df_all["signal_rel"].clip(-cap, cap) / alpha)
+
+    # Q50-CENTRIC SIGNAL GENERATION (replaces problematic threshold approach)
+    print("🔄 Generating Q50-centric regime-aware signals...")
     
     # Generate signals using pure Q50 logic with regime awareness
     q50 = df_all["q50"]
@@ -820,7 +1195,10 @@ if __name__ == '__main__':
     df_all["side"] = -1  # default to HOLD
     df_all.loc[buy_mask, "side"] = 1   # LONG when q50 > 0 and tradeable
     df_all.loc[sell_mask, "side"] = 0  # SHORT when q50 < 0 and tradeable
-        
+    
+    # prob_up is already calculated properly with prob_up_piecewise earlier in the script
+    # No need to override it here - keep the original sophisticated calculation
+    
     # VARIANCE-ENHANCED signal strength using enhanced info ratio
     df_all['signal_strength'] = np.where(
         tradeable,
@@ -862,18 +1240,167 @@ if __name__ == '__main__':
         print(f"   Average Signal Strength: {trading_signals['signal_strength'].mean():.4f}")
         print(f"   Average Position Size Suggestion: {avg_position_size:.3f}")
 
-    correlation_matrix = df_all.corr()        
-    correlation_matrix.to_csv("./temp/correlation_matrix.csv")
-        
-    # Drop redundant columns if needed (updated for optimized loader)
-    columns_to_drop = []
 
+
+    ML_correlation_matrix = df_all.corr()        
+    ML_correlation_matrix.to_csv("ML_correlation_matrix.csv")
+
+
+    # Calculate the correlation matrix
+
+    # Xy_df = pd.concat([X_all, y_all], axis=0, join='outer', ignore_index=False)
+    # correlation_matrix = Xy_df.corr()
+    # correlation_matrix.to_csv("correlation_matrix.csv")
+        
+    # Drop redundant columns (updated for optimized loader)
+    # Note: $realized_vol_3 may not exist in optimized loader (removed due to correlation)
+    columns_to_drop = []
+    if '$realized_vol_3' in df_all.columns:
+        columns_to_drop.append('$realized_vol_3')
+    #if 'abs_q50' in df_all.columns:
+    #    columns_to_drop.append('abs_q50')
+    #if 'signal_rel' in df_all.columns:
+    #    columns_to_drop.append('signal_rel')
+    #if 'spread' in df_all.columns:
+    #    columns_to_drop.append('spread') # 7/30/25 -- seeing some strong correlations with other features, reducing noise.
+    
     if columns_to_drop:
         df_all.drop(columns_to_drop, axis=1, inplace=True)
         print(f"Dropped columns: {columns_to_drop}")
     
-    df_all.to_csv("./df_all_macro_analysis.csv")
+    df_all.to_csv("df_all_macro_analysis.csv")
 
-    df_cleaned = df_all.dropna(subset=["vol_risk","vol_scaled","vol_raw_momentum","signal_thresh_adaptive","enhanced_info_ratio"])
+
+
+    df_cleaned = df_all.dropna(subset=["vol_risk","vol_scaled","vol_raw_momentum","signal_thresh_adaptive","signal_tanh","enhanced_info_ratio"])
 
     df_cleaned.to_pickle("./data3/macro_features.pkl") # pickled features used in "train_meta_wrapper.py" process
+
+
+    raise SystemExit()
+
+
+    df_train_rl = df_cleaned.loc[("BTCUSDT","2018-02-01"):("BTCUSDT","2023-12-31")]
+    df_val_rl   = df_cleaned.loc[("BTCUSDT","2024-01-01"):("BTCUSDT","2024-09-30")]
+    df_test_rl  = df_cleaned.loc[("BTCUSDT","2024-10-01"):("BTCUSDT","2025-04-01")]
+
+    # ==========================
+    # Sweep Runner
+    # ==========================
+
+    # ==========================
+    # Experiment Configuration
+    # ==========================
+    
+    reward_type = "tier_weighted"
+    run_name = f"base_momentum_{reward_type}_V2"
+    
+    # Base PPO hyperparameters
+    ppo_config = {
+        "learning_rate": 3e-4, 
+        "clip_range": 0.20, 
+        "ent_coef": 0.005, 
+        "gae_lambda": 0.95, 
+        "vf_coef": 0.5
+    }
+
+    # =========================
+    # Run Experiment
+    # =========================
+    
+    print(f"\n🚀 Launching: {run_name}")
+
+    env_train = SignalEnv(df=df_train_rl, reward_type=reward_type)
+    env_val = SignalEnv(df=df_val_rl, reward_type=reward_type, eval_mode=False)
+    #env_test = SignalEnv(df=df_test_rl, reward_type=reward_type, eval_mode=False)
+
+    vec_env = DummyVecEnv([lambda: env_train])
+    vec_env.seed(SEED)
+   
+    callback = TierLoggingCallback(env_train, log_interval=50)
+
+    agent = EntropyAwarePPO(
+        policy="MlpPolicy",
+        env=env_train,
+        learning_rate=ppo_config["learning_rate"],
+        clip_range=ppo_config["clip_range"],
+        ent_coef=ppo_config["ent_coef"],
+        gae_lambda=ppo_config["gae_lambda"],
+        vf_coef=ppo_config["vf_coef"],
+        seed=SEED, 
+        verbose=1,
+        volatility_getter=env_train.get_recent_vol_scaled,
+        tensorboard_log=f"./logs_momentum_v3/{run_name}"
+    )
+    
+    agent.learn(total_timesteps=384_000, callback=callback)        
+    agent.save(f"./models/{run_name}")
+
+    evaluate_agent(env_val, agent, name=run_name)
+
+
+
+## TODO -- implement the following functions in a standlone file (used for RL)
+
+# ==========================
+# Reward Calculation Logic
+# ==========================
+
+def compute_reward(position, next_return, tier_weight, fee=0.001, slippage=0.0005, volatility_estimate=None, reward_type="tier_weighted"):
+    raw_pnl = position * next_return
+    if reward_type == "risk_normalized" and volatility_estimate is not None:
+        raw_pnl /= volatility_estimate
+    delta_position = 0  # To be filled by env
+    fee_cost = fee * abs(delta_position)
+    slip_cost = slippage * delta_position ** 2
+    reward = raw_pnl * tier_weight - fee_cost - slip_cost
+    return reward
+
+# ==========================
+# Evaluate Agent After Training
+# ==========================
+
+def evaluate_agent(env, agent, name="experiment"):
+    obs = env.reset()
+    done = False
+
+    rewards, positions, tiers = [], [], []
+    tier_rewards = {"A": [], "B": [], "C": [], "D": []}
+    tier_positions = {"A": [], "B": [], "C": [], "D": []}
+
+    while not done:
+        action, _ = agent.predict(obs, deterministic=True)
+        obs, reward, done, info = env.step(action)
+
+        rewards.append(reward)
+        positions.append(env.position)
+        tier = info.get("tier", "Unknown")
+
+        if tier in tier_rewards:
+            tier_rewards[tier].append(reward)
+            tier_positions[tier].append(env.position)
+
+        tiers.append(tier)
+
+    df = pd.DataFrame({"tier": tiers, "reward": rewards, "position": positions})
+
+    df.to_csv(f"{name}.csv")
+
+    # Summarize tier performance
+    summary = df.groupby("tier").agg({
+        "reward": "sum",
+        "position": lambda x: np.mean(np.abs(x))
+    }).rename(columns={"reward": "total_pnl", "position": "avg_exposure"})
+
+    summary["efficiency"] = summary["total_pnl"] / summary["avg_exposure"]
+    print(f"\n🧪 Evaluation for {name}")
+    print(summary.round(4))
+
+    # Save plot of PnL per tier
+    summary.to_csv(f"{name}_summary.csv")
+    summary[["total_pnl", "efficiency"]].plot(kind="bar", title=f"Tier Attribution – {name}")
+    plt.grid(True)
+    plt.tight_layout()
+    os.makedirs("plots", exist_ok=True)
+    plt.savefig(f"plots/{name}_tier_performance.png")
+    plt.close()
