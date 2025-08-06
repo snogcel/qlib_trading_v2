@@ -1,0 +1,106 @@
+{
+  "created_at": "2025-08-04T08:30:48.882602",
+  "backups": {
+    "docs\\FEATURE_DOCUMENTATION.md": [
+      {
+        "original_path": "docs\\FEATURE_DOCUMENTATION.md",
+        "backup_path": "docs\\research\\case_study\\backups\\FEATURE_DOCUMENTATION_20250804_083048.md",
+        "timestamp": "20250804_083048",
+        "description": "Initial backup before feature documentation enhancement",
+        "original_hash": "8d995dd6a2857755c83afe8699d23bcc61320d27ec336589326d8b9f3cd0bf44",
+        "backup_hash": "8d995dd6a2857755c83afe8699d23bcc61320d27ec336589326d8b9f3cd0bf44",
+        "created_at": "2025-08-04T08:30:48.912272"
+      },
+      {
+        "original_path": "docs\\FEATURE_DOCUMENTATION.md",
+        "backup_path": "docs\\research\\case_study\\backups\\FEATURE_DOCUMENTATION_20250804_083048.md",
+        "timestamp": "20250804_083048",
+        "description": "Rollback point: Before thesis statement enhancement",
+        "original_hash": "8d995dd6a2857755c83afe8699d23bcc61320d27ec336589326d8b9f3cd0bf44",
+        "backup_hash": "8d995dd6a2857755c83afe8699d23bcc61320d27ec336589326d8b9f3cd0bf44",
+        "created_at": "2025-08-04T08:30:48.926214"
+      },
+      {
+        "original_path": "docs\\FEATURE_DOCUMENTATION.md",
+        "backup_path": "docs\\research\\case_study\\backups\\FEATURE_DOCUMENTATION_20250804_083539_935208.md",
+        "timestamp": "20250804_083539",
+        "description": "Initial backup before feature documentation enhancement",
+        "original_hash": "8d995dd6a2857755c83afe8699d23bcc61320d27ec336589326d8b9f3cd0bf44",
+        "backup_hash": "8d995dd6a2857755c83afe8699d23bcc61320d27ec336589326d8b9f3cd0bf44",
+        "created_at": "2025-08-04T08:35:39.948973"
+      },
+      {
+        "original_path": "docs\\FEATURE_DOCUMENTATION.md",
+        "backup_path": "docs\\research\\case_study\\backups\\FEATURE_DOCUMENTATION_20250804_083539_951845.md",
+        "timestamp": "20250804_083539",
+        "description": "Rollback point: Before thesis statement enhancement",
+        "original_hash": "8d995dd6a2857755c83afe8699d23bcc61320d27ec336589326d8b9f3cd0bf44",
+        "backup_hash": "8d995dd6a2857755c83afe8699d23bcc61320d27ec336589326d8b9f3cd0bf44",
+        "created_at": "2025-08-04T08:35:39.965211"
+      },
+      {
+        "original_path": "docs\\FEATURE_DOCUMENTATION.md",
+        "backup_path": "docs\\research\\case_study\\backups\\FEATURE_DOCUMENTATION_20250804_083752_962457.md",
+        "timestamp": "20250804_083752",
+        "description": "Initial backup before feature documentation enhancement",
+        "original_hash": "8d995dd6a2857755c83afe8699d23bcc61320d27ec336589326d8b9f3cd0bf44",
+        "backup_hash": "8d995dd6a2857755c83afe8699d23bcc61320d27ec336589326d8b9f3cd0bf44",
+        "created_at": "2025-08-04T08:37:52.976954"
+      },
+      {
+        "original_path": "docs\\FEATURE_DOCUMENTATION.md",
+        "backup_path": "docs\\research\\case_study\\backups\\FEATURE_DOCUMENTATION_20250804_083752_983654.md",
+        "timestamp": "20250804_083752",
+        "description": "Rollback point: Before thesis statement enhancement",
+        "original_hash": "8d995dd6a2857755c83afe8699d23bcc61320d27ec336589326d8b9f3cd0bf44",
+        "backup_hash": "8d995dd6a2857755c83afe8699d23bcc61320d27ec336589326d8b9f3cd0bf44",
+        "created_at": "2025-08-04T08:37:52.999811"
+      },
+      {
+        "original_path": "docs\\FEATURE_DOCUMENTATION.md",
+        "backup_path": "docs\\research\\case_study\\backups\\FEATURE_DOCUMENTATION_20250804_090158_723027.md",
+        "timestamp": "20250804_090158",
+        "description": "Pre-enhancement backup for Core Signal Features",
+        "original_hash": "8d995dd6a2857755c83afe8699d23bcc61320d27ec336589326d8b9f3cd0bf44",
+        "backup_hash": "8d995dd6a2857755c83afe8699d23bcc61320d27ec336589326d8b9f3cd0bf44",
+        "created_at": "2025-08-04T09:01:58.737246"
+      }
+    ]
+  },
+  "versions": {
+    "docs\\FEATURE_DOCUMENTATION.md": {
+      "enabled_at": "2025-08-04T08:30:48.897964",
+      "current_hash": "8d995dd6a2857755c83afe8699d23bcc61320d27ec336589326d8b9f3cd0bf44",
+      "version_history": []
+    }
+  },
+  "rollback_points": {
+    "FEATURE_DOCUMENTATION_20250804_083048": {
+      "id": "FEATURE_DOCUMENTATION_20250804_083048",
+      "timestamp": "20250804_083048",
+      "file_path": "docs\\FEATURE_DOCUMENTATION.md",
+      "backup_path": "docs\\research\\case_study\\backups\\FEATURE_DOCUMENTATION_20250804_083048.md",
+      "description": "Before thesis statement enhancement",
+      "content_hash": "8d995dd6a2857755c83afe8699d23bcc61320d27ec336589326d8b9f3cd0bf44"
+    },
+    "FEATURE_DOCUMENTATION_20250804_083539_951845": {
+      "id": "FEATURE_DOCUMENTATION_20250804_083539_951845",
+      "timestamp": "20250804_083539",
+      "file_path": "docs\\FEATURE_DOCUMENTATION.md",
+      "backup_path": "docs\\research\\case_study\\backups\\FEATURE_DOCUMENTATION_20250804_083539_951845.md",
+      "description": "Before thesis statement enhancement",
+      "content_hash": "8d995dd6a2857755c83afe8699d23bcc61320d27ec336589326d8b9f3cd0bf44"
+    },
+    "FEATURE_DOCUMENTATION_20250804_083752_983654": {
+      "id": "FEATURE_DOCUMENTATION_20250804_083752_983654",
+      "timestamp": "20250804_083752",
+      "file_path": "docs\\FEATURE_DOCUMENTATION.md",
+      "backup_path": "docs\\research\\case_study\\backups\\FEATURE_DOCUMENTATION_20250804_083752_983654.md",
+      "description": "Before thesis statement enhancement",
+      "content_hash": "8d995dd6a2857755c83afe8699d23bcc61320d27ec336589326d8b9f3cd0bf44"
+    }
+  },
+  "protected_files": [
+    "docs\\FEATURE_DOCUMENTATION.md"
+  ]
+}

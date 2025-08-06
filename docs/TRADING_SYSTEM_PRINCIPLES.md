@@ -44,6 +44,35 @@ Based on professional trading experience, these principles guide our systematic 
 - **Economic intuition**: Every rule should have a supply/demand rationale
 - **Avoid complexity**: No transformers, LSTMs, or black-box methods
 
+### 5. **Temporal Causality Clause**
+> "Any model behavior must respect the direction of time. We do not validate trades using future information."
+
+**Our Implementation:**
+- **Strict lag integrity**: All features use only historical data available at decision time
+- **No look-ahead bias**: Backtests use point-in-time data with proper delays
+- **Ground truth validation**: Every signal validated against what was knowable when
+- **Time-aware testing**: Validation tests check for temporal leakage
+
+### 6. **Auditable Pipeline Principle**
+> "Every output must be traceable to its input—with clear lineage, diagnostics, and observability."
+
+**Our Standards:**
+- **Feature lineage**: Clear documentation of how each feature is calculated
+- **Decision traceability**: Every trade decision traceable to specific inputs
+- **Diagnostic logging**: Comprehensive telemetry for system monitoring
+- **Reproducible results**: Deterministic outputs with version control
+- **Error observability**: Clear error handling and failure mode detection
+
+### 7. **Contrarian Adaptation Logic**
+> "The best trades are uncomfortable—every ML-enhanced entry signal should be evaluated against the prevailing narrative."
+
+**Our Application:**
+- **Fear & Greed Index**: Use crowd psychology as contrarian filter
+- **BTC Dominance shifts**: Detect narrative changes in crypto markets
+- **Crisis opportunity detection**: Position against prevailing sentiment during extremes
+- **Regime-aware contrarian**: Adapt contrarian logic to market structure changes
+- **Narrative validation**: Every signal evaluated against current market story
+
 ---
 
 ## 📚 Additional Resources & Community Knowledge
