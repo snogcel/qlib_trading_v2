@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Test Coverage Report</title>
+    <style>
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        
+        .report-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+        
+        .report-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .report-header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        
+        .report-controls {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .control-btn {
+            padding: 8px 16px;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .control-btn:hover {
+            background: white;
+            color: #667eea;
+        }
+        
+        .report-content {
+            padding: 30px;
+        }
+        
+        .report-footer {
+            background-color: #f8f9fa;
+            padding: 20px 30px;
+            text-align: center;
+            color: #6c757d;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        
+        h1 {
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            border-bottom: 1px solid #ecf0f1;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        
+        .success {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .warning {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .error {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .collapsible {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #f1f1f1;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+        
+        .collapsible:hover {
+            background-color: #ddd;
+        }
+        
+        .collapsible-content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f9f9f9;
+        }
+        
+        .collapsible-content.active {
+            display: block;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .highlight {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-left: 4px solid #ffc107;
+            margin: 10px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .report-header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .report-content {
+                padding: 20px;
+            }
+            
+            .control-btn {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <div class="report-header">
+            <h1>📊 Interactive Test Coverage Report</h1>
+            <div class="report-controls">
+                <button onclick="toggleSection('summary')" class="control-btn">Toggle Summary</button>
+                <button onclick="toggleSection('details')" class="control-btn">Toggle Details</button>
+                <button onclick="exportReport()" class="control-btn">Export</button>
+            </div>
+        </div>
+        
+        <div class="report-content">
+            <h1>Test Coverage Summary Report</h1>
+<p><span class="timestamp">Generated: 2025-08-08 01:50:46</span></p>
+<br>
+<h2>Overall Statistics</h2>
+<ul>
+<li>Total Tests: 50</li>
+<ul>
+<li>Passed: 28</li>
+<ul>
+<li>Failed: 22</li>
+<ul>
+<li>Success Rate: 56.0%</li>
+<ul>
+<li>Average Execution Time: 2.30s</li>
+</ul>
+<br>
+<h2>Test Status Breakdown</h2>
+<ul>
+<li>Passed: 28</li>
+<ul>
+<li>Failed: 5</li>
+<ul>
+<li>Errors: 6</li>
+<ul>
+<li>Skipped: 11</li>
+<ul>
+<li>Timeouts: 0</li>
+</ul>
+<br>
+<h2>Priority Breakdown</h2>
+<ul>
+<li>Critical: 13/13 (100.0%)</li>
+<ul>
+<li>High: 7/8 (87.5%)</li>
+<ul>
+<li>Medium: 4/15 (26.7%)</li>
+<ul>
+<li>Low: 4/14 (28.6%)</li>
+</ul>
+<br>
+<h2>Critical Failures</h2>
+<p>Found 1 critical/high priority failures:</p>
+<br>
+<h3>fg_index - regime_dependency</h3>
+<ul>
+<li>Priority: high</li>
+<ul>
+<li>Error: No error message</li>
+<ul>
+<li>Analysis: Analysis for fg_index regime_dependency</li>
+</ul>
+<br>
+<ul>
+<li>Recommendations:</li>
+<li style="margin-left: 20px;">Review fg_index implementation</li>
+<li style="margin-left: 20px;">Update regime_dependency test criteria</li>
+<br>
+<h2>Confidence Analysis</h2>
+<ul>
+<li>High Confidence: 10</li>
+<ul>
+<li>Medium Confidence: 12</li>
+<ul>
+<li>Low Confidence: 17</li>
+<ul>
+<li>Uncertain: 11</li>
+</ul>
+<br>
+<h2>Key Recommendations</h2>
+<br>
+<ol>
+<li>Update implementation test criteria</li>
+<ol>
+<li>Review kelly_sizing implementation</li>
+<ol>
+<li>Update regime_dependency test criteria</li>
+<ol>
+<li>Review fg_index implementation</li>
+<ol>
+<li>Review btc_dom implementation</li>
+<ol>
+<li>Update economic_hypothesis test criteria</li>
+<ol>
+<li>Review vol_risk implementation</li>
+<ol>
+<li>Review Q50 implementation</li>
+<ol>
+<li>Update failure_mode test criteria</li>
+<ol>
+<li>Review spread implementation</li>
+</ol>
+<br>
+        </div>
+        
+        <div class="report-footer">
+            <p>Generated by Feature Test Coverage System</p>
+            <p>Timestamp: 2025-08-08 01:50:46</p>
+        </div>
+    </div>
+    
+    <script>
+        
+        function toggleSection(sectionType) {
+            const elements = document.querySelectorAll(`[data-section="${sectionType}"]`);
+            elements.forEach(element => {
+                element.style.display = element.style.display === 'none' ? 'block' : 'none';
+            });
+        }
+        
+        function exportReport() {
+            const reportContent = document.querySelector('.report-content').innerHTML;
+            const blob = new Blob([reportContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `test-report-${new Date().toISOString().split('T')[0]}.html`;
+            link.click();
+            
+            URL.revokeObjectURL(url);
+        }
+        
+        // Add collapsible functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const collapsibles = document.querySelectorAll('.collapsible');
+            collapsibles.forEach(collapsible => {
+                collapsible.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    content.classList.toggle('active');
+                });
+            });
+        });
+        
+    </script>
+</body>
+</html>

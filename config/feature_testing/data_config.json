@@ -1,0 +1,108 @@
+{
+  "data_directory": "data",
+  "crypto_data_path": "qlib_data\\CRYPTO",
+  "backup_data_sources": [
+    "data/processed",
+    "data/raw"
+  ],
+  "start_date": "2020-01-01",
+  "end_date": "2024-12-31",
+  "min_history_days": 365,
+  "data_frequency": "daily",
+  "primary_assets": [
+    "BTC",
+    "ETH"
+  ],
+  "secondary_assets": [
+    "ADA",
+    "DOT",
+    "LINK",
+    "UNI",
+    "AAVE",
+    "SOL"
+  ],
+  "test_assets": [
+    "BTC",
+    "ETH",
+    "ADA"
+  ],
+  "max_missing_data_pct": 0.05,
+  "min_volume_threshold": 1000.0,
+  "outlier_detection_threshold": 5.0,
+  "required_ohlcv_fields": [
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume"
+  ],
+  "optional_fields": [
+    "market_cap",
+    "circulating_supply"
+  ],
+  "regime_data_requirements": {
+    "bull": {
+      "min_duration_days": 30,
+      "min_return_threshold": 0.2,
+      "example_periods": [
+        "2020-10-01:2021-04-01",
+        "2023-10-01:2024-03-01"
+      ]
+    },
+    "bear": {
+      "min_duration_days": 30,
+      "max_return_threshold": -0.2,
+      "example_periods": [
+        "2022-01-01:2022-06-01",
+        "2022-06-01:2022-12-01"
+      ]
+    },
+    "sideways": {
+      "min_duration_days": 60,
+      "max_volatility": 0.3,
+      "example_periods": [
+        "2019-04-01:2019-09-01",
+        "2023-04-01:2023-09-01"
+      ]
+    },
+    "high_volatility": {
+      "min_volatility": 0.5,
+      "example_periods": [
+        "2020-03-01:2020-05-01",
+        "2022-05-01:2022-07-01"
+      ]
+    },
+    "low_volatility": {
+      "max_volatility": 0.2,
+      "example_periods": [
+        "2019-07-01:2019-10-01",
+        "2023-07-01:2023-10-01"
+      ]
+    }
+  },
+  "synthetic_data_config": {
+    "flat_market": {
+      "price_change_limit": 0.001,
+      "duration_days": 30
+    },
+    "synthetic_volatility": {
+      "artificial_vol_multiplier": 3.0,
+      "duration_days": 14
+    },
+    "data_gaps": {
+      "gap_sizes": [
+        1,
+        3,
+        7
+      ],
+      "gap_frequency": 0.1
+    },
+    "extreme_volatility": {
+      "vol_multiplier": 10.0,
+      "duration_days": 7
+    }
+  },
+  "enable_data_caching": true,
+  "cache_directory": "data\\cache\\feature_testing",
+  "cache_expiry_hours": 24
+}

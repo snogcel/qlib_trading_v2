@@ -1,0 +1,60 @@
+{
+  "feature_template_path": "docs/FEATURE_KNOWLEDGE_TEMPLATE.md",
+  "output_directory": "test_results/feature_coverage",
+  "log_directory": "logs/feature_testing",
+  "parallel_execution": true,
+  "max_workers": 4,
+  "test_timeout": 30.0,
+  "retry_failed_tests": true,
+  "max_retries": 2,
+  "include_test_types": [
+    "economic_hypothesis",
+    "performance",
+    "implementation",
+    "failure_mode",
+    "regime_dependency"
+  ],
+  "exclude_features": [],
+  "include_only_features": [],
+  "confidence_threshold": 0.6,
+  "performance_tolerance": 0.05,
+  "statistical_significance": 0.05,
+  "regime_types": [
+    "bull",
+    "bear", 
+    "sideways",
+    "high_volatility",
+    "low_volatility"
+  ],
+  "regime_test_duration": 30,
+  "min_data_points": 100,
+  "data_quality_threshold": 0.95,
+  "required_data_fields": [
+    "open",
+    "high", 
+    "low",
+    "close",
+    "volume"
+  ],
+  "generate_html_reports": true,
+  "generate_json_exports": true,
+  "include_charts": true,
+  "detailed_failure_analysis": true,
+  "tier_1_features": [
+    "Q50",
+    "vol_risk",
+    "kelly_sizing",
+    "regime_multiplier"
+  ],
+  "tier_2_features": [
+    "Q10",
+    "Q90", 
+    "spread",
+    "vol_raw",
+    "fg_index",
+    "btc_dom"
+  ],
+  "enable_alerts": true,
+  "alert_on_critical_failures": true,
+  "alert_threshold": 0.8
+}

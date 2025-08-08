@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feature Test Coverage Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f7fa;
+            color: #2d3748;
+            line-height: 1.6;
+        }
+        
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dashboard-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .timestamp {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .card.success {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+        }
+        
+        .card.warning {
+            background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+            color: white;
+        }
+        
+        .card.error {
+            background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+            color: white;
+        }
+        
+        .card-title {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        
+        .card-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        
+        .charts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .chart-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .chart-section h2 {
+            margin-bottom: 20px;
+            color: #2d3748;
+            font-size: 1.3rem;
+        }
+        
+        .details-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .tab-button {
+            padding: 15px 25px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #718096;
+            transition: all 0.2s;
+        }
+        
+        .tab-button.active {
+            color: #4299e1;
+            border-bottom: 2px solid #4299e1;
+        }
+        
+        .tab-button:hover {
+            background-color: #f7fafc;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 25px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .test-item {
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            transition: all 0.2s;
+        }
+        
+        .test-item:hover {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .test-item.failed {
+            border-left: 4px solid #f56565;
+        }
+        
+        .test-item.critical {
+            border-left: 4px solid #e53e3e;
+            background-color: #fed7d7;
+        }
+        
+        .test-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .test-title {
+            font-weight: bold;
+            color: #2d3748;
+        }
+        
+        .test-status {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .status-failed {
+            background-color: #fed7d7;
+            color: #c53030;
+        }
+        
+        .status-error {
+            background-color: #fbb6ce;
+            color: #97266d;
+        }
+        
+        .test-details {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        
+        .export-section {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .export-btn {
+            padding: 12px 24px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 6px;
+            background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+        
+        .export-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-container {
+                padding: 10px;
+            }
+            
+            .charts-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .summary-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .dashboard-header h1 {
+                font-size: 2rem;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>🧪 Feature Test Coverage Dashboard</h1>
+            <div class="timestamp">Generated: 2025-08-08 01:50:46</div>
+        </header>
+        
+        <div class="summary-cards">
+            <div class="card success">
+                <div class="card-title">Total Tests</div>
+                <div class="card-value">50</div>
+            </div>
+            <div class="card error">
+                <div class="card-title">Success Rate</div>
+                <div class="card-value">56.0%</div>
+            </div>
+            <div class="card error">
+                <div class="card-title">Failed Tests</div>
+                <div class="card-value">22</div>
+            </div>
+            <div class="card success">
+                <div class="card-title">Critical Failures</div>
+                <div class="card-value">0</div>
+            </div>
+        </div>
+        
+        <div class="charts-container">
+            <div class="chart-section">
+                <h2>Test Status Distribution</h2>
+                <canvas id="statusChart"></canvas>
+            </div>
+            
+            <div class="chart-section">
+                <h2>Feature Coverage</h2>
+                <canvas id="featureChart"></canvas>
+            </div>
+            
+            <div class="chart-section">
+                <h2>Test Type Performance</h2>
+                <canvas id="testTypeChart"></canvas>
+            </div>
+            
+            <div class="chart-section">
+                <h2>Priority Distribution</h2>
+                <canvas id="priorityChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="details-section">
+            <div class="tabs">
+                <button class="tab-button active" onclick="showTab('failed-tests')">Failed Tests</button>
+                <button class="tab-button" onclick="showTab('critical-failures')">Critical Failures</button>
+                <button class="tab-button" onclick="showTab('feature-details')">Feature Details</button>
+            </div>
+            
+            <div id="failed-tests" class="tab-content active">
+                <h3>Failed Tests</h3>
+                <div id="failed-tests-list"></div>
+            </div>
+            
+            <div id="critical-failures" class="tab-content">
+                <h3>Critical Failures</h3>
+                <div id="critical-failures-list"></div>
+            </div>
+            
+            <div id="feature-details" class="tab-content">
+                <h3>Feature Details</h3>
+                <div id="feature-details-list"></div>
+            </div>
+        </div>
+        
+        <div class="export-section">
+            <button onclick="exportToJSON()" class="export-btn">Export to JSON</button>
+            <button onclick="printReport()" class="export-btn">Print Report</button>
+        </div>
+    </div>
+    
+    <script>
+        // Dashboard data
+        const dashboardData = {
+  "summary": {
+    "total_tests": 50,
+    "passed_tests": 28,
+    "failed_tests": 22,
+    "success_rate": 56.00000000000001,
+    "avg_execution_time": 2.2985740164634025,
+    "critical_failures": 0
+  },
+  "status_distribution": {
+    "passed": 28,
+    "failed": 5,
+    "skipped": 11,
+    "error": 6,
+    "timeout": 0
+  },
+  "feature_stats": {
+    "spread": {
+      "total": 5,
+      "passed": 2,
+      "failed": 3
+    },
+    "vol_risk": {
+      "total": 7,
+      "passed": 4,
+      "failed": 3
+    },
+    "regime_multiplier": {
+      "total": 3,
+      "passed": 2,
+      "failed": 1
+    },
+    "kelly_sizing": {
+      "total": 2,
+      "passed": 1,
+      "failed": 1
+    },
+    "Q50": {
+      "total": 8,
+      "passed": 4,
+      "failed": 4
+    },
+    "fg_index": {
+      "total": 7,
+      "passed": 3,
+      "failed": 4
+    },
+    "btc_dom": {
+      "total": 7,
+      "passed": 4,
+      "failed": 3
+    },
+    "Q10": {
+      "total": 6,
+      "passed": 3,
+      "failed": 3
+    },
+    "Q90": {
+      "total": 5,
+      "passed": 5,
+      "failed": 0
+    }
+  },
+  "test_type_stats": {
+    "economic_hypothesis": {
+      "total": 11,
+      "passed": 6,
+      "failed": 5,
+      "success_rate": 54.54545454545454
+    },
+    "performance": {
+      "total": 11,
+      "passed": 7,
+      "failed": 4,
+      "success_rate": 63.63636363636363
+    },
+    "failure_mode": {
+      "total": 10,
+      "passed": 3,
+      "failed": 7,
+      "success_rate": 30.0
+    },
+    "implementation": {
+      "total": 10,
+      "passed": 8,
+      "failed": 2,
+      "success_rate": 80.0
+    },
+    "regime_dependency": {
+      "total": 8,
+      "passed": 4,
+      "failed": 4,
+      "success_rate": 50.0
+    }
+  },
+  "priority_stats": {
+    "critical": {
+      "total": 13,
+      "passed": 13,
+      "failed": 0,
+      "success_rate": 100.0
+    },
+    "high": {
+      "total": 8,
+      "passed": 7,
+      "failed": 1,
+      "success_rate": 87.5
+    },
+    "medium": {
+      "total": 15,
+      "passed": 4,
+      "failed": 11,
+      "success_rate": 26.666666666666668
+    },
+    "low": {
+      "total": 14,
+      "passed": 4,
+      "failed": 10,
+      "success_rate": 28.57142857142857
+    }
+  },
+  "confidence_stats": {
+    "high": 10,
+    "medium": 12,
+    "low": 17,
+    "uncertain": 11
+  },
+  "failed_tests": [
+    {
+      "feature_name": "spread",
+      "test_type": "economic_hypothesis",
+      "priority": "medium",
+      "status": "skipped",
+      "confidence": "medium",
+      "confidence_score": 0.09333109451941554,
+      "execution_time": 0.45491581593389696,
+      "analysis": "Analysis for spread economic_hypothesis",
+      "error_message": null,
+      "recommendations": [
+        "Review spread implementation",
+        "Update economic_hypothesis test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-08T00:21:46.657333"
+    },
+    {
+      "feature_name": "vol_risk",
+      "test_type": "regime_dependency",
+      "priority": "medium",
+      "status": "failed",
+      "confidence": "low",
+      "confidence_score": 0.07951894930668538,
+      "execution_time": 4.671201787523153,
+      "analysis": "Analysis for vol_risk regime_dependency",
+      "error_message": null,
+      "recommendations": [
+        "Review vol_risk implementation",
+        "Update regime_dependency test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T16:47:46.657333"
+    },
+    {
+      "feature_name": "kelly_sizing",
+      "test_type": "failure_mode",
+      "priority": "medium",
+      "status": "error",
+      "confidence": "medium",
+      "confidence_score": 0.5380225911383348,
+      "execution_time": 0.27581505397275297,
+      "analysis": "Analysis for kelly_sizing failure_mode",
+      "error_message": "Error in kelly_sizing test",
+      "recommendations": [
+        "Review kelly_sizing implementation",
+        "Update failure_mode test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T21:26:46.657333"
+    },
+    {
+      "feature_name": "fg_index",
+      "test_type": "economic_hypothesis",
+      "priority": "low",
+      "status": "error",
+      "confidence": "uncertain",
+      "confidence_score": 0.2376248392935718,
+      "execution_time": 1.5923345902725599,
+      "analysis": "Analysis for fg_index economic_hypothesis",
+      "error_message": "Error in fg_index test",
+      "recommendations": [
+        "Review fg_index implementation",
+        "Update economic_hypothesis test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T20:16:46.657333"
+    },
+    {
+      "feature_name": "spread",
+      "test_type": "failure_mode",
+      "priority": "medium",
+      "status": "failed",
+      "confidence": "uncertain",
+      "confidence_score": 0.12534667895050267,
+      "execution_time": 1.2933227698432788,
+      "analysis": "Analysis for spread failure_mode",
+      "error_message": null,
+      "recommendations": [
+        "Review spread implementation",
+        "Update failure_mode test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T03:12:46.657333"
+    },
+    {
+      "feature_name": "btc_dom",
+      "test_type": "failure_mode",
+      "priority": "low",
+      "status": "skipped",
+      "confidence": "high",
+      "confidence_score": 0.6561366183019971,
+      "execution_time": 3.4679767142658307,
+      "analysis": "Analysis for btc_dom failure_mode",
+      "error_message": null,
+      "recommendations": [
+        "Review btc_dom implementation",
+        "Update failure_mode test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-08T01:01:46.657333"
+    },
+    {
+      "feature_name": "Q50",
+      "test_type": "implementation",
+      "priority": "low",
+      "status": "error",
+      "confidence": "low",
+      "confidence_score": 0.663063623664922,
+      "execution_time": 4.944724851374538,
+      "analysis": "Analysis for Q50 implementation",
+      "error_message": "Error in Q50 test",
+      "recommendations": [
+        "Review Q50 implementation",
+        "Update implementation test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T23:46:46.657333"
+    },
+    {
+      "feature_name": "btc_dom",
+      "test_type": "failure_mode",
+      "priority": "medium",
+      "status": "failed",
+      "confidence": "medium",
+      "confidence_score": 0.08560937705830718,
+      "execution_time": 0.3897950859069499,
+      "analysis": "Analysis for btc_dom failure_mode",
+      "error_message": null,
+      "recommendations": [
+        "Review btc_dom implementation",
+        "Update failure_mode test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T21:32:46.657333"
+    },
+    {
+      "feature_name": "Q50",
+      "test_type": "performance",
+      "priority": "low",
+      "status": "skipped",
+      "confidence": "low",
+      "confidence_score": 0.5362078029805472,
+      "execution_time": 2.122962781392246,
+      "analysis": "Analysis for Q50 performance",
+      "error_message": null,
+      "recommendations": [
+        "Review Q50 implementation",
+        "Update performance test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T18:23:46.657333"
+    },
+    {
+      "feature_name": "Q10",
+      "test_type": "performance",
+      "priority": "medium",
+      "status": "skipped",
+      "confidence": "medium",
+      "confidence_score": 0.45213530244636607,
+      "execution_time": 3.113890023528783,
+      "analysis": "Analysis for Q10 performance",
+      "error_message": null,
+      "recommendations": [
+        "Review Q10 implementation",
+        "Update performance test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T23:00:46.657333"
+    },
+    {
+      "feature_name": "Q50",
+      "test_type": "implementation",
+      "priority": "low",
+      "status": "skipped",
+      "confidence": "high",
+      "confidence_score": 0.1891897262352158,
+      "execution_time": 2.8609499579243485,
+      "analysis": "Analysis for Q50 implementation",
+      "error_message": null,
+      "recommendations": [
+        "Review Q50 implementation",
+        "Update implementation test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T13:52:46.657333"
+    },
+    {
+      "feature_name": "fg_index",
+      "test_type": "regime_dependency",
+      "priority": "high",
+      "status": "failed",
+      "confidence": "low",
+      "confidence_score": 0.23250212526052413,
+      "execution_time": 3.0491560930492265,
+      "analysis": "Analysis for fg_index regime_dependency",
+      "error_message": null,
+      "recommendations": [
+        "Review fg_index implementation",
+        "Update regime_dependency test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T11:13:46.657333"
+    },
+    {
+      "feature_name": "Q50",
+      "test_type": "performance",
+      "priority": "medium",
+      "status": "skipped",
+      "confidence": "low",
+      "confidence_score": 0.43938108806393317,
+      "execution_time": 2.8307669244342915,
+      "analysis": "Analysis for Q50 performance",
+      "error_message": null,
+      "recommendations": [
+        "Review Q50 implementation",
+        "Update performance test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T09:48:46.657333"
+    },
+    {
+      "feature_name": "regime_multiplier",
+      "test_type": "failure_mode",
+      "priority": "low",
+      "status": "skipped",
+      "confidence": "low",
+      "confidence_score": 0.5393376830656588,
+      "execution_time": 1.0338215077875177,
+      "analysis": "Analysis for regime_multiplier failure_mode",
+      "error_message": null,
+      "recommendations": [
+        "Review regime_multiplier implementation",
+        "Update failure_mode test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T06:30:46.657333"
+    },
+    {
+      "feature_name": "Q10",
+      "test_type": "regime_dependency",
+      "priority": "medium",
+      "status": "skipped",
+      "confidence": "high",
+      "confidence_score": 0.007423324131103825,
+      "execution_time": 1.5728198354884677,
+      "analysis": "Analysis for Q10 regime_dependency",
+      "error_message": null,
+      "recommendations": [
+        "Review Q10 implementation",
+        "Update regime_dependency test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T10:19:46.657333"
+    },
+    {
+      "feature_name": "Q10",
+      "test_type": "failure_mode",
+      "priority": "low",
+      "status": "error",
+      "confidence": "medium",
+      "confidence_score": 0.6608665759544389,
+      "execution_time": 4.774764684642394,
+      "analysis": "Analysis for Q10 failure_mode",
+      "error_message": "Error in Q10 test",
+      "recommendations": [
+        "Review Q10 implementation",
+        "Update failure_mode test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T09:28:46.657333"
+    },
+    {
+      "feature_name": "vol_risk",
+      "test_type": "performance",
+      "priority": "low",
+      "status": "skipped",
+      "confidence": "medium",
+      "confidence_score": 0.019184190962098866,
+      "execution_time": 1.5389209817262324,
+      "analysis": "Analysis for vol_risk performance",
+      "error_message": null,
+      "recommendations": [
+        "Review vol_risk implementation",
+        "Update performance test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T13:25:46.657333"
+    },
+    {
+      "feature_name": "fg_index",
+      "test_type": "economic_hypothesis",
+      "priority": "medium",
+      "status": "failed",
+      "confidence": "medium",
+      "confidence_score": 0.35161376375684944,
+      "execution_time": 0.8156610423185221,
+      "analysis": "Analysis for fg_index economic_hypothesis",
+      "error_message": null,
+      "recommendations": [
+        "Review fg_index implementation",
+        "Update economic_hypothesis test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T22:46:46.657333"
+    },
+    {
+      "feature_name": "vol_risk",
+      "test_type": "economic_hypothesis",
+      "priority": "low",
+      "status": "error",
+      "confidence": "medium",
+      "confidence_score": 0.5989149602094244,
+      "execution_time": 0.3318617785532427,
+      "analysis": "Analysis for vol_risk economic_hypothesis",
+      "error_message": "Error in vol_risk test",
+      "recommendations": [
+        "Review vol_risk implementation",
+        "Update economic_hypothesis test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T14:41:46.657333"
+    },
+    {
+      "feature_name": "btc_dom",
+      "test_type": "failure_mode",
+      "priority": "low",
+      "status": "error",
+      "confidence": "uncertain",
+      "confidence_score": 0.3855092039281691,
+      "execution_time": 1.960848172902083,
+      "analysis": "Analysis for btc_dom failure_mode",
+      "error_message": "Error in btc_dom test",
+      "recommendations": [
+        "Review btc_dom implementation",
+        "Update failure_mode test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T23:43:46.657333"
+    },
+    {
+      "feature_name": "spread",
+      "test_type": "regime_dependency",
+      "priority": "medium",
+      "status": "skipped",
+      "confidence": "low",
+      "confidence_score": 0.5487665019637629,
+      "execution_time": 0.8333191550488624,
+      "analysis": "Analysis for spread regime_dependency",
+      "error_message": null,
+      "recommendations": [
+        "Review spread implementation",
+        "Update regime_dependency test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T21:31:46.657333"
+    },
+    {
+      "feature_name": "fg_index",
+      "test_type": "economic_hypothesis",
+      "priority": "medium",
+      "status": "skipped",
+      "confidence": "uncertain",
+      "confidence_score": 0.49808586444860403,
+      "execution_time": 3.3869180056977117,
+      "analysis": "Analysis for fg_index economic_hypothesis",
+      "error_message": null,
+      "recommendations": [
+        "Review fg_index implementation",
+        "Update economic_hypothesis test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T20:34:46.657333"
+    }
+  ],
+  "critical_failures": [],
+  "timestamp": "2025-08-08T01:50:46.669363"
+};
+        
+        
+        // Initialize charts when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCharts();
+            populateTestLists();
+        });
+        
+        function initializeCharts() {
+            // Status distribution chart
+            const statusCtx = document.getElementById('statusChart').getContext('2d');
+            new Chart(statusCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(dashboardData.status_distribution),
+                    datasets: [{
+                        data: Object.values(dashboardData.status_distribution),
+                        backgroundColor: [
+                            '#48bb78', // passed
+                            '#f56565', // failed
+                            '#ed8936', // error
+                            '#a0aec0', // skipped
+                            '#9f7aea'  // timeout
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+            
+            // Feature coverage chart
+            const featureCtx = document.getElementById('featureChart').getContext('2d');
+            const featureLabels = Object.keys(dashboardData.feature_stats);
+            const featureSuccessRates = featureLabels.map(feature => {
+                const stats = dashboardData.feature_stats[feature];
+                return (stats.passed / stats.total) * 100;
+            });
+            
+            new Chart(featureCtx, {
+                type: 'bar',
+                data: {
+                    labels: featureLabels,
+                    datasets: [{
+                        label: 'Success Rate (%)',
+                        data: featureSuccessRates,
+                        backgroundColor: featureSuccessRates.map(rate => 
+                            rate >= 90 ? '#48bb78' : rate >= 70 ? '#ed8936' : '#f56565'
+                        )
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+            
+            // Test type performance chart
+            const testTypeCtx = document.getElementById('testTypeChart').getContext('2d');
+            const testTypeLabels = Object.keys(dashboardData.test_type_stats);
+            const testTypeSuccessRates = testTypeLabels.map(type => 
+                dashboardData.test_type_stats[type].success_rate
+            );
+            
+            new Chart(testTypeCtx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: testTypeLabels.map(label => label.replace('_', ' ')),
+                    datasets: [{
+                        label: 'Success Rate (%)',
+                        data: testTypeSuccessRates,
+                        backgroundColor: '#4299e1'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+            
+            // Priority distribution chart
+            const priorityCtx = document.getElementById('priorityChart').getContext('2d');
+            const priorityLabels = Object.keys(dashboardData.priority_stats);
+            const priorityData = priorityLabels.map(priority => ({
+                label: priority,
+                passed: dashboardData.priority_stats[priority].passed,
+                failed: dashboardData.priority_stats[priority].failed
+            }));
+            
+            new Chart(priorityCtx, {
+                type: 'bar',
+                data: {
+                    labels: priorityLabels,
+                    datasets: [{
+                        label: 'Passed',
+                        data: priorityData.map(d => d.passed),
+                        backgroundColor: '#48bb78'
+                    }, {
+                        label: 'Failed',
+                        data: priorityData.map(d => d.failed),
+                        backgroundColor: '#f56565'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            stacked: true
+                        },
+                        y: {
+                            stacked: true
+                        }
+                    }
+                }
+            });
+        }
+        
+        function populateTestLists() {
+            // Populate failed tests
+            const failedTestsList = document.getElementById('failed-tests-list');
+            dashboardData.failed_tests.forEach(test => {
+                const testElement = createTestElement(test, 'failed');
+                failedTestsList.appendChild(testElement);
+            });
+            
+            // Populate critical failures
+            const criticalFailuresList = document.getElementById('critical-failures-list');
+            dashboardData.critical_failures.forEach(test => {
+                const testElement = createTestElement(test, 'critical');
+                criticalFailuresList.appendChild(testElement);
+            });
+            
+            // Populate feature details
+            const featureDetailsList = document.getElementById('feature-details-list');
+            Object.entries(dashboardData.feature_stats).forEach(([feature, stats]) => {
+                const featureElement = createFeatureElement(feature, stats);
+                featureDetailsList.appendChild(featureElement);
+            });
+        }
+        
+        function createTestElement(test, type) {
+            const div = document.createElement('div');
+            div.className = `test-item ${type}`;
+            
+            div.innerHTML = `
+                <div class="test-header">
+                    <div class="test-title">${test.feature_name} - ${test.test_type.replace('_', ' ')}</div>
+                    <div class="test-status status-${test.status}">${test.status.toUpperCase()}</div>
+                </div>
+                <div class="test-details">
+                    <p><strong>Priority:</strong> ${test.priority}</p>
+                    <p><strong>Confidence:</strong> ${test.confidence} (${(test.confidence_score * 100).toFixed(1)}%)</p>
+                    <p><strong>Execution Time:</strong> ${test.execution_time.toFixed(2)}s</p>
+                    ${test.error_message ? `<p><strong>Error:</strong> ${test.error_message}</p>` : ''}
+                    ${test.analysis ? `<p><strong>Analysis:</strong> ${test.analysis}</p>` : ''}
+                    ${test.recommendations.length > 0 ? `
+                        <p><strong>Recommendations:</strong></p>
+                        <ul>
+                            ${test.recommendations.map(rec => `<li>${rec}</li>`).join('')}
+                        </ul>
+                    ` : ''}
+                </div>
+            `;
+            
+            return div;
+        }
+        
+        function createFeatureElement(feature, stats) {
+            const div = document.createElement('div');
+            div.className = 'test-item';
+            
+            const successRate = (stats.passed / stats.total) * 100;
+            const statusClass = successRate >= 90 ? 'success' : successRate >= 70 ? 'warning' : 'error';
+            
+            div.innerHTML = `
+                <div class="test-header">
+                    <div class="test-title">${feature}</div>
+                    <div class="test-status status-${statusClass}">${successRate.toFixed(1)}%</div>
+                </div>
+                <div class="test-details">
+                    <p><strong>Total Tests:</strong> ${stats.total}</p>
+                    <p><strong>Passed:</strong> ${stats.passed}</p>
+                    <p><strong>Failed:</strong> ${stats.failed}</p>
+                </div>
+            `;
+            
+            return div;
+        }
+        
+        function showTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+        
+        function exportToJSON() {
+            const dataStr = JSON.stringify(dashboardData, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `test-coverage-report-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            
+            URL.revokeObjectURL(url);
+        }
+        
+        function printReport() {
+            window.print();
+        }
+        
+    </script>
+</body>
+</html>
