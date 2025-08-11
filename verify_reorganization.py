@@ -44,7 +44,7 @@ def check_file_exists(file_paths):
     return None
 
 def main():
-    print("🔍 REORGANIZATION VERIFICATION")
+    print("[SEARCH] REORGANIZATION VERIFICATION")
     print("=" * 50)
     
     missing_files = []
@@ -54,24 +54,24 @@ def main():
         found_path = check_file_exists(paths)
         if found_path:
             found_files.append((component, found_path))
-            print(f"✅ {component}: {found_path}")
+            print(f"[PASS] {component}: {found_path}")
         else:
             missing_files.append((component, paths))
-            print(f"❌ {component}: MISSING - Expected: {paths}")
+            print(f"[FAIL] {component}: MISSING - Expected: {paths}")
     
     print("\n" + "=" * 50)
-    print(f"📊 SUMMARY:")
+    print(f"[CHART] SUMMARY:")
     print(f"   Found: {len(found_files)}")
     print(f"   Missing: {len(missing_files)}")
     
     if missing_files:
-        print(f"\n⚠️  MISSING FILES DETECTED:")
+        print(f"\n[WARN]  MISSING FILES DETECTED:")
         for component, paths in missing_files:
             print(f"   {component}: {paths}")
         print(f"\n🚨 RECOMMENDATION: Don't push yet - investigate missing files")
         return False
     else:
-        print(f"\n✅ ALL CRITICAL FILES FOUND - Safe to push")
+        print(f"\n[PASS] ALL CRITICAL FILES FOUND - Safe to push")
         return True
 
 if __name__ == "__main__":

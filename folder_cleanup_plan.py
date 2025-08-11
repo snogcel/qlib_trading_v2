@@ -27,7 +27,7 @@ def safe_move_folder(src, dst):
             print(f"✓ Removed empty: {src}")
             return True
         except Exception as e:
-            print(f"❌ Error moving {src}: {e}")
+            print(f"[FAIL] Error moving {src}: {e}")
             return False
     else:
         print(f"⚠ Not found: {src}")
@@ -41,7 +41,7 @@ def safe_delete_folder(folder_path):
             print(f"🗑 Deleted: {folder_path}")
             return True
         except Exception as e:
-            print(f"❌ Error deleting {folder_path}: {e}")
+            print(f"[FAIL] Error deleting {folder_path}: {e}")
             return False
     else:
         print(f"⚠ Not found: {folder_path}")
@@ -64,7 +64,7 @@ def create_results_structure():
 
 def reorganize_results():
     """Reorganize results-related folders"""
-    print("\n📊 Reorganizing results folders...")
+    print("\n[CHART] Reorganizing results folders...")
     
     # Move backtest results
     safe_move_folder("backtest_results", "results/backtests/historical")
@@ -114,7 +114,7 @@ def cleanup_old_versions():
 
 def cleanup_experimental():
     """Remove experimental/completed analysis folders"""
-    print("\n🔬 Cleaning up experimental folders...")
+    print("\n[ANALYSIS] Cleaning up experimental folders...")
     
     experimental_folders = [
         "feature_experiments",
@@ -130,7 +130,7 @@ def cleanup_experimental():
 
 def cleanup_mlflow():
     """Clean up MLflow artifacts (can be regenerated)"""
-    print("\n📈 Cleaning up MLflow artifacts...")
+    print("\n[UP] Cleaning up MLflow artifacts...")
     
     mlflow_folders = ["mlruns", "runs"]
     
@@ -144,7 +144,7 @@ def cleanup_mlflow():
 
 def analyze_remaining():
     """Analyze folders that need manual review"""
-    print("\n🔍 Folders requiring manual review:")
+    print("\n[SEARCH] Folders requiring manual review:")
     
     manual_review = [
         ("portfolio_analysis", "Check if analysis is complete, move key results to results/"),
@@ -184,8 +184,8 @@ def main():
     # Analyze remaining folders
     analyze_remaining()
     
-    print("\n✅ Folder cleanup completed!")
-    print("\n📋 Next steps:")
+    print("\n[PASS] Folder cleanup completed!")
+    print("\n[LIST] Next steps:")
     print("1. Review manually flagged folders")
     print("2. Test that moved results are accessible")
     print("3. Update any scripts that reference old folder paths")

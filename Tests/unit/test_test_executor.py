@@ -2,6 +2,15 @@
 Unit tests for the TestExecutor class.
 """
 
+# Add project root to path
+import sys
+import os
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+if project_root not in sys.path:
+    sys.path.append(project_root)
+
+
+
 import pytest
 import pandas as pd
 import numpy as np

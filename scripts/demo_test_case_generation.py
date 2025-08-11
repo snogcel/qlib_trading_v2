@@ -8,6 +8,15 @@ This script demonstrates the key components implemented in task 3.1:
 - Test categorization system (economic, performance, failure, etc.)
 """
 
+# Add project root to path
+import sys
+import os
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+if project_root not in sys.path:
+    sys.path.append(project_root)
+
+
+
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))

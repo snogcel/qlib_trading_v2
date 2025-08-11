@@ -2,6 +2,15 @@
 Unit tests for the performance characteristics test generator.
 """
 
+# Add project root to path
+import sys
+import os
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+if project_root not in sys.path:
+    sys.path.append(project_root)
+
+
+
 import pytest
 from unittest.mock import Mock, patch
 from typing import Dict, Any

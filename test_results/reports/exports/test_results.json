@@ -1,108 +1,17 @@
 {
   "summary": {
     "total_tests": 50,
-    "passed_tests": 28,
-    "failed_tests": 22,
-    "success_rate": 56.00000000000001
+    "passed_tests": 26,
+    "failed_tests": 24,
+    "success_rate": 52.0
   },
   "results": [
     {
       "test_case": {
         "test_id": "test_000",
-        "feature_name": "spread",
-        "test_type": "implementation",
-        "description": "Test implementation for spread",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "sideways",
-        "priority": "high",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_000",
-      "status": "passed",
-      "execution_time": 3.7606876225763224,
-      "timestamp": "2025-08-07T15:43:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": true,
-      "confidence": "low",
-      "confidence_score": 0.5004186218303281,
-      "analysis": "Successful validation of spread",
-      "error_message": null,
-      "performance_metrics": {},
-      "statistical_measures": {},
-      "recommendations": [],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 0.85,
-      "risk_assessment": {
-        "risk_level": "low",
-        "risk_factors": [],
-        "mitigation_actions": [],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_001",
-        "feature_name": "spread",
+        "feature_name": "kelly_sizing",
         "test_type": "economic_hypothesis",
-        "description": "Test economic_hypothesis for spread",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "bull",
-        "priority": "medium",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_001",
-      "status": "skipped",
-      "execution_time": 0.45491581593389696,
-      "timestamp": "2025-08-08T00:21:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": false,
-      "confidence": "medium",
-      "confidence_score": 0.09333109451941554,
-      "analysis": "Analysis for spread economic_hypothesis",
-      "error_message": null,
-      "performance_metrics": {},
-      "statistical_measures": {},
-      "recommendations": [
-        "Review spread implementation",
-        "Update economic_hypothesis test criteria"
-      ],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 1.0,
-      "risk_assessment": {
-        "risk_level": "medium",
-        "risk_factors": [
-          "Test failure in non-critical component"
-        ],
-        "mitigation_actions": [
-          "Schedule fix in next development cycle"
-        ],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_002",
-        "feature_name": "vol_risk",
-        "test_type": "regime_dependency",
-        "description": "Test regime_dependency for vol_risk",
+        "description": "Test economic_hypothesis for kelly_sizing",
         "test_parameters": {},
         "expected_result": "Expected behavior validation",
         "validation_criteria": {},
@@ -113,21 +22,76 @@
         "tags": [],
         "rationale": ""
       },
-      "execution_id": "exec_002",
+      "execution_id": "exec_000",
+      "status": "skipped",
+      "execution_time": 3.083387547769366,
+      "timestamp": "2025-08-07T17:16:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": false,
+      "confidence": "uncertain",
+      "confidence_score": 0.46290148402267267,
+      "analysis": "Analysis for kelly_sizing economic_hypothesis",
+      "error_message": null,
+      "performance_metrics": {
+        "accuracy": 0.6575014513493995,
+        "precision": 0.7683491947051451,
+        "recall": 0.7722744686758607
+      },
+      "statistical_measures": {},
+      "recommendations": [
+        "Review kelly_sizing implementation",
+        "Update economic_hypothesis test criteria"
+      ],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 0.75,
+      "risk_assessment": {
+        "risk_level": "medium",
+        "risk_factors": [
+          "Test failure in non-critical component",
+          "Uncertain test result confidence"
+        ],
+        "mitigation_actions": [
+          "Schedule fix in next development cycle",
+          "Manual review and additional testing needed"
+        ],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_001",
+        "feature_name": "Q10",
+        "test_type": "regime_dependency",
+        "description": "Test regime_dependency for Q10",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "sideways",
+        "priority": "low",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_001",
       "status": "failed",
-      "execution_time": 4.671201787523153,
-      "timestamp": "2025-08-07T16:47:46.657333",
+      "execution_time": 0.2295681517755741,
+      "timestamp": "2025-08-07T16:02:19.700800",
       "actual_result": null,
       "expected_result": null,
       "passed": false,
       "confidence": "low",
-      "confidence_score": 0.07951894930668538,
-      "analysis": "Analysis for vol_risk regime_dependency",
+      "confidence_score": 0.4634846990834384,
+      "analysis": "Analysis for Q10 regime_dependency",
       "error_message": null,
       "performance_metrics": {},
       "statistical_measures": {},
       "recommendations": [
-        "Review vol_risk implementation",
+        "Review Q10 implementation",
         "Update regime_dependency test criteria"
       ],
       "action_items": [],
@@ -148,32 +112,242 @@
     },
     {
       "test_case": {
-        "test_id": "test_003",
+        "test_id": "test_002",
         "feature_name": "regime_multiplier",
         "test_type": "performance",
         "description": "Test performance for regime_multiplier",
         "test_parameters": {},
         "expected_result": "Expected behavior validation",
         "validation_criteria": {},
-        "regime_context": "bear",
-        "priority": "critical",
+        "regime_context": "sideways",
+        "priority": "medium",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_002",
+      "status": "skipped",
+      "execution_time": 4.14226244197842,
+      "timestamp": "2025-08-07T06:27:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": false,
+      "confidence": "uncertain",
+      "confidence_score": 0.34905965985154463,
+      "analysis": "Analysis for regime_multiplier performance",
+      "error_message": null,
+      "performance_metrics": {
+        "accuracy": 0.8611224902797956,
+        "precision": 0.8728826523645832,
+        "recall": 0.7140928746155863
+      },
+      "statistical_measures": {},
+      "recommendations": [
+        "Review regime_multiplier implementation",
+        "Update performance test criteria"
+      ],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 0.75,
+      "risk_assessment": {
+        "risk_level": "medium",
+        "risk_factors": [
+          "Test failure in non-critical component",
+          "Uncertain test result confidence"
+        ],
+        "mitigation_actions": [
+          "Schedule fix in next development cycle",
+          "Manual review and additional testing needed"
+        ],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_003",
+        "feature_name": "btc_dom",
+        "test_type": "implementation",
+        "description": "Test implementation for btc_dom",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "bull",
+        "priority": "low",
         "estimated_duration": 1.0,
         "dependencies": [],
         "tags": [],
         "rationale": ""
       },
       "execution_id": "exec_003",
+      "status": "skipped",
+      "execution_time": 1.6344608860914782,
+      "timestamp": "2025-08-07T23:15:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": false,
+      "confidence": "medium",
+      "confidence_score": 0.5322896242133484,
+      "analysis": "Analysis for btc_dom implementation",
+      "error_message": null,
+      "performance_metrics": {},
+      "statistical_measures": {},
+      "recommendations": [
+        "Review btc_dom implementation",
+        "Update implementation test criteria"
+      ],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 1.0,
+      "risk_assessment": {
+        "risk_level": "medium",
+        "risk_factors": [
+          "Test failure in non-critical component"
+        ],
+        "mitigation_actions": [
+          "Schedule fix in next development cycle"
+        ],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_004",
+        "feature_name": "vol_risk",
+        "test_type": "performance",
+        "description": "Test performance for vol_risk",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": null,
+        "priority": "medium",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_004",
+      "status": "failed",
+      "execution_time": 3.6364063207262345,
+      "timestamp": "2025-08-07T14:04:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": false,
+      "confidence": "high",
+      "confidence_score": 0.24954171157468844,
+      "analysis": "Analysis for vol_risk performance",
+      "error_message": null,
+      "performance_metrics": {
+        "accuracy": 0.7031054780968744,
+        "precision": 0.5075373324256492,
+        "recall": 0.6809597221171897
+      },
+      "statistical_measures": {},
+      "recommendations": [
+        "Review vol_risk implementation",
+        "Update performance test criteria"
+      ],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 1.0,
+      "risk_assessment": {
+        "risk_level": "medium",
+        "risk_factors": [
+          "Test failure in non-critical component"
+        ],
+        "mitigation_actions": [
+          "Schedule fix in next development cycle"
+        ],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_005",
+        "feature_name": "kelly_sizing",
+        "test_type": "performance",
+        "description": "Test performance for kelly_sizing",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "bear",
+        "priority": "medium",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_005",
+      "status": "error",
+      "execution_time": 1.923190348850097,
+      "timestamp": "2025-08-07T07:50:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": false,
+      "confidence": "low",
+      "confidence_score": 0.6793220151639141,
+      "analysis": "Analysis for kelly_sizing performance",
+      "error_message": "Error in kelly_sizing test",
+      "performance_metrics": {},
+      "statistical_measures": {},
+      "recommendations": [
+        "Review kelly_sizing implementation",
+        "Update performance test criteria"
+      ],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 0.7,
+      "risk_assessment": {
+        "risk_level": "medium",
+        "risk_factors": [
+          "Test failure in non-critical component"
+        ],
+        "mitigation_actions": [
+          "Schedule fix in next development cycle"
+        ],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_006",
+        "feature_name": "kelly_sizing",
+        "test_type": "implementation",
+        "description": "Test implementation for kelly_sizing",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": null,
+        "priority": "critical",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_006",
       "status": "passed",
-      "execution_time": 3.5055592695216076,
-      "timestamp": "2025-08-07T22:19:46.657333",
+      "execution_time": 1.009920999377021,
+      "timestamp": "2025-08-07T13:12:19.700800",
       "actual_result": null,
       "expected_result": null,
       "passed": true,
-      "confidence": "high",
-      "confidence_score": 0.9088827260900136,
-      "analysis": "Successful validation of regime_multiplier",
+      "confidence": "medium",
+      "confidence_score": 0.7397286027979781,
+      "analysis": "Successful validation of kelly_sizing",
       "error_message": null,
-      "performance_metrics": {},
+      "performance_metrics": {
+        "accuracy": 0.9048395419684108,
+        "precision": 0.5042226481175199,
+        "recall": 0.7306274690742804
+      },
       "statistical_measures": {},
       "recommendations": [],
       "action_items": [],
@@ -190,7 +364,244 @@
     },
     {
       "test_case": {
-        "test_id": "test_004",
+        "test_id": "test_007",
+        "feature_name": "Q10",
+        "test_type": "regime_dependency",
+        "description": "Test regime_dependency for Q10",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "bear",
+        "priority": "low",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_007",
+      "status": "passed",
+      "execution_time": 1.493840517980279,
+      "timestamp": "2025-08-07T04:23:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": true,
+      "confidence": "uncertain",
+      "confidence_score": 0.5764015681958652,
+      "analysis": "Successful validation of Q10",
+      "error_message": null,
+      "performance_metrics": {
+        "accuracy": 0.8216265796601128,
+        "precision": 0.7307917403959123,
+        "recall": 0.7875707894316448
+      },
+      "statistical_measures": {},
+      "recommendations": [],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 0.7,
+      "risk_assessment": {
+        "risk_level": "medium",
+        "risk_factors": [
+          "Uncertain test result confidence"
+        ],
+        "mitigation_actions": [
+          "Manual review and additional testing needed"
+        ],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_008",
+        "feature_name": "Q90",
+        "test_type": "regime_dependency",
+        "description": "Test regime_dependency for Q90",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "bull",
+        "priority": "high",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_008",
+      "status": "passed",
+      "execution_time": 2.27396539276532,
+      "timestamp": "2025-08-08T00:18:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": true,
+      "confidence": "low",
+      "confidence_score": 0.9727939277149211,
+      "analysis": "Successful validation of Q90",
+      "error_message": null,
+      "performance_metrics": {},
+      "statistical_measures": {},
+      "recommendations": [],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 0.85,
+      "risk_assessment": {
+        "risk_level": "low",
+        "risk_factors": [],
+        "mitigation_actions": [],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_009",
+        "feature_name": "spread",
+        "test_type": "failure_mode",
+        "description": "Test failure_mode for spread",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "sideways",
+        "priority": "critical",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_009",
+      "status": "passed",
+      "execution_time": 1.6175640733813053,
+      "timestamp": "2025-08-07T22:03:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": true,
+      "confidence": "low",
+      "confidence_score": 0.5940080083546795,
+      "analysis": "Successful validation of spread",
+      "error_message": null,
+      "performance_metrics": {
+        "accuracy": 0.6917892618326675,
+        "precision": 0.8107343092646035,
+        "recall": 0.49233787057548073
+      },
+      "statistical_measures": {},
+      "recommendations": [],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 0.85,
+      "risk_assessment": {
+        "risk_level": "medium",
+        "risk_factors": [
+          "Poor performance in metrics: recall"
+        ],
+        "mitigation_actions": [
+          "Performance optimization required"
+        ],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_010",
+        "feature_name": "Q50",
+        "test_type": "implementation",
+        "description": "Test implementation for Q50",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "bull",
+        "priority": "medium",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_010",
+      "status": "skipped",
+      "execution_time": 3.93387772765928,
+      "timestamp": "2025-08-07T22:59:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": false,
+      "confidence": "medium",
+      "confidence_score": 0.2818506060487297,
+      "analysis": "Analysis for Q50 implementation",
+      "error_message": null,
+      "performance_metrics": {},
+      "statistical_measures": {},
+      "recommendations": [
+        "Review Q50 implementation",
+        "Update implementation test criteria"
+      ],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 1.0,
+      "risk_assessment": {
+        "risk_level": "medium",
+        "risk_factors": [
+          "Test failure in non-critical component"
+        ],
+        "mitigation_actions": [
+          "Schedule fix in next development cycle"
+        ],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_011",
+        "feature_name": "spread",
+        "test_type": "implementation",
+        "description": "Test implementation for spread",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "bull",
+        "priority": "critical",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_011",
+      "status": "passed",
+      "execution_time": 4.106580910954032,
+      "timestamp": "2025-08-07T22:13:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": true,
+      "confidence": "low",
+      "confidence_score": 0.9753292793375303,
+      "analysis": "Successful validation of spread",
+      "error_message": null,
+      "performance_metrics": {
+        "accuracy": 0.9115531138266143,
+        "precision": 0.8138677233229439,
+        "recall": 0.7483258522266314
+      },
+      "statistical_measures": {},
+      "recommendations": [],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 0.85,
+      "risk_assessment": {
+        "risk_level": "low",
+        "risk_factors": [],
+        "mitigation_actions": [],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_012",
         "feature_name": "kelly_sizing",
         "test_type": "failure_mode",
         "description": "Test failure_mode for kelly_sizing",
@@ -198,31 +609,231 @@
         "expected_result": "Expected behavior validation",
         "validation_criteria": {},
         "regime_context": "bear",
-        "priority": "medium",
+        "priority": "critical",
         "estimated_duration": 1.0,
         "dependencies": [],
         "tags": [],
         "rationale": ""
       },
-      "execution_id": "exec_004",
+      "execution_id": "exec_012",
+      "status": "passed",
+      "execution_time": 2.194360611803175,
+      "timestamp": "2025-08-07T03:09:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": true,
+      "confidence": "uncertain",
+      "confidence_score": 0.9460451670318786,
+      "analysis": "Successful validation of kelly_sizing",
+      "error_message": null,
+      "performance_metrics": {
+        "accuracy": 0.623970407938942,
+        "precision": 0.6013494133877246,
+        "recall": 0.7207812952832799
+      },
+      "statistical_measures": {},
+      "recommendations": [],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 0.7,
+      "risk_assessment": {
+        "risk_level": "medium",
+        "risk_factors": [
+          "Uncertain test result confidence"
+        ],
+        "mitigation_actions": [
+          "Manual review and additional testing needed"
+        ],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_013",
+        "feature_name": "Q50",
+        "test_type": "economic_hypothesis",
+        "description": "Test economic_hypothesis for Q50",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": null,
+        "priority": "low",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_013",
       "status": "error",
-      "execution_time": 0.27581505397275297,
-      "timestamp": "2025-08-07T21:26:46.657333",
+      "execution_time": 4.009197369795041,
+      "timestamp": "2025-08-07T09:01:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": false,
+      "confidence": "low",
+      "confidence_score": 0.05796142314810487,
+      "analysis": "Analysis for Q50 economic_hypothesis",
+      "error_message": "Error in Q50 test",
+      "performance_metrics": {
+        "accuracy": 0.931912977456235,
+        "precision": 0.5199094757346877,
+        "recall": 0.5947738073372629
+      },
+      "statistical_measures": {},
+      "recommendations": [
+        "Review Q50 implementation",
+        "Update economic_hypothesis test criteria"
+      ],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 0.7,
+      "risk_assessment": {
+        "risk_level": "medium",
+        "risk_factors": [
+          "Test failure in non-critical component"
+        ],
+        "mitigation_actions": [
+          "Schedule fix in next development cycle"
+        ],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_014",
+        "feature_name": "Q10",
+        "test_type": "performance",
+        "description": "Test performance for Q10",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": null,
+        "priority": "low",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_014",
+      "status": "skipped",
+      "execution_time": 3.5752006466194874,
+      "timestamp": "2025-08-07T07:02:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": false,
+      "confidence": "uncertain",
+      "confidence_score": 0.46748125991086587,
+      "analysis": "Analysis for Q10 performance",
+      "error_message": null,
+      "performance_metrics": {
+        "accuracy": 0.8198011835745709,
+        "precision": 0.6875196603834964,
+        "recall": 0.7061463182936998
+      },
+      "statistical_measures": {},
+      "recommendations": [
+        "Review Q10 implementation",
+        "Update performance test criteria"
+      ],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 0.75,
+      "risk_assessment": {
+        "risk_level": "medium",
+        "risk_factors": [
+          "Test failure in non-critical component",
+          "Uncertain test result confidence"
+        ],
+        "mitigation_actions": [
+          "Schedule fix in next development cycle",
+          "Manual review and additional testing needed"
+        ],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_015",
+        "feature_name": "Q90",
+        "test_type": "performance",
+        "description": "Test performance for Q90",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "sideways",
+        "priority": "high",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_015",
+      "status": "passed",
+      "execution_time": 0.2724222755420491,
+      "timestamp": "2025-08-07T23:39:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": true,
+      "confidence": "low",
+      "confidence_score": 0.8860781272345817,
+      "analysis": "Successful validation of Q90",
+      "error_message": null,
+      "performance_metrics": {
+        "accuracy": 0.8934436595528161,
+        "precision": 0.5226424485227421,
+        "recall": 0.7312753745045497
+      },
+      "statistical_measures": {},
+      "recommendations": [],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 0.85,
+      "risk_assessment": {
+        "risk_level": "low",
+        "risk_factors": [],
+        "mitigation_actions": [],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_016",
+        "feature_name": "btc_dom",
+        "test_type": "failure_mode",
+        "description": "Test failure_mode for btc_dom",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "sideways",
+        "priority": "low",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_016",
+      "status": "error",
+      "execution_time": 2.7572370137478175,
+      "timestamp": "2025-08-07T14:20:19.700800",
       "actual_result": null,
       "expected_result": null,
       "passed": false,
       "confidence": "medium",
-      "confidence_score": 0.5380225911383348,
-      "analysis": "Analysis for kelly_sizing failure_mode",
-      "error_message": "Error in kelly_sizing test",
-      "performance_metrics": {
-        "accuracy": 0.9324637045693513,
-        "precision": 0.7882397414658008,
-        "recall": 0.6711954904508024
-      },
+      "confidence_score": 0.40364814017964074,
+      "analysis": "Analysis for btc_dom failure_mode",
+      "error_message": "Error in btc_dom test",
+      "performance_metrics": {},
       "statistical_measures": {},
       "recommendations": [
-        "Review kelly_sizing implementation",
+        "Review btc_dom implementation",
         "Update failure_mode test criteria"
       ],
       "action_items": [],
@@ -243,35 +854,35 @@
     },
     {
       "test_case": {
-        "test_id": "test_005",
-        "feature_name": "Q50",
-        "test_type": "regime_dependency",
-        "description": "Test regime_dependency for Q50",
+        "test_id": "test_017",
+        "feature_name": "regime_multiplier",
+        "test_type": "failure_mode",
+        "description": "Test failure_mode for regime_multiplier",
         "test_parameters": {},
         "expected_result": "Expected behavior validation",
         "validation_criteria": {},
-        "regime_context": "bear",
-        "priority": "medium",
+        "regime_context": "sideways",
+        "priority": "high",
         "estimated_duration": 1.0,
         "dependencies": [],
         "tags": [],
         "rationale": ""
       },
-      "execution_id": "exec_005",
+      "execution_id": "exec_017",
       "status": "passed",
-      "execution_time": 4.04088840522299,
-      "timestamp": "2025-08-07T20:29:46.657333",
+      "execution_time": 2.621450575362195,
+      "timestamp": "2025-08-07T08:38:19.700800",
       "actual_result": null,
       "expected_result": null,
       "passed": true,
-      "confidence": "medium",
-      "confidence_score": 0.8629522124108181,
-      "analysis": "Successful validation of Q50",
+      "confidence": "low",
+      "confidence_score": 0.5709869187400985,
+      "analysis": "Successful validation of regime_multiplier",
       "error_message": null,
       "performance_metrics": {
-        "accuracy": 0.9222143903829959,
-        "precision": 0.6557618351774288,
-        "recall": 0.6026433629751737
+        "accuracy": 0.6808231273614439,
+        "precision": 0.8410461541828622,
+        "recall": 0.849753857921606
       },
       "statistical_measures": {},
       "recommendations": [],
@@ -279,7 +890,7 @@
       "severity": "medium",
       "test_environment": {},
       "data_quality_issues": [],
-      "quality_score": 1.0,
+      "quality_score": 0.85,
       "risk_assessment": {
         "risk_level": "low",
         "risk_factors": [],
@@ -289,35 +900,232 @@
     },
     {
       "test_case": {
-        "test_id": "test_006",
-        "feature_name": "vol_risk",
-        "test_type": "economic_hypothesis",
-        "description": "Test economic_hypothesis for vol_risk",
+        "test_id": "test_018",
+        "feature_name": "spread",
+        "test_type": "regime_dependency",
+        "description": "Test regime_dependency for spread",
         "test_parameters": {},
         "expected_result": "Expected behavior validation",
         "validation_criteria": {},
-        "regime_context": "bear",
+        "regime_context": "bull",
         "priority": "low",
         "estimated_duration": 1.0,
         "dependencies": [],
         "tags": [],
         "rationale": ""
       },
-      "execution_id": "exec_006",
+      "execution_id": "exec_018",
+      "status": "failed",
+      "execution_time": 1.9301278688617698,
+      "timestamp": "2025-08-07T09:44:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": false,
+      "confidence": "medium",
+      "confidence_score": 0.6756173886706107,
+      "analysis": "Analysis for spread regime_dependency",
+      "error_message": null,
+      "performance_metrics": {
+        "accuracy": 0.9020142158725606,
+        "precision": 0.7052256391241667,
+        "recall": 0.6480905401194877
+      },
+      "statistical_measures": {},
+      "recommendations": [
+        "Review spread implementation",
+        "Update regime_dependency test criteria"
+      ],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 1.0,
+      "risk_assessment": {
+        "risk_level": "medium",
+        "risk_factors": [
+          "Test failure in non-critical component"
+        ],
+        "mitigation_actions": [
+          "Schedule fix in next development cycle"
+        ],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_019",
+        "feature_name": "regime_multiplier",
+        "test_type": "implementation",
+        "description": "Test implementation for regime_multiplier",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": null,
+        "priority": "low",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_019",
+      "status": "error",
+      "execution_time": 4.888692112516166,
+      "timestamp": "2025-08-07T08:42:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": false,
+      "confidence": "medium",
+      "confidence_score": 0.3987482801470414,
+      "analysis": "Analysis for regime_multiplier implementation",
+      "error_message": "Error in regime_multiplier test",
+      "performance_metrics": {
+        "accuracy": 0.877650362548434,
+        "precision": 0.8129791368668795,
+        "recall": 0.644768609177949
+      },
+      "statistical_measures": {},
+      "recommendations": [
+        "Review regime_multiplier implementation",
+        "Update implementation test criteria"
+      ],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 0.8500000000000001,
+      "risk_assessment": {
+        "risk_level": "medium",
+        "risk_factors": [
+          "Test failure in non-critical component"
+        ],
+        "mitigation_actions": [
+          "Schedule fix in next development cycle"
+        ],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_020",
+        "feature_name": "btc_dom",
+        "test_type": "implementation",
+        "description": "Test implementation for btc_dom",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "bull",
+        "priority": "high",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_020",
+      "status": "failed",
+      "execution_time": 1.7479021784698205,
+      "timestamp": "2025-08-08T01:05:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": false,
+      "confidence": "medium",
+      "confidence_score": 0.41467595861353945,
+      "analysis": "Analysis for btc_dom implementation",
+      "error_message": null,
+      "performance_metrics": {},
+      "statistical_measures": {},
+      "recommendations": [
+        "Review btc_dom implementation",
+        "Update implementation test criteria"
+      ],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 1.0,
+      "risk_assessment": {
+        "risk_level": "high",
+        "risk_factors": [
+          "Critical/high priority test failure"
+        ],
+        "mitigation_actions": [
+          "Immediate investigation and fix required"
+        ],
+        "requires_immediate_attention": true
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_021",
+        "feature_name": "Q10",
+        "test_type": "regime_dependency",
+        "description": "Test regime_dependency for Q10",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "bear",
+        "priority": "critical",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_021",
       "status": "passed",
-      "execution_time": 1.6284658425364327,
-      "timestamp": "2025-08-07T23:31:46.657333",
+      "execution_time": 1.9478649523417202,
+      "timestamp": "2025-08-07T18:50:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": true,
+      "confidence": "medium",
+      "confidence_score": 0.5709834461713299,
+      "analysis": "Successful validation of Q10",
+      "error_message": null,
+      "performance_metrics": {},
+      "statistical_measures": {},
+      "recommendations": [],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 1.0,
+      "risk_assessment": {
+        "risk_level": "low",
+        "risk_factors": [],
+        "mitigation_actions": [],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_022",
+        "feature_name": "Q50",
+        "test_type": "implementation",
+        "description": "Test implementation for Q50",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "bull",
+        "priority": "critical",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_022",
+      "status": "passed",
+      "execution_time": 0.5606228078554365,
+      "timestamp": "2025-08-07T22:44:19.700800",
       "actual_result": null,
       "expected_result": null,
       "passed": true,
       "confidence": "high",
-      "confidence_score": 0.5783702926181331,
-      "analysis": "Successful validation of vol_risk",
+      "confidence_score": 0.9139420125259023,
+      "analysis": "Successful validation of Q50",
       "error_message": null,
       "performance_metrics": {
-        "accuracy": 0.8088421527546623,
-        "precision": 0.7918075719645037,
-        "recall": 0.8284933294052268
+        "accuracy": 0.8009148820026525,
+        "precision": 0.747029658419212,
+        "recall": 0.7535969959801407
       },
       "statistical_measures": {},
       "recommendations": [],
@@ -335,10 +1143,10 @@
     },
     {
       "test_case": {
-        "test_id": "test_007",
-        "feature_name": "fg_index",
-        "test_type": "economic_hypothesis",
-        "description": "Test economic_hypothesis for fg_index",
+        "test_id": "test_023",
+        "feature_name": "regime_multiplier",
+        "test_type": "regime_dependency",
+        "description": "Test regime_dependency for regime_multiplier",
         "test_parameters": {},
         "expected_result": "Expected behavior validation",
         "validation_criteria": {},
@@ -349,36 +1157,277 @@
         "tags": [],
         "rationale": ""
       },
-      "execution_id": "exec_007",
+      "execution_id": "exec_023",
       "status": "error",
-      "execution_time": 1.5923345902725599,
-      "timestamp": "2025-08-07T20:16:46.657333",
+      "execution_time": 0.46324713476048873,
+      "timestamp": "2025-08-07T10:59:19.700800",
       "actual_result": null,
       "expected_result": null,
       "passed": false,
-      "confidence": "uncertain",
-      "confidence_score": 0.2376248392935718,
-      "analysis": "Analysis for fg_index economic_hypothesis",
-      "error_message": "Error in fg_index test",
-      "performance_metrics": {},
+      "confidence": "medium",
+      "confidence_score": 0.09011458237827574,
+      "analysis": "Analysis for regime_multiplier regime_dependency",
+      "error_message": "Error in regime_multiplier test",
+      "performance_metrics": {
+        "accuracy": 0.9403608335667732,
+        "precision": 0.7246280590791472,
+        "recall": 0.5380871914526298
+      },
       "statistical_measures": {},
       "recommendations": [
-        "Review fg_index implementation",
-        "Update economic_hypothesis test criteria"
+        "Review regime_multiplier implementation",
+        "Update regime_dependency test criteria"
       ],
       "action_items": [],
       "severity": "medium",
       "test_environment": {},
       "data_quality_issues": [],
-      "quality_score": 0.5499999999999999,
+      "quality_score": 0.8500000000000001,
       "risk_assessment": {
         "risk_level": "medium",
         "risk_factors": [
-          "Test failure in non-critical component",
+          "Test failure in non-critical component"
+        ],
+        "mitigation_actions": [
+          "Schedule fix in next development cycle"
+        ],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_024",
+        "feature_name": "Q90",
+        "test_type": "implementation",
+        "description": "Test implementation for Q90",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "sideways",
+        "priority": "critical",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_024",
+      "status": "passed",
+      "execution_time": 0.3735282314298004,
+      "timestamp": "2025-08-07T12:34:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": true,
+      "confidence": "medium",
+      "confidence_score": 0.5236504546343017,
+      "analysis": "Successful validation of Q90",
+      "error_message": null,
+      "performance_metrics": {},
+      "statistical_measures": {},
+      "recommendations": [],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 1.0,
+      "risk_assessment": {
+        "risk_level": "low",
+        "risk_factors": [],
+        "mitigation_actions": [],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_025",
+        "feature_name": "Q90",
+        "test_type": "economic_hypothesis",
+        "description": "Test economic_hypothesis for Q90",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "bull",
+        "priority": "critical",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_025",
+      "status": "passed",
+      "execution_time": 2.9084140828025853,
+      "timestamp": "2025-08-07T03:04:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": true,
+      "confidence": "medium",
+      "confidence_score": 0.9643692147661468,
+      "analysis": "Successful validation of Q90",
+      "error_message": null,
+      "performance_metrics": {
+        "accuracy": 0.6496685360884974,
+        "precision": 0.7678002366909416,
+        "recall": 0.8103441408522045
+      },
+      "statistical_measures": {},
+      "recommendations": [],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 1.0,
+      "risk_assessment": {
+        "risk_level": "low",
+        "risk_factors": [],
+        "mitigation_actions": [],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_026",
+        "feature_name": "regime_multiplier",
+        "test_type": "performance",
+        "description": "Test performance for regime_multiplier",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": null,
+        "priority": "medium",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_026",
+      "status": "passed",
+      "execution_time": 4.677188456537823,
+      "timestamp": "2025-08-07T15:22:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": true,
+      "confidence": "high",
+      "confidence_score": 0.503384509633001,
+      "analysis": "Successful validation of regime_multiplier",
+      "error_message": null,
+      "performance_metrics": {
+        "accuracy": 0.8087853021131612,
+        "precision": 0.6431696287755769,
+        "recall": 0.449854347319639
+      },
+      "statistical_measures": {},
+      "recommendations": [],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 1.0,
+      "risk_assessment": {
+        "risk_level": "medium",
+        "risk_factors": [
+          "Poor performance in metrics: recall"
+        ],
+        "mitigation_actions": [
+          "Performance optimization required"
+        ],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_027",
+        "feature_name": "Q90",
+        "test_type": "performance",
+        "description": "Test performance for Q90",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "bull",
+        "priority": "high",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_027",
+      "status": "failed",
+      "execution_time": 0.5416913874976464,
+      "timestamp": "2025-08-07T19:10:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": false,
+      "confidence": "uncertain",
+      "confidence_score": 0.04195568956302637,
+      "analysis": "Analysis for Q90 performance",
+      "error_message": null,
+      "performance_metrics": {},
+      "statistical_measures": {},
+      "recommendations": [
+        "Review Q90 implementation",
+        "Update performance test criteria"
+      ],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 0.75,
+      "risk_assessment": {
+        "risk_level": "high",
+        "risk_factors": [
+          "Critical/high priority test failure",
           "Uncertain test result confidence"
         ],
         "mitigation_actions": [
-          "Schedule fix in next development cycle",
+          "Immediate investigation and fix required",
+          "Manual review and additional testing needed"
+        ],
+        "requires_immediate_attention": true
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_028",
+        "feature_name": "Q90",
+        "test_type": "performance",
+        "description": "Test performance for Q90",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "bear",
+        "priority": "critical",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_028",
+      "status": "passed",
+      "execution_time": 2.9421205007254367,
+      "timestamp": "2025-08-07T18:29:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": true,
+      "confidence": "uncertain",
+      "confidence_score": 0.5786959979301425,
+      "analysis": "Successful validation of Q90",
+      "error_message": null,
+      "performance_metrics": {
+        "accuracy": 0.7844825821337471,
+        "precision": 0.8488259522441954,
+        "recall": 0.7964498402739637
+      },
+      "statistical_measures": {},
+      "recommendations": [],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 0.7,
+      "risk_assessment": {
+        "risk_level": "medium",
+        "risk_factors": [
+          "Uncertain test result confidence"
+        ],
+        "mitigation_actions": [
           "Manual review and additional testing needed"
         ],
         "requires_immediate_attention": false
@@ -386,10 +1435,63 @@
     },
     {
       "test_case": {
-        "test_id": "test_008",
-        "feature_name": "spread",
+        "test_id": "test_029",
+        "feature_name": "kelly_sizing",
+        "test_type": "implementation",
+        "description": "Test implementation for kelly_sizing",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "bull",
+        "priority": "critical",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_029",
+      "status": "failed",
+      "execution_time": 4.7182741324697,
+      "timestamp": "2025-08-07T12:44:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": false,
+      "confidence": "low",
+      "confidence_score": 0.6004332567125887,
+      "analysis": "Analysis for kelly_sizing implementation",
+      "error_message": null,
+      "performance_metrics": {
+        "accuracy": 0.6521435399795329,
+        "precision": 0.8788998889107499,
+        "recall": 0.7214467412923403
+      },
+      "statistical_measures": {},
+      "recommendations": [
+        "Review kelly_sizing implementation",
+        "Update implementation test criteria"
+      ],
+      "action_items": [],
+      "severity": "high",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 0.9,
+      "risk_assessment": {
+        "risk_level": "high",
+        "risk_factors": [
+          "Critical/high priority test failure"
+        ],
+        "mitigation_actions": [
+          "Immediate investigation and fix required"
+        ],
+        "requires_immediate_attention": true
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_030",
+        "feature_name": "Q90",
         "test_type": "failure_mode",
-        "description": "Test failure_mode for spread",
+        "description": "Test failure_mode for Q90",
         "test_parameters": {},
         "expected_result": "Expected behavior validation",
         "validation_criteria": {},
@@ -400,25 +1502,367 @@
         "tags": [],
         "rationale": ""
       },
-      "execution_id": "exec_008",
+      "execution_id": "exec_030",
+      "status": "passed",
+      "execution_time": 1.4760614218167518,
+      "timestamp": "2025-08-07T19:28:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": true,
+      "confidence": "medium",
+      "confidence_score": 0.630775295871214,
+      "analysis": "Successful validation of Q90",
+      "error_message": null,
+      "performance_metrics": {},
+      "statistical_measures": {},
+      "recommendations": [],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 1.0,
+      "risk_assessment": {
+        "risk_level": "low",
+        "risk_factors": [],
+        "mitigation_actions": [],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_031",
+        "feature_name": "vol_risk",
+        "test_type": "economic_hypothesis",
+        "description": "Test economic_hypothesis for vol_risk",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "bear",
+        "priority": "medium",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_031",
+      "status": "skipped",
+      "execution_time": 1.0690395087720874,
+      "timestamp": "2025-08-07T15:35:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": false,
+      "confidence": "medium",
+      "confidence_score": 0.33501188202828724,
+      "analysis": "Analysis for vol_risk economic_hypothesis",
+      "error_message": null,
+      "performance_metrics": {},
+      "statistical_measures": {},
+      "recommendations": [
+        "Review vol_risk implementation",
+        "Update economic_hypothesis test criteria"
+      ],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 1.0,
+      "risk_assessment": {
+        "risk_level": "medium",
+        "risk_factors": [
+          "Test failure in non-critical component"
+        ],
+        "mitigation_actions": [
+          "Schedule fix in next development cycle"
+        ],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_032",
+        "feature_name": "fg_index",
+        "test_type": "performance",
+        "description": "Test performance for fg_index",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "bull",
+        "priority": "high",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_032",
+      "status": "passed",
+      "execution_time": 2.5939225293799857,
+      "timestamp": "2025-08-07T15:24:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": true,
+      "confidence": "uncertain",
+      "confidence_score": 0.8648358744599649,
+      "analysis": "Successful validation of fg_index",
+      "error_message": null,
+      "performance_metrics": {
+        "accuracy": 0.6715165744176095,
+        "precision": 0.5562996634021197,
+        "recall": 0.7644508399435308
+      },
+      "statistical_measures": {},
+      "recommendations": [],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 0.7,
+      "risk_assessment": {
+        "risk_level": "medium",
+        "risk_factors": [
+          "Uncertain test result confidence"
+        ],
+        "mitigation_actions": [
+          "Manual review and additional testing needed"
+        ],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_033",
+        "feature_name": "Q10",
+        "test_type": "performance",
+        "description": "Test performance for Q10",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": null,
+        "priority": "critical",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_033",
+      "status": "passed",
+      "execution_time": 1.4665536956364813,
+      "timestamp": "2025-08-07T19:09:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": true,
+      "confidence": "medium",
+      "confidence_score": 0.9328393312228132,
+      "analysis": "Successful validation of Q10",
+      "error_message": null,
+      "performance_metrics": {
+        "accuracy": 0.6388561971057516,
+        "precision": 0.8369183243854867,
+        "recall": 0.4652903522814169
+      },
+      "statistical_measures": {},
+      "recommendations": [],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 1.0,
+      "risk_assessment": {
+        "risk_level": "medium",
+        "risk_factors": [
+          "Poor performance in metrics: recall"
+        ],
+        "mitigation_actions": [
+          "Performance optimization required"
+        ],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_034",
+        "feature_name": "Q90",
+        "test_type": "economic_hypothesis",
+        "description": "Test economic_hypothesis for Q90",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "sideways",
+        "priority": "high",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_034",
+      "status": "passed",
+      "execution_time": 3.800065748640165,
+      "timestamp": "2025-08-07T03:52:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": true,
+      "confidence": "uncertain",
+      "confidence_score": 0.9811404752213018,
+      "analysis": "Successful validation of Q90",
+      "error_message": null,
+      "performance_metrics": {
+        "accuracy": 0.9310474232468539,
+        "precision": 0.7976766228201875,
+        "recall": 0.43102801456303186
+      },
+      "statistical_measures": {},
+      "recommendations": [],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 0.7,
+      "risk_assessment": {
+        "risk_level": "medium",
+        "risk_factors": [
+          "Uncertain test result confidence",
+          "Poor performance in metrics: recall"
+        ],
+        "mitigation_actions": [
+          "Manual review and additional testing needed",
+          "Performance optimization required"
+        ],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_035",
+        "feature_name": "Q50",
+        "test_type": "performance",
+        "description": "Test performance for Q50",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": null,
+        "priority": "critical",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_035",
+      "status": "passed",
+      "execution_time": 0.9719296713785798,
+      "timestamp": "2025-08-07T23:17:19.700800",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": true,
+      "confidence": "uncertain",
+      "confidence_score": 0.876891355534351,
+      "analysis": "Successful validation of Q50",
+      "error_message": null,
+      "performance_metrics": {
+        "accuracy": 0.7345159236011792,
+        "precision": 0.8595773929040617,
+        "recall": 0.523866702579498
+      },
+      "statistical_measures": {},
+      "recommendations": [],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 0.7,
+      "risk_assessment": {
+        "risk_level": "medium",
+        "risk_factors": [
+          "Uncertain test result confidence"
+        ],
+        "mitigation_actions": [
+          "Manual review and additional testing needed"
+        ],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_036",
+        "feature_name": "fg_index",
+        "test_type": "regime_dependency",
+        "description": "Test regime_dependency for fg_index",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": null,
+        "priority": "medium",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_036",
+      "status": "skipped",
+      "execution_time": 1.390227014444742,
+      "timestamp": "2025-08-07T16:50:19.704889",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": false,
+      "confidence": "high",
+      "confidence_score": 0.6741569474520204,
+      "analysis": "Analysis for fg_index regime_dependency",
+      "error_message": null,
+      "performance_metrics": {
+        "accuracy": 0.9123308147345075,
+        "precision": 0.7995601188182722,
+        "recall": 0.5145973279166367
+      },
+      "statistical_measures": {},
+      "recommendations": [
+        "Review fg_index implementation",
+        "Update regime_dependency test criteria"
+      ],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 1.0,
+      "risk_assessment": {
+        "risk_level": "medium",
+        "risk_factors": [
+          "Test failure in non-critical component"
+        ],
+        "mitigation_actions": [
+          "Schedule fix in next development cycle"
+        ],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_037",
+        "feature_name": "fg_index",
+        "test_type": "failure_mode",
+        "description": "Test failure_mode for fg_index",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": null,
+        "priority": "low",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_037",
       "status": "failed",
-      "execution_time": 1.2933227698432788,
-      "timestamp": "2025-08-07T03:12:46.657333",
+      "execution_time": 3.192634218705176,
+      "timestamp": "2025-08-07T09:31:19.704889",
       "actual_result": null,
       "expected_result": null,
       "passed": false,
       "confidence": "uncertain",
-      "confidence_score": 0.12534667895050267,
-      "analysis": "Analysis for spread failure_mode",
+      "confidence_score": 0.3734334399510309,
+      "analysis": "Analysis for fg_index failure_mode",
       "error_message": null,
-      "performance_metrics": {
-        "accuracy": 0.6675600855020748,
-        "precision": 0.8067670523113273,
-        "recall": 0.6025008246932897
-      },
+      "performance_metrics": {},
       "statistical_measures": {},
       "recommendations": [
-        "Review spread implementation",
+        "Review fg_index implementation",
         "Update failure_mode test criteria"
       ],
       "action_items": [],
@@ -441,1424 +1885,46 @@
     },
     {
       "test_case": {
-        "test_id": "test_009",
-        "feature_name": "btc_dom",
-        "test_type": "failure_mode",
-        "description": "Test failure_mode for btc_dom",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "sideways",
-        "priority": "low",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_009",
-      "status": "skipped",
-      "execution_time": 3.4679767142658307,
-      "timestamp": "2025-08-08T01:01:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": false,
-      "confidence": "high",
-      "confidence_score": 0.6561366183019971,
-      "analysis": "Analysis for btc_dom failure_mode",
-      "error_message": null,
-      "performance_metrics": {
-        "accuracy": 0.8634377411101122,
-        "precision": 0.7756461337123595,
-        "recall": 0.4307759470300216
-      },
-      "statistical_measures": {},
-      "recommendations": [
-        "Review btc_dom implementation",
-        "Update failure_mode test criteria"
-      ],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 1.0,
-      "risk_assessment": {
-        "risk_level": "medium",
-        "risk_factors": [
-          "Test failure in non-critical component",
-          "Poor performance in metrics: recall"
-        ],
-        "mitigation_actions": [
-          "Schedule fix in next development cycle",
-          "Performance optimization required"
-        ],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_010",
-        "feature_name": "Q50",
-        "test_type": "implementation",
-        "description": "Test implementation for Q50",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "bear",
-        "priority": "low",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_010",
-      "status": "error",
-      "execution_time": 4.944724851374538,
-      "timestamp": "2025-08-07T23:46:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": false,
-      "confidence": "low",
-      "confidence_score": 0.663063623664922,
-      "analysis": "Analysis for Q50 implementation",
-      "error_message": "Error in Q50 test",
-      "performance_metrics": {
-        "accuracy": 0.7862167571881078,
-        "precision": 0.782877453509236,
-        "recall": 0.6143429869867042
-      },
-      "statistical_measures": {},
-      "recommendations": [
-        "Review Q50 implementation",
-        "Update implementation test criteria"
-      ],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 0.7,
-      "risk_assessment": {
-        "risk_level": "medium",
-        "risk_factors": [
-          "Test failure in non-critical component"
-        ],
-        "mitigation_actions": [
-          "Schedule fix in next development cycle"
-        ],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_011",
-        "feature_name": "Q50",
-        "test_type": "economic_hypothesis",
-        "description": "Test economic_hypothesis for Q50",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "sideways",
-        "priority": "critical",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_011",
-      "status": "passed",
-      "execution_time": 2.040703084204205,
-      "timestamp": "2025-08-07T14:34:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": true,
-      "confidence": "high",
-      "confidence_score": 0.8608320506179492,
-      "analysis": "Successful validation of Q50",
-      "error_message": null,
-      "performance_metrics": {},
-      "statistical_measures": {},
-      "recommendations": [],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 1.0,
-      "risk_assessment": {
-        "risk_level": "low",
-        "risk_factors": [],
-        "mitigation_actions": [],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_012",
-        "feature_name": "btc_dom",
-        "test_type": "failure_mode",
-        "description": "Test failure_mode for btc_dom",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "bear",
-        "priority": "critical",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_012",
-      "status": "passed",
-      "execution_time": 1.576228587146034,
-      "timestamp": "2025-08-07T14:28:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": true,
-      "confidence": "low",
-      "confidence_score": 0.8804574954463067,
-      "analysis": "Successful validation of btc_dom",
-      "error_message": null,
-      "performance_metrics": {
-        "accuracy": 0.6411672723696964,
-        "precision": 0.5075306055884526,
-        "recall": 0.6621112581544819
-      },
-      "statistical_measures": {},
-      "recommendations": [],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 0.85,
-      "risk_assessment": {
-        "risk_level": "low",
-        "risk_factors": [],
-        "mitigation_actions": [],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_013",
-        "feature_name": "btc_dom",
-        "test_type": "failure_mode",
-        "description": "Test failure_mode for btc_dom",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "sideways",
-        "priority": "medium",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_013",
-      "status": "failed",
-      "execution_time": 0.3897950859069499,
-      "timestamp": "2025-08-07T21:32:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": false,
-      "confidence": "medium",
-      "confidence_score": 0.08560937705830718,
-      "analysis": "Analysis for btc_dom failure_mode",
-      "error_message": null,
-      "performance_metrics": {},
-      "statistical_measures": {},
-      "recommendations": [
-        "Review btc_dom implementation",
-        "Update failure_mode test criteria"
-      ],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 1.0,
-      "risk_assessment": {
-        "risk_level": "medium",
-        "risk_factors": [
-          "Test failure in non-critical component"
-        ],
-        "mitigation_actions": [
-          "Schedule fix in next development cycle"
-        ],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_014",
-        "feature_name": "fg_index",
-        "test_type": "failure_mode",
-        "description": "Test failure_mode for fg_index",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "bear",
-        "priority": "high",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_014",
-      "status": "passed",
-      "execution_time": 0.8580545316585869,
-      "timestamp": "2025-08-07T19:59:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": true,
-      "confidence": "low",
-      "confidence_score": 0.5343746876420965,
-      "analysis": "Successful validation of fg_index",
-      "error_message": null,
-      "performance_metrics": {},
-      "statistical_measures": {},
-      "recommendations": [],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 0.85,
-      "risk_assessment": {
-        "risk_level": "low",
-        "risk_factors": [],
-        "mitigation_actions": [],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_015",
-        "feature_name": "Q50",
-        "test_type": "performance",
-        "description": "Test performance for Q50",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "bear",
-        "priority": "low",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_015",
-      "status": "skipped",
-      "execution_time": 2.122962781392246,
-      "timestamp": "2025-08-07T18:23:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": false,
-      "confidence": "low",
-      "confidence_score": 0.5362078029805472,
-      "analysis": "Analysis for Q50 performance",
-      "error_message": null,
-      "performance_metrics": {
-        "accuracy": 0.805757359429098,
-        "precision": 0.8333484378753441,
-        "recall": 0.7672356296760434
-      },
-      "statistical_measures": {},
-      "recommendations": [
-        "Review Q50 implementation",
-        "Update performance test criteria"
-      ],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 0.9,
-      "risk_assessment": {
-        "risk_level": "medium",
-        "risk_factors": [
-          "Test failure in non-critical component"
-        ],
-        "mitigation_actions": [
-          "Schedule fix in next development cycle"
-        ],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_016",
-        "feature_name": "Q10",
-        "test_type": "performance",
-        "description": "Test performance for Q10",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": null,
-        "priority": "medium",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_016",
-      "status": "skipped",
-      "execution_time": 3.113890023528783,
-      "timestamp": "2025-08-07T23:00:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": false,
-      "confidence": "medium",
-      "confidence_score": 0.45213530244636607,
-      "analysis": "Analysis for Q10 performance",
-      "error_message": null,
-      "performance_metrics": {},
-      "statistical_measures": {},
-      "recommendations": [
-        "Review Q10 implementation",
-        "Update performance test criteria"
-      ],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 1.0,
-      "risk_assessment": {
-        "risk_level": "medium",
-        "risk_factors": [
-          "Test failure in non-critical component"
-        ],
-        "mitigation_actions": [
-          "Schedule fix in next development cycle"
-        ],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_017",
-        "feature_name": "btc_dom",
-        "test_type": "performance",
-        "description": "Test performance for btc_dom",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "sideways",
-        "priority": "high",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_017",
-      "status": "passed",
-      "execution_time": 3.026012330577651,
-      "timestamp": "2025-08-07T03:53:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": true,
-      "confidence": "low",
-      "confidence_score": 0.7301186857039108,
-      "analysis": "Successful validation of btc_dom",
-      "error_message": null,
-      "performance_metrics": {
-        "accuracy": 0.7993101154553828,
-        "precision": 0.760191435589338,
-        "recall": 0.7830665909267474
-      },
-      "statistical_measures": {},
-      "recommendations": [],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 0.85,
-      "risk_assessment": {
-        "risk_level": "low",
-        "risk_factors": [],
-        "mitigation_actions": [],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_018",
-        "feature_name": "Q10",
-        "test_type": "implementation",
-        "description": "Test implementation for Q10",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": null,
-        "priority": "critical",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_018",
-      "status": "passed",
-      "execution_time": 1.0395266380624846,
-      "timestamp": "2025-08-07T18:53:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": true,
-      "confidence": "uncertain",
-      "confidence_score": 0.9741545281684871,
-      "analysis": "Successful validation of Q10",
-      "error_message": null,
-      "performance_metrics": {
-        "accuracy": 0.7496328412124769,
-        "precision": 0.5088873632138715,
-        "recall": 0.7463692915979703
-      },
-      "statistical_measures": {},
-      "recommendations": [],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 0.7,
-      "risk_assessment": {
-        "risk_level": "medium",
-        "risk_factors": [
-          "Uncertain test result confidence"
-        ],
-        "mitigation_actions": [
-          "Manual review and additional testing needed"
-        ],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_019",
-        "feature_name": "Q90",
-        "test_type": "performance",
-        "description": "Test performance for Q90",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": null,
-        "priority": "critical",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_019",
-      "status": "passed",
-      "execution_time": 1.3244163463936094,
-      "timestamp": "2025-08-07T09:25:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": true,
-      "confidence": "low",
-      "confidence_score": 0.5110849770396745,
-      "analysis": "Successful validation of Q90",
-      "error_message": null,
-      "performance_metrics": {},
-      "statistical_measures": {},
-      "recommendations": [],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 0.85,
-      "risk_assessment": {
-        "risk_level": "low",
-        "risk_factors": [],
-        "mitigation_actions": [],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_020",
-        "feature_name": "vol_risk",
-        "test_type": "regime_dependency",
-        "description": "Test regime_dependency for vol_risk",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "bull",
-        "priority": "critical",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_020",
-      "status": "passed",
-      "execution_time": 2.296841996359334,
-      "timestamp": "2025-08-07T21:04:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": true,
-      "confidence": "low",
-      "confidence_score": 0.6081720175957139,
-      "analysis": "Successful validation of vol_risk",
-      "error_message": null,
-      "performance_metrics": {
-        "accuracy": 0.7696137229447615,
-        "precision": 0.7210516157142779,
-        "recall": 0.6669108665633292
-      },
-      "statistical_measures": {},
-      "recommendations": [],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 0.85,
-      "risk_assessment": {
-        "risk_level": "low",
-        "risk_factors": [],
-        "mitigation_actions": [],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_021",
-        "feature_name": "Q50",
-        "test_type": "economic_hypothesis",
-        "description": "Test economic_hypothesis for Q50",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "sideways",
-        "priority": "medium",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_021",
-      "status": "passed",
-      "execution_time": 1.443391632810279,
-      "timestamp": "2025-08-07T13:57:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": true,
-      "confidence": "high",
-      "confidence_score": 0.5636242630693757,
-      "analysis": "Successful validation of Q50",
-      "error_message": null,
-      "performance_metrics": {},
-      "statistical_measures": {},
-      "recommendations": [],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 1.0,
-      "risk_assessment": {
-        "risk_level": "low",
-        "risk_factors": [],
-        "mitigation_actions": [],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_022",
-        "feature_name": "btc_dom",
-        "test_type": "implementation",
-        "description": "Test implementation for btc_dom",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "bull",
-        "priority": "high",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_022",
-      "status": "passed",
-      "execution_time": 1.530403722089929,
-      "timestamp": "2025-08-07T04:52:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": true,
-      "confidence": "medium",
-      "confidence_score": 0.5360074686905661,
-      "analysis": "Successful validation of btc_dom",
-      "error_message": null,
-      "performance_metrics": {},
-      "statistical_measures": {},
-      "recommendations": [],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 1.0,
-      "risk_assessment": {
-        "risk_level": "low",
-        "risk_factors": [],
-        "mitigation_actions": [],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_023",
-        "feature_name": "fg_index",
-        "test_type": "failure_mode",
-        "description": "Test failure_mode for fg_index",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "bear",
-        "priority": "high",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_023",
-      "status": "passed",
-      "execution_time": 1.5696542692253896,
-      "timestamp": "2025-08-07T07:41:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": true,
-      "confidence": "high",
-      "confidence_score": 0.705050670094806,
-      "analysis": "Successful validation of fg_index",
-      "error_message": null,
-      "performance_metrics": {},
-      "statistical_measures": {},
-      "recommendations": [],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 1.0,
-      "risk_assessment": {
-        "risk_level": "low",
-        "risk_factors": [],
-        "mitigation_actions": [],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_024",
-        "feature_name": "Q50",
-        "test_type": "implementation",
-        "description": "Test implementation for Q50",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "bull",
-        "priority": "low",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_024",
-      "status": "skipped",
-      "execution_time": 2.8609499579243485,
-      "timestamp": "2025-08-07T13:52:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": false,
-      "confidence": "high",
-      "confidence_score": 0.1891897262352158,
-      "analysis": "Analysis for Q50 implementation",
-      "error_message": null,
-      "performance_metrics": {
-        "accuracy": 0.9401237369825421,
-        "precision": 0.6332307838696725,
-        "recall": 0.5972492030432107
-      },
-      "statistical_measures": {},
-      "recommendations": [
-        "Review Q50 implementation",
-        "Update implementation test criteria"
-      ],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 1.0,
-      "risk_assessment": {
-        "risk_level": "medium",
-        "risk_factors": [
-          "Test failure in non-critical component"
-        ],
-        "mitigation_actions": [
-          "Schedule fix in next development cycle"
-        ],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_025",
-        "feature_name": "Q10",
-        "test_type": "implementation",
-        "description": "Test implementation for Q10",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "sideways",
-        "priority": "critical",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_025",
-      "status": "passed",
-      "execution_time": 2.8823543090306267,
-      "timestamp": "2025-08-07T17:45:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": true,
-      "confidence": "medium",
-      "confidence_score": 0.6749275250947329,
-      "analysis": "Successful validation of Q10",
-      "error_message": null,
-      "performance_metrics": {},
-      "statistical_measures": {},
-      "recommendations": [],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 1.0,
-      "risk_assessment": {
-        "risk_level": "low",
-        "risk_factors": [],
-        "mitigation_actions": [],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_026",
-        "feature_name": "fg_index",
-        "test_type": "regime_dependency",
-        "description": "Test regime_dependency for fg_index",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "bear",
-        "priority": "high",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_026",
-      "status": "failed",
-      "execution_time": 3.0491560930492265,
-      "timestamp": "2025-08-07T11:13:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": false,
-      "confidence": "low",
-      "confidence_score": 0.23250212526052413,
-      "analysis": "Analysis for fg_index regime_dependency",
-      "error_message": null,
-      "performance_metrics": {
-        "accuracy": 0.9246863121230522,
-        "precision": 0.8902557993838228,
-        "recall": 0.5961685332790208
-      },
-      "statistical_measures": {},
-      "recommendations": [
-        "Review fg_index implementation",
-        "Update regime_dependency test criteria"
-      ],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 0.9,
-      "risk_assessment": {
-        "risk_level": "high",
-        "risk_factors": [
-          "Critical/high priority test failure"
-        ],
-        "mitigation_actions": [
-          "Immediate investigation and fix required"
-        ],
-        "requires_immediate_attention": true
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_027",
-        "feature_name": "Q50",
-        "test_type": "performance",
-        "description": "Test performance for Q50",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "bull",
-        "priority": "medium",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_027",
-      "status": "skipped",
-      "execution_time": 2.8307669244342915,
-      "timestamp": "2025-08-07T09:48:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": false,
-      "confidence": "low",
-      "confidence_score": 0.43938108806393317,
-      "analysis": "Analysis for Q50 performance",
-      "error_message": null,
-      "performance_metrics": {
-        "accuracy": 0.7889408989322602,
-        "precision": 0.6147843352878131,
-        "recall": 0.6779239429814241
-      },
-      "statistical_measures": {},
-      "recommendations": [
-        "Review Q50 implementation",
-        "Update performance test criteria"
-      ],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 0.9,
-      "risk_assessment": {
-        "risk_level": "medium",
-        "risk_factors": [
-          "Test failure in non-critical component"
-        ],
-        "mitigation_actions": [
-          "Schedule fix in next development cycle"
-        ],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_028",
-        "feature_name": "regime_multiplier",
-        "test_type": "failure_mode",
-        "description": "Test failure_mode for regime_multiplier",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": null,
-        "priority": "low",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_028",
-      "status": "skipped",
-      "execution_time": 1.0338215077875177,
-      "timestamp": "2025-08-07T06:30:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": false,
-      "confidence": "low",
-      "confidence_score": 0.5393376830656588,
-      "analysis": "Analysis for regime_multiplier failure_mode",
-      "error_message": null,
-      "performance_metrics": {},
-      "statistical_measures": {},
-      "recommendations": [
-        "Review regime_multiplier implementation",
-        "Update failure_mode test criteria"
-      ],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 0.9,
-      "risk_assessment": {
-        "risk_level": "medium",
-        "risk_factors": [
-          "Test failure in non-critical component"
-        ],
-        "mitigation_actions": [
-          "Schedule fix in next development cycle"
-        ],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_029",
-        "feature_name": "kelly_sizing",
-        "test_type": "performance",
-        "description": "Test performance for kelly_sizing",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "bear",
-        "priority": "low",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_029",
-      "status": "passed",
-      "execution_time": 1.9506098107892127,
-      "timestamp": "2025-08-08T00:14:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": true,
-      "confidence": "uncertain",
-      "confidence_score": 0.8632107034987024,
-      "analysis": "Successful validation of kelly_sizing",
-      "error_message": null,
-      "performance_metrics": {},
-      "statistical_measures": {},
-      "recommendations": [],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 0.7,
-      "risk_assessment": {
-        "risk_level": "medium",
-        "risk_factors": [
-          "Uncertain test result confidence"
-        ],
-        "mitigation_actions": [
-          "Manual review and additional testing needed"
-        ],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_030",
-        "feature_name": "Q90",
-        "test_type": "performance",
-        "description": "Test performance for Q90",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": null,
-        "priority": "medium",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_030",
-      "status": "passed",
-      "execution_time": 3.9682752805980246,
-      "timestamp": "2025-08-07T12:08:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": true,
-      "confidence": "uncertain",
-      "confidence_score": 0.6454552629899974,
-      "analysis": "Successful validation of Q90",
-      "error_message": null,
-      "performance_metrics": {
-        "accuracy": 0.8311918798760091,
-        "precision": 0.8409430147405563,
-        "recall": 0.7480916440368018
-      },
-      "statistical_measures": {},
-      "recommendations": [],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 0.7,
-      "risk_assessment": {
-        "risk_level": "medium",
-        "risk_factors": [
-          "Uncertain test result confidence"
-        ],
-        "mitigation_actions": [
-          "Manual review and additional testing needed"
-        ],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_031",
-        "feature_name": "Q50",
-        "test_type": "implementation",
-        "description": "Test implementation for Q50",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "sideways",
-        "priority": "critical",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_031",
-      "status": "passed",
-      "execution_time": 2.7462517605592356,
-      "timestamp": "2025-08-07T03:40:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": true,
-      "confidence": "low",
-      "confidence_score": 0.9669498618198649,
-      "analysis": "Successful validation of Q50",
-      "error_message": null,
-      "performance_metrics": {},
-      "statistical_measures": {},
-      "recommendations": [],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 0.85,
-      "risk_assessment": {
-        "risk_level": "low",
-        "risk_factors": [],
-        "mitigation_actions": [],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_032",
-        "feature_name": "Q10",
-        "test_type": "regime_dependency",
-        "description": "Test regime_dependency for Q10",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": null,
-        "priority": "medium",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_032",
-      "status": "skipped",
-      "execution_time": 1.5728198354884677,
-      "timestamp": "2025-08-07T10:19:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": false,
-      "confidence": "high",
-      "confidence_score": 0.007423324131103825,
-      "analysis": "Analysis for Q10 regime_dependency",
-      "error_message": null,
-      "performance_metrics": {
-        "accuracy": 0.817167842821903,
-        "precision": 0.6083170512085986,
-        "recall": 0.4343491916471694
-      },
-      "statistical_measures": {},
-      "recommendations": [
-        "Review Q10 implementation",
-        "Update regime_dependency test criteria"
-      ],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 1.0,
-      "risk_assessment": {
-        "risk_level": "medium",
-        "risk_factors": [
-          "Test failure in non-critical component",
-          "Poor performance in metrics: recall"
-        ],
-        "mitigation_actions": [
-          "Schedule fix in next development cycle",
-          "Performance optimization required"
-        ],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_033",
-        "feature_name": "Q10",
-        "test_type": "failure_mode",
-        "description": "Test failure_mode for Q10",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "sideways",
-        "priority": "low",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_033",
-      "status": "error",
-      "execution_time": 4.774764684642394,
-      "timestamp": "2025-08-07T09:28:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": false,
-      "confidence": "medium",
-      "confidence_score": 0.6608665759544389,
-      "analysis": "Analysis for Q10 failure_mode",
-      "error_message": "Error in Q10 test",
-      "performance_metrics": {},
-      "statistical_measures": {},
-      "recommendations": [
-        "Review Q10 implementation",
-        "Update failure_mode test criteria"
-      ],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 0.8500000000000001,
-      "risk_assessment": {
-        "risk_level": "medium",
-        "risk_factors": [
-          "Test failure in non-critical component"
-        ],
-        "mitigation_actions": [
-          "Schedule fix in next development cycle"
-        ],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_034",
-        "feature_name": "vol_risk",
-        "test_type": "regime_dependency",
-        "description": "Test regime_dependency for vol_risk",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "bull",
-        "priority": "critical",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_034",
-      "status": "passed",
-      "execution_time": 4.381183010966775,
-      "timestamp": "2025-08-07T10:01:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": true,
-      "confidence": "low",
-      "confidence_score": 0.8910343587488919,
-      "analysis": "Successful validation of vol_risk",
-      "error_message": null,
-      "performance_metrics": {
-        "accuracy": 0.858997046007985,
-        "precision": 0.5273772662498462,
-        "recall": 0.679354258641474
-      },
-      "statistical_measures": {},
-      "recommendations": [],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 0.85,
-      "risk_assessment": {
-        "risk_level": "low",
-        "risk_factors": [],
-        "mitigation_actions": [],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_035",
-        "feature_name": "spread",
-        "test_type": "implementation",
-        "description": "Test implementation for spread",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "bull",
-        "priority": "low",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_035",
-      "status": "passed",
-      "execution_time": 2.952783161849387,
-      "timestamp": "2025-08-07T12:41:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": true,
-      "confidence": "high",
-      "confidence_score": 0.5627703142539644,
-      "analysis": "Successful validation of spread",
-      "error_message": null,
-      "performance_metrics": {
-        "accuracy": 0.7418501739653679,
-        "precision": 0.8139915304547785,
-        "recall": 0.6115395291440446
-      },
-      "statistical_measures": {},
-      "recommendations": [],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 1.0,
-      "risk_assessment": {
-        "risk_level": "low",
-        "risk_factors": [],
-        "mitigation_actions": [],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_036",
-        "feature_name": "vol_risk",
-        "test_type": "performance",
-        "description": "Test performance for vol_risk",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": null,
-        "priority": "low",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_036",
-      "status": "skipped",
-      "execution_time": 1.5389209817262324,
-      "timestamp": "2025-08-07T13:25:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": false,
-      "confidence": "medium",
-      "confidence_score": 0.019184190962098866,
-      "analysis": "Analysis for vol_risk performance",
-      "error_message": null,
-      "performance_metrics": {
-        "accuracy": 0.7818049378786465,
-        "precision": 0.57597657895151,
-        "recall": 0.6435746226081541
-      },
-      "statistical_measures": {},
-      "recommendations": [
-        "Review vol_risk implementation",
-        "Update performance test criteria"
-      ],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 1.0,
-      "risk_assessment": {
-        "risk_level": "medium",
-        "risk_factors": [
-          "Test failure in non-critical component"
-        ],
-        "mitigation_actions": [
-          "Schedule fix in next development cycle"
-        ],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_037",
-        "feature_name": "vol_risk",
-        "test_type": "economic_hypothesis",
-        "description": "Test economic_hypothesis for vol_risk",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "sideways",
-        "priority": "high",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_037",
-      "status": "passed",
-      "execution_time": 0.7780363801481807,
-      "timestamp": "2025-08-07T13:03:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": true,
-      "confidence": "medium",
-      "confidence_score": 0.5721525123673423,
-      "analysis": "Successful validation of vol_risk",
-      "error_message": null,
-      "performance_metrics": {
-        "accuracy": 0.6113029534808079,
-        "precision": 0.504564493684419,
-        "recall": 0.626340528425325
-      },
-      "statistical_measures": {},
-      "recommendations": [],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 1.0,
-      "risk_assessment": {
-        "risk_level": "low",
-        "risk_factors": [],
-        "mitigation_actions": [],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
         "test_id": "test_038",
-        "feature_name": "fg_index",
-        "test_type": "economic_hypothesis",
-        "description": "Test economic_hypothesis for fg_index",
+        "feature_name": "Q50",
+        "test_type": "regime_dependency",
+        "description": "Test regime_dependency for Q50",
         "test_parameters": {},
         "expected_result": "Expected behavior validation",
         "validation_criteria": {},
-        "regime_context": "bull",
-        "priority": "medium",
+        "regime_context": null,
+        "priority": "low",
         "estimated_duration": 1.0,
         "dependencies": [],
         "tags": [],
         "rationale": ""
       },
       "execution_id": "exec_038",
-      "status": "failed",
-      "execution_time": 0.8156610423185221,
-      "timestamp": "2025-08-07T22:46:46.657333",
+      "status": "error",
+      "execution_time": 2.8209056233494567,
+      "timestamp": "2025-08-07T02:14:19.704889",
       "actual_result": null,
       "expected_result": null,
       "passed": false,
-      "confidence": "medium",
-      "confidence_score": 0.35161376375684944,
-      "analysis": "Analysis for fg_index economic_hypothesis",
-      "error_message": null,
-      "performance_metrics": {},
+      "confidence": "low",
+      "confidence_score": 0.699644545509721,
+      "analysis": "Analysis for Q50 regime_dependency",
+      "error_message": "Error in Q50 test",
+      "performance_metrics": {
+        "accuracy": 0.6828860660029998,
+        "precision": 0.5909664881145009,
+        "recall": 0.807231171038097
+      },
       "statistical_measures": {},
       "recommendations": [
-        "Review fg_index implementation",
-        "Update economic_hypothesis test criteria"
+        "Review Q50 implementation",
+        "Update regime_dependency test criteria"
       ],
       "action_items": [],
       "severity": "medium",
       "test_environment": {},
       "data_quality_issues": [],
-      "quality_score": 1.0,
+      "quality_score": 0.7,
       "risk_assessment": {
         "risk_level": "medium",
         "risk_factors": [
@@ -1873,44 +1939,53 @@
     {
       "test_case": {
         "test_id": "test_039",
-        "feature_name": "Q10",
+        "feature_name": "Q50",
         "test_type": "economic_hypothesis",
-        "description": "Test economic_hypothesis for Q10",
+        "description": "Test economic_hypothesis for Q50",
         "test_parameters": {},
         "expected_result": "Expected behavior validation",
         "validation_criteria": {},
-        "regime_context": null,
-        "priority": "high",
+        "regime_context": "bull",
+        "priority": "medium",
         "estimated_duration": 1.0,
         "dependencies": [],
         "tags": [],
         "rationale": ""
       },
       "execution_id": "exec_039",
-      "status": "passed",
-      "execution_time": 4.36143895859413,
-      "timestamp": "2025-08-07T07:53:46.657333",
+      "status": "error",
+      "execution_time": 4.310040140556485,
+      "timestamp": "2025-08-07T04:20:19.704889",
       "actual_result": null,
       "expected_result": null,
-      "passed": true,
+      "passed": false,
       "confidence": "uncertain",
-      "confidence_score": 0.9952666354624733,
-      "analysis": "Successful validation of Q10",
-      "error_message": null,
-      "performance_metrics": {},
+      "confidence_score": 0.07491691787616221,
+      "analysis": "Analysis for Q50 economic_hypothesis",
+      "error_message": "Error in Q50 test",
+      "performance_metrics": {
+        "accuracy": 0.7662735592036296,
+        "precision": 0.6358650596742276,
+        "recall": 0.7927107689988817
+      },
       "statistical_measures": {},
-      "recommendations": [],
+      "recommendations": [
+        "Review Q50 implementation",
+        "Update economic_hypothesis test criteria"
+      ],
       "action_items": [],
       "severity": "medium",
       "test_environment": {},
       "data_quality_issues": [],
-      "quality_score": 0.7,
+      "quality_score": 0.5499999999999999,
       "risk_assessment": {
         "risk_level": "medium",
         "risk_factors": [
+          "Test failure in non-critical component",
           "Uncertain test result confidence"
         ],
         "mitigation_actions": [
+          "Schedule fix in next development cycle",
           "Manual review and additional testing needed"
         ],
         "requires_immediate_attention": false
@@ -1920,68 +1995,55 @@
       "test_case": {
         "test_id": "test_040",
         "feature_name": "vol_risk",
-        "test_type": "economic_hypothesis",
-        "description": "Test economic_hypothesis for vol_risk",
+        "test_type": "regime_dependency",
+        "description": "Test regime_dependency for vol_risk",
         "test_parameters": {},
         "expected_result": "Expected behavior validation",
         "validation_criteria": {},
-        "regime_context": "bull",
-        "priority": "low",
+        "regime_context": null,
+        "priority": "critical",
         "estimated_duration": 1.0,
         "dependencies": [],
         "tags": [],
         "rationale": ""
       },
       "execution_id": "exec_040",
-      "status": "error",
-      "execution_time": 0.3318617785532427,
-      "timestamp": "2025-08-07T14:41:46.657333",
+      "status": "passed",
+      "execution_time": 4.688914312187519,
+      "timestamp": "2025-08-08T01:01:19.704889",
       "actual_result": null,
       "expected_result": null,
-      "passed": false,
+      "passed": true,
       "confidence": "medium",
-      "confidence_score": 0.5989149602094244,
-      "analysis": "Analysis for vol_risk economic_hypothesis",
-      "error_message": "Error in vol_risk test",
-      "performance_metrics": {
-        "accuracy": 0.8957974111389381,
-        "precision": 0.7917161174118783,
-        "recall": 0.43686339429399795
-      },
+      "confidence_score": 0.5642249720893712,
+      "analysis": "Successful validation of vol_risk",
+      "error_message": null,
+      "performance_metrics": {},
       "statistical_measures": {},
-      "recommendations": [
-        "Review vol_risk implementation",
-        "Update economic_hypothesis test criteria"
-      ],
+      "recommendations": [],
       "action_items": [],
       "severity": "medium",
       "test_environment": {},
       "data_quality_issues": [],
-      "quality_score": 0.8500000000000001,
+      "quality_score": 1.0,
       "risk_assessment": {
-        "risk_level": "medium",
-        "risk_factors": [
-          "Test failure in non-critical component",
-          "Poor performance in metrics: recall"
-        ],
-        "mitigation_actions": [
-          "Schedule fix in next development cycle",
-          "Performance optimization required"
-        ],
+        "risk_level": "low",
+        "risk_factors": [],
+        "mitigation_actions": [],
         "requires_immediate_attention": false
       }
     },
     {
       "test_case": {
         "test_id": "test_041",
-        "feature_name": "regime_multiplier",
-        "test_type": "implementation",
-        "description": "Test implementation for regime_multiplier",
+        "feature_name": "vol_risk",
+        "test_type": "failure_mode",
+        "description": "Test failure_mode for vol_risk",
         "test_parameters": {},
         "expected_result": "Expected behavior validation",
         "validation_criteria": {},
         "regime_context": "bear",
-        "priority": "medium",
+        "priority": "low",
         "estimated_duration": 1.0,
         "dependencies": [],
         "tags": [],
@@ -1989,20 +2051,16 @@
       },
       "execution_id": "exec_041",
       "status": "passed",
-      "execution_time": 1.2825709869211919,
-      "timestamp": "2025-08-07T10:00:46.657333",
+      "execution_time": 4.08452658953071,
+      "timestamp": "2025-08-07T06:04:19.704889",
       "actual_result": null,
       "expected_result": null,
       "passed": true,
       "confidence": "low",
-      "confidence_score": 0.8134896885191815,
-      "analysis": "Successful validation of regime_multiplier",
+      "confidence_score": 0.5870292534364705,
+      "analysis": "Successful validation of vol_risk",
       "error_message": null,
-      "performance_metrics": {
-        "accuracy": 0.8622638860672148,
-        "precision": 0.7311414872948155,
-        "recall": 0.4469354649813129
-      },
+      "performance_metrics": {},
       "statistical_measures": {},
       "recommendations": [],
       "action_items": [],
@@ -2011,13 +2069,9 @@
       "data_quality_issues": [],
       "quality_score": 0.85,
       "risk_assessment": {
-        "risk_level": "medium",
-        "risk_factors": [
-          "Poor performance in metrics: recall"
-        ],
-        "mitigation_actions": [
-          "Performance optimization required"
-        ],
+        "risk_level": "low",
+        "risk_factors": [],
+        "mitigation_actions": [],
         "requires_immediate_attention": false
       }
     },
@@ -2025,13 +2079,13 @@
       "test_case": {
         "test_id": "test_042",
         "feature_name": "Q90",
-        "test_type": "regime_dependency",
-        "description": "Test regime_dependency for Q90",
+        "test_type": "implementation",
+        "description": "Test implementation for Q90",
         "test_parameters": {},
         "expected_result": "Expected behavior validation",
         "validation_criteria": {},
         "regime_context": "sideways",
-        "priority": "critical",
+        "priority": "medium",
         "estimated_duration": 1.0,
         "dependencies": [],
         "tags": [],
@@ -2039,20 +2093,16 @@
       },
       "execution_id": "exec_042",
       "status": "passed",
-      "execution_time": 1.0721906654607825,
-      "timestamp": "2025-08-07T13:20:46.657333",
+      "execution_time": 0.8645169818961524,
+      "timestamp": "2025-08-07T04:02:19.704889",
       "actual_result": null,
       "expected_result": null,
       "passed": true,
       "confidence": "uncertain",
-      "confidence_score": 0.6321495749406647,
+      "confidence_score": 0.5642194261082827,
       "analysis": "Successful validation of Q90",
       "error_message": null,
-      "performance_metrics": {
-        "accuracy": 0.7377665465630222,
-        "precision": 0.6421226385210187,
-        "recall": 0.6870050378759422
-      },
+      "performance_metrics": {},
       "statistical_measures": {},
       "recommendations": [],
       "action_items": [],
@@ -2074,14 +2124,14 @@
     {
       "test_case": {
         "test_id": "test_043",
-        "feature_name": "btc_dom",
+        "feature_name": "kelly_sizing",
         "test_type": "performance",
-        "description": "Test performance for btc_dom",
+        "description": "Test performance for kelly_sizing",
         "test_parameters": {},
         "expected_result": "Expected behavior validation",
         "validation_criteria": {},
-        "regime_context": "sideways",
-        "priority": "critical",
+        "regime_context": "bull",
+        "priority": "medium",
         "estimated_duration": 1.0,
         "dependencies": [],
         "tags": [],
@@ -2089,27 +2139,23 @@
       },
       "execution_id": "exec_043",
       "status": "passed",
-      "execution_time": 1.0532910097192765,
-      "timestamp": "2025-08-07T17:32:46.657333",
+      "execution_time": 1.6743579733003036,
+      "timestamp": "2025-08-07T10:12:19.704889",
       "actual_result": null,
       "expected_result": null,
       "passed": true,
-      "confidence": "low",
-      "confidence_score": 0.5228335979701311,
-      "analysis": "Successful validation of btc_dom",
+      "confidence": "medium",
+      "confidence_score": 0.8650701656989912,
+      "analysis": "Successful validation of kelly_sizing",
       "error_message": null,
-      "performance_metrics": {
-        "accuracy": 0.7730533874486822,
-        "precision": 0.5767693261548006,
-        "recall": 0.6858125535079747
-      },
+      "performance_metrics": {},
       "statistical_measures": {},
       "recommendations": [],
       "action_items": [],
       "severity": "medium",
       "test_environment": {},
       "data_quality_issues": [],
-      "quality_score": 0.85,
+      "quality_score": 1.0,
       "risk_assessment": {
         "risk_level": "low",
         "risk_factors": [],
@@ -2120,9 +2166,9 @@
     {
       "test_case": {
         "test_id": "test_044",
-        "feature_name": "btc_dom",
-        "test_type": "failure_mode",
-        "description": "Test failure_mode for btc_dom",
+        "feature_name": "kelly_sizing",
+        "test_type": "implementation",
+        "description": "Test implementation for kelly_sizing",
         "test_parameters": {},
         "expected_result": "Expected behavior validation",
         "validation_criteria": {},
@@ -2134,31 +2180,80 @@
         "rationale": ""
       },
       "execution_id": "exec_044",
-      "status": "error",
-      "execution_time": 1.960848172902083,
-      "timestamp": "2025-08-07T23:43:46.657333",
+      "status": "failed",
+      "execution_time": 2.753016393179885,
+      "timestamp": "2025-08-07T02:17:19.704889",
       "actual_result": null,
       "expected_result": null,
       "passed": false,
-      "confidence": "uncertain",
-      "confidence_score": 0.3855092039281691,
-      "analysis": "Analysis for btc_dom failure_mode",
-      "error_message": "Error in btc_dom test",
-      "performance_metrics": {
-        "accuracy": 0.9095654681161984,
-        "precision": 0.7523726476969357,
-        "recall": 0.6125828517327054
-      },
+      "confidence": "medium",
+      "confidence_score": 0.18079149344678297,
+      "analysis": "Analysis for kelly_sizing implementation",
+      "error_message": null,
+      "performance_metrics": {},
       "statistical_measures": {},
       "recommendations": [
-        "Review btc_dom implementation",
-        "Update failure_mode test criteria"
+        "Review kelly_sizing implementation",
+        "Update implementation test criteria"
       ],
       "action_items": [],
       "severity": "medium",
       "test_environment": {},
       "data_quality_issues": [],
-      "quality_score": 0.5499999999999999,
+      "quality_score": 1.0,
+      "risk_assessment": {
+        "risk_level": "medium",
+        "risk_factors": [
+          "Test failure in non-critical component"
+        ],
+        "mitigation_actions": [
+          "Schedule fix in next development cycle"
+        ],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_045",
+        "feature_name": "Q50",
+        "test_type": "economic_hypothesis",
+        "description": "Test economic_hypothesis for Q50",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "bull",
+        "priority": "low",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_045",
+      "status": "failed",
+      "execution_time": 0.6112360585419047,
+      "timestamp": "2025-08-08T02:00:19.704889",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": false,
+      "confidence": "uncertain",
+      "confidence_score": 0.40350760656867934,
+      "analysis": "Analysis for Q50 economic_hypothesis",
+      "error_message": null,
+      "performance_metrics": {
+        "accuracy": 0.799644899338715,
+        "precision": 0.5715363299847153,
+        "recall": 0.525160675881198
+      },
+      "statistical_measures": {},
+      "recommendations": [
+        "Review Q50 implementation",
+        "Update economic_hypothesis test criteria"
+      ],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 0.75,
       "risk_assessment": {
         "risk_level": "medium",
         "risk_factors": [
@@ -2174,35 +2269,35 @@
     },
     {
       "test_case": {
-        "test_id": "test_045",
-        "feature_name": "Q90",
-        "test_type": "implementation",
-        "description": "Test implementation for Q90",
+        "test_id": "test_046",
+        "feature_name": "Q50",
+        "test_type": "regime_dependency",
+        "description": "Test regime_dependency for Q50",
         "test_parameters": {},
         "expected_result": "Expected behavior validation",
         "validation_criteria": {},
         "regime_context": "bear",
-        "priority": "low",
+        "priority": "critical",
         "estimated_duration": 1.0,
         "dependencies": [],
         "tags": [],
         "rationale": ""
       },
-      "execution_id": "exec_045",
+      "execution_id": "exec_046",
       "status": "passed",
-      "execution_time": 3.539848799652826,
-      "timestamp": "2025-08-07T10:59:46.657333",
+      "execution_time": 3.068621012947949,
+      "timestamp": "2025-08-07T04:17:19.704889",
       "actual_result": null,
       "expected_result": null,
       "passed": true,
       "confidence": "high",
-      "confidence_score": 0.8279620707918512,
-      "analysis": "Successful validation of Q90",
+      "confidence_score": 0.9352142959571774,
+      "analysis": "Successful validation of Q50",
       "error_message": null,
       "performance_metrics": {
-        "accuracy": 0.867398920742536,
-        "precision": 0.6017752769218888,
-        "recall": 0.5037770613288008
+        "accuracy": 0.8235884336282369,
+        "precision": 0.6732865739637286,
+        "recall": 0.7655960570746195
       },
       "statistical_measures": {},
       "recommendations": [],
@@ -2220,46 +2315,88 @@
     },
     {
       "test_case": {
-        "test_id": "test_046",
-        "feature_name": "spread",
-        "test_type": "regime_dependency",
-        "description": "Test regime_dependency for spread",
+        "test_id": "test_047",
+        "feature_name": "fg_index",
+        "test_type": "failure_mode",
+        "description": "Test failure_mode for fg_index",
         "test_parameters": {},
         "expected_result": "Expected behavior validation",
         "validation_criteria": {},
-        "regime_context": "sideways",
-        "priority": "medium",
+        "regime_context": "bear",
+        "priority": "critical",
         "estimated_duration": 1.0,
         "dependencies": [],
         "tags": [],
         "rationale": ""
       },
-      "execution_id": "exec_046",
-      "status": "skipped",
-      "execution_time": 0.8333191550488624,
-      "timestamp": "2025-08-07T21:31:46.657333",
+      "execution_id": "exec_047",
+      "status": "passed",
+      "execution_time": 2.407159036949012,
+      "timestamp": "2025-08-07T21:34:19.704889",
+      "actual_result": null,
+      "expected_result": null,
+      "passed": true,
+      "confidence": "medium",
+      "confidence_score": 0.6629454443564929,
+      "analysis": "Successful validation of fg_index",
+      "error_message": null,
+      "performance_metrics": {
+        "accuracy": 0.6542890166300962,
+        "precision": 0.5214478328466398,
+        "recall": 0.737369888691769
+      },
+      "statistical_measures": {},
+      "recommendations": [],
+      "action_items": [],
+      "severity": "medium",
+      "test_environment": {},
+      "data_quality_issues": [],
+      "quality_score": 1.0,
+      "risk_assessment": {
+        "risk_level": "low",
+        "risk_factors": [],
+        "mitigation_actions": [],
+        "requires_immediate_attention": false
+      }
+    },
+    {
+      "test_case": {
+        "test_id": "test_048",
+        "feature_name": "vol_risk",
+        "test_type": "failure_mode",
+        "description": "Test failure_mode for vol_risk",
+        "test_parameters": {},
+        "expected_result": "Expected behavior validation",
+        "validation_criteria": {},
+        "regime_context": "bull",
+        "priority": "low",
+        "estimated_duration": 1.0,
+        "dependencies": [],
+        "tags": [],
+        "rationale": ""
+      },
+      "execution_id": "exec_048",
+      "status": "failed",
+      "execution_time": 2.509413413500725,
+      "timestamp": "2025-08-07T22:24:19.704889",
       "actual_result": null,
       "expected_result": null,
       "passed": false,
-      "confidence": "low",
-      "confidence_score": 0.5487665019637629,
-      "analysis": "Analysis for spread regime_dependency",
+      "confidence": "medium",
+      "confidence_score": 0.3454408080252233,
+      "analysis": "Analysis for vol_risk failure_mode",
       "error_message": null,
-      "performance_metrics": {
-        "accuracy": 0.7957640168104407,
-        "precision": 0.543076801470441,
-        "recall": 0.6615984323554721
-      },
+      "performance_metrics": {},
       "statistical_measures": {},
       "recommendations": [
-        "Review spread implementation",
-        "Update regime_dependency test criteria"
+        "Review vol_risk implementation",
+        "Update failure_mode test criteria"
       ],
       "action_items": [],
       "severity": "medium",
       "test_environment": {},
       "data_quality_issues": [],
-      "quality_score": 0.9,
+      "quality_score": 1.0,
       "risk_assessment": {
         "risk_level": "medium",
         "risk_factors": [
@@ -2273,80 +2410,30 @@
     },
     {
       "test_case": {
-        "test_id": "test_047",
-        "feature_name": "fg_index",
-        "test_type": "performance",
-        "description": "Test performance for fg_index",
+        "test_id": "test_049",
+        "feature_name": "Q50",
+        "test_type": "failure_mode",
+        "description": "Test failure_mode for Q50",
         "test_parameters": {},
         "expected_result": "Expected behavior validation",
         "validation_criteria": {},
-        "regime_context": "bull",
-        "priority": "critical",
+        "regime_context": "bear",
+        "priority": "low",
         "estimated_duration": 1.0,
         "dependencies": [],
         "tags": [],
         "rationale": ""
       },
-      "execution_id": "exec_047",
+      "execution_id": "exec_049",
       "status": "passed",
-      "execution_time": 4.030790903975908,
-      "timestamp": "2025-08-07T11:50:46.657333",
+      "execution_time": 2.6583617578193306,
+      "timestamp": "2025-08-07T16:24:19.704889",
       "actual_result": null,
       "expected_result": null,
       "passed": true,
       "confidence": "uncertain",
-      "confidence_score": 0.5307062801217275,
-      "analysis": "Successful validation of fg_index",
-      "error_message": null,
-      "performance_metrics": {
-        "accuracy": 0.6639735803951153,
-        "precision": 0.5886427827969101,
-        "recall": 0.7905060829521449
-      },
-      "statistical_measures": {},
-      "recommendations": [],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 0.7,
-      "risk_assessment": {
-        "risk_level": "medium",
-        "risk_factors": [
-          "Uncertain test result confidence"
-        ],
-        "mitigation_actions": [
-          "Manual review and additional testing needed"
-        ],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_048",
-        "feature_name": "Q90",
-        "test_type": "economic_hypothesis",
-        "description": "Test economic_hypothesis for Q90",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": null,
-        "priority": "critical",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_048",
-      "status": "passed",
-      "execution_time": 2.9714938929328176,
-      "timestamp": "2025-08-07T19:48:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": true,
-      "confidence": "uncertain",
-      "confidence_score": 0.7135364957006253,
-      "analysis": "Successful validation of Q90",
+      "confidence_score": 0.5698295799716973,
+      "analysis": "Successful validation of Q50",
       "error_message": null,
       "performance_metrics": {},
       "statistical_measures": {},
@@ -2362,61 +2449,6 @@
           "Uncertain test result confidence"
         ],
         "mitigation_actions": [
-          "Manual review and additional testing needed"
-        ],
-        "requires_immediate_attention": false
-      }
-    },
-    {
-      "test_case": {
-        "test_id": "test_049",
-        "feature_name": "fg_index",
-        "test_type": "economic_hypothesis",
-        "description": "Test economic_hypothesis for fg_index",
-        "test_parameters": {},
-        "expected_result": "Expected behavior validation",
-        "validation_criteria": {},
-        "regime_context": "bear",
-        "priority": "medium",
-        "estimated_duration": 1.0,
-        "dependencies": [],
-        "tags": [],
-        "rationale": ""
-      },
-      "execution_id": "exec_049",
-      "status": "skipped",
-      "execution_time": 3.3869180056977117,
-      "timestamp": "2025-08-07T20:34:46.657333",
-      "actual_result": null,
-      "expected_result": null,
-      "passed": false,
-      "confidence": "uncertain",
-      "confidence_score": 0.49808586444860403,
-      "analysis": "Analysis for fg_index economic_hypothesis",
-      "error_message": null,
-      "performance_metrics": {
-        "accuracy": 0.6939332566339195,
-        "precision": 0.7803481173587327,
-        "recall": 0.679887383725833
-      },
-      "statistical_measures": {},
-      "recommendations": [
-        "Review fg_index implementation",
-        "Update economic_hypothesis test criteria"
-      ],
-      "action_items": [],
-      "severity": "medium",
-      "test_environment": {},
-      "data_quality_issues": [],
-      "quality_score": 0.75,
-      "risk_assessment": {
-        "risk_level": "medium",
-        "risk_factors": [
-          "Test failure in non-critical component",
-          "Uncertain test result confidence"
-        ],
-        "mitigation_actions": [
-          "Schedule fix in next development cycle",
           "Manual review and additional testing needed"
         ],
         "requires_immediate_attention": false

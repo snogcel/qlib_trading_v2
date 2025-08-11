@@ -1,53 +1,71 @@
 # Test Coverage Summary Report
-Generated: 2025-08-08 01:50:46
+Generated: 2025-08-08 02:03:19
 
 ## Overall Statistics
 - Total Tests: 50
-- Passed: 28
-- Failed: 22
-- Success Rate: 56.0%
-- Average Execution Time: 2.30s
+- Passed: 26
+- Failed: 24
+- Success Rate: 52.0%
+- Average Execution Time: 2.41s
 
 ## Test Status Breakdown
-- Passed: 28
-- Failed: 5
-- Errors: 6
-- Skipped: 11
+- Passed: 26
+- Failed: 10
+- Errors: 7
+- Skipped: 7
 - Timeouts: 0
 
 ## Priority Breakdown
-- Critical: 13/13 (100.0%)
-- High: 7/8 (87.5%)
-- Medium: 4/15 (26.7%)
-- Low: 4/14 (28.6%)
+- Critical: 14/15 (93.3%)
+- High: 5/7 (71.4%)
+- Medium: 4/12 (33.3%)
+- Low: 3/16 (18.8%)
 
 ## Critical Failures
-Found 1 critical/high priority failures:
+Found 3 critical/high priority failures:
 
-### fg_index - regime_dependency
+### btc_dom - implementation
 - Priority: high
 - Error: No error message
-- Analysis: Analysis for fg_index regime_dependency
+- Analysis: Analysis for btc_dom implementation
 
 - Recommendations:
-  - Review fg_index implementation
-  - Update regime_dependency test criteria
+  - Review btc_dom implementation
+  - Update implementation test criteria
+
+### Q90 - performance
+- Priority: high
+- Error: No error message
+- Analysis: Analysis for Q90 performance
+
+- Recommendations:
+  - Review Q90 implementation
+  - Update performance test criteria
+
+### kelly_sizing - implementation
+- Priority: critical
+- Error: No error message
+- Analysis: Analysis for kelly_sizing implementation
+
+- Recommendations:
+  - Review kelly_sizing implementation
+  - Update implementation test criteria
 
 ## Confidence Analysis
-- High Confidence: 10
-- Medium Confidence: 12
-- Low Confidence: 17
-- Uncertain: 11
+- High Confidence: 5
+- Medium Confidence: 19
+- Low Confidence: 11
+- Uncertain: 15
 
 ## Key Recommendations
 
-1. Update implementation test criteria
-2. Review kelly_sizing implementation
-3. Update regime_dependency test criteria
-4. Review fg_index implementation
-5. Review btc_dom implementation
-6. Update economic_hypothesis test criteria
+1. Review Q10 implementation
+2. Review btc_dom implementation
+3. Review fg_index implementation
+4. Review regime_multiplier implementation
+5. Update performance test criteria
+6. Review kelly_sizing implementation
 7. Review vol_risk implementation
-8. Review Q50 implementation
-9. Update failure_mode test criteria
-10. Review spread implementation
+8. Update economic_hypothesis test criteria
+9. Update implementation test criteria
+10. Review Q50 implementation

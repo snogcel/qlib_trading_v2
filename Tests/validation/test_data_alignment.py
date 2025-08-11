@@ -2,6 +2,15 @@
 Validate alignment between prediction data and price data
 """
 
+# Add project root to path
+import sys
+import os
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+if project_root not in sys.path:
+    sys.path.append(project_root)
+
+
+
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -24,7 +33,7 @@ def validate_data_alignment():
     
     # Load price data
     print("\nLoading price data...")
-    price_file = r"C:\Projects\qlib_trading_v2\csv_data\CRYPTODATA_RESAMPLE\60min\BTCUSDT.csv"
+    price_file = r"C:\Projects\qlib_trading_v2\data\processed\CRYPTODATA_RESAMPLE\60min\BTCUSDT.csv"
     
     try:
         df_price = pd.read_csv(price_file)

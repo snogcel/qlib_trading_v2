@@ -1,0 +1,990 @@
+{
+  "overview": {
+    "total_results_analyzed": 30,
+    "target_feature_results": 13,
+    "target_feature_failures": 9,
+    "target_failure_rate": 69.23076923076923,
+    "analysis_scope": {
+      "features": [
+        "btc_dom",
+        "regime_multiplier",
+        "vol_risk"
+      ],
+      "test_types": [
+        "failure_mode",
+        "implementation",
+        "economic_hypothesis",
+        "regime_dependency",
+        "performance"
+      ],
+      "priorities": [
+        "low",
+        "critical",
+        "medium",
+        "high"
+      ]
+    }
+  },
+  "feature_analysis": {
+    "btc_dom": {
+      "summary": {
+        "feature_name": "btc_dom",
+        "total_tests": 3,
+        "passed_tests": 0,
+        "failed_tests": 3,
+        "success_rate": 0.0,
+        "status": "CRITICAL - Complete Failure"
+      },
+      "test_type_breakdown": {
+        "failure_mode": {
+          "total": 1,
+          "passed": 0,
+          "failed": 1,
+          "success_rate": 0.0,
+          "failures": [
+            {
+              "test_id": "btc_dom_001",
+              "status": "error",
+              "error": "Data source connection failed",
+              "analysis": "Analysis for btc_dom failure_mode",
+              "confidence": "low",
+              "execution_time": 1.2553835590644846,
+              "recommendations": [
+                "Fix btc_dom failure_mode issue",
+                "Review data source"
+              ]
+            }
+          ]
+        },
+        "implementation": {
+          "total": 2,
+          "passed": 0,
+          "failed": 2,
+          "success_rate": 0.0,
+          "failures": [
+            {
+              "test_id": "btc_dom_000",
+              "status": "failed",
+              "error": "BTC dominance calculation error",
+              "analysis": "Analysis for btc_dom implementation",
+              "confidence": "low",
+              "execution_time": 2.501686625809053,
+              "recommendations": [
+                "Fix btc_dom implementation issue",
+                "Review data source"
+              ]
+            },
+            {
+              "test_id": "btc_dom_002",
+              "status": "failed",
+              "error": "Invalid BTC dominance values",
+              "analysis": "Analysis for btc_dom implementation",
+              "confidence": "low",
+              "execution_time": 2.91053756607746,
+              "recommendations": [
+                "Fix btc_dom implementation issue",
+                "Review data source"
+              ]
+            }
+          ]
+        }
+      },
+      "priority_breakdown": {
+        "high": {
+          "total": 2,
+          "passed": 0,
+          "failed": 2,
+          "success_rate": 0.0
+        },
+        "low": {
+          "total": 1,
+          "passed": 0,
+          "failed": 1,
+          "success_rate": 0.0
+        }
+      },
+      "failure_patterns": {
+        "common_errors": {
+          "BTC dominance calculation error": 1,
+          "Data source connection failed": 1,
+          "Invalid BTC dominance values": 1
+        },
+        "test_type_patterns": {
+          "implementation": [
+            {
+              "status": "failed",
+              "confidence": "low",
+              "execution_time": 2.501686625809053
+            },
+            {
+              "status": "failed",
+              "confidence": "low",
+              "execution_time": 2.91053756607746
+            }
+          ],
+          "failure_mode": [
+            {
+              "status": "error",
+              "confidence": "low",
+              "execution_time": 1.2553835590644846
+            }
+          ]
+        },
+        "timing_patterns": {
+          "avg_execution_time": 2.222535916983666,
+          "min_execution_time": 1.2553835590644846,
+          "max_execution_time": 2.91053756607746,
+          "timeout_failures": 0
+        },
+        "confidence_patterns": {
+          "low": 3
+        },
+        "regime_patterns": {}
+      },
+      "performance_analysis": {},
+      "error_categories": {
+        "by_status": {
+          "failed": 2,
+          "error": 1
+        },
+        "by_severity": {
+          "medium": 3
+        },
+        "by_confidence": {
+          "low": 3
+        },
+        "implementation_errors": [
+          {
+            "test_id": "btc_dom_000",
+            "error": "BTC dominance calculation error",
+            "analysis": "Analysis for btc_dom implementation"
+          },
+          {
+            "test_id": "btc_dom_002",
+            "error": "Invalid BTC dominance values",
+            "analysis": "Analysis for btc_dom implementation"
+          }
+        ],
+        "data_quality_errors": [
+          {
+            "test_id": "btc_dom_000",
+            "error": "BTC dominance calculation error",
+            "analysis": "Analysis for btc_dom implementation"
+          },
+          {
+            "test_id": "btc_dom_001",
+            "error": "Data source connection failed",
+            "analysis": "Analysis for btc_dom failure_mode"
+          },
+          {
+            "test_id": "btc_dom_002",
+            "error": "Invalid BTC dominance values",
+            "analysis": "Analysis for btc_dom implementation"
+          }
+        ],
+        "performance_errors": [],
+        "hypothesis_errors": []
+      },
+      "detailed_failures": [
+        {
+          "test_id": "btc_dom_000",
+          "test_type": "implementation",
+          "priority": "high",
+          "status": "failed",
+          "error_message": "BTC dominance calculation error",
+          "analysis": "Analysis for btc_dom implementation",
+          "confidence": "low",
+          "confidence_score": 0.11136555891507151,
+          "execution_time": 2.501686625809053,
+          "recommendations": [
+            "Fix btc_dom implementation issue",
+            "Review data source"
+          ],
+          "severity": "medium",
+          "risk_assessment": {
+            "risk_level": "high",
+            "risk_factors": [
+              "Critical/high priority test failure"
+            ],
+            "mitigation_actions": [
+              "Immediate investigation and fix required"
+            ],
+            "requires_immediate_attention": true
+          }
+        },
+        {
+          "test_id": "btc_dom_001",
+          "test_type": "failure_mode",
+          "priority": "low",
+          "status": "error",
+          "error_message": "Data source connection failed",
+          "analysis": "Analysis for btc_dom failure_mode",
+          "confidence": "low",
+          "confidence_score": 0.32435597732001886,
+          "execution_time": 1.2553835590644846,
+          "recommendations": [
+            "Fix btc_dom failure_mode issue",
+            "Review data source"
+          ],
+          "severity": "medium",
+          "risk_assessment": {
+            "risk_level": "medium",
+            "risk_factors": [
+              "Test failure in non-critical component"
+            ],
+            "mitigation_actions": [
+              "Schedule fix in next development cycle"
+            ],
+            "requires_immediate_attention": false
+          }
+        },
+        {
+          "test_id": "btc_dom_002",
+          "test_type": "implementation",
+          "priority": "high",
+          "status": "failed",
+          "error_message": "Invalid BTC dominance values",
+          "analysis": "Analysis for btc_dom implementation",
+          "confidence": "low",
+          "confidence_score": 0.2125168330785327,
+          "execution_time": 2.91053756607746,
+          "recommendations": [
+            "Fix btc_dom implementation issue",
+            "Review data source"
+          ],
+          "severity": "medium",
+          "risk_assessment": {
+            "risk_level": "high",
+            "risk_factors": [
+              "Critical/high priority test failure"
+            ],
+            "mitigation_actions": [
+              "Immediate investigation and fix required"
+            ],
+            "requires_immediate_attention": true
+          }
+        }
+      ]
+    },
+    "regime_multiplier": {
+      "summary": {
+        "feature_name": "regime_multiplier",
+        "total_tests": 5,
+        "passed_tests": 2,
+        "failed_tests": 3,
+        "success_rate": 40.0,
+        "status": "CRITICAL - High Failure Rate"
+      },
+      "test_type_breakdown": {
+        "performance": {
+          "total": 1,
+          "passed": 0,
+          "failed": 1,
+          "success_rate": 0.0,
+          "failures": [
+            {
+              "test_id": "regime_mult_000",
+              "status": "failed",
+              "error": "Performance below threshold",
+              "analysis": "Analysis for regime_multiplier performance",
+              "confidence": "medium",
+              "execution_time": 2.886901021327938,
+              "recommendations": [
+                "Fix regime_multiplier performance",
+                "Review implementation"
+              ]
+            }
+          ]
+        },
+        "failure_mode": {
+          "total": 1,
+          "passed": 1,
+          "failed": 0,
+          "success_rate": 100.0,
+          "failures": []
+        },
+        "implementation": {
+          "total": 1,
+          "passed": 0,
+          "failed": 1,
+          "success_rate": 0.0,
+          "failures": [
+            {
+              "test_id": "regime_mult_001",
+              "status": "failed",
+              "error": "Implementation logic error",
+              "analysis": "Analysis for regime_multiplier implementation",
+              "confidence": "medium",
+              "execution_time": 1.529351515570494,
+              "recommendations": [
+                "Fix regime_multiplier implementation",
+                "Review implementation"
+              ]
+            }
+          ]
+        },
+        "regime_dependency": {
+          "total": 2,
+          "passed": 1,
+          "failed": 1,
+          "success_rate": 50.0,
+          "failures": [
+            {
+              "test_id": "regime_mult_002",
+              "status": "failed",
+              "error": "Regime detection failed",
+              "analysis": "Analysis for regime_multiplier regime_dependency",
+              "confidence": "medium",
+              "execution_time": 3.986267278416152,
+              "recommendations": [
+                "Fix regime_multiplier regime_dependency",
+                "Review implementation"
+              ]
+            }
+          ]
+        }
+      },
+      "priority_breakdown": {
+        "high": {
+          "total": 1,
+          "passed": 0,
+          "failed": 1,
+          "success_rate": 0.0
+        },
+        "medium": {
+          "total": 2,
+          "passed": 1,
+          "failed": 1,
+          "success_rate": 50.0
+        },
+        "low": {
+          "total": 2,
+          "passed": 1,
+          "failed": 1,
+          "success_rate": 50.0
+        }
+      },
+      "failure_patterns": {
+        "common_errors": {
+          "Performance below threshold": 1,
+          "Implementation logic error": 1,
+          "Regime detection failed": 1
+        },
+        "test_type_patterns": {
+          "performance": [
+            {
+              "status": "failed",
+              "confidence": "medium",
+              "execution_time": 2.886901021327938
+            }
+          ],
+          "implementation": [
+            {
+              "status": "failed",
+              "confidence": "medium",
+              "execution_time": 1.529351515570494
+            }
+          ],
+          "regime_dependency": [
+            {
+              "status": "failed",
+              "confidence": "medium",
+              "execution_time": 3.986267278416152
+            }
+          ]
+        },
+        "timing_patterns": {
+          "avg_execution_time": 2.8008399384381946,
+          "min_execution_time": 1.529351515570494,
+          "max_execution_time": 3.986267278416152,
+          "timeout_failures": 0
+        },
+        "confidence_patterns": {
+          "medium": 3
+        },
+        "regime_patterns": {
+          "bull": 1
+        }
+      },
+      "performance_analysis": {
+        "efficiency": {
+          "total_measurements": 1,
+          "passed_measurements": 0,
+          "failed_measurements": 1,
+          "failed_stats": {
+            "avg": 0.8162383082226499,
+            "min": 0.8162383082226499,
+            "max": 0.8162383082226499
+          }
+        }
+      },
+      "error_categories": {
+        "by_status": {
+          "failed": 3
+        },
+        "by_severity": {
+          "medium": 3
+        },
+        "by_confidence": {
+          "medium": 3
+        },
+        "implementation_errors": [
+          {
+            "test_id": "regime_mult_001",
+            "error": "Implementation logic error",
+            "analysis": "Analysis for regime_multiplier implementation"
+          }
+        ],
+        "data_quality_errors": [],
+        "performance_errors": [
+          {
+            "test_id": "regime_mult_000",
+            "error": "Performance below threshold",
+            "analysis": "Analysis for regime_multiplier performance"
+          }
+        ],
+        "hypothesis_errors": []
+      },
+      "detailed_failures": [
+        {
+          "test_id": "regime_mult_000",
+          "test_type": "performance",
+          "priority": "medium",
+          "status": "failed",
+          "error_message": "Performance below threshold",
+          "analysis": "Analysis for regime_multiplier performance",
+          "confidence": "medium",
+          "confidence_score": 0.5808131733108526,
+          "execution_time": 2.886901021327938,
+          "recommendations": [
+            "Fix regime_multiplier performance",
+            "Review implementation"
+          ],
+          "severity": "medium",
+          "risk_assessment": {
+            "risk_level": "medium",
+            "risk_factors": [
+              "Test failure in non-critical component"
+            ],
+            "mitigation_actions": [
+              "Schedule fix in next development cycle"
+            ],
+            "requires_immediate_attention": false
+          }
+        },
+        {
+          "test_id": "regime_mult_001",
+          "test_type": "implementation",
+          "priority": "high",
+          "status": "failed",
+          "error_message": "Implementation logic error",
+          "analysis": "Analysis for regime_multiplier implementation",
+          "confidence": "medium",
+          "confidence_score": 0.5995350198556095,
+          "execution_time": 1.529351515570494,
+          "recommendations": [
+            "Fix regime_multiplier implementation",
+            "Review implementation"
+          ],
+          "severity": "medium",
+          "risk_assessment": {
+            "risk_level": "high",
+            "risk_factors": [
+              "Critical/high priority test failure"
+            ],
+            "mitigation_actions": [
+              "Immediate investigation and fix required"
+            ],
+            "requires_immediate_attention": true
+          }
+        },
+        {
+          "test_id": "regime_mult_002",
+          "test_type": "regime_dependency",
+          "priority": "low",
+          "status": "failed",
+          "error_message": "Regime detection failed",
+          "analysis": "Analysis for regime_multiplier regime_dependency",
+          "confidence": "medium",
+          "confidence_score": 0.4809535567248049,
+          "execution_time": 3.986267278416152,
+          "recommendations": [
+            "Fix regime_multiplier regime_dependency",
+            "Review implementation"
+          ],
+          "severity": "medium",
+          "risk_assessment": {
+            "risk_level": "medium",
+            "risk_factors": [
+              "Test failure in non-critical component"
+            ],
+            "mitigation_actions": [
+              "Schedule fix in next development cycle"
+            ],
+            "requires_immediate_attention": false
+          }
+        }
+      ]
+    },
+    "vol_risk": {
+      "summary": {
+        "feature_name": "vol_risk",
+        "total_tests": 5,
+        "passed_tests": 2,
+        "failed_tests": 3,
+        "success_rate": 40.0,
+        "status": "CRITICAL - High Failure Rate"
+      },
+      "test_type_breakdown": {
+        "economic_hypothesis": {
+          "total": 1,
+          "passed": 0,
+          "failed": 1,
+          "success_rate": 0.0,
+          "failures": [
+            {
+              "test_id": "vol_risk_001",
+              "status": "failed",
+              "error": "Risk hypothesis validation failed",
+              "analysis": "Analysis for vol_risk economic_hypothesis",
+              "confidence": "medium",
+              "execution_time": 3.4183760084016668,
+              "recommendations": [
+                "Fix vol_risk economic_hypothesis",
+                "Review risk calculation"
+              ]
+            }
+          ]
+        },
+        "performance": {
+          "total": 1,
+          "passed": 0,
+          "failed": 1,
+          "success_rate": 0.0,
+          "failures": [
+            {
+              "test_id": "vol_risk_000",
+              "status": "failed",
+              "error": "Volatility calculation slow",
+              "analysis": "Analysis for vol_risk performance",
+              "confidence": "medium",
+              "execution_time": 1.9517607725820745,
+              "recommendations": [
+                "Fix vol_risk performance",
+                "Review risk calculation"
+              ]
+            }
+          ]
+        },
+        "failure_mode": {
+          "total": 1,
+          "passed": 0,
+          "failed": 1,
+          "success_rate": 0.0,
+          "failures": [
+            {
+              "test_id": "vol_risk_002",
+              "status": "failed",
+              "error": "Edge case handling failed",
+              "analysis": "Analysis for vol_risk failure_mode",
+              "confidence": "medium",
+              "execution_time": 1.288905548006165,
+              "recommendations": [
+                "Fix vol_risk failure_mode",
+                "Review risk calculation"
+              ]
+            }
+          ]
+        },
+        "implementation": {
+          "total": 1,
+          "passed": 1,
+          "failed": 0,
+          "success_rate": 100.0,
+          "failures": []
+        },
+        "regime_dependency": {
+          "total": 1,
+          "passed": 1,
+          "failed": 0,
+          "success_rate": 100.0,
+          "failures": []
+        }
+      },
+      "priority_breakdown": {
+        "critical": {
+          "total": 2,
+          "passed": 1,
+          "failed": 1,
+          "success_rate": 50.0
+        },
+        "medium": {
+          "total": 2,
+          "passed": 1,
+          "failed": 1,
+          "success_rate": 50.0
+        },
+        "low": {
+          "total": 1,
+          "passed": 0,
+          "failed": 1,
+          "success_rate": 0.0
+        }
+      },
+      "failure_patterns": {
+        "common_errors": {
+          "Volatility calculation slow": 1,
+          "Risk hypothesis validation failed": 1,
+          "Edge case handling failed": 1
+        },
+        "test_type_patterns": {
+          "performance": [
+            {
+              "status": "failed",
+              "confidence": "medium",
+              "execution_time": 1.9517607725820745
+            }
+          ],
+          "economic_hypothesis": [
+            {
+              "status": "failed",
+              "confidence": "medium",
+              "execution_time": 3.4183760084016668
+            }
+          ],
+          "failure_mode": [
+            {
+              "status": "failed",
+              "confidence": "medium",
+              "execution_time": 1.288905548006165
+            }
+          ]
+        },
+        "timing_patterns": {
+          "avg_execution_time": 2.219680776329969,
+          "min_execution_time": 1.288905548006165,
+          "max_execution_time": 3.4183760084016668,
+          "timeout_failures": 0
+        },
+        "confidence_patterns": {
+          "medium": 3
+        },
+        "regime_patterns": {}
+      },
+      "performance_analysis": {
+        "volatility_accuracy": {
+          "total_measurements": 1,
+          "passed_measurements": 0,
+          "failed_measurements": 1,
+          "failed_stats": {
+            "avg": 0.49900238517318457,
+            "min": 0.49900238517318457,
+            "max": 0.49900238517318457
+          }
+        }
+      },
+      "error_categories": {
+        "by_status": {
+          "failed": 3
+        },
+        "by_severity": {
+          "medium": 2,
+          "high": 1
+        },
+        "by_confidence": {
+          "medium": 3
+        },
+        "implementation_errors": [
+          {
+            "test_id": "vol_risk_000",
+            "error": "Volatility calculation slow",
+            "analysis": "Analysis for vol_risk performance"
+          }
+        ],
+        "data_quality_errors": [],
+        "performance_errors": [
+          {
+            "test_id": "vol_risk_000",
+            "error": "Volatility calculation slow",
+            "analysis": "Analysis for vol_risk performance"
+          }
+        ],
+        "hypothesis_errors": [
+          {
+            "test_id": "vol_risk_001",
+            "error": "Risk hypothesis validation failed",
+            "analysis": "Analysis for vol_risk economic_hypothesis"
+          }
+        ]
+      },
+      "detailed_failures": [
+        {
+          "test_id": "vol_risk_000",
+          "test_type": "performance",
+          "priority": "medium",
+          "status": "failed",
+          "error_message": "Volatility calculation slow",
+          "analysis": "Analysis for vol_risk performance",
+          "confidence": "medium",
+          "confidence_score": 0.5340824450451265,
+          "execution_time": 1.9517607725820745,
+          "recommendations": [
+            "Fix vol_risk performance",
+            "Review risk calculation"
+          ],
+          "severity": "medium",
+          "risk_assessment": {
+            "risk_level": "medium",
+            "risk_factors": [
+              "Test failure in non-critical component",
+              "Poor performance in metrics: volatility_accuracy"
+            ],
+            "mitigation_actions": [
+              "Schedule fix in next development cycle",
+              "Performance optimization required"
+            ],
+            "requires_immediate_attention": false
+          }
+        },
+        {
+          "test_id": "vol_risk_001",
+          "test_type": "economic_hypothesis",
+          "priority": "critical",
+          "status": "failed",
+          "error_message": "Risk hypothesis validation failed",
+          "analysis": "Analysis for vol_risk economic_hypothesis",
+          "confidence": "medium",
+          "confidence_score": 0.41689382676545017,
+          "execution_time": 3.4183760084016668,
+          "recommendations": [
+            "Fix vol_risk economic_hypothesis",
+            "Review risk calculation"
+          ],
+          "severity": "high",
+          "risk_assessment": {
+            "risk_level": "high",
+            "risk_factors": [
+              "Critical/high priority test failure"
+            ],
+            "mitigation_actions": [
+              "Immediate investigation and fix required"
+            ],
+            "requires_immediate_attention": true
+          }
+        },
+        {
+          "test_id": "vol_risk_002",
+          "test_type": "failure_mode",
+          "priority": "low",
+          "status": "failed",
+          "error_message": "Edge case handling failed",
+          "analysis": "Analysis for vol_risk failure_mode",
+          "confidence": "medium",
+          "confidence_score": 0.2723490780560633,
+          "execution_time": 1.288905548006165,
+          "recommendations": [
+            "Fix vol_risk failure_mode",
+            "Review risk calculation"
+          ],
+          "severity": "medium",
+          "risk_assessment": {
+            "risk_level": "medium",
+            "risk_factors": [
+              "Test failure in non-critical component"
+            ],
+            "mitigation_actions": [
+              "Schedule fix in next development cycle"
+            ],
+            "requires_immediate_attention": false
+          }
+        }
+      ]
+    }
+  },
+  "pattern_analysis": {
+    "cross_feature_patterns": {
+      "btc_dom": {
+        "implementation": 2,
+        "failure_mode": 1
+      },
+      "regime_multiplier": {
+        "performance": 1,
+        "implementation": 1,
+        "regime_dependency": 1
+      },
+      "vol_risk": {
+        "performance": 1,
+        "economic_hypothesis": 1,
+        "failure_mode": 1
+      }
+    },
+    "test_type_correlation": {
+      "implementation": [
+        "btc_dom",
+        "regime_multiplier"
+      ],
+      "failure_mode": [
+        "btc_dom",
+        "vol_risk"
+      ],
+      "performance": [
+        "vol_risk",
+        "regime_multiplier"
+      ],
+      "regime_dependency": [
+        "regime_multiplier"
+      ],
+      "economic_hypothesis": [
+        "vol_risk"
+      ]
+    },
+    "priority_correlation": {},
+    "temporal_patterns": {},
+    "regime_correlation": {}
+  },
+  "root_cause_analysis": {
+    "primary_causes": [
+      "btc_dom: Complete feature failure - requires immediate investigation"
+    ],
+    "secondary_causes": [],
+    "systemic_issues": [
+      "implementation failures across multiple features - systemic issue",
+      "failure_mode failures across multiple features - systemic issue",
+      "performance failures across multiple features - systemic issue"
+    ],
+    "feature_specific_issues": {
+      "btc_dom": {
+        "total_failures": 3,
+        "failure_rate": 100.0,
+        "dominant_failure_types": {
+          "implementation": 2,
+          "failure_mode": 1
+        },
+        "suspected_root_causes": [
+          "Complete implementation failure - no tests passing",
+          "Data source issues for BTC dominance calculation",
+          "Missing or incorrect BTC dominance data preprocessing",
+          "Fundamental logic error in BTC dominance feature"
+        ]
+      },
+      "regime_multiplier": {
+        "total_failures": 3,
+        "failure_rate": 60.0,
+        "dominant_failure_types": {
+          "performance": 1,
+          "implementation": 1,
+          "regime_dependency": 1
+        },
+        "suspected_root_causes": [
+          "Regime detection or regime-specific logic issues",
+          "Performance calculation or optimization issues"
+        ]
+      },
+      "vol_risk": {
+        "total_failures": 3,
+        "failure_rate": 60.0,
+        "dominant_failure_types": {
+          "performance": 1,
+          "economic_hypothesis": 1,
+          "failure_mode": 1
+        },
+        "suspected_root_causes": [
+          "Performance calculation or optimization issues",
+          "Economic assumptions or hypothesis validation issues"
+        ]
+      }
+    }
+  },
+  "recommendations": {
+    "immediate_actions": [
+      "Emergency fix required for btc_dom - 100% failure rate"
+    ],
+    "short_term_fixes": [
+      "Address regime_multiplier failures (current rate: 60.0%)",
+      "Address vol_risk failures (current rate: 60.0%)",
+      "Performance optimization review across multiple features"
+    ],
+    "long_term_improvements": [
+      "Implement automated regression testing for fixed issues",
+      "Enhance test data quality and coverage",
+      "Develop feature-specific monitoring and alerting",
+      "Create comprehensive feature documentation and test specifications",
+      "Establish regular feature health check procedures"
+    ],
+    "feature_specific": {
+      "btc_dom": [
+        "CRITICAL: Complete code review of BTC dominance implementation",
+        "Verify BTC dominance data source and API connectivity",
+        "Check data preprocessing pipeline for BTC dominance",
+        "Validate mathematical formulas for BTC dominance calculation",
+        "Add comprehensive logging to identify failure points"
+      ],
+      "regime_multiplier": [
+        "High priority review of regime_multiplier implementation",
+        "Analyze regime_multiplier test criteria and thresholds",
+        "Review regime_multiplier data quality and preprocessing",
+        "Validate regime_multiplier economic assumptions"
+      ],
+      "vol_risk": [
+        "High priority review of vol_risk implementation",
+        "Analyze vol_risk test criteria and thresholds",
+        "Review vol_risk data quality and preprocessing",
+        "Validate vol_risk economic assumptions"
+      ]
+    }
+  },
+  "action_plan": {
+    "phase_1_critical": {
+      "timeline": "1-2 days",
+      "actions": [
+        "1. Emergency investigation of btc_dom complete failure",
+        "2. Check btc_dom data source connectivity and availability",
+        "3. Review btc_dom implementation for fundamental errors",
+        "4. Run isolated btc_dom tests with debug logging",
+        "5. Fix critical btc_dom issues and verify with test suite"
+      ],
+      "success_criteria": [
+        "btc_dom achieves >50% test success rate",
+        "All btc_dom critical priority tests pass",
+        "Root cause of btc_dom failure identified and documented"
+      ]
+    },
+    "phase_2_high_priority": {
+      "timeline": "1 week",
+      "actions": [
+        "1. Analyze regime_multiplier and vol_risk failure patterns",
+        "2. Review regime dependency logic across both features",
+        "3. Validate economic hypothesis testing for both features",
+        "4. Fix performance issues in vol_risk and regime_multiplier",
+        "5. Update test criteria based on current market conditions"
+      ],
+      "success_criteria": [
+        "regime_multiplier achieves >80% test success rate",
+        "vol_risk achieves >80% test success rate",
+        "All critical priority tests pass for both features"
+      ]
+    },
+    "phase_3_systematic": {
+      "timeline": "2-3 weeks",
+      "actions": [
+        "1. Comprehensive review of economic hypothesis testing methodology",
+        "2. Regime detection system validation and improvement",
+        "3. Performance optimization across all features",
+        "4. Test suite enhancement and maintenance",
+        "5. Documentation and monitoring improvements"
+      ],
+      "success_criteria": [
+        "Overall test success rate >90%",
+        "All features achieve >80% individual success rate",
+        "Comprehensive monitoring and alerting in place"
+      ]
+    },
+    "monitoring_plan": [
+      "Daily automated test runs with failure alerts",
+      "Weekly feature health reports",
+      "Monthly comprehensive analysis and review",
+      "Regression testing for all fixes",
+      "Performance trend monitoring"
+    ]
+  }
+}

@@ -2,6 +2,15 @@
 """
 Test that the backtester can trade 24/7 without time restrictions
 """
+
+# Add project root to path
+import sys
+import os
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+if project_root not in sys.path:
+    sys.path.append(project_root)
+
+
 import pandas as pd
 import numpy as np
 from src.backtesting.backtester import HummingbotQuantileBacktester

@@ -1,37 +1,36 @@
 # Market Regime Analysis
 
-## Sideways Market Regime
-- Total Tests: 16
-- Passed: 9
-- Success Rate: 56.2%
+## Bear Market Regime
+- Total Tests: 11
+- Passed: 8
+- Success Rate: 72.7%
 - Failed Tests:
-  - fg_index: Analysis for fg_index economic_hypothesis
-  - spread: Analysis for spread failure_mode
-  - btc_dom: Analysis for btc_dom failure_mode
-  - btc_dom: Analysis for btc_dom failure_mode
-  - Q10: Analysis for Q10 failure_mode
-  - btc_dom: Analysis for btc_dom failure_mode
-  - spread: Analysis for spread regime_dependency
-
-## Bull Market Regime
-- Total Tests: 10
-- Passed: 5
-- Success Rate: 50.0%
-- Failed Tests:
-  - spread: Analysis for spread economic_hypothesis
-  - Q50: Analysis for Q50 implementation
-  - Q50: Analysis for Q50 performance
-  - fg_index: Analysis for fg_index economic_hypothesis
+  - kelly_sizing: Analysis for kelly_sizing economic_hypothesis
+  - kelly_sizing: Analysis for kelly_sizing performance
   - vol_risk: Analysis for vol_risk economic_hypothesis
 
-## Bear Market Regime
-- Total Tests: 15
-- Passed: 9
-- Success Rate: 60.0%
+## Sideways Market Regime
+- Total Tests: 12
+- Passed: 7
+- Success Rate: 58.3%
 - Failed Tests:
-  - vol_risk: Analysis for vol_risk regime_dependency
-  - kelly_sizing: Analysis for kelly_sizing failure_mode
+  - Q10: Analysis for Q10 regime_dependency
+  - regime_multiplier: Analysis for regime_multiplier performance
+  - btc_dom: Analysis for btc_dom failure_mode
+  - regime_multiplier: Analysis for regime_multiplier regime_dependency
+  - kelly_sizing: Analysis for kelly_sizing implementation
+
+## Bull Market Regime
+- Total Tests: 15
+- Passed: 6
+- Success Rate: 40.0%
+- Failed Tests:
+  - btc_dom: Analysis for btc_dom implementation
   - Q50: Analysis for Q50 implementation
-  - Q50: Analysis for Q50 performance
-  - fg_index: Analysis for fg_index regime_dependency
-  - fg_index: Analysis for fg_index economic_hypothesis
+  - spread: Analysis for spread regime_dependency
+  - btc_dom: Analysis for btc_dom implementation
+  - Q90: Analysis for Q90 performance
+  - kelly_sizing: Analysis for kelly_sizing implementation
+  - Q50: Analysis for Q50 economic_hypothesis
+  - Q50: Analysis for Q50 economic_hypothesis
+  - vol_risk: Analysis for vol_risk failure_mode

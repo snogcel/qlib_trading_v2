@@ -2,6 +2,15 @@
 Unit tests for feature inventory generation functionality.
 """
 
+# Add project root to path
+import sys
+import os
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+if project_root not in sys.path:
+    sys.path.append(project_root)
+
+
+
 import pytest
 from pathlib import Path
 from unittest.mock import Mock, patch

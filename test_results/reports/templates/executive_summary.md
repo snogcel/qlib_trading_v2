@@ -1,45 +1,53 @@
 # Executive Summary - Test Coverage Report
 
-**Generated:** 2025-08-08 01:50:46
+**Generated:** 2025-08-08 02:03:19
 **Report Period:** Demo Period
 
 ## 🎯 Key Metrics
 
 | Metric | Value | Status |
 |--------|-------|--------|
-| Overall Success Rate | 56.0% | ❌ |
+| Overall Success Rate | 52.0% | ❌ |
 | Total Tests Executed | 50 | ℹ️ |
-| Critical Failures | 0 | ✅ |
-| High Priority Issues | 1 | ⚠️ |
+| Critical Failures | 1 | ❌ |
+| High Priority Issues | 2 | ⚠️ |
 
 ## 📊 Summary Statistics
 
-- **Passed Tests:** 28 (56.0%)
-- **Failed Tests:** 22 (44.0%)
-- **Average Execution Time:** 2.30s
-- **Test Coverage:** 56.0%
+- **Passed Tests:** 26 (52.0%)
+- **Failed Tests:** 24 (48.0%)
+- **Average Execution Time:** 2.41s
+- **Test Coverage:** 52.0%
 
 ## 🚨 Critical Issues
 
-✅ **No critical issues found.** All critical tests are passing.
+**Critical issues requiring immediate attention:**
+
+1. **kelly_sizing** - implementation
+   - Error: No error message
+   - Impact: Analysis for kelly_sizing implementation
+   - Action: Review kelly_sizing implementation
+
 
 ## 📈 Recommendations
 
 **Key recommendations for improvement:**
 
-1. Update implementation test criteria
-2. Review kelly_sizing implementation
-3. Update regime_dependency test criteria
-4. Review fg_index implementation
-5. Review btc_dom implementation
-6. Update economic_hypothesis test criteria
+1. Review Q10 implementation
+2. Review btc_dom implementation
+3. Review fg_index implementation
+4. Review regime_multiplier implementation
+5. Update performance test criteria
+6. Review kelly_sizing implementation
 7. Review vol_risk implementation
-8. Review Q50 implementation
-9. Update failure_mode test criteria
-10. Review spread implementation
+8. Update economic_hypothesis test criteria
+9. Update implementation test criteria
+10. Review Q50 implementation
 
 ## 📋 Next Steps
 
+1. **IMMEDIATE:** Address all critical test failures before any deployment
+2. **URGENT:** Conduct root cause analysis for critical issues
 3. **HIGH:** Review and fix high priority test failures
 4. **MEDIUM:** Update test documentation and procedures
 5. **ONGOING:** Schedule regular test coverage reviews

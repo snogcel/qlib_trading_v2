@@ -2,6 +2,15 @@
 """
 Test the Q50-centric regime-aware integration in the main script
 """
+
+# Add project root to path
+import sys
+import os
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+if project_root not in sys.path:
+    sys.path.append(project_root)
+
+
 import pandas as pd
 import numpy as np
 import sys

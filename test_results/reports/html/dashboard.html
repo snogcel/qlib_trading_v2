@@ -252,7 +252,7 @@
     <div class="dashboard-container">
         <header class="dashboard-header">
             <h1>🧪 Feature Test Coverage Dashboard</h1>
-            <div class="timestamp">Generated: 2025-08-08 01:50:46</div>
+            <div class="timestamp">Generated: 2025-08-08 02:03:19</div>
         </header>
         
         <div class="summary-cards">
@@ -262,15 +262,15 @@
             </div>
             <div class="card error">
                 <div class="card-title">Success Rate</div>
-                <div class="card-value">56.0%</div>
+                <div class="card-value">52.0%</div>
             </div>
             <div class="card error">
                 <div class="card-title">Failed Tests</div>
-                <div class="card-value">22</div>
+                <div class="card-value">24</div>
             </div>
-            <div class="card success">
+            <div class="card error">
                 <div class="card-title">Critical Failures</div>
-                <div class="card-value">0</div>
+                <div class="card-value">1</div>
             </div>
         </div>
         
@@ -330,377 +330,156 @@
         const dashboardData = {
   "summary": {
     "total_tests": 50,
-    "passed_tests": 28,
-    "failed_tests": 22,
-    "success_rate": 56.00000000000001,
-    "avg_execution_time": 2.2985740164634025,
-    "critical_failures": 0
+    "passed_tests": 26,
+    "failed_tests": 24,
+    "success_rate": 52.0,
+    "avg_execution_time": 2.4125214152195995,
+    "critical_failures": 1
   },
   "status_distribution": {
-    "passed": 28,
-    "failed": 5,
-    "skipped": 11,
-    "error": 6,
+    "passed": 26,
+    "failed": 10,
+    "skipped": 7,
+    "error": 7,
     "timeout": 0
   },
   "feature_stats": {
-    "spread": {
+    "kelly_sizing": {
+      "total": 7,
+      "passed": 3,
+      "failed": 4
+    },
+    "Q10": {
+      "total": 5,
+      "passed": 3,
+      "failed": 2
+    },
+    "regime_multiplier": {
       "total": 5,
       "passed": 2,
       "failed": 3
     },
-    "vol_risk": {
-      "total": 7,
-      "passed": 4,
+    "btc_dom": {
+      "total": 3,
+      "passed": 0,
       "failed": 3
     },
-    "regime_multiplier": {
+    "vol_risk": {
+      "total": 5,
+      "passed": 2,
+      "failed": 3
+    },
+    "Q90": {
+      "total": 9,
+      "passed": 8,
+      "failed": 1
+    },
+    "spread": {
       "total": 3,
       "passed": 2,
       "failed": 1
     },
-    "kelly_sizing": {
-      "total": 2,
-      "passed": 1,
-      "failed": 1
-    },
     "Q50": {
-      "total": 8,
+      "total": 9,
       "passed": 4,
-      "failed": 4
+      "failed": 5
     },
     "fg_index": {
-      "total": 7,
-      "passed": 3,
-      "failed": 4
-    },
-    "btc_dom": {
-      "total": 7,
-      "passed": 4,
-      "failed": 3
-    },
-    "Q10": {
-      "total": 6,
-      "passed": 3,
-      "failed": 3
-    },
-    "Q90": {
-      "total": 5,
-      "passed": 5,
-      "failed": 0
+      "total": 4,
+      "passed": 2,
+      "failed": 2
     }
   },
   "test_type_stats": {
     "economic_hypothesis": {
-      "total": 11,
-      "passed": 6,
+      "total": 7,
+      "passed": 2,
       "failed": 5,
-      "success_rate": 54.54545454545454
+      "success_rate": 28.57142857142857
     },
     "performance": {
-      "total": 11,
+      "total": 12,
       "passed": 7,
-      "failed": 4,
-      "success_rate": 63.63636363636363
+      "failed": 5,
+      "success_rate": 58.333333333333336
     },
     "failure_mode": {
       "total": 10,
-      "passed": 3,
-      "failed": 7,
-      "success_rate": 30.0
+      "passed": 7,
+      "failed": 3,
+      "success_rate": 70.0
     },
     "implementation": {
-      "total": 10,
-      "passed": 8,
-      "failed": 2,
-      "success_rate": 80.0
+      "total": 11,
+      "passed": 5,
+      "failed": 6,
+      "success_rate": 45.45454545454545
     },
     "regime_dependency": {
-      "total": 8,
-      "passed": 4,
-      "failed": 4,
+      "total": 10,
+      "passed": 5,
+      "failed": 5,
       "success_rate": 50.0
     }
   },
   "priority_stats": {
     "critical": {
-      "total": 13,
-      "passed": 13,
-      "failed": 0,
-      "success_rate": 100.0
+      "total": 15,
+      "passed": 14,
+      "failed": 1,
+      "success_rate": 93.33333333333333
     },
     "high": {
-      "total": 8,
-      "passed": 7,
-      "failed": 1,
-      "success_rate": 87.5
+      "total": 7,
+      "passed": 5,
+      "failed": 2,
+      "success_rate": 71.42857142857143
     },
     "medium": {
-      "total": 15,
+      "total": 12,
       "passed": 4,
-      "failed": 11,
-      "success_rate": 26.666666666666668
+      "failed": 8,
+      "success_rate": 33.33333333333333
     },
     "low": {
-      "total": 14,
-      "passed": 4,
-      "failed": 10,
-      "success_rate": 28.57142857142857
+      "total": 16,
+      "passed": 3,
+      "failed": 13,
+      "success_rate": 18.75
     }
   },
   "confidence_stats": {
-    "high": 10,
-    "medium": 12,
-    "low": 17,
-    "uncertain": 11
+    "high": 5,
+    "medium": 19,
+    "low": 11,
+    "uncertain": 15
   },
   "failed_tests": [
     {
-      "feature_name": "spread",
+      "feature_name": "kelly_sizing",
       "test_type": "economic_hypothesis",
       "priority": "medium",
       "status": "skipped",
-      "confidence": "medium",
-      "confidence_score": 0.09333109451941554,
-      "execution_time": 0.45491581593389696,
-      "analysis": "Analysis for spread economic_hypothesis",
+      "confidence": "uncertain",
+      "confidence_score": 0.46290148402267267,
+      "execution_time": 3.083387547769366,
+      "analysis": "Analysis for kelly_sizing economic_hypothesis",
       "error_message": null,
-      "recommendations": [
-        "Review spread implementation",
-        "Update economic_hypothesis test criteria"
-      ],
-      "severity": "medium",
-      "timestamp": "2025-08-08T00:21:46.657333"
-    },
-    {
-      "feature_name": "vol_risk",
-      "test_type": "regime_dependency",
-      "priority": "medium",
-      "status": "failed",
-      "confidence": "low",
-      "confidence_score": 0.07951894930668538,
-      "execution_time": 4.671201787523153,
-      "analysis": "Analysis for vol_risk regime_dependency",
-      "error_message": null,
-      "recommendations": [
-        "Review vol_risk implementation",
-        "Update regime_dependency test criteria"
-      ],
-      "severity": "medium",
-      "timestamp": "2025-08-07T16:47:46.657333"
-    },
-    {
-      "feature_name": "kelly_sizing",
-      "test_type": "failure_mode",
-      "priority": "medium",
-      "status": "error",
-      "confidence": "medium",
-      "confidence_score": 0.5380225911383348,
-      "execution_time": 0.27581505397275297,
-      "analysis": "Analysis for kelly_sizing failure_mode",
-      "error_message": "Error in kelly_sizing test",
       "recommendations": [
         "Review kelly_sizing implementation",
-        "Update failure_mode test criteria"
-      ],
-      "severity": "medium",
-      "timestamp": "2025-08-07T21:26:46.657333"
-    },
-    {
-      "feature_name": "fg_index",
-      "test_type": "economic_hypothesis",
-      "priority": "low",
-      "status": "error",
-      "confidence": "uncertain",
-      "confidence_score": 0.2376248392935718,
-      "execution_time": 1.5923345902725599,
-      "analysis": "Analysis for fg_index economic_hypothesis",
-      "error_message": "Error in fg_index test",
-      "recommendations": [
-        "Review fg_index implementation",
         "Update economic_hypothesis test criteria"
       ],
       "severity": "medium",
-      "timestamp": "2025-08-07T20:16:46.657333"
-    },
-    {
-      "feature_name": "spread",
-      "test_type": "failure_mode",
-      "priority": "medium",
-      "status": "failed",
-      "confidence": "uncertain",
-      "confidence_score": 0.12534667895050267,
-      "execution_time": 1.2933227698432788,
-      "analysis": "Analysis for spread failure_mode",
-      "error_message": null,
-      "recommendations": [
-        "Review spread implementation",
-        "Update failure_mode test criteria"
-      ],
-      "severity": "medium",
-      "timestamp": "2025-08-07T03:12:46.657333"
-    },
-    {
-      "feature_name": "btc_dom",
-      "test_type": "failure_mode",
-      "priority": "low",
-      "status": "skipped",
-      "confidence": "high",
-      "confidence_score": 0.6561366183019971,
-      "execution_time": 3.4679767142658307,
-      "analysis": "Analysis for btc_dom failure_mode",
-      "error_message": null,
-      "recommendations": [
-        "Review btc_dom implementation",
-        "Update failure_mode test criteria"
-      ],
-      "severity": "medium",
-      "timestamp": "2025-08-08T01:01:46.657333"
-    },
-    {
-      "feature_name": "Q50",
-      "test_type": "implementation",
-      "priority": "low",
-      "status": "error",
-      "confidence": "low",
-      "confidence_score": 0.663063623664922,
-      "execution_time": 4.944724851374538,
-      "analysis": "Analysis for Q50 implementation",
-      "error_message": "Error in Q50 test",
-      "recommendations": [
-        "Review Q50 implementation",
-        "Update implementation test criteria"
-      ],
-      "severity": "medium",
-      "timestamp": "2025-08-07T23:46:46.657333"
-    },
-    {
-      "feature_name": "btc_dom",
-      "test_type": "failure_mode",
-      "priority": "medium",
-      "status": "failed",
-      "confidence": "medium",
-      "confidence_score": 0.08560937705830718,
-      "execution_time": 0.3897950859069499,
-      "analysis": "Analysis for btc_dom failure_mode",
-      "error_message": null,
-      "recommendations": [
-        "Review btc_dom implementation",
-        "Update failure_mode test criteria"
-      ],
-      "severity": "medium",
-      "timestamp": "2025-08-07T21:32:46.657333"
-    },
-    {
-      "feature_name": "Q50",
-      "test_type": "performance",
-      "priority": "low",
-      "status": "skipped",
-      "confidence": "low",
-      "confidence_score": 0.5362078029805472,
-      "execution_time": 2.122962781392246,
-      "analysis": "Analysis for Q50 performance",
-      "error_message": null,
-      "recommendations": [
-        "Review Q50 implementation",
-        "Update performance test criteria"
-      ],
-      "severity": "medium",
-      "timestamp": "2025-08-07T18:23:46.657333"
-    },
-    {
-      "feature_name": "Q10",
-      "test_type": "performance",
-      "priority": "medium",
-      "status": "skipped",
-      "confidence": "medium",
-      "confidence_score": 0.45213530244636607,
-      "execution_time": 3.113890023528783,
-      "analysis": "Analysis for Q10 performance",
-      "error_message": null,
-      "recommendations": [
-        "Review Q10 implementation",
-        "Update performance test criteria"
-      ],
-      "severity": "medium",
-      "timestamp": "2025-08-07T23:00:46.657333"
-    },
-    {
-      "feature_name": "Q50",
-      "test_type": "implementation",
-      "priority": "low",
-      "status": "skipped",
-      "confidence": "high",
-      "confidence_score": 0.1891897262352158,
-      "execution_time": 2.8609499579243485,
-      "analysis": "Analysis for Q50 implementation",
-      "error_message": null,
-      "recommendations": [
-        "Review Q50 implementation",
-        "Update implementation test criteria"
-      ],
-      "severity": "medium",
-      "timestamp": "2025-08-07T13:52:46.657333"
-    },
-    {
-      "feature_name": "fg_index",
-      "test_type": "regime_dependency",
-      "priority": "high",
-      "status": "failed",
-      "confidence": "low",
-      "confidence_score": 0.23250212526052413,
-      "execution_time": 3.0491560930492265,
-      "analysis": "Analysis for fg_index regime_dependency",
-      "error_message": null,
-      "recommendations": [
-        "Review fg_index implementation",
-        "Update regime_dependency test criteria"
-      ],
-      "severity": "medium",
-      "timestamp": "2025-08-07T11:13:46.657333"
-    },
-    {
-      "feature_name": "Q50",
-      "test_type": "performance",
-      "priority": "medium",
-      "status": "skipped",
-      "confidence": "low",
-      "confidence_score": 0.43938108806393317,
-      "execution_time": 2.8307669244342915,
-      "analysis": "Analysis for Q50 performance",
-      "error_message": null,
-      "recommendations": [
-        "Review Q50 implementation",
-        "Update performance test criteria"
-      ],
-      "severity": "medium",
-      "timestamp": "2025-08-07T09:48:46.657333"
-    },
-    {
-      "feature_name": "regime_multiplier",
-      "test_type": "failure_mode",
-      "priority": "low",
-      "status": "skipped",
-      "confidence": "low",
-      "confidence_score": 0.5393376830656588,
-      "execution_time": 1.0338215077875177,
-      "analysis": "Analysis for regime_multiplier failure_mode",
-      "error_message": null,
-      "recommendations": [
-        "Review regime_multiplier implementation",
-        "Update failure_mode test criteria"
-      ],
-      "severity": "medium",
-      "timestamp": "2025-08-07T06:30:46.657333"
+      "timestamp": "2025-08-07T17:16:19.700800"
     },
     {
       "feature_name": "Q10",
       "test_type": "regime_dependency",
-      "priority": "medium",
-      "status": "skipped",
-      "confidence": "high",
-      "confidence_score": 0.007423324131103825,
-      "execution_time": 1.5728198354884677,
+      "priority": "low",
+      "status": "failed",
+      "confidence": "low",
+      "confidence_score": 0.4634846990834384,
+      "execution_time": 0.2295681517755741,
       "analysis": "Analysis for Q10 regime_dependency",
       "error_message": null,
       "recommendations": [
@@ -708,33 +487,50 @@
         "Update regime_dependency test criteria"
       ],
       "severity": "medium",
-      "timestamp": "2025-08-07T10:19:46.657333"
+      "timestamp": "2025-08-07T16:02:19.700800"
     },
     {
-      "feature_name": "Q10",
-      "test_type": "failure_mode",
-      "priority": "low",
-      "status": "error",
-      "confidence": "medium",
-      "confidence_score": 0.6608665759544389,
-      "execution_time": 4.774764684642394,
-      "analysis": "Analysis for Q10 failure_mode",
-      "error_message": "Error in Q10 test",
+      "feature_name": "regime_multiplier",
+      "test_type": "performance",
+      "priority": "medium",
+      "status": "skipped",
+      "confidence": "uncertain",
+      "confidence_score": 0.34905965985154463,
+      "execution_time": 4.14226244197842,
+      "analysis": "Analysis for regime_multiplier performance",
+      "error_message": null,
       "recommendations": [
-        "Review Q10 implementation",
-        "Update failure_mode test criteria"
+        "Review regime_multiplier implementation",
+        "Update performance test criteria"
       ],
       "severity": "medium",
-      "timestamp": "2025-08-07T09:28:46.657333"
+      "timestamp": "2025-08-07T06:27:19.700800"
+    },
+    {
+      "feature_name": "btc_dom",
+      "test_type": "implementation",
+      "priority": "low",
+      "status": "skipped",
+      "confidence": "medium",
+      "confidence_score": 0.5322896242133484,
+      "execution_time": 1.6344608860914782,
+      "analysis": "Analysis for btc_dom implementation",
+      "error_message": null,
+      "recommendations": [
+        "Review btc_dom implementation",
+        "Update implementation test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T23:15:19.700800"
     },
     {
       "feature_name": "vol_risk",
       "test_type": "performance",
-      "priority": "low",
-      "status": "skipped",
-      "confidence": "medium",
-      "confidence_score": 0.019184190962098866,
-      "execution_time": 1.5389209817262324,
+      "priority": "medium",
+      "status": "failed",
+      "confidence": "high",
+      "confidence_score": 0.24954171157468844,
+      "execution_time": 3.6364063207262345,
       "analysis": "Analysis for vol_risk performance",
       "error_message": null,
       "recommendations": [
@@ -742,50 +538,84 @@
         "Update performance test criteria"
       ],
       "severity": "medium",
-      "timestamp": "2025-08-07T13:25:46.657333"
+      "timestamp": "2025-08-07T14:04:19.700800"
     },
     {
-      "feature_name": "fg_index",
-      "test_type": "economic_hypothesis",
+      "feature_name": "kelly_sizing",
+      "test_type": "performance",
       "priority": "medium",
-      "status": "failed",
-      "confidence": "medium",
-      "confidence_score": 0.35161376375684944,
-      "execution_time": 0.8156610423185221,
-      "analysis": "Analysis for fg_index economic_hypothesis",
-      "error_message": null,
+      "status": "error",
+      "confidence": "low",
+      "confidence_score": 0.6793220151639141,
+      "execution_time": 1.923190348850097,
+      "analysis": "Analysis for kelly_sizing performance",
+      "error_message": "Error in kelly_sizing test",
       "recommendations": [
-        "Review fg_index implementation",
-        "Update economic_hypothesis test criteria"
+        "Review kelly_sizing implementation",
+        "Update performance test criteria"
       ],
       "severity": "medium",
-      "timestamp": "2025-08-07T22:46:46.657333"
+      "timestamp": "2025-08-07T07:50:19.700800"
     },
     {
-      "feature_name": "vol_risk",
+      "feature_name": "Q50",
+      "test_type": "implementation",
+      "priority": "medium",
+      "status": "skipped",
+      "confidence": "medium",
+      "confidence_score": 0.2818506060487297,
+      "execution_time": 3.93387772765928,
+      "analysis": "Analysis for Q50 implementation",
+      "error_message": null,
+      "recommendations": [
+        "Review Q50 implementation",
+        "Update implementation test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T22:59:19.700800"
+    },
+    {
+      "feature_name": "Q50",
       "test_type": "economic_hypothesis",
       "priority": "low",
       "status": "error",
-      "confidence": "medium",
-      "confidence_score": 0.5989149602094244,
-      "execution_time": 0.3318617785532427,
-      "analysis": "Analysis for vol_risk economic_hypothesis",
-      "error_message": "Error in vol_risk test",
+      "confidence": "low",
+      "confidence_score": 0.05796142314810487,
+      "execution_time": 4.009197369795041,
+      "analysis": "Analysis for Q50 economic_hypothesis",
+      "error_message": "Error in Q50 test",
       "recommendations": [
-        "Review vol_risk implementation",
+        "Review Q50 implementation",
         "Update economic_hypothesis test criteria"
       ],
       "severity": "medium",
-      "timestamp": "2025-08-07T14:41:46.657333"
+      "timestamp": "2025-08-07T09:01:19.700800"
+    },
+    {
+      "feature_name": "Q10",
+      "test_type": "performance",
+      "priority": "low",
+      "status": "skipped",
+      "confidence": "uncertain",
+      "confidence_score": 0.46748125991086587,
+      "execution_time": 3.5752006466194874,
+      "analysis": "Analysis for Q10 performance",
+      "error_message": null,
+      "recommendations": [
+        "Review Q10 implementation",
+        "Update performance test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T07:02:19.700800"
     },
     {
       "feature_name": "btc_dom",
       "test_type": "failure_mode",
       "priority": "low",
       "status": "error",
-      "confidence": "uncertain",
-      "confidence_score": 0.3855092039281691,
-      "execution_time": 1.960848172902083,
+      "confidence": "medium",
+      "confidence_score": 0.40364814017964074,
+      "execution_time": 2.7572370137478175,
       "analysis": "Analysis for btc_dom failure_mode",
       "error_message": "Error in btc_dom test",
       "recommendations": [
@@ -793,16 +623,16 @@
         "Update failure_mode test criteria"
       ],
       "severity": "medium",
-      "timestamp": "2025-08-07T23:43:46.657333"
+      "timestamp": "2025-08-07T14:20:19.700800"
     },
     {
       "feature_name": "spread",
       "test_type": "regime_dependency",
-      "priority": "medium",
-      "status": "skipped",
-      "confidence": "low",
-      "confidence_score": 0.5487665019637629,
-      "execution_time": 0.8333191550488624,
+      "priority": "low",
+      "status": "failed",
+      "confidence": "medium",
+      "confidence_score": 0.6756173886706107,
+      "execution_time": 1.9301278688617698,
       "analysis": "Analysis for spread regime_dependency",
       "error_message": null,
       "recommendations": [
@@ -810,28 +640,250 @@
         "Update regime_dependency test criteria"
       ],
       "severity": "medium",
-      "timestamp": "2025-08-07T21:31:46.657333"
+      "timestamp": "2025-08-07T09:44:19.700800"
     },
     {
-      "feature_name": "fg_index",
+      "feature_name": "regime_multiplier",
+      "test_type": "implementation",
+      "priority": "low",
+      "status": "error",
+      "confidence": "medium",
+      "confidence_score": 0.3987482801470414,
+      "execution_time": 4.888692112516166,
+      "analysis": "Analysis for regime_multiplier implementation",
+      "error_message": "Error in regime_multiplier test",
+      "recommendations": [
+        "Review regime_multiplier implementation",
+        "Update implementation test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T08:42:19.700800"
+    },
+    {
+      "feature_name": "btc_dom",
+      "test_type": "implementation",
+      "priority": "high",
+      "status": "failed",
+      "confidence": "medium",
+      "confidence_score": 0.41467595861353945,
+      "execution_time": 1.7479021784698205,
+      "analysis": "Analysis for btc_dom implementation",
+      "error_message": null,
+      "recommendations": [
+        "Review btc_dom implementation",
+        "Update implementation test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-08T01:05:19.700800"
+    },
+    {
+      "feature_name": "regime_multiplier",
+      "test_type": "regime_dependency",
+      "priority": "low",
+      "status": "error",
+      "confidence": "medium",
+      "confidence_score": 0.09011458237827574,
+      "execution_time": 0.46324713476048873,
+      "analysis": "Analysis for regime_multiplier regime_dependency",
+      "error_message": "Error in regime_multiplier test",
+      "recommendations": [
+        "Review regime_multiplier implementation",
+        "Update regime_dependency test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T10:59:19.700800"
+    },
+    {
+      "feature_name": "Q90",
+      "test_type": "performance",
+      "priority": "high",
+      "status": "failed",
+      "confidence": "uncertain",
+      "confidence_score": 0.04195568956302637,
+      "execution_time": 0.5416913874976464,
+      "analysis": "Analysis for Q90 performance",
+      "error_message": null,
+      "recommendations": [
+        "Review Q90 implementation",
+        "Update performance test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T19:10:19.700800"
+    },
+    {
+      "feature_name": "kelly_sizing",
+      "test_type": "implementation",
+      "priority": "critical",
+      "status": "failed",
+      "confidence": "low",
+      "confidence_score": 0.6004332567125887,
+      "execution_time": 4.7182741324697,
+      "analysis": "Analysis for kelly_sizing implementation",
+      "error_message": null,
+      "recommendations": [
+        "Review kelly_sizing implementation",
+        "Update implementation test criteria"
+      ],
+      "severity": "high",
+      "timestamp": "2025-08-07T12:44:19.700800"
+    },
+    {
+      "feature_name": "vol_risk",
       "test_type": "economic_hypothesis",
       "priority": "medium",
       "status": "skipped",
-      "confidence": "uncertain",
-      "confidence_score": 0.49808586444860403,
-      "execution_time": 3.3869180056977117,
-      "analysis": "Analysis for fg_index economic_hypothesis",
+      "confidence": "medium",
+      "confidence_score": 0.33501188202828724,
+      "execution_time": 1.0690395087720874,
+      "analysis": "Analysis for vol_risk economic_hypothesis",
       "error_message": null,
       "recommendations": [
-        "Review fg_index implementation",
+        "Review vol_risk implementation",
         "Update economic_hypothesis test criteria"
       ],
       "severity": "medium",
-      "timestamp": "2025-08-07T20:34:46.657333"
+      "timestamp": "2025-08-07T15:35:19.700800"
+    },
+    {
+      "feature_name": "fg_index",
+      "test_type": "regime_dependency",
+      "priority": "medium",
+      "status": "skipped",
+      "confidence": "high",
+      "confidence_score": 0.6741569474520204,
+      "execution_time": 1.390227014444742,
+      "analysis": "Analysis for fg_index regime_dependency",
+      "error_message": null,
+      "recommendations": [
+        "Review fg_index implementation",
+        "Update regime_dependency test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T16:50:19.704889"
+    },
+    {
+      "feature_name": "fg_index",
+      "test_type": "failure_mode",
+      "priority": "low",
+      "status": "failed",
+      "confidence": "uncertain",
+      "confidence_score": 0.3734334399510309,
+      "execution_time": 3.192634218705176,
+      "analysis": "Analysis for fg_index failure_mode",
+      "error_message": null,
+      "recommendations": [
+        "Review fg_index implementation",
+        "Update failure_mode test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T09:31:19.704889"
+    },
+    {
+      "feature_name": "Q50",
+      "test_type": "regime_dependency",
+      "priority": "low",
+      "status": "error",
+      "confidence": "low",
+      "confidence_score": 0.699644545509721,
+      "execution_time": 2.8209056233494567,
+      "analysis": "Analysis for Q50 regime_dependency",
+      "error_message": "Error in Q50 test",
+      "recommendations": [
+        "Review Q50 implementation",
+        "Update regime_dependency test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T02:14:19.704889"
+    },
+    {
+      "feature_name": "Q50",
+      "test_type": "economic_hypothesis",
+      "priority": "medium",
+      "status": "error",
+      "confidence": "uncertain",
+      "confidence_score": 0.07491691787616221,
+      "execution_time": 4.310040140556485,
+      "analysis": "Analysis for Q50 economic_hypothesis",
+      "error_message": "Error in Q50 test",
+      "recommendations": [
+        "Review Q50 implementation",
+        "Update economic_hypothesis test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T04:20:19.704889"
+    },
+    {
+      "feature_name": "kelly_sizing",
+      "test_type": "implementation",
+      "priority": "low",
+      "status": "failed",
+      "confidence": "medium",
+      "confidence_score": 0.18079149344678297,
+      "execution_time": 2.753016393179885,
+      "analysis": "Analysis for kelly_sizing implementation",
+      "error_message": null,
+      "recommendations": [
+        "Review kelly_sizing implementation",
+        "Update implementation test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T02:17:19.704889"
+    },
+    {
+      "feature_name": "Q50",
+      "test_type": "economic_hypothesis",
+      "priority": "low",
+      "status": "failed",
+      "confidence": "uncertain",
+      "confidence_score": 0.40350760656867934,
+      "execution_time": 0.6112360585419047,
+      "analysis": "Analysis for Q50 economic_hypothesis",
+      "error_message": null,
+      "recommendations": [
+        "Review Q50 implementation",
+        "Update economic_hypothesis test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-08T02:00:19.704889"
+    },
+    {
+      "feature_name": "vol_risk",
+      "test_type": "failure_mode",
+      "priority": "low",
+      "status": "failed",
+      "confidence": "medium",
+      "confidence_score": 0.3454408080252233,
+      "execution_time": 2.509413413500725,
+      "analysis": "Analysis for vol_risk failure_mode",
+      "error_message": null,
+      "recommendations": [
+        "Review vol_risk implementation",
+        "Update failure_mode test criteria"
+      ],
+      "severity": "medium",
+      "timestamp": "2025-08-07T22:24:19.704889"
     }
   ],
-  "critical_failures": [],
-  "timestamp": "2025-08-08T01:50:46.669363"
+  "critical_failures": [
+    {
+      "feature_name": "kelly_sizing",
+      "test_type": "implementation",
+      "priority": "critical",
+      "status": "failed",
+      "confidence": "low",
+      "confidence_score": 0.6004332567125887,
+      "execution_time": 4.7182741324697,
+      "analysis": "Analysis for kelly_sizing implementation",
+      "error_message": null,
+      "recommendations": [
+        "Review kelly_sizing implementation",
+        "Update implementation test criteria"
+      ],
+      "severity": "high",
+      "timestamp": "2025-08-07T12:44:19.700800"
+    }
+  ],
+  "timestamp": "2025-08-08T02:03:19.713224"
 };
         
         

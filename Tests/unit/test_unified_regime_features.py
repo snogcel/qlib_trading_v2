@@ -3,6 +3,15 @@
 Test unified regime features with actual trading data
 """
 
+
+# Add project root to Python path for src imports
+import sys
+import os
+# Go up two levels from tests/unit/ to project root
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+if project_root not in sys.path:
+    sys.path.append(project_root)
+
 import pandas as pd
 import numpy as np
 from src.features.regime_features import RegimeFeatureEngine, create_regime_features
