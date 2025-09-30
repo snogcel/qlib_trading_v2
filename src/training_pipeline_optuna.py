@@ -602,9 +602,9 @@ if __name__ == '__main__':
         # "max_depth": 8,                  # Reasonable depth for GDELT features
         
         # Regularization (moderate to prevent overfitting)
-        "lambda_l1": 0.1,
-        "lambda_l2": 0.1,
-        "min_data_in_leaf": 20,
+        # "lambda_l1": 0.1,
+        # "lambda_l2": 0.1,
+        # "min_data_in_leaf": 20,
         "feature_fraction": 0.8,         # Use 80% of features per tree
         "bagging_fraction": 0.8,         # Use 80% of data per iteration
         "bagging_freq": 5,
