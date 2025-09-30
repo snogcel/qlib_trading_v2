@@ -615,9 +615,9 @@ if __name__ == '__main__':
         # 0.5: {'learning_rate': 0.02753370821225369, 'max_depth': -1, 'lambda_l1': 0.1, 'lambda_l2': 0.1, **GENERIC_LGBM_PARAMS},
         # 0.9: {'learning_rate': 0.09355380738420341, 'max_depth': 10, 'num_leaves': 249, 'lambda_l1': 0.1, 'lambda_l2': 0.1, **GENERIC_LGBM_PARAMS}
 
-        0.1: {'learning_rate': 0.026, 'max_depth': 7, **CORE_LGBM_PARAMS},
-        0.5: {'learning_rate': 0.027, 'max_depth': 7, **CORE_LGBM_PARAMS},                
-        0.9: {'learning_rate': 0.028, 'max_depth': 7, **CORE_LGBM_PARAMS} 
+        0.1: {'learning_rate': 0.026, 'max_depth': 15, **CORE_LGBM_PARAMS},
+        0.5: {'learning_rate': 0.027, 'max_depth': 15, **CORE_LGBM_PARAMS},                
+        0.9: {'learning_rate': 0.028, 'max_depth': 15, **CORE_LGBM_PARAMS} 
     }
 
     # finalized model after tuning
