@@ -592,9 +592,9 @@ if __name__ == '__main__':
         # 0.5: {'learning_rate': 0.027, 'max_depth': 7, **CORE_LGBM_PARAMS},                
         # 0.9: {'learning_rate': 0.028, 'max_depth': 7, **CORE_LGBM_PARAMS} 
 
-        0.1: {'learning_rate': 0.026, 'max_depth': 25, **CORE_LGBM_PARAMS},
-        0.5: {'learning_rate': 0.027, 'max_depth': 25, **CORE_LGBM_PARAMS},                
-        0.9: {'learning_rate': 0.028, 'max_depth': 25, **CORE_LGBM_PARAMS}
+        0.1: {'max_depth': 25, **CORE_LGBM_PARAMS},
+        0.5: {'max_depth': 25, **CORE_LGBM_PARAMS},                
+        0.9: {'max_depth': 25, **CORE_LGBM_PARAMS}
     }
 
     # finalized model after tuning
@@ -687,7 +687,7 @@ if __name__ == '__main__':
             "subsample": trial.suggest_float("subsample", 0.7, 1.0),
             "lambda_l1": trial.suggest_loguniform("lambda_l1", 1e-8, 10.0),
             "lambda_l2": trial.suggest_loguniform("lambda_l2", 1e-8, 10.0),
-            "max_depth": trial.suggest_int("max_depth", 8, 25),
+            "max_depth": trial.suggest_int("max_depth", 15, 25),
             "num_leaves": trial.suggest_int("num_leaves", 20, 512),           
             # "max_depth": trial.suggest_int("max_depth", 4, 10),
            
