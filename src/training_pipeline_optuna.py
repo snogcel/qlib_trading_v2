@@ -173,9 +173,10 @@ def kelly_sizing(row) -> float:
     """Validated Kelly Criterion sizing based on proven predictive features, pulled from hummingbot_backtester.py"""
     
     # fix: aligned the number of variables with the dataframe being passed (was previously missing signal_thresh_adaptive)
+    # [54396:MainThread](2025-09-30 04:58:41,121) ERROR - qlib.workflow - [utils.py:41] - An exception has been raised[ValueError: not enough values to unpack (expected 7, got 6)].
 
     # aligned logic with hummingbot backtester
-    q10, q50, q90, tier_confidence, signal_thresh, signal_thresh_adaptive, prob_up = row["q10"], row["q50"], row["q90"], row["signal_tier"], row["signal_thresh_adaptive"], row["prob_up"]
+    q10, q50, q90, tier_confidence, signal_thresh, prob_up = row["q10"], row["q50"], row["q90"], row["signal_tier"], row["signal_thresh_adaptive"], row["prob_up"]
 
     spread_thresh = None
   
