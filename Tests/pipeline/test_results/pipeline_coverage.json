@@ -1,0 +1,84 @@
+{
+  "pipeline_stages": {
+    "data_ingestion": {
+      "data_quality": {
+        "status": "ERROR",
+        "error": "[Errno 2] No such file or directory: 'data3/macro_features.pkl'"
+      },
+      "data_availability": {
+        "data3/macro_features.pkl": false,
+        "df_all_macro_analysis.csv": false
+      }
+    },
+    "feature_engineering": {
+      "feature_engineering": {
+        "status": "ERROR",
+        "error": "[Errno 2] No such file or directory: 'data3/macro_features.pkl'"
+      }
+    },
+    "signal_generation": {
+      "signal_generation": {
+        "status": "ERROR",
+        "error": "[Errno 2] No such file or directory: 'data3/macro_features.pkl'"
+      }
+    },
+    "performance_validation": {
+      "performance_validation": {
+        "status": "FAIL",
+        "error": "No metrics.json files found"
+      },
+      "backtest_availability": {
+        "results/backtests/hummingbot": false,
+        "results/backtests/validated": false
+      }
+    }
+  },
+  "critical_paths": {
+    "data_to_features": {
+      "status": "FAIL",
+      "description": "Raw data \u2192 Feature engineering",
+      "components": [
+        "data ingestion",
+        "feature engineering"
+      ]
+    },
+    "features_to_signals": {
+      "status": "FAIL",
+      "description": "Features \u2192 Signal generation",
+      "components": [
+        "feature engineering",
+        "signal generation"
+      ]
+    },
+    "signals_to_performance": {
+      "status": "FAIL",
+      "description": "Signals \u2192 Performance metrics",
+      "components": [
+        "signal generation",
+        "performance validation"
+      ]
+    }
+  },
+  "visualization_data": {
+    "pipeline_stages": {
+      "data_ingestion": 0.0,
+      "feature_engineering": 0.0,
+      "signal_generation": 0.0,
+      "performance_validation": 0.0
+    },
+    "critical_paths": {
+      "data_to_features": 0.0,
+      "features_to_signals": 0.0,
+      "signals_to_performance": 0.0
+    },
+    "overall_health": 0.0
+  },
+  "summary": {
+    "healthy_stages": 0,
+    "total_stages": 4,
+    "critical_paths_healthy": 0,
+    "total_critical_paths": 3,
+    "overall_health": 0.0
+  },
+  "timestamp": "2025-09-30T09:28:26.453782"
+}
