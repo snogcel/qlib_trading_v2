@@ -21,11 +21,11 @@ def load_test_data():
     """Load data for performance validation"""
     try:
         # Try to load the same data used in successful backtests
-        df = pd.read_pickle('data3/macro_features.pkl')
-        print(f"✅ Loaded data: {df.shape}")
+        df = pd.read_pickle('macro_features.pkl')
+        print(f"Loaded data: {df.shape}")
         return df
     except Exception as e:
-        print(f"❌ Could not load data: {e}")
+        print(f"Could not load data: {e}")
         return None
 
 def compare_old_vs_new_regime_logic(df):
@@ -73,13 +73,13 @@ def compare_old_vs_new_regime_logic(df):
     
     # Print comparison results
     for feature, stats in comparisons.items():
-        print(f"\n📊 {feature.upper()}:")
+        print(f"\n{feature.upper()}:")
         if 'ratio' in stats:
             print(f"   Old count: {stats['old']}")
             print(f"   New count: {stats['new']}")
             print(f"   Ratio: {stats['ratio']:.2f}")
             if 0.8 <= stats['ratio'] <= 1.2:
-                print("   ✅ Similar detection rates")
+                print("   Similar detection rates")
             else:
                 print("   ⚠️  Different detection rates - needs investigation")
         elif 'old_mean' in stats:
@@ -179,7 +179,7 @@ def validate_economic_logic(df_new):
 def main():
     """Main validation function"""
     
-    print("🧪 REGIME CONSOLIDATION PERFORMANCE VALIDATION")
+    print("REGIME CONSOLIDATION PERFORMANCE VALIDATION")
     print("=" * 60)
     
     # Load data
@@ -203,14 +203,14 @@ def main():
     passed_validations = sum(1 for v in validations if v['result'])
     total_validations = len(validations)
     
-    print(f"✅ Economic logic validations: {passed_validations}/{total_validations}")
-    print(f"✅ Regime feature consolidation: Complete")
-    print(f"✅ Position sizing logic: Enhanced with regime awareness")
+    print(f"Economic logic validations: {passed_validations}/{total_validations}")
+    print(f"Regime feature consolidation: Complete")
+    print(f"Position sizing logic: Enhanced with regime awareness")
     
     if passed_validations == total_validations:
-        print(f"\n🎉 ALL VALIDATIONS PASSED!")
-        print("✅ Ready to integrate into main pipeline")
-        print("✅ Performance should maintain 1.327 Sharpe ratio")
+        print(f"\nALL VALIDATIONS PASSED!")
+        print("Ready to integrate into main pipeline")
+        print("Performance should maintain 1.327 Sharpe ratio")
     else:
         print(f"\n⚠️  Some validations failed - review needed")
     

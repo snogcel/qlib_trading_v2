@@ -77,11 +77,11 @@ def create_test_price_data(df):
 def test_signal_analysis_output():
     """Test the new signal analysis functionality"""
     
-    print("🧪 TESTING SIGNAL ANALYSIS OUTPUT")
+    print("TESTING SIGNAL ANALYSIS OUTPUT")
     print("=" * 50)
     
     # Create test data
-    print("📊 Creating synthetic test data...")
+    print("Creating synthetic test data...")
     df = create_test_data(500)  # Smaller sample for testing
     price_data = create_test_price_data(df)
     
@@ -99,13 +99,13 @@ def test_signal_analysis_output():
         sizing_method="enhanced"
     )
     
-    print("\n🚀 Running backtest...")
+    print("\nRunning backtest...")
     results = backtester.run_backtest(df, price_data=price_data, price_col='close', return_col='truth')
     
     print("\n💾 Saving results with signal analysis...")
     backtester.save_results(results, output_dir="./test_signal_analysis_results")
     
-    print("\n✅ Test completed! Check the following files:")
+    print("\nTest completed! Check the following files:")
     print("   - test_signal_analysis_results/signal_analysis_pivot.csv")
     print("   - test_signal_analysis_results/signal_summary_stats.json")
     

@@ -12,7 +12,7 @@ def create_final_summary():
     
     print("\n🎯 IMPLEMENTATION COMPLETED:")
     
-    print("\n✅ FILES MODIFIED:")
+    print("\nFILES MODIFIED:")
     files_modified = [
         {
             "file": "optimize_feature_loaders.py",
@@ -46,7 +46,7 @@ def create_final_summary():
         for change in file_info['changes']:
             print(f"   • {change}")
     
-    print("\n📊 FEATURE VARIANTS CREATED:")
+    print("\nFEATURE VARIANTS CREATED:")
     
     features = [
         {
@@ -141,7 +141,7 @@ def create_final_summary():
         print(f"   Reason: {scenario['reason']}")
         print(f"   Example: {scenario['example']}")
     
-    print("\n🧪 TESTING RESULTS:")
+    print("\nTESTING RESULTS:")
     
     test_results = [
         "✓ All momentum features calculate correctly",
@@ -156,7 +156,7 @@ def create_final_summary():
     for result in test_results:
         print(f"   {result}")
     
-    print("\n🚀 DEPLOYMENT PLAN:")
+    print("\nDEPLOYMENT PLAN:")
     
     phases = [
         {
@@ -202,7 +202,7 @@ def create_final_summary():
         for task in phase['tasks']:
             print(f"   • {task}")
     
-    print("\n📊 SUCCESS METRICS:")
+    print("\nSUCCESS METRICS:")
     
     metrics = [
         "Backtest performance >= original vol_raw_momentum",
@@ -228,9 +228,9 @@ def create_final_summary():
     ]
     
     for item in monitoring:
-        print(f"   📊 {item}")
+        print(f"   {item}")
     
-    print("\n🎉 BENEFITS ACHIEVED:")
+    print("\nBENEFITS ACHIEVED:")
     
     benefits = [
         "Preserved interpretability for critical decisions",
@@ -245,7 +245,7 @@ def create_final_summary():
         print(f"   • {benefit}")
     
     print("\n" + "=" * 100)
-    print("🚀 MOMENTUM HYBRID IMPLEMENTATION COMPLETE!")
+    print("MOMENTUM HYBRID IMPLEMENTATION COMPLETE!")
     print("Ready for production deployment and empirical validation")
     print("=" * 100)
 

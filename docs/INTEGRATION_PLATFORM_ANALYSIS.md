@@ -138,12 +138,12 @@ class MQTTSignalStrategy(StrategyPyBase):
 ```
 
 ### **Hummingbot Advantages**
-✅ **Proven retail platform** - Thousands of users, battle-tested  
-✅ **Excellent documentation** - Easy to understand integration guides  
-✅ **Active community** - Support and examples readily available  
-✅ **Exchange connectivity** - Pre-built connectors for major exchanges  
-✅ **Configuration management** - User-friendly config system  
-✅ **Market making focus** - Good for continuous trading strategies  
+**Proven retail platform** - Thousands of users, battle-tested  
+**Excellent documentation** - Easy to understand integration guides  
+**Active community** - Support and examples readily available  
+**Exchange connectivity** - Pre-built connectors for major exchanges  
+**Configuration management** - User-friendly config system  
+**Market making focus** - Good for continuous trading strategies  
 
 ### **Hummingbot Challenges**
 ⚠️ **Market making bias** - Designed for bid/ask spread strategies, not directional signals  
@@ -304,13 +304,13 @@ class Q50DataDrivenStrategy(Strategy):
 ```
 
 ### **NautilusTrader Advantages**
-✅ **Systematic trading focus** - Built specifically for algorithmic strategies like ours  
-✅ **High performance** - Rust core with Python bindings, institutional-grade speed  
-✅ **Advanced data handling** - Sophisticated market data management and feature calculation  
-✅ **Professional architecture** - Clean separation of concerns, enterprise-ready  
-✅ **Risk management** - Built-in portfolio and risk management engines  
-✅ **Backtesting integration** - Seamless transition from backtest to live trading  
-✅ **Model integration** - Designed to work with ML models and quantitative strategies  
+**Systematic trading focus** - Built specifically for algorithmic strategies like ours  
+**High performance** - Rust core with Python bindings, institutional-grade speed  
+**Advanced data handling** - Sophisticated market data management and feature calculation  
+**Professional architecture** - Clean separation of concerns, enterprise-ready  
+**Risk management** - Built-in portfolio and risk management engines  
+**Backtesting integration** - Seamless transition from backtest to live trading  
+**Model integration** - Designed to work with ML models and quantitative strategies  
 
 ### **NautilusTrader Challenges**
 ⚠️ **Learning curve** - More complex architecture, requires deeper understanding  
@@ -358,7 +358,7 @@ class Q50NautilusIntegration:
 
 ---
 
-## 🚀 Implementation Roadmap
+## Implementation Roadmap
 
 ### **Phase 1: NautilusTrader Proof of Concept (2-3 weeks)**
 
@@ -451,14 +451,14 @@ class ExternalQ50SignalProvider:
 ```
 
 **Advantages:**
-- ✅ Minimal modification to existing systems
-- ✅ Leverages Hummingbot's exchange connectivity
-- ✅ Keeps our Q50 system independent
-- ✅ Easier to implement and debug
+- Minimal modification to existing systems
+- Leverages Hummingbot's exchange connectivity
+- Keeps our Q50 system independent
+- Easier to implement and debug
 
 ---
 
-## 📊 Decision Matrix
+## Decision Matrix
 
 | Factor | Weight | Hummingbot Score | NautilusTrader Score | Weighted Score |
 |--------|--------|------------------|---------------------|----------------|

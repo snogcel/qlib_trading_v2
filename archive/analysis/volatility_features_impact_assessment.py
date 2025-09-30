@@ -18,7 +18,7 @@ def create_impact_assessment():
     print("2. vol_risk - Volatility risk measure") 
     print("3. vol_raw_decile - Volatility decile ranking")
     
-    print("\n📊 SCALE & CORRELATION CHANGES:")
+    print("\nSCALE & CORRELATION CHANGES:")
     print("┌─────────────────┬──────────────┬──────────────┬──────────────┬──────────────┐")
     print("│ Feature         │ Old Scale    │ New Scale    │ Scale Ratio  │ Correlation  │")
     print("├─────────────────┼──────────────┼──────────────┼──────────────┼──────────────┤")
@@ -91,7 +91,7 @@ def create_impact_assessment():
     print("   • Risk management may not work as expected")
     print("   • Backtests may show false performance")
     
-    print("\n✅ ACTION PLAN:")
+    print("\nACTION PLAN:")
     
     print("\n📋 PHASE 1: IMMEDIATE FIXES (Priority: CRITICAL)")
     print("1. Update all hardcoded thresholds and quantiles")
@@ -145,7 +145,7 @@ def create_impact_assessment():
         for item in change['changes']:
             print(f"   • {item}")
     
-    print("\n🧪 TESTING CHECKLIST:")
+    print("\nTESTING CHECKLIST:")
     test_items = [
         "✓ Load data with new features",
         "✓ Verify feature scales are as expected", 

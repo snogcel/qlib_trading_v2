@@ -43,17 +43,17 @@ def check_data_availability():
 
 def run_realistic_validation():
     """Run the realistic statistical validation test suite"""
-    print("🧪 Running Realistic Statistical Validation Tests...")
+    print("Running Realistic Statistical Validation Tests...")
     print("="*70)
     
     # Check data availability
     available_data = check_data_availability()
     if available_data:
-        print("📊 Available Real Data:")
+        print("Available Real Data:")
         for data_info in available_data:
             print(f"   {data_info['path']}: {data_info['size']} samples, {data_info['columns']} columns, {data_info['memory']:.1f}MB")
     else:
-        print("📊 No real data found - will use realistic fallback data")
+        print("No real data found - will use realistic fallback data")
     
     print("\n" + "="*70)
     
@@ -77,15 +77,15 @@ def run_realistic_validation():
         success = result.returncode == 0
         
         print("\n" + "="*70)
-        print(f"📊 Realistic Validation Results:")
+        print(f"Realistic Validation Results:")
         print(f"   Duration: {execution_time:.2f} seconds")
-        print(f"   Status: {'✅ PASSED' if success else '❌ FAILED'}")
+        print(f"   Status: {'PASSED' if success else 'FAILED'}")
         print(f"   Return Code: {result.returncode}")
         
         return success, execution_time, result.returncode
         
     except Exception as e:
-        print(f"❌ Error running realistic validation tests: {e}")
+        print(f"Error running realistic validation tests: {e}")
         return False, 0, -1
 
 def generate_realistic_validation_report():
@@ -115,31 +115,31 @@ def generate_realistic_validation_report():
             "System Integration": "End-to-end data flow"
         },
         "validation_improvements": [
-            "✅ Uses actual system data (macro_features.pkl)",
-            "✅ Realistic correlation thresholds",
-            "✅ Proper handling of MultiIndex data",
-            "✅ Fallback to synthetic data if needed",
-            "✅ Robust error handling for missing columns"
+            "Uses actual system data (macro_features.pkl)",
+            "Realistic correlation thresholds",
+            "Proper handling of MultiIndex data",
+            "Fallback to synthetic data if needed",
+            "Robust error handling for missing columns"
         ]
     }
     
     # Add recommendations based on results
     if test_success:
         report["recommendations"] = [
-            "✅ All realistic validation tests passed",
-            "✅ Phase 1 statistical validation framework validated with real data",
-            "✅ System components work correctly with actual data patterns",
-            "🚀 Ready for production deployment",
-            "📊 Consider implementing continuous validation monitoring"
+            "All realistic validation tests passed",
+            "Phase 1 statistical validation framework validated with real data",
+            "System components work correctly with actual data patterns",
+            "Ready for production deployment",
+            "Consider implementing continuous validation monitoring"
         ]
         report["phase_1_status"] = "COMPLETED_WITH_REAL_DATA"
     else:
         report["recommendations"] = [
-            "❌ Some realistic validation tests failed",
+            "Some realistic validation tests failed",
             "🔧 Review failed tests - may indicate data preprocessing needs",
             "📋 Check data quality and column availability",
-            "🧪 Consider data preprocessing pipeline improvements",
-            "📊 Validate data loading and transformation steps"
+            "Consider data preprocessing pipeline improvements",
+            "Validate data loading and transformation steps"
         ]
         report["phase_1_status"] = "NEEDS_DATA_FIXES"
     
@@ -163,13 +163,13 @@ def print_realistic_validation_summary(report):
     
     status = report["overall_status"]
     if status == "PASSED":
-        print("✅ STATUS: ALL TESTS PASSED WITH REAL DATA")
-        print("🎉 Phase 1 validated with actual system data!")
+        print("STATUS: ALL TESTS PASSED WITH REAL DATA")
+        print("Phase 1 validated with actual system data!")
     else:
         print("⚠️  STATUS: SOME TESTS FAILED")
         print("🔧 May need data preprocessing improvements")
     
-    print(f"\n📊 Execution Details:")
+    print(f"\nExecution Details:")
     print(f"   Duration: {report['execution_time_seconds']:.2f} seconds")
     print(f"   Validation Type: {report['validation_type']}")
     print(f"   Return Code: {report['return_code']}")
@@ -181,7 +181,7 @@ def print_realistic_validation_summary(report):
     else:
         print("   • Using realistic fallback data (no macro_features.pkl found)")
     
-    print(f"\n🧪 Test Categories:")
+    print(f"\nTest Categories:")
     for category, description in report["test_categories"].items():
         print(f"   • {category}: {description}")
     
@@ -212,8 +212,8 @@ def main():
     
     # Return appropriate exit code
     if report["overall_status"] == "PASSED":
-        print("\n✅ Realistic validation completed successfully!")
-        print("🎉 Phase 1 validated with actual system data!")
+        print("\nRealistic validation completed successfully!")
+        print("Phase 1 validated with actual system data!")
         return 0
     else:
         print("\n⚠️  Realistic validation identified issues that need attention.")

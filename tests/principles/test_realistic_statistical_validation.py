@@ -51,12 +51,12 @@ class TestRealisticStatisticalValidation:
             data_path = os.path.join(project_root, 'data3', 'macro_features.pkl')
             if os.path.exists(data_path):
                 df = pd.read_pickle(data_path)
-                print(f"✅ Loaded real data from data3/macro_features.pkl: {len(df)} samples")
+                print(f"Loaded real data from data3/macro_features.pkl: {len(df)} samples")
             else:
                 # Fallback to data directory
                 data_path = os.path.join(project_root, 'data', 'macro_features.pkl')
                 df = pd.read_pickle(data_path)
-                print(f"✅ Loaded real data from data/macro_features.pkl: {len(df)} samples")
+                print(f"Loaded real data from data/macro_features.pkl: {len(df)} samples")
             
             # Ensure we have the required columns
             required_columns = ['q10', 'q50', 'q90', 'vol_raw', 'vol_risk']
@@ -72,12 +72,12 @@ class TestRealisticStatisticalValidation:
                     df['q50'] = df['truth']
                     df['q10'] = df['truth'] - 0.01
                     df['q90'] = df['truth'] + 0.01
-                    print("✅ Created quantile columns from truth column")
+                    print("Created quantile columns from truth column")
             
             # Limit to reasonable sample size for testing (last 1000 samples)
             if len(df) > 1000:
                 df = df.tail(1000)
-                print(f"✅ Using last 1000 samples for testing")
+                print(f"Using last 1000 samples for testing")
             
             return df
             
@@ -88,7 +88,7 @@ class TestRealisticStatisticalValidation:
     
     def _create_realistic_fallback_data(self):
         """Create realistic fallback data if real data unavailable"""
-        print("📊 Creating realistic fallback data...")
+        print("Creating realistic fallback data...")
         np.random.seed(42)
         n = 500
         
@@ -197,7 +197,7 @@ class TestRealisticStatisticalValidation:
                 t_stat = correlations[0] * np.sqrt((n_samples-2) / (1 - correlations[0]**2 + 1e-10))
                 p_value = 2 * (1 - stats.t.cdf(abs(t_stat), n_samples-2))
             
-            print(f"✅ Q50 Primary Signal (Real Data):")
+            print(f"Q50 Primary Signal (Real Data):")
             print(f"   Mean correlation: {mean_correlation:.4f}")
             print(f"   P-value: {p_value:.4f}")
             print(f"   Sample size: {len(df)}")
@@ -207,7 +207,7 @@ class TestRealisticStatisticalValidation:
             assert abs(mean_correlation) > 0.001, f"Q50 should have some correlation with returns: {mean_correlation:.4f}"
             # For real data, correlation may be small but framework should work
             assert p_value < 1.0, f"P-value should be calculable: p={p_value:.4f}"
-            print(f"   Framework validation: ✅ Correlation testing works with real data")
+            print(f"   Framework validation: Correlation testing works with real data")
         else:
             print("⚠️  Insufficient data for correlation testing")
     
@@ -229,7 +229,7 @@ class TestRealisticStatisticalValidation:
             if feature in df_with_regimes.columns:
                 created_features.append(feature)
         
-        print(f"✅ Regime Features (Real Data):")
+        print(f"Regime Features (Real Data):")
         print(f"   Expected features: {len(expected_regime_features)}")
         print(f"   Created features: {len(created_features)}")
         print(f"   Features: {created_features}")
@@ -265,7 +265,7 @@ class TestRealisticStatisticalValidation:
                 if feature in df_with_signals.columns:
                     created_signal_features.append(feature)
             
-            print(f"✅ Signal Generation (Real Data):")
+            print(f"Signal Generation (Real Data):")
             print(f"   Expected features: {len(expected_signal_features)}")
             print(f"   Created features: {len(created_signal_features)}")
             print(f"   Features: {created_signal_features}")
@@ -288,7 +288,7 @@ class TestRealisticStatisticalValidation:
             
         except Exception as e:
             print(f"⚠️  Signal generation test encountered issue: {e}")
-            print("✅ Framework is available for signal generation testing")
+            print("Framework is available for signal generation testing")
     
     def test_probability_calculations_with_real_data(self, real_data):
         """Test probability calculations using actual system data"""
@@ -316,7 +316,7 @@ class TestRealisticStatisticalValidation:
         if len(probabilities) > 0:
             prob_array = np.array(probabilities)
             
-            print(f"✅ Probability Calculations (Real Data):")
+            print(f"Probability Calculations (Real Data):")
             print(f"   Valid calculations: {valid_calculations}/{sample_size}")
             print(f"   Mean probability: {prob_array.mean():.3f}")
             print(f"   Std probability: {prob_array.std():.3f}")
@@ -347,7 +347,7 @@ class TestRealisticStatisticalValidation:
                 deciles = [get_vol_raw_decile(vol) for vol in test_vol_values]
                 decile_distribution = pd.Series(deciles).value_counts().sort_index()
                 
-                print(f"✅ Vol_Raw Deciles (Real Data):")
+                print(f"Vol_Raw Deciles (Real Data):")
                 print(f"   Sample size: {sample_size}")
                 print(f"   Unique deciles: {len(decile_distribution)}")
                 print(f"   Distribution: {dict(decile_distribution)}")
@@ -366,7 +366,7 @@ class TestRealisticStatisticalValidation:
         """Test overall system integration using actual data"""
         df = real_data.copy()
         
-        print(f"✅ System Integration (Real Data):")
+        print(f"System Integration (Real Data):")
         print(f"   Data shape: {df.shape}")
         print(f"   Columns: {len(df.columns)}")
         print(f"   Index type: {type(df.index)}")
@@ -383,7 +383,7 @@ class TestRealisticStatisticalValidation:
         print(f"   Quantile columns: {quantile_cols}")
         
         if len(quantile_cols) >= 2:
-            print("   ✅ Has quantile structure for testing")
+            print("   Has quantile structure for testing")
         else:
             print("   ⚠️  Limited quantile structure - using available data")
         
@@ -392,7 +392,7 @@ class TestRealisticStatisticalValidation:
         if len(numeric_cols) > 0:
             stats_summary = df[numeric_cols].describe()
             print(f"   Numeric columns: {len(numeric_cols)}")
-            print("   ✅ Statistical analysis possible")
+            print("   Statistical analysis possible")
         
         assert len(df) > 10, "Should have sufficient data for testing"
         assert len(numeric_cols) > 0, "Should have numeric data for analysis"

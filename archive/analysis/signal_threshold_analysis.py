@@ -56,7 +56,7 @@ def analyze_current_threshold_problems():
 def demonstrate_threshold_issues():
     """Create synthetic data to demonstrate the problems"""
     
-    print(f"\n🧪 DEMONSTRATING THRESHOLD ISSUES")
+    print(f"\nDEMONSTRATING THRESHOLD ISSUES")
     print("=" * 60)
     
     # Create synthetic data
@@ -76,7 +76,7 @@ def demonstrate_threshold_issues():
     df['signal_thresh_adaptive'] = df['abs_q50'].rolling(30, min_periods=10).quantile(0.90)
     
     # Demonstrate the problems
-    print(f"📊 Data Summary:")
+    print(f"Data Summary:")
     print(f"   Total samples: {len(df)}")
     print(f"   q50 range: {q50.min():.4f} to {q50.max():.4f}")
     print(f"   abs_q50 range: {abs_q50.min():.4f} to {abs_q50.max():.4f}")

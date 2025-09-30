@@ -4,7 +4,7 @@
 
 This comprehensive feature optimization suite helps you systematically test and optimize different feature configurations and model parameters to maximize your quantile trading strategy performance.
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Quick Feature Test (Recommended First Step)
 ```bash
@@ -45,7 +45,7 @@ Runs all feature experiments + comprehensive hyperparameter optimization.
 **Expected runtime:** 2-4 hours  
 **Output:** Complete optimization results
 
-## 📊 Feature Experiment Types
+## Feature Experiment Types
 
 ### 1. **Enhanced Volatility** (`enhanced_volatility`)
 - **New Features:** Volatility regime detection, breakout signals, GARCH-like volatility

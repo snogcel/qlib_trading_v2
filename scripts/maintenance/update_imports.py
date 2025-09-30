@@ -97,14 +97,14 @@ def main():
                     if update_imports_in_file(file_path):
                         updated_files.append(file_path)
     
-    print(f"✅ Updated imports in {len(updated_files)} files:")
+    print(f"Updated imports in {len(updated_files)} files:")
     for file_path in updated_files:
         print(f"   • {file_path}")
     
     if not updated_files:
-        print("✅ No import updates needed - all files already use correct imports")
+        print("No import updates needed - all files already use correct imports")
     
-    print("\n🧪 Testing key imports...")
+    print("\nTesting key imports...")
     
     # Test critical imports
     test_imports = [
@@ -118,13 +118,13 @@ def main():
     for import_name in test_imports:
         try:
             __import__(import_name)
-            print(f"   ✅ {import_name}")
+            print(f"   {import_name}")
         except ImportError as e:
-            print(f"   ❌ {import_name}: {e}")
+            print(f"   {import_name}: {e}")
         except Exception as e:
             print(f"   ⚠️  {import_name}: {e}")
     
-    print("\n🎉 Import update complete!")
+    print("\nImport update complete!")
     print("\nNext steps:")
     print("1. Test your main training pipeline: python -m src.training_pipeline")
     print("2. Test backtesting: python -m src.backtesting.run_backtest")

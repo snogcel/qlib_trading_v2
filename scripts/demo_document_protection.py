@@ -30,10 +30,10 @@ def main():
     doc_path = "docs/FEATURE_DOCUMENTATION.md"
     
     if not Path(doc_path).exists():
-        print(f"❌ Error: {doc_path} not found!")
+        print(f"Error: {doc_path} not found!")
         return
     
-    print(f"✅ Protection system initialized")
+    print(f"Protection system initialized")
     print(f"   Backup directory: {protection_system.backup_dir}")
     print(f"   Version directory: {protection_system.version_dir}")
     print(f"   Rollback directory: {protection_system.rollback_dir}")
@@ -51,9 +51,9 @@ def main():
     # Enable version tracking
     print(f"\n3. Enabling version tracking...")
     if protection_system.enable_version_tracking(doc_path):
-        print("✅ Version tracking enabled")
+        print("Version tracking enabled")
     else:
-        print("❌ Failed to enable version tracking")
+        print("Failed to enable version tracking")
     
     # Create initial backup
     print(f"\n4. Creating initial backup...")
@@ -63,12 +63,12 @@ def main():
     )
     
     if backup_result.success:
-        print("✅ Backup created successfully")
+        print("Backup created successfully")
         print(f"   Backup path: {backup_result.backup_path}")
         print(f"   Timestamp: {backup_result.timestamp}")
         print(f"   Original hash: {backup_result.original_hash[:16]}...")
     else:
-        print(f"❌ Backup failed: {backup_result.error_message}")
+        print(f"Backup failed: {backup_result.error_message}")
         return
     
     # Create rollback point
@@ -78,12 +78,12 @@ def main():
             doc_path,
             "Before thesis statement enhancement"
         )
-        print("✅ Rollback point created")
+        print("Rollback point created")
         print(f"   Rollback ID: {rollback_point.id}")
         print(f"   Description: {rollback_point.description}")
         print(f"   Backup path: {rollback_point.backup_path}")
     except Exception as e:
-        print(f"❌ Rollback point creation failed: {e}")
+        print(f"Rollback point creation failed: {e}")
         return
     
     # Demonstrate change validation
@@ -147,7 +147,7 @@ def main():
     print(f"   Version tracking: {final_status['version_tracking']}")
     print(f"   Last backup: {final_status['last_backup']}")
     
-    print(f"\n✅ Document Protection System Demo Complete!")
+    print(f"\nDocument Protection System Demo Complete!")
     print(f"\nThe FEATURE_DOCUMENTATION.md file is now protected with:")
     print(f"   - Automatic backups in docs/research/case_study/backups/")
     print(f"   - Version tracking enabled")

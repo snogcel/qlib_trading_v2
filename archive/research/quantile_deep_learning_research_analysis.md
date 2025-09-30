@@ -14,9 +14,9 @@
 **Their Finding**: Quantile regression with deep learning outperforms traditional point prediction methods for Bitcoin price forecasting.
 
 **Your System Connection**: 
-- ✅ **Validates your Q50-centric approach** - You're already using quantile-based signals (Q10, Q50, Q90)
-- ✅ **Confirms asymmetric payoff capture** - Your system's 7.04% win rate with positive returns aligns with quantile advantages
-- ✅ **Supports multi-quantile modeling** - Your `MultiQuantileModel` is on the right track
+- **Validates your Q50-centric approach** - You're already using quantile-based signals (Q10, Q50, Q90)
+- **Confirms asymmetric payoff capture** - Your system's 7.04% win rate with positive returns aligns with quantile advantages
+- **Supports multi-quantile modeling** - Your `MultiQuantileModel` is on the right track
 
 ### 2. **LSTM + Quantile Regression Architecture**
 **Their Approach**: Combines LSTM temporal modeling with quantile regression for uncertainty quantification.
@@ -55,7 +55,7 @@ class LSTMQuantileModel:
 
 ---
 
-## 🚀 Actionable Enhancements for Your System
+## Actionable Enhancements for Your System
 
 ### Enhancement 1: Temporal Quantile Features
 ```python
@@ -119,23 +119,23 @@ def multi_horizon_quantile_prediction(model, features, horizons=[1, 3, 6]):
 
 ---
 
-## 📊 Research Validation of Your Approach
+## Research Validation of Your Approach
 
 ### What Their Research Confirms About Your System:
 
-1. **✅ Quantile-Based Trading is Superior**
+1. **Quantile-Based Trading is Superior**
    - Your Q50-centric approach is scientifically validated
    - Quantile regression captures market asymmetries better than point predictions
 
-2. **✅ Multi-Quantile Models Work**
+2. **Multi-Quantile Models Work**
    - Your `MultiQuantileModel` architecture is sound
    - Q10, Q50, Q90 provide optimal uncertainty quantification
 
-3. **✅ Bitcoin-Specific Advantages**
+3. **Bitcoin-Specific Advantages**
    - Quantile methods particularly effective for crypto markets
    - High volatility makes uncertainty quantification crucial
 
-4. **✅ Temporal Patterns Matter**
+4. **Temporal Patterns Matter**
    - Your regime awareness captures this partially
    - Could be enhanced with LSTM-style temporal modeling
 
@@ -177,7 +177,7 @@ def enhance_quantile_features(df):
 
 ---
 
-## 🧪 Experimental Validation Plan
+## Experimental Validation Plan
 
 ### Phase 1: Feature Enhancement (Week 1)
 - Add temporal quantile features to existing pipeline
@@ -210,7 +210,7 @@ def enhance_quantile_features(df):
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 1. **Immediate**: Add temporal quantile features to your existing system
 2. **Short-term**: Implement uncertainty-aware position sizing

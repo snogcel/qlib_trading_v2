@@ -27,7 +27,7 @@ This directory contains alternative integration approaches for live trading depl
 
 ---
 
-## 🚀 When to Consider Alternatives
+## When to Consider Alternatives
 
 ### Primary Path Issues
 - Hummingbot integration complexity
@@ -43,7 +43,7 @@ This directory contains alternative integration approaches for live trading depl
 
 ---
 
-## 📊 Integration Strategy
+## Integration Strategy
 
 ### Phase 1: Evaluation
 - [ ] Review notebook implementation approach

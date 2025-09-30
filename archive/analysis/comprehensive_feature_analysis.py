@@ -17,7 +17,7 @@ def load_comprehensive_data():
     try:
         df = pd.read_csv("df_all_macro_analysis_prep.csv")
         df = df.drop(columns=["q10", "q50", "q90"])
-        print(f"✅ Loaded updated df_all_macro_analysis_prep.csv with {df.shape[1]} features")
+        print(f"Loaded updated df_all_macro_analysis_prep.csv with {df.shape[1]} features")
         
         if 'instrument' in df.columns and 'datetime' in df.columns:
             df['datetime'] = pd.to_datetime(df['datetime'])
@@ -34,7 +34,7 @@ def load_comprehensive_data():
         # Fallback to X_all.csv
         try:
             X_all = pd.read_csv("X_all.csv")
-            print(f"✅ Loaded X_all.csv with {X_all.shape[1]} features")
+            print(f"Loaded X_all.csv with {X_all.shape[1]} features")
             
             # Set proper index
             if 'instrument' in X_all.columns and 'datetime' in X_all.columns:
@@ -47,7 +47,7 @@ def load_comprehensive_data():
             return X_all.sort_index()
             
         except FileNotFoundError:
-            print("❌ Neither df_all_macro_analysis.csv nor X_all.csv found!")
+            print("Neither df_all_macro_analysis.csv nor X_all.csv found!")
             return None
 
 def categorize_features(df):
@@ -90,7 +90,7 @@ def analyze_gdelt_features(df):
     gdelt_features = [col for col in df.columns if 'cwt_' in col]
     
     if not gdelt_features:
-        print("❌ No GDELT features found!")
+        print("No GDELT features found!")
         return None
     
     print(f"Found {len(gdelt_features)} GDELT features:")
@@ -98,7 +98,7 @@ def analyze_gdelt_features(df):
         print(f"  • {feature}")
     
     if 'truth' not in df.columns:
-        print("❌ No 'truth' column found for correlation analysis")
+        print("No 'truth' column found for correlation analysis")
         return None
     
     # Calculate correlations with truth
@@ -130,7 +130,7 @@ def comprehensive_feature_correlation_analysis(df):
     print(f"{'='*60}")
     
     if 'truth' not in df.columns:
-        print("❌ No 'truth' column found for correlation analysis")
+        print("No 'truth' column found for correlation analysis")
         return None
     
     # Calculate correlations with truth for ALL features
@@ -189,7 +189,7 @@ def identify_feature_interactions(df, top_n=10):
     print(f"{'='*60}")
     
     if 'truth' not in df.columns:
-        print("❌ No 'truth' column found")
+        print("No 'truth' column found")
         return None
     
     # Get top features
@@ -246,7 +246,7 @@ def generate_feature_recommendations(all_correlations, category_performance, gde
         best_categories = sorted(category_performance.items(), 
                                key=lambda x: x[1]['avg_correlation'], reverse=True)
         
-        print(f"\n📊 BEST FEATURE CATEGORIES:")
+        print(f"\nBEST FEATURE CATEGORIES:")
         for i, (category, metrics) in enumerate(best_categories[:5]):
             print(f"  {i+1}. {category:20} | Avg: {metrics['avg_correlation']:.4f} | "
                   f"Best: {metrics['best_feature'][:25]:25}")
@@ -259,7 +259,7 @@ def generate_feature_recommendations(all_correlations, category_performance, gde
             print(f"  {i+1}. {feature:30} | {corr:.4f}")
     
     # Implementation recommendations
-    print(f"\n🚀 IMPLEMENTATION RECOMMENDATIONS:")
+    print(f"\nIMPLEMENTATION RECOMMENDATIONS:")
     print(f"1. IMMEDIATE: Add top 5 individual features to your model")
     print(f"2. GDELT: Focus on top 3 GDELT features for sentiment analysis")
     print(f"3. TECHNICAL: Leverage technical indicators (ROC, STD) for market timing")
@@ -318,7 +318,7 @@ def main():
     # Save results
     save_comprehensive_analysis(all_correlations, category_performance, gdelt_correlations)
     
-    print(f"\n✅ Comprehensive feature analysis completed!")
+    print(f"\nComprehensive feature analysis completed!")
     
     return {
         'all_correlations': all_correlations,

@@ -116,7 +116,7 @@ def compare_with_current_approach(df):
     current_signals = df['side'].value_counts()
     q50_signals = df['side_q50'].value_counts()
     
-    print("📊 SIGNAL FREQUENCY COMPARISON")
+    print("SIGNAL FREQUENCY COMPARISON")
     print("=" * 50)
     print(f"Current Approach:")
     for side, count in current_signals.items():
@@ -176,7 +176,7 @@ def compare_with_current_approach(df):
         print(f"   Average info ratio: {q50_avg_info_ratio:.2f}")
         
         if len(current_trades) > 0:
-            print(f"\n📊 Quality Improvement:")
+            print(f"\nQuality Improvement:")
             print(f"   |q50| improvement: {(q50_avg_q50/current_avg_q50-1)*100:+.1f}%")
             print(f"   Spread improvement: {(current_avg_spread/q50_avg_spread-1)*100:+.1f}% (lower is better)")
             print(f"   Info ratio improvement: {(q50_avg_info_ratio/current_avg_info_ratio-1)*100:+.1f}%")
@@ -186,7 +186,7 @@ def compare_with_current_approach(df):
 def test_q50_approach():
     """Test the Q50-centric approach with synthetic data"""
     
-    print("🧪 TESTING Q50-CENTRIC APPROACH")
+    print("TESTING Q50-CENTRIC APPROACH")
     print("=" * 50)
     
     # Create synthetic test data
@@ -205,7 +205,7 @@ def test_q50_approach():
         'q90': q90
     })
     
-    print(f"📊 Generated {len(df):,} synthetic observations")
+    print(f"Generated {len(df):,} synthetic observations")
     print(f"   q50 range: {q50.min():.4f} to {q50.max():.4f}")
     print(f"   Spread range: {spread_base.min():.4f} to {spread_base.max():.4f}")
     
@@ -249,18 +249,18 @@ def main():
     
     print(f"\n💡 KEY BENEFITS:")
     benefits = [
-        "✅ Economic Intuition: Q50 = expected return",
-        "✅ No Data Leakage: Uses only economically meaningful thresholds",
-        "✅ Risk Aware: Information ratio filters low-quality signals",
-        "✅ Interpretable: Can explain every trading decision",
-        "✅ Robust: Works across different market conditions",
-        "✅ Simple: Easy to implement and debug"
+        "Economic Intuition: Q50 = expected return",
+        "No Data Leakage: Uses only economically meaningful thresholds",
+        "Risk Aware: Information ratio filters low-quality signals",
+        "Interpretable: Can explain every trading decision",
+        "Robust: Works across different market conditions",
+        "Simple: Easy to implement and debug"
     ]
     
     for benefit in benefits:
         print(f"   {benefit}")
     
-    print(f"\n🚀 NEXT STEPS:")
+    print(f"\nNEXT STEPS:")
     print("1. Test this approach on your real data")
     print("2. Compare performance vs current piecewise method")
     print("3. Tune transaction_cost_bps and min_info_ratio parameters")

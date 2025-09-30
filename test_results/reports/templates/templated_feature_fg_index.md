@@ -4,14 +4,14 @@
 **Feature Category:** Risk & Volatility
 **Priority Level:** Medium
 
-## 📊 Feature Overview
+## Feature Overview
 
 - **Total Tests:** 7
 - **Success Rate:** 42.9%
 - **Average Confidence:** 0.44
 - **Average Execution Time:** 2.19s
 
-## 🧪 Test Results Summary
+## Test Results Summary
 
 | Test Type | Total | Passed | Failed | Success Rate |
 |-----------|-------|--------|--------|--------------|
@@ -20,27 +20,27 @@
 | Failure Mode | 2 | 2 | 0 | 100.0% |
 | Regime Dependency | 1 | 0 | 1 | 0.0% |
 
-## ✅ Passed Tests
+## Passed Tests
 
-### ✅ Failure Mode
+### Failure Mode
 - **Confidence:** low (0.53)
 - **Execution Time:** 0.86s
 - **Analysis:** Successful validation of fg_index
 
-### ✅ Failure Mode
+### Failure Mode
 - **Confidence:** high (0.71)
 - **Execution Time:** 1.57s
 - **Analysis:** Successful validation of fg_index
 
-### ✅ Performance
+### Performance
 - **Confidence:** uncertain (0.53)
 - **Execution Time:** 4.03s
 - **Analysis:** Successful validation of fg_index
 
 
-## ❌ Failed Tests
+## Failed Tests
 
-### ❌ Economic Hypothesis
+### Economic Hypothesis
 - **Status:** error
 - **Priority:** low
 - **Error:** Error in fg_index test
@@ -49,7 +49,7 @@
   - Review fg_index implementation
   - Update economic_hypothesis test criteria
 
-### ❌ Regime Dependency
+### Regime Dependency
 - **Status:** failed
 - **Priority:** high
 - **Analysis:** Analysis for fg_index regime_dependency
@@ -57,7 +57,7 @@
   - Review fg_index implementation
   - Update regime_dependency test criteria
 
-### ❌ Economic Hypothesis
+### Economic Hypothesis
 - **Status:** failed
 - **Priority:** medium
 - **Analysis:** Analysis for fg_index economic_hypothesis
@@ -65,7 +65,7 @@
   - Review fg_index implementation
   - Update economic_hypothesis test criteria
 
-### ❌ Economic Hypothesis
+### Economic Hypothesis
 - **Status:** skipped
 - **Priority:** medium
 - **Analysis:** Analysis for fg_index economic_hypothesis
@@ -91,15 +91,15 @@
 
 ## 🔍 Economic Hypothesis Validation
 
-❌ **Hypothesis Test:** Test economic_hypothesis for fg_index
+**Hypothesis Test:** Test economic_hypothesis for fg_index
 - **Result:** Hypothesis validation failed
 - **Issue:** Analysis for fg_index economic_hypothesis
 
-❌ **Hypothesis Test:** Test economic_hypothesis for fg_index
+**Hypothesis Test:** Test economic_hypothesis for fg_index
 - **Result:** Hypothesis validation failed
 - **Issue:** Analysis for fg_index economic_hypothesis
 
-❌ **Hypothesis Test:** Test economic_hypothesis for fg_index
+**Hypothesis Test:** Test economic_hypothesis for fg_index
 - **Result:** Hypothesis validation failed
 - **Issue:** Analysis for fg_index economic_hypothesis
 

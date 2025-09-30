@@ -14,7 +14,7 @@ The `signal_analysis_pivot.csv` file contains comprehensive data about every sig
 - `trade_executed`: Boolean - was a trade actually executed?
 - `trade_outcome`: EXECUTED, HOLD_POSITION, HOLD_NO_POSITION
 
-### 📊 **Quantile Data**
+### **Quantile Data**
 - `q10`, `q50`, `q90`: Raw quantile predictions
 - `abs_q50`: Absolute value of q50 (signal strength)
 - `spread`: q90 - q10 (uncertainty measure)
@@ -41,7 +41,7 @@ The `signal_analysis_pivot.csv` file contains comprehensive data about every sig
 - `weekend`: Boolean
 - `market_hours`: Boolean (Always True for crypto - 24/7 markets)
 
-### ✅ **Boolean Flags (Easy Filtering)**
+### **Boolean Flags (Easy Filtering)**
 - `signal_above_thresh`: Signal above adaptive threshold
 - `high_confidence`: Confidence >= 7
 - `strong_signal`: Signal strength >= 0.7

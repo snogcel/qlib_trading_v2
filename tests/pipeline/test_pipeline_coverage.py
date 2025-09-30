@@ -55,13 +55,13 @@ class PipelineCoverageValidator:
                     data_availability[f"{file_path}_shape"] = df.shape
                     data_availability[f"{file_path}_columns"] = len(df.columns)
                     
-                    print(f"✅ {file_path}: {df.shape}")
+                    print(f"{file_path}: {df.shape}")
                     
                 except Exception as e:
                     data_availability[f"{file_path}_error"] = str(e)
-                    print(f"❌ {file_path}: ERROR - {e}")
+                    print(f"{file_path}: ERROR - {e}")
             else:
-                print(f"❌ {file_path}: NOT FOUND")
+                print(f"{file_path}: NOT FOUND")
         
         # Test 2: Data quality checks
         try:
@@ -87,14 +87,14 @@ class PipelineCoverageValidator:
                 'details': data_quality
             }
             
-            print(f"✅ Data Quality Score: {quality_score:.2f}")
+            print(f"Data Quality Score: {quality_score:.2f}")
             
         except Exception as e:
             results['data_quality'] = {
                 'status': 'ERROR',
                 'error': str(e)
             }
-            print(f"❌ Data Quality: ERROR - {e}")
+            print(f"Data Quality: ERROR - {e}")
         
         results['data_availability'] = data_availability
         self.pipeline_stages['data_ingestion'] = results
@@ -154,15 +154,15 @@ class PipelineCoverageValidator:
                 'quality_score': overall_quality
             }
             
-            print(f"✅ Feature Categories: {feature_categories}")
-            print(f"✅ Feature Quality Score: {overall_quality:.2f}")
+            print(f"Feature Categories: {feature_categories}")
+            print(f"Feature Quality Score: {overall_quality:.2f}")
             
         except Exception as e:
             results['feature_engineering'] = {
                 'status': 'ERROR',
                 'error': str(e)
             }
-            print(f"❌ Feature Engineering: ERROR - {e}")
+            print(f"Feature Engineering: ERROR - {e}")
         
         self.pipeline_stages['feature_engineering'] = results
         return results
@@ -218,16 +218,16 @@ class PipelineCoverageValidator:
                 'quality_score': overall_signal_quality
             }
             
-            print(f"✅ Signal Availability: {signal_availability['coverage']:.2f}")
+            print(f"Signal Availability: {signal_availability['coverage']:.2f}")
             if 'side_distribution' in signal_quality:
-                print(f"✅ Trading Signals: {signal_quality['side_distribution']['total_signals']:,}")
+                print(f"Trading Signals: {signal_quality['side_distribution']['total_signals']:,}")
             
         except Exception as e:
             results['signal_generation'] = {
                 'status': 'ERROR',
                 'error': str(e)
             }
-            print(f"❌ Signal Generation: ERROR - {e}")
+            print(f"Signal Generation: ERROR - {e}")
         
         self.pipeline_stages['signal_generation'] = results
         return results
@@ -253,9 +253,9 @@ class PipelineCoverageValidator:
             if exists:
                 files = list(Path(path).glob('**/*'))
                 backtest_availability[f"{path}_file_count"] = len(files)
-                print(f"✅ {path}: {len(files)} files")
+                print(f"{path}: {len(files)} files")
             else:
-                print(f"❌ {path}: NOT FOUND")
+                print(f"{path}: NOT FOUND")
         
         # Test 2: Performance metrics validation
         try:
@@ -287,23 +287,23 @@ class PipelineCoverageValidator:
                     'meets_standards': performance_valid
                 }
                 
-                print(f"✅ Sharpe Ratio: {performance_metrics['sharpe_ratio']:.3f}")
-                print(f"✅ Total Return: {performance_metrics['total_return']:.2%}")
-                print(f"✅ Max Drawdown: {performance_metrics['max_drawdown']:.2%}")
+                print(f"Sharpe Ratio: {performance_metrics['sharpe_ratio']:.3f}")
+                print(f"Total Return: {performance_metrics['total_return']:.2%}")
+                print(f"Max Drawdown: {performance_metrics['max_drawdown']:.2%}")
                 
             else:
                 results['performance_validation'] = {
                     'status': 'FAIL',
                     'error': 'No metrics.json files found'
                 }
-                print("❌ No performance metrics found")
+                print("No performance metrics found")
                 
         except Exception as e:
             results['performance_validation'] = {
                 'status': 'ERROR',
                 'error': str(e)
             }
-            print(f"❌ Performance Validation: ERROR - {e}")
+            print(f"Performance Validation: ERROR - {e}")
         
         results['backtest_availability'] = backtest_availability
         self.pipeline_stages['performance_validation'] = results
@@ -350,7 +350,7 @@ class PipelineCoverageValidator:
                     'description': path_info['description'],
                     'error': str(e)
                 }
-                print(f"❌ {path_info['description']}: ERROR - {e}")
+                print(f"{path_info['description']}: ERROR - {e}")
         
         self.critical_paths = path_results
         return path_results

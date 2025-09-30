@@ -19,7 +19,7 @@ from src.features.regime_features import RegimeFeatureEngine, create_regime_feat
 def test_with_actual_data():
     """Test regime features with actual trading data"""
     
-    print("🧪 TESTING UNIFIED REGIME FEATURES WITH ACTUAL DATA")
+    print("TESTING UNIFIED REGIME FEATURES WITH ACTUAL DATA")
     print("=" * 60)
     
     # Try to load actual data
@@ -35,14 +35,14 @@ def test_with_actual_data():
                 df = pd.read_pickle(file_path)
             else:
                 df = pd.read_csv(file_path)
-            print(f"✅ Loaded data from {file_path}")
+            print(f"Loaded data from {file_path}")
             print(f"   Shape: {df.shape}")
             break
         except Exception as e:
-            print(f"❌ Could not load {file_path}: {e}")
+            print(f"Could not load {file_path}: {e}")
     
     if df is None:
-        print("❌ No data available for testing")
+        print("No data available for testing")
         return
     
     # Check available columns
@@ -55,16 +55,16 @@ def test_with_actual_data():
         print(f"   ... and {len(regime_relevant_cols) - 10} more")
     
     # Test regime feature generation
-    print(f"\n🏛️  Generating regime features...")
+    print(f"\nGenerating regime features...")
     try:
         engine = RegimeFeatureEngine()
         df_with_regimes = engine.generate_all_regime_features(df.head(5000))  # Test with subset
         
-        print(f"\n✅ Successfully generated regime features!")
+        print(f"\nSuccessfully generated regime features!")
         
         # Analyze regime feature correlations with existing features
         regime_cols = [col for col in df_with_regimes.columns if col.startswith('regime_')]
-        print(f"\n📊 Generated regime features: {regime_cols}")
+        print(f"\nGenerated regime features: {regime_cols}")
         
         # Check for any existing regime features to compare
         existing_regime_cols = [col for col in df.columns if 'regime' in col.lower() or 
@@ -99,7 +99,7 @@ def test_with_actual_data():
         return df_with_regimes
         
     except Exception as e:
-        print(f"❌ Error generating regime features: {e}")
+        print(f"Error generating regime features: {e}")
         import traceback
         traceback.print_exc()
         return None
@@ -129,7 +129,7 @@ def test_backward_compatibility():
     df_new = create_regime_features(old_style_data)
     
     # Compare old vs new
-    print(f"📊 Comparison of old vs new regime detection:")
+    print(f"Comparison of old vs new regime detection:")
     
     # Volatility comparison
     old_extreme_vol = old_style_data['vol_extreme_high'].sum()
@@ -146,7 +146,7 @@ def test_backward_compatibility():
     new_btc_high = (df_new['regime_dominance'] == 'btc_high').sum()
     print(f"   BTC dominance high - Old: {old_btc_high}, New: {new_btc_high}")
     
-    print(f"\n✅ Backward compatibility test completed")
+    print(f"\nBackward compatibility test completed")
     return df_new
 
 def main():
@@ -158,14 +158,14 @@ def main():
     # Test backward compatibility
     df_compat = test_backward_compatibility()
     
-    print(f"\n🎉 UNIFIED REGIME FEATURES READY!")
+    print(f"\nUNIFIED REGIME FEATURES READY!")
     print("=" * 60)
-    print("✅ Core regime detection working")
-    print("✅ Composite regimes functional") 
-    print("✅ Regime multiplier operational")
-    print("✅ Backward compatibility validated")
+    print("Core regime detection working")
+    print("Composite regimes functional") 
+    print("Regime multiplier operational")
+    print("Backward compatibility validated")
     
-    print(f"\n🚀 NEXT STEPS:")
+    print(f"\nNEXT STEPS:")
     print("1. Integrate into your main pipeline")
     print("2. Replace scattered regime features")
     print("3. Update backtesting to use regime_multiplier")

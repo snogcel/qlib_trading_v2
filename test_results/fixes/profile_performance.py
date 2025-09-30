@@ -23,7 +23,7 @@ def profile_feature_performance(feature_name):
     print("3. Bottleneck identification...")
     print("4. Resource utilization check...")
     
-    print(f"\n📊 Performance Report for {feature_name}:")
+    print(f"\nPerformance Report for {feature_name}:")
     print("   - Execution time: TBD")
     print("   - Memory usage: TBD")
     print("   - CPU utilization: TBD")

@@ -315,7 +315,7 @@ class RegimeFeatureEngine:
             lambda x: (np.sign(x) == np.sign(x.iloc[-1])).mean() if len(x) >= 3 else 0.5
         ).fillna(0.5)
         
-        print(f"✅ Added 6 economically-justified temporal features:")
+        print(f"Added 6 economically-justified temporal features:")
         print(f"   • q50_momentum_3: Information flow persistence")
         print(f"   • spread_momentum_3: Market uncertainty evolution") 
         print(f"   • q50_stability_6: Consensus stability measure")
@@ -332,7 +332,7 @@ class RegimeFeatureEngine:
         Returns:
             pd.DataFrame: Original df with 7 regime features + temporal quantile features
         """
-        print("🏛️  Generating unified regime features...")
+        print("Generating unified regime features...")
         
         # Core regime classifications
         regime_volatility = self.calculate_regime_volatility(df)
@@ -371,7 +371,7 @@ class RegimeFeatureEngine:
         Returns:
             Dict: Validation results with economic rationale
         """
-        print("\n🧪 VALIDATING ECONOMIC LOGIC OF TEMPORAL FEATURES:")
+        print("\nVALIDATING ECONOMIC LOGIC OF TEMPORAL FEATURES:")
         
         validations = []
         
@@ -451,7 +451,7 @@ class RegimeFeatureEngine:
         # Summary
         passed = sum(1 for v in validations if v['result'])
         total = len(validations)
-        print(f"\n📊 Economic Logic Validation: {passed}/{total} tests passed")
+        print(f"\nEconomic Logic Validation: {passed}/{total} tests passed")
         
         return {
             'validations': validations,
@@ -462,7 +462,7 @@ class RegimeFeatureEngine:
 
     def _print_regime_summary(self, df: pd.DataFrame):
         """Print summary of regime feature distributions"""
-        print("\n📊 REGIME FEATURE SUMMARY:")
+        print("\nREGIME FEATURE SUMMARY:")
         
         # Volatility regime distribution
         vol_dist = df['regime_volatility'].value_counts(normalize=True) * 100
@@ -545,7 +545,7 @@ def get_regime_multiplier(df: pd.DataFrame, **kwargs) -> pd.Series:
 
 if __name__ == "__main__":
     # Example usage and testing
-    print("🧪 Testing Regime Feature Engine...")
+    print("Testing Regime Feature Engine...")
     
     # Create sample data
     np.random.seed(42)
@@ -562,5 +562,5 @@ if __name__ == "__main__":
     engine = RegimeFeatureEngine()
     result = engine.generate_all_regime_features(sample_data)
     
-    print(f"\n✅ Generated {len([col for col in result.columns if col.startswith('regime_')])} regime features")
-    print("🎉 Regime Feature Engine ready for production!")
+    print(f"\nGenerated {len([col for col in result.columns if col.startswith('regime_')])} regime features")
+    print("Regime Feature Engine ready for production!")

@@ -10,7 +10,7 @@ def create_final_summary():
     print("VOLATILITY FEATURES: FINAL COMPREHENSIVE SUMMARY & ACTION PLAN")
     print("=" * 100)
     
-    print("\n✅ CONFIRMED FINDINGS:")
+    print("\nCONFIRMED FINDINGS:")
     
     print("\n1. OLD vol_risk (vol_scaled):")
     print("   • Properly bounded [0, 1] with clipping")
@@ -124,7 +124,7 @@ def create_final_summary():
         for task in step['tasks']:
             print(f"   • {task}")
     
-    print("\n🧪 TESTING CHECKLIST:")
+    print("\nTESTING CHECKLIST:")
     
     tests = [
         "Load data with new features - no errors",
@@ -140,7 +140,7 @@ def create_final_summary():
     for i, test in enumerate(tests, 1):
         print(f"   {i}. ☐ {test}")
     
-    print("\n📊 SUCCESS CRITERIA:")
+    print("\nSUCCESS CRITERIA:")
     
     criteria = [
         "Position sizes are in reasonable range (0.01 to 1.0)",
@@ -170,7 +170,7 @@ def create_final_summary():
     print("   • Keep old feature names as aliases")
     print("   • Gradual migration rather than hard cutover")
     
-    print("\n🎉 EXPECTED BENEFITS (after transition):")
+    print("\nEXPECTED BENEFITS (after transition):")
     
     benefits = [
         "More theoretically sound volatility measures",

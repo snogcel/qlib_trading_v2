@@ -42,7 +42,7 @@ def analyze_backtest_results():
         }
     }
     
-    print("\n📊 PERFORMANCE SUMMARY:")
+    print("\nPERFORMANCE SUMMARY:")
     print("   ┌─────────────────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┐")
     print("   │ Configuration           │ Total Return │ Sharpe Ratio │ Max Drawdown │ Total Trades │ Win Rate     │")
     print("   ├─────────────────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤")
@@ -58,7 +58,7 @@ def analyze_backtest_results():
     print(f"   • Max Drawdown: -16.72% (reasonable risk control)")
     print(f"   • Trade Count: 560 (good activity level)")
     
-    print("\n✅ KEY INSIGHTS:")
+    print("\nKEY INSIGHTS:")
     
     insights = [
         {
@@ -176,16 +176,16 @@ def analyze_backtest_results():
         print(f"\n🎯 {step['step']} ({step['priority']} priority):")
         print(f"   {step['description']}")
     
-    print("\n🚀 PRODUCTION READINESS ASSESSMENT:")
+    print("\nPRODUCTION READINESS ASSESSMENT:")
     
     readiness_checklist = [
-        ("Feature Implementation", "✅ COMPLETE", "All hybrid features working"),
-        ("Basic Backtesting", "✅ COMPLETE", "Strong initial results"),
-        ("Risk Management", "✅ WORKING", "Reasonable drawdowns"),
-        ("Signal Quality", "✅ GOOD", "Active trading, good Sharpe"),
+        ("Feature Implementation", "COMPLETE", "All hybrid features working"),
+        ("Basic Backtesting", "COMPLETE", "Strong initial results"),
+        ("Risk Management", "WORKING", "Reasonable drawdowns"),
+        ("Signal Quality", "GOOD", "Active trading, good Sharpe"),
         ("Out-of-Sample Testing", "⏳ PENDING", "Need to validate on new data"),
         ("Transaction Costs", "⏳ PENDING", "Need realistic cost modeling"),
-        ("Live Testing", "❌ NOT STARTED", "Paper trading recommended first")
+        ("Live Testing", "NOT STARTED", "Paper trading recommended first")
     ]
     
     for item, status, description in readiness_checklist:
@@ -228,7 +228,7 @@ def analyze_backtest_results():
         for action in rec['actions']:
             print(f"   • {action}")
     
-    print("\n🎉 CELEBRATION POINTS:")
+    print("\nCELEBRATION POINTS:")
     
     celebrations = [
         "1.72 Sharpe ratio is genuinely excellent for crypto trading",
@@ -240,7 +240,7 @@ def analyze_backtest_results():
     ]
     
     for celebration in celebrations:
-        print(f"   🎉 {celebration}")
+        print(f"   {celebration}")
     
     print("\n" + "=" * 100)
     print("CONCLUSION: Excellent initial results! Hybrid approach is working.")

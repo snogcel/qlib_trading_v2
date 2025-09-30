@@ -58,7 +58,7 @@ src/
 ```
 
 ### 2. **csv_data/ → data/processed/**
-**Status**: ✅ PATH UPDATED IN CLEANUP SCRIPT
+**Status**: PATH UPDATED IN CLEANUP SCRIPT
 
 **Migration:**
 - `csv_data/BTC_FEAT/` → `data/processed/BTC_FEAT/`
@@ -74,7 +74,7 @@ src/
 **CURRENT PIPELINE FLOW (Single Model Focus):**
 
 **1. Main Entry Point: `src/training_pipeline.py`**
-- **Status**: ✅ LOCATED (formerly ppo_sweep_optuna_tuned_v2.py)
+- **Status**: LOCATED (formerly ppo_sweep_optuna_tuned_v2.py)
 - **Function**: Primary entrance point, generates interim file in project root
 - **Priority**: **CRITICAL** - This is the actual starting point
 
@@ -184,34 +184,34 @@ from qlib_custom.custom_train import CustomTrainer, backtest, train  # ⚠️ CH
 - [ ] Identify all files that import from `qlib_custom/`
 
 ### **Phase 2: Locate Primary Entry Point**
-- [x] **✅ FOUND**: Main entry point is now `src/training_pipeline.py`
+- [x] **FOUND**: Main entry point is now `src/training_pipeline.py`
   - **Original name**: `ppo_sweep_optuna_tuned_v2.py` 
   - **New location**: `src/training_pipeline.py` (moved during cleanup per PROJECT_CLEANUP_PLAN.md)
-  - **Status**: ✅ **LOCATED** - File exists and has recent cache files
+  - **Status**: **LOCATED** - File exists and has recent cache files
 - [ ] Verify it generates CSV that `train_meta_wrapper.py` consumes
 - [ ] Document the complete pipeline flow
 
 ### **Phase 3: Move Remaining Files**
 - [x] Move remaining `qlib_custom/` files to appropriate `src/` locations
 - [x] **RL Order Execution Scripts**: Moved to `scripts/rl_order_execution/`
-  - ✅ **ORGANIZED**: RL-specific scripts now properly grouped
-  - ✅ **ACCESSIBLE**: `pickle_data_config.yml` and related utilities available
+  - **ORGANIZED**: RL-specific scripts now properly grouped
+  - **ACCESSIBLE**: `pickle_data_config.yml` and related utilities available
 - [x] **Old Research Folder**: Moved to `scratch_data/research/`
-  - ✅ **ROOT CLEANED**: Removed clutter from main directory
-  - ✅ **PRESERVED**: Old research still accessible if needed
+  - **ROOT CLEANED**: Removed clutter from main directory
+  - **PRESERVED**: Old research still accessible if needed
 - [ ] Update `qlib_custom/` imports to new `src/` paths
 - [ ] Test critical functionality after each move
 
 ### **Phase 4: Update Imports (Current Pipeline Priority)**
 - [x] Fix **`src/training_pipeline.py`** imports (HIGHEST PRIORITY - MAIN ENTRY POINT)
-  - ✅ **COMPLETED**: All imports fixed and working
-  - ✅ **SUCCESSFUL RUN**: Pipeline completed with signal generation
-  - ✅ **OUTPUT**: Generated 15,212 trading signals (28.2% of data)
-  - ✅ **FILES**: Created `df_all_macro_analysis.csv` and `./data3/macro_features.pkl`
+  - **COMPLETED**: All imports fixed and working
+  - **SUCCESSFUL RUN**: Pipeline completed with signal generation
+  - **OUTPUT**: Generated 15,212 trading signals (28.2% of data)
+  - **FILES**: Created `df_all_macro_analysis.csv` and `./data3/macro_features.pkl`
 - [x] Fix **`src/backtesting/run_backtest.py`** imports (HIGH PRIORITY - DEPENDS ON INTERIM FILE FROM ABOVE)
-  - ✅ **COMPLETED**: Files replaced from GitHub, imports working
-  - ✅ **SUCCESSFUL RUN**: Backtesting completed with multiple configurations
-  - ✅ **BEST PERFORMANCE**: Moderate config - 1.327 Sharpe, 17.48% return, -11.77% max drawdown
+  - **COMPLETED**: Files replaced from GitHub, imports working
+  - **SUCCESSFUL RUN**: Backtesting completed with multiple configurations
+  - **BEST PERFORMANCE**: Moderate config - 1.327 Sharpe, 17.48% return, -11.77% max drawdown
 - [ ] Fix `src/backtesting/quantile_backtester.py` imports (CORE BACKTESTING)
 - [ ] Fix `src/production/integrated_validated_pipeline.py` imports (PRODUCTION)
 - [ ] Fix `src/rl_execution/train_meta_wrapper.py` imports (FUTURE ITERATION)

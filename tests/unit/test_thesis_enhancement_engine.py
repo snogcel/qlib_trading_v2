@@ -68,7 +68,7 @@ This document tracks all features in the Q50-centric, variance-aware trading sys
 - **Purpose**: Primary directional signal based on 50th percentile probability
 - **Usage**: Standalone signal for trade direction decisions
 - **Implementation**: `qlib_custom/custom_multi_quantile.py`
-- **Status**: ✅ Production Ready
+- **Status**: Production Ready
 - **Performance Impact**: High - Primary driver of returns
 
 ### Regime Multiplier
@@ -76,19 +76,19 @@ This document tracks all features in the Q50-centric, variance-aware trading sys
 - **Purpose**: Comprehensive regime-aware position scaling
 - **Usage**: Position sizing with regime awareness
 - **Implementation**: `qlib_custom/regime_features.py`
-- **Status**: ✅ Production Ready
+- **Status**: Production Ready
 - **Performance Impact**: High - Unified position scaling
 
 ---
 
-## 📊 Risk & Volatility Features
+## Risk & Volatility Features
 
 ### Vol_Risk (Variance-Based)
 - **Type**: Volatility-based risk metric
 - **Purpose**: Risk assessment using variance instead of standard deviation
 - **Usage**: Position sizing and risk management
 - **Implementation**: `vol_risk_strategic_implementation.py`
-- **Status**: ✅ Production Ready
+- **Status**: Production Ready
 - **Performance Impact**: High - Critical for risk-adjusted returns
 """
     
@@ -180,7 +180,7 @@ Keep it simple - if you can't explain it on a chart, it's not good.
         # Check extracted properties
         assert q50_feature['type'] == "Quantile-based probability"
         assert q50_feature['purpose'] == "Primary directional signal based on 50th percentile probability"
-        assert q50_feature['status'] == "✅ Production Ready"
+        assert q50_feature['status'] == "Production Ready"
         assert "High" in q50_feature['performance_impact']
     
     def test_find_category(self, engine):
@@ -553,11 +553,11 @@ class TestFeatureParsingEdgeCases:
 
 ## 🎯 Empty Category
 
-## 📊 Another Empty Category
+## Another Empty Category
 
 ---
 
-## ✅ Category With Content
+## Category With Content
 
 ### Actual Feature
 - **Type**: Test type

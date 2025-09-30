@@ -59,15 +59,15 @@ def create_test_data():
 def test_temporal_features():
     """Test economically-justified temporal quantile features"""
     
-    print("🧪 TESTING ECONOMICALLY-JUSTIFIED TEMPORAL FEATURES")
+    print("TESTING ECONOMICALLY-JUSTIFIED TEMPORAL FEATURES")
     print("=" * 60)
     
     # Create test data
     df = create_test_data()
-    print(f"✅ Created test data: {df.shape}")
+    print(f"Created test data: {df.shape}")
     
     # Test with full regime engine (includes economic validation)
-    print(f"\n🏛️  Testing with full regime engine...")
+    print(f"\nTesting with full regime engine...")
     engine = RegimeFeatureEngine()
     df_full = engine.generate_all_regime_features(df.copy())
     
@@ -77,7 +77,7 @@ def test_temporal_features():
                         'q50_regime_persistence', 'prediction_confidence', 'q50_direction_consistency']
     
     existing_features = [f for f in temporal_features if f in df_full.columns]
-    print(f"\n✅ Added {len(existing_features)} economically-justified features:")
+    print(f"\nAdded {len(existing_features)} economically-justified features:")
     
     feature_explanations = {
         'q50_momentum_3': 'Information flow persistence (momentum theory)',
@@ -93,7 +93,7 @@ def test_temporal_features():
         print(f"   • {feature}: {explanation}")
     
     # Test chart explainability (thesis-first principle)
-    print(f"\n📊 CHART EXPLAINABILITY TEST:")
+    print(f"\nCHART EXPLAINABILITY TEST:")
     print("Can you explain each feature by looking at a chart?")
     
     for feature in existing_features:
@@ -111,7 +111,7 @@ def test_temporal_features():
 def test_integration_with_existing_system():
     """Test integration with existing quantile prediction pipeline"""
     
-    print(f"\n🔗 TESTING INTEGRATION WITH EXISTING SYSTEM")
+    print(f"\nTESTING INTEGRATION WITH EXISTING SYSTEM")
     print("=" * 50)
     
     # Simulate data similar to your actual pipeline
@@ -122,7 +122,7 @@ def test_integration_with_existing_system():
     df['spread'] = df['q90'] - df['q10']
     df['info_ratio'] = df['abs_q50'] / np.maximum(df['spread'], 0.001)
     
-    print(f"✅ Created pipeline-like data: {df.shape}")
+    print(f"Created pipeline-like data: {df.shape}")
     
     # Test that temporal features integrate cleanly
     df_enhanced = add_temporal_quantile_features(df)
@@ -131,12 +131,12 @@ def test_integration_with_existing_system():
     existing_features = ['abs_q50', 'spread', 'info_ratio']
     for feature in existing_features:
         if feature in df_enhanced.columns:
-            print(f"   ✅ Preserved existing feature: {feature}")
+            print(f"   Preserved existing feature: {feature}")
         else:
-            print(f"   ❌ Lost existing feature: {feature}")
+            print(f"   Lost existing feature: {feature}")
     
     # Test feature interactions
-    print(f"\n🔗 Feature interaction analysis:")
+    print(f"\nFeature interaction analysis:")
     
     # Temporal momentum should enhance info ratio in some cases
     high_momentum = df_enhanced['q50_momentum_3'].abs() > df_enhanced['q50_momentum_3'].abs().quantile(0.8)
@@ -147,14 +147,14 @@ def test_integration_with_existing_system():
     
     if total_high_momentum > 0:
         overlap_pct = overlap / total_high_momentum * 100
-        print(f"   📊 High momentum + high info ratio overlap: {overlap_pct:.1f}%")
+        print(f"   High momentum + high info ratio overlap: {overlap_pct:.1f}%")
     
     return df_enhanced
 
 def visualize_temporal_features(df, features):
     """Create visualizations of temporal features"""
     
-    print(f"\n📊 Creating temporal feature visualizations...")
+    print(f"\nCreating temporal feature visualizations...")
     
     # Create subplots for key temporal features
     fig, axes = plt.subplots(2, 2, figsize=(15, 10))
@@ -197,14 +197,14 @@ def visualize_temporal_features(df, features):
     
     plt.tight_layout()
     plt.savefig('temporal_quantile_features_analysis.png', dpi=300, bbox_inches='tight')
-    print(f"✅ Saved visualization: temporal_quantile_features_analysis.png")
+    print(f"Saved visualization: temporal_quantile_features_analysis.png")
     
     plt.close()
 
 def main():
     """Main testing function"""
     
-    print("🚀 PHASE 1: TEMPORAL QUANTILE FEATURES TEST")
+    print("PHASE 1: TEMPORAL QUANTILE FEATURES TEST")
     print("=" * 60)
     
     # Test temporal features
@@ -216,14 +216,14 @@ def main():
     # Create visualizations
     visualize_temporal_features(df_temporal, temporal_features)
     
-    print(f"\n🎉 PHASE 1 TESTING COMPLETE!")
+    print(f"\nPHASE 1 TESTING COMPLETE!")
     print("=" * 60)
-    print("✅ Temporal quantile features implemented successfully")
-    print("✅ Integration with existing system validated")
-    print("✅ Feature quality analysis completed")
-    print("✅ Visualizations generated")
+    print("Temporal quantile features implemented successfully")
+    print("Integration with existing system validated")
+    print("Feature quality analysis completed")
+    print("Visualizations generated")
     
-    print(f"\n🚀 NEXT STEPS:")
+    print(f"\nNEXT STEPS:")
     print("1. Add temporal features to your main training pipeline")
     print("2. Run backtest with temporal features enabled")
     print("3. Compare performance against 1.327 Sharpe baseline")

@@ -4,31 +4,31 @@
 **Feature Category:** Risk & Volatility
 **Priority Level:** Medium
 
-## 📊 Feature Overview
+## Feature Overview
 
 - **Total Tests:** 2
 - **Success Rate:** 50.0%
 - **Average Confidence:** 0.70
 - **Average Execution Time:** 1.11s
 
-## 🧪 Test Results Summary
+## Test Results Summary
 
 | Test Type | Total | Passed | Failed | Success Rate |
 |-----------|-------|--------|--------|--------------|
 | Performance | 1 | 1 | 0 | 100.0% |
 | Failure Mode | 1 | 0 | 1 | 0.0% |
 
-## ✅ Passed Tests
+## Passed Tests
 
-### ✅ Performance
+### Performance
 - **Confidence:** uncertain (0.86)
 - **Execution Time:** 1.95s
 - **Analysis:** Successful validation of kelly_sizing
 
 
-## ❌ Failed Tests
+## Failed Tests
 
-### ❌ Failure Mode
+### Failure Mode
 - **Status:** error
 - **Priority:** medium
 - **Error:** Error in kelly_sizing test

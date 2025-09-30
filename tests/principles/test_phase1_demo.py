@@ -52,7 +52,7 @@ class TestPhase1Demo:
         t_stat = correlation * np.sqrt((n-2) / (1 - correlation**2))
         p_value = 2 * (1 - stats.t.cdf(abs(t_stat), n-2))
         
-        print(f"✅ Q50 Statistical Validation:")
+        print(f"Q50 Statistical Validation:")
         print(f"   Correlation: {correlation:.4f}")
         print(f"   P-value: {p_value:.4f}")
         print(f"   Sample size: {n}")
@@ -79,7 +79,7 @@ class TestPhase1Demo:
             # Economic logic: probability should be in [0, 1]
             assert 0 <= prob_up <= 1, f"Probability should be in [0,1]: {prob_up}"
         
-        print(f"✅ Probability Calculation Validation:")
+        print(f"Probability Calculation Validation:")
         print(f"   Test cases: {len(test_cases)}")
         print(f"   Results: {[f'{r:.3f}' for r in results]}")
         print(f"   All in [0,1]: {all(0 <= r <= 1 for r in results)}")
@@ -97,7 +97,7 @@ class TestPhase1Demo:
         unique_deciles = len(set(deciles))
         decile_distribution = pd.Series(deciles).value_counts().sort_index()
         
-        print(f"✅ Vol_Raw Decile Validation:")
+        print(f"Vol_Raw Decile Validation:")
         print(f"   Unique deciles: {unique_deciles}")
         print(f"   Distribution: {dict(decile_distribution)}")
         print(f"   Range: [{min(deciles)}, {max(deciles)}]")
@@ -132,7 +132,7 @@ class TestPhase1Demo:
         if len(correlations) >= 3:
             stability_metric = np.std(correlations) / (np.abs(np.mean(correlations)) + 1e-6)
             
-            print(f"✅ Feature Stability Validation:")
+            print(f"Feature Stability Validation:")
             print(f"   Windows tested: {len(correlations)}")
             print(f"   Correlations: {[f'{c:.3f}' for c in correlations]}")
             print(f"   Stability metric: {stability_metric:.2f}")
@@ -151,7 +151,7 @@ class TestPhase1Demo:
         returns_std = sample_data['returns'].std()
         difference = abs(q50_mean - returns_mean)
         
-        print(f"✅ Economic Logic Validation:")
+        print(f"Economic Logic Validation:")
         print(f"   Q50 mean: {q50_mean:.4f}")
         print(f"   Returns mean: {returns_mean:.4f}")
         print(f"   Difference: {difference:.4f}")

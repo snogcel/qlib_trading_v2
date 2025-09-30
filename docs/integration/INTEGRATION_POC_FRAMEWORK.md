@@ -5,7 +5,7 @@ A systematic approach to validate both NautilusTrader and Hummingbot integration
 
 ---
 
-## 🧪 POC Testing Strategy
+## POC Testing Strategy
 
 ### **Parallel POC Approach**
 ```
@@ -598,7 +598,7 @@ class Q50ExternalSignalStrategy(StrategyPyBase):
 
 ---
 
-## 📊 POC Evaluation Framework
+## POC Evaluation Framework
 
 ### **Performance Metrics**
 ```python
@@ -693,7 +693,7 @@ class POCEvaluator:
 
 ---
 
-## 🚀 Implementation Timeline
+## Implementation Timeline
 
 ### **Week 1: Setup & Basic Implementation**
 - [ ] **Day 1-2**: NautilusTrader installation and basic strategy

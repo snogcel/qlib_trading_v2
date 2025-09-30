@@ -102,7 +102,7 @@ class FailureAnalyzer:
             }
         }
         
-        print(f"📊 Analysis Overview:")
+        print(f"Analysis Overview:")
         print(f"   - Total results analyzed: {overview['total_results_analyzed']}")
         print(f"   - Target feature results: {overview['target_feature_results']}")
         print(f"   - Target feature failures: {overview['target_feature_failures']}")
@@ -212,7 +212,7 @@ class FailureAnalyzer:
         print(f"   ⚠️  Status: {analysis['summary']['status']}")
         
         if failed_tests > 0:
-            print(f"   🧪 Test Type Failures:")
+            print(f"   Test Type Failures:")
             for test_type, data in test_type_analysis.items():
                 if data['failed'] > 0:
                     print(f"      - {test_type}: {data['failed']}/{data['total']} failed")
@@ -866,7 +866,7 @@ def create_sample_test_results_for_analysis() -> List[TestResult]:
     """
     Create realistic sample test results that match the coverage report patterns.
     """
-    print("📊 Creating realistic test results for failure analysis...")
+    print("Creating realistic test results for failure analysis...")
     
     import random
     from datetime import datetime, timedelta
@@ -1038,7 +1038,7 @@ def create_sample_test_results_for_analysis() -> List[TestResult]:
             
             results.append(result)
     
-    print(f"✅ Created {len(results)} test results for analysis")
+    print(f"Created {len(results)} test results for analysis")
     return results
 
 
@@ -1073,7 +1073,7 @@ def main():
             json_data = json.dumps(analysis, indent=2, default=str)
             f.write(json_data)
         
-        print(f"📊 Analysis data saved to: {json_path}")
+        print(f"Analysis data saved to: {json_path}")
         
         # Print summary
         print("\n" + "=" * 80)
@@ -1081,7 +1081,7 @@ def main():
         print("=" * 80)
         
         overview = analysis['overview']
-        print(f"📊 Analyzed {overview['target_feature_results']} tests across 3 worst-performing features")
+        print(f"Analyzed {overview['target_feature_results']} tests across 3 worst-performing features")
         print(f"🔴 Found {overview['target_feature_failures']} failures ({overview['target_failure_rate']:.1f}% failure rate)")
         
         print("\n🚨 CRITICAL FINDINGS:")
@@ -1096,7 +1096,7 @@ def main():
         print("💡 Review the report for comprehensive analysis and action plan!")
         
     except Exception as e:
-        print(f"\n❌ Analysis failed with error: {e}")
+        print(f"\nAnalysis failed with error: {e}")
         import traceback
         traceback.print_exc()
         return 1

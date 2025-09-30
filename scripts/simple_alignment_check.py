@@ -34,7 +34,7 @@ def check_training_pipeline_parameters():
         
         all_passed = True
         for check_name, passed in checks.items():
-            status = "✅ FOUND" if passed else "❌ MISSING"
+            status = "FOUND" if passed else "MISSING"
             print(f"  {check_name}: {status}")
             if not passed:
                 all_passed = False
@@ -42,7 +42,7 @@ def check_training_pipeline_parameters():
         return all_passed
         
     except Exception as e:
-        print(f"❌ Error reading training pipeline: {e}")
+        print(f"Error reading training pipeline: {e}")
         return False
 
 def check_requirements_document():
@@ -68,7 +68,7 @@ def check_requirements_document():
         
         all_passed = True
         for check_name, passed in checks.items():
-            status = "✅ FOUND" if passed else "❌ MISSING"
+            status = "FOUND" if passed else "MISSING"
             print(f"  {check_name}: {status}")
             if not passed:
                 all_passed = False
@@ -76,7 +76,7 @@ def check_requirements_document():
         return all_passed
         
     except Exception as e:
-        print(f"❌ Error reading requirements: {e}")
+        print(f"Error reading requirements: {e}")
         return False
 
 def check_feature_documentation():
@@ -102,7 +102,7 @@ def check_feature_documentation():
         
         all_passed = True
         for check_name, passed in checks.items():
-            status = "✅ FOUND" if passed else "❌ MISSING"
+            status = "FOUND" if passed else "MISSING"
             print(f"  {check_name}: {status}")
             if not passed:
                 all_passed = False
@@ -110,7 +110,7 @@ def check_feature_documentation():
         return all_passed
         
     except Exception as e:
-        print(f"❌ Error reading feature documentation: {e}")
+        print(f"Error reading feature documentation: {e}")
         return False
 
 def main():
@@ -125,18 +125,18 @@ def main():
     
     # Summary
     print("\n" + "="*60)
-    print("📊 ALIGNMENT SUMMARY")
+    print("ALIGNMENT SUMMARY")
     print("="*60)
     
     overall_status = pipeline_ok and requirements_ok and docs_ok
     
-    print(f"Training Pipeline: {'✅ ALIGNED' if pipeline_ok else '❌ ISSUES'}")
-    print(f"Requirements Doc:  {'✅ ALIGNED' if requirements_ok else '❌ ISSUES'}")
-    print(f"Feature Docs:      {'✅ ALIGNED' if docs_ok else '❌ ISSUES'}")
+    print(f"Training Pipeline: {'ALIGNED' if pipeline_ok else 'ISSUES'}")
+    print(f"Requirements Doc:  {'ALIGNED' if requirements_ok else 'ISSUES'}")
+    print(f"Feature Docs:      {'ALIGNED' if docs_ok else 'ISSUES'}")
     
     if overall_status:
-        print("\n🎉 OVERALL STATUS: FULLY ALIGNED")
-        print("✅ Ready to proceed with NautilusTrader POC development!")
+        print("\nOVERALL STATUS: FULLY ALIGNED")
+        print("Ready to proceed with NautilusTrader POC development!")
         print("\n🎯 Key Confirmations:")
         print("  • Transaction cost: 5 bps (0.0005)")
         print("  • Variance thresholds: 30th/70th/90th percentiles")

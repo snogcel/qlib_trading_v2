@@ -137,7 +137,7 @@ def create_corrected_analysis():
         print(f"      ISSUE: {fix['issue']}")
         print(f"      FIX: {fix['fix']}")
     
-    print("\n✅ RECOMMENDED SOLUTION:")
+    print("\nRECOMMENDED SOLUTION:")
     
     print("\n1. HYBRID APPROACH:")
     print("   • Keep new implementations for their theoretical benefits")
@@ -154,7 +154,7 @@ def create_corrected_analysis():
     print("   • Regime detection (HIGH - affects strategy)")
     print("   • Feature importance (MEDIUM - affects model)")
     
-    print("\n📊 DATA VALIDATION:")
+    print("\nDATA VALIDATION:")
     
     # Load and validate the data
     try:

@@ -75,7 +75,7 @@ Based on the analysis, the **expected value approach** should provide:
 
 ## Implementation Status
 
-### ✅ **Completed Changes**
+### **Completed Changes**
 1. **Added potential gain/loss calculation** from quantile distribution
 2. **Implemented expected value calculation** using existing prob_up
 3. **Created multiple economic significance methods** for comparison
@@ -94,13 +94,13 @@ Based on the analysis, the **expected value approach** should provide:
 When running the updated script, you should see:
 
 ```
-📊 Expected Value Analysis:
+Expected Value Analysis:
    Mean expected value: 0.0030
    Positive expected value: 78.6%
    Mean potential gain: 0.0058
    Mean potential loss: 0.0013
 
-📊 Economic Significance Comparison:
+Economic Significance Comparison:
    Traditional threshold: 1,002 (50.1%)
    Expected value: 1,744 (87.2%)
    Combined approach: 1,400 (70.0%)

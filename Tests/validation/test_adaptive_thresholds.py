@@ -90,7 +90,7 @@ def validate_adaptive_thresholds(df):
     adaptive_signals = df['abs_q50'] > adaptive_threshold
     
     # Test 1: Signal frequency by regime
-    print("📊 SIGNAL FREQUENCY BY VOLATILITY REGIME:")
+    print("SIGNAL FREQUENCY BY VOLATILITY REGIME:")
     print("-" * 50)
     
     vol_regimes = {
@@ -309,7 +309,7 @@ def validate_adaptive_thresholds(df):
             print()
     
     # Export raw data for pivot table analysis
-    print(f"\n📊 EXPORTING DATA FOR PIVOT ANALYSIS:")
+    print(f"\nEXPORTING DATA FOR PIVOT ANALYSIS:")
     print("-" * 50)
     
     # Create comprehensive analysis dataset
@@ -402,7 +402,7 @@ def validate_adaptive_thresholds(df):
     output_file = 'validate_adaptive_thresholds.csv'
     pivot_df.to_csv(output_file, index=False)
     
-    print(f"✅ Exported {len(pivot_df)} rows to '{output_file}'")
+    print(f"Exported {len(pivot_df)} rows to '{output_file}'")
     print(f"📋 Columns included: {len(available_columns)}")
     print(f"🔍 Key pivot fields:")
     print(f"   • Regime analysis: regime, is_*_vol columns")
@@ -457,7 +457,7 @@ def validate_adaptive_thresholds(df):
         summary_df = pd.DataFrame(summary_data)
         summary_file = 'validate_adaptive_thresholds_summary.csv'
         summary_df.to_csv(summary_file, index=False)
-        print(f"✅ Exported summary table to '{summary_file}'")
+        print(f"Exported summary table to '{summary_file}'")
     
     return {
         'static_threshold': static_threshold,

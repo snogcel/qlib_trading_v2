@@ -42,7 +42,7 @@ def test_json_serialization_fix():
         backtester = QuantileBacktester(config)
         trades_df = backtester.run_backtest(df_test, price_col='truth')
         
-        print("✅ Backtest completed successfully")
+        print("Backtest completed successfully")
         print(f"   Return: {backtester.metrics['total_return']:.2%}")
         print(f"   Sharpe: {backtester.metrics['sharpe_ratio']:.3f}")
         print(f"   Trades: {backtester.metrics['total_trades']}")
@@ -51,12 +51,12 @@ def test_json_serialization_fix():
         print("\nTesting results saving...")
         backtester.save_results(trades_df, "./test_backtest_output")
         
-        print("✅ Results saved successfully - JSON serialization fix works!")
+        print("Results saved successfully - JSON serialization fix works!")
         
         return True
         
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f"Error: {e}")
         import traceback
         traceback.print_exc()
         return False
@@ -64,7 +64,7 @@ def test_json_serialization_fix():
 if __name__ == "__main__":
     success = test_json_serialization_fix()
     if success:
-        print("\n🎉 JSON serialization fix successful!")
+        print("\nJSON serialization fix successful!")
         print("You can now run run_backtest.py without the tuple key error.")
     else:
-        print("\n❌ Fix needs more work.")
+        print("\nFix needs more work.")

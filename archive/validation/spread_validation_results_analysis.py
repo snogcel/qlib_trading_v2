@@ -40,28 +40,28 @@ def analyze_spread_validation_results():
     
     print("   └─────────────────────────┴─────────────┴─────────────────────────────────┘")
     
-    print("\n✅ KEY VALIDATION CONFIRMATIONS:")
+    print("\nKEY VALIDATION CONFIRMATIONS:")
     
     validations = [
         {
             "claim": "Original 0.61-0.66 correlation claim",
             "result": "CONFIRMED - 6h: 0.6127, 24h: 0.6686",
-            "status": "✅ VALIDATED"
+            "status": "VALIDATED"
         },
         {
             "claim": "Spread outperforms individual quantiles",
             "result": "CONFIRMED - Spread (0.43) > q10 (0.41) > q90 (0.40) > q50 (0.11)",
-            "status": "✅ VALIDATED"
+            "status": "VALIDATED"
         },
         {
             "claim": "Statistical significance",
             "result": "CONFIRMED - T-test p-value: 0.000000 (highly significant)",
-            "status": "✅ VALIDATED"
+            "status": "VALIDATED"
         },
         {
             "claim": "Spread deciles predict volatility",
             "result": "CONFIRMED - Clear progression: 0.0016 → 0.0097 (6x increase)",
-            "status": "✅ VALIDATED"
+            "status": "VALIDATED"
         }
     ]
     
@@ -70,7 +70,7 @@ def analyze_spread_validation_results():
         print(f"   Result: {validation['result']}")
         print(f"   Status: {validation['status']}")
     
-    print("\n📊 SPREAD DECILE ANALYSIS:")
+    print("\nSPREAD DECILE ANALYSIS:")
     
     # Decile progression from the results
     decile_data = [
@@ -143,7 +143,7 @@ def analyze_spread_validation_results():
         print(f"   Finding: {impl['finding']}")
         print(f"   Action: {impl['action']}")
     
-    print("\n🚀 RECOMMENDED IMPLEMENTATION:")
+    print("\nRECOMMENDED IMPLEMENTATION:")
     
     implementation_code = '''
 def validated_spread_position_sizing(q10, q50, q90, base_position=0.1):
@@ -171,7 +171,7 @@ def validated_spread_position_sizing(q10, q50, q90, base_position=0.1):
     
     print(implementation_code)
     
-    print("\n📊 PERFORMANCE BENCHMARKING:")
+    print("\nPERFORMANCE BENCHMARKING:")
     
     benchmarks = [
         ("Correlation > 0.6", "EXCELLENT", "24h: 0.67, 6h: 0.61"),
@@ -185,7 +185,7 @@ def validated_spread_position_sizing(q10, q50, q90, base_position=0.1):
     for benchmark, rating, result in benchmarks:
         print(f"   • {benchmark}: {rating} - {result}")
     
-    print("\n🎉 CELEBRATION POINTS:")
+    print("\nCELEBRATION POINTS:")
     
     celebrations = [
         "Fix worked perfectly - all correlations now meaningful",
@@ -198,7 +198,7 @@ def validated_spread_position_sizing(q10, q50, q90, base_position=0.1):
     ]
     
     for celebration in celebrations:
-        print(f"   🎉 {celebration}")
+        print(f"   {celebration}")
     
     print("\n" + "=" * 100)
     print("CONCLUSION: Spread is a HIGHLY VALIDATED predictor of future volatility!")

@@ -240,7 +240,7 @@ class QuantileModelEvaluator:
         print("🔍 Starting comprehensive model evaluation...")
         
         # 1. Quantile Performance
-        print("📊 Evaluating quantile performance...")
+        print("Evaluating quantile performance...")
         quantile_results = self.evaluate_quantile_performance(y_true, predictions)
         
         # 2. Prediction Intervals
@@ -280,7 +280,7 @@ class QuantileModelEvaluator:
         # Generate plots
         self._create_evaluation_plots(y_true, predictions, full_results, save_path)
         
-        print(f"✅ Evaluation complete! Results saved to {save_path}")
+        print(f"Evaluation complete! Results saved to {save_path}")
         return full_results
     
     def _convert_for_json(self, obj):
@@ -445,7 +445,7 @@ def run_comprehensive_evaluation():
         return results
         
     except Exception as e:
-        print(f"❌ Error running evaluation: {e}")
+        print(f"Error running evaluation: {e}")
         print("Make sure you have:")
         print("1. df_all_macro_analysis.csv from your training script")
         print("2. Trained model saved at ./models/trained_quantile_model.pkl")

@@ -57,7 +57,7 @@ def analyze_current_regime_features():
     }
     
     for category, info in regime_categories.items():
-        print(f"\n📊 {category.upper()}")
+        print(f"\n{category.upper()}")
         print(f"   Purpose: {info['purpose']}")
         print(f"   Usage: {info['usage']}")
         print(f"   Status: {info['status']}")
@@ -199,12 +199,12 @@ def create_implementation_plan():
             print(f"     • {task}")
         print(f"   Deliverables:")
         for deliverable in details['deliverables']:
-            print(f"     ✅ {deliverable}")
+            print(f"     {deliverable}")
 
 def analyze_consolidation_benefits():
     """Analyze benefits of regime feature consolidation"""
     
-    print("\n\n✅ CONSOLIDATION BENEFITS")
+    print("\n\nCONSOLIDATION BENEFITS")
     print("=" * 60)
     
     benefits = {
@@ -240,7 +240,7 @@ def analyze_consolidation_benefits():
     for category, items in benefits.items():
         print(f"\n🎯 {category}")
         for item in items:
-            print(f"   ✅ {item}")
+            print(f"   {item}")
 
 def main():
     """Main analysis function"""
@@ -257,7 +257,7 @@ def main():
     # Analyze benefits
     analyze_consolidation_benefits()
     
-    print("\n\n🚀 NEXT STEPS")
+    print("\n\nNEXT STEPS")
     print("=" * 60)
     print("1. Review proposed namespace and provide feedback")
     print("2. Start with Phase 1: Core regime detection")

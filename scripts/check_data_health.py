@@ -92,7 +92,7 @@ class DataHealthChecker:
         if not result_df.empty:
             return result_df
         else:
-            logger.info(f"✅ There are no missing data.")
+            logger.info(f"There are no missing data.")
             return None
 
     def check_large_step_changes(self) -> Optional[pd.DataFrame]:
@@ -121,7 +121,7 @@ class DataHealthChecker:
         if not result_df.empty:
             return result_df
         else:
-            logger.info(f"✅ There are no large step changes in the OHLCV column above the threshold.")
+            logger.info(f"There are no large step changes in the OHLCV column above the threshold.")
             return None
 
     def check_required_columns(self) -> Optional[pd.DataFrame]:
@@ -141,7 +141,7 @@ class DataHealthChecker:
         if not result_df.empty:
             return result_df
         else:
-            logger.info(f"✅ The columns (OLHCV) are complete and not missing.")
+            logger.info(f"The columns (OLHCV) are complete and not missing.")
             return None
 
     def check_missing_factor(self) -> Optional[pd.DataFrame]:
@@ -169,7 +169,7 @@ class DataHealthChecker:
         if not result_df.empty:
             return result_df
         else:
-            logger.info(f"✅ The `factor` column already exists and is not empty.")
+            logger.info(f"The `factor` column already exists and is not empty.")
             return None
 
     def check_data(self):

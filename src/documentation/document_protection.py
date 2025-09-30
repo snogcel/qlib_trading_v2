@@ -326,7 +326,7 @@ class DocumentProtectionSystem:
         critical_markers = [
             "## 🎯 Core Signal Features",
             "### Q50 (Primary Signal)",
-            "## 📊 Risk & Volatility Features",
+            "## Risk & Volatility Features",
             "## 🎲 Position Sizing Features",
             "## 🔄 Regime & Market Features"
         ]

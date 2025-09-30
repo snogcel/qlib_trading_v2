@@ -212,7 +212,7 @@ class HTMLReporter(BasicReporter):
 <body>
     <div class="dashboard-container">
         <header class="dashboard-header">
-            <h1>🧪 Feature Test Coverage Dashboard</h1>
+            <h1>Feature Test Coverage Dashboard</h1>
             <div class="timestamp">Generated: {self.report_timestamp.strftime('%Y-%m-%d %H:%M:%S')}</div>
         </header>
         
@@ -805,7 +805,7 @@ class HTMLReporter(BasicReporter):
 <body>
     <div class="report-container">
         <div class="report-header">
-            <h1>📊 Interactive Test Coverage Report</h1>
+            <h1>Interactive Test Coverage Report</h1>
             <div class="report-controls">
                 <button onclick="toggleSection('summary')" class="control-btn">Toggle Summary</button>
                 <button onclick="toggleSection('details')" class="control-btn">Toggle Details</button>

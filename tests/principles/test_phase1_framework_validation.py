@@ -59,7 +59,7 @@ class TestPhase1FrameworkValidation:
         correlation_forward = df['q50'].corr(df['returns'].shift(-1))  # Predicting future (valid)
         correlation_backward = df['q50'].corr(df['returns'].shift(1))   # Using future to predict past (invalid)
         
-        print(f"✅ Time-Series Aware CV:")
+        print(f"Time-Series Aware CV:")
         print(f"   Forward correlation (valid): {correlation_forward:.4f}")
         print(f"   Backward correlation (should avoid): {correlation_backward:.4f}")
         
@@ -79,7 +79,7 @@ class TestPhase1FrameworkValidation:
         train_corr = train_data['q50'].corr(train_data['returns'])
         test_corr = test_data['q50'].corr(test_data['returns'])
         
-        print(f"✅ Out-of-Sample Testing:")
+        print(f"Out-of-Sample Testing:")
         print(f"   Train correlation: {train_corr:.4f}")
         print(f"   Test correlation: {test_corr:.4f}")
         print(f"   Framework supports data splitting: True")
@@ -98,7 +98,7 @@ class TestPhase1FrameworkValidation:
                 corr = regime_data['q50'].corr(regime_data['returns'])
                 regime_results[regime] = corr
         
-        print(f"✅ Regime Robustness:")
+        print(f"Regime Robustness:")
         print(f"   Regimes tested: {list(regime_results.keys())}")
         print(f"   Regime correlations: {regime_results}")
         print(f"   Framework supports regime testing: True")
@@ -121,14 +121,14 @@ class TestPhase1FrameworkValidation:
         if len(correlations) >= 2:
             stability_metric = np.std(correlations)
             
-            print(f"✅ Feature Stability:")
+            print(f"Feature Stability:")
             print(f"   Windows tested: {len(correlations)}")
             print(f"   Stability metric: {stability_metric:.4f}")
             print(f"   Framework supports stability testing: True")
             
             assert len(correlations) >= 2, "Framework should test multiple time windows"
         else:
-            print("✅ Feature Stability: Framework ready (insufficient data for demo)")
+            print("Feature Stability: Framework ready (insufficient data for demo)")
     
     def test_framework_requirement_5_economic_logic_validation(self, sample_data):
         """Test that framework implements economic logic validation"""
@@ -142,7 +142,7 @@ class TestPhase1FrameworkValidation:
             'variance_positive': (df['vol_risk'] >= 0).all()
         }
         
-        print(f"✅ Economic Logic Validation:")
+        print(f"Economic Logic Validation:")
         for check, result in economic_checks.items():
             print(f"   {check}: {result}")
         
@@ -174,7 +174,7 @@ class TestPhase1FrameworkValidation:
         # All documented feature categories
         all_features = core_features + risk_features + position_features
         
-        print(f"✅ Feature Coverage Validation:")
+        print(f"Feature Coverage Validation:")
         print(f"   Core Signal Features: {len(core_features)} features")
         print(f"   Risk & Volatility Features: {len(risk_features)} features")
         print(f"   Position Sizing Features: {len(position_features)} features")
@@ -197,7 +197,7 @@ class TestPhase1FrameworkValidation:
             ensure_vol_risk_available
         ]
         
-        print(f"✅ Implementation Functions:")
+        print(f"Implementation Functions:")
         for func in functions_to_test:
             print(f"   {func.__name__}: Available")
             assert callable(func), f"{func.__name__} should be callable"
@@ -219,7 +219,7 @@ class TestPhase1FrameworkValidation:
         docs_path = os.path.join(project_root, 'docs', 'PHASE_1_COMPLETION_SUMMARY.md')
         assert os.path.exists(docs_path), "Phase 1 completion documentation should exist"
         
-        print(f"✅ Framework Completeness:")
+        print(f"Framework Completeness:")
         print(f"   Comprehensive test suite: Available")
         print(f"   Test runner script: Available") 
         print(f"   Phase 1 documentation: Available")

@@ -80,7 +80,7 @@ def add_momentum_features(df):
     '''
     print(compatibility_code)
     
-    print("\n📊 FEATURE COMPARISON MATRIX:")
+    print("\nFEATURE COMPARISON MATRIX:")
     
     features = [
         ["Feature", "Scale", "Interpretability", "Theoretical", "Signal Strength", "Use Case"],
@@ -99,7 +99,7 @@ def add_momentum_features(df):
             print(f"   │ {row[0]:<19} │ {row[1]:<7} │ {row[2]:<15} │ {row[3]:<11} │ {row[4]:<15} │ {row[5]:<23} │")
     print("   └─────────────────────┴─────────┴─────────────────┴─────────────┴─────────────────┴─────────────────────────┘")
     
-    print("\n🧪 TESTING FRAMEWORK:")
+    print("\nTESTING FRAMEWORK:")
     
     testing_code = '''
 def test_momentum_features(df):
@@ -193,7 +193,7 @@ def adaptive_momentum_ensemble(df, lookback=30):
     '''
     print(adaptive_code)
     
-    print("\n📊 PERFORMANCE METRICS TO TRACK:")
+    print("\nPERFORMANCE METRICS TO TRACK:")
     
     metrics = [
         "Signal-to-noise ratio (std of signal / std of noise)",
@@ -209,7 +209,7 @@ def adaptive_momentum_ensemble(df, lookback=30):
     for i, metric in enumerate(metrics, 1):
         print(f"   {i}. {metric}")
     
-    print("\n🚀 ROLLOUT PLAN:")
+    print("\nROLLOUT PLAN:")
     
     rollout_phases = [
         {
@@ -259,7 +259,7 @@ def adaptive_momentum_ensemble(df, lookback=30):
         for task in phase['tasks']:
             print(f"   • {task}")
     
-    print("\n✅ SUCCESS CRITERIA:")
+    print("\nSUCCESS CRITERIA:")
     
     success_criteria = [
         "At least one variant outperforms original vol_raw_momentum",

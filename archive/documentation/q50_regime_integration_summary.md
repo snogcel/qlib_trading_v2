@@ -97,7 +97,7 @@ sell_mask = tradeable & (q50 < 0)
 - Regime adjustments use only past information
 - Vol_risk calculation properly lagged
 
-### 📊 **Regime Awareness**
+### **Regime Awareness**
 - Different thresholds for different market conditions
 - Higher selectivity in high volatility periods
 - Lower thresholds in trending markets (momentum helps)

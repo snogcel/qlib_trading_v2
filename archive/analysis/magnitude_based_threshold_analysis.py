@@ -14,11 +14,11 @@ def analyze_quantile_magnitudes(df):
     print("=" * 60)
     
     if not all(col in df.columns for col in ['q10', 'q50', 'q90']):
-        print("❌ Missing quantile columns")
+        print("Missing quantile columns")
         return df
     
     # Basic statistics
-    print("📊 Quantile Statistics:")
+    print("Quantile Statistics:")
     for col in ['q10', 'q50', 'q90']:
         values = df[col].dropna()
         print(f"   {col}: mean={values.mean():.4f}, std={values.std():.4f}, "
@@ -85,7 +85,7 @@ def calculate_expected_value_threshold(df, transaction_cost_bps=20):
     df['expected_value'] = (prob_up * df['potential_gain'] - 
                            (1 - prob_up) * df['potential_loss'])
     
-    print(f"📊 Expected Value Analysis:")
+    print(f"Expected Value Analysis:")
     print(f"   Mean expected value: {df['expected_value'].mean():.4f}")
     print(f"   Median expected value: {df['expected_value'].median():.4f}")
     print(f"   Positive expected value: {(df['expected_value'] > 0).mean()*100:.1f}%")
@@ -166,7 +166,7 @@ def magnitude_based_economic_significance(df, method='adaptive_risk'):
     magnitude_signals = df['economically_significant_magnitude'].sum()
     current_signals = df['economically_significant_current'].sum()
     
-    print(f"📊 Results for method '{method}':")
+    print(f"Results for method '{method}':")
     print(f"   Average threshold: {df['magnitude_threshold'].mean():.4f}")
     print(f"   Magnitude-based signals: {magnitude_signals:,} ({magnitude_signals/len(df)*100:.1f}%)")
     print(f"   Current approach signals: {current_signals:,} ({current_signals/len(df)*100:.1f}%)")
@@ -177,7 +177,7 @@ def magnitude_based_economic_significance(df, method='adaptive_risk'):
 def test_magnitude_approaches():
     """Test different magnitude-based approaches"""
     
-    print("🧪 TESTING MAGNITUDE-BASED APPROACHES")
+    print("TESTING MAGNITUDE-BASED APPROACHES")
     print("=" * 70)
     
     # Create realistic test data
@@ -204,7 +204,7 @@ def test_magnitude_approaches():
         'q90': q90
     })
     
-    print(f"📊 Created {n:,} realistic test observations")
+    print(f"Created {n:,} realistic test observations")
     
     # Analyze magnitudes
     df_test = analyze_quantile_magnitudes(df_test)
@@ -227,7 +227,7 @@ def test_magnitude_approaches():
         }
     
     # Summary comparison
-    print(f"\n📊 METHOD COMPARISON SUMMARY")
+    print(f"\nMETHOD COMPARISON SUMMARY")
     print("=" * 70)
     print(f"{'Method':<20} | {'Signals':<8} | {'Rate':<8} | {'Avg Threshold':<12}")
     print("-" * 70)
@@ -253,7 +253,7 @@ def main():
     # Test the approaches
     results = test_magnitude_approaches()
     
-    print(f"\n🚀 IMPLEMENTATION READY!")
+    print(f"\nIMPLEMENTATION READY!")
     print("Choose the method that provides the right balance of:")
     print("• Signal frequency (enough trading opportunities)")
     print("• Economic realism (thresholds based on actual potential)")

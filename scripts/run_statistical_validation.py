@@ -25,7 +25,7 @@ if project_root not in sys.path:
 
 def run_comprehensive_statistical_tests():
     """Run the comprehensive statistical validation test suite"""
-    print("🧪 Running Comprehensive Statistical Validation Tests...")
+    print("Running Comprehensive Statistical Validation Tests...")
     print("="*70)
     
     test_file = "tests/principles/test_comprehensive_statistical_validation.py"
@@ -48,15 +48,15 @@ def run_comprehensive_statistical_tests():
         success = result.returncode == 0
         
         print("\n" + "="*70)
-        print(f"📊 Test Execution Summary:")
+        print(f"Test Execution Summary:")
         print(f"   Duration: {execution_time:.2f} seconds")
-        print(f"   Status: {'✅ PASSED' if success else '❌ FAILED'}")
+        print(f"   Status: {'PASSED' if success else 'FAILED'}")
         print(f"   Return Code: {result.returncode}")
         
         return success, execution_time, result.returncode
         
     except Exception as e:
-        print(f"❌ Error running statistical validation tests: {e}")
+        print(f"Error running statistical validation tests: {e}")
         return False, 0, -1
 
 def generate_validation_report():
@@ -126,19 +126,19 @@ def generate_validation_report():
     # Add recommendations based on results
     if test_success:
         report["recommendations"] = [
-            "✅ All statistical validation tests passed",
-            "✅ Phase 1 of Principle Coverage Framework completed",
-            "✅ All documented features have statistical validation",
-            "🚀 Ready to proceed with Phase 2: ML Governance Tests",
-            "📊 Consider implementing continuous validation monitoring"
+            "All statistical validation tests passed",
+            "Phase 1 of Principle Coverage Framework completed",
+            "All documented features have statistical validation",
+            "Ready to proceed with Phase 2: ML Governance Tests",
+            "Consider implementing continuous validation monitoring"
         ]
     else:
         report["recommendations"] = [
-            "❌ Some statistical validation tests failed",
+            "Some statistical validation tests failed",
             "🔧 Review failed tests and fix underlying issues",
             "📋 Ensure all required dependencies are installed",
-            "🧪 Re-run tests after fixes to verify resolution",
-            "📊 Consider reducing test complexity if data issues exist"
+            "Re-run tests after fixes to verify resolution",
+            "Consider reducing test complexity if data issues exist"
         ]
     
     # Save report
@@ -161,18 +161,18 @@ def print_executive_summary(report):
     
     status = report["overall_status"]
     if status == "PASSED":
-        print("✅ STATUS: ALL TESTS PASSED")
-        print("🎉 Phase 1 of Principle Coverage Framework COMPLETED")
+        print("STATUS: ALL TESTS PASSED")
+        print("Phase 1 of Principle Coverage Framework COMPLETED")
     else:
         print("⚠️  STATUS: SOME TESTS FAILED")
         print("🔧 Action required to complete Phase 1")
     
-    print(f"\n📊 Execution Details:")
+    print(f"\nExecution Details:")
     print(f"   Duration: {report['execution_time_seconds']:.2f} seconds")
     print(f"   Return Code: {report['return_code']}")
     print(f"   Timestamp: {report['validation_timestamp']}")
     
-    print(f"\n🧪 Validation Framework Coverage:")
+    print(f"\nValidation Framework Coverage:")
     framework = report["validation_framework"]
     for component, status in framework.items():
         print(f"   • {component.replace('_', ' ').title()}: {status}")
@@ -194,10 +194,10 @@ def print_executive_summary(report):
     print("   • Economic logic validation ✅")
     
     if status == "PASSED":
-        print(f"\n🚀 Next Steps:")
-        print("   1. ✅ Phase 1 Complete: Statistical Validation")
+        print(f"\nNext Steps:")
+        print("   1. Phase 1 Complete: Statistical Validation")
         print("   2. 🎯 Begin Phase 2: ML Governance Tests")
-        print("   3. 📊 Implement continuous validation monitoring")
+        print("   3. Implement continuous validation monitoring")
         print("   4. 🔄 Consider RD-Agent integration for automated feature discovery")
     
     print("\n" + "="*70)
@@ -216,8 +216,8 @@ def main():
     
     # Return appropriate exit code
     if report["overall_status"] == "PASSED":
-        print("\n✅ Statistical validation completed successfully!")
-        print("🎉 Phase 1 of Principle Coverage Framework COMPLETED!")
+        print("\nStatistical validation completed successfully!")
+        print("Phase 1 of Principle Coverage Framework COMPLETED!")
         return 0
     else:
         print("\n⚠️  Statistical validation identified issues that need attention.")

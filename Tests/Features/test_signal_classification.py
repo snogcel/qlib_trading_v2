@@ -172,11 +172,11 @@ def validate_signal_classification_function(df):
         correlation = np.corrcoef(range(len(tier_returns)), tier_returns)[0,1]
         print(f"Correlation between tier and performance: {correlation:.4f}")
         if correlation > 0.5:
-            print("✅ Higher tiers generally perform better")
+            print("Higher tiers generally perform better")
         elif correlation > 0.2:
             print("⚠️  Weak positive relationship between tiers and performance")
         else:
-            print("❌ No clear relationship between tiers and performance")
+            print("No clear relationship between tiers and performance")
     
     return tier_performance
 
@@ -279,11 +279,11 @@ def compare_with_simple_classification(df):
     print(f"  Sharpe: {sharpe_improvement:+.4f}")
     
     if sharpe_improvement > 0.01:
-        print("✅ Complex classification shows meaningful improvement")
+        print("Complex classification shows meaningful improvement")
     elif sharpe_improvement > 0:
         print("⚠️  Marginal improvement - consider if complexity is worth it")
     else:
-        print("❌ Simple classification performs as well or better")
+        print("Simple classification performs as well or better")
     
     return complex_performance, simple_performance
 

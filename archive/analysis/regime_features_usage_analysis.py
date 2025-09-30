@@ -18,7 +18,7 @@ def analyze_regime_feature_approaches():
     print("   A) Standalone binary features (0/1)")
     print("   B) Multiplicative masks applied to other variables")
     
-    print("\n📊 ANALYSIS OF TOP PERFORMING FEATURES:")
+    print("\nANALYSIS OF TOP PERFORMING FEATURES:")
     
     top_features = [
         {
@@ -229,7 +229,7 @@ def apply_regime_adjustments(df):
     
     print(implementation_code)
     
-    print("\n📊 EXPECTED BENEFITS:")
+    print("\nEXPECTED BENEFITS:")
     
     benefits = [
         "Crisis periods: 2-3x signal amplification during bear market bottoms",

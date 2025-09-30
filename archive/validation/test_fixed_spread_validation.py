@@ -50,7 +50,7 @@ def test_fixed_validation():
     
     # Create test data
     df = create_test_data()
-    print(f"📊 Created test data: {len(df)} rows")
+    print(f"Created test data: {len(df)} rows")
     
     # Test the fixed validation function
     print(f"\n🔧 Testing fixed spread validation...")
@@ -58,7 +58,7 @@ def test_fixed_validation():
     try:
         correlations = validate_spread_predictive_power(df)
         
-        print(f"\n✅ SUCCESS! Correlations calculated:")
+        print(f"\nSUCCESS! Correlations calculated:")
         for target, corr in correlations.items():
             print(f"   {target}: {corr:.4f}")
         
@@ -66,12 +66,12 @@ def test_fixed_validation():
         print(f"\n🔧 Testing signal threshold validation...")
         validate_signal_thresholds(df)
         
-        print(f"\n🎉 ALL TESTS PASSED!")
+        print(f"\nALL TESTS PASSED!")
         
         return True
         
     except Exception as e:
-        print(f"\n❌ ERROR: {e}")
+        print(f"\nERROR: {e}")
         return False
 
 def compare_old_vs_new():
@@ -90,7 +90,7 @@ def compare_old_vs_new():
     df['future_vol_1h_new'] = df['truth'].shift(-1).abs()
     df['future_vol_2h_new'] = df['truth'].rolling(2).std().shift(-1)
     
-    print(f"📊 COMPARISON RESULTS:")
+    print(f"COMPARISON RESULTS:")
     print(f"   Old method (rolling(1).std()):")
     print(f"     Non-null values: {df['future_vol_1h_old'].notna().sum()}")
     print(f"     Mean: {df['future_vol_1h_old'].mean()}")
@@ -120,12 +120,12 @@ if __name__ == "__main__":
     
     if success:
         print(f"\n" + "=" * 80)
-        print("🎉 VALIDATION FIX SUCCESSFUL!")
+        print("VALIDATION FIX SUCCESSFUL!")
         print("The spread validation function now works correctly.")
         print("You can run it on your real data to get meaningful correlations.")
         print("=" * 80)
     else:
         print(f"\n" + "=" * 80)
-        print("❌ VALIDATION FIX FAILED!")
+        print("VALIDATION FIX FAILED!")
         print("There may be additional issues to resolve.")
         print("=" * 80)

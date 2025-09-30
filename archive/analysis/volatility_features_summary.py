@@ -37,7 +37,7 @@ def create_detailed_summary():
     print("   NEW: Rank(Std(Log($close / Ref($close, 1)), 6), 180) / 180 * 10")
     print("        → 180-period rolling rank of 6-period volatility, scaled to 0-10")
     
-    print("\n📊 STATISTICAL COMPARISON:")
+    print("\nSTATISTICAL COMPARISON:")
     
     # Calculate valid data
     valid_momentum = df.dropna(subset=['vol_raw_momentum_old', 'vol_raw_momentum_new'])

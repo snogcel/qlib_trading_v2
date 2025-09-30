@@ -15,12 +15,12 @@ def analyze_vol_risk_as_variance(df):
     print("=" * 60)
     
     if 'vol_risk' not in df.columns:
-        print("❌ vol_risk not found in data")
+        print("vol_risk not found in data")
         return df
     
     # Basic statistics
     vol_risk_stats = df['vol_risk'].describe()
-    print(f"📊 Vol_Risk (Variance) Statistics:")
+    print(f"Vol_Risk (Variance) Statistics:")
     print(f"   Mean: {vol_risk_stats['mean']:.6f}")
     print(f"   Std:  {vol_risk_stats['std']:.6f}")
     print(f"   Min:  {vol_risk_stats['min']:.6f}")
@@ -52,7 +52,7 @@ def variance_based_regime_identification(df):
     """
     
     if 'vol_risk' not in df.columns:
-        print("❌ vol_risk not available for regime identification")
+        print("vol_risk not available for regime identification")
         return df
     
     # Variance-based regime thresholds (more sensitive than std dev)
@@ -62,7 +62,7 @@ def variance_based_regime_identification(df):
     vol_risk_70th = df['vol_risk'].quantile(0.70)
     vol_risk_90th = df['vol_risk'].quantile(0.90)
     
-    print(f"📊 Variance-Based Regime Thresholds:")
+    print(f"Variance-Based Regime Thresholds:")
     print(f"   10th percentile: {vol_risk_10th:.6f} (√ = {np.sqrt(vol_risk_10th):.3f})")
     print(f"   30th percentile: {vol_risk_30th:.6f} (√ = {np.sqrt(vol_risk_30th):.3f})")
     print(f"   70th percentile: {vol_risk_70th:.6f} (√ = {np.sqrt(vol_risk_70th):.3f})")
@@ -98,7 +98,7 @@ def variance_based_position_sizing(df, base_position_pct=0.1):
     """
     
     if 'vol_risk' not in df.columns or 'q50' not in df.columns:
-        print("❌ Missing required columns for variance-based position sizing")
+        print("Missing required columns for variance-based position sizing")
         return df
     
     # Method 1: Inverse Variance Scaling
@@ -193,7 +193,7 @@ def variance_risk_metrics(df):
         df['variance_adjusted_return'] = df['truth'] / np.sqrt(np.maximum(df['vol_risk'], 0.0001))
         df['variance_sharpe_proxy'] = df['truth'] / df['vol_risk']  # Return per unit variance
     
-    print(f"\n📊 VARIANCE RISK METRICS CREATED:")
+    print(f"\nVARIANCE RISK METRICS CREATED:")
     metrics = [
         'signal_to_variance_ratio', 'variance_adjusted_signal', 'variance_momentum',
         'variance_acceleration', 'variance_regime_change', 'variance_percentile'
@@ -217,7 +217,7 @@ def enhanced_q50_with_variance_risk(df, transaction_cost_bps=20, base_info_ratio
     
     # Ensure we have required data
     if 'vol_risk' not in df.columns:
-        print("❌ vol_risk not available")
+        print("vol_risk not available")
         return df
     
     # Analyze vol_risk as variance
@@ -238,7 +238,7 @@ def enhanced_q50_with_variance_risk(df, transaction_cost_bps=20, base_info_ratio
     df['total_risk'] = np.sqrt(df['market_variance'] + df['prediction_variance'])
     df['enhanced_info_ratio'] = df['abs_q50'] / np.maximum(df['total_risk'], 0.001)
     
-    print(f"📊 Enhanced Info Ratio vs Traditional:")
+    print(f"Enhanced Info Ratio vs Traditional:")
     traditional_info = df['abs_q50'] / np.maximum(df['spread'], 0.001)
     print(f"   Traditional (signal/spread): {traditional_info.mean():.3f}")
     print(f"   Enhanced (signal/total_risk): {df['enhanced_info_ratio'].mean():.3f}")
@@ -284,7 +284,7 @@ def enhanced_q50_with_variance_risk(df, transaction_cost_bps=20, base_info_ratio
     signal_counts = df['side_variance_enhanced'].value_counts()
     total = len(df)
     
-    print(f"\n✅ VARIANCE-ENHANCED SIGNALS:")
+    print(f"\nVARIANCE-ENHANCED SIGNALS:")
     for side, count in signal_counts.items():
         side_name = {1: 'LONG', 0: 'SHORT', -1: 'HOLD'}[side]
         print(f"   {side_name}: {count:,} ({count/total*100:.1f}%)")
@@ -335,14 +335,14 @@ def main():
         'truth': np.random.normal(0, np.sqrt(vol_risk))  # Returns scale with variance
     })
     
-    print(f"📊 Created test data with realistic variance distribution")
+    print(f"Created test data with realistic variance distribution")
     print(f"   Vol_risk range: {vol_risk.min():.6f} to {vol_risk.max():.6f}")
     print(f"   Vol_risk mean: {vol_risk.mean():.6f} (√ = {np.sqrt(vol_risk.mean()):.3f})")
     
     # Test the enhanced implementation
     df_result = enhanced_q50_with_variance_risk(df)
     
-    print(f"\n🎉 VARIANCE-BASED IMPLEMENTATION COMPLETE!")
+    print(f"\nVARIANCE-BASED IMPLEMENTATION COMPLETE!")
     print(f"   Ready for integration with crypto_loader_optimized vol_risk feature")
 
 if __name__ == "__main__":

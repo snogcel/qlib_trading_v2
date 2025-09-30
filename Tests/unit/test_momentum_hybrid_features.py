@@ -51,14 +51,14 @@ def test_momentum_features():
     
     # Create test data
     df = create_test_data(1000)
-    print(f"📊 Created test data: {len(df)} rows")
+    print(f"Created test data: {len(df)} rows")
     print(f"   Price range: [{df['close'].min():.2f}, {df['close'].max():.2f}]")
     print(f"   Vol range: [{df['vol_raw'].min():.6f}, {df['vol_raw'].max():.6f}]")
     
     # Apply momentum features
     df_with_features = add_vol_raw_features_optimized(df)
     
-    print(f"\n✅ Features added successfully!")
+    print(f"\nFeatures added successfully!")
     momentum_features = [col for col in df_with_features.columns if 'momentum' in col]
     print(f"   Momentum features: {momentum_features}")
     
@@ -93,7 +93,7 @@ def test_momentum_features():
                 print(f"   Outlier ratio: {stats['outlier_ratio']:.3f}")
     
     # Test correlations between features
-    print(f"\n🔗 CORRELATION ANALYSIS:")
+    print(f"\nCORRELATION ANALYSIS:")
     
     correlations = {}
     momentum_cols = [col for col in momentum_features if col in df_with_features.columns]
@@ -106,7 +106,7 @@ def test_momentum_features():
                 print(f"   {f1} vs {f2}: {corr:.4f}")
     
     # Test signal quality (correlation with future volatility changes)
-    print(f"\n📊 SIGNAL QUALITY ANALYSIS:")
+    print(f"\nSIGNAL QUALITY ANALYSIS:")
     
     if 'vol_raw' in df_with_features.columns:
         future_vol_change = df_with_features['vol_raw'].shift(-1) - df_with_features['vol_raw']
@@ -272,7 +272,7 @@ def test_usage_scenarios():
 def main():
     """Main testing function"""
     
-    print("🚀 Starting hybrid momentum features test...")
+    print("Starting hybrid momentum features test...")
     
     # Test basic functionality
     df, stats, correlations = test_momentum_features()
@@ -284,7 +284,7 @@ def main():
     print("SUMMARY & RECOMMENDATIONS")
     print("=" * 100)
     
-    print(f"\n✅ IMPLEMENTATION SUCCESS:")
+    print(f"\nIMPLEMENTATION SUCCESS:")
     print(f"   • All momentum features created successfully")
     print(f"   • Features have appropriate scales and distributions")
     print(f"   • Correlations show they capture different information")
@@ -296,7 +296,7 @@ def main():
     print(f"   3. Implement adaptive ensemble weighting")
     print(f"   4. Monitor performance in production")
     
-    print(f"\n📊 FEATURE RECOMMENDATIONS:")
+    print(f"\nFEATURE RECOMMENDATIONS:")
     print(f"   • Position sizing: Use vol_momentum_pct (interpretable %)")
     print(f"   • ML models: Use vol_momentum_diff (stable scale)")
     print(f"   • Signal generation: Use vol_momentum_scaled (strong signals)")

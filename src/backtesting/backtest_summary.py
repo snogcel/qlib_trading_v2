@@ -9,14 +9,14 @@ def print_backtest_summary():
     print("QUANTILE TRADING STRATEGY BACKTEST RESULTS SUMMARY")
     print("="*80)
     
-    print("\n📊 PREDICTION QUALITY ANALYSIS:")
+    print("\nPREDICTION QUALITY ANALYSIS:")
     print("• Data points: 53,978 observations")
     print("• Quantile coverage: Q10=90.66%, Q90=90.68% (excellent calibration)")
     print("• Prediction interval coverage: 81.35% (should be ~80%)")
     print("• Directional accuracy: 81.14% (very strong)")
     print("• Tier confidence range: 0.5 to 5.5 (good distribution)")
     
-    print("\n🚀 TRADING PERFORMANCE COMPARISON:")
+    print("\nTRADING PERFORMANCE COMPARISON:")
     print("Configuration    | Return | Sharpe | Max DD | Trades | Win Rate")
     print("-" * 65)
     print("Conservative     |  0.04% |   1.37 |  0.00% |     12 |   75.00%")

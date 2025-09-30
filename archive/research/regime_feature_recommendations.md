@@ -31,7 +31,7 @@ Based on your data analysis, here are the highest-value feature interactions:
    - **Logic**: `(vol_extreme + sentiment_extreme + dom_extreme) >= 3`
    - **Use Case**: Risk management and opportunity detection
 
-## 🚀 **Recommended Feature Interactions to Explore**
+## **Recommended Feature Interactions to Explore**
 
 ### **A. Volatility Regime Interactions**
 
@@ -102,7 +102,7 @@ signal_quality_score = (
 )
 ```
 
-## 📊 **Implementation Priority**
+## **Implementation Priority**
 
 ### **Phase 1: High-Impact, Low-Complexity**
 1. **`crisis_opportunity`** - Simple 3-flag combination, huge lift
@@ -146,7 +146,7 @@ Your regime features show **exceptional predictive power**:
 - **Reasonable frequency**: Most valuable features occur 1-4% of time
 - **Statistical significance**: Large sample sizes (190-2077 observations)
 
-## 🚀 **Next Steps**
+## **Next Steps**
 
 1. **Implement Phase 1 features** in your production pipeline
 2. **Integrate regime-aware Kelly sizing** with validated multipliers

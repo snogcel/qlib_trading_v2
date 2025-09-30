@@ -77,7 +77,7 @@ def test_sizing_methods():
         print("⚠️  WARNING: All sizing methods produced identical results!")
         print("This suggests an issue with the sizing logic or data.")
     else:
-        print("✅ Different sizing methods are producing different results")
+        print("Different sizing methods are producing different results")
     
     # Show range of position sizes
     min_pct = min(target_pcts)

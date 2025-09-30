@@ -177,7 +177,7 @@ def print_categorization(categories):
     safe_to_delete = len(categories['SAFE_TO_DELETE'])
     to_archive = len(categories['ARCHIVE_RESEARCH']) + len(categories['ARCHIVE_ANALYSIS'])
     
-    print(f"\n📊 SUMMARY:")
+    print(f"\nSUMMARY:")
     print(f"  Total files analyzed: {total_files}")
     print(f"  Safe to delete: {safe_to_delete}")
     print(f"  To archive: {to_archive}")

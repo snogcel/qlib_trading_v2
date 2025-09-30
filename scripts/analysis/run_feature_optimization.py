@@ -255,7 +255,7 @@ def main():
     print(f"Timestamp: {datetime.now()}")
     
     if args.mode == "quick":
-        print("\n🚀 Running quick feature test...")
+        print("\nRunning quick feature test...")
         results = run_quick_feature_test()
         
         # Find best performing configuration
@@ -289,10 +289,10 @@ def main():
         results = run_targeted_optimization(args.config)
     
     elif args.mode == "analyze":
-        print("\n📊 Running feature importance analysis...")
+        print("\nRunning feature importance analysis...")
         results = analyze_feature_importance()
     
-    print(f"\n✅ Feature optimization completed at {datetime.now()}")
+    print(f"\nFeature optimization completed at {datetime.now()}")
 
 if __name__ == "__main__":
     main()

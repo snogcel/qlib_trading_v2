@@ -82,15 +82,15 @@ if __name__ == '__main__':
     )
 
     # --- 5. Train Agent ---
-    print(f"🚀 Launching Training: {EXP_NAME}")
+    print(f"Launching Training: {EXP_NAME}")
     agent.learn(total_timesteps=TOTAL_TIMESTEPS)
     agent.save(f"./models/{EXP_NAME}")
-    print(f"✅ Training Complete. Model saved to ./models/{EXP_NAME}")
+    print(f"Training Complete. Model saved to ./models/{EXP_NAME}")
 
     # --- 6. Evaluation (Simplified) ---
     # A full backtest would be a separate script, similar to the
     # rl_order_execution/workflow.py example.
-    print("🧪 Running Simplified Evaluation...")
+    print("Running Simplified Evaluation...")
     obs = env_train.reset()
     done = False
     total_reward = 0

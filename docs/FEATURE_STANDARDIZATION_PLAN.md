@@ -51,7 +51,7 @@ def get_strength_bucket(signal_strength):
 ```
 
 ### Implementation Steps
-1. ✅ Create standardized function in `qlib_custom/signal_utils.py`
+1. Create standardized function in `qlib_custom/signal_utils.py`
 2. 🔄 Update all modules to use standard function
 3. 🔄 Investigate data anomaly (all zeros)
 4. 🔄 Add validation tests
@@ -111,7 +111,7 @@ def rule_based_classification(row):
 ```
 
 ### Implementation Steps
-1. ✅ Create standardized function in `qlib_custom/signal_utils.py`
+1. Create standardized function in `qlib_custom/signal_utils.py`
 2. 🔄 Train/validate ML model for tier prediction
 3. 🔄 Update all modules to use standard format
 4. 🔄 Deprecate letter-based system
@@ -176,7 +176,7 @@ def calculate_signal_quality_score(signal_strength, tier_confidence, prob_direct
 
 ---
 
-## 🧪 Validation Plan
+## Validation Plan
 
 ### Data Quality Checks
 1. **Signal Strength**: Investigate why current data shows all zeros
@@ -195,7 +195,7 @@ def calculate_signal_quality_score(signal_strength, tier_confidence, prob_direct
 
 ---
 
-## 📊 Success Metrics
+## Success Metrics
 
 ### Code Quality
 - [ ] Single implementation per feature

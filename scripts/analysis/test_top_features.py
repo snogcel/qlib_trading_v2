@@ -99,14 +99,14 @@ def simple_backtest_comparison():
             
             results[config_name] = backtester.metrics
             
-            print(f"✅ Results:")
+            print(f"Results:")
             print(f"   Return: {backtester.metrics['total_return']:>8.2%}")
             print(f"   Sharpe: {backtester.metrics['sharpe_ratio']:>8.3f}")
             print(f"   Max DD: {backtester.metrics['max_drawdown']:>8.2%}")
             print(f"   Trades: {backtester.metrics['total_trades']:>8d}")
             
         except Exception as e:
-            print(f"❌ Error: {e}")
+            print(f"Error: {e}")
             results[config_name] = {'error': str(e)}
     
     # Comparison
@@ -180,7 +180,7 @@ if __name__ == "__main__":
     # Analyze feature impact
     df_analysis = analyze_feature_impact()
     
-    print(f"\n✅ Top features analysis completed!")
+    print(f"\nTop features analysis completed!")
     
     # Recommendations
     print(f"\n🎯 RECOMMENDATIONS:")

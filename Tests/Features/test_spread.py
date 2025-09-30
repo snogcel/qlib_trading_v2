@@ -96,10 +96,10 @@ Returns are essentially flat across all spread deciles (0.0000 to 0.0002)
 Volatility increases dramatically from 0.0018 (decile 0) to 0.0129 (decile 9)
 
 Updated Recommendations:
-❌ Remove spread from signal tier calculation - it doesn't predict returns
-✅ Keep spread for risk management - it strongly predicts volatility
-✅ Use spread in position sizing - reduce size when high uncertainty expected
-✅ Simplify signal tiers - focus on abs_q50 and prob_up confidence
+Remove spread from signal tier calculation - it doesn't predict returns
+Keep spread for risk management - it strongly predicts volatility
+Use spread in position sizing - reduce size when high uncertainty expected
+Simplify signal tiers - focus on abs_q50 and prob_up confidence
 
 
 

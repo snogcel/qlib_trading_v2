@@ -8,32 +8,32 @@
 
 ## 🧹 **Cleanup Checklist**
 
-### ✅ **1. Strip from Feature Registry**
+### **1. Strip from Feature Registry**
 - [ ] Remove `vol_raw_decile` from any feature maps or auto-generation hooks
 - [ ] Remove from `FEATURE_DOCUMENTATION.md` 
 - [ ] Remove from any config files that reference it
 - [ ] Remove from pipeline diagrams or architecture docs
 
-### ✅ **2. Patch Test Harness**
+### **2. Patch Test Harness**
 - [ ] Remove or skip `test_kelly_criterion_vol_raw_deciles_validation`
 - [ ] Remove `kelly_with_vol_raw_deciles()` test dependencies
 - [ ] Update test imports to remove `get_vol_raw_decile`
 - [ ] Clean up any test data that expects `vol_raw_decile` column
 
-### ✅ **3. Doc Sanity Sweep**
+### **3. Doc Sanity Sweep**
 - [ ] Remove mentions from `FEATURE_DOCUMENTATION.md`
 - [ ] Remove from `FEATURE_KNOWLEDGE_TEMPLATE.md`
 - [ ] Remove from any README files
 - [ ] Remove from pipeline configuration docs
 - [ ] Update any architecture diagrams
 
-### ✅ **4. Archive Responsibly**
+### **4. Archive Responsibly**
 - [ ] Move `get_vol_raw_decile()` to archive with deprecation comment
 - [ ] Move `kelly_with_vol_raw_deciles()` to archive
 - [ ] Move `VOL_RAW_THRESHOLDS` to archive
 - [ ] Document replacement approach (regime_volatility system)
 
-### ✅ **5. Changelog Documentation**
+### **5. Changelog Documentation**
 - [ ] Add deprecation entry to changelog
 - [ ] Document migration path to new regime system
 - [ ] Note in feature evolution log
@@ -165,22 +165,22 @@ vol_low = (regime_volatility.isin(['ultra_low', 'low']))
 
 ---
 
-## 📊 **Impact Assessment**
+## **Impact Assessment**
 
 ### **Positive Impacts**:
-- ✅ **Cleaner codebase** - Remove dead/commented code
-- ✅ **Passing tests** - No more failures from deprecated features  
-- ✅ **Clear documentation** - No confusion about active vs deprecated features
-- ✅ **Better volatility classification** - Dynamic regime system vs static deciles
+- **Cleaner codebase** - Remove dead/commented code
+- **Passing tests** - No more failures from deprecated features  
+- **Clear documentation** - No confusion about active vs deprecated features
+- **Better volatility classification** - Dynamic regime system vs static deciles
 
 ### **No Negative Impacts**:
-- ❌ **No functionality loss** - Feature wasn't active anyway
-- ❌ **No performance impact** - Feature wasn't being calculated
-- ❌ **No trading impact** - System already using regime-based approach
+- **No functionality loss** - Feature wasn't active anyway
+- **No performance impact** - Feature wasn't being calculated
+- **No trading impact** - System already using regime-based approach
 
 ---
 
-## 🚀 **Post-Cleanup Validation**
+## **Post-Cleanup Validation**
 
 ### **Test Suite**:
 ```bash
@@ -241,13 +241,13 @@ grep -r "vol_raw_decile" docs/ --exclude-dir=archive
 ---
 
 
-## ✅ **Cleanup Progress**
+## **Cleanup Progress**
 
 ### **Completed Items**:
-- ✅ **Cleaned test imports** - Removed `kelly_with_vol_raw_deciles` and `get_vol_raw_decile` from test imports
-- ✅ **Archived functions** - Added deprecation comments to `get_vol_raw_decile()` and `VOL_RAW_THRESHOLDS`
-- ✅ **Updated documentation** - Replaced "Kelly Criterion with Vol_Raw Deciles" with "Enhanced Kelly Criterion (Regime-Aware)"
-- ✅ **Cleaned feature references** - Updated regime detection references to use new unified system
+- **Cleaned test imports** - Removed `kelly_with_vol_raw_deciles` and `get_vol_raw_decile` from test imports
+- **Archived functions** - Added deprecation comments to `get_vol_raw_decile()` and `VOL_RAW_THRESHOLDS`
+- **Updated documentation** - Replaced "Kelly Criterion with Vol_Raw Deciles" with "Enhanced Kelly Criterion (Regime-Aware)"
+- **Cleaned feature references** - Updated regime detection references to use new unified system
 
 ### **Migration Examples Added**:
 ```python
@@ -334,11 +334,11 @@ kelly_size = position_sizer.calculate_position_size(signal, vol_risk, regime_mul
    ```
 
 4. **Benefits of Consolidation**:
-   - ✅ **Single source of truth** for position sizing logic
-   - ✅ **Consistent behavior** between pipeline and backtester
-   - ✅ **Easier testing** - one implementation to validate
-   - ✅ **Better maintainability** - changes in one place
-   - ✅ **Enhanced functionality** - combine best of both implementations
+   - **Single source of truth** for position sizing logic
+   - **Consistent behavior** between pipeline and backtester
+   - **Easier testing** - one implementation to validate
+   - **Better maintainability** - changes in one place
+   - **Enhanced functionality** - combine best of both implementations
 
 **Priority**: **HIGH** - This affects core position sizing consistency
 
@@ -361,10 +361,10 @@ kelly_size = position_sizer.calculate_position_size(signal, vol_risk, regime_mul
 ## 🎯 **Cleanup Success Metrics**
 
 ### **Completed Cleanups**:
-- ✅ **vol_raw_decile deprecation** - Clean separation of deprecated vs active features
-- ✅ **Test import cleanup** - No more references to deprecated functions
-- ✅ **Documentation updates** - Clear migration path documented
-- ✅ **Code archiving** - Deprecated functions properly marked and explained
+- **vol_raw_decile deprecation** - Clean separation of deprecated vs active features
+- **Test import cleanup** - No more references to deprecated functions
+- **Documentation updates** - Clear migration path documented
+- **Code archiving** - Deprecated functions properly marked and explained
 
 ### **Discovered Opportunities**:
 - 🔄 **kelly_sizing consolidation** - Merge training pipeline and position_sizing implementations

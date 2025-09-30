@@ -7,12 +7,12 @@
 
 | Metric | Value | Status |
 |--------|-------|--------|
-| Overall Success Rate | 52.0% | ❌ |
+| Overall Success Rate | 52.0% | |
 | Total Tests Executed | 50 | ℹ️ |
-| Critical Failures | 1 | ❌ |
+| Critical Failures | 1 | |
 | High Priority Issues | 2 | ⚠️ |
 
-## 📊 Summary Statistics
+## Summary Statistics
 
 - **Passed Tests:** 26 (52.0%)
 - **Failed Tests:** 24 (48.0%)

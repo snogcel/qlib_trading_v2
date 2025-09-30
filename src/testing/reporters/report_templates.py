@@ -40,7 +40,7 @@ class ReportTemplates:
 | Critical Failures | {critical_failures} | {critical_status} |
 | High Priority Issues | {high_priority_issues} | {priority_status} |
 
-## 📊 Summary Statistics
+## Summary Statistics
 
 - **Passed Tests:** {passed_tests} ({passed_percentage}%)
 - **Failed Tests:** {failed_tests} ({failed_percentage}%)
@@ -85,7 +85,7 @@ class ReportTemplates:
 
 {feature_analysis}
 
-## 📊 Test Type Breakdown
+## Test Type Breakdown
 
 {test_type_breakdown}
 
@@ -127,21 +127,21 @@ class ReportTemplates:
 **Feature Category:** {feature_category}
 **Priority Level:** {priority_level}
 
-## 📊 Feature Overview
+## Feature Overview
 
 {feature_overview}
 
-## 🧪 Test Results Summary
+## Test Results Summary
 
 | Test Type | Total | Passed | Failed | Success Rate |
 |-----------|-------|--------|--------|--------------|
 {test_type_table}
 
-## ✅ Passed Tests
+## Passed Tests
 
 {passed_tests_section}
 
-## ❌ Failed Tests
+## Failed Tests
 
 {failed_tests_section}
 
@@ -178,7 +178,7 @@ class ReportTemplates:
 **Generated:** {timestamp}
 **Coverage Scope:** {coverage_scope}
 
-## 📊 Coverage Overview
+## Coverage Overview
 
 {coverage_overview}
 
@@ -353,7 +353,7 @@ class ReportTemplates:
         ]
         
         if not critical_failures:
-            return "✅ **No critical issues found.** All critical tests are passing."
+            return "**No critical issues found.** All critical tests are passing."
         
         issues = ["**Critical issues requiring immediate attention:**\n"]
         
@@ -373,7 +373,7 @@ class ReportTemplates:
         failed_results = [r for r in results if not r.passed]
         
         if not failed_results:
-            return "✅ **No immediate actions required.** All tests are passing successfully."
+            return "**No immediate actions required.** All tests are passing successfully."
         
         # Collect unique recommendations
         all_recommendations = []
@@ -486,7 +486,7 @@ class ReportTemplates:
         
         sections = []
         for test in passed_tests:
-            sections.append(f"### ✅ {test.test_case.test_type.value.replace('_', ' ').title()}")
+            sections.append(f"### {test.test_case.test_type.value.replace('_', ' ').title()}")
             sections.append(f"- **Confidence:** {test.confidence.value} ({test.confidence_score:.2f})")
             sections.append(f"- **Execution Time:** {test.execution_time:.2f}s")
             if test.analysis:
@@ -501,11 +501,11 @@ class ReportTemplates:
         failed_tests = [r for r in results if not r.passed]
         
         if not failed_tests:
-            return "✅ All tests passed for this feature."
+            return "All tests passed for this feature."
         
         sections = []
         for test in failed_tests:
-            sections.append(f"### ❌ {test.test_case.test_type.value.replace('_', ' ').title()}")
+            sections.append(f"### {test.test_case.test_type.value.replace('_', ' ').title()}")
             sections.append(f"- **Status:** {test.status.value}")
             sections.append(f"- **Priority:** {test.test_case.priority.value}")
             if test.error_message:
@@ -608,7 +608,7 @@ class ReportTemplates:
         failed_results = [r for r in results if not r.passed]
         
         if not failed_results:
-            return "✅ **No specific recommendations.** Feature is performing well."
+            return "**No specific recommendations.** Feature is performing well."
         
         # Collect all recommendations
         all_recommendations = []

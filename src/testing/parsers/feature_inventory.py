@@ -119,7 +119,7 @@ class FeatureInventoryGenerator:
                 "test_complexity": "complex",
                 "description": "Primary directional signals and quantile-based features"
             },
-            "📊 Risk & Volatility Features": {
+            "Risk & Volatility Features": {
                 "priority": "high", 
                 "test_complexity": "standard",
                 "description": "Volatility measures and risk assessment features"
@@ -134,7 +134,7 @@ class FeatureInventoryGenerator:
                 "test_complexity": "standard",
                 "description": "Market regime detection and classification features"
             },
-            "🔗 Interaction & Enhancement Features": {
+            "Interaction & Enhancement Features": {
                 "priority": "medium",
                 "test_complexity": "complex",
                 "description": "Feature interaction and enhancement mechanisms"

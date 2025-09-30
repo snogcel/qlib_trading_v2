@@ -143,7 +143,7 @@ position_size = base_size / max(vol_risk * 1000, 0.1)
 
 ## Implementation Status
 
-### ✅ **Completed**
+### **Completed**
 - Updated `ppo_sweep_optuna_tuned_v2.py` to use existing vol_risk
 - Implemented variance-based regime identification
 - Created enhanced information ratio calculation

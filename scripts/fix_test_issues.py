@@ -82,12 +82,12 @@ if project_root not in sys.path:
                 with open(test_file, 'w', encoding='utf-8') as f:
                     f.write(content)
                 fixed_files.append(test_file)
-                print(f"  ✅ Fixed: {test_file}")
+                print(f"  Fixed: {test_file}")
         
         except Exception as e:
-            print(f"  ❌ Error fixing {test_file}: {e}")
+            print(f"  Error fixing {test_file}: {e}")
     
-    print(f"📊 Fixed {len(fixed_files)} files")
+    print(f"Fixed {len(fixed_files)} files")
     return fixed_files
 
 def remove_problematic_emojis():
@@ -149,12 +149,12 @@ def remove_problematic_emojis():
                 with open(py_file, 'w', encoding='utf-8') as f:
                     f.write(content)
                 fixed_files.append(py_file)
-                print(f"  ✅ Fixed encoding: {py_file}")
+                print(f"  Fixed encoding: {py_file}")
         
         except Exception as e:
-            print(f"  ❌ Error fixing {py_file}: {e}")
+            print(f"  Error fixing {py_file}: {e}")
     
-    print(f"📊 Fixed encoding in {len(fixed_files)} files")
+    print(f"Fixed encoding in {len(fixed_files)} files")
     return fixed_files
 
 def create_test_runner_wrapper():
@@ -252,7 +252,7 @@ if __name__ == "__main__":
     with open(wrapper_path, 'w', encoding='utf-8') as f:
         f.write(wrapper_content)
     
-    print(f"✅ Created test runner wrapper: {wrapper_path}")
+    print(f"Created test runner wrapper: {wrapper_path}")
     return wrapper_path
 
 def main():
@@ -272,9 +272,9 @@ def main():
     print("\n" + "=" * 50)
     print("📋 SUMMARY")
     print("=" * 50)
-    print(f"✅ Fixed import paths in {len(fixed_imports)} files")
-    print(f"✅ Fixed encoding in {len(fixed_encoding)} files")
-    print(f"✅ Created test runner wrapper: {wrapper_path}")
+    print(f"Fixed import paths in {len(fixed_imports)} files")
+    print(f"Fixed encoding in {len(fixed_encoding)} files")
+    print(f"Created test runner wrapper: {wrapper_path}")
     
     print("\n🎯 NEXT STEPS:")
     print("1. Update run_all_tests.py to use the wrapper")

@@ -255,12 +255,12 @@ def ensure_vol_risk_available(df):
         # Fallback calculation if not available (but this shouldn't happen)
         if 'vol_raw' in df.columns:
             df['vol_risk'] = df['vol_raw'] ** 2  # Convert std dev to variance
-            print("   ✅ Created vol_risk from vol_raw (vol_raw²)")
+            print("   Created vol_risk from vol_raw (vol_raw²)")
         else:
-            print("   ❌ Cannot create vol_risk - missing vol_raw")
+            print("   Cannot create vol_risk - missing vol_raw")
             df['vol_risk'] = 0.0001  # Small default value
     else:
-        print(f"✅ vol_risk available from crypto_loader_optimized ({df['vol_risk'].notna().sum():,} valid values)")
+        print(f"vol_risk available from crypto_loader_optimized ({df['vol_risk'].notna().sum():,} valid values)")
     
     return df
 
@@ -326,7 +326,7 @@ def q50_regime_aware_signals(df, transaction_cost_bps=20, base_info_ratio=1.5):
     # Keep traditional info ratio for compatibility
     df['info_ratio'] = df['abs_q50'] / np.maximum(df['spread'], 0.001)
     
-    print(f"📊 Enhanced vs Traditional Info Ratio:")
+    print(f"Enhanced vs Traditional Info Ratio:")
     print(f"   Traditional (signal/spread): {df['info_ratio'].mean():.3f}")
     print(f"   Enhanced (signal/total_risk): {df['enhanced_info_ratio'].mean():.3f}")
     
@@ -346,7 +346,7 @@ def q50_regime_aware_signals(df, transaction_cost_bps=20, base_info_ratio=1.5):
     df['expected_value'] = (df['prob_up'] * df['potential_gain'] - 
                            (1 - df['prob_up']) * df['potential_loss'])
     
-    print(f"📊 Expected Value Analysis:")
+    print(f"Expected Value Analysis:")
     print(f"   Mean expected value: {df['expected_value'].mean():.4f}")
     print(f"   Positive expected value: {(df['expected_value'] > 0).mean()*100:.1f}%")
     print(f"   Mean potential gain: {df['potential_gain'].mean():.4f}")
@@ -428,7 +428,7 @@ def q50_regime_aware_signals(df, transaction_cost_bps=20, base_info_ratio=1.5):
     exp_val_count = df['economically_significant_expected_value'].sum()
     combined_count = df['economically_significant_combined'].sum()
     
-    print(f"📊 Economic Significance Comparison:")
+    print(f"Economic Significance Comparison:")
     print(f"   Traditional threshold: {trad_count:,} ({trad_count/len(df)*100:.1f}%)")
     print(f"   Expected value: {exp_val_count:,} ({exp_val_count/len(df)*100:.1f}%)")
     print(f"   Combined approach: {combined_count:,} ({combined_count/len(df)*100:.1f}%)")
@@ -1218,7 +1218,7 @@ if __name__ == '__main__':
     # Print signal summary
     signal_counts = df_all['side'].value_counts()
     total_signals = len(df_all)
-    print(f"✅ Q50-centric signals generated:")
+    print(f"Q50-centric signals generated:")
     for side, count in signal_counts.items():
         side_name = {1: 'LONG', 0: 'SHORT', -1: 'HOLD'}[side]
         print(f"   {side_name}: {count:,} ({count/total_signals*100:.1f}%)")
@@ -1308,7 +1308,7 @@ if __name__ == '__main__':
     # Run Experiment
     # =========================
     
-    print(f"\n🚀 Launching: {run_name}")
+    print(f"\nLaunching: {run_name}")
 
     env_train = SignalEnv(df=df_train_rl, reward_type=reward_type)
     env_val = SignalEnv(df=df_val_rl, reward_type=reward_type, eval_mode=False)
@@ -1393,7 +1393,7 @@ def evaluate_agent(env, agent, name="experiment"):
     }).rename(columns={"reward": "total_pnl", "position": "avg_exposure"})
 
     summary["efficiency"] = summary["total_pnl"] / summary["avg_exposure"]
-    print(f"\n🧪 Evaluation for {name}")
+    print(f"\nEvaluation for {name}")
     print(summary.round(4))
 
     # Save plot of PnL per tier

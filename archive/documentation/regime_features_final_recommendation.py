@@ -12,21 +12,21 @@ def create_final_recommendation():
     
     print("\n🎯 THE ANSWER: HYBRID APPROACH IS OPTIMAL")
     
-    print("\n✅ WHAT WE'VE IMPLEMENTED:")
+    print("\nWHAT WE'VE IMPLEMENTED:")
     
     implementation_summary = [
-        "✅ 58 standalone regime features (binary flags) for ML model training",
-        "✅ 6 multiplicative regime adjustments for signal enhancement",
-        "✅ Combined regime multiplier (0.6x to 5.0x range)",
-        "✅ Regime-adjusted signals: q50, spread, position_size, prob_up",
-        "✅ Dynamic thresholds based on market regime",
-        "✅ Comprehensive validation and testing framework"
+        "58 standalone regime features (binary flags) for ML model training",
+        "6 multiplicative regime adjustments for signal enhancement",
+        "Combined regime multiplier (0.6x to 5.0x range)",
+        "Regime-adjusted signals: q50, spread, position_size, prob_up",
+        "Dynamic thresholds based on market regime",
+        "Comprehensive validation and testing framework"
     ]
     
     for item in implementation_summary:
         print(f"   {item}")
     
-    print("\n📊 KEY STATISTICS FROM IMPLEMENTATION:")
+    print("\nKEY STATISTICS FROM IMPLEMENTATION:")
     
     stats = [
         "Crisis amplification: Active 187 times (0.3%) - 3.0x max boost",
@@ -88,7 +88,7 @@ def create_final_recommendation():
         print(f"   Reason: {scenario['reason']}")
         print(f"   Implementation: {scenario['implementation']}")
     
-    print("\n🚀 IMPLEMENTATION PRIORITY:")
+    print("\nIMPLEMENTATION PRIORITY:")
     
     priority_phases = [
         {
@@ -137,7 +137,7 @@ def create_final_recommendation():
     for factor in success_factors:
         print(f"   ⚠️  {factor}")
     
-    print("\n📊 EXPECTED PERFORMANCE IMPROVEMENTS:")
+    print("\nEXPECTED PERFORMANCE IMPROVEMENTS:")
     
     improvements = [
         {
@@ -167,7 +167,7 @@ def create_final_recommendation():
         print(f"   Expected: {improvement['improvement']}")
         print(f"   Mechanism: {improvement['mechanism']}")
     
-    print("\n🎉 FINAL VERDICT:")
+    print("\nFINAL VERDICT:")
     
     final_verdict = """
     MULTIPLICATIVE APPROACH IS SUPERIOR FOR REGIME FEATURES

@@ -112,7 +112,7 @@ def validate_feature_quality(new_feature, existing_features, returns):
 
 ---
 
-## 🧪 Testing Hierarchy
+## Testing Hierarchy
 
 ### Level 1: Unit Tests
 - Individual feature calculations
@@ -140,15 +140,15 @@ def validate_feature_quality(new_feature, existing_features, returns):
 
 ---
 
-## 📊 Validation Metrics & Thresholds
+## Validation Metrics & Thresholds
 
 ### Performance Thresholds
 | Metric | Minimum | Target | Current |
 |--------|---------|--------|---------|
-| Sharpe Ratio | 1.0 | 1.3+ | 1.327 ✅ |
-| Max Drawdown | -20% | -15% | -11.77% ✅ |
-| Annual Return | 15% | 20%+ | 23.85% ✅ |
-| Trade Frequency | 500/year | 1000+/year | 1562/year ✅ |
+| Sharpe Ratio | 1.0 | 1.3+ | 1.327 |
+| Max Drawdown | -20% | -15% | -11.77% |
+| Annual Return | 15% | 20%+ | 23.85% |
+| Trade Frequency | 500/year | 1000+/year | 1562/year |
 
 ### Feature Quality Thresholds
 | Metric | Minimum | Target |

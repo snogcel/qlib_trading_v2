@@ -43,7 +43,7 @@ def demo_initialization():
         # Initialize engine
         print("Initializing ThesisEnhancementEngine...")
         engine = ThesisEnhancementEngine()
-        print("✅ Engine initialized successfully")
+        print("Engine initialized successfully")
         
         # Show basic info
         print(f"📄 Feature documentation: {engine.feature_doc_path}")
@@ -54,7 +54,7 @@ def demo_initialization():
         return engine
         
     except Exception as e:
-        print(f"❌ Failed to initialize engine: {e}")
+        print(f"Failed to initialize engine: {e}")
         return None
 
 
@@ -65,7 +65,7 @@ def demo_feature_parsing(engine):
     try:
         # List categories
         categories = engine.list_categories()
-        print(f"📊 Found {len(categories)} feature categories:")
+        print(f"Found {len(categories)} feature categories:")
         for i, category in enumerate(categories, 1):
             print(f"  {i}. {category}")
         
@@ -82,7 +82,7 @@ def demo_feature_parsing(engine):
         return True
         
     except Exception as e:
-        print(f"❌ Feature parsing failed: {e}")
+        print(f"Feature parsing failed: {e}")
         return False
 
 
@@ -112,7 +112,7 @@ def demo_enhancement_status(engine):
         return status
         
     except Exception as e:
-        print(f"❌ Status check failed: {e}")
+        print(f"Status check failed: {e}")
         return None
 
 
@@ -136,7 +136,7 @@ def demo_enhancement_generation(engine):
             target_category = categories[0] if categories else None
         
         if not target_category:
-            print("❌ No suitable category found for enhancement demo")
+            print("No suitable category found for enhancement demo")
             return None
         
         print(f"🎯 Enhancing category: {target_category}")
@@ -146,7 +146,7 @@ def demo_enhancement_generation(engine):
         result = engine.enhance_feature_category(target_category, preserve_existing=True)
         
         if result.success:
-            print("✅ Enhancement generation successful!")
+            print("Enhancement generation successful!")
             
             print_subsection("Enhancement Summary")
             print(f"Category: {result.category_name}")
@@ -170,11 +170,11 @@ def demo_enhancement_generation(engine):
             
             return result
         else:
-            print(f"❌ Enhancement failed: {result.error_message}")
+            print(f"Enhancement failed: {result.error_message}")
             return None
             
     except Exception as e:
-        print(f"❌ Enhancement generation failed: {e}")
+        print(f"Enhancement generation failed: {e}")
         return None
 
 
@@ -226,8 +226,8 @@ def demo_validation(engine):
         validation_result = engine.validate_enhancement(sample_enhanced_content, "Core Signal Features")
         
         print_subsection("Validation Results")
-        print(f"✅ Valid: {validation_result.is_valid}")
-        print(f"📊 Alignment Score: {validation_result.alignment_score:.3f}")
+        print(f"Valid: {validation_result.is_valid}")
+        print(f"Alignment Score: {validation_result.alignment_score:.3f}")
         
         if validation_result.principle_violations:
             print_subsection("Principle Violations")
@@ -237,7 +237,7 @@ def demo_validation(engine):
         if validation_result.missing_elements:
             print_subsection("Missing Elements")
             for missing in validation_result.missing_elements:
-                print(f"  ❌ {missing}")
+                print(f"  {missing}")
         
         if validation_result.recommendations:
             print_subsection("Recommendations")
@@ -247,7 +247,7 @@ def demo_validation(engine):
         return validation_result
         
     except Exception as e:
-        print(f"❌ Validation demo failed: {e}")
+        print(f"Validation demo failed: {e}")
         return None
 
 
@@ -287,7 +287,7 @@ def demo_protection_integration(engine):
         return True
         
     except Exception as e:
-        print(f"❌ Protection system demo failed: {e}")
+        print(f"Protection system demo failed: {e}")
         return False
 
 
@@ -296,7 +296,7 @@ def demo_error_handling():
     print_section("ERROR HANDLING DEMO")
     
     try:
-        print("🧪 Testing error handling scenarios...")
+        print("Testing error handling scenarios...")
         
         # Test with non-existent files
         print_subsection("Non-existent Files")
@@ -305,9 +305,9 @@ def demo_error_handling():
                 "non_existent_feature.md",
                 "non_existent_principles.md"
             )
-            print("❌ Should have failed but didn't")
+            print("Should have failed but didn't")
         except Exception as e:
-            print(f"✅ Correctly handled missing files: {type(e).__name__}")
+            print(f"Correctly handled missing files: {type(e).__name__}")
         
         # Test with valid engine but invalid category
         print_subsection("Invalid Category Enhancement")
@@ -315,25 +315,25 @@ def demo_error_handling():
         result = engine.enhance_feature_category("Non-existent Category")
         
         if not result.success:
-            print(f"✅ Correctly handled invalid category: {result.error_message}")
+            print(f"Correctly handled invalid category: {result.error_message}")
         else:
-            print("❌ Should have failed for invalid category")
+            print("Should have failed for invalid category")
         
         return True
         
     except Exception as e:
-        print(f"❌ Error handling demo failed: {e}")
+        print(f"Error handling demo failed: {e}")
         return False
 
 
 def main():
     """Main demo function"""
-    print("🚀 Starting ThesisEnhancementEngine Demo")
+    print("Starting ThesisEnhancementEngine Demo")
     
     # Initialize engine
     engine = demo_initialization()
     if not engine:
-        print("❌ Demo aborted due to initialization failure")
+        print("Demo aborted due to initialization failure")
         return
     
     # Run demo sections
@@ -353,11 +353,11 @@ def main():
             result = demo_func()
             results[demo_name] = result is not None and result is not False
             if results[demo_name]:
-                print(f"✅ {demo_name} demo completed successfully")
+                print(f"{demo_name} demo completed successfully")
             else:
                 print(f"⚠️  {demo_name} demo completed with issues")
         except Exception as e:
-            print(f"❌ {demo_name} demo failed: {e}")
+            print(f"{demo_name} demo failed: {e}")
             results[demo_name] = False
     
     # Summary
@@ -365,13 +365,13 @@ def main():
     successful = sum(1 for success in results.values() if success)
     total = len(results)
     
-    print(f"📊 Demo Results: {successful}/{total} successful")
+    print(f"Demo Results: {successful}/{total} successful")
     for demo_name, success in results.items():
         status = "✅" if success else "❌"
         print(f"   {status} {demo_name}")
     
     if successful == total:
-        print("\n🎉 All demos completed successfully!")
+        print("\nAll demos completed successfully!")
         print("The ThesisEnhancementEngine is working correctly.")
     else:
         print(f"\n⚠️  {total - successful} demo(s) had issues.")

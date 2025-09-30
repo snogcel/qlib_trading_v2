@@ -226,7 +226,7 @@ def demonstrate_test_requirements_mapping():
     print("-" * 40)
     
     for req_id, description in requirements_mapping.items():
-        print(f"✅ Requirement {req_id}: {description}")
+        print(f"Requirement {req_id}: {description}")
     
     print()
     print("Implementation Details:")
@@ -260,7 +260,7 @@ if __name__ == "__main__":
         demonstrate_test_requirements_mapping()
         
         print("=" * 80)
-        print("✅ DEMO COMPLETED SUCCESSFULLY")
+        print("DEMO COMPLETED SUCCESSFULLY")
         print("=" * 80)
         print()
         print("The economic hypothesis test generator successfully creates:")
@@ -271,7 +271,7 @@ if __name__ == "__main__":
         print()
         
     except Exception as e:
-        print(f"❌ Demo failed with error: {e}")
+        print(f"Demo failed with error: {e}")
         import traceback
         traceback.print_exc()
         sys.exit(1)

@@ -84,7 +84,7 @@ def _cache_stable_regimes(self, regime_series: pd.Series, stability_threshold: f
 
 ---
 
-## 📊 **Strategic Documentation & Validation Enhancements**
+## **Strategic Documentation & Validation Enhancements**
 
 ### **4. Regime Interaction Matrix (Phase 2 - Validation)**
 
@@ -218,7 +218,7 @@ def regime_signal_efficacy_analysis(self, backtest_data: pd.DataFrame) -> pd.Dat
 
 ---
 
-## 🚀 **Advanced Future Enhancements**
+## **Advanced Future Enhancements**
 
 ### **7. Regime Prediction vs Detection (Phase 3 - Alpha Generation)**
 
@@ -526,9 +526,9 @@ df['vol_raw_decile'] = df['vol_raw'].apply(get_vol_raw_decile)
 - Test regime volatility classification consistency
 
 **Impact Assessment**:
-- **Position Sizing**: ✅ Current `kelly_sizing()` function doesn't use `vol_raw_decile` - no impact
-- **Regime Detection**: ✅ Current regime system uses `vol_risk` not `vol_raw_decile` - no impact  
-- **Test Suite**: ❌ Multiple tests failing due to expecting non-existent feature
-- **Performance**: ✅ No impact on current trading performance - feature is not active
+- **Position Sizing**: Current `kelly_sizing()` function doesn't use `vol_raw_decile` - no impact
+- **Regime Detection**: Current regime system uses `vol_risk` not `vol_raw_decile` - no impact  
+- **Test Suite**: Multiple tests failing due to expecting non-existent feature
+- **Performance**: No impact on current trading performance - feature is not active
 
 ---

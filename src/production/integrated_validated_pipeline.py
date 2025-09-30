@@ -94,7 +94,7 @@ class ValidatedTradingPipeline:
         if 'signal_thresh' not in self.df.columns and 'signal_thresh_adaptive' not in self.df.columns:
             raise ValueError("Missing both 'signal_thresh' and 'signal_thresh_adaptive'")
         
-        print("✅ All validation checks passed")
+        print("All validation checks passed")
     
     def _load_price_data(self):
         """Load price data if available"""
@@ -337,7 +337,7 @@ def main():
     # Generate comprehensive report
     pipeline.generate_comprehensive_report()
     
-    print(f"\n🎉 Validated pipeline complete!")
+    print(f"\nValidated pipeline complete!")
     print(f"Results saved to: ./validated_backtest_results/")
 
 if __name__ == "__main__":
