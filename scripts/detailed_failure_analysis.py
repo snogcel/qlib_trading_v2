@@ -734,7 +734,7 @@ class FailureAnalyzer:
                 continue
             
             summary = data['summary']
-            status_emoji = "🔴" if "CRITICAL" in summary['status'] else "⚠️" if "WARNING" in summary['status'] else ""
+            status_emoji = "🔴" if "CRITICAL" in summary['status'] else "" if "WARNING" in summary['status'] else ""
             
             report_lines.extend([
                 f"### {status_emoji} {feature}",

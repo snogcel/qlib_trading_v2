@@ -103,7 +103,7 @@ def test_temporal_features():
             has_variation = values.std() > 0.001
             reasonable_range = values.min() > -100 and values.max() < 100
             
-            status = "" if has_variation and reasonable_range else "⚠️"
+            status = "" if has_variation and reasonable_range else ""
             print(f"   {status} {feature}: Range [{values.min():.3f}, {values.max():.3f}], Std: {values.std():.3f}")
     
     return df_full, existing_features
@@ -159,37 +159,40 @@ def visualize_temporal_features(df, features):
     # Create subplots for key temporal features
     fig, axes = plt.subplots(2, 2, figsize=(15, 10))
     fig.suptitle('Temporal Quantile Features Analysis', fontsize=16)
-    
+        
+    df_trimmed = df.dropna()
+    print(df_trimmed.columns)
+
     # Plot Q50 and its momentum
-    axes[0, 0].plot(df.index[-200:], df['q50'].iloc[-200:], label='Q50', alpha=0.7)
-    axes[0, 0].plot(df.index[-200:], df['q50_momentum_3'].iloc[-200:] * 10, 
+    axes[0, 0].plot(df_trimmed.index[-200:], df_trimmed['q50'].iloc[-200:], label='Q50', alpha=0.7)
+    axes[0, 0].plot(df_trimmed.index[-200:], df_trimmed['q50_momentum_3'].iloc[-200:] * 10, 
                    label='Q50 Momentum (×10)', alpha=0.7)
     axes[0, 0].set_title('Q50 vs Temporal Momentum')
     axes[0, 0].legend()
     axes[0, 0].grid(True, alpha=0.3)
     
     # Plot spread and its momentum
-    spread = df['q90'] - df['q10']
-    axes[0, 1].plot(df.index[-200:], spread.iloc[-200:], label='Spread', alpha=0.7)
-    axes[0, 1].plot(df.index[-200:], df['spread_momentum_3'].iloc[-200:] * 10, 
+    spread = df_trimmed['q90'] - df_trimmed['q10']
+    axes[0, 1].plot(df_trimmed.index[-200:], spread.iloc[-200:], label='Spread', alpha=0.7)
+    axes[0, 1].plot(df_trimmed.index[-200:], df_trimmed['spread_momentum_3'].iloc[-200:] * 10, 
                    label='Spread Momentum (×10)', alpha=0.7)
     axes[0, 1].set_title('Spread vs Temporal Momentum')
     axes[0, 1].legend()
     axes[0, 1].grid(True, alpha=0.3)
     
     # Plot stability features
-    axes[1, 0].plot(df.index[-200:], df['q50_stability_3'].iloc[-200:], 
-                   label='Q50 Stability (3-period)', alpha=0.7)
-    axes[1, 0].plot(df.index[-200:], df['q50_stability_6'].iloc[-200:], 
+    # axes[1, 0].plot(df_trimmed.index[-200:], df_trimmed['q50_stability_3'].iloc[-200:], 
+    #                label='Q50 Stability (3-period)', alpha=0.7)
+    axes[1, 0].plot(df_trimmed.index[-200:], df_trimmed['q50_stability_6'].iloc[-200:], 
                    label='Q50 Stability (6-period)', alpha=0.7)
     axes[1, 0].set_title('Quantile Stability Patterns')
     axes[1, 0].legend()
     axes[1, 0].grid(True, alpha=0.3)
     
     # Plot regime persistence
-    axes[1, 1].plot(df.index[-200:], df['q50_regime_persistence'].iloc[-200:], 
+    axes[1, 1].plot(df_trimmed.index[-200:], df_trimmed['q50_regime_persistence'].iloc[-200:], 
                    label='Q50 Regime Persistence', alpha=0.7)
-    axes[1, 1].plot(df.index[-200:], df['q50_direction_consistency'].iloc[-200:] * 10, 
+    axes[1, 1].plot(df_trimmed.index[-200:], df_trimmed['q50_direction_consistency'].iloc[-200:] * 10, 
                    label='Direction Consistency (×10)', alpha=0.7)
     axes[1, 1].set_title('Regime Persistence Patterns')
     axes[1, 1].legend()

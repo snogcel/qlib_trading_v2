@@ -84,7 +84,7 @@ def variance_based_regime_identification(df):
         'Extreme': df['variance_regime_extreme'].sum()
     }
     
-    print(f"\n🏛️ Variance-Based Regime Distribution:")
+    print(f"\n Variance-Based Regime Distribution:")
     for regime, count in regime_dist.items():
         pct = count / len(df) * 100
         print(f"   {regime}: {count:,} ({pct:.1f}%)")

@@ -372,7 +372,7 @@ def q50_regime_aware_signals(df, transaction_cost_bps=20, base_info_ratio=1.5):
     df['variance_adjusted_signal'] = df['q50'] / np.sqrt(np.maximum(df['vol_risk'], 0.0001))   
     
     # Print regime distribution
-    print(f"🏛️ Variance-Based Regime Distribution:")
+    print(f" Variance-Based Regime Distribution:")
     print(f"   Low Variance: {df['variance_regime_low'].sum():,} ({df['variance_regime_low'].mean()*100:.1f}%)")
     print(f"   High Variance: {df['variance_regime_high'].sum():,} ({df['variance_regime_high'].mean()*100:.1f}%)")
     print(f"   Extreme Variance: {df['variance_regime_extreme'].sum():,} ({df['variance_regime_extreme'].mean()*100:.1f}%)")

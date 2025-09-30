@@ -69,7 +69,7 @@ def analyze_regime_feature_approaches():
         print(f"   Mask Potential: {feature['mask_potential']}")
         print(f"   Description: {feature['description']}")
     
-    print("\n⚖️  STANDALONE vs MULTIPLICATIVE COMPARISON:")
+    print("\n  STANDALONE vs MULTIPLICATIVE COMPARISON:")
     
     comparison_aspects = [
         {

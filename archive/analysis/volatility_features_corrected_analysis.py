@@ -59,7 +59,7 @@ def create_corrected_analysis():
     print("   RANGE: 0 to ~0.056 (continuous, not discrete)")
     print("   PURPOSE: Long-term volatility percentile ranking")
     
-    print("\n⚖️  KEY DIFFERENCES:")
+    print("\n  KEY DIFFERENCES:")
     
     print("\n1. CONCEPTUAL CHANGES:")
     print("   • vol_risk: From quantile-normalized (0-1) to variance (0-0.016)")

@@ -93,7 +93,7 @@
       "rationale": "System should generate expected output files",
       "file_status": {
         "df_all_macro_analysis.csv": false,
-        "data3/macro_features.pkl": false,
+        "macro_features.pkl": true,
         "temp/correlation_matrix.csv": false
       }
     }

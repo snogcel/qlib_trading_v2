@@ -85,7 +85,7 @@ def test_with_actual_data():
         
         # Test regime multiplier functionality
         multiplier_stats = df_with_regimes['regime_multiplier'].describe()
-        print(f"\n⚖️  Regime Multiplier Analysis:")
+        print(f"\n  Regime Multiplier Analysis:")
         print(f"   Range: [{multiplier_stats['min']:.2f}, {multiplier_stats['max']:.2f}]")
         print(f"   Mean: {multiplier_stats['mean']:.2f}")
         print(f"   Std: {multiplier_stats['std']:.2f}")

@@ -90,7 +90,7 @@ def test_q50_integration():
             print(f"All required columns created")
         
         # Analyze regime distribution
-        print(f"\n🏛️ REGIME DISTRIBUTION:")
+        print(f"\n REGIME DISTRIBUTION:")
         print(f"   Low Vol: {df_result['vol_regime_low'].sum():,} ({df_result['vol_regime_low'].mean()*100:.1f}%)")
         print(f"   High Vol: {df_result['vol_regime_high'].sum():,} ({df_result['vol_regime_high'].mean()*100:.1f}%)")
         print(f"   Trending: {df_result['momentum_regime_trending'].sum():,} ({df_result['momentum_regime_trending'].mean()*100:.1f}%)")

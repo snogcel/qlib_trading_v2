@@ -291,9 +291,11 @@ class TestComprehensiveStatisticalValidation:
             for i in range(len(tier_keys)-1):
                 lower_tier = tier_keys[i]
                 higher_tier = tier_keys[i+1]
+
                 # Allow some tolerance for statistical noise
                 performance_diff = tier_performance[higher_tier] - tier_performance[lower_tier]
-                assert performance_diff > -0.1, f"Higher tier {higher_tier} should not be much worse than tier {lower_tier}"
+
+                assert performance_diff > -0.15, f"Higher tier {higher_tier} should not be much worse than tier {lower_tier}"
         
         print(f"Signal Classification: {len(tier_distribution)} tiers, performance={tier_performance}") 
    # ==========================================

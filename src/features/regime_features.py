@@ -390,7 +390,7 @@ class RegimeFeatureEngine:
                     'result': correlation > 0.7,
                     'value': f"{correlation:.3f}",
                     'economic_rationale': 'Information flow persistence theory',
-                    'status': '' if correlation > 0.7 else '⚠️'
+                    'status': '' if correlation > 0.7 else ''
                 })
         
         # Test 2: Prediction confidence should be lower during high volatility
@@ -406,7 +406,7 @@ class RegimeFeatureEngine:
                 'result': avg_confidence_high_vol < avg_confidence_low_vol,
                 'value': f"High vol: {avg_confidence_high_vol:.3f}, Low vol: {avg_confidence_low_vol:.3f}",
                 'economic_rationale': 'Market microstructure theory',
-                'status': '' if avg_confidence_high_vol < avg_confidence_low_vol else '⚠️'
+                'status': '' if avg_confidence_high_vol < avg_confidence_low_vol else ''
             })
         
         # Test 3: Regime persistence should be higher during trending periods
@@ -422,7 +422,7 @@ class RegimeFeatureEngine:
                 'result': avg_persistence_trending > avg_persistence_ranging,
                 'value': f"Trending: {avg_persistence_trending:.1f}, Ranging: {avg_persistence_ranging:.1f}",
                 'economic_rationale': 'Behavioral finance momentum theory',
-                'status': '' if avg_persistence_trending > avg_persistence_ranging else '⚠️'
+                'status': '' if avg_persistence_trending > avg_persistence_ranging else ''
             })
         
         # Test 4: Spread momentum should correlate with volatility changes
@@ -439,7 +439,7 @@ class RegimeFeatureEngine:
                     'result': correlation > 0.3,
                     'value': f"{correlation:.3f}",
                     'economic_rationale': 'Market microstructure uncertainty theory',
-                    'status': '' if correlation > 0.3 else '⚠️'
+                    'status': '' if correlation > 0.3 else ''
                 })
         
         # Print validation results
@@ -466,19 +466,19 @@ class RegimeFeatureEngine:
         
         # Volatility regime distribution
         vol_dist = df['regime_volatility'].value_counts(normalize=True) * 100
-        print(f"\n🌪️  Volatility Regimes:")
+        print(f"\n  Volatility Regimes:")
         for regime, pct in vol_dist.items():
             print(f"   {regime}: {pct:.1f}%")
         
         # Sentiment regime distribution
         sent_dist = df['regime_sentiment'].value_counts(normalize=True) * 100
-        print(f"\n😱 Sentiment Regimes:")
+        print(f"\n Sentiment Regimes:")
         for regime, pct in sent_dist.items():
             print(f"   {regime}: {pct:.1f}%")
         
         # Dominance regime distribution
         dom_dist = df['regime_dominance'].value_counts(normalize=True) * 100
-        print(f"\n₿  Dominance Regimes:")
+        print(f"\n  Dominance Regimes:")
         for regime, pct in dom_dist.items():
             print(f"   {regime}: {pct:.1f}%")
         
@@ -492,7 +492,7 @@ class RegimeFeatureEngine:
         stability_mean = df['regime_stability'].mean()
         multiplier_stats = df['regime_multiplier'].describe()
         print(f"\n Average regime stability: {stability_mean:.3f}")
-        print(f"⚖️  Multiplier range: [{multiplier_stats['min']:.2f}, {multiplier_stats['max']:.2f}]")
+        print(f"  Multiplier range: [{multiplier_stats['min']:.2f}, {multiplier_stats['max']:.2f}]")
         print(f"   Average multiplier: {multiplier_stats['mean']:.2f}")
         
         # Temporal feature summary if they exist

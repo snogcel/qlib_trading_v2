@@ -91,7 +91,7 @@ def compare_old_vs_new_regime_logic(df):
 def simulate_position_sizing_impact(df_new):
     """Simulate impact of new regime multiplier on position sizing"""
     
-    print("\n⚖️  POSITION SIZING IMPACT ANALYSIS")
+    print("\n  POSITION SIZING IMPACT ANALYSIS")
     print("=" * 50)
     
     # Simulate basic position sizing with regime multiplier
@@ -113,7 +113,7 @@ def simulate_position_sizing_impact(df_new):
     
     # Analyze regime-based adjustments
     regime_analysis = df_new.groupby('regime_volatility')['regime_multiplier'].agg(['mean', 'count'])
-    print(f"\n🌪️  Position Adjustments by Volatility Regime:")
+    print(f"\n  Position Adjustments by Volatility Regime:")
     for regime, stats in regime_analysis.iterrows():
         avg_position = base_position * stats['mean']
         print(f"   {regime}: {avg_position:.1%} (multiplier: {stats['mean']:.2f}x, count: {stats['count']})")

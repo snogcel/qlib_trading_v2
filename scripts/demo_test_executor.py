@@ -180,7 +180,7 @@ def demo_market_simulation(executor: TestExecutor):
     regimes = ['bull', 'bear', 'sideways', 'high_volatility', 'low_volatility']
     
     for regime in regimes:
-        print(f"\n🏛️ Simulating {regime} market conditions...")
+        print(f"\n Simulating {regime} market conditions...")
         
         try:
             simulated_data = executor.simulate_market_conditions(regime, base_data)
