@@ -63,7 +63,7 @@ FREQ = "day"
 
 qlib.init(provider_uri=provider_uri, region=REG_US)
 
-def cross_validation_fcn(df_train, model, early_stopping_flag=False):
+def cross_validation_fcn(df_train, model, early_stopping_flag=True):
     """
     Performs cross-validation on a given model using KFold and returns the average
     mean squared error (MSE) score across all folds.
@@ -96,6 +96,8 @@ def cross_validation_fcn(df_train, model, early_stopping_flag=False):
                       callbacks=[lgbm.early_stopping(stopping_rounds=100, verbose=True)])
         else:
             model.fit(X_train, y_train)
+
+        # model.fit(X_train, y_train)
             
         # Make predictions on the validation set and calculate the MSE score
         y_pred = model.predict(X_val)
@@ -587,8 +589,8 @@ if __name__ == '__main__':
         "boosting_type": "gbdt",
         "device": "cpu",
         "verbose": -1,
-        "random_state": 42,
-        "early_stopping_rounds": 50,
+        "random_state": 43, # https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/
+        "early_stopping_rounds": 500,
         "num_boost_round": 2250,         # Let early stopping decide
         "seed": SEED
     }
