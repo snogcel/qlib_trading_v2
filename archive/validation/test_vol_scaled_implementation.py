@@ -29,19 +29,19 @@ def test_vol_scaled():
         '$realized_vol_6': np.abs(returns) * 10
     })
     
-    print(f"📊 Created sample data: {len(df)} rows")
+    print(f"Created sample data: {len(df)} rows")
     print(f"   vol_raw range: [{df['vol_raw'].min():.6f}, {df['vol_raw'].max():.6f}]")
     
     # Apply volatility features
     df_with_features = add_vol_raw_features_optimized(df)
     
-    print(f"\n✅ Features added successfully!")
+    print(f"\nFeatures added successfully!")
     print(f"   Columns: {list(df_with_features.columns)}")
     
     # Check vol_scaled properties
     vol_scaled = df_with_features['vol_scaled'].dropna()
     
-    print(f"\n📈 vol_scaled analysis:")
+    print(f"\n vol_scaled analysis:")
     print(f"   Count: {len(vol_scaled)}")
     print(f"   Range: [{vol_scaled.min():.6f}, {vol_scaled.max():.6f}]")
     print(f"   Mean: {vol_scaled.mean():.6f}")
@@ -61,18 +61,18 @@ def test_vol_scaled():
     if 'vol_risk' in df_with_features.columns:
         vol_risk = df_with_features['vol_risk'].dropna()
         correlation = vol_scaled.corr(vol_risk)
-        print(f"\n🔗 vol_risk alias:")
+        print(f"\nvol_risk alias:")
         print(f"   Correlation with vol_scaled: {correlation:.6f}")
         print(f"   Same values: {np.allclose(vol_scaled, vol_risk, equal_nan=True)}")
     
     # Test percentiles (for regime detection)
     percentiles = [10, 30, 60, 80, 90]
-    print(f"\n📊 vol_scaled percentiles:")
+    print(f"\nvol_scaled percentiles:")
     for p in percentiles:
         val = vol_scaled.quantile(p/100)
         print(f"   {p:2d}%: {val:.6f}")
     
-    print(f"\n✅ SUCCESS: vol_scaled implementation working correctly!")
+    print(f"\nSUCCESS: vol_scaled implementation working correctly!")
     
     return df_with_features
 
@@ -94,7 +94,7 @@ def test_regime_detection():
     medium_vol_threshold = vol_scaled.quantile(0.6)
     low_vol_threshold = vol_scaled.quantile(0.3)
     
-    print(f"📊 Regime thresholds:")
+    print(f"Regime thresholds:")
     print(f"   High vol (80%): {high_vol_threshold:.6f}")
     print(f"   Medium vol (60%): {medium_vol_threshold:.6f}")
     print(f"   Low vol (30%): {low_vol_threshold:.6f}")
@@ -104,7 +104,7 @@ def test_regime_detection():
     medium_vol_count = ((vol_scaled > medium_vol_threshold) & (vol_scaled <= high_vol_threshold)).sum()
     low_vol_count = (vol_scaled < low_vol_threshold).sum()
     
-    print(f"\n📈 Regime classifications:")
+    print(f"\n Regime classifications:")
     print(f"   High vol: {high_vol_count} ({high_vol_count/len(vol_scaled)*100:.1f}%)")
     print(f"   Medium vol: {medium_vol_count} ({medium_vol_count/len(vol_scaled)*100:.1f}%)")
     print(f"   Low vol: {low_vol_count} ({low_vol_count/len(vol_scaled)*100:.1f}%)")
@@ -116,7 +116,7 @@ def test_regime_detection():
     high_vol_ok = abs(high_vol_count - expected_high) < expected_high * 0.1
     low_vol_ok = abs(low_vol_count - expected_low) < expected_low * 0.1
     
-    print(f"\n✅ Regime detection validation:")
+    print(f"\nRegime detection validation:")
     print(f"   High vol count reasonable: {high_vol_ok}")
     print(f"   Low vol count reasonable: {low_vol_ok}")
     

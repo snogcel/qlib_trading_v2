@@ -21,17 +21,17 @@ def load_test_data():
     """Load data for performance validation"""
     try:
         # Try to load the same data used in successful backtests
-        df = pd.read_pickle('data3/macro_features.pkl')
-        print(f"✅ Loaded data: {df.shape}")
+        df = pd.read_pickle('macro_features.pkl')
+        print(f"Loaded data: {df.shape}")
         return df
     except Exception as e:
-        print(f"❌ Could not load data: {e}")
+        print(f"Could not load data: {e}")
         return None
 
 def compare_old_vs_new_regime_logic(df):
     """Compare old scattered regime features vs new unified ones"""
     
-    print("🔄 COMPARING OLD VS NEW REGIME LOGIC")
+    print("COMPARING OLD VS NEW REGIME LOGIC")
     print("=" * 50)
     
     # Generate new unified regime features
@@ -73,15 +73,15 @@ def compare_old_vs_new_regime_logic(df):
     
     # Print comparison results
     for feature, stats in comparisons.items():
-        print(f"\n📊 {feature.upper()}:")
+        print(f"\n{feature.upper()}:")
         if 'ratio' in stats:
             print(f"   Old count: {stats['old']}")
             print(f"   New count: {stats['new']}")
             print(f"   Ratio: {stats['ratio']:.2f}")
             if 0.8 <= stats['ratio'] <= 1.2:
-                print("   ✅ Similar detection rates")
+                print("   Similar detection rates")
             else:
-                print("   ⚠️  Different detection rates - needs investigation")
+                print("    Different detection rates - needs investigation")
         elif 'old_mean' in stats:
             print(f"   Old mean: {stats['old_mean']:.3f} ± {stats['old_std']:.3f}")
             print(f"   New mean: {stats['new_mean']:.3f} ± {stats['new_std']:.3f}")
@@ -91,7 +91,7 @@ def compare_old_vs_new_regime_logic(df):
 def simulate_position_sizing_impact(df_new):
     """Simulate impact of new regime multiplier on position sizing"""
     
-    print("\n⚖️  POSITION SIZING IMPACT ANALYSIS")
+    print("\n  POSITION SIZING IMPACT ANALYSIS")
     print("=" * 50)
     
     # Simulate basic position sizing with regime multiplier
@@ -105,7 +105,7 @@ def simulate_position_sizing_impact(df_new):
     new_positions = new_positions.clip(0.01, 0.5)  # Reasonable position limits
     
     # Compare position distributions
-    print(f"📈 Position Size Comparison:")
+    print(f" Position Size Comparison:")
     print(f"   Old approach (constant): {base_position:.1%}")
     print(f"   New approach range: [{new_positions.min():.1%}, {new_positions.max():.1%}]")
     print(f"   New approach mean: {new_positions.mean():.1%}")
@@ -113,7 +113,7 @@ def simulate_position_sizing_impact(df_new):
     
     # Analyze regime-based adjustments
     regime_analysis = df_new.groupby('regime_volatility')['regime_multiplier'].agg(['mean', 'count'])
-    print(f"\n🌪️  Position Adjustments by Volatility Regime:")
+    print(f"\n  Position Adjustments by Volatility Regime:")
     for regime, stats in regime_analysis.iterrows():
         avg_position = base_position * stats['mean']
         print(f"   {regime}: {avg_position:.1%} (multiplier: {stats['mean']:.2f}x, count: {stats['count']})")
@@ -123,7 +123,7 @@ def simulate_position_sizing_impact(df_new):
 def validate_economic_logic(df_new):
     """Validate that regime logic makes economic sense"""
     
-    print("\n💡 ECONOMIC LOGIC VALIDATION")
+    print("\n ECONOMIC LOGIC VALIDATION")
     print("=" * 50)
     
     validations = []
@@ -170,7 +170,7 @@ def validate_economic_logic(df_new):
     
     # Print validation results
     for validation in validations:
-        status = "✅" if validation['result'] else "❌"
+        status = "" if validation['result'] else ""
         print(f"   {status} {validation['test']}")
         print(f"      Value: {validation['value']}, Expected: {validation['expected']}")
     
@@ -179,7 +179,7 @@ def validate_economic_logic(df_new):
 def main():
     """Main validation function"""
     
-    print("🧪 REGIME CONSOLIDATION PERFORMANCE VALIDATION")
+    print("REGIME CONSOLIDATION PERFORMANCE VALIDATION")
     print("=" * 60)
     
     # Load data
@@ -197,22 +197,22 @@ def main():
     validations = validate_economic_logic(df_new)
     
     # Summary
-    print(f"\n🎯 VALIDATION SUMMARY")
+    print(f"\nVALIDATION SUMMARY")
     print("=" * 60)
     
     passed_validations = sum(1 for v in validations if v['result'])
     total_validations = len(validations)
     
-    print(f"✅ Economic logic validations: {passed_validations}/{total_validations}")
-    print(f"✅ Regime feature consolidation: Complete")
-    print(f"✅ Position sizing logic: Enhanced with regime awareness")
+    print(f"Economic logic validations: {passed_validations}/{total_validations}")
+    print(f"Regime feature consolidation: Complete")
+    print(f"Position sizing logic: Enhanced with regime awareness")
     
     if passed_validations == total_validations:
-        print(f"\n🎉 ALL VALIDATIONS PASSED!")
-        print("✅ Ready to integrate into main pipeline")
-        print("✅ Performance should maintain 1.327 Sharpe ratio")
+        print(f"\nALL VALIDATIONS PASSED!")
+        print("Ready to integrate into main pipeline")
+        print("Performance should maintain 1.327 Sharpe ratio")
     else:
-        print(f"\n⚠️  Some validations failed - review needed")
+        print(f"\n Some validations failed - review needed")
     
     return df_new, comparisons, validations
 

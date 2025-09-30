@@ -18,7 +18,7 @@ def calculate_vol_risk(df, vol_col='$realized_vol_6', rolling_window=168):
     """
     
     if vol_col not in df.columns:
-        print(f"⚠️  {vol_col} not found, using vol_raw as fallback")
+        print(f" {vol_col} not found, using vol_raw as fallback")
         vol_col = 'vol_raw' if 'vol_raw' in df.columns else '$realized_vol_3'
     
     # Calculate rolling quantiles for normalization
@@ -244,7 +244,7 @@ def replace_current_signal_logic(df_all):
     This function can directly replace the existing logic in your main script
     """
     
-    print("🔄 Replacing current signal logic with Q50-centric regime-aware approach...")
+    print("Replacing current signal logic with Q50-centric regime-aware approach...")
     
     # Generate Q50-centric signals with regime awareness
     df_all = q50_regime_aware_signals(
@@ -266,14 +266,14 @@ def replace_current_signal_logic(df_all):
     # Add prob_up calculation for compatibility (but it's now derived from Q50)
     df_all['prob_up'] = np.where(df_all['q50'] > 0, 0.7, 0.3)  # Simple approximation
     
-    print(f"✅ Q50-centric signals generated:")
+    print(f"Q50-centric signals generated:")
     signal_counts = df_all['side'].value_counts()
     for side, count in signal_counts.items():
         side_name = {1: 'LONG', 0: 'SHORT', -1: 'HOLD'}[side]
         print(f"   {side_name}: {count:,} ({count/len(df_all)*100:.1f}%)")
     
     # Show regime distribution
-    print(f"\n📊 Regime Distribution:")
+    print(f"\nRegime Distribution:")
     print(f"   Low Vol: {df_all['vol_regime_low'].sum():,} ({df_all['vol_regime_low'].mean()*100:.1f}%)")
     print(f"   High Vol: {df_all['vol_regime_high'].sum():,} ({df_all['vol_regime_high'].mean()*100:.1f}%)")
     print(f"   Trending: {df_all['momentum_regime_trending'].sum():,} ({df_all['momentum_regime_trending'].mean()*100:.1f}%)")
@@ -283,7 +283,7 @@ def replace_current_signal_logic(df_all):
     if len(trading_signals) > 0:
         avg_info_ratio = trading_signals['info_ratio'].mean()
         avg_excess_return = trading_signals['excess_return'].mean()
-        print(f"\n🎯 Signal Quality (trading signals only):")
+        print(f"\nSignal Quality (trading signals only):")
         print(f"   Average Info Ratio: {avg_info_ratio:.2f}")
         print(f"   Average Excess Return: {avg_excess_return:.4f}")
         print(f"   Average Confidence: {trading_signals['signal_confidence_q50'].mean():.2f}")
@@ -293,7 +293,7 @@ def replace_current_signal_logic(df_all):
 def main():
     """Test the implementation"""
     
-    print("🎯 Q50-CENTRIC REGIME-AWARE SIGNAL GENERATION")
+    print("Q50-CENTRIC REGIME-AWARE SIGNAL GENERATION")
     print("=" * 60)
     
     # Create synthetic test data
@@ -321,12 +321,12 @@ def main():
         '$realized_vol_6': vol_raw
     })
     
-    print(f"📊 Generated {len(df):,} test observations")
+    print(f"Generated {len(df):,} test observations")
     
     # Test the Q50-centric approach
     df_result = replace_current_signal_logic(df)
     
-    print(f"\n🎉 Implementation ready for integration into main script!")
+    print(f"\nImplementation ready for integration into main script!")
     print(f"   Key new columns: side_q50, signal_strength_q50, signal_confidence_q50")
     print(f"   Regime features: vol_regime_*, momentum_regime_*, regime_*")
     print(f"   Interaction features: q50_x_*, spread_x_*, vol_risk_x_*")

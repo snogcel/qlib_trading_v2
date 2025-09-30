@@ -255,7 +255,7 @@ def main():
     print(f"Timestamp: {datetime.now()}")
     
     if args.mode == "quick":
-        print("\n🚀 Running quick feature test...")
+        print("\nRunning quick feature test...")
         results = run_quick_feature_test()
         
         # Find best performing configuration
@@ -271,7 +271,7 @@ def main():
         
         if best_config:
             print(f"\n🏆 Best performing configuration: {best_config} (Sharpe: {best_score:.3f})")
-            print(f"💡 Recommendation: Run 'python run_feature_optimization.py --mode optimize --config {best_config}' for detailed optimization")
+            print(f" Recommendation: Run 'python run_feature_optimization.py --mode optimize --config {best_config}' for detailed optimization")
     
     elif args.mode == "full":
         print("\n🔬 Running full feature experiment suite...")
@@ -285,14 +285,14 @@ def main():
             print("Error: --config required for optimize mode")
             sys.exit(1)
         
-        print(f"\n🎯 Running targeted optimization for {args.config}...")
+        print(f"\nRunning targeted optimization for {args.config}...")
         results = run_targeted_optimization(args.config)
     
     elif args.mode == "analyze":
-        print("\n📊 Running feature importance analysis...")
+        print("\nRunning feature importance analysis...")
         results = analyze_feature_importance()
     
-    print(f"\n✅ Feature optimization completed at {datetime.now()}")
+    print(f"\nFeature optimization completed at {datetime.now()}")
 
 if __name__ == "__main__":
     main()

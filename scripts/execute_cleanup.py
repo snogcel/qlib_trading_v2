@@ -245,11 +245,11 @@ def main():
     create_folder_structure()
     
     # Phase 2: Move analysis files
-    print("\n📊 Phase 2: Organizing analysis files...")
+    print("\nPhase 2: Organizing analysis files...")
     cleanup_analysis_files()
     
     # Phase 3: Move test files
-    print("\n🧪 Phase 3: Organizing test files...")
+    print("\nPhase 3: Organizing test files...")
     cleanup_test_files()
     
     # Phase 4: Archive research files
@@ -257,7 +257,7 @@ def main():
     cleanup_research_files()
     
     # Phase 5: Move utility files
-    print("\n🔧 Phase 5: Organizing utility files...")
+    print("\nPhase 5: Organizing utility files...")
     cleanup_utility_files()
     
     # Phase 6: Move core files
@@ -268,7 +268,7 @@ def main():
     print("\n📝 Phase 7: Creating .gitignore...")
     create_gitignore()
     
-    print("\n✅ Cleanup completed!")
+    print("\nCleanup completed!")
     print("\n📋 Next steps:")
     print("1. Review moved files and verify functionality")
     print("2. Update import statements in moved files")

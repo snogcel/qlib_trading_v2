@@ -1,6 +1,6 @@
 # Research Synthesis & Implementation Plan
 
-## 🎯 Research Integration Overview
+## Research Integration Overview
 
 Combining insights from two key research papers with your proven 1.327 Sharpe system:
 1. **Quantile Deep Learning for Bitcoin** - Validates your Q50-centric approach
@@ -123,10 +123,10 @@ def uncertainty_aware_position_sizing(q10, q50, q90, base_size=0.1):
 4. Backtest with features and ensure no performance degradation
 
 **Success Criteria**:
-- ✅ Each feature has clear economic explanation
-- ✅ Features correlate with expected market behaviors
-- ✅ Sharpe ratio maintained ≥1.327
-- ✅ Features show predictive value in feature importance analysis
+- Each feature has clear economic explanation
+- Features correlate with expected market behaviors
+- Sharpe ratio maintained ≥1.327
+- Features show predictive value in feature importance analysis
 
 ### Phase 2: Uncertainty-Aware Position Sizing (Week 2)
 
@@ -154,7 +154,7 @@ def uncertainty_aware_position_sizing(q10, q50, q90, base_size=0.1):
 
 ---
 
-## 📊 Feature Integration with Regime System
+## Feature Integration with Regime System
 
 ### Enhanced RegimeFeatureEngine
 
@@ -168,13 +168,13 @@ class EnhancedRegimeFeatureEngine(RegimeFeatureEngine):
         """
         Add temporal features with economic justification
         """
-        print("⏰ Adding economically-justified temporal quantile features...")
+        print("Adding economically-justified temporal quantile features...")
         
         # Validate required columns
         required_cols = ['q10', 'q50', 'q90']
         for col in required_cols:
             if col not in df.columns:
-                print(f"⚠️  Missing required column: {col}")
+                print(f" Missing required column: {col}")
                 return df
         
         # FEATURE 1: Momentum Persistence (Information Flow)
@@ -200,7 +200,7 @@ class EnhancedRegimeFeatureEngine(RegimeFeatureEngine):
         # FEATURE 5: Prediction Confidence (Risk Management)
         df['prediction_confidence'] = 1.0 / (1.0 + df['spread'] / np.maximum(np.abs(df['q50']), 0.001))
         
-        print(f"✅ Added 5 economically-justified temporal features")
+        print(f"Added 5 economically-justified temporal features")
         
         return df
     
@@ -219,7 +219,7 @@ class EnhancedRegimeFeatureEngine(RegimeFeatureEngine):
 
 ---
 
-## 🧪 Validation Framework
+## Validation Framework
 
 ### Economic Logic Tests
 
@@ -261,7 +261,7 @@ def validate_economic_logic(df):
 
 ---
 
-## 🎯 Success Metrics
+## Success Metrics
 
 ### Performance Benchmarks
 - **Sharpe Ratio**: Must maintain ≥1.327

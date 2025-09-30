@@ -1,6 +1,6 @@
 # Trading System Development Principles
 
-## 🎯 Core Philosophy
+## Core Philosophy
 
 Based on professional trading experience, these principles guide our systematic approach to building robust, explainable trading systems.
 
@@ -12,10 +12,10 @@ Based on professional trading experience, these principles guide our systematic 
 > "The most important thing is to have a good thesis. If you can't explain why a strategy works, you are almost certainly trading noise."
 
 **Our Application:**
-- ✅ **Q50-centric approach**: Clear thesis around asymmetric payoff capture
-- ✅ **Variance-based risk**: Economic rationale for using variance over standard deviation
-- ✅ **Regime awareness**: Supply/demand imbalances vary by market conditions
-- ✅ **Magnitude-based thresholds**: Expected value approach to trade selection
+- **Q50-centric approach**: Clear thesis around asymmetric payoff capture
+- **Variance-based risk**: Economic rationale for using variance over standard deviation
+- **Regime awareness**: Supply/demand imbalances vary by market conditions
+- **Magnitude-based thresholds**: Expected value approach to trade selection
 
 ### 2. **Supply & Demand Focus**
 > "Consider supply and demand. If you want to buy, you should have access to information which suggests there will be more demand than supply for whatever period you wish to trade for."
@@ -131,7 +131,7 @@ This resource serves as an excellent complement to our core principles, providin
 
 ---
 
-## 🎯 Implementation Guidelines
+## Implementation Guidelines
 
 ### Feature Development
 1. **Start with economic hypothesis**: Why should this feature predict returns?
@@ -155,31 +155,31 @@ This resource serves as an excellent complement to our core principles, providin
 
 ---
 
-## 🚨 Anti-Patterns to Avoid
+##  Anti-Patterns to Avoid
 
-### ❌ **Complexity Without Purpose**
+### **Complexity Without Purpose**
 - Don't use neural networks just because they're trendy
 - Avoid features that can't be explained economically
 - Don't add complexity that doesn't improve risk-adjusted returns
 
-### ❌ **Data Snooping**
+### **Data Snooping**
 - Don't optimize on the same data you test on
 - Avoid excessive parameter tuning without economic justification
 - Don't cherry-pick time periods that make results look good
 
-### ❌ **Black Box Thinking**
+### **Black Box Thinking**
 - Never deploy a strategy you can't explain
 - Don't trust ML models without understanding what they learn
 - Avoid strategies that work "because the computer says so"
 
-### ❌ **Ignoring Market Microstructure**
+### **Ignoring Market Microstructure**
 - Don't ignore transaction costs and slippage
 - Consider market impact of your trading
 - Account for regime changes and market evolution
 
 ---
 
-## 📊 Success Metrics
+## Success Metrics
 
 ### Primary Metrics
 - **Risk-adjusted returns**: Sharpe ratio > 1.0 consistently
@@ -195,7 +195,7 @@ This resource serves as an excellent complement to our core principles, providin
 
 ---
 
-## 🎯 Next Steps: Spec Development Framework
+## Next Steps: Spec Development Framework
 
 Based on these principles, our next spec should focus on:
 

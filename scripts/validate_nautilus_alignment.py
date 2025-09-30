@@ -23,7 +23,7 @@ if project_root not in sys.path:
 
 def run_alignment_tests():
     """Run the requirements alignment test suite"""
-    print("🧪 Running NautilusTrader Requirements Alignment Tests...")
+    print("Running NautilusTrader Requirements Alignment Tests...")
     
     test_file = "tests/integration/test_nautilus_requirements_alignment.py"
     
@@ -36,17 +36,17 @@ def run_alignment_tests():
             "--color=yes"
         ], capture_output=True, text=True, cwd=project_root)
         
-        print("📊 Test Results:")
+        print("Test Results:")
         print(result.stdout)
         
         if result.stderr:
-            print("⚠️  Test Warnings/Errors:")
+            print(" Test Warnings/Errors:")
             print(result.stderr)
         
         return result.returncode == 0, result.stdout, result.stderr
         
     except Exception as e:
-        print(f"❌ Error running tests: {e}")
+        print(f"Error running tests: {e}")
         return False, "", str(e)
 
 def validate_feature_documentation():
@@ -70,42 +70,42 @@ def validate_feature_documentation():
             missing_files.append(file_path)
     
     if missing_files:
-        print(f"❌ Missing key files: {missing_files}")
+        print(f"Missing key files: {missing_files}")
         return False
     else:
-        print("✅ All key documentation and implementation files present")
+        print("All key documentation and implementation files present")
         return True
 
 def check_parameter_alignment():
     """Check specific parameter alignment between requirements and implementation"""
-    print("\n🔍 Checking Parameter Alignment...")
+    print("\n Checking Parameter Alignment...")
     
     # Key parameters that should be aligned
     alignment_checks = {
         "transaction_cost": {
             "requirements": "0.0005 (5 bps)",
             "implementation": "realistic_transaction_cost = 0.0005",
-            "status": "✅ ALIGNED"
+            "status": "ALIGNED"
         },
         "variance_thresholds": {
             "requirements": "30th/70th/90th percentiles",
             "implementation": "vol_risk.quantile(0.30/0.70/0.90)",
-            "status": "✅ ALIGNED"
+            "status": "ALIGNED"
         },
         "position_size_limits": {
             "requirements": "[0.01, 0.5] (1%-50%)",
             "implementation": "clip(0.01, 0.5)",
-            "status": "✅ ALIGNED"
+            "status": "ALIGNED"
         },
         "data_frequency": {
             "requirements": "60min crypto + daily GDELT",
             "implementation": "freq_config: 60min + day",
-            "status": "✅ ALIGNED"
+            "status": "ALIGNED"
         },
         "signal_logic": {
             "requirements": "side=1 when q50>0 & tradeable, side=0 when q50<0 & tradeable",
             "implementation": "Q50-centric signal generation",
-            "status": "✅ ALIGNED"
+            "status": "ALIGNED"
         }
     }
     
@@ -116,7 +116,7 @@ def check_parameter_alignment():
         print(f"    Requirements: {details['requirements']}")
         print(f"    Implementation: {details['implementation']}")
         
-        if "❌" in status:
+        if "" in status:
             all_aligned = False
     
     return all_aligned
@@ -153,18 +153,18 @@ def generate_alignment_report():
     if tests_passed and docs_valid and params_aligned:
         report["alignment_status"] = "FULLY_ALIGNED"
         report["recommendations"] = [
-            "✅ Requirements are fully aligned with implementation",
-            "✅ Ready to proceed with NautilusTrader POC development",
-            "✅ All key parameters match training pipeline values"
+            "Requirements are fully aligned with implementation",
+            "Ready to proceed with NautilusTrader POC development",
+            "All key parameters match training pipeline values"
         ]
     else:
         report["alignment_status"] = "NEEDS_ATTENTION"
         if not tests_passed:
-            report["recommendations"].append("❌ Fix failing alignment tests")
+            report["recommendations"].append("Fix failing alignment tests")
         if not docs_valid:
-            report["recommendations"].append("❌ Update missing documentation")
+            report["recommendations"].append("Update missing documentation")
         if not params_aligned:
-            report["recommendations"].append("❌ Align parameter mismatches")
+            report["recommendations"].append("Align parameter mismatches")
     
     # Save report
     report_path = os.path.join(project_root, "reports", "nautilus_alignment_report.json")
@@ -179,26 +179,26 @@ def generate_alignment_report():
 def print_summary(report):
     """Print executive summary of alignment status"""
     print("\n" + "="*60)
-    print("🎯 NAUTILUS TRADER POC REQUIREMENTS ALIGNMENT SUMMARY")
+    print("NAUTILUS TRADER POC REQUIREMENTS ALIGNMENT SUMMARY")
     print("="*60)
     
     status = report["alignment_status"]
     if status == "FULLY_ALIGNED":
-        print("✅ STATUS: FULLY ALIGNED")
-        print("🚀 Ready to proceed with NautilusTrader POC development")
+        print("STATUS: FULLY ALIGNED")
+        print("Ready to proceed with NautilusTrader POC development")
     else:
-        print("⚠️  STATUS: NEEDS ATTENTION")
-        print("🔧 Action required before POC development")
+        print(" STATUS: NEEDS ATTENTION")
+        print("Action required before POC development")
     
-    print(f"\n📊 Test Results: {'✅ PASSED' if report['test_results']['passed'] else '❌ FAILED'}")
-    print(f"📚 Documentation: {'✅ VALID' if report['documentation_valid'] else '❌ INVALID'}")
-    print(f"🔧 Parameters: {'✅ ALIGNED' if report['parameters_aligned'] else '❌ MISALIGNED'}")
+    print(f"\nTest Results: {'PASSED' if report['test_results']['passed'] else 'FAILED'}")
+    print(f"📚 Documentation: {'VALID' if report['documentation_valid'] else 'INVALID'}")
+    print(f"Parameters: {'ALIGNED' if report['parameters_aligned'] else 'MISALIGNED'}")
     
     print("\n📋 Recommendations:")
     for rec in report["recommendations"]:
         print(f"  {rec}")
     
-    print("\n🎯 Key Alignment Confirmations:")
+    print("\nKey Alignment Confirmations:")
     print("  • Transaction cost: 5 bps (0.0005)")
     print("  • Variance thresholds: 30th/70th/90th percentiles")
     print("  • Position limits: 1%-50% of capital")
@@ -210,7 +210,7 @@ def print_summary(report):
 
 def main():
     """Main validation workflow"""
-    print("🎯 NautilusTrader POC Requirements Alignment Validation")
+    print("NautilusTrader POC Requirements Alignment Validation")
     print("="*60)
     
     # Generate comprehensive report
@@ -221,10 +221,10 @@ def main():
     
     # Return appropriate exit code
     if report["alignment_status"] == "FULLY_ALIGNED":
-        print("\n✅ Validation completed successfully!")
+        print("\nValidation completed successfully!")
         return 0
     else:
-        print("\n⚠️  Validation identified issues that need attention.")
+        print("\n Validation identified issues that need attention.")
         return 1
 
 if __name__ == "__main__":

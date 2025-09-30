@@ -10,7 +10,7 @@ def create_hybrid_implementation_plan():
     print("VOL_RAW_MOMENTUM HYBRID IMPLEMENTATION PLAN")
     print("=" * 100)
     
-    print("\n🎯 STRATEGY: Keep Both Features + Create Hybrid")
+    print("\nSTRATEGY: Keep Both Features + Create Hybrid")
     
     print("\n📋 IMPLEMENTATION STEPS:")
     
@@ -34,7 +34,7 @@ def create_hybrid_implementation_plan():
     print("   • Weight based on market conditions")
     print("   • Adaptive weighting based on performance")
     
-    print("\n🔧 CODE IMPLEMENTATION:")
+    print("\nCODE IMPLEMENTATION:")
     
     print("\n📁 optimize_feature_loaders.py additions:")
     code_additions = '''
@@ -80,7 +80,7 @@ def add_momentum_features(df):
     '''
     print(compatibility_code)
     
-    print("\n📊 FEATURE COMPARISON MATRIX:")
+    print("\nFEATURE COMPARISON MATRIX:")
     
     features = [
         ["Feature", "Scale", "Interpretability", "Theoretical", "Signal Strength", "Use Case"],
@@ -99,7 +99,7 @@ def add_momentum_features(df):
             print(f"   │ {row[0]:<19} │ {row[1]:<7} │ {row[2]:<15} │ {row[3]:<11} │ {row[4]:<15} │ {row[5]:<23} │")
     print("   └─────────────────────┴─────────┴─────────────────┴─────────────┴─────────────────┴─────────────────────────┘")
     
-    print("\n🧪 TESTING FRAMEWORK:")
+    print("\nTESTING FRAMEWORK:")
     
     testing_code = '''
 def test_momentum_features(df):
@@ -130,7 +130,7 @@ def test_momentum_features(df):
     '''
     print(testing_code)
     
-    print("\n🎯 USAGE RECOMMENDATIONS:")
+    print("\nUSAGE RECOMMENDATIONS:")
     
     usage_scenarios = [
         {
@@ -160,12 +160,12 @@ def test_momentum_features(df):
     ]
     
     for scenario in usage_scenarios:
-        print(f"\n📈 {scenario['scenario'].upper()}:")
+        print(f"\n {scenario['scenario'].upper()}:")
         print(f"   Recommended: {scenario['recommended']}")
         print(f"   Reason: {scenario['reason']}")
         print(f"   Example: {scenario['example']}")
     
-    print("\n🔄 ADAPTIVE WEIGHTING STRATEGY:")
+    print("\nADAPTIVE WEIGHTING STRATEGY:")
     
     adaptive_code = '''
 def adaptive_momentum_ensemble(df, lookback=30):
@@ -193,7 +193,7 @@ def adaptive_momentum_ensemble(df, lookback=30):
     '''
     print(adaptive_code)
     
-    print("\n📊 PERFORMANCE METRICS TO TRACK:")
+    print("\nPERFORMANCE METRICS TO TRACK:")
     
     metrics = [
         "Signal-to-noise ratio (std of signal / std of noise)",
@@ -209,7 +209,7 @@ def adaptive_momentum_ensemble(df, lookback=30):
     for i, metric in enumerate(metrics, 1):
         print(f"   {i}. {metric}")
     
-    print("\n🚀 ROLLOUT PLAN:")
+    print("\nROLLOUT PLAN:")
     
     rollout_phases = [
         {
@@ -255,11 +255,11 @@ def adaptive_momentum_ensemble(df, lookback=30):
     ]
     
     for phase in rollout_phases:
-        print(f"\n🎯 {phase['phase']} ({phase['duration']}):")
+        print(f"\n{phase['phase']} ({phase['duration']}):")
         for task in phase['tasks']:
             print(f"   • {task}")
     
-    print("\n✅ SUCCESS CRITERIA:")
+    print("\nSUCCESS CRITERIA:")
     
     success_criteria = [
         "At least one variant outperforms original vol_raw_momentum",

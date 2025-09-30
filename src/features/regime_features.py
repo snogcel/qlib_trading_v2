@@ -265,13 +265,13 @@ class RegimeFeatureEngine:
         Returns:
             pd.DataFrame: df with economically-justified temporal features added
         """
-        print("⏰ Adding economically-justified temporal quantile features...")
+        print("Adding economically-justified temporal quantile features...")
         
         # Ensure required quantile columns exist
         required_cols = ['q10', 'q50', 'q90']
         for col in required_cols:
             if col not in df.columns:
-                print(f"⚠️  Missing required column: {col}")
+                print(f" Missing required column: {col}")
                 return df
         
         # FEATURE 1: MOMENTUM PERSISTENCE (Information Flow Theory)
@@ -315,7 +315,7 @@ class RegimeFeatureEngine:
             lambda x: (np.sign(x) == np.sign(x.iloc[-1])).mean() if len(x) >= 3 else 0.5
         ).fillna(0.5)
         
-        print(f"✅ Added 6 economically-justified temporal features:")
+        print(f"Added 6 economically-justified temporal features:")
         print(f"   • q50_momentum_3: Information flow persistence")
         print(f"   • spread_momentum_3: Market uncertainty evolution") 
         print(f"   • q50_stability_6: Consensus stability measure")
@@ -332,7 +332,7 @@ class RegimeFeatureEngine:
         Returns:
             pd.DataFrame: Original df with 7 regime features + temporal quantile features
         """
-        print("🏛️  Generating unified regime features...")
+        print("Generating unified regime features...")
         
         # Core regime classifications
         regime_volatility = self.calculate_regime_volatility(df)
@@ -371,7 +371,7 @@ class RegimeFeatureEngine:
         Returns:
             Dict: Validation results with economic rationale
         """
-        print("\n🧪 VALIDATING ECONOMIC LOGIC OF TEMPORAL FEATURES:")
+        print("\nVALIDATING ECONOMIC LOGIC OF TEMPORAL FEATURES:")
         
         validations = []
         
@@ -390,7 +390,7 @@ class RegimeFeatureEngine:
                     'result': correlation > 0.7,
                     'value': f"{correlation:.3f}",
                     'economic_rationale': 'Information flow persistence theory',
-                    'status': '✅' if correlation > 0.7 else '⚠️'
+                    'status': '' if correlation > 0.7 else ''
                 })
         
         # Test 2: Prediction confidence should be lower during high volatility
@@ -406,7 +406,7 @@ class RegimeFeatureEngine:
                 'result': avg_confidence_high_vol < avg_confidence_low_vol,
                 'value': f"High vol: {avg_confidence_high_vol:.3f}, Low vol: {avg_confidence_low_vol:.3f}",
                 'economic_rationale': 'Market microstructure theory',
-                'status': '✅' if avg_confidence_high_vol < avg_confidence_low_vol else '⚠️'
+                'status': '' if avg_confidence_high_vol < avg_confidence_low_vol else ''
             })
         
         # Test 3: Regime persistence should be higher during trending periods
@@ -422,7 +422,7 @@ class RegimeFeatureEngine:
                 'result': avg_persistence_trending > avg_persistence_ranging,
                 'value': f"Trending: {avg_persistence_trending:.1f}, Ranging: {avg_persistence_ranging:.1f}",
                 'economic_rationale': 'Behavioral finance momentum theory',
-                'status': '✅' if avg_persistence_trending > avg_persistence_ranging else '⚠️'
+                'status': '' if avg_persistence_trending > avg_persistence_ranging else ''
             })
         
         # Test 4: Spread momentum should correlate with volatility changes
@@ -439,7 +439,7 @@ class RegimeFeatureEngine:
                     'result': correlation > 0.3,
                     'value': f"{correlation:.3f}",
                     'economic_rationale': 'Market microstructure uncertainty theory',
-                    'status': '✅' if correlation > 0.3 else '⚠️'
+                    'status': '' if correlation > 0.3 else ''
                 })
         
         # Print validation results
@@ -451,7 +451,7 @@ class RegimeFeatureEngine:
         # Summary
         passed = sum(1 for v in validations if v['result'])
         total = len(validations)
-        print(f"\n📊 Economic Logic Validation: {passed}/{total} tests passed")
+        print(f"\nEconomic Logic Validation: {passed}/{total} tests passed")
         
         return {
             'validations': validations,
@@ -462,37 +462,37 @@ class RegimeFeatureEngine:
 
     def _print_regime_summary(self, df: pd.DataFrame):
         """Print summary of regime feature distributions"""
-        print("\n📊 REGIME FEATURE SUMMARY:")
+        print("\nREGIME FEATURE SUMMARY:")
         
         # Volatility regime distribution
         vol_dist = df['regime_volatility'].value_counts(normalize=True) * 100
-        print(f"\n🌪️  Volatility Regimes:")
+        print(f"\n  Volatility Regimes:")
         for regime, pct in vol_dist.items():
             print(f"   {regime}: {pct:.1f}%")
         
         # Sentiment regime distribution
         sent_dist = df['regime_sentiment'].value_counts(normalize=True) * 100
-        print(f"\n😱 Sentiment Regimes:")
+        print(f"\n Sentiment Regimes:")
         for regime, pct in sent_dist.items():
             print(f"   {regime}: {pct:.1f}%")
         
         # Dominance regime distribution
         dom_dist = df['regime_dominance'].value_counts(normalize=True) * 100
-        print(f"\n₿  Dominance Regimes:")
+        print(f"\n  Dominance Regimes:")
         for regime, pct in dom_dist.items():
             print(f"   {regime}: {pct:.1f}%")
         
         # Binary regime statistics
         crisis_pct = df['regime_crisis'].mean() * 100
         opportunity_pct = df['regime_opportunity'].mean() * 100
-        print(f"\n🚨 Crisis periods: {crisis_pct:.2f}%")
-        print(f"🎯 Opportunity periods: {opportunity_pct:.2f}%")
+        print(f"\n Crisis periods: {crisis_pct:.2f}%")
+        print(f"Opportunity periods: {opportunity_pct:.2f}%")
         
         # Stability and multiplier statistics
         stability_mean = df['regime_stability'].mean()
         multiplier_stats = df['regime_multiplier'].describe()
-        print(f"\n📈 Average regime stability: {stability_mean:.3f}")
-        print(f"⚖️  Multiplier range: [{multiplier_stats['min']:.2f}, {multiplier_stats['max']:.2f}]")
+        print(f"\n Average regime stability: {stability_mean:.3f}")
+        print(f"  Multiplier range: [{multiplier_stats['min']:.2f}, {multiplier_stats['max']:.2f}]")
         print(f"   Average multiplier: {multiplier_stats['mean']:.2f}")
         
         # Temporal feature summary if they exist
@@ -501,7 +501,7 @@ class RegimeFeatureEngine:
         
         existing_temporal = [f for f in temporal_features if f in df.columns]
         if existing_temporal:
-            print(f"\n⏰ Temporal Features Summary:")
+            print(f"\nTemporal Features Summary:")
             for feature in existing_temporal:
                 stats = df[feature].describe()
                 print(f"   {feature}: mean={stats['mean']:.4f}, std={stats['std']:.4f}")
@@ -545,7 +545,7 @@ def get_regime_multiplier(df: pd.DataFrame, **kwargs) -> pd.Series:
 
 if __name__ == "__main__":
     # Example usage and testing
-    print("🧪 Testing Regime Feature Engine...")
+    print("Testing Regime Feature Engine...")
     
     # Create sample data
     np.random.seed(42)
@@ -562,5 +562,5 @@ if __name__ == "__main__":
     engine = RegimeFeatureEngine()
     result = engine.generate_all_regime_features(sample_data)
     
-    print(f"\n✅ Generated {len([col for col in result.columns if col.startswith('regime_')])} regime features")
-    print("🎉 Regime Feature Engine ready for production!")
+    print(f"\nGenerated {len([col for col in result.columns if col.startswith('regime_')])} regime features")
+    print("Regime Feature Engine ready for production!")

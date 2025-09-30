@@ -13,12 +13,12 @@ def create_impact_assessment():
     print("VOLATILITY FEATURES IMPACT ASSESSMENT & ACTION PLAN")
     print("=" * 100)
     
-    print("\n🔍 AFFECTED FEATURES:")
+    print("\n AFFECTED FEATURES:")
     print("1. vol_raw_momentum - Volatility momentum calculation")
     print("2. vol_risk - Volatility risk measure") 
     print("3. vol_raw_decile - Volatility decile ranking")
     
-    print("\n📊 SCALE & CORRELATION CHANGES:")
+    print("\nSCALE & CORRELATION CHANGES:")
     print("┌─────────────────┬──────────────┬──────────────┬──────────────┬──────────────┐")
     print("│ Feature         │ Old Scale    │ New Scale    │ Scale Ratio  │ Correlation  │")
     print("├─────────────────┼──────────────┼──────────────┼──────────────┼──────────────┤")
@@ -27,7 +27,7 @@ def create_impact_assessment():
     print("│ vol_raw_decile  │ 0-9          │ 0-0.056      │ 175x         │ 0.56 (MOD)   │")
     print("└─────────────────┴──────────────┴──────────────┴──────────────┴──────────────┘")
     
-    print("\n🎯 AFFECTED FILES & USAGE:")
+    print("\nAFFECTED FILES & USAGE:")
     
     affected_files = {
         'ppo_sweep_optuna_tuned_v2.py': {
@@ -63,7 +63,7 @@ def create_impact_assessment():
             for usage in usages:
                 print(f"     - {usage}")
     
-    print("\n⚠️  CRITICAL IMPACTS:")
+    print("\n CRITICAL IMPACTS:")
     
     print("\n1. MODEL PERFORMANCE:")
     print("   • All models using these features will have different inputs")
@@ -85,13 +85,13 @@ def create_impact_assessment():
     print("   • Features used in dropna() operations (line 1123)")
     print("   • Different missing value patterns may affect dataset size")
     
-    print("\n🚨 IMMEDIATE RISKS:")
+    print("\n IMMEDIATE RISKS:")
     print("   • Trading strategies may fail catastrophically")
     print("   • Position sizes may be completely wrong")
     print("   • Risk management may not work as expected")
     print("   • Backtests may show false performance")
     
-    print("\n✅ ACTION PLAN:")
+    print("\nACTION PLAN:")
     
     print("\n📋 PHASE 1: IMMEDIATE FIXES (Priority: CRITICAL)")
     print("1. Update all hardcoded thresholds and quantiles")
@@ -113,7 +113,7 @@ def create_impact_assessment():
     print("3. Explore different volatility windows")
     print("4. Add new volatility-based features")
     
-    print("\n🔧 SPECIFIC CODE CHANGES NEEDED:")
+    print("\nSPECIFIC CODE CHANGES NEEDED:")
     
     changes_needed = [
         {
@@ -145,7 +145,7 @@ def create_impact_assessment():
         for item in change['changes']:
             print(f"   • {item}")
     
-    print("\n🧪 TESTING CHECKLIST:")
+    print("\nTESTING CHECKLIST:")
     test_items = [
         "✓ Load data with new features",
         "✓ Verify feature scales are as expected", 
@@ -162,14 +162,14 @@ def create_impact_assessment():
     for item in test_items:
         print(f"   {item}")
     
-    print("\n📈 SUCCESS METRICS:")
+    print("\n SUCCESS METRICS:")
     print("   • Backtest performance >= old implementation")
     print("   • Position sizes are reasonable (not extreme)")
     print("   • Regime detection accuracy >= 80%")
     print("   • No runtime errors in production")
     print("   • Feature importance rankings are logical")
     
-    print("\n⏰ TIMELINE:")
+    print("\nTIMELINE:")
     print("   • Phase 1 (Critical): 1-2 days")
     print("   • Phase 2 (Validation): 3-5 days") 
     print("   • Phase 3 (Optimization): 1-2 weeks")

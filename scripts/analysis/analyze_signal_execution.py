@@ -27,7 +27,7 @@ def load_signal_analysis(results_dir: str = "./hummingbot_backtest_results"):
 def analyze_signal_execution_patterns(signal_df: pd.DataFrame):
     """Analyze patterns in signal generation vs execution"""
     
-    print("🔍 SIGNAL EXECUTION ANALYSIS")
+    print(" SIGNAL EXECUTION ANALYSIS")
     print("=" * 60)
     
     # Overall execution rate
@@ -41,7 +41,7 @@ def analyze_signal_execution_patterns(signal_df: pd.DataFrame):
     print()
     
     # Execution rate by signal direction
-    print("📊 EXECUTION RATE BY SIGNAL DIRECTION:")
+    print("EXECUTION RATE BY SIGNAL DIRECTION:")
     direction_analysis = signal_df.groupby('signal_direction').agg({
         'trade_executed': ['count', 'sum', 'mean'],
         'target_pct': 'mean',
@@ -55,7 +55,7 @@ def analyze_signal_execution_patterns(signal_df: pd.DataFrame):
     print()
     
     # Execution rate by confidence level
-    print("📊 EXECUTION RATE BY CONFIDENCE BUCKET:")
+    print("EXECUTION RATE BY CONFIDENCE BUCKET:")
     confidence_analysis = signal_df.groupby('confidence_bucket').agg({
         'trade_executed': ['count', 'sum', 'mean'],
         'target_pct': 'mean',
@@ -68,7 +68,7 @@ def analyze_signal_execution_patterns(signal_df: pd.DataFrame):
     print()
     
     # Threshold analysis
-    print("📊 THRESHOLD ANALYSIS:")
+    print("THRESHOLD ANALYSIS:")
     threshold_analysis = signal_df.groupby('signal_above_thresh').agg({
         'trade_executed': ['count', 'sum', 'mean'],
         'signal_strength': 'mean',
@@ -85,14 +85,14 @@ def analyze_signal_execution_patterns(signal_df: pd.DataFrame):
 def analyze_hold_patterns(signal_df: pd.DataFrame):
     """Analyze why signals result in holds vs trades"""
     
-    print("🔍 HOLD PATTERN ANALYSIS")
+    print(" HOLD PATTERN ANALYSIS")
     print("=" * 60)
     
     # Hold reason distribution
     hold_data = signal_df[signal_df['action_taken'] == 'HOLD']
     
     if len(hold_data) > 0:
-        print("📊 HOLD REASON DISTRIBUTION:")
+        print("HOLD REASON DISTRIBUTION:")
         hold_reasons = hold_data['hold_reason'].value_counts()
         for reason, count in hold_reasons.items():
             pct = count / len(hold_data) * 100
@@ -100,7 +100,7 @@ def analyze_hold_patterns(signal_df: pd.DataFrame):
         print()
         
         # Hold characteristics by reason
-        print("📊 HOLD CHARACTERISTICS BY REASON:")
+        print("HOLD CHARACTERISTICS BY REASON:")
         hold_analysis = hold_data.groupby('hold_reason').agg({
             'signal_strength': 'mean',
             'confidence': 'mean',
@@ -117,7 +117,7 @@ def analyze_hold_patterns(signal_df: pd.DataFrame):
 def analyze_signal_quality_vs_execution(signal_df: pd.DataFrame):
     """Analyze relationship between signal quality and execution"""
     
-    print("🔍 SIGNAL QUALITY VS EXECUTION ANALYSIS")
+    print(" SIGNAL QUALITY VS EXECUTION ANALYSIS")
     print("=" * 60)
     
     # Create signal quality score buckets
@@ -135,18 +135,18 @@ def analyze_signal_quality_vs_execution(signal_df: pd.DataFrame):
     quality_analysis.columns = ['Total_Signals', 'Executed', 'Execution_Rate', 
                                'Avg_Strength', 'Avg_Confidence', 'Avg_Prob_Dir', 'Avg_Target_Pct']
     
-    print("📊 EXECUTION RATE BY SIGNAL QUALITY:")
+    print("EXECUTION RATE BY SIGNAL QUALITY:")
     print(quality_analysis)
     print()
 
 def analyze_time_patterns(signal_df: pd.DataFrame):
     """Analyze time-based patterns in signal execution"""
     
-    print("🔍 TIME-BASED EXECUTION PATTERNS")
+    print(" TIME-BASED EXECUTION PATTERNS")
     print("=" * 60)
     
     # Hour of day analysis
-    print("📊 EXECUTION RATE BY HOUR:")
+    print("EXECUTION RATE BY HOUR:")
     hourly_analysis = signal_df.groupby('hour').agg({
         'trade_executed': ['count', 'sum', 'mean'],
         'signal_strength': 'mean'
@@ -157,7 +157,7 @@ def analyze_time_patterns(signal_df: pd.DataFrame):
     print()
     
     # Day of week analysis
-    print("📊 EXECUTION RATE BY DAY OF WEEK:")
+    print("EXECUTION RATE BY DAY OF WEEK:")
     daily_analysis = signal_df.groupby('day_of_week').agg({
         'trade_executed': ['count', 'sum', 'mean'],
         'signal_strength': 'mean'
@@ -170,11 +170,11 @@ def analyze_time_patterns(signal_df: pd.DataFrame):
 def create_pivot_examples(signal_df: pd.DataFrame):
     """Create example pivot tables for analysis"""
     
-    print("🔍 PIVOT TABLE EXAMPLES")
+    print(" PIVOT TABLE EXAMPLES")
     print("=" * 60)
     
     # Example 1: Signal Direction vs Confidence vs Execution Rate
-    print("📊 PIVOT: Signal Direction vs Confidence Bucket (Execution Rate)")
+    print("PIVOT: Signal Direction vs Confidence Bucket (Execution Rate)")
     pivot1 = pd.pivot_table(signal_df, 
                            values='trade_executed', 
                            index='signal_direction', 
@@ -184,7 +184,7 @@ def create_pivot_examples(signal_df: pd.DataFrame):
     print()
     
     # Example 2: Time vs Signal Quality vs Execution
-    print("📊 PIVOT: Hour vs Signal Quality (Execution Rate)")
+    print("PIVOT: Hour vs Signal Quality (Execution Rate)")
     pivot2 = pd.pivot_table(signal_df, 
                            values='trade_executed', 
                            index='hour', 
@@ -194,7 +194,7 @@ def create_pivot_examples(signal_df: pd.DataFrame):
     print()
     
     # Example 3: Threshold vs Direction vs Average Target %
-    print("📊 PIVOT: Above Threshold vs Signal Direction (Average Target %)")
+    print("PIVOT: Above Threshold vs Signal Direction (Average Target %)")
     pivot3 = pd.pivot_table(signal_df, 
                            values='target_pct', 
                            index='signal_above_thresh', 
@@ -207,7 +207,7 @@ def create_pivot_examples(signal_df: pd.DataFrame):
 def generate_insights(signal_df: pd.DataFrame, summary_stats: dict):
     """Generate key insights from the analysis"""
     
-    print("💡 KEY INSIGHTS")
+    print(" KEY INSIGHTS")
     print("=" * 60)
     
     insights = []
@@ -215,9 +215,9 @@ def generate_insights(signal_df: pd.DataFrame, summary_stats: dict):
     # Execution rate insights
     overall_execution = signal_df['trade_executed'].mean()
     if overall_execution < 0.3:
-        insights.append(f"⚠️  Low overall execution rate ({overall_execution:.1%}) - many signals not resulting in trades")
+        insights.append(f" Low overall execution rate ({overall_execution:.1%}) - many signals not resulting in trades")
     elif overall_execution > 0.7:
-        insights.append(f"✅ High execution rate ({overall_execution:.1%}) - most signals result in trades")
+        insights.append(f"High execution rate ({overall_execution:.1%}) - most signals result in trades")
     
     # Direction bias insights
     direction_rates = signal_df.groupby('signal_direction')['trade_executed'].mean()
@@ -226,19 +226,19 @@ def generate_insights(signal_df: pd.DataFrame, summary_stats: dict):
         short_rate = direction_rates['SHORT']
         if abs(long_rate - short_rate) > 0.2:
             bias_direction = "LONG" if long_rate > short_rate else "SHORT"
-            insights.append(f"📈 Execution bias toward {bias_direction} signals ({long_rate:.1%} vs {short_rate:.1%})")
+            insights.append(f" Execution bias toward {bias_direction} signals ({long_rate:.1%} vs {short_rate:.1%})")
     
     # Confidence insights
     high_conf = signal_df[signal_df['high_confidence'] == True]['trade_executed'].mean()
     low_conf = signal_df[signal_df['high_confidence'] == False]['trade_executed'].mean()
     if high_conf - low_conf > 0.1:
-        insights.append(f"🎯 High confidence signals execute more often ({high_conf:.1%} vs {low_conf:.1%})")
+        insights.append(f"High confidence signals execute more often ({high_conf:.1%} vs {low_conf:.1%})")
     
     # Threshold insights
     above_thresh = signal_df[signal_df['above_threshold'] == True]['trade_executed'].mean()
     below_thresh = signal_df[signal_df['above_threshold'] == False]['trade_executed'].mean()
     if above_thresh - below_thresh > 0.1:
-        insights.append(f"🎯 Above-threshold signals execute more often ({above_thresh:.1%} vs {below_thresh:.1%})")
+        insights.append(f"Above-threshold signals execute more often ({above_thresh:.1%} vs {below_thresh:.1%})")
     
     # Hold pattern insights
     hold_data = signal_df[signal_df['action_taken'] == 'HOLD']
@@ -270,7 +270,7 @@ def main():
         # Load data
         signal_df, summary_stats = load_signal_analysis()
         
-        print(f"📊 Loaded {len(signal_df):,} signal observations for analysis")
+        print(f"Loaded {len(signal_df):,} signal observations for analysis")
         print(f"📅 Date range: {signal_df['timestamp'].min()} to {signal_df['timestamp'].max()}")
         print()
         
@@ -282,14 +282,14 @@ def main():
         create_pivot_examples(signal_df)
         generate_insights(signal_df, summary_stats)
         
-        print("🎉 Analysis complete! Use the CSV files for detailed pivot table analysis in Excel/Google Sheets.")
+        print("Analysis complete! Use the CSV files for detailed pivot table analysis in Excel/Google Sheets.")
         
     except FileNotFoundError as e:
-        print(f"❌ Error: Could not find signal analysis files. Run a backtest first.")
+        print(f"Error: Could not find signal analysis files. Run a backtest first.")
         print(f"   Expected files in: ./hummingbot_backtest_results/")
         print(f"   Missing: {e}")
     except Exception as e:
-        print(f"❌ Error during analysis: {e}")
+        print(f"Error during analysis: {e}")
 
 if __name__ == "__main__":
     main()

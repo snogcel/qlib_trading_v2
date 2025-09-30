@@ -29,7 +29,7 @@ def create_sample_test_results() -> list:
     Returns:
         List of sample TestResult objects
     """
-    print("📊 Creating sample test results...")
+    print("Creating sample test results...")
     
     # Sample features and test types
     features = [
@@ -107,14 +107,14 @@ def create_sample_test_results() -> list:
         
         results.append(result)
     
-    print(f"✅ Created {len(results)} sample test results")
+    print(f"Created {len(results)} sample test results")
     return results
 
 
 def demo_basic_reporter():
     """Demonstrate basic reporter functionality."""
     print("\n" + "="*60)
-    print("🔍 DEMO: Basic Reporter Functionality")
+    print(" DEMO: Basic Reporter Functionality")
     print("="*60)
     
     # Create sample results
@@ -125,7 +125,7 @@ def demo_basic_reporter():
     
     print("\n📋 Generating summary report...")
     summary_report = reporter.generate_summary_report(results)
-    print("✅ Summary report generated")
+    print("Summary report generated")
     
     # Save summary report
     output_dir = Path("test_results/reports")
@@ -144,7 +144,7 @@ def demo_basic_reporter():
         print(line)
     print("... (truncated)")
     
-    print("\n📊 Generating coverage report...")
+    print("\nGenerating coverage report...")
     coverage_report = reporter.generate_coverage_report(results)
     
     coverage_path = output_dir / "coverage_report.md"
@@ -153,7 +153,7 @@ def demo_basic_reporter():
     print(f"💾 Coverage report saved to: {coverage_path}")
     
     # Generate feature-specific reports
-    print("\n🎯 Generating feature-specific reports...")
+    print("\nGenerating feature-specific reports...")
     features = list(set(r.test_case.feature_name for r in results))
     
     for feature in features[:3]:  # Demo first 3 features
@@ -164,7 +164,7 @@ def demo_basic_reporter():
             f.write(feature_report)
         print(f"💾 Feature report for {feature} saved to: {feature_path}")
     
-    print("\n✅ Basic reporter demo completed!")
+    print("\nBasic reporter demo completed!")
     return results
 
 
@@ -188,13 +188,13 @@ def demo_html_reporter(results):
     html_reporter.export_to_html(summary_report, html_path)
     print(f"💾 HTML summary report saved to: {html_path}")
     
-    print("\n📊 Generating interactive dashboard...")
+    print("\nGenerating interactive dashboard...")
     dashboard_path = output_dir / "dashboard.html"
     html_reporter.generate_interactive_dashboard(results, dashboard_path)
     print(f"💾 Interactive dashboard saved to: {dashboard_path}")
     
     # Generate feature HTML reports
-    print("\n🎯 Generating HTML feature reports...")
+    print("\nGenerating HTML feature reports...")
     features = list(set(r.test_case.feature_name for r in results))
     
     for feature in features[:2]:  # Demo first 2 features
@@ -204,7 +204,7 @@ def demo_html_reporter(results):
         html_reporter.export_to_html(feature_report, feature_html_path)
         print(f"💾 HTML feature report for {feature} saved to: {feature_html_path}")
     
-    print("\n✅ HTML reporter demo completed!")
+    print("\nHTML reporter demo completed!")
 
 
 def demo_report_templates(results):
@@ -236,7 +236,7 @@ def demo_report_templates(results):
         print(line)
     print("... (truncated)")
     
-    print("\n🎯 Generating templated feature reports...")
+    print("\nGenerating templated feature reports...")
     features = list(set(r.test_case.feature_name for r in results))
     
     for feature in features[:2]:  # Demo first 2 features
@@ -263,7 +263,7 @@ def demo_report_templates(results):
         f.write(html_exec_summary)
     print(f"💾 HTML executive summary saved to: {html_exec_path}")
     
-    print("\n✅ Report templates demo completed!")
+    print("\nReport templates demo completed!")
 
 
 def demo_export_formats(results):
@@ -302,18 +302,18 @@ def demo_export_formats(results):
     html_reporter.export_to_json(results, results_json_path)
     print(f"💾 Test results JSON saved to: {results_json_path}")
     
-    print("\n✅ Export formats demo completed!")
+    print("\nExport formats demo completed!")
 
 
 def demo_advanced_features(results):
     """Demonstrate advanced reporting features."""
     print("\n" + "="*60)
-    print("🚀 DEMO: Advanced Reporting Features")
+    print("DEMO: Advanced Reporting Features")
     print("="*60)
     
     reporter = BasicReporter()
     
-    print("\n📊 Generating executive summary...")
+    print("\nGenerating executive summary...")
     exec_summary = reporter.generate_executive_summary(results)
     
     output_dir = Path("test_results/reports/advanced")
@@ -324,7 +324,7 @@ def demo_advanced_features(results):
         f.write(exec_summary)
     print(f"💾 Executive summary saved to: {exec_path}")
     
-    print("\n🔍 Generating failure analysis...")
+    print("\n Generating failure analysis...")
     failure_analysis = reporter.generate_failure_analysis(results)
     
     failure_path = output_dir / "failure_analysis.md"
@@ -332,7 +332,7 @@ def demo_advanced_features(results):
         f.write(failure_analysis)
     print(f"💾 Failure analysis saved to: {failure_path}")
     
-    print("\n📈 Generating regime analysis...")
+    print("\n Generating regime analysis...")
     regime_analysis = reporter.generate_regime_analysis(results)
     
     regime_path = output_dir / "regime_analysis.md"
@@ -341,18 +341,18 @@ def demo_advanced_features(results):
     print(f"💾 Regime analysis saved to: {regime_path}")
     
     # Show some statistics
-    print("\n📊 Report Statistics:")
+    print("\nReport Statistics:")
     print(f"- Total results analyzed: {len(results)}")
     print(f"- Unique features: {len(set(r.test_case.feature_name for r in results))}")
     print(f"- Test types covered: {len(set(r.test_case.test_type for r in results))}")
     print(f"- Success rate: {(sum(1 for r in results if r.passed) / len(results)) * 100:.1f}%")
     
-    print("\n✅ Advanced features demo completed!")
+    print("\nAdvanced features demo completed!")
 
 
 def main():
     """Run the complete report generation demo."""
-    print("🧪 Feature Test Coverage - Report Generation Demo")
+    print("Feature Test Coverage - Report Generation Demo")
     print("=" * 60)
     print("This demo showcases the basic report generation functionality")
     print("including summary reports, feature reports, HTML export, and templating.")
@@ -375,7 +375,7 @@ def main():
         demo_advanced_features(results)
         
         print("\n" + "="*60)
-        print("🎉 DEMO COMPLETED SUCCESSFULLY!")
+        print("DEMO COMPLETED SUCCESSFULLY!")
         print("="*60)
         print("\n📁 Generated reports can be found in:")
         print("   - test_results/reports/")
@@ -383,10 +383,10 @@ def main():
         print("   - test_results/reports/templates/")
         print("   - test_results/reports/exports/")
         print("   - test_results/reports/advanced/")
-        print("\n💡 Open the HTML files in a web browser to see interactive reports!")
+        print("\n Open the HTML files in a web browser to see interactive reports!")
         
     except Exception as e:
-        print(f"\n❌ Demo failed with error: {e}")
+        print(f"\nDemo failed with error: {e}")
         import traceback
         traceback.print_exc()
         return 1

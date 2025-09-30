@@ -1,6 +1,6 @@
 # Project Cleanup & Organization Plan
 
-## 🎯 Overview
+## Overview
 Organize the project for clean development, efficient Git management, and future scalability.
 
 ---
@@ -185,7 +185,7 @@ mkdir -p temp/                                  # Temporary files (gitignored)
 
 ---
 
-## 🔄 File REORGANIZATION Plan
+## File REORGANIZATION Plan
 
 ### Move to src/ Structure
 ```bash
@@ -298,7 +298,7 @@ mkdir -p scripts/{analysis,deployment,maintenance}
 
 ---
 
-## 🚀 RL Order Execution System Integration
+## RL Order Execution System Integration
 
 ### Key Components to Preserve
 ```bash
@@ -358,7 +358,7 @@ custom_training_vessel.py                      # Training container
 
 ---
 
-## 🎯 Benefits of This Organization
+## Benefits of This Organization
 
 ### Development Efficiency
 - **Clear separation of concerns**: Core code vs tests vs analysis
@@ -382,7 +382,7 @@ custom_training_vessel.py                      # Training container
 
 ---
 
-## 🚨 Pre-Cleanup Checklist
+##  Pre-Cleanup Checklist
 
 ### Backup Strategy
 - [ ] Create full project backup

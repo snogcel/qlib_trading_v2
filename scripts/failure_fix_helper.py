@@ -39,17 +39,17 @@ class FailureFixHelper:
             # Find the most recent analysis file
             analysis_files = list(self.analysis_dir.glob("failure_analysis_data_*.json"))
             if not analysis_files:
-                print("❌ No analysis data files found. Run detailed_failure_analysis.py first.")
+                print("No analysis data files found. Run detailed_failure_analysis.py first.")
                 return None
             
             latest_file = max(analysis_files, key=lambda f: f.stat().st_mtime)
-            print(f"📊 Loading analysis from: {latest_file}")
+            print(f"Loading analysis from: {latest_file}")
             
             with open(latest_file, 'r', encoding='utf-8') as f:
                 return json.load(f)
         
         except Exception as e:
-            print(f"❌ Error loading analysis data: {e}")
+            print(f"Error loading analysis data: {e}")
             return None
     
     def generate_fix_templates(self, analysis: Dict[str, Any]) -> None:
@@ -59,7 +59,7 @@ class FailureFixHelper:
         Args:
             analysis: Analysis data from detailed failure analysis
         """
-        print("🔧 Generating fix templates...")
+        print("Generating fix templates...")
         
         # Generate feature-specific fix templates
         for feature, feature_data in analysis['feature_analysis'].items():
@@ -74,7 +74,7 @@ class FailureFixHelper:
         # Generate test fix templates
         self._generate_test_fix_templates(analysis)
         
-        print(f"✅ Fix templates generated in: {self.fixes_dir}")
+        print(f"Fix templates generated in: {self.fixes_dir}")
     
     def _generate_feature_fix_template(self, feature: str, feature_data: Dict[str, Any]) -> None:
         """Generate fix template for a specific feature."""
@@ -425,7 +425,7 @@ class FailureFixHelper:
             summary = feature_data['summary']
             current_rate = summary['success_rate']
             target_rate = 100 if feature == "btc_dom" else 80
-            status = "🔴 Critical" if "CRITICAL" in summary['status'] else "⚠️ Warning"
+            status = "🔴 Critical" if "CRITICAL" in summary['status'] else "Warning"
             
             tracking_lines.append(
                 f"| {feature} | {current_rate:.1f}% | {target_rate}% | {status} | TBD | TBD | {summary['failed_tests']} failures |"
@@ -482,7 +482,7 @@ class FailureFixHelper:
         with open(tracking_path, 'w', encoding='utf-8') as f:
             f.write('\n'.join(tracking_lines))
         
-        print(f"📊 Generated progress tracking sheet: {tracking_path}")
+        print(f"Generated progress tracking sheet: {tracking_path}")
     
     def create_fix_scripts(self, analysis: Dict[str, Any]) -> None:
         """Create helper scripts for implementing fixes."""
@@ -497,7 +497,7 @@ class FailureFixHelper:
         # Create test validation script
         self._create_test_validation_script()
         
-        print("✅ Fix helper scripts created")
+        print("Fix helper scripts created")
     
     def _create_btc_dom_diagnostic_script(self) -> None:
         """Create diagnostic script for btc_dom issues."""
@@ -516,7 +516,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 def diagnose_btc_dom():
     """Run comprehensive btc_dom diagnostics."""
-    print("🔍 BTC Dominance Diagnostic Report")
+    print(" BTC Dominance Diagnostic Report")
     print("=" * 50)
     
     # TODO: Add actual btc_dom diagnostic logic
@@ -548,7 +548,7 @@ if __name__ == "__main__":
         with open(script_path, 'w', encoding='utf-8') as f:
             f.write(script_content)
         
-        print(f"🔧 Created btc_dom diagnostic script: {script_path}")
+        print(f"Created btc_dom diagnostic script: {script_path}")
     
     def _create_performance_profiling_script(self) -> None:
         """Create performance profiling script."""
@@ -577,7 +577,7 @@ def profile_feature_performance(feature_name):
     print("3. Bottleneck identification...")
     print("4. Resource utilization check...")
     
-    print(f"\\n📊 Performance Report for {feature_name}:")
+    print(f"\\nPerformance Report for {feature_name}:")
     print("   - Execution time: TBD")
     print("   - Memory usage: TBD")
     print("   - CPU utilization: TBD")
@@ -621,7 +621,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 def validate_test_fixes():
     """Validate that test fixes are working correctly."""
-    print("🧪 Test Validation Report")
+    print("Test Validation Report")
     print("=" * 50)
     
     # TODO: Add actual test validation logic
@@ -635,7 +635,7 @@ def validate_test_fixes():
     print("   - regime_multiplier: TBD")
     print("   - vol_risk: TBD")
     
-    print("\\n✅ Validation Summary:")
+    print("\\nValidation Summary:")
     print("   - Tests passing: TBD")
     print("   - Regressions detected: TBD")
     print("   - Success criteria met: TBD")
@@ -648,12 +648,12 @@ if __name__ == "__main__":
         with open(script_path, 'w', encoding='utf-8') as f:
             f.write(script_content)
         
-        print(f"🧪 Created test validation script: {script_path}")
+        print(f"Created test validation script: {script_path}")
 
 
 def main():
     """Run the failure fix helper."""
-    print("🔧 Failure Fix Helper")
+    print("Failure Fix Helper")
     print("=" * 50)
     print("This script generates fix templates and helper tools based on failure analysis.")
     print()
@@ -676,7 +676,7 @@ def main():
         helper.create_fix_scripts(analysis)
         
         print("\n" + "=" * 50)
-        print("🎯 FIX HELPER SUMMARY")
+        print("FIX HELPER SUMMARY")
         print("=" * 50)
         print(f"📁 All fix resources generated in: {helper.fixes_dir}")
         print("\n📝 Generated Resources:")
@@ -686,7 +686,7 @@ def main():
         print("   - Progress tracking sheet")
         print("   - Diagnostic and helper scripts")
         
-        print("\n🚀 Next Steps:")
+        print("\nNext Steps:")
         print("   1. Review generated fix templates")
         print("   2. Assign team members to specific features")
         print("   3. Begin Phase 1 critical fixes (btc_dom)")
@@ -694,7 +694,7 @@ def main():
         print("   5. Track progress using the tracking sheet")
         
     except Exception as e:
-        print(f"❌ Fix helper failed with error: {e}")
+        print(f"Fix helper failed with error: {e}")
         import traceback
         traceback.print_exc()
         return 1

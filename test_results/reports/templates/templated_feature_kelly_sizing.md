@@ -4,31 +4,31 @@
 **Feature Category:** Risk & Volatility
 **Priority Level:** Medium
 
-## 📊 Feature Overview
+## Feature Overview
 
 - **Total Tests:** 2
 - **Success Rate:** 50.0%
 - **Average Confidence:** 0.70
 - **Average Execution Time:** 1.11s
 
-## 🧪 Test Results Summary
+## Test Results Summary
 
 | Test Type | Total | Passed | Failed | Success Rate |
 |-----------|-------|--------|--------|--------------|
 | Performance | 1 | 1 | 0 | 100.0% |
 | Failure Mode | 1 | 0 | 1 | 0.0% |
 
-## ✅ Passed Tests
+## Passed Tests
 
-### ✅ Performance
+### Performance
 - **Confidence:** uncertain (0.86)
 - **Execution Time:** 1.95s
 - **Analysis:** Successful validation of kelly_sizing
 
 
-## ❌ Failed Tests
+## Failed Tests
 
-### ❌ Failure Mode
+### Failure Mode
 - **Status:** error
 - **Priority:** medium
 - **Error:** Error in kelly_sizing test
@@ -38,7 +38,7 @@
   - Update failure_mode test criteria
 
 
-## 📈 Performance Analysis
+##  Performance Analysis
 
 ### Accuracy
 - **Average:** 0.932
@@ -53,11 +53,11 @@
 - **Range:** 0.671 - 0.671
 
 
-## 🔍 Economic Hypothesis Validation
+##  Economic Hypothesis Validation
 
 No economic hypothesis tests found for this feature.
 
-## ⚠️ Risk Assessment
+## Risk Assessment
 
 - **High Risk Issues:** 0
 - **Medium Risk Issues:** 2
@@ -65,7 +65,7 @@ No economic hypothesis tests found for this feature.
 
 **Overall Risk Level:** LOW - Acceptable risk
 
-## 💡 Recommendations
+##  Recommendations
 
 1. Review kelly_sizing implementation
 2. Update failure_mode test criteria

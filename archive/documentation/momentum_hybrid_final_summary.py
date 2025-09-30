@@ -10,9 +10,9 @@ def create_final_summary():
     print("MOMENTUM HYBRID IMPLEMENTATION - FINAL SUMMARY")
     print("=" * 100)
     
-    print("\n🎯 IMPLEMENTATION COMPLETED:")
+    print("\nIMPLEMENTATION COMPLETED:")
     
-    print("\n✅ FILES MODIFIED:")
+    print("\nFILES MODIFIED:")
     files_modified = [
         {
             "file": "optimize_feature_loaders.py",
@@ -46,7 +46,7 @@ def create_final_summary():
         for change in file_info['changes']:
             print(f"   • {change}")
     
-    print("\n📊 FEATURE VARIANTS CREATED:")
+    print("\nFEATURE VARIANTS CREATED:")
     
     features = [
         {
@@ -88,7 +88,7 @@ def create_final_summary():
     
     print("   └─────────────────────┴─────────────────────────────────────┴─────────┴─────────────────────────────┴─────────────────────────────┘")
     
-    print("\n🔍 CORRELATION ANALYSIS RESULTS:")
+    print("\n CORRELATION ANALYSIS RESULTS:")
     
     correlations = [
         ("vol_momentum_old", "vol_momentum_new", 0.10, "Different signals - both valuable"),
@@ -100,7 +100,7 @@ def create_final_summary():
     for f1, f2, corr, interpretation in correlations:
         print(f"   • {f1} vs {f2}: {corr:.2f} - {interpretation}")
     
-    print("\n🎯 USAGE RECOMMENDATIONS:")
+    print("\nUSAGE RECOMMENDATIONS:")
     
     scenarios = [
         {
@@ -136,12 +136,12 @@ def create_final_summary():
     ]
     
     for scenario in scenarios:
-        print(f"\n📈 {scenario['scenario'].upper()}:")
+        print(f"\n {scenario['scenario'].upper()}:")
         print(f"   Recommended: {scenario['recommended']}")
         print(f"   Reason: {scenario['reason']}")
         print(f"   Example: {scenario['example']}")
     
-    print("\n🧪 TESTING RESULTS:")
+    print("\nTESTING RESULTS:")
     
     test_results = [
         "✓ All momentum features calculate correctly",
@@ -156,7 +156,7 @@ def create_final_summary():
     for result in test_results:
         print(f"   {result}")
     
-    print("\n🚀 DEPLOYMENT PLAN:")
+    print("\nDEPLOYMENT PLAN:")
     
     phases = [
         {
@@ -198,11 +198,11 @@ def create_final_summary():
     ]
     
     for phase in phases:
-        print(f"\n🎯 {phase['phase']}:")
+        print(f"\n{phase['phase']}:")
         for task in phase['tasks']:
             print(f"   • {task}")
     
-    print("\n📊 SUCCESS METRICS:")
+    print("\nSUCCESS METRICS:")
     
     metrics = [
         "Backtest performance >= original vol_raw_momentum",
@@ -216,7 +216,7 @@ def create_final_summary():
     for metric in metrics:
         print(f"   ✓ {metric}")
     
-    print("\n⚠️  MONITORING CHECKLIST:")
+    print("\n MONITORING CHECKLIST:")
     
     monitoring = [
         "Feature calculation times (performance impact)",
@@ -228,9 +228,9 @@ def create_final_summary():
     ]
     
     for item in monitoring:
-        print(f"   📊 {item}")
+        print(f"   {item}")
     
-    print("\n🎉 BENEFITS ACHIEVED:")
+    print("\nBENEFITS ACHIEVED:")
     
     benefits = [
         "Preserved interpretability for critical decisions",
@@ -245,7 +245,7 @@ def create_final_summary():
         print(f"   • {benefit}")
     
     print("\n" + "=" * 100)
-    print("🚀 MOMENTUM HYBRID IMPLEMENTATION COMPLETE!")
+    print("MOMENTUM HYBRID IMPLEMENTATION COMPLETE!")
     print("Ready for production deployment and empirical validation")
     print("=" * 100)
 

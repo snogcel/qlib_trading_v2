@@ -41,7 +41,7 @@ def calculate_vol_risk(df, vol_col='$realized_vol_6', rolling_window=168):
 def ensure_vol_risk_available(df):
     """Use existing vol_risk feature from crypto_loader_optimized"""
     if 'vol_risk' not in df.columns:
-        print("⚠️  vol_risk should come from crypto_loader_optimized")
+        print(" vol_risk should come from crypto_loader_optimized")
 ```
 
 ### 2. **Enhanced Information Ratio**
@@ -143,7 +143,7 @@ position_size = base_size / max(vol_risk * 1000, 0.1)
 
 ## Implementation Status
 
-### ✅ **Completed**
+### **Completed**
 - Updated `ppo_sweep_optuna_tuned_v2.py` to use existing vol_risk
 - Implemented variance-based regime identification
 - Created enhanced information ratio calculation
@@ -152,7 +152,7 @@ position_size = base_size / max(vol_risk * 1000, 0.1)
 - Updated signal strength calculation to use enhanced info ratio
 - Added position size suggestions based on inverse variance scaling
 
-### 🎯 **Key Metrics to Monitor**
+### **Key Metrics to Monitor**
 - Enhanced info ratio vs traditional info ratio
 - Variance regime distribution
 - Position size suggestions vs actual performance

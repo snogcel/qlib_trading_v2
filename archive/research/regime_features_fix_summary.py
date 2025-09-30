@@ -16,7 +16,7 @@ def create_fix_summary():
     print("   • .shift(1) operations introduced additional NaN values")
     print("   • Bitwise NOT operator (~) doesn't work on float/NaN values")
     
-    print("\n🔧 THE FIX:")
+    print("\nTHE FIX:")
     
     fixes_applied = [
         "Added safe_boolean_operation() function to handle mixed data types",
@@ -29,14 +29,14 @@ def create_fix_summary():
     for i, fix in enumerate(fixes_applied, 1):
         print(f"   {i}. {fix}")
     
-    print("\n✅ RESULTS ACHIEVED:")
+    print("\nRESULTS ACHIEVED:")
     
     results = [
-        "✅ Successfully processed 53,969 observations",
-        "✅ Created 58 comprehensive regime features",
-        "✅ All boolean operations working correctly",
-        "✅ No more TypeError exceptions",
-        "✅ Enhanced dataset saved to df_with_regime_features.csv"
+        "Successfully processed 53,969 observations",
+        "Created 58 comprehensive regime features",
+        "All boolean operations working correctly",
+        "No more TypeError exceptions",
+        "Enhanced dataset saved to df_with_regime_features.csv"
     ]
     
     for result in results:
@@ -66,7 +66,7 @@ def create_fix_summary():
     
     print("   └─────────────────────────┴──────┴──────────┴─────────────────────────────────┘")
     
-    print("\n🎯 KEY INSIGHTS FROM VALIDATION:")
+    print("\nKEY INSIGHTS FROM VALIDATION:")
     
     insights = [
         {
@@ -97,11 +97,11 @@ def create_fix_summary():
     ]
     
     for insight in insights:
-        print(f"\n💡 {insight['insight']}:")
+        print(f"\n {insight['insight']}:")
         print(f"   Details: {insight['details']}")
         print(f"   Implication: {insight['implication']}")
     
-    print("\n🚀 FEATURE CATEGORIES CREATED:")
+    print("\nFEATURE CATEGORIES CREATED:")
     
     categories = [
         ("Market Regime Matrix", 10, "Crisis detection, euphoria warnings, flight patterns"),
@@ -115,7 +115,7 @@ def create_fix_summary():
     for category, count, description in categories:
         print(f"   • {category}: {count} features - {description}")
     
-    print("\n📊 USAGE RECOMMENDATIONS:")
+    print("\nUSAGE RECOMMENDATIONS:")
     
     recommendations = [
         {
@@ -141,11 +141,11 @@ def create_fix_summary():
     ]
     
     for rec in recommendations:
-        print(f"\n📈 {rec['use_case']}:")
+        print(f"\n {rec['use_case']}:")
         print(f"   Recommended: {', '.join(rec['features'])}")
         print(f"   Reason: {rec['reason']}")
     
-    print("\n⚠️  WARNINGS ADDRESSED:")
+    print("\n WARNINGS ADDRESSED:")
     
     warnings = [
         "FutureWarning about .fillna() downcasting - cosmetic, doesn't affect functionality",
@@ -157,15 +157,15 @@ def create_fix_summary():
     for warning in warnings:
         print(f"   ✓ {warning}")
     
-    print("\n🎉 SUCCESS METRICS:")
+    print("\nSUCCESS METRICS:")
     
     success_metrics = [
-        f"✅ 58 regime features created successfully",
-        f"✅ 53,969 observations processed without errors",
-        f"✅ Top feature shows 3.01x predictive lift",
-        f"✅ Multiple features show >2x lift (excellent for trading)",
-        f"✅ Enhanced dataset ready for backtesting",
-        f"✅ All data type issues resolved"
+        f"58 regime features created successfully",
+        f"53,969 observations processed without errors",
+        f"Top feature shows 3.01x predictive lift",
+        f"Multiple features show >2x lift (excellent for trading)",
+        f"Enhanced dataset ready for backtesting",
+        f"All data type issues resolved"
     ]
     
     for metric in success_metrics:

@@ -10,15 +10,15 @@ def analyze_quantile_magnitudes(df):
     Analyze the actual magnitudes in quantile predictions to set realistic thresholds
     """
     
-    print("🔍 QUANTILE MAGNITUDE ANALYSIS")
+    print(" QUANTILE MAGNITUDE ANALYSIS")
     print("=" * 60)
     
     if not all(col in df.columns for col in ['q10', 'q50', 'q90']):
-        print("❌ Missing quantile columns")
+        print("Missing quantile columns")
         return df
     
     # Basic statistics
-    print("📊 Quantile Statistics:")
+    print("Quantile Statistics:")
     for col in ['q10', 'q50', 'q90']:
         values = df[col].dropna()
         print(f"   {col}: mean={values.mean():.4f}, std={values.std():.4f}, "
@@ -28,7 +28,7 @@ def analyze_quantile_magnitudes(df):
     df['abs_q50'] = df['q50'].abs()
     df['spread'] = df['q90'] - df['q10']
     
-    print(f"\n📈 Magnitude Analysis:")
+    print(f"\n Magnitude Analysis:")
     print(f"   |Q50| mean: {df['abs_q50'].mean():.4f}")
     print(f"   |Q50| median: {df['abs_q50'].median():.4f}")
     print(f"   |Q50| 90th percentile: {df['abs_q50'].quantile(0.9):.4f}")
@@ -50,7 +50,7 @@ def calculate_expected_value_threshold(df, transaction_cost_bps=20):
     Calculate threshold based on expected value considering full quantile distribution
     """
     
-    print(f"\n🎯 EXPECTED VALUE THRESHOLD CALCULATION")
+    print(f"\nEXPECTED VALUE THRESHOLD CALCULATION")
     print("=" * 60)
     
     transaction_cost = transaction_cost_bps / 10000
@@ -85,7 +85,7 @@ def calculate_expected_value_threshold(df, transaction_cost_bps=20):
     df['expected_value'] = (prob_up * df['potential_gain'] - 
                            (1 - prob_up) * df['potential_loss'])
     
-    print(f"📊 Expected Value Analysis:")
+    print(f"Expected Value Analysis:")
     print(f"   Mean expected value: {df['expected_value'].mean():.4f}")
     print(f"   Median expected value: {df['expected_value'].median():.4f}")
     print(f"   Positive expected value: {(df['expected_value'] > 0).mean()*100:.1f}%")
@@ -96,7 +96,7 @@ def calculate_expected_value_threshold(df, transaction_cost_bps=20):
     risk_premium_multiplier = 1.0  # 1x the estimated risk
     df['risk_adjusted_threshold'] = transaction_cost + risk_premium_multiplier * df['estimated_risk']
     
-    print(f"\n🎯 Threshold Recommendations:")
+    print(f"\nThreshold Recommendations:")
     print(f"   Fixed transaction cost: {transaction_cost:.4f} ({transaction_cost_bps} bps)")
     print(f"   Average risk-adjusted threshold: {df['risk_adjusted_threshold'].mean():.4f}")
     print(f"   Median risk-adjusted threshold: {df['risk_adjusted_threshold'].median():.4f}")
@@ -106,7 +106,7 @@ def calculate_expected_value_threshold(df, transaction_cost_bps=20):
     signals_above_current = (df['abs_q50'] > current_threshold).sum()
     signals_above_risk_adj = (df['abs_q50'] > df['risk_adjusted_threshold']).sum()
     
-    print(f"\n📈 Signal Frequency Comparison:")
+    print(f"\n Signal Frequency Comparison:")
     print(f"   Current threshold (0.002): {signals_above_current:,} signals ({signals_above_current/len(df)*100:.1f}%)")
     print(f"   Risk-adjusted threshold: {signals_above_risk_adj:,} signals ({signals_above_risk_adj/len(df)*100:.1f}%)")
     
@@ -117,7 +117,7 @@ def magnitude_based_economic_significance(df, method='adaptive_risk'):
     Create magnitude-based economic significance using quantile information
     """
     
-    print(f"\n🎯 MAGNITUDE-BASED ECONOMIC SIGNIFICANCE")
+    print(f"\nMAGNITUDE-BASED ECONOMIC SIGNIFICANCE")
     print("=" * 60)
     
     # Ensure we have required columns
@@ -166,7 +166,7 @@ def magnitude_based_economic_significance(df, method='adaptive_risk'):
     magnitude_signals = df['economically_significant_magnitude'].sum()
     current_signals = df['economically_significant_current'].sum()
     
-    print(f"📊 Results for method '{method}':")
+    print(f"Results for method '{method}':")
     print(f"   Average threshold: {df['magnitude_threshold'].mean():.4f}")
     print(f"   Magnitude-based signals: {magnitude_signals:,} ({magnitude_signals/len(df)*100:.1f}%)")
     print(f"   Current approach signals: {current_signals:,} ({current_signals/len(df)*100:.1f}%)")
@@ -177,7 +177,7 @@ def magnitude_based_economic_significance(df, method='adaptive_risk'):
 def test_magnitude_approaches():
     """Test different magnitude-based approaches"""
     
-    print("🧪 TESTING MAGNITUDE-BASED APPROACHES")
+    print("TESTING MAGNITUDE-BASED APPROACHES")
     print("=" * 70)
     
     # Create realistic test data
@@ -204,7 +204,7 @@ def test_magnitude_approaches():
         'q90': q90
     })
     
-    print(f"📊 Created {n:,} realistic test observations")
+    print(f"Created {n:,} realistic test observations")
     
     # Analyze magnitudes
     df_test = analyze_quantile_magnitudes(df_test)
@@ -227,7 +227,7 @@ def test_magnitude_approaches():
         }
     
     # Summary comparison
-    print(f"\n📊 METHOD COMPARISON SUMMARY")
+    print(f"\nMETHOD COMPARISON SUMMARY")
     print("=" * 70)
     print(f"{'Method':<20} | {'Signals':<8} | {'Rate':<8} | {'Avg Threshold':<12}")
     print("-" * 70)
@@ -235,7 +235,7 @@ def test_magnitude_approaches():
     for method, result in results.items():
         print(f"{method:<20} | {result['signal_count']:<8,} | {result['signal_rate']:<8.1%} | {result['avg_threshold']:<12.4f}")
     
-    print(f"\n💡 RECOMMENDATIONS:")
+    print(f"\n RECOMMENDATIONS:")
     print(f"1. 'adaptive_risk': Adjusts threshold based on prediction uncertainty")
     print(f"2. 'expected_value': Uses probability-weighted expected returns")
     print(f"3. 'percentile_based': Simple percentile of actual |q50| distribution")
@@ -246,14 +246,14 @@ def test_magnitude_approaches():
 def main():
     """Main analysis function"""
     
-    print("🎯 MAGNITUDE-BASED THRESHOLD ANALYSIS")
+    print("MAGNITUDE-BASED THRESHOLD ANALYSIS")
     print("=" * 80)
     print("Analyzing quantile magnitudes to create realistic economic thresholds")
     
     # Test the approaches
     results = test_magnitude_approaches()
     
-    print(f"\n🚀 IMPLEMENTATION READY!")
+    print(f"\nIMPLEMENTATION READY!")
     print("Choose the method that provides the right balance of:")
     print("• Signal frequency (enough trading opportunities)")
     print("• Economic realism (thresholds based on actual potential)")

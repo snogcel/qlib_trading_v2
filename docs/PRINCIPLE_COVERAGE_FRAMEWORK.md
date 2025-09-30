@@ -1,6 +1,6 @@
 # Trading Principle Coverage Framework
 
-## 🎯 Overview
+## Overview
 This framework ensures every component of our trading system aligns with the principles in `TRADING_SYSTEM_PRINCIPLES.md` through systematic test coverage and validation.
 
 ---
@@ -11,41 +11,41 @@ This framework ensures every component of our trading system aligns with the pri
 
 | Component | Function/Feature | Principle Alignment | Test Coverage | Status |
 |-----------|------------------|-------------------|---------------|---------|
-| **Q50 Signals** | `quantile_loss(y_true, y_pred, quantile)` | **Feature transparency** | ✅ `test_signal.py` | COVERED |
-| **Variance Risk** | `ensure_vol_risk_available(df)` | **Economic rationale** | ✅ `test_volatility.py` | COVERED |
-| **Regime Detection** | `identify_market_regimes(df)` | **Supply/demand focus** | ✅ `test_unified_regime_features.py` | COVERED |
-| **Magnitude Thresholds** | `q50_regime_aware_signals(df)` | **Expected value approach** | ⚠️ `test_threshold_strategy.py` | NEEDS_FIX |
+| **Q50 Signals** | `quantile_loss(y_true, y_pred, quantile)` | **Feature transparency** | `test_signal.py` | COVERED |
+| **Variance Risk** | `ensure_vol_risk_available(df)` | **Economic rationale** | `test_volatility.py` | COVERED |
+| **Regime Detection** | `identify_market_regimes(df)` | **Supply/demand focus** | `test_unified_regime_features.py` | COVERED |
+| **Magnitude Thresholds** | `q50_regime_aware_signals(df)` | **Expected value approach** | `test_threshold_strategy.py` | NEEDS_FIX |
 
 ### 2. **Supply & Demand Focus**
 
 | Component | Function/Feature | Principle Alignment | Test Coverage | Status |
 |-----------|------------------|-------------------|---------------|---------|
-| **Q50 Directional Logic** | `prob_up_piecewise(row)` | **Demand/supply imbalance** | ✅ `test_signal.py` | COVERED |
-| **Regime Multipliers** | `regime_multiplier` calculation | **Microstructure adaptation** | ✅ `test_unified_regime_features.py` | COVERED |
-| **Crisis Detection** | `regime_crisis` flag | **Contrarian positioning** | ✅ `test_unified_regime_features.py` | COVERED |
-| **Volume Integration** | Volume-based features | **Order flow analysis** | ⚠️ Missing test | NEEDS_TEST |
+| **Q50 Directional Logic** | `prob_up_piecewise(row)` | **Demand/supply imbalance** | `test_signal.py` | COVERED |
+| **Regime Multipliers** | `regime_multiplier` calculation | **Microstructure adaptation** | `test_unified_regime_features.py` | COVERED |
+| **Crisis Detection** | `regime_crisis` flag | **Contrarian positioning** | `test_unified_regime_features.py` | COVERED |
+| **Volume Integration** | Volume-based features | **Order flow analysis** | Missing test | NEEDS_TEST |
 
 ### 3. **Rule-Based Foundation with ML Enhancement**
 
 | Component | Function/Feature | Principle Alignment | Test Coverage | Status |
 |-----------|------------------|-------------------|---------------|---------|
-| **XGBoost Limits** | `MultiQuantileModel` | **Complexity bounds** | ⚠️ Missing test | NEEDS_TEST |
-| **SHAP Analysis** | Feature importance | **Explainability** | ⚠️ Missing test | NEEDS_TEST |
-| **Rule-Based Core** | Threshold logic | **Foundation first** | ✅ `test_threshold_strategy.py` | NEEDS_FIX |
-| **ML Enhancement** | Feature selection | **Improvement only** | ⚠️ Missing test | NEEDS_TEST |
+| **XGBoost Limits** | `MultiQuantileModel` | **Complexity bounds** | Missing test | NEEDS_TEST |
+| **SHAP Analysis** | Feature importance | **Explainability** | Missing test | NEEDS_TEST |
+| **Rule-Based Core** | Threshold logic | **Foundation first** | `test_threshold_strategy.py` | NEEDS_FIX |
+| **ML Enhancement** | Feature selection | **Improvement only** | Missing test | NEEDS_TEST |
 
 ### 4. **Simplicity & Explainability**
 
 | Component | Function/Feature | Principle Alignment | Test Coverage | Status |
 |-----------|------------------|-------------------|---------------|---------|
-| **Visual Validation** | Chart explainability | **Visual clarity** | ❌ Missing | NEEDS_IMPLEMENTATION |
-| **Feature Documentation** | Economic intuition | **Transparency** | ✅ `FEATURE_DOCUMENTATION.md` | COVERED |
-| **Economic Logic** | Supply/demand rationale | **Intuitive rules** | ✅ `test_unified_regime_features.py` | COVERED |
-| **Complexity Avoidance** | No black boxes | **Simplicity** | ⚠️ Manual review | NEEDS_AUTOMATION |
+| **Visual Validation** | Chart explainability | **Visual clarity** | Missing | NEEDS_IMPLEMENTATION |
+| **Feature Documentation** | Economic intuition | **Transparency** | `FEATURE_DOCUMENTATION.md` | COVERED |
+| **Economic Logic** | Supply/demand rationale | **Intuitive rules** | `test_unified_regime_features.py` | COVERED |
+| **Complexity Avoidance** | No black boxes | **Simplicity** | Manual review | NEEDS_AUTOMATION |
 
 ---
 
-## 🧪 Test Coverage Enhancement Plan
+## Test Coverage Enhancement Plan
 
 ### **Phase 1: Fill Coverage Gaps**
 
@@ -161,7 +161,7 @@ def continuous_optimization(self):
 
 ---
 
-## 🎯 Implementation Roadmap
+## Implementation Roadmap
 
 ### **Immediate (Next 2 weeks):**
 1. **Create principle coverage tests** for existing components
@@ -204,7 +204,7 @@ def continuous_optimization(self):
 
 ---
 
-## 🚀 Why This Could Be Game-Changing
+## Why This Could Be Game-Changing
 
 ### **1. Systematic Innovation**
 Instead of ad-hoc feature development, RD-Agent provides systematic, principle-guided research at scale.

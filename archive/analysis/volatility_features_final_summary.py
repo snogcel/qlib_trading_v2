@@ -10,7 +10,7 @@ def create_final_summary():
     print("VOLATILITY FEATURES: FINAL COMPREHENSIVE SUMMARY & ACTION PLAN")
     print("=" * 100)
     
-    print("\n✅ CONFIRMED FINDINGS:")
+    print("\nCONFIRMED FINDINGS:")
     
     print("\n1. OLD vol_risk (vol_scaled):")
     print("   • Properly bounded [0, 1] with clipping")
@@ -34,7 +34,7 @@ def create_final_summary():
     print("   │ vol_raw_decile  │ [0, 9]       │ [0, 0.056]   │ 175x         │ 0.56 (MOD)   │")
     print("   └─────────────────┴──────────────┴──────────────┴──────────────┴──────────────┘")
     
-    print("\n🚨 CRITICAL BREAKING CHANGES:")
+    print("\n CRITICAL BREAKING CHANGES:")
     
     breaking_changes = [
         {
@@ -66,7 +66,7 @@ def create_final_summary():
         print(f"   PROBLEM: {change['problem']}")
         print(f"   IMPACT: {change['impact']}")
     
-    print("\n🔧 IMMEDIATE FIXES REQUIRED:")
+    print("\nIMMEDIATE FIXES REQUIRED:")
     
     print("\n1. POSITION SIZING FIX (ppo_sweep_optuna_tuned_v2.py:460):")
     print("   OLD: vol_risk = row.get('vol_risk', 0.3)")
@@ -120,11 +120,11 @@ def create_final_summary():
     ]
     
     for step in steps:
-        print(f"\n🎯 {step['phase']} - {step['priority']} PRIORITY:")
+        print(f"\n{step['phase']} - {step['priority']} PRIORITY:")
         for task in step['tasks']:
             print(f"   • {task}")
     
-    print("\n🧪 TESTING CHECKLIST:")
+    print("\nTESTING CHECKLIST:")
     
     tests = [
         "Load data with new features - no errors",
@@ -140,7 +140,7 @@ def create_final_summary():
     for i, test in enumerate(tests, 1):
         print(f"   {i}. ☐ {test}")
     
-    print("\n📊 SUCCESS CRITERIA:")
+    print("\nSUCCESS CRITERIA:")
     
     criteria = [
         "Position sizes are in reasonable range (0.01 to 1.0)",
@@ -153,7 +153,7 @@ def create_final_summary():
     for criterion in criteria:
         print(f"   ✓ {criterion}")
     
-    print("\n⚠️  RISK MITIGATION:")
+    print("\n RISK MITIGATION:")
     
     print("\n1. BACKUP PLAN:")
     print("   • Keep old feature calculation code as fallback")
@@ -170,7 +170,7 @@ def create_final_summary():
     print("   • Keep old feature names as aliases")
     print("   • Gradual migration rather than hard cutover")
     
-    print("\n🎉 EXPECTED BENEFITS (after transition):")
+    print("\nEXPECTED BENEFITS (after transition):")
     
     benefits = [
         "More theoretically sound volatility measures",

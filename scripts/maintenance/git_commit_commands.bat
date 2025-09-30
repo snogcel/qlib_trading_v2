@@ -1,5 +1,5 @@
 @echo off
-echo 🚀 Starting GitHub commits for reorganized trading system...
+echo Starting GitHub commits for reorganized trading system...
 echo.
 
 REM Commit 1: Core System Foundation
@@ -36,7 +36,7 @@ Performance validated:
 - 1,562 trades with 23.67%% trade frequency
 - Q50-centric approach with economic rationale"
 
-echo ✅ Commit 1 complete!
+echo Commit 1 complete!
 echo.
 
 REM Commit 2: Professional Validation Framework  
@@ -71,7 +71,7 @@ Framework includes:
 - Performance benchmark maintenance (1.327+ Sharpe)
 - Robustness testing across market regimes"
 
-echo ✅ Commit 2 complete!
+echo Commit 2 complete!
 echo.
 
 REM Commit 3: Production Integration & RL System
@@ -112,7 +112,7 @@ Infrastructure:
 - Production monitoring and logging capabilities
 - Scalable architecture for team collaboration"
 
-echo ✅ Commit 3 complete!
+echo Commit 3 complete!
 echo.
 
 REM Commit 4: Documentation and Roadmap
@@ -140,18 +140,18 @@ Highlights:
 - Integration strategy for live trading deployment
 - Team collaboration guidelines and standards"
 
-echo ✅ All commits complete!
+echo All commits complete!
 echo.
 
-echo 🎉 SUCCESS: Professional trading system committed to GitHub!
+echo SUCCESS: Professional trading system committed to GitHub!
 echo.
 echo Summary of commits:
-echo 1. ✅ Core System Foundation - Main trading system with 1.327 Sharpe
-echo 2. ✅ Professional Validation - Testing and documentation framework  
-echo 3. ✅ Production Integration - Deployment and RL execution system
-echo 4. ✅ Documentation - Roadmap and project guides
+echo 1. Core System Foundation - Main trading system with 1.327 Sharpe
+echo 2. Professional Validation - Testing and documentation framework  
+echo 3. Production Integration - Deployment and RL execution system
+echo 4. Documentation - Roadmap and project guides
 echo.
-echo 🚀 Ready to push to GitHub:
+echo Ready to push to GitHub:
 echo    git push origin main
 echo.
 pause

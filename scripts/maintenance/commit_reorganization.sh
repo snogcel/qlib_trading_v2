@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🚀 Committing reorganized trading system to GitHub..."
+echo "Committing reorganized trading system to GitHub..."
 echo
 
 # Add all the new organized structure
@@ -45,7 +45,7 @@ git commit -m "feat: Complete system reorganization with professional structure
 - Multi-timeframe data pipeline (60min crypto + daily sentiment)
 - Advanced position sizing with Kelly criterion
 
-📊 PERFORMANCE VALIDATED:
+PERFORMANCE VALIDATED:
 - 17.48% total return with 1.327 Sharpe ratio
 - -11.77% max drawdown (excellent risk management)
 - 1,562 trades with optimal frequency
@@ -57,7 +57,7 @@ git commit -m "feat: Complete system reorganization with professional structure
 - MQTT infrastructure  
 - Model persistence utilities
 
-🧪 RL EXECUTION SYSTEM:
+RL EXECUTION SYSTEM:
 - Multi-step processing pipeline
 - Custom RL components organized
 - YML configuration system
@@ -80,8 +80,8 @@ This reorganization transforms the project from research environment
 to production-ready professional trading system."
 
 echo
-echo "✅ Commit complete!"
+echo "Commit complete!"
 echo
-echo "🚀 Ready to push to GitHub:"
+echo "Ready to push to GitHub:"
 echo "   git push origin main"
 echo

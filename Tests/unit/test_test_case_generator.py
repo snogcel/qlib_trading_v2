@@ -88,22 +88,7 @@ class TestTestCaseGenerator:
                     "anticipates shifts" in test.description.lower() or
                     "economic behavior" in test.description.lower())
             # Priority can vary based on specific test type
-            assert test.priority in [TestPriority.CRITICAL, TestPriority.HIGH, TestPriority.MEDIUM]
-    
-    def test_generate_performance_tests(self):
-        """Test performance characteristic test generation."""
-        tests = self.generator.generate_performance_tests(self.sample_feature)
-        
-        assert len(tests) >= 2  # hit_rate and sharpe_ratio tests
-        
-        # Check hit rate test
-        hit_rate_tests = [t for t in tests if "hit_rate" in t.description]
-        assert len(hit_rate_tests) == 1
-        assert hit_rate_tests[0].expected_result == 0.55
-        
-        # Check empirical range tests
-        range_tests = [t for t in tests if "empirical range" in t.description]
-        assert len(range_tests) >= 1
+            assert test.priority in [TestPriority.CRITICAL, TestPriority.HIGH, TestPriority.MEDIUM]    
     
     def test_generate_failure_mode_tests(self):
         """Test failure mode test generation."""

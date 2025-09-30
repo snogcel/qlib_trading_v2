@@ -42,7 +42,7 @@ def analyze_backtest_results():
         }
     }
     
-    print("\n📊 PERFORMANCE SUMMARY:")
+    print("\nPERFORMANCE SUMMARY:")
     print("   ┌─────────────────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┐")
     print("   │ Configuration           │ Total Return │ Sharpe Ratio │ Max Drawdown │ Total Trades │ Win Rate     │")
     print("   ├─────────────────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤")
@@ -58,7 +58,7 @@ def analyze_backtest_results():
     print(f"   • Max Drawdown: -16.72% (reasonable risk control)")
     print(f"   • Trade Count: 560 (good activity level)")
     
-    print("\n✅ KEY INSIGHTS:")
+    print("\nKEY INSIGHTS:")
     
     insights = [
         {
@@ -89,11 +89,11 @@ def analyze_backtest_results():
     ]
     
     for insight in insights:
-        print(f"\n🔍 {insight['metric']}:")
+        print(f"\n {insight['metric']}:")
         print(f"   Observation: {insight['observation']}")
         print(f"   Significance: {insight['significance']}")
     
-    print("\n🎯 WHAT THIS TELLS US ABOUT THE HYBRID FEATURES:")
+    print("\nWHAT THIS TELLS US ABOUT THE HYBRID FEATURES:")
     
     feature_implications = [
         "vol_scaled implementation working correctly (no position sizing issues)",
@@ -107,7 +107,7 @@ def analyze_backtest_results():
     for implication in feature_implications:
         print(f"   ✓ {implication}")
     
-    print("\n📈 PERFORMANCE BENCHMARKING:")
+    print("\n PERFORMANCE BENCHMARKING:")
     
     # Typical crypto trading benchmarks
     benchmarks = {
@@ -123,7 +123,7 @@ def analyze_backtest_results():
     
     print(f"\n   🏆 Your Results: 1.72 Sharpe = EXCELLENT tier!")
     
-    print("\n⚠️  IMPORTANT CAVEATS:")
+    print("\n IMPORTANT CAVEATS:")
     
     caveats = [
         "Low win rate (5.2%) means strategy relies on large winners",
@@ -135,7 +135,7 @@ def analyze_backtest_results():
     ]
     
     for caveat in caveats:
-        print(f"   ⚠️  {caveat}")
+        print(f"    {caveat}")
     
     print("\n🔬 NEXT STEPS FOR VALIDATION:")
     
@@ -173,25 +173,25 @@ def analyze_backtest_results():
     ]
     
     for step in validation_steps:
-        print(f"\n🎯 {step['step']} ({step['priority']} priority):")
+        print(f"\n{step['step']} ({step['priority']} priority):")
         print(f"   {step['description']}")
     
-    print("\n🚀 PRODUCTION READINESS ASSESSMENT:")
+    print("\nPRODUCTION READINESS ASSESSMENT:")
     
     readiness_checklist = [
-        ("Feature Implementation", "✅ COMPLETE", "All hybrid features working"),
-        ("Basic Backtesting", "✅ COMPLETE", "Strong initial results"),
-        ("Risk Management", "✅ WORKING", "Reasonable drawdowns"),
-        ("Signal Quality", "✅ GOOD", "Active trading, good Sharpe"),
+        ("Feature Implementation", "COMPLETE", "All hybrid features working"),
+        ("Basic Backtesting", "COMPLETE", "Strong initial results"),
+        ("Risk Management", "WORKING", "Reasonable drawdowns"),
+        ("Signal Quality", "GOOD", "Active trading, good Sharpe"),
         ("Out-of-Sample Testing", "⏳ PENDING", "Need to validate on new data"),
         ("Transaction Costs", "⏳ PENDING", "Need realistic cost modeling"),
-        ("Live Testing", "❌ NOT STARTED", "Paper trading recommended first")
+        ("Live Testing", "NOT STARTED", "Paper trading recommended first")
     ]
     
     for item, status, description in readiness_checklist:
         print(f"   {status} {item}: {description}")
     
-    print("\n💡 RECOMMENDATIONS:")
+    print("\n RECOMMENDATIONS:")
     
     recommendations = [
         {
@@ -228,7 +228,7 @@ def analyze_backtest_results():
         for action in rec['actions']:
             print(f"   • {action}")
     
-    print("\n🎉 CELEBRATION POINTS:")
+    print("\nCELEBRATION POINTS:")
     
     celebrations = [
         "1.72 Sharpe ratio is genuinely excellent for crypto trading",
@@ -240,7 +240,7 @@ def analyze_backtest_results():
     ]
     
     for celebration in celebrations:
-        print(f"   🎉 {celebration}")
+        print(f"   {celebration}")
     
     print("\n" + "=" * 100)
     print("CONCLUSION: Excellent initial results! Hybrid approach is working.")

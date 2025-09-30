@@ -47,7 +47,7 @@ class FailureAnalyzer:
         Returns:
             Dictionary with detailed analysis results
         """
-        print("🔍 Starting detailed failure analysis...")
+        print(" Starting detailed failure analysis...")
         print(f"Target features: {', '.join(self.target_features)}")
         print(f"Analysis timestamp: {self.analysis_timestamp.strftime('%Y-%m-%d %H:%M:%S')}")
         print("=" * 80)
@@ -63,7 +63,7 @@ class FailureAnalyzer:
         
         # Analyze each target feature in detail
         for feature in self.target_features:
-            print(f"\n🎯 Analyzing feature: {feature}")
+            print(f"\nAnalyzing feature: {feature}")
             print("-" * 50)
             
             feature_results = [r for r in results if r.test_case.feature_name == feature]
@@ -72,7 +72,7 @@ class FailureAnalyzer:
                     feature, feature_results
                 )
             else:
-                print(f"⚠️  No test results found for feature: {feature}")
+                print(f" No test results found for feature: {feature}")
                 analysis['feature_analysis'][feature] = {
                     'status': 'no_data',
                     'message': 'No test results available for analysis'
@@ -102,7 +102,7 @@ class FailureAnalyzer:
             }
         }
         
-        print(f"📊 Analysis Overview:")
+        print(f"Analysis Overview:")
         print(f"   - Total results analyzed: {overview['total_results_analyzed']}")
         print(f"   - Target feature results: {overview['target_feature_results']}")
         print(f"   - Target feature failures: {overview['target_feature_failures']}")
@@ -207,12 +207,12 @@ class FailureAnalyzer:
         }
         
         # Print feature summary
-        print(f"   📈 Success Rate: {success_rate:.1f}% ({passed_tests}/{total_tests})")
+        print(f"    Success Rate: {success_rate:.1f}% ({passed_tests}/{total_tests})")
         print(f"   🔴 Failed Tests: {failed_tests}")
-        print(f"   ⚠️  Status: {analysis['summary']['status']}")
+        print(f"    Status: {analysis['summary']['status']}")
         
         if failed_tests > 0:
-            print(f"   🧪 Test Type Failures:")
+            print(f"   Test Type Failures:")
             for test_type, data in test_type_analysis.items():
                 if data['failed'] > 0:
                     print(f"      - {test_type}: {data['failed']}/{data['total']} failed")
@@ -734,7 +734,7 @@ class FailureAnalyzer:
                 continue
             
             summary = data['summary']
-            status_emoji = "🔴" if "CRITICAL" in summary['status'] else "⚠️" if "WARNING" in summary['status'] else "✅"
+            status_emoji = "🔴" if "CRITICAL" in summary['status'] else "" if "WARNING" in summary['status'] else ""
             
             report_lines.extend([
                 f"### {status_emoji} {feature}",
@@ -795,19 +795,19 @@ class FailureAnalyzer:
         
         recommendations = analysis['recommendations']
         if recommendations['immediate_actions']:
-            report_lines.append("### 🚨 Immediate Actions")
+            report_lines.append("###  Immediate Actions")
             for action in recommendations['immediate_actions']:
                 report_lines.append(f"- {action}")
             report_lines.append("")
         
         if recommendations['short_term_fixes']:
-            report_lines.append("### 🔧 Short-term Fixes")
+            report_lines.append("### Short-term Fixes")
             for fix in recommendations['short_term_fixes']:
                 report_lines.append(f"- {fix}")
             report_lines.append("")
         
         if recommendations['long_term_improvements']:
-            report_lines.append("### 📈 Long-term Improvements")
+            report_lines.append("###  Long-term Improvements")
             for improvement in recommendations['long_term_improvements']:
                 report_lines.append(f"- {improvement}")
             report_lines.append("")
@@ -866,7 +866,7 @@ def create_sample_test_results_for_analysis() -> List[TestResult]:
     """
     Create realistic sample test results that match the coverage report patterns.
     """
-    print("📊 Creating realistic test results for failure analysis...")
+    print("Creating realistic test results for failure analysis...")
     
     import random
     from datetime import datetime, timedelta
@@ -1038,13 +1038,13 @@ def create_sample_test_results_for_analysis() -> List[TestResult]:
             
             results.append(result)
     
-    print(f"✅ Created {len(results)} test results for analysis")
+    print(f"Created {len(results)} test results for analysis")
     return results
 
 
 def main():
     """Run the detailed failure analysis."""
-    print("🔍 Detailed Failure Analysis for Worst-Performing Features")
+    print(" Detailed Failure Analysis for Worst-Performing Features")
     print("=" * 80)
     print("Analyzing: btc_dom (0% success), regime_multiplier (40% success), vol_risk (40% success)")
     print()
@@ -1073,18 +1073,18 @@ def main():
             json_data = json.dumps(analysis, indent=2, default=str)
             f.write(json_data)
         
-        print(f"📊 Analysis data saved to: {json_path}")
+        print(f"Analysis data saved to: {json_path}")
         
         # Print summary
         print("\n" + "=" * 80)
-        print("🎯 ANALYSIS SUMMARY")
+        print("ANALYSIS SUMMARY")
         print("=" * 80)
         
         overview = analysis['overview']
-        print(f"📊 Analyzed {overview['target_feature_results']} tests across 3 worst-performing features")
+        print(f"Analyzed {overview['target_feature_results']} tests across 3 worst-performing features")
         print(f"🔴 Found {overview['target_feature_failures']} failures ({overview['target_failure_rate']:.1f}% failure rate)")
         
-        print("\n🚨 CRITICAL FINDINGS:")
+        print("\n CRITICAL FINDINGS:")
         for cause in analysis['root_cause_analysis']['primary_causes']:
             print(f"   - {cause}")
         
@@ -1093,10 +1093,10 @@ def main():
             print(f"   - {action}")
         
         print(f"\n📄 Full detailed report available at: {report_path}")
-        print("💡 Review the report for comprehensive analysis and action plan!")
+        print(" Review the report for comprehensive analysis and action plan!")
         
     except Exception as e:
-        print(f"\n❌ Analysis failed with error: {e}")
+        print(f"\nAnalysis failed with error: {e}")
         import traceback
         traceback.print_exc()
         return 1

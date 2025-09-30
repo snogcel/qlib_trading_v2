@@ -90,9 +90,9 @@ class TestReportTemplates(unittest.TestCase):
         
         # Check that template has expected structure
         self.assertIn("# Executive Summary", template)
-        self.assertIn("## 🎯 Key Metrics", template)
-        self.assertIn("## 📊 Summary Statistics", template)
-        self.assertIn("## 🚨 Critical Issues", template)
+        self.assertIn("## Key Metrics", template)
+        self.assertIn("## Summary Statistics", template)
+        self.assertIn("##  Critical Issues", template)
     
     def test_get_detailed_report_template(self):
         """Test detailed report template retrieval."""
@@ -107,8 +107,8 @@ class TestReportTemplates(unittest.TestCase):
         # Check that template has expected structure
         self.assertIn("# Detailed Test Coverage Report", template)
         self.assertIn("## 📋 Test Execution Summary", template)
-        self.assertIn("## 🔍 Feature Analysis", template)
-        self.assertIn("## ⚠️ Failure Analysis", template)
+        self.assertIn("##  Feature Analysis", template)
+        self.assertIn("## Failure Analysis", template)
     
     def test_get_feature_report_template(self):
         """Test feature report template retrieval."""
@@ -122,9 +122,9 @@ class TestReportTemplates(unittest.TestCase):
         
         # Check that template has expected structure
         self.assertIn("# Feature Report: {feature_name}", template)
-        self.assertIn("## 📊 Feature Overview", template)
-        self.assertIn("## 🧪 Test Results Summary", template)
-        self.assertIn("## 💡 Recommendations", template)
+        self.assertIn("## Feature Overview", template)
+        self.assertIn("## Test Results Summary", template)
+        self.assertIn("##  Recommendations", template)
     
     def test_get_coverage_matrix_template(self):
         """Test coverage matrix template retrieval."""
@@ -137,8 +137,8 @@ class TestReportTemplates(unittest.TestCase):
         
         # Check that template has expected structure
         self.assertIn("# Test Coverage Matrix", template)
-        self.assertIn("## 📊 Coverage Overview", template)
-        self.assertIn("## 🎯 Feature Coverage Matrix", template)
+        self.assertIn("## Coverage Overview", template)
+        self.assertIn("## Feature Coverage Matrix", template)
     
     def test_format_executive_summary_empty_results(self):
         """Test executive summary formatting with empty results."""
@@ -161,11 +161,11 @@ class TestReportTemplates(unittest.TestCase):
         self.assertIn("Critical Failures | 1", summary)
         
         # Check status indicators
-        self.assertIn("❌", summary)  # Should show critical status due to low success rate
+        self.assertIn("", summary)  # Should show critical status due to low success rate
         
         # Check sections are populated
-        self.assertIn("## 🚨 Critical Issues", summary)
-        self.assertIn("## 📈 Recommendations", summary)
+        self.assertIn("##  Critical Issues", summary)
+        self.assertIn("##  Recommendations", summary)
         self.assertIn("## 📋 Next Steps", summary)
     
     def test_format_feature_report_no_results(self):
@@ -188,10 +188,10 @@ class TestReportTemplates(unittest.TestCase):
         self.assertIn("High", report)
         
         # Check sections are populated
-        self.assertIn("## 📊 Feature Overview", report)
-        self.assertIn("## 🧪 Test Results Summary", report)
-        self.assertIn("## ✅ Passed Tests", report)
-        self.assertIn("## 💡 Recommendations", report)
+        self.assertIn("## Feature Overview", report)
+        self.assertIn("## Test Results Summary", report)
+        self.assertIn("## Passed Tests", report)
+        self.assertIn("##  Recommendations", report)
         
         # Check statistics
         self.assertIn("Total Tests: 1", report)
@@ -202,7 +202,7 @@ class TestReportTemplates(unittest.TestCase):
         passed_results = [self.sample_results[0]]  # Only passed test
         issues = ReportTemplates._format_critical_issues(passed_results)
         
-        self.assertIn("✅ **No critical issues found.**", issues)
+        self.assertIn("**No critical issues found.**", issues)
     
     def test_format_critical_issues_with_issues(self):
         """Test critical issues formatting with critical failures."""
@@ -217,7 +217,7 @@ class TestReportTemplates(unittest.TestCase):
         passed_results = [self.sample_results[0]]  # Only passed test
         recommendations = ReportTemplates._format_recommendations(passed_results)
         
-        self.assertIn("✅ **No immediate actions required.**", recommendations)
+        self.assertIn("**No immediate actions required.**", recommendations)
     
     def test_format_recommendations_with_failures(self):
         """Test recommendations formatting with failures."""
@@ -266,7 +266,7 @@ class TestReportTemplates(unittest.TestCase):
         """Test passed tests formatting."""
         passed_section = ReportTemplates._format_passed_tests([self.sample_results[0]])
         
-        self.assertIn("### ✅ Economic Hypothesis", passed_section)
+        self.assertIn("### Economic Hypothesis", passed_section)
         self.assertIn("**Confidence:** high", passed_section)
         self.assertIn("**Execution Time:** 1.50s", passed_section)
     
@@ -274,7 +274,7 @@ class TestReportTemplates(unittest.TestCase):
         """Test failed tests formatting."""
         failed_section = ReportTemplates._format_failed_tests([self.sample_results[1]])
         
-        self.assertIn("### ❌ Performance Characteristics", failed_section)
+        self.assertIn("### Performance Characteristics", failed_section)
         self.assertIn("**Status:** failed", failed_section)
         self.assertIn("**Priority:** critical", failed_section)
         self.assertIn("**Error:** Variance calculation error", failed_section)
@@ -283,7 +283,7 @@ class TestReportTemplates(unittest.TestCase):
         """Test failed tests formatting with no failures."""
         failed_section = ReportTemplates._format_failed_tests([self.sample_results[0]])
         
-        self.assertEqual(failed_section, "✅ All tests passed for this feature.")
+        self.assertEqual(failed_section, "All tests passed for this feature.")
     
     def test_format_performance_analysis(self):
         """Test performance analysis formatting."""
@@ -313,7 +313,7 @@ class TestReportTemplates(unittest.TestCase):
         """Test hypothesis validation formatting."""
         validation = ReportTemplates._format_hypothesis_validation([self.sample_results[0]])
         
-        self.assertIn("✅ **Hypothesis Test:**", validation)
+        self.assertIn("**Hypothesis Test:**", validation)
         self.assertIn("**Result:** Hypothesis validated with high confidence", validation)
     
     def test_format_hypothesis_validation_no_tests(self):
@@ -336,7 +336,7 @@ class TestReportTemplates(unittest.TestCase):
         """Test feature recommendations formatting with no failures."""
         recommendations = ReportTemplates._format_feature_recommendations([self.sample_results[0]])
         
-        self.assertIn("✅ **No specific recommendations.**", recommendations)
+        self.assertIn("**No specific recommendations.**", recommendations)
     
     def test_format_feature_recommendations_with_failures(self):
         """Test feature recommendations formatting with failures."""

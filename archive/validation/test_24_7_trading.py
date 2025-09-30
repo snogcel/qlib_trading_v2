@@ -74,23 +74,23 @@ def create_test_price_data(df):
 def test_24_7_trading():
     """Test that trading works at all hours and days"""
     
-    print("🧪 TESTING 24/7 CRYPTO TRADING")
+    print("TESTING 24/7 CRYPTO TRADING")
     print("=" * 50)
     
     # Create strong signal data
     df = create_strong_signal_data(100)
     price_data = create_test_price_data(df)
     
-    print(f"📊 Created {len(df)} strong signals")
+    print(f"Created {len(df)} strong signals")
     print(f"📅 Time range: {df.index.min()} to {df.index.max()}")
     
     # Check time coverage
     hours_covered = df.index.hour.unique()
     days_covered = df.index.day_name().unique()
     
-    print(f"⏰ Hours covered: {sorted(hours_covered)}")
+    print(f"Hours covered: {sorted(hours_covered)}")
     print(f"📅 Days covered: {list(days_covered)}")
-    print(f"🎯 Weekend data: {any(day in ['Saturday', 'Sunday'] for day in days_covered)}")
+    print(f"Weekend data: {any(day in ['Saturday', 'Sunday'] for day in days_covered)}")
     
     # Configure backtester with aggressive settings to encourage trading
     backtester = HummingbotQuantileBacktester(
@@ -103,7 +103,7 @@ def test_24_7_trading():
         sizing_method="simple"  # Simple sizing for predictable behavior
     )
     
-    print(f"\n🚀 Running backtest with aggressive settings...")
+    print(f"\nRunning backtest with aggressive settings...")
     results = backtester.run_backtest(df, price_data=price_data, price_col='close', return_col='truth')
     
     # Analyze results
@@ -111,7 +111,7 @@ def test_24_7_trading():
     total_holds = len(backtester.holds)
     execution_rate = total_trades / len(df) if len(df) > 0 else 0
     
-    print(f"\n📊 RESULTS:")
+    print(f"\nRESULTS:")
     print(f"   Total signals: {len(df)}")
     print(f"   Trades executed: {total_trades}")
     print(f"   Holds: {total_holds}")
@@ -124,7 +124,7 @@ def test_24_7_trading():
         trades_df['hour'] = trades_df['timestamp'].dt.hour
         trades_df['day_of_week'] = trades_df['timestamp'].dt.day_name()
         
-        print(f"\n⏰ TRADE TIMING ANALYSIS:")
+        print(f"\nTRADE TIMING ANALYSIS:")
         print(f"   Hours with trades: {sorted(trades_df['hour'].unique())}")
         print(f"   Days with trades: {list(trades_df['day_of_week'].unique())}")
         
@@ -136,17 +136,17 @@ def test_24_7_trading():
         print(f"   Trades by hour: {dict(hourly_trades)}")
         
         if len(weekend_trades) > 0:
-            print(f"   ✅ SUCCESS: Trading works on weekends!")
+            print(f"   SUCCESS: Trading works on weekends!")
         else:
-            print(f"   ⚠️  No weekend trades (might be due to data coverage)")
+            print(f"    No weekend trades (might be due to data coverage)")
             
         if len(trades_df['hour'].unique()) > 10:
-            print(f"   ✅ SUCCESS: Trading works across many hours!")
+            print(f"   SUCCESS: Trading works across many hours!")
         else:
-            print(f"   ⚠️  Limited hour coverage")
+            print(f"    Limited hour coverage")
             
     else:
-        print(f"   ❌ NO TRADES EXECUTED - investigating...")
+        print(f"   NO TRADES EXECUTED - investigating...")
         
         # Check signal characteristics
         sample_signals = []
@@ -163,12 +163,12 @@ def test_24_7_trading():
                 'thresh': row['signal_thresh_adaptive']
             })
         
-        print(f"\n🔍 SAMPLE SIGNALS:")
+        print(f"\n SAMPLE SIGNALS:")
         for sig in sample_signals:
             print(f"   {sig['timestamp']}: {sig['direction']} (str={sig['strength']:.3f}, conf={sig['confidence']:.1f}, target={sig['target_pct']:.3f})")
             print(f"      q50={sig['q50']:.4f}, abs_q50={sig['abs_q50']:.4f}, thresh={sig['thresh']:.4f}")
     
-    print(f"\n🎉 Test completed!")
+    print(f"\nTest completed!")
     
     return backtester, results
 

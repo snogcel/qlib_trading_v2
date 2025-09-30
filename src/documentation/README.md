@@ -237,19 +237,19 @@ class RollbackPoint:
 
 The system validates changes to ensure they are enhancements, not replacements:
 
-### ✅ Valid Changes
+### Valid Changes
 - Adding new content while preserving existing content
 - Enhancing existing sections with additional information
 - Adding new sections or features
 - Safe removal of comments, whitespace, or formatting
 
-### ❌ Invalid Changes
+### Invalid Changes
 - Removing substantial existing content
 - Replacing existing content without preservation
 - Empty or minimal new content
 - Modifications to critical sections without proper validation
 
-### ⚠️ Warnings
+### Warnings
 - Content removal detected
 - Significant content reduction
 - Critical section modifications
@@ -345,15 +345,15 @@ python -m pytest tests/unit/test_document_protection.py -v
 
 ### Test Coverage
 
-- ✅ System initialization
-- ✅ Backup creation and verification
-- ✅ Change validation logic
-- ✅ Version tracking functionality
-- ✅ Rollback point creation and restoration
-- ✅ Error handling and recovery
-- ✅ Metadata persistence
-- ✅ Critical section detection
-- ✅ File integrity verification
+- System initialization
+- Backup creation and verification
+- Change validation logic
+- Version tracking functionality
+- Rollback point creation and restoration
+- Error handling and recovery
+- Metadata persistence
+- Critical section detection
+- File integrity verification
 
 ## Integration with Feature Enhancement
 

@@ -40,37 +40,37 @@ def analyze_spread_validation_results():
     
     print("   └─────────────────────────┴─────────────┴─────────────────────────────────┘")
     
-    print("\n✅ KEY VALIDATION CONFIRMATIONS:")
+    print("\nKEY VALIDATION CONFIRMATIONS:")
     
     validations = [
         {
             "claim": "Original 0.61-0.66 correlation claim",
             "result": "CONFIRMED - 6h: 0.6127, 24h: 0.6686",
-            "status": "✅ VALIDATED"
+            "status": "VALIDATED"
         },
         {
             "claim": "Spread outperforms individual quantiles",
             "result": "CONFIRMED - Spread (0.43) > q10 (0.41) > q90 (0.40) > q50 (0.11)",
-            "status": "✅ VALIDATED"
+            "status": "VALIDATED"
         },
         {
             "claim": "Statistical significance",
             "result": "CONFIRMED - T-test p-value: 0.000000 (highly significant)",
-            "status": "✅ VALIDATED"
+            "status": "VALIDATED"
         },
         {
             "claim": "Spread deciles predict volatility",
             "result": "CONFIRMED - Clear progression: 0.0016 → 0.0097 (6x increase)",
-            "status": "✅ VALIDATED"
+            "status": "VALIDATED"
         }
     ]
     
     for validation in validations:
-        print(f"\n🎯 {validation['claim']}:")
+        print(f"\n{validation['claim']}:")
         print(f"   Result: {validation['result']}")
         print(f"   Status: {validation['status']}")
     
-    print("\n📊 SPREAD DECILE ANALYSIS:")
+    print("\nSPREAD DECILE ANALYSIS:")
     
     # Decile progression from the results
     decile_data = [
@@ -87,9 +87,9 @@ def analyze_spread_validation_results():
         elif decile in [2, 4, 6, 8]:
             print(f"   • Decile {decile}: {vol:.4f}")
     
-    print(f"\n   📈 Clear monotonic relationship: Higher spread → Higher future volatility")
+    print(f"\n    Clear monotonic relationship: Higher spread → Higher future volatility")
     
-    print("\n🎯 SIGNAL THRESHOLD ANALYSIS:")
+    print("\nSIGNAL THRESHOLD ANALYSIS:")
     
     signal_results = {
         'above_threshold': {'count': 6469, 'mean_return': 0.000936, 'sharpe': 0.1085},
@@ -106,9 +106,9 @@ def analyze_spread_validation_results():
     print(f"   • Mean Return: {signal_results['below_threshold']['mean_return']:.6f}")
     print(f"   • Sharpe: {signal_results['below_threshold']['sharpe']:.4f} (NEGATIVE)")
     
-    print(f"\n   🎯 Signal threshold is HIGHLY effective at filtering trades!")
+    print(f"\n   Signal threshold is HIGHLY effective at filtering trades!")
     
-    print("\n💡 WHAT THIS MEANS FOR YOUR TRADING:")
+    print("\n WHAT THIS MEANS FOR YOUR TRADING:")
     
     implications = [
         {
@@ -139,11 +139,11 @@ def analyze_spread_validation_results():
     ]
     
     for impl in implications:
-        print(f"\n📈 {impl['aspect']}:")
+        print(f"\n {impl['aspect']}:")
         print(f"   Finding: {impl['finding']}")
         print(f"   Action: {impl['action']}")
     
-    print("\n🚀 RECOMMENDED IMPLEMENTATION:")
+    print("\nRECOMMENDED IMPLEMENTATION:")
     
     implementation_code = '''
 def validated_spread_position_sizing(q10, q50, q90, base_position=0.1):
@@ -171,7 +171,7 @@ def validated_spread_position_sizing(q10, q50, q90, base_position=0.1):
     
     print(implementation_code)
     
-    print("\n📊 PERFORMANCE BENCHMARKING:")
+    print("\nPERFORMANCE BENCHMARKING:")
     
     benchmarks = [
         ("Correlation > 0.6", "EXCELLENT", "24h: 0.67, 6h: 0.61"),
@@ -185,7 +185,7 @@ def validated_spread_position_sizing(q10, q50, q90, base_position=0.1):
     for benchmark, rating, result in benchmarks:
         print(f"   • {benchmark}: {rating} - {result}")
     
-    print("\n🎉 CELEBRATION POINTS:")
+    print("\nCELEBRATION POINTS:")
     
     celebrations = [
         "Fix worked perfectly - all correlations now meaningful",
@@ -198,7 +198,7 @@ def validated_spread_position_sizing(q10, q50, q90, base_position=0.1):
     ]
     
     for celebration in celebrations:
-        print(f"   🎉 {celebration}")
+        print(f"   {celebration}")
     
     print("\n" + "=" * 100)
     print("CONCLUSION: Spread is a HIGHLY VALIDATED predictor of future volatility!")

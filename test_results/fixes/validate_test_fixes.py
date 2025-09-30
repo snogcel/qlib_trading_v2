@@ -13,7 +13,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 def validate_test_fixes():
     """Validate that test fixes are working correctly."""
-    print("🧪 Test Validation Report")
+    print("Test Validation Report")
     print("=" * 50)
     
     # TODO: Add actual test validation logic
@@ -27,7 +27,7 @@ def validate_test_fixes():
     print("   - regime_multiplier: TBD")
     print("   - vol_risk: TBD")
     
-    print("\n✅ Validation Summary:")
+    print("\nValidation Summary:")
     print("   - Tests passing: TBD")
     print("   - Regressions detected: TBD")
     print("   - Success criteria met: TBD")

@@ -18,7 +18,7 @@ import sys
 def test_magnitude_based_threshold():
     """Test the magnitude-based economic significance"""
     
-    print("🧪 TESTING MAGNITUDE-BASED THRESHOLD")
+    print("TESTING MAGNITUDE-BASED THRESHOLD")
     print("=" * 60)
     
     # Create test data with realistic quantile patterns
@@ -56,7 +56,7 @@ def test_magnitude_based_threshold():
         'truth': np.random.normal(0, 0.01, n)
     })
     
-    print(f"📊 Created {n} test observations:")
+    print(f"Created {n} test observations:")
     print(f"   Q50 range: {q50_base.min():.4f} to {q50_base.max():.4f}")
     print(f"   |Q50| mean: {np.abs(q50_base).mean():.4f}")
     print(f"   |Q50| median: {np.median(np.abs(q50_base)):.4f}")
@@ -67,15 +67,15 @@ def test_magnitude_based_threshold():
         sys.path.append('.')
         from src.training_pipeline import q50_regime_aware_signals
         
-        print(f"\n🔄 Testing magnitude-based q50_regime_aware_signals...")
+        print(f"\nTesting magnitude-based q50_regime_aware_signals...")
         
         # Apply the magnitude-enhanced approach
         df_result = q50_regime_aware_signals(df_test.copy())
         
-        print(f"✅ Function executed successfully!")
+        print(f"Function executed successfully!")
         
         # Analyze the results
-        print(f"\n📊 MAGNITUDE-BASED RESULTS:")
+        print(f"\nMAGNITUDE-BASED RESULTS:")
         
         # Check if magnitude-specific columns were created
         magnitude_columns = [
@@ -86,9 +86,9 @@ def test_magnitude_based_threshold():
         
         missing_columns = [col for col in magnitude_columns if col not in df_result.columns]
         if missing_columns:
-            print(f"❌ Missing magnitude columns: {missing_columns}")
+            print(f"Missing magnitude columns: {missing_columns}")
         else:
-            print(f"✅ All magnitude-specific columns created")
+            print(f"All magnitude-specific columns created")
         
         # Analyze expected value calculation
         if 'expected_value' in df_result.columns:
@@ -111,7 +111,7 @@ def test_magnitude_based_threshold():
             trad_count = df_result['economically_significant_traditional'].sum()
             exp_val_count = df_result['economically_significant_expected_value'].sum()
             
-            print(f"\n📈 Economic Significance Comparison:")
+            print(f"\n Economic Significance Comparison:")
             print(f"   Traditional approach: {trad_count:,} ({trad_count/len(df_result)*100:.1f}%)")
             print(f"   Expected value approach: {exp_val_count:,} ({exp_val_count/len(df_result)*100:.1f}%)")
             
@@ -121,14 +121,14 @@ def test_magnitude_based_threshold():
             
             # Check if we're getting more trading opportunities
             if exp_val_count > trad_count:
-                print(f"   ✅ Expected value approach provides more trading opportunities")
+                print(f"   Expected value approach provides more trading opportunities")
             else:
-                print(f"   ⚠️  Expected value approach not providing more opportunities")
+                print(f"    Expected value approach not providing more opportunities")
         
         # Test final tradeable signals
         if 'tradeable' in df_result.columns:
             tradeable_count = df_result['tradeable'].sum()
-            print(f"\n🎯 Final Tradeable Signals:")
+            print(f"\nFinal Tradeable Signals:")
             print(f"   Tradeable signals: {tradeable_count:,} ({tradeable_count/len(df_result)*100:.1f}%)")
             
             if tradeable_count > 0:
@@ -148,25 +148,25 @@ def test_magnitude_based_threshold():
                 print(f"   Positive expected value: {positive_exp_val*100:.1f}%")
                 
                 if positive_exp_val > 0.7:
-                    print(f"   ✅ Most tradeable signals have positive expected value")
+                    print(f"   Most tradeable signals have positive expected value")
                 else:
-                    print(f"   ⚠️  Many tradeable signals have negative expected value")
+                    print(f"    Many tradeable signals have negative expected value")
             else:
-                print(f"   ⚠️  No tradeable signals generated - thresholds may be too strict")
+                print(f"    No tradeable signals generated - thresholds may be too strict")
         
         # Test signal generation
         if 'side' in df_result.columns:
-            print(f"\n🎯 Signal Generation:")
+            print(f"\nSignal Generation:")
             signal_counts = df_result['side'].value_counts()
             for side, count in signal_counts.items():
                 side_name = {1: 'LONG', 0: 'SHORT', -1: 'HOLD'}[side]
                 print(f"   {side_name}: {count:,} ({count/len(df_result)*100:.1f}%)")
         
-        print(f"\n🎉 MAGNITUDE-BASED THRESHOLD TEST PASSED!")
+        print(f"\nMAGNITUDE-BASED THRESHOLD TEST PASSED!")
         return True
         
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f"Error: {e}")
         import traceback
         traceback.print_exc()
         return False
@@ -174,7 +174,7 @@ def test_magnitude_based_threshold():
 def main():
     """Main test function"""
     
-    print("🎯 MAGNITUDE-BASED THRESHOLD TEST")
+    print("MAGNITUDE-BASED THRESHOLD TEST")
     print("=" * 70)
     print("Testing the implementation of magnitude-based economic significance")
     print("using expected value from quantile distribution")
@@ -182,13 +182,13 @@ def main():
     success = test_magnitude_based_threshold()
     
     if success:
-        print(f"\n✅ MAGNITUDE-BASED APPROACH WORKING!")
+        print(f"\nMAGNITUDE-BASED APPROACH WORKING!")
         print("1. Expected value calculation using quantile distribution")
         print("2. Comparison of traditional vs expected value approaches")
         print("3. More trading opportunities while maintaining economic rationale")
         print("4. Positive expected value filtering for better signal quality")
     else:
-        print(f"\n❌ MAGNITUDE-BASED APPROACH NEEDS ATTENTION")
+        print(f"\nMAGNITUDE-BASED APPROACH NEEDS ATTENTION")
         print("Check the error messages above")
 
 if __name__ == "__main__":

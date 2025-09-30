@@ -302,7 +302,7 @@ def q50_regime_aware_signals(df, transaction_cost_bps=20, base_info_ratio=1.5):
     # Keep traditional info ratio for compatibility
     df['info_ratio'] = df['abs_q50'] / np.maximum(df['spread'], 0.001)
     
-    print(f"📊 Enhanced vs Traditional Info Ratio:")
+    print(f"Enhanced vs Traditional Info Ratio:")
     print(f"   Traditional (signal/spread): {df['info_ratio'].mean():.3f}")
     print(f"   Enhanced (signal/total_risk): {df['enhanced_info_ratio'].mean():.3f}")
     
@@ -322,7 +322,7 @@ def q50_regime_aware_signals(df, transaction_cost_bps=20, base_info_ratio=1.5):
     df['expected_value'] = (df['prob_up'] * df['potential_gain'] - 
                            (1 - df['prob_up']) * df['potential_loss'])
     
-    print(f"📊 Expected Value Analysis:")
+    print(f"Expected Value Analysis:")
     print(f"   Mean expected value: {df['expected_value'].mean():.4f}")
     print(f"   Positive expected value: {(df['expected_value'] > 0).mean()*100:.1f}%")
     print(f"   Mean potential gain: {df['potential_gain'].mean():.4f}")
@@ -404,7 +404,7 @@ def q50_regime_aware_signals(df, transaction_cost_bps=20, base_info_ratio=1.5):
     exp_val_count = df['economically_significant_expected_value'].sum()
     combined_count = df['economically_significant_combined'].sum()
     
-    print(f"📊 Economic Significance Comparison:")
+    print(f"Economic Significance Comparison:")
     print(f"   Traditional threshold: {trad_count:,} ({trad_count/len(df)*100:.1f}%)")
     print(f"   Expected value: {exp_val_count:,} ({exp_val_count/len(df)*100:.1f}%)")
     print(f"   Combined approach: {combined_count:,} ({combined_count/len(df)*100:.1f}%)")
@@ -427,7 +427,7 @@ def q50_regime_aware_signals(df, transaction_cost_bps=20, base_info_ratio=1.5):
     df["signal_rel"] = (df["abs_q50"] - df["signal_thresh_adaptive"]) / (df["signal_thresh_adaptive"] + 1e-12)
     
     # Print regime distribution
-    print(f"🏛️ Variance-Based Regime Distribution:")
+    print(f" Variance-Based Regime Distribution:")
     print(f"   Low Variance: {df['variance_regime_low'].sum():,} ({df['variance_regime_low'].mean()*100:.1f}%)")
     print(f"   High Variance: {df['variance_regime_high'].sum():,} ({df['variance_regime_high'].mean()*100:.1f}%)")
     print(f"   Extreme Variance: {df['variance_regime_extreme'].sum():,} ({df['variance_regime_extreme'].mean()*100:.1f}%)")
@@ -899,7 +899,7 @@ if __name__ == '__main__':
     # Print signal summary
     signal_counts = df_all['side'].value_counts()
     total_signals = len(df_all)
-    print(f"✅ Q50-centric signals generated:")
+    print(f"Q50-centric signals generated:")
     for side, count in signal_counts.items():
         side_name = {1: 'LONG', 0: 'SHORT', -1: 'HOLD'}[side]
         print(f"   {side_name}: {count:,} ({count/total_signals*100:.1f}%)")
@@ -913,7 +913,7 @@ if __name__ == '__main__':
         avg_vol_risk = trading_signals['vol_risk'].mean()
         avg_position_size = trading_signals['position_size_suggestion'].mean()
         
-        print(f"🎯 Trading signal quality:")
+        print(f"Trading signal quality:")
         print(f"   Average Info Ratio (traditional): {avg_info_ratio:.2f}")
         print(f"   Average Enhanced Info Ratio (variance-aware): {avg_enhanced_info_ratio:.2f}")
         print(f"   Average |Q50|: {avg_abs_q50:.4f}")

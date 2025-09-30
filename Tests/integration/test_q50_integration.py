@@ -19,7 +19,7 @@ import os
 def test_q50_integration():
     """Test the integrated Q50-centric approach"""
     
-    print("🧪 TESTING Q50-CENTRIC INTEGRATION")
+    print("TESTING Q50-CENTRIC INTEGRATION")
     print("=" * 60)
     
     # Create realistic test data that matches your data structure
@@ -56,7 +56,7 @@ def test_q50_integration():
         'vol_scaled': np.random.uniform(0, 1, n),  # For compatibility
     })
     
-    print(f"📊 Created test data: {len(df_test):,} observations")
+    print(f"Created test data: {len(df_test):,} observations")
     print(f"   Q50 range: {q50.min():.4f} to {q50.max():.4f}")
     print(f"   Vol_raw range: {vol_raw.min():.4f} to {vol_raw.max():.4f}")
     
@@ -66,15 +66,15 @@ def test_q50_integration():
         sys.path.append('.')
         from src.training_pipeline import q50_regime_aware_signals, prob_up_piecewise
         
-        print(f"\n🔄 Testing q50_regime_aware_signals function...")
+        print(f"\nTesting q50_regime_aware_signals function...")
         
         # Apply the Q50-centric approach
         df_result = q50_regime_aware_signals(df_test.copy())
         
-        print(f"✅ Function executed successfully!")
+        print(f"Function executed successfully!")
         
         # Analyze results
-        print(f"\n📊 RESULTS ANALYSIS:")
+        print(f"\nRESULTS ANALYSIS:")
         
         # Check required columns were created
         required_columns = [
@@ -85,24 +85,24 @@ def test_q50_integration():
         
         missing_columns = [col for col in required_columns if col not in df_result.columns]
         if missing_columns:
-            print(f"❌ Missing columns: {missing_columns}")
+            print(f"Missing columns: {missing_columns}")
         else:
-            print(f"✅ All required columns created")
+            print(f"All required columns created")
         
         # Analyze regime distribution
-        print(f"\n🏛️ REGIME DISTRIBUTION:")
+        print(f"\n REGIME DISTRIBUTION:")
         print(f"   Low Vol: {df_result['vol_regime_low'].sum():,} ({df_result['vol_regime_low'].mean()*100:.1f}%)")
         print(f"   High Vol: {df_result['vol_regime_high'].sum():,} ({df_result['vol_regime_high'].mean()*100:.1f}%)")
         print(f"   Trending: {df_result['momentum_regime_trending'].sum():,} ({df_result['momentum_regime_trending'].mean()*100:.1f}%)")
         
         # Analyze signal quality
-        print(f"\n🎯 SIGNAL QUALITY:")
+        print(f"\nSIGNAL QUALITY:")
         print(f"   Economically Significant: {df_result['economically_significant'].sum():,} ({df_result['economically_significant'].mean()*100:.1f}%)")
         print(f"   High Quality: {df_result['high_quality'].sum():,} ({df_result['high_quality'].mean()*100:.1f}%)")
         print(f"   Tradeable: {df_result['tradeable'].sum():,} ({df_result['tradeable'].mean()*100:.1f}%)")
         
         # Test signal generation logic
-        print(f"\n🔄 Testing signal generation logic...")
+        print(f"\nTesting signal generation logic...")
         
         # Simulate the signal generation from main script
         q50_vals = df_result["q50"]
@@ -120,7 +120,7 @@ def test_q50_integration():
         signal_counts = side.value_counts()
         total_signals = len(side)
         
-        print(f"✅ Signal generation completed:")
+        print(f"Signal generation completed:")
         for side_val, count in signal_counts.items():
             side_name = {1: 'LONG', 0: 'SHORT', -1: 'HOLD'}[side_val]
             print(f"   {side_name}: {count:,} ({count/total_signals*100:.1f}%)")
@@ -132,7 +132,7 @@ def test_q50_integration():
             avg_abs_q50 = trading_signals['abs_q50'].mean()
             avg_threshold = trading_signals['signal_thresh_adaptive'].mean()
             
-            print(f"\n🎯 Trading Signal Quality:")
+            print(f"\nTrading Signal Quality:")
             print(f"   Average Info Ratio: {avg_info_ratio:.2f}")
             print(f"   Average |Q50|: {avg_abs_q50:.4f}")
             print(f"   Average Threshold: {avg_threshold:.4f}")
@@ -140,43 +140,43 @@ def test_q50_integration():
         
         # Test regime interaction features
         interaction_features = [col for col in df_result.columns if '_x_' in col]
-        print(f"\n🔗 Interaction Features Created: {len(interaction_features)}")
+        print(f"\nInteraction Features Created: {len(interaction_features)}")
         for feature in interaction_features:
             non_zero = (df_result[feature] != 0).sum()
             print(f"   {feature}: {non_zero:,} non-zero values")
         
-        print(f"\n🎉 INTEGRATION TEST PASSED!")
+        print(f"\nINTEGRATION TEST PASSED!")
         print(f"   The Q50-centric regime-aware approach is working correctly")
         print(f"   Ready for testing with real data")
         
         return True
         
     except ImportError as e:
-        print(f"❌ Import Error: {e}")
+        print(f"Import Error: {e}")
         print(f"   Make sure ppo_sweep_optuna_tuned_v2.py is in the current directory")
         return False
         
     except Exception as e:
-        print(f"❌ Execution Error: {e}")
+        print(f"Execution Error: {e}")
         print(f"   There may be an issue with the integration")
         return False
 
 def compare_with_old_approach():
     """Compare the new approach with the old threshold method"""
     
-    print(f"\n🔄 COMPARING WITH OLD APPROACH")
+    print(f"\nCOMPARING WITH OLD APPROACH")
     print("=" * 60)
     
     # This would require the old logic, but we can simulate the comparison
-    print("📊 Expected Improvements:")
-    print("   ✅ No data leakage (old approach used future data in rolling windows)")
-    print("   ✅ Economic meaning (thresholds based on trading costs, not arbitrary percentiles)")
-    print("   ✅ Regime awareness (different thresholds for different market conditions)")
-    print("   ✅ Risk adjustment (vol_risk scaling for additional risk context)")
-    print("   ✅ Signal quality (information ratio filters low-quality signals)")
-    print("   ✅ Interpretability (can explain every trading decision)")
+    print("Expected Improvements:")
+    print("   No data leakage (old approach used future data in rolling windows)")
+    print("   Economic meaning (thresholds based on trading costs, not arbitrary percentiles)")
+    print("   Regime awareness (different thresholds for different market conditions)")
+    print("   Risk adjustment (vol_risk scaling for additional risk context)")
+    print("   Signal quality (information ratio filters low-quality signals)")
+    print("   Interpretability (can explain every trading decision)")
     
-    print(f"\n📈 Expected Signal Quality:")
+    print(f"\n Expected Signal Quality:")
     print("   • Higher average information ratio for trading signals")
     print("   • More consistent performance across market regimes")
     print("   • Reduced false signals in high volatility periods")
@@ -185,7 +185,7 @@ def compare_with_old_approach():
 def main():
     """Main test function"""
     
-    print("🎯 Q50-CENTRIC REGIME-AWARE INTEGRATION TEST")
+    print("Q50-CENTRIC REGIME-AWARE INTEGRATION TEST")
     print("=" * 70)
     print("Testing the integration of Q50-centric signals with regime identification")
     print("and vol_risk scaling in the main training script.")
@@ -197,7 +197,7 @@ def main():
         # Compare with old approach
         compare_with_old_approach()
         
-        print(f"\n🚀 NEXT STEPS:")
+        print(f"\nNEXT STEPS:")
         print("1. Run the updated ppo_sweep_optuna_tuned_v2.py with your real data")
         print("2. Compare performance metrics with the old approach")
         print("3. Tune transaction_cost_bps and base_info_ratio parameters")
@@ -205,7 +205,7 @@ def main():
         print("5. Update backtesting and production systems")
         
     else:
-        print(f"\n🔧 TROUBLESHOOTING:")
+        print(f"\nTROUBLESHOOTING:")
         print("1. Ensure ppo_sweep_optuna_tuned_v2.py is in the current directory")
         print("2. Check that all required imports are available")
         print("3. Verify the integration was applied correctly")

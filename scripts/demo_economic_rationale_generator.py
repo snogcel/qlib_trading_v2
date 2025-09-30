@@ -48,26 +48,26 @@ def demo_feature_enhancement(generator, feature_name, category, description=""):
     print(f"Regime Dependency: {enhancement.economic_rationale.regime_dependency}")
     
     # Display chart explanation
-    print(f"\n📊 CHART EXPLANATION:")
+    print(f"\nCHART EXPLANATION:")
     print(f"Visual Description: {enhancement.chart_explanation.visual_description}")
     print(f"Example Scenarios: {', '.join(enhancement.chart_explanation.example_scenarios[:2])}...")
     print(f"Chart Patterns: {', '.join(enhancement.chart_explanation.chart_patterns)}")
     
     # Display supply/demand classification
-    print(f"\n🎯 SUPPLY/DEMAND CLASSIFICATION:")
+    print(f"\nSUPPLY/DEMAND CLASSIFICATION:")
     print(f"Primary Role: {enhancement.supply_demand_classification.primary_role.value}")
     print(f"Market Layer: {enhancement.supply_demand_classification.market_layer.value}")
     print(f"Time Horizon: {enhancement.supply_demand_classification.time_horizon.value}")
     print(f"Regime Sensitivity: {enhancement.supply_demand_classification.regime_sensitivity}")
     
     # Display validation criteria
-    print(f"\n✅ VALIDATION CRITERIA:")
+    print(f"\nVALIDATION CRITERIA:")
     for i, criteria in enumerate(enhancement.validation_criteria[:3], 1):
         print(f"{i}. {criteria}")
     
     # Validate the thesis
     is_valid, issues = validate_economic_logic(enhancement.thesis_statement, "")
-    print(f"\n🔍 VALIDATION RESULT: {'✅ VALID' if is_valid else '❌ ISSUES FOUND'}")
+    print(f"\n VALIDATION RESULT: {'VALID' if is_valid else 'ISSUES FOUND'}")
     if issues:
         for issue in issues:
             print(f"   - {issue}")
@@ -78,7 +78,7 @@ def demo_feature_enhancement(generator, feature_name, category, description=""):
 def demo_different_feature_types():
     """Demonstrate generation for different types of features"""
     
-    print("🚀 ECONOMIC RATIONALE GENERATOR DEMONSTRATION")
+    print("ECONOMIC RATIONALE GENERATOR DEMONSTRATION")
     print("=" * 80)
     
     # Initialize generator
@@ -102,7 +102,7 @@ def demo_different_feature_types():
     
     # Summary statistics
     print(f"\n{'='*80}")
-    print("📊 GENERATION SUMMARY")
+    print("GENERATION SUMMARY")
     print(f"{'='*80}")
     print(f"Total features enhanced: {len(enhancements)}")
     
@@ -156,7 +156,7 @@ def demo_template_system():
         print(f"  {feature_pattern}: {mapping['template_type']} -> {mapping['primary_role'].value}")
     
     # Test classification for various feature names
-    print(f"\n🔍 FEATURE NAME CLASSIFICATION EXAMPLES:")
+    print(f"\n FEATURE NAME CLASSIFICATION EXAMPLES:")
     test_names = [
         "q50_signal", "volatility_risk", "regime_detector", "position_kelly",
         "momentum_trend", "sentiment_fear", "spread_analysis", "unknown_feature"
@@ -178,11 +178,11 @@ if __name__ == "__main__":
         demo_template_system()
         
         print(f"\n{'='*80}")
-        print("✅ DEMONSTRATION COMPLETED SUCCESSFULLY")
+        print("DEMONSTRATION COMPLETED SUCCESSFULLY")
         print("The Economic Rationale Generator is ready for use!")
         print(f"{'='*80}")
         
     except Exception as e:
-        print(f"\n❌ ERROR DURING DEMONSTRATION: {e}")
+        print(f"\nERROR DURING DEMONSTRATION: {e}")
         import traceback
         traceback.print_exc()

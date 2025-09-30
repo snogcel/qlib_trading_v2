@@ -18,7 +18,7 @@ def validate_adaptive_thresholds(df):
     """Test if adaptive thresholds improve signal quality"""
     
     # Debug: Check data quality first
-    print("🔍 DATA QUALITY & SCALE CHECK:")
+    print(" DATA QUALITY & SCALE CHECK:")
     print(f"abs_q50 range: {df['abs_q50'].min():.6f} to {df['abs_q50'].max():.6f}")
     print(f"abs_q50 NaN count: {df['abs_q50'].isna().sum()}")
     print(f"abs_q50 zero count: {(df['abs_q50'] == 0).sum()}")
@@ -61,7 +61,7 @@ def validate_adaptive_thresholds(df):
     rolling_adj2 = df['abs_q50'].rolling(30, min_periods=10).quantile(threshold_adjustments[2])  # Low vol
     
     # Debug: Check if rolling quantiles are working
-    print("🔍 ROLLING QUANTILE CHECK:")
+    print(" ROLLING QUANTILE CHECK:")
     print(f"Threshold adjustments: {threshold_adjustments}")
     print(f"rolling_adj0 ({threshold_adjustments[0]}) NaN count: {rolling_adj0.isna().sum()}")
     print(f"rolling_adj1 ({threshold_adjustments[1]}) NaN count: {rolling_adj1.isna().sum()}")
@@ -72,7 +72,7 @@ def validate_adaptive_thresholds(df):
     print()
     
     # Debug: Check condition matching
-    print("🔍 CONDITION MATCHING CHECK:")
+    print(" CONDITION MATCHING CHECK:")
     for i, cond in enumerate(conditions):
         print(f"Condition {i} matches: {cond.sum()} periods ({cond.mean():.1%})")
     print()
@@ -90,7 +90,7 @@ def validate_adaptive_thresholds(df):
     adaptive_signals = df['abs_q50'] > adaptive_threshold
     
     # Test 1: Signal frequency by regime
-    print("📊 SIGNAL FREQUENCY BY VOLATILITY REGIME:")
+    print("SIGNAL FREQUENCY BY VOLATILITY REGIME:")
     print("-" * 50)
     
     vol_regimes = {
@@ -107,7 +107,7 @@ def validate_adaptive_thresholds(df):
             print(f"{regime_name:12}: Static={static_freq:.3f}, Adaptive={adaptive_freq:.3f}, Diff={adaptive_freq-static_freq:+.3f}")
     
     # Test 2: Threshold values by regime
-    print(f"\n🎯 THRESHOLD VALUES BY REGIME:")
+    print(f"\nTHRESHOLD VALUES BY REGIME:")
     print("-" * 50)
     
     for regime_name, regime_mask in vol_regimes.items():
@@ -174,7 +174,7 @@ def validate_adaptive_thresholds(df):
         
         # Side-based performance (if available)
         if 'side' in df.columns:
-            print(f"\n🎯 DIRECTIONAL TRADING PERFORMANCE:")
+            print(f"\nDIRECTIONAL TRADING PERFORMANCE:")
             print("-" * 50)
             
             # Calculate directional returns
@@ -241,7 +241,7 @@ def validate_adaptive_thresholds(df):
         print(f"Hit Rate Improvement: {adaptive_hit_rate - static_hit_rate:+.1%}")
     
     # Test 4: Regime switching frequency and duration analysis
-    print(f"\n🔄 REGIME SWITCHING ANALYSIS:")
+    print(f"\nREGIME SWITCHING ANALYSIS:")
     print("-" * 50)
     
     # Create regime labels
@@ -309,7 +309,7 @@ def validate_adaptive_thresholds(df):
             print()
     
     # Export raw data for pivot table analysis
-    print(f"\n📊 EXPORTING DATA FOR PIVOT ANALYSIS:")
+    print(f"\nEXPORTING DATA FOR PIVOT ANALYSIS:")
     print("-" * 50)
     
     # Create comprehensive analysis dataset
@@ -402,9 +402,9 @@ def validate_adaptive_thresholds(df):
     output_file = 'validate_adaptive_thresholds.csv'
     pivot_df.to_csv(output_file, index=False)
     
-    print(f"✅ Exported {len(pivot_df)} rows to '{output_file}'")
+    print(f"Exported {len(pivot_df)} rows to '{output_file}'")
     print(f"📋 Columns included: {len(available_columns)}")
-    print(f"🔍 Key pivot fields:")
+    print(f" Key pivot fields:")
     print(f"   • Regime analysis: regime, is_*_vol columns")
     print(f"   • Time analysis: year, month, quarter, hour")
     print(f"   • Performance: *_signal_return, *_hit columns")
@@ -457,7 +457,7 @@ def validate_adaptive_thresholds(df):
         summary_df = pd.DataFrame(summary_data)
         summary_file = 'validate_adaptive_thresholds_summary.csv'
         summary_df.to_csv(summary_file, index=False)
-        print(f"✅ Exported summary table to '{summary_file}'")
+        print(f"Exported summary table to '{summary_file}'")
     
     return {
         'static_threshold': static_threshold,

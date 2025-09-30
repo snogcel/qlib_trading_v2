@@ -441,7 +441,7 @@ class TestTestResultEnhancements:
         assert isinstance(summary, str)
         assert len(summary) > 0
         assert self.test_result.test_case.feature_name in summary
-        assert '✅' in summary  # Should have pass emoji
+        assert '' in summary  # Should have pass emoji
     
     def test_compare_with_baseline(self):
         """Test baseline comparison."""

@@ -6,7 +6,7 @@ The `signal_analysis_pivot.csv` file contains comprehensive data about every sig
 
 ## Key Columns for Analysis
 
-### 🎯 **Core Signal Data**
+### **Core Signal Data**
 - `signal_direction`: LONG, SHORT, HOLD
 - `signal_strength`: 0-1 signal strength score
 - `confidence`: 0-10 confidence level
@@ -14,7 +14,7 @@ The `signal_analysis_pivot.csv` file contains comprehensive data about every sig
 - `trade_executed`: Boolean - was a trade actually executed?
 - `trade_outcome`: EXECUTED, HOLD_POSITION, HOLD_NO_POSITION
 
-### 📊 **Quantile Data**
+### **Quantile Data**
 - `q10`, `q50`, `q90`: Raw quantile predictions
 - `abs_q50`: Absolute value of q50 (signal strength)
 - `spread`: q90 - q10 (uncertainty measure)
@@ -33,7 +33,7 @@ The `signal_analysis_pivot.csv` file contains comprehensive data about every sig
 - `spread_bucket`: Tight, Normal, Wide, Very_Wide
 - `prob_confidence_level`: Low, Medium, High
 
-### ⏰ **Time Analysis**
+### **Time Analysis**
 - `hour`: 0-23 hour of day
 - `day_of_week`: Monday, Tuesday, etc.
 - `month`: 1-12
@@ -41,14 +41,14 @@ The `signal_analysis_pivot.csv` file contains comprehensive data about every sig
 - `weekend`: Boolean
 - `market_hours`: Boolean (Always True for crypto - 24/7 markets)
 
-### ✅ **Boolean Flags (Easy Filtering)**
+### **Boolean Flags (Easy Filtering)**
 - `signal_above_thresh`: Signal above adaptive threshold
 - `high_confidence`: Confidence >= 7
 - `strong_signal`: Signal strength >= 0.7
 - `has_position`: Currently holding a position
 - `is_long_signal`, `is_short_signal`, `is_hold_signal`: Signal type flags
 
-### 📈 **Derived Metrics**
+###  **Derived Metrics**
 - `signal_quality_score`: Combined strength × confidence × directional probability
 - `risk_reward_ratio`: Signal strength / spread
 - `position_utilization`: Current position / max position
@@ -97,17 +97,17 @@ Values: signal_strength (Average)
 
 ## Key Questions You Can Answer
 
-### 🔍 **Signal Quality**
+###  **Signal Quality**
 - Which signal types have the highest execution rate?
 - Do high-confidence signals actually execute more often?
 - What's the relationship between signal strength and actual trades?
 
-### ⏰ **Timing Patterns**
+### **Timing Patterns**
 - Are there specific hours/days when execution rates are higher?
 - Do weekend signals behave differently than weekday signals?
 - Is there seasonality in signal generation or execution?
 
-### 🎯 **Threshold Effectiveness**
+### **Threshold Effectiveness**
 - Do signals above the adaptive threshold perform better?
 - What's the optimal confidence level for trade execution?
 - How does spread (uncertainty) affect trading decisions?
@@ -117,7 +117,7 @@ Values: signal_strength (Average)
 - Do larger target positions correlate with higher confidence?
 - How does risk-reward ratio affect position sizing?
 
-### 🔄 **Hold Analysis**
+### **Hold Analysis**
 - Why do signals result in holds instead of trades?
 - Which hold reasons are most common?
 - Do held signals have different characteristics than executed ones?

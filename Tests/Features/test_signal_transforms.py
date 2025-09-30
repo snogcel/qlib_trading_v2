@@ -257,24 +257,24 @@ def recommend_feature_selection(results):
     signal_features = {k: v for k, v in results.items() if k.startswith('signal_')}
     if signal_features:
         best_signal = max(signal_features.items(), key=lambda x: abs(x[1]['return_corr']))
-        print(f"  ✅ Best signal feature: {best_signal[0]} (corr: {best_signal[1]['return_corr']:+.4f})")
+        print(f"  Best signal feature: {best_signal[0]} (corr: {best_signal[1]['return_corr']:+.4f})")
     
     # Spread features  
     spread_features = {k: v for k, v in results.items() if k.startswith('spread_')}
     if spread_features:
         best_spread = max(spread_features.items(), key=lambda x: abs(x[1]['return_corr']))
-        print(f"  ⚠️  Best spread feature: {best_spread[0]} (corr: {best_spread[1]['return_corr']:+.4f})")
+        print(f"   Best spread feature: {best_spread[0]} (corr: {best_spread[1]['return_corr']:+.4f})")
         if abs(best_spread[1]['return_corr']) < 0.01:
             print(f"     (Still very weak - consider removing spread features entirely)")
     
     # Composite features
     if 'tier_confidence' in results:
         tier_corr = results['tier_confidence']['return_corr']
-        print(f"  📊 Tier confidence: {tier_corr:+.4f}")
+        print(f"  Tier confidence: {tier_corr:+.4f}")
         if abs(tier_corr) > 0.02:
-            print(f"     ✅ Keep - shows meaningful correlation")
+            print(f"     Keep - shows meaningful correlation")
         else:
-            print(f"     ❌ Consider simplifying - weak correlation")
+            print(f"     Consider simplifying - weak correlation")
     
     # Features to potentially remove
     weak_features = [k for k, v in results.items() if abs(v['return_corr']) < 0.005]

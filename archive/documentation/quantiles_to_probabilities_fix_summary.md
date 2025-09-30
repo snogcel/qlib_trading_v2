@@ -75,14 +75,14 @@ signal_thresh = row.get('signal_thresh_adaptive', row.get('signal_thresh', 0.01)
 
 ## Validation Results
 
-### ✅ All Tests Pass
+### All Tests Pass
 - **7 synthetic test cases**: All probability calculations correct
 - **Real data validation**: 100 samples tested successfully  
 - **Probability sum validation**: All results sum to exactly 1.0
 - **Range validation**: All probabilities in [0,1] range
 - **Neutral probability cap**: All neutral probabilities ≤ 30%
 
-### ✅ Perfect Alignment with Training Script
+### Perfect Alignment with Training Script
 - **8 alignment test cases**: Perfect match with reference implementation
 - **prob_up_piecewise**: Exact match to training script logic
 - **Floating-point precision**: Differences < 1e-10
@@ -109,9 +109,9 @@ The `quantiles_to_probabilities` function is now fully aligned and validated. Re
 
 ## Test Coverage
 
-- ✅ Synthetic test cases (7 scenarios)
-- ✅ Real data validation (100 samples)  
-- ✅ Alignment verification (8 test cases)
-- ✅ Edge case handling
-- ✅ Probability normalization
-- ✅ Range validation
+- Synthetic test cases (7 scenarios)
+- Real data validation (100 samples)  
+- Alignment verification (8 test cases)
+- Edge case handling
+- Probability normalization
+- Range validation

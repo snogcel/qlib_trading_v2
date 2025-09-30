@@ -4,7 +4,7 @@
 
 This comprehensive feature optimization suite helps you systematically test and optimize different feature configurations and model parameters to maximize your quantile trading strategy performance.
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Quick Feature Test (Recommended First Step)
 ```bash
@@ -45,7 +45,7 @@ Runs all feature experiments + comprehensive hyperparameter optimization.
 **Expected runtime:** 2-4 hours  
 **Output:** Complete optimization results
 
-## 📊 Feature Experiment Types
+## Feature Experiment Types
 
 ### 1. **Enhanced Volatility** (`enhanced_volatility`)
 - **New Features:** Volatility regime detection, breakout signals, GARCH-like volatility
@@ -99,7 +99,7 @@ The system optimizes three levels of parameters:
 - Long/short thresholds
 - Risk management settings
 
-## 📈 Performance Metrics
+##  Performance Metrics
 
 Each experiment tracks:
 - **Total Return:** Absolute performance
@@ -108,7 +108,7 @@ Each experiment tracks:
 - **Win Rate:** Trade success rate
 - **Total Trades:** Strategy activity level
 
-## 🎯 Optimization Workflow
+## Optimization Workflow
 
 ### Recommended Sequence:
 
@@ -147,7 +147,7 @@ python run_feature_optimization.py --mode optimize --config enhanced_volatility
 - `optimized_[config]_[timestamp].json` - Final optimized configuration
 - `feature_importance_analysis_[timestamp].json` - Feature importance rankings
 
-## 🔧 Customization
+## Customization
 
 ### Adding New Feature Experiments:
 1. Edit `feature_experiment_suite.py`
@@ -159,7 +159,7 @@ python run_feature_optimization.py --mode optimize --config enhanced_volatility
 2. Modify the `objective()` function in optimization methods
 3. Adjust scoring weights (e.g., Sharpe vs. return vs. drawdown)
 
-## 🚨 Performance Expectations
+##  Performance Expectations
 
 Based on your baseline results:
 
@@ -174,7 +174,7 @@ Based on your baseline results:
 - **Feature Interactions:** +5-15% overall performance
 - **Full Optimization:** +20-40% combined improvement
 
-## 💡 Tips for Best Results
+##  Tips for Best Results
 
 1. **Start with quick test** - Don't jump to full optimization
 2. **Monitor feature importance** - Remove low-importance features
@@ -182,7 +182,7 @@ Based on your baseline results:
 4. **Validate on out-of-sample data** - Use the test set for final validation
 5. **Balance complexity vs. performance** - More features ≠ always better
 
-## 🔄 Integration with Hummingbot
+## Integration with Hummingbot
 
 After optimization:
 1. Use optimized thresholds in `hummingbot_bridge.py`

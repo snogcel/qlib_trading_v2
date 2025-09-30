@@ -30,19 +30,19 @@ def ensure_vol_risk_available(df):
     This represents the squared volatility = variance, which is key for risk measurement
     """
     if 'vol_risk' not in df.columns:
-        print("⚠️  vol_risk was not found in data - this should come from crypto_loader_optimized")
+        print(" vol_risk was not found in data - this should come from crypto_loader_optimized")
         print("   vol_risk = Std(Log($close / Ref($close, 1)), 6) * Std(Log($close / Ref($close, 1)), 6)")
         
         
         # Fallback calculation if not available (but this shouldn't happen)
         if 'vol_raw' in df.columns:
             df['vol_risk'] = df['vol_raw'] ** 2  # Convert std dev to variance
-            print("   ✅ Created vol_risk from vol_raw (vol_raw²)")
+            print("   Created vol_risk from vol_raw (vol_raw²)")
         else:
-            print("   ❌ Cannot create vol_risk - missing vol_raw")
+            print("   Cannot create vol_risk - missing vol_raw")
             df['vol_risk'] = 0.0001  # Small default value
     else:
-        print(f"✅ vol_risk available from crypto_loader_optimized ({df['vol_risk'].notna().sum():,} valid values)")
+        print(f"vol_risk available from crypto_loader_optimized ({df['vol_risk'].notna().sum():,} valid values)")
     
     return df
 
@@ -105,14 +105,14 @@ class PrincipleCoverageValidator:
                 'test_values': prob_results.tolist()
             }
             
-            print(f"✅ Q50 Economic Logic: {'PASS' if economic_logic_valid else 'FAIL'}")
+            print(f"Q50 Economic Logic: {'PASS' if economic_logic_valid else 'FAIL'}")
             
         except Exception as e:
             results['q50_economic_logic'] = {
                 'status': 'ERROR',
                 'error': str(e)
             }
-            print(f"❌ Q50 Economic Logic: ERROR - {e}")
+            print(f"Q50 Economic Logic: ERROR - {e}")
         
         # Test 2: Quantile loss function is mathematically sound
         try:
@@ -132,14 +132,14 @@ class PrincipleCoverageValidator:
                 'coverages': [coverage_10, coverage_50, coverage_90]
             }
             
-            print(f"✅ Quantile Loss Validity: {'PASS' if coverage_valid else 'FAIL'}")
+            print(f"Quantile Loss Validity: {'PASS' if coverage_valid else 'FAIL'}")
             
         except Exception as e:
             results['quantile_loss_validity'] = {
                 'status': 'ERROR', 
                 'error': str(e)
             }
-            print(f"❌ Quantile Loss Validity: ERROR - {e}")
+            print(f"Quantile Loss Validity: ERROR - {e}")
         
         self.coverage_results['thesis_first'] = results
         return results
@@ -171,14 +171,14 @@ class PrincipleCoverageValidator:
                 'regime_count': int(regime_diversity)
             }
             
-            print(f"✅ Regime Microstructure: {'PASS' if regime_diversity > 0 else 'FAIL'}")
+            print(f"Regime Microstructure: {'PASS' if regime_diversity > 0 else 'FAIL'}")
             
         except Exception as e:
             results['regime_microstructure'] = {
                 'status': 'ERROR',
                 'error': str(e)
             }
-            print(f"❌ Regime Microstructure: ERROR - {e}")
+            print(f"Regime Microstructure: ERROR - {e}")
         
         # Test 2: Vol_risk provides economic rationale
         try:
@@ -197,14 +197,14 @@ class PrincipleCoverageValidator:
                 'has_vol_risk': 'vol_risk' in enhanced_data.columns
             }
             
-            print(f"✅ Vol_risk Economic Logic: {'PASS' if vol_risk_valid else 'FAIL'}")
+            print(f"Vol_risk Economic Logic: {'PASS' if vol_risk_valid else 'FAIL'}")
             
         except Exception as e:
             results['vol_risk_economic'] = {
                 'status': 'ERROR',
                 'error': str(e)
             }
-            print(f"❌ Vol_risk Economic Logic: ERROR - {e}")
+            print(f"Vol_risk Economic Logic: ERROR - {e}")
         
         self.coverage_results['supply_demand'] = results
         return results
@@ -243,7 +243,7 @@ class PrincipleCoverageValidator:
             'details': documentation_scores
         }
         
-        print(f"✅ Function Documentation: {'PASS' if avg_documentation >= 0.8 else 'FAIL'} ({avg_documentation:.1%})")
+        print(f"Function Documentation: {'PASS' if avg_documentation >= 0.8 else 'FAIL'} ({avg_documentation:.1%})")
         
         # Test 2: No overly complex functions (complexity heuristic)
         complexity_scores = []
@@ -278,7 +278,7 @@ class PrincipleCoverageValidator:
             'details': complexity_scores
         }
         
-        print(f"✅ Function Complexity: {'PASS' if avg_simplicity >= 0.8 else 'FAIL'} ({avg_simplicity:.1%})")
+        print(f"Function Complexity: {'PASS' if avg_simplicity >= 0.8 else 'FAIL'} ({avg_simplicity:.1%})")
         
         self.coverage_results['explainability'] = results
         return results
@@ -295,7 +295,7 @@ class PrincipleCoverageValidator:
             # Check for key output files
             key_files = [
                 'df_all_macro_analysis.csv',
-                'data3/macro_features.pkl',
+                'macro_features.pkl',
                 'temp/correlation_matrix.csv'
             ]
             
@@ -319,14 +319,14 @@ class PrincipleCoverageValidator:
                 'file_status': file_status
             }
             
-            print(f"✅ Output Files: {'PASS' if all_files_exist else 'FAIL'}")
+            print(f"Output Files: {'PASS' if all_files_exist else 'FAIL'}")
             
         except Exception as e:
             results['output_files'] = {
                 'status': 'ERROR',
                 'error': str(e)
             }
-            print(f"❌ Output Files: ERROR - {e}")
+            print(f"Output Files: ERROR - {e}")
         
         self.coverage_results['performance'] = results
         return results
@@ -349,13 +349,13 @@ class PrincipleCoverageValidator:
                 
                 if status == 'PASS':
                     passed_tests += 1
-                    print(f"  ✅ {test_name}: {status}")
+                    print(f"  {test_name}: {status}")
                 elif status == 'FAIL':
-                    print(f"  ❌ {test_name}: {status}")
+                    print(f"  {test_name}: {status}")
                     if 'rationale' in result:
                         print(f"     Rationale: {result['rationale']}")
                 else:
-                    print(f"  ⚠️ {test_name}: {status}")
+                    print(f"  {test_name}: {status}")
                     if 'error' in result:
                         print(f"     Error: {result['error']}")
         

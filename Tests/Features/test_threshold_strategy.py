@@ -240,11 +240,11 @@ def run_adaptive_threshold_validation(df):
     print("\n=== RECOMMENDATION ===")
     
     if adaptive_perf['sharpe'] > static_perf['sharpe'] * 1.05:  # 5% improvement threshold
-        print("✅ KEEP ADAPTIVE STRATEGY - Shows meaningful improvement")
+        print("KEEP ADAPTIVE STRATEGY - Shows meaningful improvement")
     elif adaptive_perf['sharpe'] > static_perf['sharpe']:
-        print("⚠️  MARGINAL IMPROVEMENT - Consider if complexity is worth it")
+        print(" MARGINAL IMPROVEMENT - Consider if complexity is worth it")
     else:
-        print("❌ USE STATIC STRATEGY - Adaptive doesn't improve performance")
+        print("USE STATIC STRATEGY - Adaptive doesn't improve performance")
     
     return static_perf, adaptive_perf
 

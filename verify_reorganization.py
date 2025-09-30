@@ -68,7 +68,7 @@ def main():
         print(f"\n[WARN]  MISSING FILES DETECTED:")
         for component, paths in missing_files:
             print(f"   {component}: {paths}")
-        print(f"\n🚨 RECOMMENDATION: Don't push yet - investigate missing files")
+        print(f"\n RECOMMENDATION: Don't push yet - investigate missing files")
         return False
     else:
         print(f"\n[PASS] ALL CRITICAL FILES FOUND - Safe to push")

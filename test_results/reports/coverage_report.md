@@ -7,7 +7,7 @@ Generated: 2025-08-08 02:03:19
 - Coverage Rate: 0.0%
 
 ## Feature Coverage Details
-### ❌ btc_dom
+### btc_dom
 - Tests: 0/3 (0.0%)
 - Test Types: 2 (failure_mode, implementation)
 - Priorities: high, low
@@ -17,7 +17,7 @@ Generated: 2025-08-08 02:03:19
 - failure_mode: Analysis for btc_dom failure_mode
 - implementation: Analysis for btc_dom implementation
 
-### ❌ regime_multiplier
+### regime_multiplier
 - Tests: 2/5 (40.0%)
 - Test Types: 4 (regime_dependency, performance, implementation, failure_mode)
 - Priorities: low, medium, high
@@ -27,7 +27,7 @@ Generated: 2025-08-08 02:03:19
 - implementation: Analysis for regime_multiplier implementation
 - regime_dependency: Analysis for regime_multiplier regime_dependency
 
-### ❌ vol_risk
+### vol_risk
 - Tests: 2/5 (40.0%)
 - Test Types: 4 (regime_dependency, performance, failure_mode, economic_hypothesis)
 - Priorities: critical, medium, low
@@ -37,7 +37,7 @@ Generated: 2025-08-08 02:03:19
 - economic_hypothesis: Analysis for vol_risk economic_hypothesis
 - failure_mode: Analysis for vol_risk failure_mode
 
-### ❌ kelly_sizing
+### kelly_sizing
 - Tests: 3/7 (42.9%)
 - Test Types: 4 (failure_mode, performance, implementation, economic_hypothesis)
 - Priorities: critical, medium, low
@@ -48,7 +48,7 @@ Generated: 2025-08-08 02:03:19
 - implementation: Analysis for kelly_sizing implementation
 - implementation: Analysis for kelly_sizing implementation
 
-### ❌ Q50
+### Q50
 - Tests: 4/9 (44.4%)
 - Test Types: 5 (regime_dependency, economic_hypothesis, performance, implementation, failure_mode)
 - Priorities: critical, medium, low
@@ -60,7 +60,7 @@ Generated: 2025-08-08 02:03:19
 - economic_hypothesis: Analysis for Q50 economic_hypothesis
 - economic_hypothesis: Analysis for Q50 economic_hypothesis
 
-### ❌ fg_index
+### fg_index
 - Tests: 2/4 (50.0%)
 - Test Types: 3 (regime_dependency, performance, failure_mode)
 - Priorities: critical, low, medium, high
@@ -69,7 +69,7 @@ Generated: 2025-08-08 02:03:19
 - regime_dependency: Analysis for fg_index regime_dependency
 - failure_mode: Analysis for fg_index failure_mode
 
-### ❌ Q10
+### Q10
 - Tests: 3/5 (60.0%)
 - Test Types: 2 (regime_dependency, performance)
 - Priorities: critical, low
@@ -78,7 +78,7 @@ Generated: 2025-08-08 02:03:19
 - regime_dependency: Analysis for Q10 regime_dependency
 - performance: Analysis for Q10 performance
 
-### ❌ spread
+### spread
 - Tests: 2/3 (66.7%)
 - Test Types: 3 (regime_dependency, failure_mode, implementation)
 - Priorities: critical, low
@@ -86,7 +86,7 @@ Generated: 2025-08-08 02:03:19
 **Failed Tests:**
 - regime_dependency: Analysis for spread regime_dependency
 
-### ⚠️ Q90
+### Q90
 - Tests: 8/9 (88.9%)
 - Test Types: 5 (regime_dependency, economic_hypothesis, performance, implementation, failure_mode)
 - Priorities: critical, medium, high
@@ -104,7 +104,7 @@ Generated: 2025-08-08 02:03:19
 
 ## Priority Coverage
 
-- ⚠️ Critical: 14/15 (93.3%)
-- ❌ High: 5/7 (71.4%)
-- ❌ Medium: 4/12 (33.3%)
-- ❌ Low: 3/16 (18.8%)
+- Critical: 14/15 (93.3%)
+- High: 5/7 (71.4%)
+- Medium: 4/12 (33.3%)
+- Low: 3/16 (18.8%)

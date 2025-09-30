@@ -6,7 +6,7 @@
 
 ---
 
-## 🎯 System Overview
+## System Overview
 
 ### Core Philosophy
 This is a **Q50-centric, variance-aware quantile trading system** built on professional trading principles:
@@ -91,17 +91,17 @@ graph TB
 
 ---
 
-## 📊 Core System Components
+## Core System Components
 
 ### 1. Data Infrastructure
 
 #### **Primary Data Sources**
 | Source | Frequency | Purpose | Status | Critical Features |
 |--------|-----------|---------|--------|-------------------|
-| **Crypto Market Data** | 60min | OHLCV, volume, volatility | ✅ Production | `vol_risk`, `close`, `volume` |
-| **GDELT Sentiment** | Daily | News sentiment analysis | ✅ Production | Sentiment scores, event counts |
-| **BTC Dominance** | Daily | Market structure indicator | ✅ Production | `$btc_dom` |
-| **Fear & Greed Index** | Daily | Market sentiment gauge | ✅ Production | `$fg_index` |
+| **Crypto Market Data** | 60min | OHLCV, volume, volatility | Production | `vol_risk`, `close`, `volume` |
+| **GDELT Sentiment** | Daily | News sentiment analysis | Production | Sentiment scores, event counts |
+| **BTC Dominance** | Daily | Market structure indicator | Production | `$btc_dom` |
+| **Fear & Greed Index** | Daily | Market sentiment gauge | Production | `$fg_index` |
 
 #### **Data Loading Architecture**
 ```python
@@ -140,10 +140,10 @@ CustomNestedDataLoader(
 #### **Core Signal Features**
 | Feature | Purpose | Implementation | Status |
 |---------|---------|----------------|--------|
-| **Q50** | Primary directional signal | Multi-quantile LightGBM | ✅ Production |
-| **Q10/Q90** | Uncertainty bounds | Multi-quantile LightGBM | ✅ Production |
-| **vol_risk** | Variance-based risk | Crypto loader | ✅ Production |
-| **prob_up** | Probability conversion | Piecewise calculation | ✅ Production |
+| **Q50** | Primary directional signal | Multi-quantile LightGBM | Production |
+| **Q10/Q90** | Uncertainty bounds | Multi-quantile LightGBM | Production |
+| **vol_risk** | Variance-based risk | Crypto loader | Production |
+| **prob_up** | Probability conversion | Piecewise calculation | Production |
 
 #### **Temporal Enhancement Features**
 **Location:** `src/features/regime_features.py` - `add_temporal_quantile_features()`
@@ -235,7 +235,7 @@ df['economically_significant'] = df['expected_value'] > transaction_cost
 
 ---
 
-## 🧪 Testing & Quality Assurance
+## Testing & Quality Assurance
 
 ### Testing Architecture Overview
 **Location:** `src/testing/` (Comprehensive test coverage system)
@@ -243,10 +243,10 @@ df['economically_significant'] = df['expected_value'] > transaction_cost
 #### **Test Coverage Framework**
 | Test Type | Purpose | Location | Status |
 |-----------|---------|----------|--------|
-| **Unit Tests** | Individual component testing | `tests/unit/` | ✅ Comprehensive |
-| **Integration Tests** | Component interaction testing | `tests/integration/` | ✅ Active |
-| **Pipeline Tests** | End-to-end flow validation | `tests/pipeline/` | ✅ Implemented |
-| **Principle Tests** | Economic logic validation | `tests/principles/` | ✅ Validated |
+| **Unit Tests** | Individual component testing | `tests/unit/` | Comprehensive |
+| **Integration Tests** | Component interaction testing | `tests/integration/` | Active |
+| **Pipeline Tests** | End-to-end flow validation | `tests/pipeline/` | Implemented |
+| **Principle Tests** | Economic logic validation | `tests/principles/` | Validated |
 
 #### **Feature Test Coverage System**
 **Location:** `src/testing/` (Recently implemented)
@@ -315,35 +315,35 @@ reports/                # Validation and analysis reports
 
 ---
 
-## 🔧 Technology Stack
+## Technology Stack
 
 ### **Core Technologies**
 | Technology | Version | Purpose | Status |
 |------------|---------|---------|--------|
-| **Python** | 3.9+ | Core language | ✅ Production |
-| **QLib** | Latest | Financial ML framework | ✅ Integrated |
-| **LightGBM** | 3.3+ | Gradient boosting | ✅ Production |
-| **Pandas** | 1.5+ | Data manipulation | ✅ Production |
-| **NumPy** | Latest | Numerical computing | ✅ Production |
+| **Python** | 3.9+ | Core language | Production |
+| **QLib** | Latest | Financial ML framework | Integrated |
+| **LightGBM** | 3.3+ | Gradient boosting | Production |
+| **Pandas** | 1.5+ | Data manipulation | Production |
+| **NumPy** | Latest | Numerical computing | Production |
 
 ### **Specialized Libraries**
 | Library | Purpose | Integration Status |
 |---------|---------|-------------------|
-| **Optuna** | Hyperparameter optimization | ✅ Active |
-| **Stable-Baselines3** | Reinforcement learning | ✅ RL components |
-| **Matplotlib/Plotly** | Visualization | ✅ Reporting |
-| **Scikit-learn** | ML utilities | ✅ Supporting |
+| **Optuna** | Hyperparameter optimization | Active |
+| **Stable-Baselines3** | Reinforcement learning | RL components |
+| **Matplotlib/Plotly** | Visualization | Reporting |
+| **Scikit-learn** | ML utilities | Supporting |
 
 ### **External Integrations**
 | Integration | Purpose | Status |
 |-------------|---------|--------|
-| **Hummingbot** | Live trading execution | ✅ Compatible |
-| **GDELT** | News sentiment data | ✅ Optimized |
-| **CoinGecko/APIs** | Market data feeds | ✅ Active |
+| **Hummingbot** | Live trading execution | Compatible |
+| **GDELT** | News sentiment data | Optimized |
+| **CoinGecko/APIs** | Market data feeds | Active |
 
 ---
 
-## 🚨 Known Issues & Technical Debt
+##  Known Issues & Technical Debt
 
 ### **Critical Issues** (From Test Analysis)
 1. **btc_dom Feature**: Complete failure (0% test success)
@@ -369,7 +369,7 @@ reports/                # Validation and analysis reports
 
 ---
 
-## 🎯 System Strengths
+## System Strengths
 
 ### **Architectural Advantages**
 1. **Modular Design**: Clear separation of concerns
@@ -392,7 +392,7 @@ reports/                # Validation and analysis reports
 
 ---
 
-## 🚀 Recommended Next Steps
+## Recommended Next Steps
 
 ### **Immediate Actions** (Week 1)
 1. **Fix btc_dom**: Emergency investigation and repair
@@ -430,7 +430,7 @@ reports/                # Validation and analysis reports
 
 ---
 
-## 💡 System Philosophy Summary
+##  System Philosophy Summary
 
 This system embodies **professional trading principles** with **systematic validation**:
 

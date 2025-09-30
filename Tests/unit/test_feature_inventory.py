@@ -75,7 +75,7 @@ class TestFeatureInventoryGenerator:
         return """
 # Feature Knowledge Template
 
-## 🎯 Core Signal Features
+## Core Signal Features
 
 ### Q50 (Primary Signal)
 **Implementation**: qlib_custom/custom_multi_quantile.py
@@ -87,7 +87,7 @@ class TestFeatureInventoryGenerator:
 - Economic Hypothesis: Uncertainty measure
 - Uses Q50 for directional bias
 
-## 📊 Risk & Volatility Features
+## Risk & Volatility Features
 
 ### Vol_Risk (Variance-Based)
 **Formula**: Std(Log($close / Ref($close, 1)), 6)^2

@@ -1,6 +1,6 @@
 # Quantile Enhancement Roadmap
 
-## 🎯 Overview
+## Overview
 Incremental enhancement of the proven Q50-centric trading system (1.327 Sharpe) using insights from quantile deep learning research.
 
 **Foundation**: Current system with 17.48% return, 1.327 Sharpe, -11.77% max drawdown  
@@ -31,10 +31,10 @@ Add LSTM-inspired temporal patterns to existing LightGBM pipeline without disrup
   - Ensure no performance regression
 
 ### Success Criteria
-- ✅ Features integrate cleanly with existing pipeline
-- ✅ Sharpe ratio maintained or improved (≥1.327)
-- ✅ No increase in max drawdown (≤-11.77%)
-- ✅ Feature importance analysis shows temporal value
+- Features integrate cleanly with existing pipeline
+- Sharpe ratio maintained or improved (≥1.327)
+- No increase in max drawdown (≤-11.77%)
+- Feature importance analysis shows temporal value
 
 ### Code Structure
 ```python
@@ -78,10 +78,10 @@ Enhance Kelly criterion position sizing with formal uncertainty quantification f
   - Maintain existing regime multiplier logic
 
 ### Success Criteria
-- ✅ Uncertainty metrics correlate with prediction accuracy
-- ✅ Position sizing reduces risk during uncertain periods
-- ✅ Overall risk-adjusted returns improve
-- ✅ System remains stable across market regimes
+- Uncertainty metrics correlate with prediction accuracy
+- Position sizing reduces risk during uncertain periods
+- Overall risk-adjusted returns improve
+- System remains stable across market regimes
 
 ### Code Structure
 ```python
@@ -125,10 +125,10 @@ Develop and test LSTM-Quantile hybrid model as potential enhancement to LightGBM
   - Fallback to proven LightGBM if needed
 
 ### Success Criteria
-- ✅ LSTM model trains successfully on existing data
-- ✅ Quantile predictions show temporal pattern capture
-- ✅ Performance matches or exceeds LightGBM baseline
-- ✅ Computational overhead acceptable for production
+- LSTM model trains successfully on existing data
+- Quantile predictions show temporal pattern capture
+- Performance matches or exceeds LightGBM baseline
+- Computational overhead acceptable for production
 
 ### Code Structure
 ```python
@@ -146,7 +146,7 @@ class LSTMQuantileModel:
 
 ---
 
-## 🧪 Validation Framework
+## Validation Framework
 
 ### Performance Benchmarks
 - **Sharpe Ratio**: Must maintain ≥1.327
@@ -167,7 +167,7 @@ class LSTMQuantileModel:
 
 ---
 
-## 📊 Success Metrics
+## Success Metrics
 
 ### Phase 1 Success
 - [ ] Temporal features show predictive value
@@ -186,7 +186,7 @@ class LSTMQuantileModel:
 
 ---
 
-## 🎯 Long-Term Vision
+## Long-Term Vision
 
 ### Multi-Horizon Extension
 - Extend quantile predictions to multiple time horizons

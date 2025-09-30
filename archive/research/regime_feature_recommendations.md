@@ -1,6 +1,6 @@
 # Advanced Regime Feature Engineering - Recommendations
 
-## 🎯 **Top Performing Regime Features** (Validated Results)
+## **Top Performing Regime Features** (Validated Results)
 
 Based on your data analysis, here are the highest-value feature interactions:
 
@@ -31,7 +31,7 @@ Based on your data analysis, here are the highest-value feature interactions:
    - **Logic**: `(vol_extreme + sentiment_extreme + dom_extreme) >= 3`
    - **Use Case**: Risk management and opportunity detection
 
-## 🚀 **Recommended Feature Interactions to Explore**
+## **Recommended Feature Interactions to Explore**
 
 ### **A. Volatility Regime Interactions**
 
@@ -102,7 +102,7 @@ signal_quality_score = (
 )
 ```
 
-## 📊 **Implementation Priority**
+## **Implementation Priority**
 
 ### **Phase 1: High-Impact, Low-Complexity**
 1. **`crisis_opportunity`** - Simple 3-flag combination, huge lift
@@ -119,7 +119,7 @@ signal_quality_score = (
 2. **Regime-adjusted Kelly sizing** - Your sophisticated approach
 3. **Ensemble regime scoring** - Combine multiple signals
 
-## 🎯 **Kelly Sizing Integration**
+## **Kelly Sizing Integration**
 
 Based on your regime-aware Kelly testing:
 
@@ -137,7 +137,7 @@ elif contrarian_fear_bullish or contrarian_greed_bearish:
     kelly_multiplier = 1.8  # Boost contrarian opportunities
 ```
 
-## 🔍 **Feature Validation Results**
+##  **Feature Validation Results**
 
 Your regime features show **exceptional predictive power**:
 
@@ -146,7 +146,7 @@ Your regime features show **exceptional predictive power**:
 - **Reasonable frequency**: Most valuable features occur 1-4% of time
 - **Statistical significance**: Large sample sizes (190-2077 observations)
 
-## 🚀 **Next Steps**
+## **Next Steps**
 
 1. **Implement Phase 1 features** in your production pipeline
 2. **Integrate regime-aware Kelly sizing** with validated multipliers
@@ -156,7 +156,7 @@ Your regime features show **exceptional predictive power**:
 
 Your regime-based approach is sophisticated and **statistically validated**. The combination of market microstructure insights with proven predictive features creates a powerful edge in crypto trading.
 
-## 💡 **Key Insight**
+##  **Key Insight**
 
 The **crisis_opportunity** pattern (vol_extreme_high & fg_extreme_fear & btc_dom_high) occurs only 1% of the time but provides 2.31x lift in returns. This is exactly the type of rare, high-value signal that sophisticated quantitative strategies are built on.
 

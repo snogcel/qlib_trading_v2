@@ -13,7 +13,7 @@ def create_corrected_analysis():
     print("VOLATILITY FEATURES: CORRECTED ANALYSIS WITH HISTORICAL CONTEXT")
     print("=" * 100)
     
-    print("\n🔍 HISTORICAL IMPLEMENTATIONS (OLD):")
+    print("\n HISTORICAL IMPLEMENTATIONS (OLD):")
     
     print("\n1. vol_risk (formerly vol_scaled):")
     print("   DEFINITION: Quantile-normalized realized volatility")
@@ -59,7 +59,7 @@ def create_corrected_analysis():
     print("   RANGE: 0 to ~0.056 (continuous, not discrete)")
     print("   PURPOSE: Long-term volatility percentile ranking")
     
-    print("\n⚖️  KEY DIFFERENCES:")
+    print("\n  KEY DIFFERENCES:")
     
     print("\n1. CONCEPTUAL CHANGES:")
     print("   • vol_risk: From quantile-normalized (0-1) to variance (0-0.016)")
@@ -76,7 +76,7 @@ def create_corrected_analysis():
     print("   • Time horizon: 3-period → 6-period for base, 30-period → 180-period for ranking")
     print("   • Normalization: Quantile-based → Rank-based")
     
-    print("\n🎯 IMPACT ON USAGE:")
+    print("\nIMPACT ON USAGE:")
     
     print("\n1. POSITION SIZING (vol_risk):")
     print("   OLD: vol_risk ∈ [0, 1] - perfect for direct position scaling")
@@ -98,7 +98,7 @@ def create_corrected_analysis():
     print("   NEW: Continuous 0-0.056 - needs new thresholds")
     print("   IMPACT: Regime flags (>=8, >=6, <=2, <=1) won't work!")
     
-    print("\n🚨 CRITICAL FIXES NEEDED:")
+    print("\n CRITICAL FIXES NEEDED:")
     
     print("\n1. IMMEDIATE (BREAKING CHANGES):")
     print("   • Position sizing: Rescale vol_risk or use different logic")
@@ -137,7 +137,7 @@ def create_corrected_analysis():
         print(f"      ISSUE: {fix['issue']}")
         print(f"      FIX: {fix['fix']}")
     
-    print("\n✅ RECOMMENDED SOLUTION:")
+    print("\nRECOMMENDED SOLUTION:")
     
     print("\n1. HYBRID APPROACH:")
     print("   • Keep new implementations for their theoretical benefits")
@@ -154,7 +154,7 @@ def create_corrected_analysis():
     print("   • Regime detection (HIGH - affects strategy)")
     print("   • Feature importance (MEDIUM - affects model)")
     
-    print("\n📊 DATA VALIDATION:")
+    print("\nDATA VALIDATION:")
     
     # Load and validate the data
     try:

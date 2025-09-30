@@ -63,7 +63,7 @@ def find_files_to_delete():
         for match in matches:
             if os.path.exists(match):
                 found_files.append(match)
-                print(f"   ✅ {match}")
+                print(f"   {match}")
     
     print(f"\n📦 FILES TO CONSIDER ARCHIVING:")
     print("=" * 50)
@@ -75,7 +75,7 @@ def find_files_to_delete():
             print(f"   📁 {file}")
     
     # Check for CSV/data files that might be safe to clean
-    print(f"\n📊 DATA FILES TO REVIEW:")
+    print(f"\nDATA FILES TO REVIEW:")
     print("=" * 50)
     
     data_patterns = ["*.csv", "df_*.csv", "feat_importance_*.csv", "*.xlsx"]
@@ -90,7 +90,7 @@ def find_files_to_delete():
     data_files.sort(key=lambda x: os.path.getsize(x), reverse=True)
     for file in data_files[:10]:  # Top 10 largest
         size_mb = os.path.getsize(file) / (1024*1024)
-        print(f"   📊 {file} ({size_mb:.1f} MB)")
+        print(f"   {file} ({size_mb:.1f} MB)")
     
     print(f"\n🧹 CLEANUP COMMANDS:")
     print("=" * 50)
@@ -118,7 +118,7 @@ def main():
     
     find_files_to_delete()
     
-    print(f"\n💡 RECOMMENDATIONS:")
+    print(f"\n RECOMMENDATIONS:")
     print("1. Delete the superseded files (they're now in src/)")
     print("2. Move valuable research files to archive/")
     print("3. Review large data files - keep only essential ones")

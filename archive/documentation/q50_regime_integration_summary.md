@@ -87,7 +87,7 @@ sell_mask = tradeable & (q50 < 0)
 
 ## Key Benefits
 
-### 🎯 **Economic Intuition**
+### **Economic Intuition**
 - Thresholds based on actual trading costs (20 bps default)
 - Q50 directly represents expected return
 - Information ratio measures signal-to-noise quality
@@ -97,12 +97,12 @@ sell_mask = tradeable & (q50 < 0)
 - Regime adjustments use only past information
 - Vol_risk calculation properly lagged
 
-### 📊 **Regime Awareness**
+### **Regime Awareness**
 - Different thresholds for different market conditions
 - Higher selectivity in high volatility periods
 - Lower thresholds in trending markets (momentum helps)
 
-### 🔍 **Interpretability**
+###  **Interpretability**
 - Can explain every trading decision
 - Clear economic rationale for each threshold
 - Regime features help understand market context

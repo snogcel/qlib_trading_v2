@@ -10,12 +10,12 @@ def create_implementation_summary():
     print("VOL_SCALED IMPLEMENTATION SUMMARY")
     print("=" * 100)
     
-    print("\n🎯 PROBLEM SOLVED:")
+    print("\nPROBLEM SOLVED:")
     print("   • vol_risk changed from [0,1] quantile-normalized to [0,0.016] variance")
     print("   • This broke position sizing and regime detection")
     print("   • Solution: Bring back the old vol_risk as 'vol_scaled'")
     
-    print("\n✅ IMPLEMENTATION COMPLETED:")
+    print("\nIMPLEMENTATION COMPLETED:")
     
     print("\n1. FEATURE LOADER UPDATES:")
     print("   📁 optimize_feature_loaders.py:")
@@ -39,7 +39,7 @@ def create_implementation_summary():
     print("      • Kept vol_risk for regime detection (uses new variance-based values)")
     print("      • Added vol_scaled to data cleaning dropna()")
     
-    print("\n📊 FEATURE COMPARISON:")
+    print("\nFEATURE COMPARISON:")
     print("   ┌─────────────┬──────────────┬──────────────┬─────────────────────┐")
     print("   │ Feature     │ Range        │ Purpose      │ Status              │")
     print("   ├─────────────┼──────────────┼──────────────┼─────────────────────┤")
@@ -47,7 +47,7 @@ def create_implementation_summary():
     print("   │ vol_scaled  │ [0, 1]       │ Position     │ RESTORED (old logic)│")
     print("   └─────────────┴──────────────┴──────────────┴─────────────────────┘")
     
-    print("\n🔧 TECHNICAL DETAILS:")
+    print("\nTECHNICAL DETAILS:")
     
     print("\n• vol_scaled formula:")
     print("  (Std(Log($close / Ref($close, 1)), 6) - Quantile(..., 30, 0.01)) /")
@@ -57,14 +57,14 @@ def create_implementation_summary():
     print("• Rolling window: 30 periods (same as original)")
     print("• Base volatility: 6-period realized volatility (updated from 3-period)")
     
-    print("\n✅ VALIDATION RESULTS:")
+    print("\nVALIDATION RESULTS:")
     print("   • vol_scaled properly bounded [0,1]: ✓")
     print("   • Clipping behavior preserved (~4-5% at bounds): ✓")
     print("   • Regime detection percentiles reasonable: ✓")
     print("   • vol_risk alias works correctly: ✓")
     print("   • Environment get_recent_vol_scaled() compatible: ✓")
     
-    print("\n🎯 BENEFITS OF THIS APPROACH:")
+    print("\nBENEFITS OF THIS APPROACH:")
     
     benefits = [
         "No breaking changes to existing position sizing logic",
@@ -90,21 +90,21 @@ def create_implementation_summary():
     for file in files_modified:
         print(f"   • {file}")
     
-    print("\n🧪 TESTING COMPLETED:")
+    print("\nTESTING COMPLETED:")
     print("   • Created test_vol_scaled_implementation.py")
     print("   • Verified vol_scaled bounds and distribution")
     print("   • Tested regime detection logic")
     print("   • Confirmed backward compatibility")
     
-    print("\n🚀 READY FOR PRODUCTION:")
+    print("\nREADY FOR PRODUCTION:")
     
-    print("\n✅ IMMEDIATE BENEFITS:")
+    print("\nIMMEDIATE BENEFITS:")
     print("   • Position sizing will work correctly (uses vol_scaled [0,1])")
     print("   • Regime detection will work (uses vol_risk quantiles)")
     print("   • No runtime errors from scale mismatches")
     print("   • Entropy coefficient calculation preserved")
     
-    print("\n📈 NEXT STEPS:")
+    print("\n NEXT STEPS:")
     next_steps = [
         "Test with real data from your crypto loader",
         "Run backtest to verify performance",

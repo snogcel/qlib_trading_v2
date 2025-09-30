@@ -61,14 +61,14 @@ This document tracks all features in the Q50-centric, variance-aware trading sys
 
 ---
 
-## 🎯 Core Signal Features
+## Core Signal Features
 
 ### Q50 (Primary Signal)
 - **Type**: Quantile-based probability
 - **Purpose**: Primary directional signal based on 50th percentile probability
 - **Usage**: Standalone signal for trade direction decisions
 - **Implementation**: `qlib_custom/custom_multi_quantile.py`
-- **Status**: ✅ Production Ready
+- **Status**: Production Ready
 - **Performance Impact**: High - Primary driver of returns
 
 ### Regime Multiplier
@@ -76,19 +76,19 @@ This document tracks all features in the Q50-centric, variance-aware trading sys
 - **Purpose**: Comprehensive regime-aware position scaling
 - **Usage**: Position sizing with regime awareness
 - **Implementation**: `qlib_custom/regime_features.py`
-- **Status**: ✅ Production Ready
+- **Status**: Production Ready
 - **Performance Impact**: High - Unified position scaling
 
 ---
 
-## 📊 Risk & Volatility Features
+## Risk & Volatility Features
 
 ### Vol_Risk (Variance-Based)
 - **Type**: Volatility-based risk metric
 - **Purpose**: Risk assessment using variance instead of standard deviation
 - **Usage**: Position sizing and risk management
 - **Implementation**: `vol_risk_strategic_implementation.py`
-- **Status**: ✅ Production Ready
+- **Status**: Production Ready
 - **Performance Impact**: High - Critical for risk-adjusted returns
 """
     
@@ -97,7 +97,7 @@ This document tracks all features in the Q50-centric, variance-aware trading sys
         """Sample trading principles content"""
         return """# Trading System Development Principles
 
-## 🎯 Core Philosophy
+## Core Philosophy
 
 ### 1. **Thesis-First Development**
 Every strategy must have a clear economic thesis explaining why it works.
@@ -180,7 +180,7 @@ Keep it simple - if you can't explain it on a chart, it's not good.
         # Check extracted properties
         assert q50_feature['type'] == "Quantile-based probability"
         assert q50_feature['purpose'] == "Primary directional signal based on 50th percentile probability"
-        assert q50_feature['status'] == "✅ Production Ready"
+        assert q50_feature['status'] == "Production Ready"
         assert "High" in q50_feature['performance_impact']
     
     def test_find_category(self, engine):
@@ -479,7 +479,7 @@ Some basic content without thesis elements
         """Test reconstruction of category content"""
         category = FeatureCategory(
             name="Test Category",
-            section_title="## 🎯 Test Category",
+            section_title="## Test Category",
             features=[],
             content_start=0,
             content_end=10,
@@ -493,7 +493,7 @@ Some basic content without thesis elements
         
         result = engine._reconstruct_category_content(category, enhanced_features)
         
-        assert "## 🎯 Test Category" in result
+        assert "## Test Category" in result
         assert "### Feature 1" in result
         assert "### Feature 2" in result
         assert "---" in result  # Separator between features
@@ -513,7 +513,7 @@ class TestFeatureParsingEdgeCases:
         """Test parsing of malformed feature content"""
         malformed_content = """# Feature Documentation
 
-## 🎯 Core Features
+## Core Features
 
 ### Feature Without Properties
 
@@ -551,13 +551,13 @@ class TestFeatureParsingEdgeCases:
         """Test parsing of empty categories"""
         empty_content = """# Feature Documentation
 
-## 🎯 Empty Category
+## Empty Category
 
-## 📊 Another Empty Category
+## Another Empty Category
 
 ---
 
-## ✅ Category With Content
+## Category With Content
 
 ### Actual Feature
 - **Type**: Test type

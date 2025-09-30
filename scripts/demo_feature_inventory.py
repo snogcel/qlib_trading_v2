@@ -17,7 +17,7 @@ from testing.parsers.feature_template_parser import FeatureTemplateParser
 
 def main():
     """Demonstrate feature inventory generation."""
-    print("🔍 Feature Inventory Generation Demo")
+    print(" Feature Inventory Generation Demo")
     print("=" * 50)
     
     # Initialize parser
@@ -25,7 +25,7 @@ def main():
     template_path = Path("docs/FEATURE_KNOWLEDGE_TEMPLATE.md")
     
     if not template_path.exists():
-        print(f"❌ Template file not found: {template_path}")
+        print(f"Template file not found: {template_path}")
         return
     
     print(f"📄 Processing template: {template_path}")
@@ -33,13 +33,13 @@ def main():
     
     try:
         # Generate inventory
-        print("🔄 Generating feature inventory...")
+        print("Generating feature inventory...")
         inventory = parser.generate_feature_inventory(template_path)
         
         # Display summary
         summary = inventory.get_test_coverage_summary()
         
-        print("📊 Inventory Summary:")
+        print("Inventory Summary:")
         print(f"  • Total features: {summary['total_features']}")
         print(f"  • Critical features: {summary['critical_features']}")
         print(f"  • Categories: {summary['categories']}")
@@ -75,7 +75,7 @@ def main():
         print()
         
         # Display test requirements distribution
-        print("🧪 Test Requirements Distribution:")
+        print("Test Requirements Distribution:")
         test_dist = summary['test_type_distribution']
         for test_type, count in sorted(test_dist.items(), key=lambda x: x[1], reverse=True):
             print(f"  • {test_type}: {count} features")
@@ -83,7 +83,7 @@ def main():
         
         # Display some dependencies
         if inventory.dependencies:
-            print("🔗 Sample Dependencies:")
+            print("Sample Dependencies:")
             for dep in inventory.dependencies[:5]:  # Show first 5
                 print(f"  • {dep.source_feature} → {dep.target_feature}")
                 print(f"    Type: {dep.dependency_type} ({dep.strength})")
@@ -96,23 +96,23 @@ def main():
         
         # Display validation results
         validation = inventory.validation_summary
-        print("✅ Validation Results:")
+        print("Validation Results:")
         print(f"  • Completeness score: {validation['completeness_score']:.1f}%")
         print(f"  • Consistency issues: {len(validation['consistency_issues'])}")
         print(f"  • Missing data items: {len(validation['missing_data'])}")
         print(f"  • Warnings: {len(validation['warnings'])}")
         
         if validation['consistency_issues']:
-            print("\n⚠️  Consistency Issues:")
+            print("\n Consistency Issues:")
             for issue in validation['consistency_issues'][:3]:
                 print(f"    • {issue}")
             if len(validation['consistency_issues']) > 3:
                 print(f"    ... and {len(validation['consistency_issues']) - 3} more")
         
-        print("\n✅ Feature inventory generation completed successfully!")
+        print("\nFeature inventory generation completed successfully!")
         
     except Exception as e:
-        print(f"❌ Error generating inventory: {e}")
+        print(f"Error generating inventory: {e}")
         return 1
     
     return 0

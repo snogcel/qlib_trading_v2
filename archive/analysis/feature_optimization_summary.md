@@ -53,11 +53,11 @@
 ## Validated Features Preserved
 
 All your **validated high-performing features** are preserved:
-- ✅ `crisis_opportunity` components (vol_extreme_high, fg_extreme_fear, btc_dom_high)
-- ✅ `strong_signal_crisis` components (abs_q50, signal thresholds)
-- ✅ Core quantile predictions (q10, q50, q90)
-- ✅ Spread and probability calculations
-- ✅ Regime detection flags
+- `crisis_opportunity` components (vol_extreme_high, fg_extreme_fear, btc_dom_high)
+- `strong_signal_crisis` components (abs_q50, signal thresholds)
+- Core quantile predictions (q10, q50, q90)
+- Spread and probability calculations
+- Regime detection flags
 
 ## Next Steps
 

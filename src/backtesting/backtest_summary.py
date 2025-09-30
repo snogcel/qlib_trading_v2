@@ -9,14 +9,14 @@ def print_backtest_summary():
     print("QUANTILE TRADING STRATEGY BACKTEST RESULTS SUMMARY")
     print("="*80)
     
-    print("\n📊 PREDICTION QUALITY ANALYSIS:")
+    print("\nPREDICTION QUALITY ANALYSIS:")
     print("• Data points: 53,978 observations")
     print("• Quantile coverage: Q10=90.66%, Q90=90.68% (excellent calibration)")
     print("• Prediction interval coverage: 81.35% (should be ~80%)")
     print("• Directional accuracy: 81.14% (very strong)")
     print("• Tier confidence range: 0.5 to 5.5 (good distribution)")
     
-    print("\n🚀 TRADING PERFORMANCE COMPARISON:")
+    print("\nTRADING PERFORMANCE COMPARISON:")
     print("Configuration    | Return | Sharpe | Max DD | Trades | Win Rate")
     print("-" * 65)
     print("Conservative     |  0.04% |   1.37 |  0.00% |     12 |   75.00%")
@@ -24,7 +24,7 @@ def print_backtest_summary():
     print("Aggressive       | 11.45% |   3.69 |  0.69% |  3,532 |   50.91%")
     print("Hummingbot       |  8.96% |   3.99 |  0.54% |  3,532 |   50.91%")
     
-    print("\n🎯 KEY INSIGHTS:")
+    print("\nKEY INSIGHTS:")
     print("1. EXCELLENT MODEL CALIBRATION:")
     print("   • Quantile predictions are well-calibrated (90% coverage)")
     print("   • 81% directional accuracy is very strong")
@@ -46,14 +46,14 @@ def print_backtest_summary():
     print("   • Aggressive: 3,532 trades, 51% win rate")
     print("   • Higher frequency → lower win rate but higher total returns")
     
-    print("\n📈 RECOMMENDED CONFIGURATION:")
+    print("\n RECOMMENDED CONFIGURATION:")
     print("• HUMMINGBOT_DEFAULT shows best risk-adjusted performance")
     print("• 8.96% return with 3.99 Sharpe ratio")
     print("• 0.54% max drawdown (excellent risk control)")
     print("• Thresholds: 0.5 for both long/short signals")
     print("• Position limit: 100% of capital")
     
-    print("\n🔄 HUMMINGBOT INTEGRATION READINESS:")
+    print("\nHUMMINGBOT INTEGRATION READINESS:")
     print("• Probability conversion logic validated")
     print("• Tier confidence → position sizing works well")
     print("• Real-time prediction pipeline ready")

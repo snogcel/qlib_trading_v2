@@ -134,7 +134,7 @@ def demo_environment_setup(executor: TestExecutor):
     
     try:
         # Setup environment
-        print("\n🔧 Setting up test environment...")
+        print("\nSetting up test environment...")
         environment = executor.setup_test_environment(test_case)
         
         print(f"✓ Environment setup completed")
@@ -172,7 +172,7 @@ def demo_market_simulation(executor: TestExecutor):
     
     # Create base data
     base_data = create_sample_data(50)
-    print(f"📊 Base data created: {len(base_data)} days")
+    print(f"Base data created: {len(base_data)} days")
     print(f"   - Price range: ${base_data['close'].min():.2f} - ${base_data['close'].max():.2f}")
     print(f"   - Base volatility: {base_data['close'].pct_change().std():.4f}")
     
@@ -180,7 +180,7 @@ def demo_market_simulation(executor: TestExecutor):
     regimes = ['bull', 'bear', 'sideways', 'high_volatility', 'low_volatility']
     
     for regime in regimes:
-        print(f"\n🏛️ Simulating {regime} market conditions...")
+        print(f"\n Simulating {regime} market conditions...")
         
         try:
             simulated_data = executor.simulate_market_conditions(regime, base_data)
@@ -205,7 +205,7 @@ def demo_market_simulation(executor: TestExecutor):
                 print(f"     - High volatility validated: {volatility > base_vol}")
             
         except Exception as e:
-            print(f"   ❌ Simulation failed: {str(e)}")
+            print(f"   Simulation failed: {str(e)}")
 
 
 def demo_test_execution(executor: TestExecutor):
@@ -292,10 +292,10 @@ def demo_test_execution(executor: TestExecutor):
                 print(f"     - Error: {result.error_message}")
                 
         except Exception as e:
-            print(f"     ❌ Execution failed: {str(e)}")
+            print(f"     Execution failed: {str(e)}")
     
     # Execute test suite
-    print(f"\n🧪 Executing complete test suite...")
+    print(f"\nExecuting complete test suite...")
     
     try:
         results = executor.execute_test_suite(test_cases)
@@ -316,7 +316,7 @@ def demo_test_execution(executor: TestExecutor):
         print(f"   - Average execution time: {stats['average_execution_time']:.3f}s")
         
     except Exception as e:
-        print(f"❌ Test suite execution failed: {str(e)}")
+        print(f"Test suite execution failed: {str(e)}")
 
 
 def demo_data_caching(executor: TestExecutor):
@@ -392,7 +392,7 @@ def demo_error_handling(executor: TestExecutor):
     print("=" * 60)
     
     # Test case with invalid test function
-    print("🚨 Testing error handling...")
+    print(" Testing error handling...")
     
     def failing_test_function(data, params):
         raise ValueError("Simulated test failure")
@@ -458,7 +458,7 @@ def demo_error_handling(executor: TestExecutor):
 
 def main():
     """Run all demos."""
-    print("🚀 TestExecutor Demo Script")
+    print("TestExecutor Demo Script")
     print("This script demonstrates the key capabilities of the TestExecutor class.")
     
     try:
@@ -481,7 +481,7 @@ def main():
         demo_error_handling(executor)
         
         print("\n" + "=" * 60)
-        print("🎉 All demos completed successfully!")
+        print("All demos completed successfully!")
         print("=" * 60)
         
         # Final statistics
@@ -493,7 +493,7 @@ def main():
         print(f"   - Cache hit rate: {final_stats['cache_hit_rate']:.1%}")
         
     except Exception as e:
-        print(f"\n❌ Demo failed with error: {str(e)}")
+        print(f"\nDemo failed with error: {str(e)}")
         import traceback
         traceback.print_exc()
         return 1

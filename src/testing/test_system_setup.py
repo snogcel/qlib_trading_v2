@@ -26,10 +26,10 @@ def test_system_initialization():
     
     try:
         system = create_default_system()
-        print("✅ System initialization successful")
+        print("System initialization successful")
         return True
     except Exception as e:
-        print(f"❌ System initialization failed: {e}")
+        print(f"System initialization failed: {e}")
         return False
 
 
@@ -58,10 +58,10 @@ def test_configuration_loading():
         else:
             print("  - Configuration validation passed")
         
-        print("✅ Configuration loading successful")
+        print("Configuration loading successful")
         return True
     except Exception as e:
-        print(f"❌ Configuration loading failed: {e}")
+        print(f"Configuration loading failed: {e}")
         return False
 
 
@@ -118,10 +118,10 @@ def test_data_models():
         
         print(f"  - TestResult summary: {test_result.get_summary()}")
         
-        print("✅ Data models testing successful")
+        print("Data models testing successful")
         return True
     except Exception as e:
-        print(f"❌ Data models testing failed: {e}")
+        print(f"Data models testing failed: {e}")
         return False
 
 
@@ -144,10 +144,10 @@ def test_logging_setup():
         else:
             print("  - Warning: Log file not created")
         
-        print("✅ Logging setup successful")
+        print("Logging setup successful")
         return True
     except Exception as e:
-        print(f"❌ Logging setup failed: {e}")
+        print(f"Logging setup failed: {e}")
         return False
 
 
@@ -168,10 +168,10 @@ def test_system_report():
         report_file.write_text(report)
         print(f"  - Report saved to: {report_file}")
         
-        print("✅ System report generation successful")
+        print("System report generation successful")
         return True
     except Exception as e:
-        print(f"❌ System report generation failed: {e}")
+        print(f"System report generation failed: {e}")
         return False
 
 
@@ -198,17 +198,17 @@ def main():
             if test_func():
                 passed += 1
         except Exception as e:
-            print(f"❌ Test {test_func.__name__} failed with exception: {e}")
+            print(f"Test {test_func.__name__} failed with exception: {e}")
         print()
     
     print("=" * 60)
     print(f"Test Results: {passed}/{total} tests passed")
     
     if passed == total:
-        print("🎉 All tests passed! System setup is complete.")
+        print("All tests passed! System setup is complete.")
         return 0
     else:
-        print("⚠️  Some tests failed. Please review the errors above.")
+        print(" Some tests failed. Please review the errors above.")
         return 1
 
 

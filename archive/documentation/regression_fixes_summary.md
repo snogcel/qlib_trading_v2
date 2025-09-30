@@ -53,14 +53,14 @@ backtester = HummingbotQuantileBacktester(**config_copy)
 
 ## Validation
 
-### ✅ **Test Results**
+### **Test Results**
 - **Created test with 100 HOLD states** (most likely to trigger the error)
 - **Backtest completed without errors**
 - **save_results() executed successfully**
 - **Signal analysis CSV generated properly**
 - **No None/NaN values in hold_reason column**
 
-### ✅ **Files Fixed**
+### **Files Fixed**
 1. **`hummingbot_backtester.py`**: Fixed None check in `_create_signal_analysis_csv`
 2. **`run_hummingbot_backtest.py`**: Fixed config dictionary mutation issue
 
@@ -96,7 +96,7 @@ backtester = HummingbotQuantileBacktester(**config_copy)
 
 ## Status
 
-✅ **Regression Fixed and Validated**
+**Regression Fixed and Validated**
 - The `hybrid_best` backtest configuration should now run without errors
 - All other configurations should also be more robust
 - Signal analysis CSV generation is now bulletproof against None values

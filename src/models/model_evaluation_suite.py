@@ -237,10 +237,10 @@ class QuantileModelEvaluator:
         save_path = Path(save_path)
         save_path.mkdir(exist_ok=True)
         
-        print("🔍 Starting comprehensive model evaluation...")
+        print(" Starting comprehensive model evaluation...")
         
         # 1. Quantile Performance
-        print("📊 Evaluating quantile performance...")
+        print("Evaluating quantile performance...")
         quantile_results = self.evaluate_quantile_performance(y_true, predictions)
         
         # 2. Prediction Intervals
@@ -248,7 +248,7 @@ class QuantileModelEvaluator:
         interval_results = self.prediction_interval_analysis(y_true, predictions)
         
         # 3. Feature Importance
-        print("🎯 Analyzing feature importance...")
+        print("Analyzing feature importance...")
         feature_results = self.feature_importance_analysis(model, save_path / "feature_importance")
         
         # 4. Directional Accuracy
@@ -280,7 +280,7 @@ class QuantileModelEvaluator:
         # Generate plots
         self._create_evaluation_plots(y_true, predictions, full_results, save_path)
         
-        print(f"✅ Evaluation complete! Results saved to {save_path}")
+        print(f"Evaluation complete! Results saved to {save_path}")
         return full_results
     
     def _convert_for_json(self, obj):
@@ -381,7 +381,7 @@ class QuantileModelEvaluator:
         plt.savefig(save_path / "prediction_intervals.png", dpi=300, bbox_inches='tight')
         plt.close()
         
-        print(f"📈 Plots saved to {save_path}")
+        print(f" Plots saved to {save_path}")
 
 
 def run_comprehensive_evaluation():
@@ -426,7 +426,7 @@ def run_comprehensive_evaluation():
         print("📋 EVALUATION SUMMARY")
         print("="*50)
         
-        print("\n🎯 Quantile Performance:")
+        print("\nQuantile Performance:")
         for q, perf in results['quantile_performance'].items():
             print(f"  Q{int(q*100):2d}: Loss={perf['loss']:.4f}, Coverage={perf['coverage']:.1%} (target: {perf['target_coverage']:.1%})")
         
@@ -445,7 +445,7 @@ def run_comprehensive_evaluation():
         return results
         
     except Exception as e:
-        print(f"❌ Error running evaluation: {e}")
+        print(f"Error running evaluation: {e}")
         print("Make sure you have:")
         print("1. df_all_macro_analysis.csv from your training script")
         print("2. Trained model saved at ./models/trained_quantile_model.pkl")

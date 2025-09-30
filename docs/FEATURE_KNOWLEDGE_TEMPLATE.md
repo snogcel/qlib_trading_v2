@@ -4,7 +4,7 @@
 
 ---
 
-## 🎯 Core Signal Features
+## Core Signal Features
 
 ### Q50 (Primary Signal)
 **Current Documentation**: Primary directional signal based on 50th percentile probability
@@ -107,7 +107,7 @@
 
 ---
 
-## 📊 Risk & Volatility Features
+## Risk & Volatility Features
 
 ### Vol_Risk (Variance-Based)
 **Feature Name**: $vol_risk  
@@ -676,7 +676,7 @@ Unnormalized percentage return. If used as a regression target, range standardiz
 
 ---
 
-## 🔄 Regime & Market Features
+## Regime & Market Features
 
 ### Regime Multiplier (formerly Signal Strength)  
 **Current Documentation**: Unified regime-based position multiplier, range [0.1, 5.0]  
@@ -974,7 +974,7 @@ Temporal Quantile Features – Audit-Ready Breakdown
 
 ---
 
-## 🔗 Interaction & Enhancement Features
+## Interaction & Enhancement Features
 
 ### Q50 Interaction Features
 **Current Documentation**: Found in training pipeline
@@ -1121,7 +1121,7 @@ Temporal Quantile Features – Audit-Ready Breakdown
 
 ---
 
-## 📊 Feature Performance Hierarchy
+## Feature Performance Hierarchy
 
 **PLEASE FILL IN:** Based on your experience, rank features by their contribution to system performance:
 
@@ -1162,7 +1162,7 @@ Temporal Quantile Features – Audit-Ready Breakdown
 
 ---
 
-## 🚨 System-Level Insights
+##  System-Level Insights
 
 ### Feature Interactions
 **PLEASE FILL IN:**

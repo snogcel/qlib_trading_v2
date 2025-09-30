@@ -13,12 +13,12 @@ def analyze_regime_feature_approaches():
     print("REGIME FEATURES: STANDALONE vs MULTIPLICATIVE (MASK) ANALYSIS")
     print("=" * 100)
     
-    print("\n🎯 THE FUNDAMENTAL QUESTION:")
+    print("\nTHE FUNDAMENTAL QUESTION:")
     print("   Should regime features be:")
     print("   A) Standalone binary features (0/1)")
     print("   B) Multiplicative masks applied to other variables")
     
-    print("\n📊 ANALYSIS OF TOP PERFORMING FEATURES:")
+    print("\nANALYSIS OF TOP PERFORMING FEATURES:")
     
     top_features = [
         {
@@ -64,12 +64,12 @@ def analyze_regime_feature_approaches():
     ]
     
     for feature in top_features:
-        print(f"\n🔍 {feature['name']} (Lift: {feature['lift']}x):")
+        print(f"\n {feature['name']} (Lift: {feature['lift']}x):")
         print(f"   Current: {feature['current_type']}")
         print(f"   Mask Potential: {feature['mask_potential']}")
         print(f"   Description: {feature['description']}")
     
-    print("\n⚖️  STANDALONE vs MULTIPLICATIVE COMPARISON:")
+    print("\n  STANDALONE vs MULTIPLICATIVE COMPARISON:")
     
     comparison_aspects = [
         {
@@ -119,7 +119,7 @@ def analyze_regime_feature_approaches():
     
     print("   └─────────────────────┴─────────────────────────────────┴─────────────────────────────────┴─────────────┘")
     
-    print("\n💡 SPECIFIC USE CASE ANALYSIS:")
+    print("\n SPECIFIC USE CASE ANALYSIS:")
     
     use_cases = [
         {
@@ -153,13 +153,13 @@ def analyze_regime_feature_approaches():
     ]
     
     for case in use_cases:
-        print(f"\n📈 {case['feature'].upper()}:")
+        print(f"\n {case['feature'].upper()}:")
         print(f"   Standalone: {case['standalone_usage']}")
         print(f"   Multiplicative: {case['multiplicative_usage']}")
         print(f"   Recommendation: {case['recommendation']}")
         print(f"   Reason: {case['reason']}")
     
-    print("\n🎯 HYBRID APPROACH RECOMMENDATION:")
+    print("\nHYBRID APPROACH RECOMMENDATION:")
     
     hybrid_strategy = """
     BEST APPROACH: Create BOTH standalone AND multiplicative versions
@@ -183,7 +183,7 @@ def analyze_regime_feature_approaches():
     
     print(hybrid_strategy)
     
-    print("\n🔧 IMPLEMENTATION EXAMPLES:")
+    print("\nIMPLEMENTATION EXAMPLES:")
     
     implementation_code = '''
 def create_regime_multipliers(df):
@@ -229,7 +229,7 @@ def apply_regime_adjustments(df):
     
     print(implementation_code)
     
-    print("\n📊 EXPECTED BENEFITS:")
+    print("\nEXPECTED BENEFITS:")
     
     benefits = [
         "Crisis periods: 2-3x signal amplification during bear market bottoms",
@@ -243,7 +243,7 @@ def apply_regime_adjustments(df):
     for benefit in benefits:
         print(f"   • {benefit}")
     
-    print("\n🚨 RISKS TO CONSIDER:")
+    print("\n RISKS TO CONSIDER:")
     
     risks = [
         "Overfitting: Complex interactions may not generalize",
@@ -254,9 +254,9 @@ def apply_regime_adjustments(df):
     ]
     
     for risk in risks:
-        print(f"   ⚠️  {risk}")
+        print(f"    {risk}")
     
-    print("\n🎯 FINAL RECOMMENDATION:")
+    print("\nFINAL RECOMMENDATION:")
     
     final_rec = """
     IMPLEMENT HYBRID APPROACH:

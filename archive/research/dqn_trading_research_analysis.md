@@ -1,6 +1,6 @@
 # DQN Trading Research Analysis
 
-## 🎯 Research Overview
+## Research Overview
 
 **Paper**: "Deep Q-Network for Trading Strategy in Cryptocurrency Markets"  
 **Source**: Nature Scientific Reports (2024)  
@@ -8,15 +8,15 @@
 
 ---
 
-## 🔍 Key Findings Relevant to Your System
+##  Key Findings Relevant to Your System
 
 ### 1. **DQN Action Space Design**
 **Their Approach**: Discrete action space with BUY/SELL/HOLD decisions based on market state.
 
 **Your System Connection**:
-- ✅ **Aligns with your PPO approach** - You already use RL for order execution
-- ✅ **Validates discrete action spaces** - Your side encoding (1=BUY, 0=SELL, -1=HOLD) is optimal
-- ✅ **Confirms RL superiority** - DQN outperformed traditional strategies
+- **Aligns with your PPO approach** - You already use RL for order execution
+- **Validates discrete action spaces** - Your side encoding (1=BUY, 0=SELL, -1=HOLD) is optimal
+- **Confirms RL superiority** - DQN outperformed traditional strategies
 
 ### 2. **State Space Engineering**
 **Their Innovation**: Combines technical indicators with market microstructure features for state representation.
@@ -46,9 +46,9 @@ class QuantileDQNState:
 **Their Method**: Risk-adjusted returns with transaction cost penalties.
 
 **Your System Validation**:
-- ✅ **Confirms your reward approach** - Your tier-weighted rewards are sophisticated
-- ✅ **Transaction cost awareness** - Your spread-based costs are realistic
-- ✅ **Risk adjustment** - Your volatility-aware rewards align with research
+- **Confirms your reward approach** - Your tier-weighted rewards are sophisticated
+- **Transaction cost awareness** - Your spread-based costs are realistic
+- **Risk adjustment** - Your volatility-aware rewards align with research
 
 ### 4. **Experience Replay & Training**
 **Their Architecture**: DQN with experience replay for stable learning in volatile crypto markets.
@@ -60,7 +60,7 @@ class QuantileDQNState:
 
 ---
 
-## 🚀 Synergy with Quantile Research
+## Synergy with Quantile Research
 
 ### Combined Approach: Quantile-DQN Hybrid
 The two research papers suggest a powerful combination:
@@ -96,29 +96,29 @@ class QuantileDQNTrader:
 
 ---
 
-## 📊 Research Validation of Your Approach
+## Research Validation of Your Approach
 
 ### What DQN Research Confirms:
 
-1. **✅ RL for Trading is Superior**
+1. **RL for Trading is Superior**
    - Your PPO approach is scientifically validated
    - RL agents outperform traditional rule-based systems
 
-2. **✅ Discrete Action Spaces Work**
+2. **Discrete Action Spaces Work**
    - Your BUY/SELL/HOLD encoding is optimal
    - Discrete actions easier to interpret and validate
 
-3. **✅ State Engineering Matters**
+3. **State Engineering Matters**
    - Your regime features provide rich state representation
    - Market microstructure features (your spread, volatility) are crucial
 
-4. **✅ Risk-Aware Rewards**
+4. **Risk-Aware Rewards**
    - Your tier-weighted, volatility-adjusted rewards align with research
    - Transaction cost integration is essential
 
 ---
 
-## 🎯 Enhancement Opportunities
+## Enhancement Opportunities
 
 ### Enhancement 1: Quantile-DQN Hybrid Architecture
 ```python
@@ -192,7 +192,7 @@ class MultiAgentQuantileTrader:
 
 ---
 
-## 🧪 Integration with Your Enhancement Roadmap
+## Integration with Your Enhancement Roadmap
 
 ### Modified Phase 3: DQN-Quantile Exploration (Weeks 3-4)
 
@@ -240,7 +240,7 @@ combined_model = LSTMQuantileDQNTrader()
 
 ---
 
-## 🎯 Key Insights for Your System
+## Key Insights for Your System
 
 1. **Your RL Foundation is Solid**: PPO approach validated by DQN research success
 2. **Quantile-RL Synergy**: Combining quantile predictions with RL decision-making is cutting-edge
@@ -250,7 +250,7 @@ combined_model = LSTMQuantileDQNTrader()
 
 ---
 
-## 🚀 Next Steps Integration
+## Next Steps Integration
 
 ### Immediate (Add to Phase 1)
 - Enhance PPO state representation with quantile uncertainty

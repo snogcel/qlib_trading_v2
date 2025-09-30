@@ -266,7 +266,7 @@ Important content.
         """Test detection of critical section changes"""
         old_content = """# Feature Documentation
 
-## 🎯 Core Signal Features
+## Core Signal Features
 
 ### Q50 (Primary Signal)
 Important feature description.

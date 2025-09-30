@@ -3,23 +3,23 @@
 **Generated:** 2025-08-08 02:03:19
 **Report Period:** Demo Period
 
-## 🎯 Key Metrics
+## Key Metrics
 
 | Metric | Value | Status |
 |--------|-------|--------|
-| Overall Success Rate | 52.0% | ❌ |
-| Total Tests Executed | 50 | ℹ️ |
-| Critical Failures | 1 | ❌ |
-| High Priority Issues | 2 | ⚠️ |
+| Overall Success Rate | 52.0% | |
+| Total Tests Executed | 50 | |
+| Critical Failures | 1 | |
+| High Priority Issues | 2 | |
 
-## 📊 Summary Statistics
+## Summary Statistics
 
 - **Passed Tests:** 26 (52.0%)
 - **Failed Tests:** 24 (48.0%)
 - **Average Execution Time:** 2.41s
 - **Test Coverage:** 52.0%
 
-## 🚨 Critical Issues
+##  Critical Issues
 
 **Critical issues requiring immediate attention:**
 
@@ -29,7 +29,7 @@
    - Action: Review kelly_sizing implementation
 
 
-## 📈 Recommendations
+##  Recommendations
 
 **Key recommendations for improvement:**
 
