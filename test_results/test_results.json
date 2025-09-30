@@ -1,0 +1,1211 @@
+{
+  "total_tests": 33,
+  "passed": 20,
+  "failed": 13,
+  "pass_rate": 0.6060606060606061,
+  "test_results": [
+    {
+      "file": "tests/features\\test_average_open.py",
+      "returncode": 0,
+      "stdout": "Warning: Not enough OPEN columns found\n",
+      "stderr": "",
+      "success": true,
+      "timestamp": "2025-09-30T08:32:44.425320"
+    },
+    {
+      "file": "tests/features\\test_signal.py",
+      "returncode": 0,
+      "stdout": "=== THRESHOLD VALIDATION RESULTS ===\nBaseline (no filter): Return=0.0001, Hit Rate=50.89%\n\nThreshold Performance:\n  70% threshold: Return=0.0001, Count=10123, Hit Rate=52.15%, Sharpe=0.01\n  75% threshold: Return=0.0001, Count=9462, Hit Rate=52.36%, Sharpe=0.01\n  80% threshold: Return=0.0001, Count=7954, Hit Rate=52.43%, Sharpe=0.01\n  85% threshold: Return=0.0000, Count=6960, Hit Rate=52.21%, Sharpe=0.01\n  90% threshold: Return=0.0000, Count=4825, Hit Rate=52.15%, Sharpe=0.00\n  95% threshold: Return=-0.0000, Count=3548, Hit Rate=51.78%, Sharpe=-0.00\n",
+      "stderr": "",
+      "success": true,
+      "timestamp": "2025-09-30T08:32:45.279543"
+    },
+    {
+      "file": "tests/features\\test_signal_classification.py",
+      "returncode": 1,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 1 item\n\nTests/Features/test_signal_classification.py::test_signal_classification_edge_cases ERROR [100%]\n\n=================================== ERRORS ====================================\n___________ ERROR at setup of test_signal_classification_edge_cases ___________\nfile C:\\Projects\\qlib_trading_v2\\Tests\\Features\\test_signal_classification.py, line 183\n  def test_signal_classification_edge_cases(df):\nE       fixture 'df' not found\n>       available fixtures: anyio_backend, anyio_backend_name, anyio_backend_options, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, monkeypatch, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory\n>       use 'pytest --fixtures [testpath]' for help on them.\n\nC:\\Projects\\qlib_trading_v2\\Tests\\Features\\test_signal_classification.py:183\n=========================== short test summary info ===========================\nERROR Tests/Features/test_signal_classification.py::test_signal_classification_edge_cases\n============================== 1 error in 0.45s ===============================\n",
+      "stderr": "",
+      "success": false,
+      "timestamp": "2025-09-30T08:32:48.039466"
+    },
+    {
+      "file": "tests/features\\test_signal_transforms.py",
+      "returncode": 1,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 1 item\n\nTests/Features/test_signal_transforms.py::test_feature_redundancy ERROR  [100%]\n\n=================================== ERRORS ====================================\n__________________ ERROR at setup of test_feature_redundancy __________________\nfile C:\\Projects\\qlib_trading_v2\\Tests\\Features\\test_signal_transforms.py, line 205\n  def test_feature_redundancy(df):\nE       fixture 'df' not found\n>       available fixtures: anyio_backend, anyio_backend_name, anyio_backend_options, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, monkeypatch, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory\n>       use 'pytest --fixtures [testpath]' for help on them.\n\nC:\\Projects\\qlib_trading_v2\\Tests\\Features\\test_signal_transforms.py:205\n=========================== short test summary info ===========================\nERROR Tests/Features/test_signal_transforms.py::test_feature_redundancy\n============================== 1 error in 0.47s ===============================\n",
+      "stderr": "",
+      "success": false,
+      "timestamp": "2025-09-30T08:32:49.520777"
+    },
+    {
+      "file": "tests/features\\test_spread.py",
+      "returncode": 0,
+      "stdout": "=== SPREAD VALIDATION RESULTS ===\nSpread-Return Correlation: 0.0251\nSpread-Volatility Correlation: 0.6993\nT-test p-value (high vs low spread): 0.0364\nMutual Information: 0.0717\n\nSpread Decile Analysis:\n              future_return               future_volatility        \n                       mean     std count              mean     std\nspread_decile                                                      \n0                    0.0000  0.0029  5398            0.0020  0.0020\n1                   -0.0001  0.0037  5398            0.0027  0.0022\n2                   -0.0000  0.0042  5398            0.0033  0.0023\n3                    0.0002  0.0049  5396            0.0039  0.0027\n4                   -0.0001  0.0053  5398            0.0043  0.0027\n5                    0.0001  0.0059  5398            0.0048  0.0028\n6                   -0.0001  0.0065  5397            0.0054  0.0034\n7                    0.0001  0.0073  5398            0.0062  0.0036\n8                    0.0002  0.0090  5398            0.0077  0.0040\n9                    0.0003  0.0143  5398            0.0128  0.0084\n\nRegime-specific correlations:\n  high_vol: 0.0688\n  low_vol: 0.0375\n  fear: 0.0305\n  greed: 0.0192\n",
+      "stderr": "",
+      "success": true,
+      "timestamp": "2025-09-30T08:32:50.905976"
+    },
+    {
+      "file": "tests/features\\test_threshold_strategy.py",
+      "returncode": 1,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 1 item\n\nTests/Features/test_threshold_strategy.py::test_threshold_stability ERROR [100%]\n\n=================================== ERRORS ====================================\n_________________ ERROR at setup of test_threshold_stability __________________\nfile C:\\Projects\\qlib_trading_v2\\Tests\\Features\\test_threshold_strategy.py, line 150\n  def test_threshold_stability(df):\nE       fixture 'df' not found\n>       available fixtures: anyio_backend, anyio_backend_name, anyio_backend_options, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, monkeypatch, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory\n>       use 'pytest --fixtures [testpath]' for help on them.\n\nC:\\Projects\\qlib_trading_v2\\Tests\\Features\\test_threshold_strategy.py:150\n=========================== short test summary info ===========================\nERROR Tests/Features/test_threshold_strategy.py::test_threshold_stability\n============================== 1 error in 0.36s ===============================\n",
+      "stderr": "",
+      "success": false,
+      "timestamp": "2025-09-30T08:32:51.906643"
+    },
+    {
+      "file": "tests/features\\test_volatility.py",
+      "returncode": 1,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 1 item\n\nTests/Features/test_volatility.py::test_optimal_volatility_horizon ERROR [100%]\n\n=================================== ERRORS ====================================\n______________ ERROR at setup of test_optimal_volatility_horizon ______________\nfile C:\\Projects\\qlib_trading_v2\\Tests\\Features\\test_volatility.py, line 181\n  def test_optimal_volatility_horizon(df):\nE       fixture 'df' not found\n>       available fixtures: anyio_backend, anyio_backend_name, anyio_backend_options, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, monkeypatch, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory\n>       use 'pytest --fixtures [testpath]' for help on them.\n\nC:\\Projects\\qlib_trading_v2\\Tests\\Features\\test_volatility.py:181\n=========================== short test summary info ===========================\nERROR Tests/Features/test_volatility.py::test_optimal_volatility_horizon\n============================== 1 error in 0.36s ===============================\n",
+      "stderr": "",
+      "success": false,
+      "timestamp": "2025-09-30T08:32:52.926022"
+    },
+    {
+      "file": "tests/integration\\test_feature_inventory_integration.py",
+      "returncode": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 4 items\n\nTests/integration/test_feature_inventory_integration.py::TestFeatureInventoryIntegration::test_generate_inventory_from_real_template PASSED [ 25%]\nTests/integration/test_feature_inventory_integration.py::TestFeatureInventoryIntegration::test_inventory_completeness PASSED [ 50%]\nTests/integration/test_feature_inventory_integration.py::TestFeatureInventoryIntegration::test_critical_features_detection PASSED [ 75%]\nTests/integration/test_feature_inventory_integration.py::TestFeatureInventoryIntegration::test_test_coverage_summary PASSED [100%]\n\n============================== 4 passed in 0.96s ==============================\n",
+      "stderr": "",
+      "success": true,
+      "timestamp": "2025-09-30T08:32:54.523957"
+    },
+    {
+      "file": "tests/integration\\test_feature_inventory_integration.py",
+      "returncode": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 4 items\n\nTests/integration/test_feature_inventory_integration.py::TestFeatureInventoryIntegration::test_generate_inventory_from_real_template PASSED [ 25%]\nTests/integration/test_feature_inventory_integration.py::TestFeatureInventoryIntegration::test_inventory_completeness PASSED [ 50%]\nTests/integration/test_feature_inventory_integration.py::TestFeatureInventoryIntegration::test_critical_features_detection PASSED [ 75%]\nTests/integration/test_feature_inventory_integration.py::TestFeatureInventoryIntegration::test_test_coverage_summary PASSED [100%]\n\n============================== 4 passed in 0.76s ==============================\n",
+      "stderr": "",
+      "success": true,
+      "timestamp": "2025-09-30T08:32:55.933660"
+    },
+    {
+      "file": "tests/integration\\test_nautilus_requirements_alignment.py",
+      "returncode": 1,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 10 items\n\nTests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_transaction_cost_parameter_alignment FAILED [ 10%]\nTests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_variance_regime_thresholds FAILED [ 20%]\nTests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_regime_multiplier_adjustments FAILED [ 30%]\nTests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_enhanced_info_ratio_calculation FAILED [ 40%]\nTests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_q50_centric_signal_logic FAILED [ 50%]\nTests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_position_sizing_parameters FAILED [ 60%]\nTests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_prob_up_piecewise_calculation PASSED [ 70%]\nTests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_data_pipeline_frequency_alignment PASSED [ 80%]\nTests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_performance_target_alignment PASSED [ 90%]\nTests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_vol_risk_variance_calculation FAILED [100%]\n\n================================== FAILURES ===================================\n_ TestNautilusRequirementsAlignment.test_transaction_cost_parameter_alignment _\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3805: in get_loc\n    return self._engine.get_loc(casted_key)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nindex.pyx:167: in pandas._libs.index.IndexEngine.get_loc\n    ???\nindex.pyx:196: in pandas._libs.index.IndexEngine.get_loc\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7081: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7089: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\nE   KeyError: 'prob_up'\n\nThe above exception was the direct cause of the following exception:\nTests\\integration\\test_nautilus_requirements_alignment.py:57: in test_transaction_cost_parameter_alignment\n    df_with_signals = q50_regime_aware_signals(sample_signal_data)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsrc\\training_pipeline.py:269: in q50_regime_aware_signals\n    df['expected_value'] = (df['prob_up'] * df['potential_gain'] -\n                           ^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\frame.py:4102: in __getitem__\n    indexer = self.columns.get_loc(key)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3812: in get_loc\n    raise KeyError(key) from err\nE   KeyError: 'prob_up'\n---------------------------- Captured stdout call -----------------------------\n\\U0001f4ca Enhanced vs Traditional Info Ratio:\\n   Traditional (signal/spread): 0.629\\n   Enhanced (signal/total_risk): 0.590\n______ TestNautilusRequirementsAlignment.test_variance_regime_thresholds ______\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3805: in get_loc\n    return self._engine.get_loc(casted_key)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nindex.pyx:167: in pandas._libs.index.IndexEngine.get_loc\n    ???\nindex.pyx:196: in pandas._libs.index.IndexEngine.get_loc\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7081: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7089: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\nE   KeyError: 'prob_up'\n\nThe above exception was the direct cause of the following exception:\nTests\\integration\\test_nautilus_requirements_alignment.py:70: in test_variance_regime_thresholds\n    df_with_signals = q50_regime_aware_signals(sample_signal_data)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsrc\\training_pipeline.py:269: in q50_regime_aware_signals\n    df['expected_value'] = (df['prob_up'] * df['potential_gain'] -\n                           ^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\frame.py:4102: in __getitem__\n    indexer = self.columns.get_loc(key)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3812: in get_loc\n    raise KeyError(key) from err\nE   KeyError: 'prob_up'\n---------------------------- Captured stdout call -----------------------------\n\\U0001f4ca Enhanced vs Traditional Info Ratio:\\n   Traditional (signal/spread): 0.629\\n   Enhanced (signal/total_risk): 0.590\n____ TestNautilusRequirementsAlignment.test_regime_multiplier_adjustments _____\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3805: in get_loc\n    return self._engine.get_loc(casted_key)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nindex.pyx:167: in pandas._libs.index.IndexEngine.get_loc\n    ???\nindex.pyx:196: in pandas._libs.index.IndexEngine.get_loc\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7081: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7089: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\nE   KeyError: 'prob_up'\n\nThe above exception was the direct cause of the following exception:\nTests\\integration\\test_nautilus_requirements_alignment.py:92: in test_regime_multiplier_adjustments\n    df_with_signals = q50_regime_aware_signals(sample_signal_data)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsrc\\training_pipeline.py:269: in q50_regime_aware_signals\n    df['expected_value'] = (df['prob_up'] * df['potential_gain'] -\n                           ^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\frame.py:4102: in __getitem__\n    indexer = self.columns.get_loc(key)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3812: in get_loc\n    raise KeyError(key) from err\nE   KeyError: 'prob_up'\n---------------------------- Captured stdout call -----------------------------\n\\U0001f4ca Enhanced vs Traditional Info Ratio:\\n   Traditional (signal/spread): 0.629\\n   Enhanced (signal/total_risk): 0.590\n___ TestNautilusRequirementsAlignment.test_enhanced_info_ratio_calculation ____\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3805: in get_loc\n    return self._engine.get_loc(casted_key)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nindex.pyx:167: in pandas._libs.index.IndexEngine.get_loc\n    ???\nindex.pyx:196: in pandas._libs.index.IndexEngine.get_loc\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7081: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7089: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\nE   KeyError: 'prob_up'\n\nThe above exception was the direct cause of the following exception:\nTests\\integration\\test_nautilus_requirements_alignment.py:107: in test_enhanced_info_ratio_calculation\n    df_with_signals = q50_regime_aware_signals(sample_signal_data)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsrc\\training_pipeline.py:269: in q50_regime_aware_signals\n    df['expected_value'] = (df['prob_up'] * df['potential_gain'] -\n                           ^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\frame.py:4102: in __getitem__\n    indexer = self.columns.get_loc(key)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3812: in get_loc\n    raise KeyError(key) from err\nE   KeyError: 'prob_up'\n---------------------------- Captured stdout call -----------------------------\n\\U0001f4ca Enhanced vs Traditional Info Ratio:\\n   Traditional (signal/spread): 0.629\\n   Enhanced (signal/total_risk): 0.590\n_______ TestNautilusRequirementsAlignment.test_q50_centric_signal_logic _______\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3805: in get_loc\n    return self._engine.get_loc(casted_key)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nindex.pyx:167: in pandas._libs.index.IndexEngine.get_loc\n    ???\nindex.pyx:196: in pandas._libs.index.IndexEngine.get_loc\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7081: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7089: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\nE   KeyError: 'prob_up'\n\nThe above exception was the direct cause of the following exception:\nTests\\integration\\test_nautilus_requirements_alignment.py:124: in test_q50_centric_signal_logic\n    df_with_signals = q50_regime_aware_signals(sample_signal_data)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsrc\\training_pipeline.py:269: in q50_regime_aware_signals\n    df['expected_value'] = (df['prob_up'] * df['potential_gain'] -\n                           ^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\frame.py:4102: in __getitem__\n    indexer = self.columns.get_loc(key)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3812: in get_loc\n    raise KeyError(key) from err\nE   KeyError: 'prob_up'\n---------------------------- Captured stdout call -----------------------------\n\\U0001f4ca Enhanced vs Traditional Info Ratio:\\n   Traditional (signal/spread): 0.629\\n   Enhanced (signal/total_risk): 0.590\n______ TestNautilusRequirementsAlignment.test_position_sizing_parameters ______\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3805: in get_loc\n    return self._engine.get_loc(casted_key)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nindex.pyx:167: in pandas._libs.index.IndexEngine.get_loc\n    ???\nindex.pyx:196: in pandas._libs.index.IndexEngine.get_loc\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7081: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7089: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\nE   KeyError: 'prob_up'\n\nThe above exception was the direct cause of the following exception:\nTests\\integration\\test_nautilus_requirements_alignment.py:154: in test_position_sizing_parameters\n    df_with_signals = q50_regime_aware_signals(sample_signal_data)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsrc\\training_pipeline.py:269: in q50_regime_aware_signals\n    df['expected_value'] = (df['prob_up'] * df['potential_gain'] -\n                           ^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\frame.py:4102: in __getitem__\n    indexer = self.columns.get_loc(key)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3812: in get_loc\n    raise KeyError(key) from err\nE   KeyError: 'prob_up'\n---------------------------- Captured stdout call -----------------------------\n\\U0001f4ca Enhanced vs Traditional Info Ratio:\\n   Traditional (signal/spread): 0.629\\n   Enhanced (signal/total_risk): 0.590\n____ TestNautilusRequirementsAlignment.test_vol_risk_variance_calculation _____\nTests\\integration\\test_nautilus_requirements_alignment.py:266: in test_vol_risk_variance_calculation\n    assert correlation > 0.8, \\\nE   AssertionError: vol_risk should be highly correlated with vol_raw\ufffd (variance relationship)\nE   assert np.float64(-0.02139814341457763) > 0.8\n---------------------------- Captured stdout call -----------------------------\n0      0.000683\n1      0.000167\n2      0.000438\n3      0.000823\n4      0.000490\n         ...   \n995    0.000171\n996    0.000609\n997    0.000917\n998    0.000457\n999    0.000367\nName: vol_risk, Length: 1000, dtype: float64\n0      0.000027\n1      0.000003\n2      0.000009\n3      0.000055\n4      0.000264\n         ...   \n995    0.000312\n996    0.000071\n997    0.000128\n998    0.000376\n999    0.000005\nName: vol_raw, Length: 1000, dtype: float64\n============================== warnings summary ===============================\n..\\..\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pydantic\\_internal\\_config.py:323\n  C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pydantic\\_internal\\_config.py:323: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.11/migration/\n    warnings.warn(DEPRECATION_MESSAGE, DeprecationWarning)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED Tests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_transaction_cost_parameter_alignment\nFAILED Tests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_variance_regime_thresholds\nFAILED Tests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_regime_multiplier_adjustments\nFAILED Tests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_enhanced_info_ratio_calculation\nFAILED Tests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_q50_centric_signal_logic\nFAILED Tests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_position_sizing_parameters\nFAILED Tests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_vol_risk_variance_calculation\n=================== 7 failed, 3 passed, 1 warning in 8.93s ====================\n",
+      "stderr": "",
+      "success": false,
+      "timestamp": "2025-09-30T08:33:07.417982"
+    },
+    {
+      "file": "tests/integration\\test_nautilus_requirements_alignment.py",
+      "returncode": 1,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 10 items\n\nTests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_transaction_cost_parameter_alignment FAILED [ 10%]\nTests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_variance_regime_thresholds FAILED [ 20%]\nTests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_regime_multiplier_adjustments FAILED [ 30%]\nTests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_enhanced_info_ratio_calculation FAILED [ 40%]\nTests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_q50_centric_signal_logic FAILED [ 50%]\nTests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_position_sizing_parameters FAILED [ 60%]\nTests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_prob_up_piecewise_calculation PASSED [ 70%]\nTests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_data_pipeline_frequency_alignment PASSED [ 80%]\nTests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_performance_target_alignment PASSED [ 90%]\nTests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_vol_risk_variance_calculation FAILED [100%]\n\n================================== FAILURES ===================================\n_ TestNautilusRequirementsAlignment.test_transaction_cost_parameter_alignment _\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3805: in get_loc\n    return self._engine.get_loc(casted_key)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nindex.pyx:167: in pandas._libs.index.IndexEngine.get_loc\n    ???\nindex.pyx:196: in pandas._libs.index.IndexEngine.get_loc\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7081: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7089: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\nE   KeyError: 'prob_up'\n\nThe above exception was the direct cause of the following exception:\nTests\\integration\\test_nautilus_requirements_alignment.py:57: in test_transaction_cost_parameter_alignment\n    df_with_signals = q50_regime_aware_signals(sample_signal_data)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsrc\\training_pipeline.py:269: in q50_regime_aware_signals\n    df['expected_value'] = (df['prob_up'] * df['potential_gain'] -\n                           ^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\frame.py:4102: in __getitem__\n    indexer = self.columns.get_loc(key)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3812: in get_loc\n    raise KeyError(key) from err\nE   KeyError: 'prob_up'\n---------------------------- Captured stdout call -----------------------------\n\\U0001f4ca Enhanced vs Traditional Info Ratio:\\n   Traditional (signal/spread): 0.629\\n   Enhanced (signal/total_risk): 0.590\n______ TestNautilusRequirementsAlignment.test_variance_regime_thresholds ______\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3805: in get_loc\n    return self._engine.get_loc(casted_key)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nindex.pyx:167: in pandas._libs.index.IndexEngine.get_loc\n    ???\nindex.pyx:196: in pandas._libs.index.IndexEngine.get_loc\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7081: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7089: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\nE   KeyError: 'prob_up'\n\nThe above exception was the direct cause of the following exception:\nTests\\integration\\test_nautilus_requirements_alignment.py:70: in test_variance_regime_thresholds\n    df_with_signals = q50_regime_aware_signals(sample_signal_data)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsrc\\training_pipeline.py:269: in q50_regime_aware_signals\n    df['expected_value'] = (df['prob_up'] * df['potential_gain'] -\n                           ^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\frame.py:4102: in __getitem__\n    indexer = self.columns.get_loc(key)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3812: in get_loc\n    raise KeyError(key) from err\nE   KeyError: 'prob_up'\n---------------------------- Captured stdout call -----------------------------\n\\U0001f4ca Enhanced vs Traditional Info Ratio:\\n   Traditional (signal/spread): 0.629\\n   Enhanced (signal/total_risk): 0.590\n____ TestNautilusRequirementsAlignment.test_regime_multiplier_adjustments _____\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3805: in get_loc\n    return self._engine.get_loc(casted_key)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nindex.pyx:167: in pandas._libs.index.IndexEngine.get_loc\n    ???\nindex.pyx:196: in pandas._libs.index.IndexEngine.get_loc\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7081: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7089: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\nE   KeyError: 'prob_up'\n\nThe above exception was the direct cause of the following exception:\nTests\\integration\\test_nautilus_requirements_alignment.py:92: in test_regime_multiplier_adjustments\n    df_with_signals = q50_regime_aware_signals(sample_signal_data)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsrc\\training_pipeline.py:269: in q50_regime_aware_signals\n    df['expected_value'] = (df['prob_up'] * df['potential_gain'] -\n                           ^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\frame.py:4102: in __getitem__\n    indexer = self.columns.get_loc(key)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3812: in get_loc\n    raise KeyError(key) from err\nE   KeyError: 'prob_up'\n---------------------------- Captured stdout call -----------------------------\n\\U0001f4ca Enhanced vs Traditional Info Ratio:\\n   Traditional (signal/spread): 0.629\\n   Enhanced (signal/total_risk): 0.590\n___ TestNautilusRequirementsAlignment.test_enhanced_info_ratio_calculation ____\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3805: in get_loc\n    return self._engine.get_loc(casted_key)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nindex.pyx:167: in pandas._libs.index.IndexEngine.get_loc\n    ???\nindex.pyx:196: in pandas._libs.index.IndexEngine.get_loc\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7081: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7089: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\nE   KeyError: 'prob_up'\n\nThe above exception was the direct cause of the following exception:\nTests\\integration\\test_nautilus_requirements_alignment.py:107: in test_enhanced_info_ratio_calculation\n    df_with_signals = q50_regime_aware_signals(sample_signal_data)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsrc\\training_pipeline.py:269: in q50_regime_aware_signals\n    df['expected_value'] = (df['prob_up'] * df['potential_gain'] -\n                           ^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\frame.py:4102: in __getitem__\n    indexer = self.columns.get_loc(key)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3812: in get_loc\n    raise KeyError(key) from err\nE   KeyError: 'prob_up'\n---------------------------- Captured stdout call -----------------------------\n\\U0001f4ca Enhanced vs Traditional Info Ratio:\\n   Traditional (signal/spread): 0.629\\n   Enhanced (signal/total_risk): 0.590\n_______ TestNautilusRequirementsAlignment.test_q50_centric_signal_logic _______\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3805: in get_loc\n    return self._engine.get_loc(casted_key)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nindex.pyx:167: in pandas._libs.index.IndexEngine.get_loc\n    ???\nindex.pyx:196: in pandas._libs.index.IndexEngine.get_loc\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7081: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7089: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\nE   KeyError: 'prob_up'\n\nThe above exception was the direct cause of the following exception:\nTests\\integration\\test_nautilus_requirements_alignment.py:124: in test_q50_centric_signal_logic\n    df_with_signals = q50_regime_aware_signals(sample_signal_data)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsrc\\training_pipeline.py:269: in q50_regime_aware_signals\n    df['expected_value'] = (df['prob_up'] * df['potential_gain'] -\n                           ^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\frame.py:4102: in __getitem__\n    indexer = self.columns.get_loc(key)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3812: in get_loc\n    raise KeyError(key) from err\nE   KeyError: 'prob_up'\n---------------------------- Captured stdout call -----------------------------\n\\U0001f4ca Enhanced vs Traditional Info Ratio:\\n   Traditional (signal/spread): 0.629\\n   Enhanced (signal/total_risk): 0.590\n______ TestNautilusRequirementsAlignment.test_position_sizing_parameters ______\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3805: in get_loc\n    return self._engine.get_loc(casted_key)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nindex.pyx:167: in pandas._libs.index.IndexEngine.get_loc\n    ???\nindex.pyx:196: in pandas._libs.index.IndexEngine.get_loc\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7081: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\npandas\\\\_libs\\\\hashtable_class_helper.pxi:7089: in pandas._libs.hashtable.PyObjectHashTable.get_item\n    ???\nE   KeyError: 'prob_up'\n\nThe above exception was the direct cause of the following exception:\nTests\\integration\\test_nautilus_requirements_alignment.py:154: in test_position_sizing_parameters\n    df_with_signals = q50_regime_aware_signals(sample_signal_data)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsrc\\training_pipeline.py:269: in q50_regime_aware_signals\n    df['expected_value'] = (df['prob_up'] * df['potential_gain'] -\n                           ^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\frame.py:4102: in __getitem__\n    indexer = self.columns.get_loc(key)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3812: in get_loc\n    raise KeyError(key) from err\nE   KeyError: 'prob_up'\n---------------------------- Captured stdout call -----------------------------\n\\U0001f4ca Enhanced vs Traditional Info Ratio:\\n   Traditional (signal/spread): 0.629\\n   Enhanced (signal/total_risk): 0.590\n____ TestNautilusRequirementsAlignment.test_vol_risk_variance_calculation _____\nTests\\integration\\test_nautilus_requirements_alignment.py:266: in test_vol_risk_variance_calculation\n    assert correlation > 0.8, \\\nE   AssertionError: vol_risk should be highly correlated with vol_raw\ufffd (variance relationship)\nE   assert np.float64(-0.02139814341457763) > 0.8\n---------------------------- Captured stdout call -----------------------------\n0      0.000683\n1      0.000167\n2      0.000438\n3      0.000823\n4      0.000490\n         ...   \n995    0.000171\n996    0.000609\n997    0.000917\n998    0.000457\n999    0.000367\nName: vol_risk, Length: 1000, dtype: float64\n0      0.000027\n1      0.000003\n2      0.000009\n3      0.000055\n4      0.000264\n         ...   \n995    0.000312\n996    0.000071\n997    0.000128\n998    0.000376\n999    0.000005\nName: vol_raw, Length: 1000, dtype: float64\n============================== warnings summary ===============================\n..\\..\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pydantic\\_internal\\_config.py:323\n  C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pydantic\\_internal\\_config.py:323: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.11/migration/\n    warnings.warn(DEPRECATION_MESSAGE, DeprecationWarning)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED Tests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_transaction_cost_parameter_alignment\nFAILED Tests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_variance_regime_thresholds\nFAILED Tests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_regime_multiplier_adjustments\nFAILED Tests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_enhanced_info_ratio_calculation\nFAILED Tests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_q50_centric_signal_logic\nFAILED Tests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_position_sizing_parameters\nFAILED Tests/integration/test_nautilus_requirements_alignment.py::TestNautilusRequirementsAlignment::test_vol_risk_variance_calculation\n=================== 7 failed, 3 passed, 1 warning in 6.39s ====================\n",
+      "stderr": "",
+      "success": false,
+      "timestamp": "2025-09-30T08:33:16.385910"
+    },
+    {
+      "file": "tests/integration\\test_q50_integration.py",
+      "returncode": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 1 item\n\nTests/integration/test_q50_integration.py::test_q50_integration PASSED   [100%]\n\n============================== warnings summary ===============================\nTests/integration/test_q50_integration.py::test_q50_integration\n  C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pydantic\\_internal\\_config.py:323: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.11/migration/\n    warnings.warn(DEPRECATION_MESSAGE, DeprecationWarning)\n\nTests/integration/test_q50_integration.py::test_q50_integration\n  C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\_pytest\\python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but Tests/integration/test_q50_integration.py::test_q50_integration returned <class 'bool'>.\n  Did you mean to use `assert` instead of `return`?\n  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.\n    warnings.warn(\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 1 passed, 2 warnings in 4.64s ========================\n",
+      "stderr": "",
+      "success": true,
+      "timestamp": "2025-09-30T08:33:23.483123"
+    },
+    {
+      "file": "tests/integration\\test_q50_integration.py",
+      "returncode": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 1 item\n\nTests/integration/test_q50_integration.py::test_q50_integration PASSED   [100%]\n\n============================== warnings summary ===============================\nTests/integration/test_q50_integration.py::test_q50_integration\n  C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pydantic\\_internal\\_config.py:323: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.11/migration/\n    warnings.warn(DEPRECATION_MESSAGE, DeprecationWarning)\n\nTests/integration/test_q50_integration.py::test_q50_integration\n  C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\_pytest\\python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but Tests/integration/test_q50_integration.py::test_q50_integration returned <class 'bool'>.\n  Did you mean to use `assert` instead of `return`?\n  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.\n    warnings.warn(\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 1 passed, 2 warnings in 4.72s ========================\n",
+      "stderr": "",
+      "success": true,
+      "timestamp": "2025-09-30T08:33:30.683293"
+    },
+    {
+      "file": "tests/unit\\test_basic_reporter.py",
+      "returncode": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 19 items\n\nTests/unit/test_basic_reporter.py::TestBasicReporter::test_export_to_file_json PASSED [  5%]\nTests/unit/test_basic_reporter.py::TestBasicReporter::test_export_to_file_text PASSED [ 10%]\nTests/unit/test_basic_reporter.py::TestBasicReporter::test_export_to_html PASSED [ 15%]\nTests/unit/test_basic_reporter.py::TestBasicReporter::test_failure_analysis PASSED [ 21%]\nTests/unit/test_basic_reporter.py::TestBasicReporter::test_failure_analysis_no_failures PASSED [ 26%]\nTests/unit/test_basic_reporter.py::TestBasicReporter::test_generate_coverage_report_empty_results PASSED [ 31%]\nTests/unit/test_basic_reporter.py::TestBasicReporter::test_generate_coverage_report_with_results PASSED [ 36%]\nTests/unit/test_basic_reporter.py::TestBasicReporter::test_generate_executive_summary_empty_results PASSED [ 42%]\nTests/unit/test_basic_reporter.py::TestBasicReporter::test_generate_executive_summary_status_assessment PASSED [ 47%]\nTests/unit/test_basic_reporter.py::TestBasicReporter::test_generate_executive_summary_with_results PASSED [ 52%]\nTests/unit/test_basic_reporter.py::TestBasicReporter::test_generate_feature_report_no_results PASSED [ 57%]\nTests/unit/test_basic_reporter.py::TestBasicReporter::test_generate_feature_report_with_results PASSED [ 63%]\nTests/unit/test_basic_reporter.py::TestBasicReporter::test_generate_summary_report_empty_results PASSED [ 68%]\nTests/unit/test_basic_reporter.py::TestBasicReporter::test_generate_summary_report_with_results PASSED [ 73%]\nTests/unit/test_basic_reporter.py::TestBasicReporter::test_get_supported_formats PASSED [ 78%]\nTests/unit/test_basic_reporter.py::TestBasicReporter::test_init PASSED   [ 84%]\nTests/unit/test_basic_reporter.py::TestBasicReporter::test_markdown_to_html_conversion PASSED [ 89%]\nTests/unit/test_basic_reporter.py::TestBasicReporter::test_regime_analysis PASSED [ 94%]\nTests/unit/test_basic_reporter.py::TestBasicReporter::test_trend_analysis PASSED [100%]\n\n============================== warnings summary ===============================\nsrc\\testing\\models\\test_result.py:30\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_result.py:30: PytestCollectionWarning: cannot collect test class 'TestResult' because it has a __init__ constructor (from: Tests/unit/test_basic_reporter.py)\n    @dataclass\n\nsrc\\testing\\models\\test_result.py:13\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_result.py:13: PytestCollectionWarning: cannot collect test class 'TestStatus' because it has a __init__ constructor (from: Tests/unit/test_basic_reporter.py)\n    class TestStatus(Enum):\n\nsrc\\testing\\models\\test_case.py:28\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_case.py:28: PytestCollectionWarning: cannot collect test class 'TestCase' because it has a __init__ constructor (from: Tests/unit/test_basic_reporter.py)\n    @dataclass\n\nsrc\\testing\\models\\test_case.py:10\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_case.py:10: PytestCollectionWarning: cannot collect test class 'TestType' because it has a __init__ constructor (from: Tests/unit/test_basic_reporter.py)\n    class TestType(Enum):\n\nsrc\\testing\\models\\test_case.py:20\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_case.py:20: PytestCollectionWarning: cannot collect test class 'TestPriority' because it has a __init__ constructor (from: Tests/unit/test_basic_reporter.py)\n    class TestPriority(Enum):\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================= 19 passed, 5 warnings in 0.49s ========================\n",
+      "stderr": "",
+      "success": true,
+      "timestamp": "2025-09-30T08:33:31.791360"
+    },
+    {
+      "file": "tests/unit\\test_document_protection.py",
+      "returncode": 1,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 18 items\n\nTests/unit/test_document_protection.py::TestDocumentProtectionSystem::test_initialization PASSED [  5%]\nTests/unit/test_document_protection.py::TestDocumentProtectionSystem::test_create_backup_success PASSED [ 11%]\nTests/unit/test_document_protection.py::TestDocumentProtectionSystem::test_create_backup_nonexistent_file PASSED [ 16%]\nTests/unit/test_document_protection.py::TestDocumentProtectionSystem::test_validate_changes_enhancement PASSED [ 22%]\nTests/unit/test_document_protection.py::TestDocumentProtectionSystem::test_validate_changes_removal PASSED [ 27%]\nTests/unit/test_document_protection.py::TestDocumentProtectionSystem::test_validate_changes_empty_content PASSED [ 33%]\nTests/unit/test_document_protection.py::TestDocumentProtectionSystem::test_enable_version_tracking PASSED [ 38%]\nTests/unit/test_document_protection.py::TestDocumentProtectionSystem::test_create_rollback_point PASSED [ 44%]\nTests/unit/test_document_protection.py::TestDocumentProtectionSystem::test_rollback_to_point FAILED [ 50%]\nTests/unit/test_document_protection.py::TestDocumentProtectionSystem::test_list_backups PASSED [ 55%]\nTests/unit/test_document_protection.py::TestDocumentProtectionSystem::test_list_rollback_points FAILED [ 61%]\nTests/unit/test_document_protection.py::TestDocumentProtectionSystem::test_get_protection_status PASSED [ 66%]\nTests/unit/test_document_protection.py::TestDocumentProtectionSystem::test_cleanup_old_backups PASSED [ 72%]\nTests/unit/test_document_protection.py::TestDocumentProtectionSystem::test_critical_section_detection PASSED [ 77%]\nTests/unit/test_document_protection.py::TestDocumentProtectionSystem::test_metadata_persistence PASSED [ 83%]\nTests/unit/test_document_protection.py::TestDocumentProtectionSystem::test_file_hash_calculation PASSED [ 88%]\nTests/unit/test_document_protection.py::TestDocumentProtectionSystem::test_safe_removal_detection PASSED [ 94%]\nTests/unit/test_document_protection.py::TestDocumentProtectionSystem::test_error_handling PASSED [100%]\n\n================================== FAILURES ===================================\n_____________ TestDocumentProtectionSystem.test_rollback_to_point _____________\nTests\\unit\\test_document_protection.py:201: in test_rollback_to_point\n    assert restored_content == original_content\nE   AssertionError: assert '# Test Docum...nNew content.' == '# Test Docum...ntent here.\\n'\nE     \nE       # Test Document\nE       \nE       ## Section 1\nE       This is test content.\nE       \nE       ## Section 2...\nE     \nE     ...Full output truncated (5 lines hidden), use '-vv' to show\n___________ TestDocumentProtectionSystem.test_list_rollback_points ____________\nTests\\unit\\test_document_protection.py:228: in test_list_rollback_points\n    assert len(rollback_points) == 2\nE   AssertionError: assert 1 == 2\nE    +  where 1 = len([RollbackPoint(id='test_doc_20250930_083332_347395', timestamp='20250930_083332', file_path='C:\\\\Users\\\\JONKIN~1\\\\AppData\\\\Local\\\\Temp\\\\tmp1qli7sgn\\\\test_doc.md', backup_path='C:\\\\Users\\\\JONKIN~1\\\\AppData\\\\Local\\\\Temp\\\\tmp1qli7sgn\\\\test_backups\\\\backups\\\\test_doc_20250930_083332_347395.md', description='Point 2', content_hash='912d6e5d1d89bad52ea22dceedd56752d170cc7ce5e1af9dc2fa4841bfadc018')])\n=========================== short test summary info ===========================\nFAILED Tests/unit/test_document_protection.py::TestDocumentProtectionSystem::test_rollback_to_point\nFAILED Tests/unit/test_document_protection.py::TestDocumentProtectionSystem::test_list_rollback_points\n======================== 2 failed, 16 passed in 0.19s =========================\n",
+      "stderr": "",
+      "success": false,
+      "timestamp": "2025-09-30T08:33:32.488804"
+    },
+    {
+      "file": "tests/unit\\test_economic_hypothesis_generator.py",
+      "returncode": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 8 items\n\nTests/unit/test_economic_hypothesis_generator.py::TestEconomicHypothesisTestGenerator::test_q50_test_generation PASSED [ 12%]\nTests/unit/test_economic_hypothesis_generator.py::TestEconomicHypothesisTestGenerator::test_vol_risk_test_generation PASSED [ 25%]\nTests/unit/test_economic_hypothesis_generator.py::TestEconomicHypothesisTestGenerator::test_sentiment_feature_test_generation PASSED [ 37%]\nTests/unit/test_economic_hypothesis_generator.py::TestEconomicHypothesisTestGenerator::test_kelly_sizing_test_generation PASSED [ 50%]\nTests/unit/test_economic_hypothesis_generator.py::TestEconomicHypothesisTestGenerator::test_generic_hypothesis_test_generation PASSED [ 62%]\nTests/unit/test_economic_hypothesis_generator.py::TestEconomicHypothesisTestGenerator::test_feature_key_extraction PASSED [ 75%]\nTests/unit/test_economic_hypothesis_generator.py::TestEconomicHypothesisTestGenerator::test_no_economic_hypothesis PASSED [ 87%]\nTests/unit/test_economic_hypothesis_generator.py::TestEconomicHypothesisTestGenerator::test_all_tests_have_required_fields PASSED [100%]\n\n============================== warnings summary ===============================\nsrc\\testing\\models\\test_case.py:10\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_case.py:10: PytestCollectionWarning: cannot collect test class 'TestType' because it has a __init__ constructor (from: Tests/unit/test_economic_hypothesis_generator.py)\n    class TestType(Enum):\n\nsrc\\testing\\models\\test_case.py:20\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_case.py:20: PytestCollectionWarning: cannot collect test class 'TestPriority' because it has a __init__ constructor (from: Tests/unit/test_economic_hypothesis_generator.py)\n    class TestPriority(Enum):\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 8 passed, 2 warnings in 0.44s ========================\n",
+      "stderr": "",
+      "success": true,
+      "timestamp": "2025-09-30T08:33:33.565682"
+    },
+    {
+      "file": "tests/unit\\test_economic_rationale_generator.py",
+      "returncode": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 16 items\n\nTests/unit/test_economic_rationale_generator.py::TestEconomicRationaleGenerator::test_initialization PASSED [  6%]\nTests/unit/test_economic_rationale_generator.py::TestEconomicRationaleGenerator::test_feature_type_classification PASSED [ 12%]\nTests/unit/test_economic_rationale_generator.py::TestEconomicRationaleGenerator::test_thesis_statement_generation PASSED [ 18%]\nTests/unit/test_economic_rationale_generator.py::TestEconomicRationaleGenerator::test_economic_rationale_generation PASSED [ 25%]\nTests/unit/test_economic_rationale_generator.py::TestEconomicRationaleGenerator::test_chart_explanation_generation PASSED [ 31%]\nTests/unit/test_economic_rationale_generator.py::TestEconomicRationaleGenerator::test_supply_demand_classification PASSED [ 37%]\nTests/unit/test_economic_rationale_generator.py::TestEconomicRationaleGenerator::test_complete_enhancement_generation PASSED [ 43%]\nTests/unit/test_economic_rationale_generator.py::TestEconomicRationaleGenerator::test_different_feature_types PASSED [ 50%]\nTests/unit/test_economic_rationale_generator.py::TestEconomicRationaleGenerator::test_validation_criteria_generation PASSED [ 56%]\nTests/unit/test_economic_rationale_generator.py::TestEconomicRationaleGenerator::test_dependency_determination PASSED [ 62%]\nTests/unit/test_economic_rationale_generator.py::TestEconomicRationaleGenerator::test_regime_sensitivity_assignment PASSED [ 68%]\nTests/unit/test_economic_rationale_generator.py::TestEconomicRationaleGenerator::test_interaction_features_determination PASSED [ 75%]\nTests/unit/test_economic_rationale_generator.py::TestThesisValidation::test_valid_thesis_validation PASSED [ 81%]\nTests/unit/test_economic_rationale_generator.py::TestThesisValidation::test_invalid_thesis_validation PASSED [ 87%]\nTests/unit/test_economic_rationale_generator.py::TestThesisValidation::test_partial_validation_issues PASSED [ 93%]\nTests/unit/test_economic_rationale_generator.py::TestFeatureEnhancement::test_feature_enhancement_creation PASSED [100%]\n\n============================= 16 passed in 0.08s ==============================\n",
+      "stderr": "",
+      "success": true,
+      "timestamp": "2025-09-30T08:33:34.153919"
+    },
+    {
+      "file": "tests/unit\\test_feature_inventory.py",
+      "returncode": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 10 items\n\nTests/unit/test_feature_inventory.py::TestFeatureInventoryGenerator::test_generate_inventory_basic PASSED [ 10%]\nTests/unit/test_feature_inventory.py::TestFeatureInventoryGenerator::test_category_generation PASSED [ 20%]\nTests/unit/test_feature_inventory.py::TestFeatureInventoryGenerator::test_dependency_detection PASSED [ 30%]\nTests/unit/test_feature_inventory.py::TestFeatureInventoryGenerator::test_test_requirements_generation PASSED [ 40%]\nTests/unit/test_feature_inventory.py::TestFeatureInventoryGenerator::test_inventory_validation PASSED [ 50%]\nTests/unit/test_feature_inventory.py::TestFeatureInventoryGenerator::test_critical_features_identification PASSED [ 60%]\nTests/unit/test_feature_inventory.py::TestFeatureInventoryGenerator::test_dependency_chain_analysis PASSED [ 70%]\nTests/unit/test_feature_inventory.py::TestFeatureInventoryGenerator::test_test_coverage_summary PASSED [ 80%]\nTests/unit/test_feature_inventory.py::TestFeatureTemplateParserIntegration::test_parser_inventory_generation PASSED [ 90%]\nTests/unit/test_feature_inventory.py::TestFeatureTemplateParserIntegration::test_parser_inventory_error_handling PASSED [100%]\n\n============================= 10 passed in 0.38s ==============================\n",
+      "stderr": "",
+      "success": true,
+      "timestamp": "2025-09-30T08:33:35.149047"
+    },
+    {
+      "file": "tests/unit\\test_feature_parser.py",
+      "returncode": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 18 items\n\nTests/unit/test_feature_parser.py::TestFeatureSpec::test_basic_creation PASSED [  5%]\nTests/unit/test_feature_parser.py::TestFeatureSpec::test_validation_priority_assignment PASSED [ 11%]\nTests/unit/test_feature_parser.py::TestFeatureSpec::test_test_requirements PASSED [ 16%]\nTests/unit/test_feature_parser.py::TestFeatureSpec::test_complexity_score PASSED [ 22%]\nTests/unit/test_feature_parser.py::TestFeatureSpec::test_validation_errors PASSED [ 27%]\nTests/unit/test_feature_parser.py::TestFeatureSpec::test_to_dict PASSED  [ 33%]\nTests/unit/test_feature_parser.py::TestMarkdownFeatureParser::test_extract_feature_sections PASSED [ 38%]\nTests/unit/test_feature_parser.py::TestMarkdownFeatureParser::test_parse_feature_details PASSED [ 44%]\nTests/unit/test_feature_parser.py::TestMarkdownFeatureParser::test_formula_extraction PASSED [ 50%]\nTests/unit/test_feature_parser.py::TestMarkdownFeatureParser::test_empirical_ranges_extraction PASSED [ 55%]\nTests/unit/test_feature_parser.py::TestMarkdownFeatureParser::test_template_validation PASSED [ 61%]\nTests/unit/test_feature_parser.py::TestMarkdownFeatureParser::test_parse_template_file_not_found PASSED [ 66%]\nTests/unit/test_feature_parser.py::TestMarkdownFeatureParser::test_parse_template_success PASSED [ 72%]\nTests/unit/test_feature_parser.py::TestValidationUtils::test_validate_feature_spec_data_valid PASSED [ 77%]\nTests/unit/test_feature_parser.py::TestValidationUtils::test_validate_feature_spec_data_missing_required PASSED [ 83%]\nTests/unit/test_feature_parser.py::TestValidationUtils::test_validate_feature_spec_data_invalid_tier PASSED [ 88%]\nTests/unit/test_feature_parser.py::TestValidationUtils::test_validate_template_file_exists PASSED [ 94%]\nTests/unit/test_feature_parser.py::TestValidationUtils::test_validate_template_file_not_exists PASSED [100%]\n\n============================= 18 passed in 0.47s ==============================\n",
+      "stderr": "",
+      "success": true,
+      "timestamp": "2025-09-30T08:33:36.247712"
+    },
+    {
+      "file": "tests/unit\\test_html_reporter.py",
+      "returncode": 1,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 16 items\n\nTests/unit/test_html_reporter.py::TestHTMLReporter::test_dashboard_data_completeness PASSED [  6%]\nTests/unit/test_html_reporter.py::TestHTMLReporter::test_empty_dashboard_generation PASSED [ 12%]\nTests/unit/test_html_reporter.py::TestHTMLReporter::test_export_to_html PASSED [ 18%]\nTests/unit/test_html_reporter.py::TestHTMLReporter::test_generate_dashboard_html FAILED [ 25%]\nTests/unit/test_html_reporter.py::TestHTMLReporter::test_generate_interactive_dashboard_empty_results PASSED [ 31%]\nTests/unit/test_html_reporter.py::TestHTMLReporter::test_generate_interactive_dashboard_with_results FAILED [ 37%]\nTests/unit/test_html_reporter.py::TestHTMLReporter::test_generate_interactive_html PASSED [ 43%]\nTests/unit/test_html_reporter.py::TestHTMLReporter::test_get_dashboard_css PASSED [ 50%]\nTests/unit/test_html_reporter.py::TestHTMLReporter::test_get_dashboard_javascript PASSED [ 56%]\nTests/unit/test_html_reporter.py::TestHTMLReporter::test_get_interactive_css PASSED [ 62%]\nTests/unit/test_html_reporter.py::TestHTMLReporter::test_get_interactive_javascript PASSED [ 68%]\nTests/unit/test_html_reporter.py::TestHTMLReporter::test_get_supported_formats PASSED [ 75%]\nTests/unit/test_html_reporter.py::TestHTMLReporter::test_inheritance_from_basic_reporter PASSED [ 81%]\nTests/unit/test_html_reporter.py::TestHTMLReporter::test_init PASSED     [ 87%]\nTests/unit/test_html_reporter.py::TestHTMLReporter::test_prepare_dashboard_data PASSED [ 93%]\nTests/unit/test_html_reporter.py::TestHTMLReporter::test_serialize_test_result PASSED [100%]\n\n================================== FAILURES ===================================\n________________ TestHTMLReporter.test_generate_dashboard_html ________________\nTests\\unit\\test_html_reporter.py:210: in test_generate_dashboard_html\n    self.assertIn(\"Chart.js\", html_content)\nE   AssertionError: 'Chart.js' not found in '<!DOCTYPE html>\\\\n<html lang=\"en\">\\\\n<head>\\\\n    <meta charset=\"UTF-8\">\\\\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\\\n    <title>Feature Test Coverage Dashboard</title>\\\\n    <script src=\"https://cdn.jsdelivr.net/npm/chart.js\"></script>\\\\n    <style>\\\\n        \\\\n        * {\\\\n            margin: 0;\\\\n            padding: 0;\\\\n            box-sizing: border-box;\\\\n        }\\\\n        \\\\n        body {\\\\n            font-family: -apple-system, BlinkMacSystemFont, \\\\'Segoe UI\\\\', Roboto, sans-serif;\\\\n            background-color: #f5f7fa;\\\\n            color: #2d3748;\\\\n            line-height: 1.6;\\\\n        }\\\\n        \\\\n        .dashboard-container {\\\\n            max-width: 1400px;\\\\n            margin: 0 auto;\\\\n            padding: 20px;\\\\n        }\\\\n        \\\\n        .dashboard-header {\\\\n            text-align: center;\\\\n            margin-bottom: 30px;\\\\n            padding: 20px;\\\\n            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\\\\n            color: white;\\\\n            border-radius: 10px;\\\\n            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);\\\\n        }\\\\n        \\\\n        .dashboard-header h1 {\\\\n            font-size: 2.5rem;\\\\n            margin-bottom: 10px;\\\\n        }\\\\n        \\\\n        .timestamp {\\\\n            opacity: 0.9;\\\\n            font-size: 1.1rem;\\\\n        }\\\\n        \\\\n        .summary-cards {\\\\n            display: grid;\\\\n            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\\\\n            gap: 20px;\\\\n            margin-bottom: 30px;\\\\n        }\\\\n        \\\\n        .card {\\\\n            padding: 25px;\\\\n            border-radius: 10px;\\\\n            text-align: center;\\\\n            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);\\\\n            transition: transform 0.2s;\\\\n        }\\\\n        \\\\n        .card:hover {\\\\n            transform: translateY(-2px);\\\\n        }\\\\n        \\\\n        .card.success {\\\\n            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);\\\\n            color: white;\\\\n        }\\\\n        \\\\n        .card.warning {\\\\n            background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);\\\\n            color: white;\\\\n        }\\\\n        \\\\n        .card.error {\\\\n            background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);\\\\n            color: white;\\\\n        }\\\\n        \\\\n        .card-title {\\\\n            font-size: 1rem;\\\\n            opacity: 0.9;\\\\n            margin-bottom: 10px;\\\\n        }\\\\n        \\\\n        .card-value {\\\\n            font-size: 2.5rem;\\\\n            font-weight: bold;\\\\n        }\\\\n        \\\\n        .charts-container {\\\\n            display: grid;\\\\n            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));\\\\n            gap: 30px;\\\\n            margin-bottom: 30px;\\\\n        }\\\\n        \\\\n        .chart-section {\\\\n            background: white;\\\\n            padding: 25px;\\\\n            border-radius: 10px;\\\\n            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);\\\\n        }\\\\n        \\\\n        .chart-section h2 {\\\\n            margin-bottom: 20px;\\\\n            color: #2d3748;\\\\n            font-size: 1.3rem;\\\\n        }\\\\n        \\\\n        .details-section {\\\\n            background: white;\\\\n            border-radius: 10px;\\\\n            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);\\\\n            margin-bottom: 30px;\\\\n        }\\\\n        \\\\n        .tabs {\\\\n            display: flex;\\\\n            border-bottom: 1px solid #e2e8f0;\\\\n        }\\\\n        \\\\n        .tab-button {\\\\n            padding: 15px 25px;\\\\n            border: none;\\\\n            background: none;\\\\n            cursor: pointer;\\\\n            font-size: 1rem;\\\\n            color: #718096;\\\\n            transition: all 0.2s;\\\\n        }\\\\n        \\\\n        .tab-button.active {\\\\n            color: #4299e1;\\\\n            border-bottom: 2px solid #4299e1;\\\\n        }\\\\n        \\\\n        .tab-button:hover {\\\\n            background-color: #f7fafc;\\\\n        }\\\\n        \\\\n        .tab-content {\\\\n            display: none;\\\\n            padding: 25px;\\\\n        }\\\\n        \\\\n        .tab-content.active {\\\\n            display: block;\\\\n        }\\\\n        \\\\n        .test-item {\\\\n            padding: 15px;\\\\n            border: 1px solid #e2e8f0;\\\\n            border-radius: 8px;\\\\n            margin-bottom: 15px;\\\\n            transition: all 0.2s;\\\\n        }\\\\n        \\\\n        .test-item:hover {\\\\n            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\\\\n        }\\\\n        \\\\n        .test-item.failed {\\\\n            border-left: 4px solid #f56565;\\\\n        }\\\\n        \\\\n        .test-item.critical {\\\\n            border-left: 4px solid #e53e3e;\\\\n            background-color: #fed7d7;\\\\n        }\\\\n        \\\\n        .test-header {\\\\n            display: flex;\\\\n            justify-content: between;\\\\n            align-items: center;\\\\n            margin-bottom: 10px;\\\\n        }\\\\n        \\\\n        .test-title {\\\\n            font-weight: bold;\\\\n            color: #2d3748;\\\\n        }\\\\n        \\\\n        .test-status {\\\\n            padding: 4px 8px;\\\\n            border-radius: 4px;\\\\n            font-size: 0.8rem;\\\\n            font-weight: bold;\\\\n        }\\\\n        \\\\n        .status-failed {\\\\n            background-color: #fed7d7;\\\\n            color: #c53030;\\\\n        }\\\\n        \\\\n        .status-error {\\\\n            background-color: #fbb6ce;\\\\n            color: #97266d;\\\\n        }\\\\n        \\\\n        .test-details {\\\\n            color: #718096;\\\\n            font-size: 0.9rem;\\\\n        }\\\\n        \\\\n        .export-section {\\\\n            text-align: center;\\\\n            padding: 20px;\\\\n        }\\\\n        \\\\n        .export-btn {\\\\n            padding: 12px 24px;\\\\n            margin: 0 10px;\\\\n            border: none;\\\\n            border-radius: 6px;\\\\n            background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);\\\\n            color: white;\\\\n            cursor: pointer;\\\\n            font-size: 1rem;\\\\n            transition: all 0.2s;\\\\n        }\\\\n        \\\\n        .export-btn:hover {\\\\n            transform: translateY(-1px);\\\\n            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);\\\\n        }\\\\n        \\\\n        @media (max-width: 768px) {\\\\n            .dashboard-container {\\\\n                padding: 10px;\\\\n            }\\\\n            \\\\n            .charts-container {\\\\n                grid-template-columns: 1fr;\\\\n            }\\\\n            \\\\n            .summary-cards {\\\\n                grid-template-columns: repeat(2, 1fr);\\\\n            }\\\\n            \\\\n            .dashboard-header h1 {\\\\n                font-size: 2rem;\\\\n            }\\\\n        }\\\\n        \\\\n    </style>\\\\n</head>\\\\n<body>\\\\n    <div class=\"dashboard-container\">\\\\n        <header class=\"dashboard-header\">\\\\n            <h1>\\U0001f9ea Feature Test Coverage Dashboard</h1>\\\\n            <div class=\"timestamp\">Generated: 2025-09-30 08:33:37</div>\\\\n        </header>\\\\n        \\\\n        <div class=\"summary-cards\">\\\\n            <div class=\"card success\">\\\\n                <div class=\"card-title\">Total Tests</div>\\\\n                <div class=\"card-value\">2</div>\\\\n            </div>\\\\n            <div class=\"card error\">\\\\n                <div class=\"card-title\">Success Rate</div>\\\\n                <div class=\"card-value\">50.0%</div>\\\\n            </div>\\\\n            <div class=\"card error\">\\\\n                <div class=\"card-title\">Failed Tests</div>\\\\n                <div class=\"card-value\">1</div>\\\\n            </div>\\\\n            <div class=\"card error\">\\\\n                <div class=\"card-title\">Critical Failures</div>\\\\n                <div class=\"card-value\">1</div>\\\\n            </div>\\\\n        </div>\\\\n        \\\\n        <div class=\"charts-container\">\\\\n            <div class=\"chart-section\">\\\\n                <h2>Test Status Distribution</h2>\\\\n                <canvas id=\"statusChart\"></canvas>\\\\n            </div>\\\\n            \\\\n            <div class=\"chart-section\">\\\\n                <h2>Feature Coverage</h2>\\\\n                <canvas id=\"featureChart\"></canvas>\\\\n            </div>\\\\n            \\\\n            <div class=\"chart-section\">\\\\n                <h2>Test Type Performance</h2>\\\\n                <canvas id=\"testTypeChart\"></canvas>\\\\n            </div>\\\\n            \\\\n            <div class=\"chart-section\">\\\\n                <h2>Priority Distribution</h2>\\\\n                <canvas id=\"priorityChart\"></canvas>\\\\n            </div>\\\\n        </div>\\\\n        \\\\n        <div class=\"details-section\">\\\\n            <div class=\"tabs\">\\\\n                <button class=\"tab-button active\" onclick=\"showTab(\\\\'failed-tests\\\\')\">Failed Tests</button>\\\\n                <button class=\"tab-button\" onclick=\"showTab(\\\\'critical-failures\\\\')\">Critical Failures</button>\\\\n                <button class=\"tab-button\" onclick=\"showTab(\\\\'feature-details\\\\')\">Feature Details</button>\\\\n            </div>\\\\n            \\\\n            <div id=\"failed-tests\" class=\"tab-content active\">\\\\n                <h3>Failed Tests</h3>\\\\n                <div id=\"failed-tests-list\"></div>\\\\n            </div>\\\\n            \\\\n            <div id=\"critical-failures\" class=\"tab-content\">\\\\n                <h3>Critical Failures</h3>\\\\n                <div id=\"critical-failures-list\"></div>\\\\n            </div>\\\\n            \\\\n            <div id=\"feature-details\" class=\"tab-content\">\\\\n                <h3>Feature Details</h3>\\\\n                <div id=\"feature-details-list\"></div>\\\\n            </div>\\\\n        </div>\\\\n        \\\\n        <div class=\"export-section\">\\\\n            <button onclick=\"exportToJSON()\" class=\"export-btn\">Export to JSON</button>\\\\n            <button onclick=\"printReport()\" class=\"export-btn\">Print Report</button>\\\\n        </div>\\\\n    </div>\\\\n    \\\\n    <script>\\\\n        // Dashboard data\\\\n        const dashboardData = {\\\\n  \"summary\": {\\\\n    \"total_tests\": 2,\\\\n    \"passed_tests\": 1,\\\\n    \"failed_tests\": 1,\\\\n    \"success_rate\": 50.0,\\\\n    \"avg_execution_time\": 1.8,\\\\n    \"critical_failures\": 1\\\\n  },\\\\n  \"status_distribution\": {\\\\n    \"passed\": 1,\\\\n    \"failed\": 1,\\\\n    \"skipped\": 0,\\\\n    \"error\": 0,\\\\n    \"timeout\": 0\\\\n  },\\\\n  \"feature_stats\": {\\\\n    \"Q50\": {\\\\n      \"total\": 1,\\\\n      \"passed\": 1,\\\\n      \"failed\": 0\\\\n    },\\\\n    \"vol_risk\": {\\\\n      \"total\": 1,\\\\n      \"passed\": 0,\\\\n      \"failed\": 1\\\\n    }\\\\n  },\\\\n  \"test_type_stats\": {\\\\n    \"economic_hypothesis\": {\\\\n      \"total\": 1,\\\\n      \"passed\": 1,\\\\n      \"failed\": 0,\\\\n      \"success_rate\": 100.0\\\\n    },\\\\n    \"performance\": {\\\\n      \"total\": 1,\\\\n      \"passed\": 0,\\\\n      \"failed\": 1,\\\\n      \"success_rate\": 0.0\\\\n    }\\\\n  },\\\\n  \"priority_stats\": {\\\\n    \"critical\": {\\\\n      \"total\": 1,\\\\n      \"passed\": 0,\\\\n      \"failed\": 1,\\\\n      \"success_rate\": 0.0\\\\n    },\\\\n    \"high\": {\\\\n      \"total\": 1,\\\\n      \"passed\": 1,\\\\n      \"failed\": 0,\\\\n      \"success_rate\": 100.0\\\\n    }\\\\n  },\\\\n  \"confidence_stats\": {\\\\n    \"high\": 1,\\\\n    \"medium\": 1,\\\\n    \"low\": 0,\\\\n    \"uncertain\": 0\\\\n  },\\\\n  \"failed_tests\": [\\\\n    {\\\\n      \"feature_name\": \"vol_risk\",\\\\n      \"test_type\": \"performance\",\\\\n      \"priority\": \"critical\",\\\\n      \"status\": \"failed\",\\\\n      \"confidence\": \"medium\",\\\\n      \"confidence_score\": 0.6,\\\\n      \"execution_time\": 2.1,\\\\n      \"analysis\": \"vol_risk calculation deviates from expected variance\",\\\\n      \"error_message\": \"Variance calculation error\",\\\\n      \"recommendations\": [\\\\n        \"Review vol_risk implementation\",\\\\n        \"Update variance formula\"\\\\n      ],\\\\n      \"severity\": \"high\",\\\\n      \"timestamp\": \"2025-09-30T08:33:37.070171\"\\\\n    }\\\\n  ],\\\\n  \"critical_failures\": [\\\\n    {\\\\n      \"feature_name\": \"vol_risk\",\\\\n      \"test_type\": \"performance\",\\\\n      \"priority\": \"critical\",\\\\n      \"status\": \"failed\",\\\\n      \"confidence\": \"medium\",\\\\n      \"confidence_score\": 0.6,\\\\n      \"execution_time\": 2.1,\\\\n      \"analysis\": \"vol_risk calculation deviates from expected variance\",\\\\n      \"error_message\": \"Variance calculation error\",\\\\n      \"recommendations\": [\\\\n        \"Review vol_risk implementation\",\\\\n        \"Update variance formula\"\\\\n      ],\\\\n      \"severity\": \"high\",\\\\n      \"timestamp\": \"2025-09-30T08:33:37.070171\"\\\\n    }\\\\n  ],\\\\n  \"timestamp\": \"2025-09-30T08:33:37.070171\"\\\\n};\\\\n        \\\\n        \\\\n        // Initialize charts when page loads\\\\n        document.addEventListener(\\\\'DOMContentLoaded\\\\', function() {\\\\n            initializeCharts();\\\\n            populateTestLists();\\\\n        });\\\\n        \\\\n        function initializeCharts() {\\\\n            // Status distribution chart\\\\n            const statusCtx = document.getElementById(\\\\'statusChart\\\\').getContext(\\\\'2d\\\\');\\\\n            new Chart(statusCtx, {\\\\n                type: \\\\'doughnut\\\\',\\\\n                data: {\\\\n                    labels: Object.keys(dashboardData.status_distribution),\\\\n                    datasets: [{\\\\n                        data: Object.values(dashboardData.status_distribution),\\\\n                        backgroundColor: [\\\\n                            \\\\'#48bb78\\\\', // passed\\\\n                            \\\\'#f56565\\\\', // failed\\\\n                            \\\\'#ed8936\\\\', // error\\\\n                            \\\\'#a0aec0\\\\', // skipped\\\\n                            \\\\'#9f7aea\\\\'  // timeout\\\\n                        ]\\\\n                    }]\\\\n                },\\\\n                options: {\\\\n                    responsive: true,\\\\n                    plugins: {\\\\n                        legend: {\\\\n                            position: \\\\'bottom\\\\'\\\\n                        }\\\\n                    }\\\\n                }\\\\n            });\\\\n            \\\\n            // Feature coverage chart\\\\n            const featureCtx = document.getElementById(\\\\'featureChart\\\\').getContext(\\\\'2d\\\\');\\\\n            const featureLabels = Object.keys(dashboardData.feature_stats);\\\\n            const featureSuccessRates = featureLabels.map(feature => {\\\\n                const stats = dashboardData.feature_stats[feature];\\\\n                return (stats.passed / stats.total) * 100;\\\\n            });\\\\n            \\\\n            new Chart(featureCtx, {\\\\n                type: \\\\'bar\\\\',\\\\n                data: {\\\\n                    labels: featureLabels,\\\\n                    datasets: [{\\\\n                        label: \\\\'Success Rate (%)\\\\',\\\\n                        data: featureSuccessRates,\\\\n                        backgroundColor: featureSuccessRates.map(rate => \\\\n                            rate >= 90 ? \\\\'#48bb78\\\\' : rate >= 70 ? \\\\'#ed8936\\\\' : \\\\'#f56565\\\\'\\\\n                        )\\\\n                    }]\\\\n                },\\\\n                options: {\\\\n                    responsive: true,\\\\n                    scales: {\\\\n                        y: {\\\\n                            beginAtZero: true,\\\\n                            max: 100\\\\n                        }\\\\n                    }\\\\n                }\\\\n            });\\\\n            \\\\n            // Test type performance chart\\\\n            const testTypeCtx = document.getElementById(\\\\'testTypeChart\\\\').getContext(\\\\'2d\\\\');\\\\n            const testTypeLabels = Object.keys(dashboardData.test_type_stats);\\\\n            const testTypeSuccessRates = testTypeLabels.map(type => \\\\n                dashboardData.test_type_stats[type].success_rate\\\\n            );\\\\n            \\\\n            new Chart(testTypeCtx, {\\\\n                type: \\\\'horizontalBar\\\\',\\\\n                data: {\\\\n                    labels: testTypeLabels.map(label => label.replace(\\\\'_\\\\', \\\\' \\\\')),\\\\n                    datasets: [{\\\\n                        label: \\\\'Success Rate (%)\\\\',\\\\n                        data: testTypeSuccessRates,\\\\n                        backgroundColor: \\\\'#4299e1\\\\'\\\\n                    }]\\\\n                },\\\\n                options: {\\\\n                    responsive: true,\\\\n                    scales: {\\\\n                        x: {\\\\n                            beginAtZero: true,\\\\n                            max: 100\\\\n                        }\\\\n                    }\\\\n                }\\\\n            });\\\\n            \\\\n            // Priority distribution chart\\\\n            const priorityCtx = document.getElementById(\\\\'priorityChart\\\\').getContext(\\\\'2d\\\\');\\\\n            const priorityLabels = Object.keys(dashboardData.priority_stats);\\\\n            const priorityData = priorityLabels.map(priority => ({\\\\n                label: priority,\\\\n                passed: dashboardData.priority_stats[priority].passed,\\\\n                failed: dashboardData.priority_stats[priority].failed\\\\n            }));\\\\n            \\\\n            new Chart(priorityCtx, {\\\\n                type: \\\\'bar\\\\',\\\\n                data: {\\\\n                    labels: priorityLabels,\\\\n                    datasets: [{\\\\n                        label: \\\\'Passed\\\\',\\\\n                        data: priorityData.map(d => d.passed),\\\\n                        backgroundColor: \\\\'#48bb78\\\\'\\\\n                    }, {\\\\n                        label: \\\\'Failed\\\\',\\\\n                        data: priorityData.map(d => d.failed),\\\\n                        backgroundColor: \\\\'#f56565\\\\'\\\\n                    }]\\\\n                },\\\\n                options: {\\\\n                    responsive: true,\\\\n                    scales: {\\\\n                        x: {\\\\n                            stacked: true\\\\n                        },\\\\n                        y: {\\\\n                            stacked: true\\\\n                        }\\\\n                    }\\\\n                }\\\\n            });\\\\n        }\\\\n        \\\\n        function populateTestLists() {\\\\n            // Populate failed tests\\\\n            const failedTestsList = document.getElementById(\\\\'failed-tests-list\\\\');\\\\n            dashboardData.failed_tests.forEach(test => {\\\\n                const testElement = createTestElement(test, \\\\'failed\\\\');\\\\n                failedTestsList.appendChild(testElement);\\\\n            });\\\\n            \\\\n            // Populate critical failures\\\\n            const criticalFailuresList = document.getElementById(\\\\'critical-failures-list\\\\');\\\\n            dashboardData.critical_failures.forEach(test => {\\\\n                const testElement = createTestElement(test, \\\\'critical\\\\');\\\\n                criticalFailuresList.appendChild(testElement);\\\\n            });\\\\n            \\\\n            // Populate feature details\\\\n            const featureDetailsList = document.getElementById(\\\\'feature-details-list\\\\');\\\\n            Object.entries(dashboardData.feature_stats).forEach(([feature, stats]) => {\\\\n                const featureElement = createFeatureElement(feature, stats);\\\\n                featureDetailsList.appendChild(featureElement);\\\\n            });\\\\n        }\\\\n        \\\\n        function createTestElement(test, type) {\\\\n            const div = document.createElement(\\\\'div\\\\');\\\\n            div.className = `test-item ${type}`;\\\\n            \\\\n            div.innerHTML = `\\\\n                <div class=\"test-header\">\\\\n                    <div class=\"test-title\">${test.feature_name} - ${test.test_type.replace(\\\\'_\\\\', \\\\' \\\\')}</div>\\\\n                    <div class=\"test-status status-${test.status}\">${test.status.toUpperCase()}</div>\\\\n                </div>\\\\n                <div class=\"test-details\">\\\\n                    <p><strong>Priority:</strong> ${test.priority}</p>\\\\n                    <p><strong>Confidence:</strong> ${test.confidence} (${(test.confidence_score * 100).toFixed(1)}%)</p>\\\\n                    <p><strong>Execution Time:</strong> ${test.execution_time.toFixed(2)}s</p>\\\\n                    ${test.error_message ? `<p><strong>Error:</strong> ${test.error_message}</p>` : \\\\'\\\\'}\\\\n                    ${test.analysis ? `<p><strong>Analysis:</strong> ${test.analysis}</p>` : \\\\'\\\\'}\\\\n                    ${test.recommendations.length > 0 ? `\\\\n                        <p><strong>Recommendations:</strong></p>\\\\n                        <ul>\\\\n                            ${test.recommendations.map(rec => `<li>${rec}</li>`).join(\\\\'\\\\')}\\\\n                        </ul>\\\\n                    ` : \\\\'\\\\'}\\\\n                </div>\\\\n            `;\\\\n            \\\\n            return div;\\\\n        }\\\\n        \\\\n        function createFeatureElement(feature, stats) {\\\\n            const div = document.createElement(\\\\'div\\\\');\\\\n            div.className = \\\\'test-item\\\\';\\\\n            \\\\n            const successRate = (stats.passed / stats.total) * 100;\\\\n            const statusClass = successRate >= 90 ? \\\\'success\\\\' : successRate >= 70 ? \\\\'warning\\\\' : \\\\'error\\\\';\\\\n            \\\\n            div.innerHTML = `\\\\n                <div class=\"test-header\">\\\\n                    <div class=\"test-title\">${feature}</div>\\\\n                    <div class=\"test-status status-${statusClass}\">${successRate.toFixed(1)}%</div>\\\\n                </div>\\\\n                <div class=\"test-details\">\\\\n                    <p><strong>Total Tests:</strong> ${stats.total}</p>\\\\n                    <p><strong>Passed:</strong> ${stats.passed}</p>\\\\n                    <p><strong>Failed:</strong> ${stats.failed}</p>\\\\n                </div>\\\\n            `;\\\\n            \\\\n            return div;\\\\n        }\\\\n        \\\\n        function showTab(tabName) {\\\\n            // Hide all tab contents\\\\n            document.querySelectorAll(\\\\'.tab-content\\\\').forEach(content => {\\\\n                content.classList.remove(\\\\'active\\\\');\\\\n            });\\\\n            \\\\n            // Remove active class from all tab buttons\\\\n            document.querySelectorAll(\\\\'.tab-button\\\\').forEach(button => {\\\\n                button.classList.remove(\\\\'active\\\\');\\\\n            });\\\\n            \\\\n            // Show selected tab content\\\\n            document.getElementById(tabName).classList.add(\\\\'active\\\\');\\\\n            \\\\n            // Add active class to clicked button\\\\n            event.target.classList.add(\\\\'active\\\\');\\\\n        }\\\\n        \\\\n        function exportToJSON() {\\\\n            const dataStr = JSON.stringify(dashboardData, null, 2);\\\\n            const dataBlob = new Blob([dataStr], {type: \\\\'application/json\\\\'});\\\\n            const url = URL.createObjectURL(dataBlob);\\\\n            \\\\n            const link = document.createElement(\\\\'a\\\\');\\\\n            link.href = url;\\\\n            link.download = `test-coverage-report-${new Date().toISOString().split(\\\\'T\\\\')[0]}.json`;\\\\n            link.click();\\\\n            \\\\n            URL.revokeObjectURL(url);\\\\n        }\\\\n        \\\\n        function printReport() {\\\\n            window.print();\\\\n        }\\\\n        \\\\n    </script>\\\\n</body>\\\\n</html>'\n______ TestHTMLReporter.test_generate_interactive_dashboard_with_results ______\nTests\\unit\\test_html_reporter.py:145: in test_generate_interactive_dashboard_with_results\n    self.assertIn(\"Chart.js\", html_content)\nE   AssertionError: 'Chart.js' not found in '<!DOCTYPE html>\\\\n<html lang=\"en\">\\\\n<head>\\\\n    <meta charset=\"UTF-8\">\\\\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\\\n    <title>Feature Test Coverage Dashboard</title>\\\\n    <script src=\"https://cdn.jsdelivr.net/npm/chart.js\"></script>\\\\n    <style>\\\\n        \\\\n        * {\\\\n            margin: 0;\\\\n            padding: 0;\\\\n            box-sizing: border-box;\\\\n        }\\\\n        \\\\n        body {\\\\n            font-family: -apple-system, BlinkMacSystemFont, \\\\'Segoe UI\\\\', Roboto, sans-serif;\\\\n            background-color: #f5f7fa;\\\\n            color: #2d3748;\\\\n            line-height: 1.6;\\\\n        }\\\\n        \\\\n        .dashboard-container {\\\\n            max-width: 1400px;\\\\n            margin: 0 auto;\\\\n            padding: 20px;\\\\n        }\\\\n        \\\\n        .dashboard-header {\\\\n            text-align: center;\\\\n            margin-bottom: 30px;\\\\n            padding: 20px;\\\\n            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\\\\n            color: white;\\\\n            border-radius: 10px;\\\\n            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);\\\\n        }\\\\n        \\\\n        .dashboard-header h1 {\\\\n            font-size: 2.5rem;\\\\n            margin-bottom: 10px;\\\\n        }\\\\n        \\\\n        .timestamp {\\\\n            opacity: 0.9;\\\\n            font-size: 1.1rem;\\\\n        }\\\\n        \\\\n        .summary-cards {\\\\n            display: grid;\\\\n            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\\\\n            gap: 20px;\\\\n            margin-bottom: 30px;\\\\n        }\\\\n        \\\\n        .card {\\\\n            padding: 25px;\\\\n            border-radius: 10px;\\\\n            text-align: center;\\\\n            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);\\\\n            transition: transform 0.2s;\\\\n        }\\\\n        \\\\n        .card:hover {\\\\n            transform: translateY(-2px);\\\\n        }\\\\n        \\\\n        .card.success {\\\\n            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);\\\\n            color: white;\\\\n        }\\\\n        \\\\n        .card.warning {\\\\n            background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);\\\\n            color: white;\\\\n        }\\\\n        \\\\n        .card.error {\\\\n            background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);\\\\n            color: white;\\\\n        }\\\\n        \\\\n        .card-title {\\\\n            font-size: 1rem;\\\\n            opacity: 0.9;\\\\n            margin-bottom: 10px;\\\\n        }\\\\n        \\\\n        .card-value {\\\\n            font-size: 2.5rem;\\\\n            font-weight: bold;\\\\n        }\\\\n        \\\\n        .charts-container {\\\\n            display: grid;\\\\n            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));\\\\n            gap: 30px;\\\\n            margin-bottom: 30px;\\\\n        }\\\\n        \\\\n        .chart-section {\\\\n            background: white;\\\\n            padding: 25px;\\\\n            border-radius: 10px;\\\\n            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);\\\\n        }\\\\n        \\\\n        .chart-section h2 {\\\\n            margin-bottom: 20px;\\\\n            color: #2d3748;\\\\n            font-size: 1.3rem;\\\\n        }\\\\n        \\\\n        .details-section {\\\\n            background: white;\\\\n            border-radius: 10px;\\\\n            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);\\\\n            margin-bottom: 30px;\\\\n        }\\\\n        \\\\n        .tabs {\\\\n            display: flex;\\\\n            border-bottom: 1px solid #e2e8f0;\\\\n        }\\\\n        \\\\n        .tab-button {\\\\n            padding: 15px 25px;\\\\n            border: none;\\\\n            background: none;\\\\n            cursor: pointer;\\\\n            font-size: 1rem;\\\\n            color: #718096;\\\\n            transition: all 0.2s;\\\\n        }\\\\n        \\\\n        .tab-button.active {\\\\n            color: #4299e1;\\\\n            border-bottom: 2px solid #4299e1;\\\\n        }\\\\n        \\\\n        .tab-button:hover {\\\\n            background-color: #f7fafc;\\\\n        }\\\\n        \\\\n        .tab-content {\\\\n            display: none;\\\\n            padding: 25px;\\\\n        }\\\\n        \\\\n        .tab-content.active {\\\\n            display: block;\\\\n        }\\\\n        \\\\n        .test-item {\\\\n            padding: 15px;\\\\n            border: 1px solid #e2e8f0;\\\\n            border-radius: 8px;\\\\n            margin-bottom: 15px;\\\\n            transition: all 0.2s;\\\\n        }\\\\n        \\\\n        .test-item:hover {\\\\n            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\\\\n        }\\\\n        \\\\n        .test-item.failed {\\\\n            border-left: 4px solid #f56565;\\\\n        }\\\\n        \\\\n        .test-item.critical {\\\\n            border-left: 4px solid #e53e3e;\\\\n            background-color: #fed7d7;\\\\n        }\\\\n        \\\\n        .test-header {\\\\n            display: flex;\\\\n            justify-content: between;\\\\n            align-items: center;\\\\n            margin-bottom: 10px;\\\\n        }\\\\n        \\\\n        .test-title {\\\\n            font-weight: bold;\\\\n            color: #2d3748;\\\\n        }\\\\n        \\\\n        .test-status {\\\\n            padding: 4px 8px;\\\\n            border-radius: 4px;\\\\n            font-size: 0.8rem;\\\\n            font-weight: bold;\\\\n        }\\\\n        \\\\n        .status-failed {\\\\n            background-color: #fed7d7;\\\\n            color: #c53030;\\\\n        }\\\\n        \\\\n        .status-error {\\\\n            background-color: #fbb6ce;\\\\n            color: #97266d;\\\\n        }\\\\n        \\\\n        .test-details {\\\\n            color: #718096;\\\\n            font-size: 0.9rem;\\\\n        }\\\\n        \\\\n        .export-section {\\\\n            text-align: center;\\\\n            padding: 20px;\\\\n        }\\\\n        \\\\n        .export-btn {\\\\n            padding: 12px 24px;\\\\n            margin: 0 10px;\\\\n            border: none;\\\\n            border-radius: 6px;\\\\n            background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);\\\\n            color: white;\\\\n            cursor: pointer;\\\\n            font-size: 1rem;\\\\n            transition: all 0.2s;\\\\n        }\\\\n        \\\\n        .export-btn:hover {\\\\n            transform: translateY(-1px);\\\\n            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);\\\\n        }\\\\n        \\\\n        @media (max-width: 768px) {\\\\n            .dashboard-container {\\\\n                padding: 10px;\\\\n            }\\\\n            \\\\n            .charts-container {\\\\n                grid-template-columns: 1fr;\\\\n            }\\\\n            \\\\n            .summary-cards {\\\\n                grid-template-columns: repeat(2, 1fr);\\\\n            }\\\\n            \\\\n            .dashboard-header h1 {\\\\n                font-size: 2rem;\\\\n            }\\\\n        }\\\\n        \\\\n    </style>\\\\n</head>\\\\n<body>\\\\n    <div class=\"dashboard-container\">\\\\n        <header class=\"dashboard-header\">\\\\n            <h1>\\U0001f9ea Feature Test Coverage Dashboard</h1>\\\\n            <div class=\"timestamp\">Generated: 2025-09-30 08:33:37</div>\\\\n        </header>\\\\n        \\\\n        <div class=\"summary-cards\">\\\\n            <div class=\"card success\">\\\\n                <div class=\"card-title\">Total Tests</div>\\\\n                <div class=\"card-value\">2</div>\\\\n            </div>\\\\n            <div class=\"card error\">\\\\n                <div class=\"card-title\">Success Rate</div>\\\\n                <div class=\"card-value\">50.0%</div>\\\\n            </div>\\\\n            <div class=\"card error\">\\\\n                <div class=\"card-title\">Failed Tests</div>\\\\n                <div class=\"card-value\">1</div>\\\\n            </div>\\\\n            <div class=\"card error\">\\\\n                <div class=\"card-title\">Critical Failures</div>\\\\n                <div class=\"card-value\">1</div>\\\\n            </div>\\\\n        </div>\\\\n        \\\\n        <div class=\"charts-container\">\\\\n            <div class=\"chart-section\">\\\\n                <h2>Test Status Distribution</h2>\\\\n                <canvas id=\"statusChart\"></canvas>\\\\n            </div>\\\\n            \\\\n            <div class=\"chart-section\">\\\\n                <h2>Feature Coverage</h2>\\\\n                <canvas id=\"featureChart\"></canvas>\\\\n            </div>\\\\n            \\\\n            <div class=\"chart-section\">\\\\n                <h2>Test Type Performance</h2>\\\\n                <canvas id=\"testTypeChart\"></canvas>\\\\n            </div>\\\\n            \\\\n            <div class=\"chart-section\">\\\\n                <h2>Priority Distribution</h2>\\\\n                <canvas id=\"priorityChart\"></canvas>\\\\n            </div>\\\\n        </div>\\\\n        \\\\n        <div class=\"details-section\">\\\\n            <div class=\"tabs\">\\\\n                <button class=\"tab-button active\" onclick=\"showTab(\\\\'failed-tests\\\\')\">Failed Tests</button>\\\\n                <button class=\"tab-button\" onclick=\"showTab(\\\\'critical-failures\\\\')\">Critical Failures</button>\\\\n                <button class=\"tab-button\" onclick=\"showTab(\\\\'feature-details\\\\')\">Feature Details</button>\\\\n            </div>\\\\n            \\\\n            <div id=\"failed-tests\" class=\"tab-content active\">\\\\n                <h3>Failed Tests</h3>\\\\n                <div id=\"failed-tests-list\"></div>\\\\n            </div>\\\\n            \\\\n            <div id=\"critical-failures\" class=\"tab-content\">\\\\n                <h3>Critical Failures</h3>\\\\n                <div id=\"critical-failures-list\"></div>\\\\n            </div>\\\\n            \\\\n            <div id=\"feature-details\" class=\"tab-content\">\\\\n                <h3>Feature Details</h3>\\\\n                <div id=\"feature-details-list\"></div>\\\\n            </div>\\\\n        </div>\\\\n        \\\\n        <div class=\"export-section\">\\\\n            <button onclick=\"exportToJSON()\" class=\"export-btn\">Export to JSON</button>\\\\n            <button onclick=\"printReport()\" class=\"export-btn\">Print Report</button>\\\\n        </div>\\\\n    </div>\\\\n    \\\\n    <script>\\\\n        // Dashboard data\\\\n        const dashboardData = {\\\\n  \"summary\": {\\\\n    \"total_tests\": 2,\\\\n    \"passed_tests\": 1,\\\\n    \"failed_tests\": 1,\\\\n    \"success_rate\": 50.0,\\\\n    \"avg_execution_time\": 1.8,\\\\n    \"critical_failures\": 1\\\\n  },\\\\n  \"status_distribution\": {\\\\n    \"passed\": 1,\\\\n    \"failed\": 1,\\\\n    \"skipped\": 0,\\\\n    \"error\": 0,\\\\n    \"timeout\": 0\\\\n  },\\\\n  \"feature_stats\": {\\\\n    \"Q50\": {\\\\n      \"total\": 1,\\\\n      \"passed\": 1,\\\\n      \"failed\": 0\\\\n    },\\\\n    \"vol_risk\": {\\\\n      \"total\": 1,\\\\n      \"passed\": 0,\\\\n      \"failed\": 1\\\\n    }\\\\n  },\\\\n  \"test_type_stats\": {\\\\n    \"economic_hypothesis\": {\\\\n      \"total\": 1,\\\\n      \"passed\": 1,\\\\n      \"failed\": 0,\\\\n      \"success_rate\": 100.0\\\\n    },\\\\n    \"performance\": {\\\\n      \"total\": 1,\\\\n      \"passed\": 0,\\\\n      \"failed\": 1,\\\\n      \"success_rate\": 0.0\\\\n    }\\\\n  },\\\\n  \"priority_stats\": {\\\\n    \"critical\": {\\\\n      \"total\": 1,\\\\n      \"passed\": 0,\\\\n      \"failed\": 1,\\\\n      \"success_rate\": 0.0\\\\n    },\\\\n    \"high\": {\\\\n      \"total\": 1,\\\\n      \"passed\": 1,\\\\n      \"failed\": 0,\\\\n      \"success_rate\": 100.0\\\\n    }\\\\n  },\\\\n  \"confidence_stats\": {\\\\n    \"high\": 1,\\\\n    \"medium\": 1,\\\\n    \"low\": 0,\\\\n    \"uncertain\": 0\\\\n  },\\\\n  \"failed_tests\": [\\\\n    {\\\\n      \"feature_name\": \"vol_risk\",\\\\n      \"test_type\": \"performance\",\\\\n      \"priority\": \"critical\",\\\\n      \"status\": \"failed\",\\\\n      \"confidence\": \"medium\",\\\\n      \"confidence_score\": 0.6,\\\\n      \"execution_time\": 2.1,\\\\n      \"analysis\": \"vol_risk calculation deviates from expected variance\",\\\\n      \"error_message\": \"Variance calculation error\",\\\\n      \"recommendations\": [\\\\n        \"Review vol_risk implementation\",\\\\n        \"Update variance formula\"\\\\n      ],\\\\n      \"severity\": \"high\",\\\\n      \"timestamp\": \"2025-09-30T08:33:37.159216\"\\\\n    }\\\\n  ],\\\\n  \"critical_failures\": [\\\\n    {\\\\n      \"feature_name\": \"vol_risk\",\\\\n      \"test_type\": \"performance\",\\\\n      \"priority\": \"critical\",\\\\n      \"status\": \"failed\",\\\\n      \"confidence\": \"medium\",\\\\n      \"confidence_score\": 0.6,\\\\n      \"execution_time\": 2.1,\\\\n      \"analysis\": \"vol_risk calculation deviates from expected variance\",\\\\n      \"error_message\": \"Variance calculation error\",\\\\n      \"recommendations\": [\\\\n        \"Review vol_risk implementation\",\\\\n        \"Update variance formula\"\\\\n      ],\\\\n      \"severity\": \"high\",\\\\n      \"timestamp\": \"2025-09-30T08:33:37.159216\"\\\\n    }\\\\n  ],\\\\n  \"timestamp\": \"2025-09-30T08:33:37.159216\"\\\\n};\\\\n        \\\\n        \\\\n        // Initialize charts when page loads\\\\n        document.addEventListener(\\\\'DOMContentLoaded\\\\', function() {\\\\n            initializeCharts();\\\\n            populateTestLists();\\\\n        });\\\\n        \\\\n        function initializeCharts() {\\\\n            // Status distribution chart\\\\n            const statusCtx = document.getElementById(\\\\'statusChart\\\\').getContext(\\\\'2d\\\\');\\\\n            new Chart(statusCtx, {\\\\n                type: \\\\'doughnut\\\\',\\\\n                data: {\\\\n                    labels: Object.keys(dashboardData.status_distribution),\\\\n                    datasets: [{\\\\n                        data: Object.values(dashboardData.status_distribution),\\\\n                        backgroundColor: [\\\\n                            \\\\'#48bb78\\\\', // passed\\\\n                            \\\\'#f56565\\\\', // failed\\\\n                            \\\\'#ed8936\\\\', // error\\\\n                            \\\\'#a0aec0\\\\', // skipped\\\\n                            \\\\'#9f7aea\\\\'  // timeout\\\\n                        ]\\\\n                    }]\\\\n                },\\\\n                options: {\\\\n                    responsive: true,\\\\n                    plugins: {\\\\n                        legend: {\\\\n                            position: \\\\'bottom\\\\'\\\\n                        }\\\\n                    }\\\\n                }\\\\n            });\\\\n            \\\\n            // Feature coverage chart\\\\n            const featureCtx = document.getElementById(\\\\'featureChart\\\\').getContext(\\\\'2d\\\\');\\\\n            const featureLabels = Object.keys(dashboardData.feature_stats);\\\\n            const featureSuccessRates = featureLabels.map(feature => {\\\\n                const stats = dashboardData.feature_stats[feature];\\\\n                return (stats.passed / stats.total) * 100;\\\\n            });\\\\n            \\\\n            new Chart(featureCtx, {\\\\n                type: \\\\'bar\\\\',\\\\n                data: {\\\\n                    labels: featureLabels,\\\\n                    datasets: [{\\\\n                        label: \\\\'Success Rate (%)\\\\',\\\\n                        data: featureSuccessRates,\\\\n                        backgroundColor: featureSuccessRates.map(rate => \\\\n                            rate >= 90 ? \\\\'#48bb78\\\\' : rate >= 70 ? \\\\'#ed8936\\\\' : \\\\'#f56565\\\\'\\\\n                        )\\\\n                    }]\\\\n                },\\\\n                options: {\\\\n                    responsive: true,\\\\n                    scales: {\\\\n                        y: {\\\\n                            beginAtZero: true,\\\\n                            max: 100\\\\n                        }\\\\n                    }\\\\n                }\\\\n            });\\\\n            \\\\n            // Test type performance chart\\\\n            const testTypeCtx = document.getElementById(\\\\'testTypeChart\\\\').getContext(\\\\'2d\\\\');\\\\n            const testTypeLabels = Object.keys(dashboardData.test_type_stats);\\\\n            const testTypeSuccessRates = testTypeLabels.map(type => \\\\n                dashboardData.test_type_stats[type].success_rate\\\\n            );\\\\n            \\\\n            new Chart(testTypeCtx, {\\\\n                type: \\\\'horizontalBar\\\\',\\\\n                data: {\\\\n                    labels: testTypeLabels.map(label => label.replace(\\\\'_\\\\', \\\\' \\\\')),\\\\n                    datasets: [{\\\\n                        label: \\\\'Success Rate (%)\\\\',\\\\n                        data: testTypeSuccessRates,\\\\n                        backgroundColor: \\\\'#4299e1\\\\'\\\\n                    }]\\\\n                },\\\\n                options: {\\\\n                    responsive: true,\\\\n                    scales: {\\\\n                        x: {\\\\n                            beginAtZero: true,\\\\n                            max: 100\\\\n                        }\\\\n                    }\\\\n                }\\\\n            });\\\\n            \\\\n            // Priority distribution chart\\\\n            const priorityCtx = document.getElementById(\\\\'priorityChart\\\\').getContext(\\\\'2d\\\\');\\\\n            const priorityLabels = Object.keys(dashboardData.priority_stats);\\\\n            const priorityData = priorityLabels.map(priority => ({\\\\n                label: priority,\\\\n                passed: dashboardData.priority_stats[priority].passed,\\\\n                failed: dashboardData.priority_stats[priority].failed\\\\n            }));\\\\n            \\\\n            new Chart(priorityCtx, {\\\\n                type: \\\\'bar\\\\',\\\\n                data: {\\\\n                    labels: priorityLabels,\\\\n                    datasets: [{\\\\n                        label: \\\\'Passed\\\\',\\\\n                        data: priorityData.map(d => d.passed),\\\\n                        backgroundColor: \\\\'#48bb78\\\\'\\\\n                    }, {\\\\n                        label: \\\\'Failed\\\\',\\\\n                        data: priorityData.map(d => d.failed),\\\\n                        backgroundColor: \\\\'#f56565\\\\'\\\\n                    }]\\\\n                },\\\\n                options: {\\\\n                    responsive: true,\\\\n                    scales: {\\\\n                        x: {\\\\n                            stacked: true\\\\n                        },\\\\n                        y: {\\\\n                            stacked: true\\\\n                        }\\\\n                    }\\\\n                }\\\\n            });\\\\n        }\\\\n        \\\\n        function populateTestLists() {\\\\n            // Populate failed tests\\\\n            const failedTestsList = document.getElementById(\\\\'failed-tests-list\\\\');\\\\n            dashboardData.failed_tests.forEach(test => {\\\\n                const testElement = createTestElement(test, \\\\'failed\\\\');\\\\n                failedTestsList.appendChild(testElement);\\\\n            });\\\\n            \\\\n            // Populate critical failures\\\\n            const criticalFailuresList = document.getElementById(\\\\'critical-failures-list\\\\');\\\\n            dashboardData.critical_failures.forEach(test => {\\\\n                const testElement = createTestElement(test, \\\\'critical\\\\');\\\\n                criticalFailuresList.appendChild(testElement);\\\\n            });\\\\n            \\\\n            // Populate feature details\\\\n            const featureDetailsList = document.getElementById(\\\\'feature-details-list\\\\');\\\\n            Object.entries(dashboardData.feature_stats).forEach(([feature, stats]) => {\\\\n                const featureElement = createFeatureElement(feature, stats);\\\\n                featureDetailsList.appendChild(featureElement);\\\\n            });\\\\n        }\\\\n        \\\\n        function createTestElement(test, type) {\\\\n            const div = document.createElement(\\\\'div\\\\');\\\\n            div.className = `test-item ${type}`;\\\\n            \\\\n            div.innerHTML = `\\\\n                <div class=\"test-header\">\\\\n                    <div class=\"test-title\">${test.feature_name} - ${test.test_type.replace(\\\\'_\\\\', \\\\' \\\\')}</div>\\\\n                    <div class=\"test-status status-${test.status}\">${test.status.toUpperCase()}</div>\\\\n                </div>\\\\n                <div class=\"test-details\">\\\\n                    <p><strong>Priority:</strong> ${test.priority}</p>\\\\n                    <p><strong>Confidence:</strong> ${test.confidence} (${(test.confidence_score * 100).toFixed(1)}%)</p>\\\\n                    <p><strong>Execution Time:</strong> ${test.execution_time.toFixed(2)}s</p>\\\\n                    ${test.error_message ? `<p><strong>Error:</strong> ${test.error_message}</p>` : \\\\'\\\\'}\\\\n                    ${test.analysis ? `<p><strong>Analysis:</strong> ${test.analysis}</p>` : \\\\'\\\\'}\\\\n                    ${test.recommendations.length > 0 ? `\\\\n                        <p><strong>Recommendations:</strong></p>\\\\n                        <ul>\\\\n                            ${test.recommendations.map(rec => `<li>${rec}</li>`).join(\\\\'\\\\')}\\\\n                        </ul>\\\\n                    ` : \\\\'\\\\'}\\\\n                </div>\\\\n            `;\\\\n            \\\\n            return div;\\\\n        }\\\\n        \\\\n        function createFeatureElement(feature, stats) {\\\\n            const div = document.createElement(\\\\'div\\\\');\\\\n            div.className = \\\\'test-item\\\\';\\\\n            \\\\n            const successRate = (stats.passed / stats.total) * 100;\\\\n            const statusClass = successRate >= 90 ? \\\\'success\\\\' : successRate >= 70 ? \\\\'warning\\\\' : \\\\'error\\\\';\\\\n            \\\\n            div.innerHTML = `\\\\n                <div class=\"test-header\">\\\\n                    <div class=\"test-title\">${feature}</div>\\\\n                    <div class=\"test-status status-${statusClass}\">${successRate.toFixed(1)}%</div>\\\\n                </div>\\\\n                <div class=\"test-details\">\\\\n                    <p><strong>Total Tests:</strong> ${stats.total}</p>\\\\n                    <p><strong>Passed:</strong> ${stats.passed}</p>\\\\n                    <p><strong>Failed:</strong> ${stats.failed}</p>\\\\n                </div>\\\\n            `;\\\\n            \\\\n            return div;\\\\n        }\\\\n        \\\\n        function showTab(tabName) {\\\\n            // Hide all tab contents\\\\n            document.querySelectorAll(\\\\'.tab-content\\\\').forEach(content => {\\\\n                content.classList.remove(\\\\'active\\\\');\\\\n            });\\\\n            \\\\n            // Remove active class from all tab buttons\\\\n            document.querySelectorAll(\\\\'.tab-button\\\\').forEach(button => {\\\\n                button.classList.remove(\\\\'active\\\\');\\\\n            });\\\\n            \\\\n            // Show selected tab content\\\\n            document.getElementById(tabName).classList.add(\\\\'active\\\\');\\\\n            \\\\n            // Add active class to clicked button\\\\n            event.target.classList.add(\\\\'active\\\\');\\\\n        }\\\\n        \\\\n        function exportToJSON() {\\\\n            const dataStr = JSON.stringify(dashboardData, null, 2);\\\\n            const dataBlob = new Blob([dataStr], {type: \\\\'application/json\\\\'});\\\\n            const url = URL.createObjectURL(dataBlob);\\\\n            \\\\n            const link = document.createElement(\\\\'a\\\\');\\\\n            link.href = url;\\\\n            link.download = `test-coverage-report-${new Date().toISOString().split(\\\\'T\\\\')[0]}.json`;\\\\n            link.click();\\\\n            \\\\n            URL.revokeObjectURL(url);\\\\n        }\\\\n        \\\\n        function printReport() {\\\\n            window.print();\\\\n        }\\\\n        \\\\n    </script>\\\\n</body>\\\\n</html>'\n============================== warnings summary ===============================\nsrc\\testing\\models\\test_result.py:30\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_result.py:30: PytestCollectionWarning: cannot collect test class 'TestResult' because it has a __init__ constructor (from: Tests/unit/test_html_reporter.py)\n    @dataclass\n\nsrc\\testing\\models\\test_result.py:13\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_result.py:13: PytestCollectionWarning: cannot collect test class 'TestStatus' because it has a __init__ constructor (from: Tests/unit/test_html_reporter.py)\n    class TestStatus(Enum):\n\nsrc\\testing\\models\\test_case.py:28\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_case.py:28: PytestCollectionWarning: cannot collect test class 'TestCase' because it has a __init__ constructor (from: Tests/unit/test_html_reporter.py)\n    @dataclass\n\nsrc\\testing\\models\\test_case.py:10\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_case.py:10: PytestCollectionWarning: cannot collect test class 'TestType' because it has a __init__ constructor (from: Tests/unit/test_html_reporter.py)\n    class TestType(Enum):\n\nsrc\\testing\\models\\test_case.py:20\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_case.py:20: PytestCollectionWarning: cannot collect test class 'TestPriority' because it has a __init__ constructor (from: Tests/unit/test_html_reporter.py)\n    class TestPriority(Enum):\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED Tests/unit/test_html_reporter.py::TestHTMLReporter::test_generate_dashboard_html\nFAILED Tests/unit/test_html_reporter.py::TestHTMLReporter::test_generate_interactive_dashboard_with_results\n================== 2 failed, 14 passed, 5 warnings in 0.54s ===================\n",
+      "stderr": "",
+      "success": false,
+      "timestamp": "2025-09-30T08:33:37.407596"
+    },
+    {
+      "file": "tests/unit\\test_momentum_hybrid_features.py",
+      "returncode": 2,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 0 items / 1 error\n\n=================================== ERRORS ====================================\n________ ERROR collecting Tests/unit/test_momentum_hybrid_features.py _________\nImportError while importing test module 'C:\\Projects\\qlib_trading_v2\\Tests\\unit\\test_momentum_hybrid_features.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\nC:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\importlib\\__init__.py:126: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTests\\unit\\test_momentum_hybrid_features.py:9: in <module>\n    from fix_feature_compatibility import add_vol_raw_features_optimized\nE   ModuleNotFoundError: No module named 'fix_feature_compatibility'\n=========================== short test summary info ===========================\nERROR Tests/unit/test_momentum_hybrid_features.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n============================== 1 error in 0.71s ===============================\n",
+      "stderr": "",
+      "success": false,
+      "timestamp": "2025-09-30T08:33:38.850275"
+    },
+    {
+      "file": "tests/unit\\test_performance_characteristics_generator.py",
+      "returncode": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 15 items\n\nTests/unit/test_performance_characteristics_generator.py::TestPerformanceCharacteristicsGenerator::test_initialization_with_default_config PASSED [  6%]\nTests/unit/test_performance_characteristics_generator.py::TestPerformanceCharacteristicsGenerator::test_initialization_with_custom_config PASSED [ 13%]\nTests/unit/test_performance_characteristics_generator.py::TestPerformanceCharacteristicsGenerator::test_generate_performance_characteristics_tests_signal_feature PASSED [ 20%]\nTests/unit/test_performance_characteristics_generator.py::TestPerformanceCharacteristicsGenerator::test_generate_hit_rate_tests PASSED [ 26%]\nTests/unit/test_performance_characteristics_generator.py::TestPerformanceCharacteristicsGenerator::test_generate_sharpe_ratio_tests PASSED [ 33%]\nTests/unit/test_performance_characteristics_generator.py::TestPerformanceCharacteristicsGenerator::test_generate_empirical_range_tests_volatility_feature PASSED [ 40%]\nTests/unit/test_performance_characteristics_generator.py::TestPerformanceCharacteristicsGenerator::test_generate_risk_adjusted_return_tests PASSED [ 46%]\nTests/unit/test_performance_characteristics_generator.py::TestPerformanceCharacteristicsGenerator::test_generate_drawdown_control_tests PASSED [ 53%]\nTests/unit/test_performance_characteristics_generator.py::TestPerformanceCharacteristicsGenerator::test_generate_performance_deviation_tests PASSED [ 60%]\nTests/unit/test_performance_characteristics_generator.py::TestPerformanceCharacteristicsGenerator::test_feature_type_detection PASSED [ 66%]\nTests/unit/test_performance_characteristics_generator.py::TestPerformanceCharacteristicsGenerator::test_get_expected_ranges PASSED [ 73%]\nTests/unit/test_performance_characteristics_generator.py::TestPerformanceCharacteristicsGenerator::test_get_expected_ranges_defaults PASSED [ 80%]\nTests/unit/test_performance_characteristics_generator.py::TestPerformanceCharacteristicsGenerator::test_comprehensive_test_generation PASSED [ 86%]\nTests/unit/test_performance_characteristics_generator.py::TestPerformanceCharacteristicsGenerator::test_empty_feature_handling PASSED [ 93%]\nTests/unit/test_performance_characteristics_generator.py::TestPerformanceCharacteristicsGenerator::test_logging PASSED [100%]\n\n============================== warnings summary ===============================\nsrc\\testing\\models\\test_case.py:10\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_case.py:10: PytestCollectionWarning: cannot collect test class 'TestType' because it has a __init__ constructor (from: Tests/unit/test_performance_characteristics_generator.py)\n    class TestType(Enum):\n\nsrc\\testing\\models\\test_case.py:20\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_case.py:20: PytestCollectionWarning: cannot collect test class 'TestPriority' because it has a __init__ constructor (from: Tests/unit/test_performance_characteristics_generator.py)\n    class TestPriority(Enum):\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================= 15 passed, 2 warnings in 0.39s ========================\n",
+      "stderr": "",
+      "success": true,
+      "timestamp": "2025-09-30T08:33:39.899928"
+    },
+    {
+      "file": "tests/unit\\test_report_templates.py",
+      "returncode": 1,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 29 items\n\nTests/unit/test_report_templates.py::TestReportTemplates::test_format_critical_issues_no_issues PASSED [  3%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_format_critical_issues_with_issues PASSED [  6%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_format_executive_summary_empty_results PASSED [ 10%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_format_executive_summary_with_results FAILED [ 13%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_format_failed_tests FAILED [ 17%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_format_failed_tests_no_failures PASSED [ 20%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_format_feature_overview PASSED [ 24%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_format_feature_recommendations_no_failures PASSED [ 27%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_format_feature_recommendations_with_failures PASSED [ 31%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_format_feature_report_no_results PASSED [ 34%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_format_feature_report_with_results FAILED [ 37%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_format_hypothesis_validation PASSED [ 41%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_format_hypothesis_validation_no_tests PASSED [ 44%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_format_next_steps_no_failures PASSED [ 48%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_format_next_steps_with_critical_failures PASSED [ 51%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_format_passed_tests PASSED [ 55%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_format_performance_analysis PASSED [ 58%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_format_performance_analysis_no_metrics PASSED [ 62%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_format_recommendations_no_failures PASSED [ 65%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_format_recommendations_with_failures PASSED [ 68%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_format_risk_assessment PASSED [ 72%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_format_test_type_table FAILED [ 75%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_get_coverage_matrix_template PASSED [ 79%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_get_detailed_report_template PASSED [ 82%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_get_executive_summary_template PASSED [ 86%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_get_feature_report_template PASSED [ 89%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_get_html_template_styles PASSED [ 93%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_wrap_in_html_template PASSED [ 96%]\nTests/unit/test_report_templates.py::TestReportTemplates::test_wrap_in_html_template_default_title PASSED [100%]\n\n================================== FAILURES ===================================\n_______ TestReportTemplates.test_format_executive_summary_with_results ________\nTests\\unit\\test_report_templates.py:159: in test_format_executive_summary_with_results\n    self.assertIn(\"Overall Success Rate: 50.0%\", summary)\nE   AssertionError: 'Overall Success Rate: 50.0%' not found in '# Executive Summary - Test Coverage Report\\\\n\\\\n**Generated:** 2025-09-30 08:33:40\\\\n**Report Period:** Test Period\\\\n\\\\n## \\U0001f3af Key Metrics\\\\n\\\\n| Metric | Value | Status |\\\\n|--------|-------|--------|\\\\n| Overall Success Rate | 50.0% | \\u274c |\\\\n| Total Tests Executed | 2 | \\u2139\\ufe0f |\\\\n| Critical Failures | 1 | \\u274c |\\\\n| High Priority Issues | 0 | \\u2705 |\\\\n\\\\n## \\U0001f4ca Summary Statistics\\\\n\\\\n- **Passed Tests:** 1 (50.0%)\\\\n- **Failed Tests:** 1 (50.0%)\\\\n- **Average Execution Time:** 1.80s\\\\n- **Test Coverage:** 50.0%\\\\n\\\\n## \\U0001f6a8 Critical Issues\\\\n\\\\n**Critical issues requiring immediate attention:**\\\\n\\\\n1. **vol_risk** - performance\\\\n   - Error: Variance calculation error\\\\n   - Impact: vol_risk calculation deviates from expected variance\\\\n   - Action: Review vol_risk implementation\\\\n\\\\n\\\\n## \\U0001f4c8 Recommendations\\\\n\\\\n**Key recommendations for improvement:**\\\\n\\\\n1. Review vol_risk implementation\\\\n2. Update variance formula\\\\n\\\\n## \\U0001f4cb Next Steps\\\\n\\\\n1. **IMMEDIATE:** Address all critical test failures before any deployment\\\\n2. **URGENT:** Conduct root cause analysis for critical issues\\\\n5. **ONGOING:** Schedule regular test coverage reviews\\\\n\\\\n---\\\\n*This report was automatically generated by the Feature Test Coverage System*\\\\n'\n________________ TestReportTemplates.test_format_failed_tests _________________\nTests\\unit\\test_report_templates.py:277: in test_format_failed_tests\n    self.assertIn(\"### \\u274c Performance Characteristics\", failed_section)\nE   AssertionError: '### \\u274c Performance Characteristics' not found in '### \\u274c Performance\\\\n- **Status:** failed\\\\n- **Priority:** critical\\\\n- **Error:** Variance calculation error\\\\n- **Analysis:** vol_risk calculation deviates from expected variance\\\\n- **Recommendations:**\\\\n  - Review vol_risk implementation\\\\n  - Update variance formula\\\\n'\n_________ TestReportTemplates.test_format_feature_report_with_results _________\nTests\\unit\\test_report_templates.py:197: in test_format_feature_report_with_results\n    self.assertIn(\"Total Tests: 1\", report)\nE   AssertionError: 'Total Tests: 1' not found in '# Feature Report: Q50\\\\n\\\\n**Generated:** 2025-09-30 08:33:40\\\\n**Feature Category:** Core Signal\\\\n**Priority Level:** High\\\\n\\\\n## \\U0001f4ca Feature Overview\\\\n\\\\n- **Total Tests:** 1\\\\n- **Success Rate:** 100.0%\\\\n- **Average Confidence:** 0.95\\\\n- **Average Execution Time:** 1.50s\\\\n\\\\n## \\U0001f9ea Test Results Summary\\\\n\\\\n| Test Type | Total | Passed | Failed | Success Rate |\\\\n|-----------|-------|--------|--------|--------------|\\\\n| Economic Hypothesis | 1 | 1 | 0 | 100.0% |\\\\n\\\\n## \\u2705 Passed Tests\\\\n\\\\n### \\u2705 Economic Hypothesis\\\\n- **Confidence:** high (0.95)\\\\n- **Execution Time:** 1.50s\\\\n- **Analysis:** Q50 shows expected directional bias\\\\n\\\\n\\\\n## \\u274c Failed Tests\\\\n\\\\n\\u2705 All tests passed for this feature.\\\\n\\\\n## \\U0001f4c8 Performance Analysis\\\\n\\\\n### Accuracy\\\\n- **Average:** 0.850\\\\n- **Range:** 0.850 - 0.850\\\\n\\\\n### Precision\\\\n- **Average:** 0.800\\\\n- **Range:** 0.800 - 0.800\\\\n\\\\n\\\\n## \\U0001f50d Economic Hypothesis Validation\\\\n\\\\n\\u2705 **Hypothesis Test:** Test Q50 economic hypothesis\\\\n- **Result:** Hypothesis validated with high confidence\\\\n\\\\n\\\\n## \\u26a0\\ufe0f Risk Assessment\\\\n\\\\n- **High Risk Issues:** 0\\\\n- **Medium Risk Issues:** 0\\\\n- **Low Risk Issues:** 1\\\\n\\\\n**Overall Risk Level:** LOW - Acceptable risk\\\\n\\\\n## \\U0001f4a1 Recommendations\\\\n\\\\n\\u2705 **No specific recommendations.** Feature is performing well.\\\\n\\\\n---\\\\n*Feature analysis completed at 2025-09-30 08:33:40*\\\\n'\n_______________ TestReportTemplates.test_format_test_type_table _______________\nTests\\unit\\test_report_templates.py:260: in test_format_test_type_table\n    self.assertIn(\"Performance Characteristics\", table)\nE   AssertionError: 'Performance Characteristics' not found in '| Economic Hypothesis | 1 | 1 | 0 | 100.0% |\\n| Performance | 1 | 0 | 1 | 0.0% |'\n============================== warnings summary ===============================\nsrc\\testing\\models\\test_result.py:30\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_result.py:30: PytestCollectionWarning: cannot collect test class 'TestResult' because it has a __init__ constructor (from: Tests/unit/test_report_templates.py)\n    @dataclass\n\nsrc\\testing\\models\\test_result.py:13\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_result.py:13: PytestCollectionWarning: cannot collect test class 'TestStatus' because it has a __init__ constructor (from: Tests/unit/test_report_templates.py)\n    class TestStatus(Enum):\n\nsrc\\testing\\models\\test_case.py:28\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_case.py:28: PytestCollectionWarning: cannot collect test class 'TestCase' because it has a __init__ constructor (from: Tests/unit/test_report_templates.py)\n    @dataclass\n\nsrc\\testing\\models\\test_case.py:10\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_case.py:10: PytestCollectionWarning: cannot collect test class 'TestType' because it has a __init__ constructor (from: Tests/unit/test_report_templates.py)\n    class TestType(Enum):\n\nsrc\\testing\\models\\test_case.py:20\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_case.py:20: PytestCollectionWarning: cannot collect test class 'TestPriority' because it has a __init__ constructor (from: Tests/unit/test_report_templates.py)\n    class TestPriority(Enum):\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED Tests/unit/test_report_templates.py::TestReportTemplates::test_format_executive_summary_with_results\nFAILED Tests/unit/test_report_templates.py::TestReportTemplates::test_format_failed_tests\nFAILED Tests/unit/test_report_templates.py::TestReportTemplates::test_format_feature_report_with_results\nFAILED Tests/unit/test_report_templates.py::TestReportTemplates::test_format_test_type_table\n================== 4 failed, 25 passed, 5 warnings in 0.48s ===================\n",
+      "stderr": "",
+      "success": false,
+      "timestamp": "2025-09-30T08:33:41.030105"
+    },
+    {
+      "file": "tests/unit\\test_result_validation.py",
+      "returncode": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 20 items\n\nTests/unit/test_result_validation.py::TestResultValidator::test_validate_economic_hypothesis_success PASSED [  5%]\nTests/unit/test_result_validation.py::TestResultValidator::test_validate_economic_hypothesis_failure PASSED [ 10%]\nTests/unit/test_result_validation.py::TestResultValidator::test_validate_performance_characteristics PASSED [ 15%]\nTests/unit/test_result_validation.py::TestResultValidator::test_validate_failure_mode PASSED [ 20%]\nTests/unit/test_result_validation.py::TestResultValidator::test_validate_implementation PASSED [ 25%]\nTests/unit/test_result_validation.py::TestResultValidator::test_generate_recommendations PASSED [ 30%]\nTests/unit/test_result_validation.py::TestResultValidator::test_calculate_overall_confidence PASSED [ 35%]\nTests/unit/test_result_validation.py::TestResultAnalyzer::test_analyze_test_suite_results PASSED [ 40%]\nTests/unit/test_result_validation.py::TestResultAnalyzer::test_analyze_by_feature PASSED [ 45%]\nTests/unit/test_result_validation.py::TestResultAnalyzer::test_analyze_confidence_distribution PASSED [ 50%]\nTests/unit/test_result_validation.py::TestResultAnalyzer::test_analyze_failures PASSED [ 55%]\nTests/unit/test_result_validation.py::TestResultAnalyzer::test_generate_suite_recommendations PASSED [ 60%]\nTests/unit/test_result_validation.py::TestResultAnalyzer::test_assess_suite_quality PASSED [ 65%]\nTests/unit/test_result_validation.py::TestResultAnalyzer::test_analyze_trends PASSED [ 70%]\nTests/unit/test_result_validation.py::TestTestResultEnhancements::test_validate_result_completeness PASSED [ 75%]\nTests/unit/test_result_validation.py::TestTestResultEnhancements::test_calculate_quality_score PASSED [ 80%]\nTests/unit/test_result_validation.py::TestTestResultEnhancements::test_get_risk_assessment PASSED [ 85%]\nTests/unit/test_result_validation.py::TestTestResultEnhancements::test_generate_executive_summary PASSED [ 90%]\nTests/unit/test_result_validation.py::TestTestResultEnhancements::test_compare_with_baseline PASSED [ 95%]\nTests/unit/test_result_validation.py::TestTestResultEnhancements::test_to_dict_enhanced PASSED [100%]\n\n============================== warnings summary ===============================\nsrc\\testing\\models\\test_result.py:30\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_result.py:30: PytestCollectionWarning: cannot collect test class 'TestResult' because it has a __init__ constructor (from: Tests/unit/test_result_validation.py)\n    @dataclass\n\nsrc\\testing\\models\\test_result.py:13\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_result.py:13: PytestCollectionWarning: cannot collect test class 'TestStatus' because it has a __init__ constructor (from: Tests/unit/test_result_validation.py)\n    class TestStatus(Enum):\n\nsrc\\testing\\models\\test_case.py:28\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_case.py:28: PytestCollectionWarning: cannot collect test class 'TestCase' because it has a __init__ constructor (from: Tests/unit/test_result_validation.py)\n    @dataclass\n\nsrc\\testing\\models\\test_case.py:10\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_case.py:10: PytestCollectionWarning: cannot collect test class 'TestType' because it has a __init__ constructor (from: Tests/unit/test_result_validation.py)\n    class TestType(Enum):\n\nsrc\\testing\\models\\test_case.py:20\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_case.py:20: PytestCollectionWarning: cannot collect test class 'TestPriority' because it has a __init__ constructor (from: Tests/unit/test_result_validation.py)\n    class TestPriority(Enum):\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================= 20 passed, 5 warnings in 0.10s ========================\n",
+      "stderr": "",
+      "success": true,
+      "timestamp": "2025-09-30T08:33:41.658127"
+    },
+    {
+      "file": "tests/unit\\test_temporal_quantile_features.py",
+      "returncode": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 2 items\n\nTests/unit/test_temporal_quantile_features.py::test_temporal_features PASSED [ 50%]\nTests/unit/test_temporal_quantile_features.py::test_integration_with_existing_system PASSED [100%]\n\n============================== warnings summary ===============================\nTests/unit/test_temporal_quantile_features.py::test_temporal_features\nTests/unit/test_temporal_quantile_features.py::test_integration_with_existing_system\n  C:\\Projects\\qlib_trading_v2\\Tests\\unit\\test_temporal_quantile_features.py:26: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.\n    dates = pd.date_range('2024-01-01', periods=n_samples, freq='H')\n\nTests/unit/test_temporal_quantile_features.py::test_temporal_features\n  C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\_pytest\\python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but Tests/unit/test_temporal_quantile_features.py::test_temporal_features returned <class 'tuple'>.\n  Did you mean to use `assert` instead of `return`?\n  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.\n    warnings.warn(\n\nTests/unit/test_temporal_quantile_features.py::test_integration_with_existing_system\n  C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\_pytest\\python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but Tests/unit/test_temporal_quantile_features.py::test_integration_with_existing_system returned <class 'pandas.core.frame.DataFrame'>.\n  Did you mean to use `assert` instead of `return`?\n  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.\n    warnings.warn(\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 2 passed, 4 warnings in 0.77s ========================\n",
+      "stderr": "",
+      "success": true,
+      "timestamp": "2025-09-30T08:33:43.178192"
+    },
+    {
+      "file": "tests/unit\\test_test_case_generator.py",
+      "returncode": 1,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 20 items\n\nTests/unit/test_test_case_generator.py::TestTestCaseGenerator::test_generator_initialization PASSED [  5%]\nTests/unit/test_test_case_generator.py::TestTestCaseGenerator::test_generate_all_tests PASSED [ 10%]\nTests/unit/test_test_case_generator.py::TestTestCaseGenerator::test_generate_economic_tests PASSED [ 15%]\nTests/unit/test_test_case_generator.py::TestTestCaseGenerator::test_generate_performance_tests FAILED [ 20%]\nTests/unit/test_test_case_generator.py::TestTestCaseGenerator::test_generate_failure_mode_tests PASSED [ 25%]\nTests/unit/test_test_case_generator.py::TestTestCaseGenerator::test_generate_implementation_tests PASSED [ 30%]\nTests/unit/test_test_case_generator.py::TestTestCaseGenerator::test_vol_risk_formula_test PASSED [ 35%]\nTests/unit/test_test_case_generator.py::TestTestCaseGenerator::test_register_custom_generator PASSED [ 40%]\nTests/unit/test_test_case_generator.py::TestTestCaseGenerator::test_get_tests_by_category PASSED [ 45%]\nTests/unit/test_test_case_generator.py::TestTestCaseGenerator::test_feature_without_optional_fields PASSED [ 50%]\nTests/unit/test_test_case_generator.py::TestTestCategorizer::test_categorizer_initialization PASSED [ 55%]\nTests/unit/test_test_case_generator.py::TestTestCategorizer::test_categorize_test_type PASSED [ 60%]\nTests/unit/test_test_case_generator.py::TestTestCategorizer::test_feature_specific_categorization PASSED [ 65%]\nTests/unit/test_test_case_generator.py::TestTestCategorizer::test_get_execution_order PASSED [ 70%]\nTests/unit/test_test_case_generator.py::TestTestCategorizer::test_get_categories_by_priority PASSED [ 75%]\nTests/unit/test_test_case_generator.py::TestTestCategorizer::test_add_custom_category PASSED [ 80%]\nTests/unit/test_test_case_generator.py::TestTestCategorizer::test_filter_by_category PASSED [ 85%]\nTests/unit/test_test_case_generator.py::TestTestCategorizer::test_get_critical_test_types PASSED [ 90%]\nTests/unit/test_test_case_generator.py::TestTestCategorizer::test_estimate_execution_time PASSED [ 95%]\nTests/unit/test_test_case_generator.py::TestTestCategorizer::test_get_category_summary PASSED [100%]\n\n================================== FAILURES ===================================\n____________ TestTestCaseGenerator.test_generate_performance_tests ____________\nTests\\unit\\test_test_case_generator.py:101: in test_generate_performance_tests\n    assert len(hit_rate_tests) == 1\nE   assert 0 == 1\nE    +  where 0 = len([])\n============================== warnings summary ===============================\nsrc\\testing\\generators\\base_generator.py:16\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\generators\\base_generator.py:16: PytestCollectionWarning: cannot collect test class 'TestCaseGenerator' because it has a __init__ constructor (from: Tests/unit/test_test_case_generator.py)\n    class TestCaseGenerator(TestGeneratorInterface):\n\nsrc\\testing\\generators\\test_categorization.py:34\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\generators\\test_categorization.py:34: PytestCollectionWarning: cannot collect test class 'TestCategorizer' because it has a __init__ constructor (from: Tests/unit/test_test_case_generator.py)\n    class TestCategorizer:\n\nsrc\\testing\\generators\\test_categorization.py:12\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\generators\\test_categorization.py:12: PytestCollectionWarning: cannot collect test class 'TestCategory' because it has a __init__ constructor (from: Tests/unit/test_test_case_generator.py)\n    class TestCategory(Enum):\n\nsrc\\testing\\models\\test_case.py:28\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_case.py:28: PytestCollectionWarning: cannot collect test class 'TestCase' because it has a __init__ constructor (from: Tests/unit/test_test_case_generator.py)\n    @dataclass\n\nsrc\\testing\\models\\test_case.py:10\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_case.py:10: PytestCollectionWarning: cannot collect test class 'TestType' because it has a __init__ constructor (from: Tests/unit/test_test_case_generator.py)\n    class TestType(Enum):\n\nsrc\\testing\\models\\test_case.py:20\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_case.py:20: PytestCollectionWarning: cannot collect test class 'TestPriority' because it has a __init__ constructor (from: Tests/unit/test_test_case_generator.py)\n    class TestPriority(Enum):\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED Tests/unit/test_test_case_generator.py::TestTestCaseGenerator::test_generate_performance_tests\n================== 1 failed, 19 passed, 6 warnings in 0.47s ===================\n",
+      "stderr": "",
+      "success": false,
+      "timestamp": "2025-09-30T08:33:44.261016"
+    },
+    {
+      "file": "tests/unit\\test_test_executor.py",
+      "returncode": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 22 items\n\nTests/unit/test_test_executor.py::TestTestExecutor::test_executor_initialization PASSED [  4%]\nTests/unit/test_test_executor.py::TestTestExecutor::test_get_supported_test_types PASSED [  9%]\nTests/unit/test_test_executor.py::TestTestExecutor::test_load_test_data PASSED [ 13%]\nTests/unit/test_test_executor.py::TestTestExecutor::test_simulate_market_conditions PASSED [ 18%]\nTests/unit/test_test_executor.py::TestTestExecutor::test_setup_test_environment PASSED [ 22%]\nTests/unit/test_test_executor.py::TestTestExecutor::test_cleanup_test_environment PASSED [ 27%]\nTests/unit/test_test_executor.py::TestTestExecutor::test_validate_test_prerequisites PASSED [ 31%]\nTests/unit/test_test_executor.py::TestTestExecutor::test_execute_single_test_success PASSED [ 36%]\nTests/unit/test_test_executor.py::TestTestExecutor::test_execute_single_test_error PASSED [ 40%]\nTests/unit/test_test_executor.py::TestTestExecutor::test_execute_test_suite PASSED [ 45%]\nTests/unit/test_test_executor.py::TestTestExecutor::test_builtin_economic_hypothesis_test PASSED [ 50%]\nTests/unit/test_test_executor.py::TestTestExecutor::test_builtin_performance_test PASSED [ 54%]\nTests/unit/test_test_executor.py::TestTestExecutor::test_builtin_failure_mode_test PASSED [ 59%]\nTests/unit/test_test_executor.py::TestTestExecutor::test_builtin_implementation_test PASSED [ 63%]\nTests/unit/test_test_executor.py::TestTestExecutor::test_result_validation PASSED [ 68%]\nTests/unit/test_test_executor.py::TestTestExecutor::test_data_caching PASSED [ 72%]\nTests/unit/test_test_executor.py::TestTestExecutor::test_execution_statistics PASSED [ 77%]\nTests/unit/test_test_executor.py::TestTestExecutor::test_timeout_handling PASSED [ 81%]\nTests/unit/test_test_executor.py::TestTestExecutor::test_environment_cleanup_on_destruction PASSED [ 86%]\nTests/unit/test_test_executor.py::TestTestExecutor::test_error_handling_in_environment_setup PASSED [ 90%]\nTests/unit/test_test_executor.py::TestTestExecutor::test_market_condition_application PASSED [ 95%]\nTests/unit/test_test_executor.py::TestTestExecutor::test_progress_tracking_and_aggregation PASSED [100%]\n\n============================== warnings summary ===============================\nsrc\\testing\\executors\\test_executor.py:24\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\executors\\test_executor.py:24: PytestCollectionWarning: cannot collect test class 'TestExecutor' because it has a __init__ constructor (from: Tests/unit/test_test_executor.py)\n    class TestExecutor(TestExecutorInterface):\n\nsrc\\testing\\models\\test_case.py:28\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_case.py:28: PytestCollectionWarning: cannot collect test class 'TestCase' because it has a __init__ constructor (from: Tests/unit/test_test_executor.py)\n    @dataclass\n\nsrc\\testing\\models\\test_case.py:10\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_case.py:10: PytestCollectionWarning: cannot collect test class 'TestType' because it has a __init__ constructor (from: Tests/unit/test_test_executor.py)\n    class TestType(Enum):\n\nsrc\\testing\\models\\test_case.py:20\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_case.py:20: PytestCollectionWarning: cannot collect test class 'TestPriority' because it has a __init__ constructor (from: Tests/unit/test_test_executor.py)\n    class TestPriority(Enum):\n\nsrc\\testing\\models\\test_result.py:30\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_result.py:30: PytestCollectionWarning: cannot collect test class 'TestResult' because it has a __init__ constructor (from: Tests/unit/test_test_executor.py)\n    @dataclass\n\nsrc\\testing\\models\\test_result.py:13\n  C:\\Projects\\qlib_trading_v2\\src\\testing\\models\\test_result.py:13: PytestCollectionWarning: cannot collect test class 'TestStatus' because it has a __init__ constructor (from: Tests/unit/test_test_executor.py)\n    class TestStatus(Enum):\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================= 22 passed, 6 warnings in 0.56s ========================\n",
+      "stderr": "",
+      "success": true,
+      "timestamp": "2025-09-30T08:33:45.517289"
+    },
+    {
+      "file": "tests/unit\\test_thesis_enhancement_engine.py",
+      "returncode": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 21 items\n\nTests/unit/test_thesis_enhancement_engine.py::TestThesisEnhancementEngine::test_initialization PASSED [  4%]\nTests/unit/test_thesis_enhancement_engine.py::TestThesisEnhancementEngine::test_load_feature_documentation PASSED [  9%]\nTests/unit/test_thesis_enhancement_engine.py::TestThesisEnhancementEngine::test_load_principles PASSED [ 14%]\nTests/unit/test_thesis_enhancement_engine.py::TestThesisEnhancementEngine::test_parse_feature_categories PASSED [ 19%]\nTests/unit/test_thesis_enhancement_engine.py::TestThesisEnhancementEngine::test_extract_feature_info PASSED [ 23%]\nTests/unit/test_thesis_enhancement_engine.py::TestThesisEnhancementEngine::test_find_category PASSED [ 28%]\nTests/unit/test_thesis_enhancement_engine.py::TestThesisEnhancementEngine::test_enhance_feature_category_success PASSED [ 33%]\nTests/unit/test_thesis_enhancement_engine.py::TestThesisEnhancementEngine::test_enhance_feature_category_not_found PASSED [ 38%]\nTests/unit/test_thesis_enhancement_engine.py::TestThesisEnhancementEngine::test_enhance_feature_category_backup_failure PASSED [ 42%]\nTests/unit/test_thesis_enhancement_engine.py::TestThesisEnhancementEngine::test_format_enhanced_feature PASSED [ 47%]\nTests/unit/test_thesis_enhancement_engine.py::TestThesisEnhancementEngine::test_validate_enhancement PASSED [ 52%]\nTests/unit/test_thesis_enhancement_engine.py::TestThesisEnhancementEngine::test_list_categories PASSED [ 57%]\nTests/unit/test_thesis_enhancement_engine.py::TestThesisEnhancementEngine::test_get_category_info PASSED [ 61%]\nTests/unit/test_thesis_enhancement_engine.py::TestThesisEnhancementEngine::test_get_enhancement_status PASSED [ 66%]\nTests/unit/test_thesis_enhancement_engine.py::TestThesisEnhancementEngine::test_check_has_enhancements PASSED [ 71%]\nTests/unit/test_thesis_enhancement_engine.py::TestThesisEnhancementEngine::test_error_handling_missing_files PASSED [ 76%]\nTests/unit/test_thesis_enhancement_engine.py::TestThesisEnhancementEngine::test_error_handling_invalid_content PASSED [ 80%]\nTests/unit/test_thesis_enhancement_engine.py::TestThesisEnhancementEngine::test_enhancement_with_generator_failure PASSED [ 85%]\nTests/unit/test_thesis_enhancement_engine.py::TestThesisEnhancementEngine::test_reconstruct_category_content PASSED [ 90%]\nTests/unit/test_thesis_enhancement_engine.py::TestFeatureParsingEdgeCases::test_parse_malformed_features PASSED [ 95%]\nTests/unit/test_thesis_enhancement_engine.py::TestFeatureParsingEdgeCases::test_parse_empty_categories PASSED [100%]\n\n============================= 21 passed in 0.20s ==============================\n",
+      "stderr": "",
+      "success": true,
+      "timestamp": "2025-09-30T08:33:46.235918"
+    },
+    {
+      "file": "tests/unit\\test_unified_regime_features.py",
+      "returncode": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 2 items\n\nTests/unit/test_unified_regime_features.py::test_with_actual_data PASSED [ 50%]\nTests/unit/test_unified_regime_features.py::test_backward_compatibility PASSED [100%]\n\n============================== warnings summary ===============================\nTests/unit/test_unified_regime_features.py::test_with_actual_data\n  C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\_pytest\\python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but Tests/unit/test_unified_regime_features.py::test_with_actual_data returned <class 'pandas.core.frame.DataFrame'>.\n  Did you mean to use `assert` instead of `return`?\n  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.\n    warnings.warn(\n\nTests/unit/test_unified_regime_features.py::test_backward_compatibility\n  C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\_pytest\\python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but Tests/unit/test_unified_regime_features.py::test_backward_compatibility returned <class 'pandas.core.frame.DataFrame'>.\n  Did you mean to use `assert` instead of `return`?\n  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.\n    warnings.warn(\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 2 passed, 2 warnings in 0.92s ========================\n",
+      "stderr": "",
+      "success": true,
+      "timestamp": "2025-09-30T08:33:47.818660"
+    },
+    {
+      "file": "tests/unit\\test_validation_integration_system.py",
+      "returncode": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\python.exe\ncachedir: .pytest_cache\nrootdir: C:\\Projects\\qlib_trading_v2\nplugins: anyio-4.9.0, kolo-2.40.1\ncollecting ... collected 25 items\n\nTests/unit/test_validation_integration_system.py::TestValidationIntegrationSystemInit::test_init_with_default_config PASSED [  4%]\nTests/unit/test_validation_integration_system.py::TestValidationIntegrationSystemInit::test_init_creates_default_config PASSED [  8%]\nTests/unit/test_validation_integration_system.py::TestValidationIntegrationSystemInit::test_init_loads_existing_config PASSED [ 12%]\nTests/unit/test_validation_integration_system.py::TestValidationTestGeneration::test_create_validation_tests PASSED [ 16%]\nTests/unit/test_validation_integration_system.py::TestValidationTestGeneration::test_statistical_test_generation PASSED [ 20%]\nTests/unit/test_validation_integration_system.py::TestValidationTestGeneration::test_economic_logic_test_generation PASSED [ 24%]\nTests/unit/test_validation_integration_system.py::TestValidationTestGeneration::test_performance_test_generation PASSED [ 28%]\nTests/unit/test_validation_integration_system.py::TestValidationTestGeneration::test_regime_tests_generation PASSED [ 32%]\nTests/unit/test_validation_integration_system.py::TestValidationTestGeneration::test_test_generation_error_handling PASSED [ 36%]\nTests/unit/test_validation_integration_system.py::TestExistingTestLinking::test_link_to_existing_tests PASSED [ 40%]\nTests/unit/test_validation_integration_system.py::TestExistingTestLinking::test_find_test_links_in_file PASSED [ 44%]\nTests/unit/test_validation_integration_system.py::TestExistingTestLinking::test_calculate_test_relevance PASSED [ 48%]\nTests/unit/test_validation_integration_system.py::TestPerformanceValidation::test_validate_performance_claims PASSED [ 52%]\nTests/unit/test_validation_integration_system.py::TestPerformanceValidation::test_extract_performance_claims PASSED [ 56%]\nTests/unit/test_validation_integration_system.py::TestPerformanceValidation::test_load_actual_performance PASSED [ 60%]\nTests/unit/test_validation_integration_system.py::TestPerformanceValidation::test_calculate_confidence_intervals PASSED [ 64%]\nTests/unit/test_validation_integration_system.py::TestPerformanceValidation::test_generate_performance_recommendations PASSED [ 68%]\nTests/unit/test_validation_integration_system.py::TestMonitoringAlerts::test_create_monitoring_alerts PASSED [ 72%]\nTests/unit/test_validation_integration_system.py::TestMonitoringAlerts::test_alert_with_failure_modes PASSED [ 76%]\nTests/unit/test_validation_integration_system.py::TestTestFileGeneration::test_write_test_file PASSED [ 80%]\nTests/unit/test_validation_integration_system.py::TestTestFileGeneration::test_generate_test_file_content PASSED [ 84%]\nTests/unit/test_validation_integration_system.py::TestValidationSummary::test_get_validation_summary PASSED [ 88%]\nTests/unit/test_validation_integration_system.py::TestErrorHandling::test_performance_validation_error PASSED [ 92%]\nTests/unit/test_validation_integration_system.py::TestErrorHandling::test_test_generation_with_invalid_input PASSED [ 96%]\nTests/unit/test_validation_integration_system.py::TestIntegration::test_full_validation_workflow PASSED [100%]\n\n============================== warnings summary ===============================\nsrc\\documentation\\validation_integration_system.py:43\n  C:\\Projects\\qlib_trading_v2\\src\\documentation\\validation_integration_system.py:43: PytestCollectionWarning: cannot collect test class 'TestLink' because it has a __init__ constructor (from: Tests/unit/test_validation_integration_system.py)\n    @dataclass\n\nsrc\\documentation\\validation_integration_system.py:86\n  C:\\Projects\\qlib_trading_v2\\src\\documentation\\validation_integration_system.py:86: PytestCollectionWarning: cannot collect test class 'TestGenerationError' because it has a __init__ constructor (from: Tests/unit/test_validation_integration_system.py)\n    class TestGenerationError(ValidationIntegrationError):\n\nTests/unit/test_validation_integration_system.py::TestValidationIntegrationSystemInit::test_init_with_default_config\n  C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\site-packages\\pydantic\\_internal\\_config.py:323: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.11/migration/\n    warnings.warn(DEPRECATION_MESSAGE, DeprecationWarning)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================= 25 passed, 3 warnings in 4.93s ========================\n",
+      "stderr": "",
+      "success": true,
+      "timestamp": "2025-09-30T08:33:55.207367"
+    },
+    {
+      "file": "tests/validation\\test_adaptive_thresholds.py",
+      "returncode": 1,
+      "stdout": "Run this with your actual DataFrame to validate adaptive thresholds\nExample: results = validate_adaptive_thresholds(df)\n",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Projects\\qlib_trading_v2\\tests\\validation\\test_adaptive_thresholds.py\", line 477, in <module>\n    validate_adaptive_thresholds(df)\n  File \"C:\\Projects\\qlib_trading_v2\\tests\\validation\\test_adaptive_thresholds.py\", line 21, in validate_adaptive_thresholds\n    print(\"\\U0001f50d DATA QUALITY & SCALE CHECK:\")\n  File \"C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f50d' in position 0: character maps to <undefined>\n",
+      "success": false,
+      "timestamp": "2025-09-30T08:33:56.121631"
+    },
+    {
+      "file": "tests/validation\\test_data_alignment.py",
+      "returncode": 0,
+      "stdout": "=== DATA ALIGNMENT VALIDATION ===\nLoading prediction data...\nPrediction data: 53978 observations\nPrediction range: 2018-08-02 00:00:00 to 2024-09-30 23:00:00\n\nLoading price data...\nError loading price data: [Errno 2] No such file or directory: 'C:\\\\Projects\\\\qlib_trading_v2\\\\data\\\\processed\\\\CRYPTODATA_RESAMPLE\\\\60min\\\\BTCUSDT.csv'\n",
+      "stderr": "",
+      "success": true,
+      "timestamp": "2025-09-30T08:33:57.040640"
+    },
+    {
+      "file": "tests/validation\\test_regime_consolidation.py",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Projects\\qlib_trading_v2\\tests\\validation\\test_regime_consolidation.py\", line 220, in <module>\n    results = main()\n              ^^^^^^\n  File \"C:\\Projects\\qlib_trading_v2\\tests\\validation\\test_regime_consolidation.py\", line 182, in main\n    print(\"\\U0001f9ea REGIME CONSOLIDATION PERFORMANCE VALIDATION\")\n  File \"C:\\Users\\Jon Kindel\\.conda\\envs\\my_env\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f9ea' in position 0: character maps to <undefined>\n",
+      "success": false,
+      "timestamp": "2025-09-30T08:33:57.461949"
+    }
+  ],
+  "training_pipeline_comparison": {
+    "df_all_macro_analysis.csv": {
+      "exists": true,
+      "shape": [
+        53978,
+        76
+      ],
+      "columns": [
+        "instrument",
+        "datetime",
+        "q10",
+        "q50",
+        "q90",
+        "truth",
+        "$btc_dom",
+        "$fg_index",
+        "$high_vol_flag",
+        "$momentum_10",
+        "$momentum_25",
+        "$momentum_5",
+        "$realized_vol_6",
+        "$relative_volatility_index",
+        "OPEN1",
+        "RSV1",
+        "RSV2",
+        "RSV3",
+        "VOLUME1",
+        "btc_std_7d",
+        "btc_zscore_14d",
+        "fg_std_7d",
+        "fg_zscore_14d",
+        "vol_momentum_scaled",
+        "vol_raw",
+        "vol_raw_decile",
+        "vol_raw_momentum",
+        "vol_risk",
+        "vol_scaled",
+        "prob_up",
+        "vol_regime_low",
+        "vol_regime_medium",
+        "vol_regime_high",
+        "momentum_regime_trending",
+        "momentum_regime_ranging",
+        "regime_low_vol_trending",
+        "regime_low_vol_ranging",
+        "regime_high_vol_trending",
+        "regime_high_vol_ranging",
+        "regime_stability",
+        "spread",
+        "abs_q50",
+        "market_variance",
+        "prediction_variance",
+        "total_risk",
+        "enhanced_info_ratio",
+        "info_ratio",
+        "potential_gain",
+        "potential_loss",
+        "expected_value",
+        "variance_regime_low",
+        "variance_regime_medium",
+        "variance_regime_high",
+        "variance_regime_extreme",
+        "signal_thresh_adaptive",
+        "effective_info_ratio_threshold",
+        "economically_significant_traditional",
+        "economically_significant_expected_value",
+        "economically_significant_combined",
+        "economically_significant",
+        "high_quality",
+        "tradeable",
+        "q50_x_low_variance",
+        "q50_x_high_variance",
+        "q50_x_extreme_variance",
+        "q50_x_trending",
+        "spread_x_high_variance",
+        "vol_risk_x_abs_q50",
+        "enhanced_info_ratio_x_trending",
+        "signal_to_variance_ratio",
+        "variance_adjusted_signal",
+        "signal_tier",
+        "kelly_position_size",
+        "side",
+        "signal_strength",
+        "position_size_suggestion"
+      ],
+      "sample_data": {
+        "instrument": {
+          "0": "BTCUSDT",
+          "1": "BTCUSDT",
+          "2": "BTCUSDT"
+        },
+        "datetime": {
+          "0": "2018-08-02 00:00:00",
+          "1": "2018-08-02 01:00:00",
+          "2": "2018-08-02 02:00:00"
+        },
+        "q10": {
+          "0": -0.0042193987050566,
+          "1": -0.0049659096427019,
+          "2": -0.0052967114775455
+        },
+        "q50": {
+          "0": -0.0002461439653033,
+          "1": -0.0002644793732885,
+          "2": -0.0002083402550103
+        },
+        "q90": {
+          "0": 0.0056671330180837,
+          "1": 0.002821207334109,
+          "2": 0.0019483158496868
+        },
+        "truth": {
+          "0": -0.00053822994,
+          "1": -0.0034620166,
+          "2": -0.0019941926
+        },
+        "$btc_dom": {
+          "0": 0.4756,
+          "1": 0.4756,
+          "2": 0.4756
+        },
+        "$fg_index": {
+          "0": 0.39,
+          "1": 0.39,
+          "2": 0.39
+        },
+        "$high_vol_flag": {
+          "0": 1.0,
+          "1": 0.0,
+          "2": 0.0
+        },
+        "$momentum_10": {
+          "0": 0.013029695,
+          "1": 0.009368777,
+          "2": 0.01466918
+        },
+        "$momentum_25": {
+          "0": -0.007402718,
+          "1": 3.9339066e-06,
+          "2": 0.015320659
+        },
+        "$momentum_5": {
+          "0": 0.014390349,
+          "1": 0.025516868,
+          "2": 0.025933027
+        },
+        "$realized_vol_6": {
+          "0": 0.008939558,
+          "1": 0.00902009,
+          "2": 0.00660875
+        },
+        "$relative_volatility_index": {
+          "0": 1.6378665,
+          "1": 1.1381541,
+          "2": 1.1356055
+        },
+        "OPEN1": {
+          "0": 0.9893519,
+          "1": 0.9904953,
+          "2": 1.0006286
+        },
+        "RSV1": {
+          "0": 0.89943343,
+          "1": 0.53560567,
+          "2": 0.34715953
+        },
+        "RSV2": {
+          "0": 0.9291653,
+          "1": 0.67443544,
+          "2": 0.4829888
+        },
+        "RSV3": {
+          "0": 0.9662199,
+          "1": 0.7529136,
+          "2": 0.6375483
+        },
+        "VOLUME1": {
+          "0": 0.52225786,
+          "1": 1.7849112,
+          "2": 0.9032474
+        },
+        "btc_std_7d": {
+          "0": 0.63872373,
+          "1": 0.63872373,
+          "2": 0.63872373
+        },
+        "btc_zscore_14d": {
+          "0": 1.3975718,
+          "1": 1.3975718,
+          "2": 1.3975718
+        },
+        "fg_std_7d": {
+          "0": 6.575568,
+          "1": 6.575568,
+          "2": 6.575568
+        },
+        "fg_zscore_14d": {
+          "0": -1.6653675,
+          "1": -1.6653675,
+          "2": -1.6653675
+        },
+        "vol_momentum_scaled": {
+          "0": 1.0247675,
+          "1": 0.16106623,
+          "2": -4.8226805
+        },
+        "vol_raw": {
+          "0": 0.008939558,
+          "1": 0.00902009,
+          "2": 0.00660875
+        },
+        "vol_raw_decile": {
+          "0": 0.047839507,
+          "1": 0.047839507,
+          "2": 0.041049384
+        },
+        "vol_raw_momentum": {
+          "0": 0.0005123837,
+          "1": 8.053312e-05,
+          "2": -0.0024113401
+        },
+        "vol_risk": {
+          "0": 7.9915684e-05,
+          "1": 8.1362035e-05,
+          "2": 4.367558e-05
+        },
+        "vol_scaled": {
+          "0": 1.0180858,
+          "1": 1.0037949,
+          "2": 0.611969
+        },
+        "prob_up": {
+          "0": 0.4833497422160403,
+          "1": 0.465715330379519,
+          "2": 0.461358650633903
+        },
+        "vol_regime_low": {
+          "0": 1,
+          "1": 1,
+          "2": 1
+        },
+        "vol_regime_medium": {
+          "0": 0,
+          "1": 0,
+          "2": 0
+        },
+        "vol_regime_high": {
+          "0": 0,
+          "1": 0,
+          "2": 0
+        },
+        "momentum_regime_trending": {
+          "0": 0,
+          "1": 0,
+          "2": 0
+        },
+        "momentum_regime_ranging": {
+          "0": 1,
+          "1": 1,
+          "2": 1
+        },
+        "regime_low_vol_trending": {
+          "0": 0,
+          "1": 0,
+          "2": 0
+        },
+        "regime_low_vol_ranging": {
+          "0": 1,
+          "1": 1,
+          "2": 1
+        },
+        "regime_high_vol_trending": {
+          "0": 0,
+          "1": 0,
+          "2": 0
+        },
+        "regime_high_vol_ranging": {
+          "0": 0,
+          "1": 0,
+          "2": 0
+        },
+        "regime_stability": {
+          "0": 1,
+          "1": 2,
+          "2": 3
+        },
+        "spread": {
+          "0": 0.0098865317231404,
+          "1": 0.007787116976811,
+          "2": 0.0072450273272324
+        },
+        "abs_q50": {
+          "0": 0.0002461439653033,
+          "1": 0.0002644793732885,
+          "2": 0.0002083402550103
+        },
+        "market_variance": {
+          "0": 7.9915684e-05,
+          "1": 8.1362035e-05,
+          "2": 4.367558e-05
+        },
+        "prediction_variance": {
+          "0": 2.443587737816552e-05,
+          "1": 1.5159797702634657e-05,
+          "2": 1.312260524308609e-05
+        },
+        "total_risk": {
+          "0": 0.0102152612086212,
+          "1": 0.0098245525658508,
+          "2": 0.0075364570713726
+        },
+        "enhanced_info_ratio": {
+          "0": 0.0240957093780081,
+          "1": 0.0269202461400531,
+          "2": 0.0276443231928844
+        },
+        "info_ratio": {
+          "0": 0.0248968973343051,
+          "1": 0.033963708786728,
+          "2": 0.0287563104458173
+        },
+        "potential_gain": {
+          "0": 0.0042193987050566,
+          "1": 0.0049659096427019,
+          "2": 0.0052967114775455
+        },
+        "potential_loss": {
+          "0": 0.0056671330180837,
+          "1": 0.002821207334109,
+          "2": 0.0019483158496868
+        },
+        "expected_value": {
+          "0": -0.0008884804582931,
+          "1": 0.0008053724214504,
+          "2": 0.0013942401818108
+        },
+        "variance_regime_low": {
+          "0": 0,
+          "1": 0,
+          "2": 0
+        },
+        "variance_regime_medium": {
+          "0": 0,
+          "1": 0,
+          "2": 0
+        },
+        "variance_regime_high": {
+          "0": 1,
+          "1": 1,
+          "2": 1
+        },
+        "variance_regime_extreme": {
+          "0": 0,
+          "1": 0,
+          "2": 0
+        },
+        "signal_thresh_adaptive": {
+          "0": 0.0007279705166816,
+          "1": 0.0007284767031669,
+          "2": 0.0007152864813804
+        },
+        "effective_info_ratio_threshold": {
+          "0": 1.5,
+          "1": 1.5,
+          "2": 1.5
+        },
+        "economically_significant_traditional": {
+          "0": false,
+          "1": false,
+          "2": false
+        },
+        "economically_significant_expected_value": {
+          "0": false,
+          "1": true,
+          "2": true
+        },
+        "economically_significant_combined": {
+          "0": false,
+          "1": true,
+          "2": true
+        },
+        "economically_significant": {
+          "0": false,
+          "1": true,
+          "2": true
+        },
+        "high_quality": {
+          "0": false,
+          "1": false,
+          "2": false
+        },
+        "tradeable": {
+          "0": false,
+          "1": true,
+          "2": true
+        },
+        "q50_x_low_variance": {
+          "0": -0.0,
+          "1": -0.0,
+          "2": -0.0
+        },
+        "q50_x_high_variance": {
+          "0": -0.0002461439653033,
+          "1": -0.0002644793732885,
+          "2": -0.0002083402550103
+        },
+        "q50_x_extreme_variance": {
+          "0": -0.0,
+          "1": -0.0,
+          "2": -0.0
+        },
+        "q50_x_trending": {
+          "0": -0.0,
+          "1": -0.0,
+          "2": -0.0
+        },
+        "spread_x_high_variance": {
+          "0": 0.0098865317231404,
+          "1": 0.007787116976811,
+          "2": 0.0072450273272324
+        },
+        "vol_risk_x_abs_q50": {
+          "0": 1.9670763394538373e-08,
+          "1": 2.1518580136449e-08,
+          "2": 9.099381463581149e-09
+        },
+        "enhanced_info_ratio_x_trending": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0
+        },
+        "signal_to_variance_ratio": {
+          "0": 2.461439715214977,
+          "1": 2.644793799699069,
+          "2": 2.083402602734428
+        },
+        "variance_adjusted_signal": {
+          "0": -0.0246143970805124,
+          "1": -0.026447937920017,
+          "2": -0.0208340259667092
+        },
+        "signal_tier": {
+          "0": 0,
+          "1": 0,
+          "2": 0
+        },
+        "kelly_position_size": {
+          "0": 0.001,
+          "1": 0.001,
+          "2": 0.001
+        },
+        "side": {
+          "0": -1,
+          "1": 0,
+          "2": 0
+        },
+        "signal_strength": {
+          "0": 0.0,
+          "1": 4.746566551930657e-06,
+          "2": 3.839616895728926e-06
+        },
+        "position_size_suggestion": {
+          "0": 0.0,
+          "1": 0.5,
+          "2": 0.5
+        }
+      }
+    },
+    "data3/macro_features.pkl": {
+      "exists": true,
+      "type": "<class 'pandas.core.frame.DataFrame'>",
+      "shape": [
+        53978,
+        74
+      ]
+    },
+    "temp/correlation_matrix.csv": {
+      "exists": true,
+      "shape": [
+        74,
+        75
+      ],
+      "columns": [
+        "Unnamed: 0",
+        "q10",
+        "q50",
+        "q90",
+        "truth",
+        "$btc_dom",
+        "$fg_index",
+        "$high_vol_flag",
+        "$momentum_10",
+        "$momentum_25",
+        "$momentum_5",
+        "$realized_vol_6",
+        "$relative_volatility_index",
+        "OPEN1",
+        "RSV1",
+        "RSV2",
+        "RSV3",
+        "VOLUME1",
+        "btc_std_7d",
+        "btc_zscore_14d",
+        "fg_std_7d",
+        "fg_zscore_14d",
+        "vol_momentum_scaled",
+        "vol_raw",
+        "vol_raw_decile",
+        "vol_raw_momentum",
+        "vol_risk",
+        "vol_scaled",
+        "prob_up",
+        "vol_regime_low",
+        "vol_regime_medium",
+        "vol_regime_high",
+        "momentum_regime_trending",
+        "momentum_regime_ranging",
+        "regime_low_vol_trending",
+        "regime_low_vol_ranging",
+        "regime_high_vol_trending",
+        "regime_high_vol_ranging",
+        "regime_stability",
+        "spread",
+        "abs_q50",
+        "market_variance",
+        "prediction_variance",
+        "total_risk",
+        "enhanced_info_ratio",
+        "info_ratio",
+        "potential_gain",
+        "potential_loss",
+        "expected_value",
+        "variance_regime_low",
+        "variance_regime_medium",
+        "variance_regime_high",
+        "variance_regime_extreme",
+        "signal_thresh_adaptive",
+        "effective_info_ratio_threshold",
+        "economically_significant_traditional",
+        "economically_significant_expected_value",
+        "economically_significant_combined",
+        "economically_significant",
+        "high_quality",
+        "tradeable",
+        "q50_x_low_variance",
+        "q50_x_high_variance",
+        "q50_x_extreme_variance",
+        "q50_x_trending",
+        "spread_x_high_variance",
+        "vol_risk_x_abs_q50",
+        "enhanced_info_ratio_x_trending",
+        "signal_to_variance_ratio",
+        "variance_adjusted_signal",
+        "signal_tier",
+        "kelly_position_size",
+        "side",
+        "signal_strength",
+        "position_size_suggestion"
+      ],
+      "sample_data": {
+        "Unnamed: 0": {
+          "0": "q10",
+          "1": "q50",
+          "2": "q90"
+        },
+        "q10": {
+          "0": 1.0,
+          "1": -0.0600445399787246,
+          "2": -0.472713280241771
+        },
+        "q50": {
+          "0": -0.0600445399787246,
+          "1": 1.0,
+          "2": 0.1905247879142643
+        },
+        "q90": {
+          "0": -0.472713280241771,
+          "1": 0.1905247879142643,
+          "2": 1.0
+        },
+        "truth": {
+          "0": 0.3173165390889618,
+          "1": 0.0910004708025115,
+          "2": 0.3870537290582581
+        },
+        "$btc_dom": {
+          "0": -0.0417759258312449,
+          "1": 0.0876864013088356,
+          "2": 0.0767256375367289
+        },
+        "$fg_index": {
+          "0": 0.0329838082634441,
+          "1": 0.0793730559896253,
+          "2": 0.0188239125677812
+        },
+        "$high_vol_flag": {
+          "0": -0.0136069771265979,
+          "1": 0.061224672104284,
+          "2": 0.0065876300956438
+        },
+        "$momentum_10": {
+          "0": 0.0711562527859459,
+          "1": -0.3012341515648372,
+          "2": -0.0892563043252541
+        },
+        "$momentum_25": {
+          "0": 0.0807751484261107,
+          "1": -0.16823777098116,
+          "2": -0.1017875644305167
+        },
+        "$momentum_5": {
+          "0": 0.0633580205351102,
+          "1": -0.4199599242793208,
+          "2": -0.0827295695696173
+        },
+        "$realized_vol_6": {
+          "0": -0.5484071721650562,
+          "1": 0.115395046830737,
+          "2": 0.502591002500718
+        },
+        "$relative_volatility_index": {
+          "0": -0.0471508688978254,
+          "1": 0.0772244491906909,
+          "2": 0.0625536654956168
+        },
+        "OPEN1": {
+          "0": -0.0498939907028532,
+          "1": 0.5006967615499348,
+          "2": 0.0769190151782854
+        },
+        "RSV1": {
+          "0": 0.0058070739806551,
+          "1": -0.3946883184620257,
+          "2": -0.0131860380429799
+        },
+        "RSV2": {
+          "0": 0.0103033363233268,
+          "1": -0.555715114708585,
+          "2": -0.0181046449734656
+        },
+        "RSV3": {
+          "0": 0.0188016323714561,
+          "1": -0.6103355921804382,
+          "2": -0.0221113708889131
+        },
+        "VOLUME1": {
+          "0": -0.0001312392458879,
+          "1": 0.0028501880084542,
+          "2": -0.0005970815987934
+        },
+        "btc_std_7d": {
+          "0": -0.425830662093569,
+          "1": 0.1090603742913802,
+          "2": 0.3833734602859446
+        },
+        "btc_zscore_14d": {
+          "0": -0.0033997622785079,
+          "1": 0.2140758776835449,
+          "2": 0.1173408940944736
+        },
+        "fg_std_7d": {
+          "0": -0.1887568538550586,
+          "1": 0.0217736519783992,
+          "2": 0.1614401891805206
+        },
+        "fg_zscore_14d": {
+          "0": 0.1257489199208883,
+          "1": 0.0321746433216318,
+          "2": -0.0952010763094729
+        },
+        "vol_momentum_scaled": {
+          "0": -0.0319041218788314,
+          "1": 0.0220288049321247,
+          "2": 0.0435706058922041
+        },
+        "vol_raw": {
+          "0": -0.5484071721650562,
+          "1": 0.115395046830737,
+          "2": 0.502591002500718
+        },
+        "vol_raw_decile": {
+          "0": -0.1689386597504055,
+          "1": 0.1269047375226829,
+          "2": 0.1728260599035846
+        },
+        "vol_raw_momentum": {
+          "0": -0.0319041208439961,
+          "1": 0.0220288042832267,
+          "2": 0.0435706055975317
+        },
+        "vol_risk": {
+          "0": -0.3506313798014128,
+          "1": 0.0557854730852513,
+          "2": 0.3254938011740566
+        },
+        "vol_scaled": {
+          "0": -0.0803684643715571,
+          "1": 0.0937967400043914,
+          "2": 0.0795857946158922
+        },
+        "prob_up": {
+          "0": 0.0524144125804123,
+          "1": 0.4744741702077057,
+          "2": 0.1725034283059502
+        },
+        "vol_regime_low": {
+          "0": NaN,
+          "1": NaN,
+          "2": NaN
+        },
+        "vol_regime_medium": {
+          "0": NaN,
+          "1": NaN,
+          "2": NaN
+        },
+        "vol_regime_high": {
+          "0": NaN,
+          "1": NaN,
+          "2": NaN
+        },
+        "momentum_regime_trending": {
+          "0": NaN,
+          "1": NaN,
+          "2": NaN
+        },
+        "momentum_regime_ranging": {
+          "0": NaN,
+          "1": NaN,
+          "2": NaN
+        },
+        "regime_low_vol_trending": {
+          "0": NaN,
+          "1": NaN,
+          "2": NaN
+        },
+        "regime_low_vol_ranging": {
+          "0": NaN,
+          "1": NaN,
+          "2": NaN
+        },
+        "regime_high_vol_trending": {
+          "0": NaN,
+          "1": NaN,
+          "2": NaN
+        },
+        "regime_high_vol_ranging": {
+          "0": NaN,
+          "1": NaN,
+          "2": NaN
+        },
+        "regime_stability": {
+          "0": 0.1266614384219697,
+          "1": -0.0128079125664773,
+          "2": -0.1123332087611146
+        },
+        "spread": {
+          "0": -0.853870793824645,
+          "1": 0.1470378346366337,
+          "2": 0.862295953287952
+        },
+        "abs_q50": {
+          "0": -0.1804333559401965,
+          "1": 0.5437732771073386,
+          "2": 0.2375574308142784
+        },
+        "market_variance": {
+          "0": -0.3506313798014128,
+          "1": 0.0557854730852513,
+          "2": 0.3254938011740566
+        },
+        "prediction_variance": {
+          "0": -0.7386246907033718,
+          "1": 0.1069460812789672,
+          "2": 0.7153058629655101
+        },
+        "total_risk": {
+          "0": -0.7124296378104046,
+          "1": 0.1379876351205083,
+          "2": 0.6829395553670871
+        },
+        "enhanced_info_ratio": {
+          "0": 0.2892106786490848,
+          "1": 0.289425566492718,
+          "2": -0.2584602548816958
+        },
+        "info_ratio": {
+          "0": 0.2972908928787651,
+          "1": 0.282114058258697,
+          "2": -0.2799983495647849
+        },
+        "potential_gain": {
+          "0": -0.6312713523758189,
+          "1": 0.0980023645039804,
+          "2": 0.8481791980329645
+        },
+        "potential_loss": {
+          "0": -0.8378510223205303,
+          "1": 0.1557831935563049,
+          "2": 0.6283392201063525
+        },
+        "expected_value": {
+          "0": 0.1839957085730706,
+          "1": 0.0792315910349266,
+          "2": 0.2911795447886052
+        },
+        "variance_regime_low": {
+          "0": 0.3661999608124247,
+          "1": -0.0986522417421295,
+          "2": -0.3587836529608211
+        },
+        "variance_regime_medium": {
+          "0": 0.0573444655293,
+          "1": 0.0043935101322379,
+          "2": -0.0305585476900123
+        },
+        "variance_regime_high": {
+          "0": -0.2057412778109263,
+          "1": 0.0459833936338154,
+          "2": 0.1873942045574164
+        },
+        "variance_regime_extreme": {
+          "0": -0.3786961027171046,
+          "1": 0.0822074809936718,
+          "2": 0.3480901782121979
+        },
+        "signal_thresh_adaptive": {
+          "0": -0.5352296313017957,
+          "1": 0.1140305086820974,
+          "2": 0.4994313985957668
+        },
+        "effective_info_ratio_threshold": {
+          "0": -0.4704308604245235,
+          "1": 0.1112615892037346,
+          "2": 0.4429932651708586
+        },
+        "economically_significant_traditional": {
+          "0": 0.0557690987291977,
+          "1": 0.3108623421499242,
+          "2": -0.0063375945394972
+        },
+        "economically_significant_expected_value": {
+          "0": -0.0523612535551835,
+          "1": 0.1194416640647147,
+          "2": 0.22382682318989
+        },
+        "economically_significant_combined": {
+          "0": -0.0400796463338571,
+          "1": 0.1680962509829079,
+          "2": 0.2331628770195166
+        },
+        "economically_significant": {
+          "0": -0.0523612535551835,
+          "1": 0.1194416640647147,
+          "2": 0.22382682318989
+        },
+        "high_quality": {
+          "0": NaN,
+          "1": NaN,
+          "2": NaN
+        },
+        "tradeable": {
+          "0": -0.0523612535551835,
+          "1": 0.1194416640647147,
+          "2": 0.22382682318989
+        },
+        "q50_x_low_variance": {
+          "0": 0.0796461842874783,
+          "1": 0.422465420733755,
+          "2": -0.0359906842348748
+        },
+        "q50_x_high_variance": {
+          "0": -0.0654727083061645,
+          "1": 0.4743822008489448,
+          "2": 0.1324407873513841
+        },
+        "q50_x_extreme_variance": {
+          "0": -0.1811459058297502,
+          "1": 0.3733587366708633,
+          "2": 0.2539045466925491
+        },
+        "q50_x_trending": {
+          "0": NaN,
+          "1": NaN,
+          "2": NaN
+        },
+        "spread_x_high_variance": {
+          "0": -0.3406720609425754,
+          "1": 0.0614762949691265,
+          "2": 0.3240225428261674
+        },
+        "vol_risk_x_abs_q50": {
+          "0": -0.2873442702479165,
+          "1": 0.1340658000327457,
+          "2": 0.3170248970593445
+        },
+        "enhanced_info_ratio_x_trending": {
+          "0": NaN,
+          "1": NaN,
+          "2": NaN
+        },
+        "signal_to_variance_ratio": {
+          "0": -0.0501954483911765,
+          "1": 0.4915476935801954,
+          "2": 0.111397155230859
+        },
+        "variance_adjusted_signal": {
+          "0": -0.030581612007533,
+          "1": 0.9883781410894638,
+          "2": 0.1544633920229648
+        },
+        "signal_tier": {
+          "0": 0.0643209010661071,
+          "1": 0.427109090095463,
+          "2": -0.0073761905702246
+        },
+        "kelly_position_size": {
+          "0": 0.11810742816018,
+          "1": 0.2261526297031099,
+          "2": 0.0462215680737871
+        },
+        "side": {
+          "0": 0.0196416091615456,
+          "1": 0.2953635197155579,
+          "2": 0.3111237601744114
+        },
+        "signal_strength": {
+          "0": 0.1079233201577661,
+          "1": 0.3071095364330556,
+          "2": 0.0506459649557746
+        },
+        "position_size_suggestion": {
+          "0": -0.0198417908947846,
+          "1": 0.1151022527375743,
+          "2": 0.1833015162234439
+        }
+      }
+    }
+  },
+  "timestamp": "2025-09-30T08:33:57.774993"
+}
