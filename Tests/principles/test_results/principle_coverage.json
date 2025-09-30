@@ -1,0 +1,101 @@
+{
+  "thesis_first": {
+    "q50_economic_logic": {
+      "status": "PASS",
+      "rationale": "Q50 signals follow supply/demand logic",
+      "test_values": [
+        0.49514125873668147,
+        0.5116770355564008,
+        0.5387779627735285
+      ]
+    },
+    "quantile_loss_validity": {
+      "status": "PASS",
+      "rationale": "Quantile loss provides valid coverage metrics",
+      "coverages": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ]
+    }
+  },
+  "supply_demand": {
+    "regime_microstructure": {
+      "status": "PASS",
+      "rationale": "Regime detection adapts to market microstructure",
+      "regime_count": 3
+    },
+    "vol_risk_economic": {
+      "status": "PASS",
+      "rationale": "Vol_risk captures variance for superior risk measurement",
+      "has_vol_risk": true
+    }
+  },
+  "explainability": {
+    "function_documentation": {
+      "status": "FAIL",
+      "rationale": "Functions must be well-documented for explainability",
+      "coverage": 0.75,
+      "details": [
+        {
+          "function": "prob_up_piecewise",
+          "has_docstring": false,
+          "docstring_length": 0
+        },
+        {
+          "function": "quantile_loss",
+          "has_docstring": true,
+          "docstring_length": 49
+        },
+        {
+          "function": "q50_regime_aware_signals",
+          "has_docstring": true,
+          "docstring_length": 148
+        },
+        {
+          "function": "identify_market_regimes",
+          "has_docstring": true,
+          "docstring_length": 140
+        }
+      ]
+    },
+    "function_complexity": {
+      "status": "FAIL",
+      "rationale": "Functions should be simple and understandable",
+      "simplicity_rate": 0.75,
+      "details": [
+        {
+          "function": "prob_up_piecewise",
+          "line_count": 13,
+          "is_simple": true
+        },
+        {
+          "function": "quantile_loss",
+          "line_count": 15,
+          "is_simple": true
+        },
+        {
+          "function": "q50_regime_aware_signals",
+          "line_count": 113,
+          "is_simple": false
+        },
+        {
+          "function": "identify_market_regimes",
+          "line_count": 31,
+          "is_simple": true
+        }
+      ]
+    }
+  },
+  "performance": {
+    "output_files": {
+      "status": "FAIL",
+      "rationale": "System should generate expected output files",
+      "file_status": {
+        "df_all_macro_analysis.csv": false,
+        "data3/macro_features.pkl": false,
+        "temp/correlation_matrix.csv": false
+      }
+    }
+  }
+}
