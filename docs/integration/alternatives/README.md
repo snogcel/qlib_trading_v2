@@ -74,7 +74,7 @@ This directory contains alternative integration approaches for live trading depl
 
 ---
 
-## 💡 Notes
+##  Notes
 
 This alternative serves as insurance against potential integration challenges with the primary Hummingbot approach. The notebook provides a different architectural pattern that may be valuable if the main integration path encounters obstacles.
 

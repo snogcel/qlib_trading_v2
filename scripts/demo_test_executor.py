@@ -392,7 +392,7 @@ def demo_error_handling(executor: TestExecutor):
     print("=" * 60)
     
     # Test case with invalid test function
-    print("🚨 Testing error handling...")
+    print(" Testing error handling...")
     
     def failing_test_function(data, params):
         raise ValueError("Simulated test failure")

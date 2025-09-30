@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 def analyze_current_threshold_problems():
     """Analyze the fundamental issues with current threshold approach"""
     
-    print("🔍 PROBLEMS WITH CURRENT THRESHOLD APPROACH")
+    print(" PROBLEMS WITH CURRENT THRESHOLD APPROACH")
     print("=" * 60)
     
     problems = [
@@ -87,14 +87,14 @@ def demonstrate_threshold_issues():
     sell_signals = (valid_data['q50'] < -valid_data['signal_thresh_adaptive']).sum()
     total_signals = buy_signals + sell_signals
     
-    print(f"\n🔍 Problem 1 - Asymmetric Logic:")
+    print(f"\n Problem 1 - Asymmetric Logic:")
     print(f"   Buy signals (q50 > thresh): {buy_signals} ({buy_signals/len(valid_data)*100:.1f}%)")
     print(f"   Sell signals (q50 < -thresh): {sell_signals} ({sell_signals/len(valid_data)*100:.1f}%)")
     print(f"   Total signals: {total_signals} ({total_signals/len(valid_data)*100:.1f}%)")
     print(f"   Expected if symmetric: ~20% (10% each direction)")
     
     # Problem 2: Threshold leakage
-    print(f"\n🔍 Problem 2 - Threshold Leakage:")
+    print(f"\n Problem 2 - Threshold Leakage:")
     print(f"   Current threshold uses future data in rolling window")
     print(f"   In live trading, threshold at time t should only use data up to t-1")
     
@@ -110,7 +110,7 @@ def demonstrate_threshold_issues():
     print(f"   Sell signals: {sell_proper} vs {sell_signals} (difference: {sell_signals - sell_proper})")
     
     # Problem 3: Circular logic
-    print(f"\n🔍 Problem 3 - Circular Logic:")
+    print(f"\n Problem 3 - Circular Logic:")
     threshold_percentile = 0.90
     expected_above_thresh = (1 - threshold_percentile) * 100
     actual_above_thresh = (valid_data['abs_q50'] > valid_data['signal_thresh_adaptive']).mean() * 100
@@ -124,7 +124,7 @@ def demonstrate_threshold_issues():
 def propose_better_approaches():
     """Propose better signal threshold approaches"""
     
-    print(f"\n💡 BETTER SIGNAL THRESHOLD APPROACHES")
+    print(f"\n BETTER SIGNAL THRESHOLD APPROACHES")
     print("=" * 60)
     
     approaches = [

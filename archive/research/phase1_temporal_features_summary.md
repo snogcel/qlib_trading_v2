@@ -17,7 +17,7 @@ Successfully implemented economically-justified temporal quantile features follo
 2. **spread_momentum_3** - Market uncertainty evolution  
    - **Economic Rationale**: Prediction uncertainty reflects market liquidity conditions
    - **Supply/Demand Logic**: Widening spreads suggest increasing disagreement between buyers/sellers
-   - **Validation**: ⚠️ -0.036 correlation with volatility changes (needs refinement)
+   - **Validation**: -0.036 correlation with volatility changes (needs refinement)
 
 3. **q50_stability_6** - Consensus stability measure
    - **Economic Rationale**: Stable predictions indicate strong market consensus
@@ -53,7 +53,7 @@ Successfully implemented economically-justified temporal quantile features follo
 3. **Higher persistence during trending periods** (69.4 vs 65.4)
    - Validates behavioral finance momentum theory
 
-**⚠️ Needs Refinement:**
+**Needs Refinement:**
 1. **Spread momentum vs volatility correlation** (-0.036)
    - May need adjustment to better capture microstructure uncertainty
 
@@ -64,8 +64,8 @@ Successfully implemented economically-justified temporal quantile features follo
 ### Chart Explainability (Thesis-First Principle)
 - **q50_momentum_3**: Reasonable range and variation
 - **spread_momentum_3**: Good range and variation  
-- ⚠️ **q50_stability_6**: Low variation (may need scaling)
-- ⚠️ **q50_regime_persistence**: Wide range (1-197, may need normalization)
+- **q50_stability_6**: Low variation (may need scaling)
+- **q50_regime_persistence**: Wide range (1-197, may need normalization)
 - **prediction_confidence**: Good range (0.084-0.934)
 - **q50_direction_consistency**: Good range (0.167-1.000)
 
@@ -121,7 +121,7 @@ Successfully implemented economically-justified temporal quantile features follo
 
 ---
 
-## 💡 Key Insights
+##  Key Insights
 
 ### What Worked Well
 - **Economic validation framework** successfully identifies good vs problematic features

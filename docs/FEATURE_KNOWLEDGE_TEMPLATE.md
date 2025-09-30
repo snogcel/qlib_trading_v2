@@ -1162,7 +1162,7 @@ Temporal Quantile Features – Audit-Ready Breakdown
 
 ---
 
-## 🚨 System-Level Insights
+##  System-Level Insights
 
 ### Feature Interactions
 **PLEASE FILL IN:**

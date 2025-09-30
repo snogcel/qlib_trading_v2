@@ -341,7 +341,7 @@ class BasicReporter(ReporterInterface):
         
         for feature_name, stats in sorted_features:
             success_rate = (stats['passed_tests'] / stats['total_tests']) * 100
-            coverage_status = "✅" if success_rate == 100 else "⚠️" if success_rate >= 80 else ""
+            coverage_status = "" if success_rate == 100 else "⚠️" if success_rate >= 80 else ""
             
             report_lines.extend([
                 f"### {coverage_status} {feature_name}",
@@ -406,7 +406,7 @@ class BasicReporter(ReporterInterface):
             ])
             
             for priority, stats in priority_coverage.items():
-                status_emoji = "✅" if stats['success_rate'] == 100 else "⚠️" if stats['success_rate'] >= 80 else ""
+                status_emoji = "" if stats['success_rate'] == 100 else "⚠️" if stats['success_rate'] >= 80 else ""
                 report_lines.append(
                     f"- {status_emoji} {priority.value.title()}: "
                     f"{stats['passed']}/{stats['total']} ({stats['success_rate']:.1f}%)"
@@ -565,7 +565,7 @@ class BasicReporter(ReporterInterface):
             else:
                 # Add some styling based on content
                 styled_line = line
-                if '✅' in line or 'PASS' in line:
+                if '' in line or 'PASS' in line:
                     styled_line = f'<span class="success">{line}</span>'
                 elif '⚠️' in line or 'WARNING' in line:
                     styled_line = f'<span class="warning">{line}</span>'

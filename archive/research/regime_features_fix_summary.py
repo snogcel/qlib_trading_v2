@@ -97,7 +97,7 @@ def create_fix_summary():
     ]
     
     for insight in insights:
-        print(f"\n💡 {insight['insight']}:")
+        print(f"\n {insight['insight']}:")
         print(f"   Details: {insight['details']}")
         print(f"   Implication: {insight['implication']}")
     
@@ -141,11 +141,11 @@ def create_fix_summary():
     ]
     
     for rec in recommendations:
-        print(f"\n📈 {rec['use_case']}:")
+        print(f"\n {rec['use_case']}:")
         print(f"   Recommended: {', '.join(rec['features'])}")
         print(f"   Reason: {rec['reason']}")
     
-    print("\n⚠️  WARNINGS ADDRESSED:")
+    print("\n WARNINGS ADDRESSED:")
     
     warnings = [
         "FutureWarning about .fillna() downcasting - cosmetic, doesn't affect functionality",

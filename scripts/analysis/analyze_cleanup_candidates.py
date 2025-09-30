@@ -258,7 +258,7 @@ def main():
             f.write('\n'.join(commands))
         
         print(f"\n💾 Commands saved to: cleanup_commands.sh")
-        print("⚠️  Review the commands before executing!")
+        print(" Review the commands before executing!")
 
 if __name__ == "__main__":
     main()

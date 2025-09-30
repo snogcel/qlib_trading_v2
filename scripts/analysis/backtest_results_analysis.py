@@ -89,7 +89,7 @@ def analyze_backtest_results():
     ]
     
     for insight in insights:
-        print(f"\n🔍 {insight['metric']}:")
+        print(f"\n {insight['metric']}:")
         print(f"   Observation: {insight['observation']}")
         print(f"   Significance: {insight['significance']}")
     
@@ -107,7 +107,7 @@ def analyze_backtest_results():
     for implication in feature_implications:
         print(f"   ✓ {implication}")
     
-    print("\n📈 PERFORMANCE BENCHMARKING:")
+    print("\n PERFORMANCE BENCHMARKING:")
     
     # Typical crypto trading benchmarks
     benchmarks = {
@@ -123,7 +123,7 @@ def analyze_backtest_results():
     
     print(f"\n   🏆 Your Results: 1.72 Sharpe = EXCELLENT tier!")
     
-    print("\n⚠️  IMPORTANT CAVEATS:")
+    print("\n IMPORTANT CAVEATS:")
     
     caveats = [
         "Low win rate (5.2%) means strategy relies on large winners",
@@ -135,7 +135,7 @@ def analyze_backtest_results():
     ]
     
     for caveat in caveats:
-        print(f"   ⚠️  {caveat}")
+        print(f"    {caveat}")
     
     print("\n🔬 NEXT STEPS FOR VALIDATION:")
     
@@ -191,7 +191,7 @@ def analyze_backtest_results():
     for item, status, description in readiness_checklist:
         print(f"   {status} {item}: {description}")
     
-    print("\n💡 RECOMMENDATIONS:")
+    print("\n RECOMMENDATIONS:")
     
     recommendations = [
         {

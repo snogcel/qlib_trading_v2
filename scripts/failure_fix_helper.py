@@ -425,7 +425,7 @@ class FailureFixHelper:
             summary = feature_data['summary']
             current_rate = summary['success_rate']
             target_rate = 100 if feature == "btc_dom" else 80
-            status = "🔴 Critical" if "CRITICAL" in summary['status'] else "⚠️ Warning"
+            status = "🔴 Critical" if "CRITICAL" in summary['status'] else "Warning"
             
             tracking_lines.append(
                 f"| {feature} | {current_rate:.1f}% | {target_rate}% | {status} | TBD | TBD | {summary['failed_tests']} failures |"
@@ -516,7 +516,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 def diagnose_btc_dom():
     """Run comprehensive btc_dom diagnostics."""
-    print("🔍 BTC Dominance Diagnostic Report")
+    print(" BTC Dominance Diagnostic Report")
     print("=" * 50)
     
     # TODO: Add actual btc_dom diagnostic logic

@@ -140,7 +140,7 @@ buy_mask = tradeable & (q50 > 0)  # Pure Q50 logic
 - **Regime Awareness**: Different thresholds applied based on market conditions
 - **Risk Scaling**: Vol_risk properly integrated for additional risk context
 
-## 💡 **Key Insights**
+##  **Key Insights**
 
 1. **Q50 Has Excellent Standalone Value**: Direct economic interpretation as expected return
 2. **Information Ratio is Crucial**: Signal-to-noise ratio filters low-quality predictions

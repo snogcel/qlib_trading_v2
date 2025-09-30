@@ -82,7 +82,7 @@ def create_final_recommendation():
     ]
     
     for scenario in scenarios:
-        print(f"\n📈 {scenario['scenario'].upper()}:")
+        print(f"\n {scenario['scenario'].upper()}:")
         print(f"   Approach: {scenario['approach']}")
         print(f"   Key Features: {', '.join(scenario['features'])}")
         print(f"   Reason: {scenario['reason']}")
@@ -123,7 +123,7 @@ def create_final_recommendation():
         print(f"   Reason: {phase['reason']}")
         print(f"   Timeline: {phase['timeline']}")
     
-    print("\n⚠️  CRITICAL SUCCESS FACTORS:")
+    print("\n CRITICAL SUCCESS FACTORS:")
     
     success_factors = [
         "BACKTESTING: Test multiplicative vs standalone approaches separately",
@@ -135,7 +135,7 @@ def create_final_recommendation():
     ]
     
     for factor in success_factors:
-        print(f"   ⚠️  {factor}")
+        print(f"    {factor}")
     
     print("\nEXPECTED PERFORMANCE IMPROVEMENTS:")
     

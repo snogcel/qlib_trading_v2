@@ -78,7 +78,7 @@ result = subprocess.run(
 - → [TEST]
 - → [PASS] 
 - → [FAIL]
-- ⚠️ → [WARN]
+- → [WARN]
 - → [CHART]
 - And 15+ more replacements
 
@@ -94,7 +94,7 @@ if project_root not in sys.path:
 
 - **Import Error Resolution**: 100% (was 0% before)
 - **Encoding Error Resolution**: 100% (was frequent crashes)
-- **Test Runner Functionality**: Fully operational ✅
+- **Test Runner Functionality**: Fully operational 
 - **Files Fixed**: 27 test files + core runner
 - **Validation Tests**: Both major validation tests now working
 

@@ -174,7 +174,7 @@ def validate_signal_classification_function(df):
         if correlation > 0.5:
             print("Higher tiers generally perform better")
         elif correlation > 0.2:
-            print("⚠️  Weak positive relationship between tiers and performance")
+            print(" Weak positive relationship between tiers and performance")
         else:
             print("No clear relationship between tiers and performance")
     
@@ -210,7 +210,7 @@ def test_signal_classification_edge_cases(df):
     # Check for very high tiers (potential issues)
     high_tiers = df['signal_tier_new'] > 4.0
     if high_tiers.sum() > 0:
-        print(f"  ⚠️  {high_tiers.sum()} signals with tier > 4.0 (might be too high)")
+        print(f"   {high_tiers.sum()} signals with tier > 4.0 (might be too high)")
 
 def compare_with_simple_classification(df):
     """
@@ -281,7 +281,7 @@ def compare_with_simple_classification(df):
     if sharpe_improvement > 0.01:
         print("Complex classification shows meaningful improvement")
     elif sharpe_improvement > 0:
-        print("⚠️  Marginal improvement - consider if complexity is worth it")
+        print(" Marginal improvement - consider if complexity is worth it")
     else:
         print("Simple classification performs as well or better")
     

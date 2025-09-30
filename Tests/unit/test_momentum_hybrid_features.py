@@ -63,7 +63,7 @@ def test_momentum_features():
     print(f"   Momentum features: {momentum_features}")
     
     # Analyze each momentum feature
-    print(f"\n📈 MOMENTUM FEATURE ANALYSIS:")
+    print(f"\n MOMENTUM FEATURE ANALYSIS:")
     
     feature_stats = {}
     
@@ -128,7 +128,7 @@ def create_momentum_visualization(df, momentum_features):
     existing_features = [f for f in momentum_features if f in df.columns and not df[f].isna().all()]
     
     if len(existing_features) == 0:
-        print("⚠️  No momentum features to visualize")
+        print(" No momentum features to visualize")
         return
     
     fig, axes = plt.subplots(2, 2, figsize=(15, 10))
@@ -215,7 +215,7 @@ def test_usage_scenarios():
     df, _, _ = test_momentum_features()
     
     # Scenario 1: Position sizing with vol_momentum_pct
-    print(f"\n📈 SCENARIO 1: Position Sizing")
+    print(f"\n SCENARIO 1: Position Sizing")
     if 'vol_momentum_pct' in df.columns:
         pct_values = df['vol_momentum_pct'].dropna()
         

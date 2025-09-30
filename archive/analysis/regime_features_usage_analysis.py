@@ -64,7 +64,7 @@ def analyze_regime_feature_approaches():
     ]
     
     for feature in top_features:
-        print(f"\n🔍 {feature['name']} (Lift: {feature['lift']}x):")
+        print(f"\n {feature['name']} (Lift: {feature['lift']}x):")
         print(f"   Current: {feature['current_type']}")
         print(f"   Mask Potential: {feature['mask_potential']}")
         print(f"   Description: {feature['description']}")
@@ -119,7 +119,7 @@ def analyze_regime_feature_approaches():
     
     print("   └─────────────────────┴─────────────────────────────────┴─────────────────────────────────┴─────────────┘")
     
-    print("\n💡 SPECIFIC USE CASE ANALYSIS:")
+    print("\n SPECIFIC USE CASE ANALYSIS:")
     
     use_cases = [
         {
@@ -153,7 +153,7 @@ def analyze_regime_feature_approaches():
     ]
     
     for case in use_cases:
-        print(f"\n📈 {case['feature'].upper()}:")
+        print(f"\n {case['feature'].upper()}:")
         print(f"   Standalone: {case['standalone_usage']}")
         print(f"   Multiplicative: {case['multiplicative_usage']}")
         print(f"   Recommendation: {case['recommendation']}")
@@ -243,7 +243,7 @@ def apply_regime_adjustments(df):
     for benefit in benefits:
         print(f"   • {benefit}")
     
-    print("\n🚨 RISKS TO CONSIDER:")
+    print("\n RISKS TO CONSIDER:")
     
     risks = [
         "Overfitting: Complex interactions may not generalize",
@@ -254,7 +254,7 @@ def apply_regime_adjustments(df):
     ]
     
     for risk in risks:
-        print(f"   ⚠️  {risk}")
+        print(f"    {risk}")
     
     print("\nFINAL RECOMMENDATION:")
     

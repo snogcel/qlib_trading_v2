@@ -37,7 +37,7 @@ def check_data_availability():
                     'memory': df.memory_usage(deep=True).sum() / 1024 / 1024  # MB
                 })
             except Exception as e:
-                print(f"⚠️  Could not load {path}: {e}")
+                print(f" Could not load {path}: {e}")
     
     return available_data
 
@@ -166,7 +166,7 @@ def print_realistic_validation_summary(report):
         print("STATUS: ALL TESTS PASSED WITH REAL DATA")
         print("Phase 1 validated with actual system data!")
     else:
-        print("⚠️  STATUS: SOME TESTS FAILED")
+        print(" STATUS: SOME TESTS FAILED")
         print("May need data preprocessing improvements")
     
     print(f"\nExecution Details:")
@@ -216,7 +216,7 @@ def main():
         print("Phase 1 validated with actual system data!")
         return 0
     else:
-        print("\n⚠️  Realistic validation identified issues that need attention.")
+        print("\n Realistic validation identified issues that need attention.")
         return 1
 
 if __name__ == "__main__":

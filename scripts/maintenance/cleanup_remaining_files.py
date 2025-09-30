@@ -118,7 +118,7 @@ def main():
     
     find_files_to_delete()
     
-    print(f"\n💡 RECOMMENDATIONS:")
+    print(f"\n RECOMMENDATIONS:")
     print("1. Delete the superseded files (they're now in src/)")
     print("2. Move valuable research files to archive/")
     print("3. Review large data files - keep only essential ones")

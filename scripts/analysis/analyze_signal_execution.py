@@ -27,7 +27,7 @@ def load_signal_analysis(results_dir: str = "./hummingbot_backtest_results"):
 def analyze_signal_execution_patterns(signal_df: pd.DataFrame):
     """Analyze patterns in signal generation vs execution"""
     
-    print("🔍 SIGNAL EXECUTION ANALYSIS")
+    print(" SIGNAL EXECUTION ANALYSIS")
     print("=" * 60)
     
     # Overall execution rate
@@ -85,7 +85,7 @@ def analyze_signal_execution_patterns(signal_df: pd.DataFrame):
 def analyze_hold_patterns(signal_df: pd.DataFrame):
     """Analyze why signals result in holds vs trades"""
     
-    print("🔍 HOLD PATTERN ANALYSIS")
+    print(" HOLD PATTERN ANALYSIS")
     print("=" * 60)
     
     # Hold reason distribution
@@ -117,7 +117,7 @@ def analyze_hold_patterns(signal_df: pd.DataFrame):
 def analyze_signal_quality_vs_execution(signal_df: pd.DataFrame):
     """Analyze relationship between signal quality and execution"""
     
-    print("🔍 SIGNAL QUALITY VS EXECUTION ANALYSIS")
+    print(" SIGNAL QUALITY VS EXECUTION ANALYSIS")
     print("=" * 60)
     
     # Create signal quality score buckets
@@ -142,7 +142,7 @@ def analyze_signal_quality_vs_execution(signal_df: pd.DataFrame):
 def analyze_time_patterns(signal_df: pd.DataFrame):
     """Analyze time-based patterns in signal execution"""
     
-    print("🔍 TIME-BASED EXECUTION PATTERNS")
+    print(" TIME-BASED EXECUTION PATTERNS")
     print("=" * 60)
     
     # Hour of day analysis
@@ -170,7 +170,7 @@ def analyze_time_patterns(signal_df: pd.DataFrame):
 def create_pivot_examples(signal_df: pd.DataFrame):
     """Create example pivot tables for analysis"""
     
-    print("🔍 PIVOT TABLE EXAMPLES")
+    print(" PIVOT TABLE EXAMPLES")
     print("=" * 60)
     
     # Example 1: Signal Direction vs Confidence vs Execution Rate
@@ -207,7 +207,7 @@ def create_pivot_examples(signal_df: pd.DataFrame):
 def generate_insights(signal_df: pd.DataFrame, summary_stats: dict):
     """Generate key insights from the analysis"""
     
-    print("💡 KEY INSIGHTS")
+    print(" KEY INSIGHTS")
     print("=" * 60)
     
     insights = []
@@ -215,7 +215,7 @@ def generate_insights(signal_df: pd.DataFrame, summary_stats: dict):
     # Execution rate insights
     overall_execution = signal_df['trade_executed'].mean()
     if overall_execution < 0.3:
-        insights.append(f"⚠️  Low overall execution rate ({overall_execution:.1%}) - many signals not resulting in trades")
+        insights.append(f" Low overall execution rate ({overall_execution:.1%}) - many signals not resulting in trades")
     elif overall_execution > 0.7:
         insights.append(f"High execution rate ({overall_execution:.1%}) - most signals result in trades")
     
@@ -226,7 +226,7 @@ def generate_insights(signal_df: pd.DataFrame, summary_stats: dict):
         short_rate = direction_rates['SHORT']
         if abs(long_rate - short_rate) > 0.2:
             bias_direction = "LONG" if long_rate > short_rate else "SHORT"
-            insights.append(f"📈 Execution bias toward {bias_direction} signals ({long_rate:.1%} vs {short_rate:.1%})")
+            insights.append(f" Execution bias toward {bias_direction} signals ({long_rate:.1%} vs {short_rate:.1%})")
     
     # Confidence insights
     high_conf = signal_df[signal_df['high_confidence'] == True]['trade_executed'].mean()

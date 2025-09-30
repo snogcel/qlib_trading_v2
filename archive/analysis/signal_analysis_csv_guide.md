@@ -48,7 +48,7 @@ The `signal_analysis_pivot.csv` file contains comprehensive data about every sig
 - `has_position`: Currently holding a position
 - `is_long_signal`, `is_short_signal`, `is_hold_signal`: Signal type flags
 
-### 📈 **Derived Metrics**
+###  **Derived Metrics**
 - `signal_quality_score`: Combined strength × confidence × directional probability
 - `risk_reward_ratio`: Signal strength / spread
 - `position_utilization`: Current position / max position
@@ -97,7 +97,7 @@ Values: signal_strength (Average)
 
 ## Key Questions You Can Answer
 
-### 🔍 **Signal Quality**
+###  **Signal Quality**
 - Which signal types have the highest execution rate?
 - Do high-confidence signals actually execute more often?
 - What's the relationship between signal strength and actual trades?

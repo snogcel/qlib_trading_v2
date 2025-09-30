@@ -74,7 +74,7 @@
   - Update economic_hypothesis test criteria
 
 
-## 📈 Performance Analysis
+##  Performance Analysis
 
 ### Accuracy
 - **Average:** 0.761
@@ -89,7 +89,7 @@
 - **Range:** 0.596 - 0.791
 
 
-## 🔍 Economic Hypothesis Validation
+##  Economic Hypothesis Validation
 
 **Hypothesis Test:** Test economic_hypothesis for fg_index
 - **Result:** Hypothesis validation failed
@@ -104,7 +104,7 @@
 - **Issue:** Analysis for fg_index economic_hypothesis
 
 
-## ⚠️ Risk Assessment
+## Risk Assessment
 
 - **High Risk Issues:** 1
 - **Medium Risk Issues:** 4
@@ -112,7 +112,7 @@
 
 **Overall Risk Level:** HIGH - Immediate attention required
 
-## 💡 Recommendations
+##  Recommendations
 
 1. Update economic_hypothesis test criteria
 2. Update regime_dependency test criteria

@@ -81,7 +81,7 @@ def compare_old_vs_new_regime_logic(df):
             if 0.8 <= stats['ratio'] <= 1.2:
                 print("   Similar detection rates")
             else:
-                print("   ⚠️  Different detection rates - needs investigation")
+                print("    Different detection rates - needs investigation")
         elif 'old_mean' in stats:
             print(f"   Old mean: {stats['old_mean']:.3f} ± {stats['old_std']:.3f}")
             print(f"   New mean: {stats['new_mean']:.3f} ± {stats['new_std']:.3f}")
@@ -105,7 +105,7 @@ def simulate_position_sizing_impact(df_new):
     new_positions = new_positions.clip(0.01, 0.5)  # Reasonable position limits
     
     # Compare position distributions
-    print(f"📈 Position Size Comparison:")
+    print(f" Position Size Comparison:")
     print(f"   Old approach (constant): {base_position:.1%}")
     print(f"   New approach range: [{new_positions.min():.1%}, {new_positions.max():.1%}]")
     print(f"   New approach mean: {new_positions.mean():.1%}")
@@ -123,7 +123,7 @@ def simulate_position_sizing_impact(df_new):
 def validate_economic_logic(df_new):
     """Validate that regime logic makes economic sense"""
     
-    print("\n💡 ECONOMIC LOGIC VALIDATION")
+    print("\n ECONOMIC LOGIC VALIDATION")
     print("=" * 50)
     
     validations = []
@@ -170,7 +170,7 @@ def validate_economic_logic(df_new):
     
     # Print validation results
     for validation in validations:
-        status = "✅" if validation['result'] else ""
+        status = "" if validation['result'] else ""
         print(f"   {status} {validation['test']}")
         print(f"      Value: {validation['value']}, Expected: {validation['expected']}")
     
@@ -212,7 +212,7 @@ def main():
         print("Ready to integrate into main pipeline")
         print("Performance should maintain 1.327 Sharpe ratio")
     else:
-        print(f"\n⚠️  Some validations failed - review needed")
+        print(f"\n Some validations failed - review needed")
     
     return df_new, comparisons, validations
 

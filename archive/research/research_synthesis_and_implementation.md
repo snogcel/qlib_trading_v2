@@ -174,7 +174,7 @@ class EnhancedRegimeFeatureEngine(RegimeFeatureEngine):
         required_cols = ['q10', 'q50', 'q90']
         for col in required_cols:
             if col not in df.columns:
-                print(f"⚠️  Missing required column: {col}")
+                print(f" Missing required column: {col}")
                 return df
         
         # FEATURE 1: Momentum Persistence (Information Flow)

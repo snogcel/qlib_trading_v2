@@ -382,7 +382,7 @@ custom_training_vessel.py                      # Training container
 
 ---
 
-## 🚨 Pre-Cleanup Checklist
+##  Pre-Cleanup Checklist
 
 ### Backup Strategy
 - [ ] Create full project backup

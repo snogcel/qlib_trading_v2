@@ -24,7 +24,7 @@ def test_with_actual_data():
     
     # Try to load actual data
     data_files = [
-        'data3/macro_features.pkl',
+        'macro_features.pkl',
         'signal_analysis_pivot.csv'
     ]
     
@@ -79,7 +79,7 @@ def test_with_actual_data():
             if 'vol_extreme_high' in df.columns:
                 old_extreme_vol = df['vol_extreme_high'].sum()
                 new_extreme_vol = (df_with_regimes['regime_volatility'] == 'extreme').sum()
-                print(f"\n📈 Volatility regime comparison:")
+                print(f"\n Volatility regime comparison:")
                 print(f"   Old vol_extreme_high: {old_extreme_vol} periods")
                 print(f"   New regime_volatility='extreme': {new_extreme_vol} periods")
         

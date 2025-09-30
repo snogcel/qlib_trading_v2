@@ -103,7 +103,7 @@ def test_temporal_features():
             has_variation = values.std() > 0.001
             reasonable_range = values.min() > -100 and values.max() < 100
             
-            status = "✅" if has_variation and reasonable_range else "⚠️"
+            status = "" if has_variation and reasonable_range else "⚠️"
             print(f"   {status} {feature}: Range [{values.min():.3f}, {values.max():.3f}], Std: {values.std():.3f}")
     
     return df_full, existing_features

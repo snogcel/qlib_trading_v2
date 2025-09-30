@@ -34,7 +34,7 @@ def create_final_summary():
     print("   │ vol_raw_decile  │ [0, 9]       │ [0, 0.056]   │ 175x         │ 0.56 (MOD)   │")
     print("   └─────────────────┴──────────────┴──────────────┴──────────────┴──────────────┘")
     
-    print("\n🚨 CRITICAL BREAKING CHANGES:")
+    print("\n CRITICAL BREAKING CHANGES:")
     
     breaking_changes = [
         {
@@ -153,7 +153,7 @@ def create_final_summary():
     for criterion in criteria:
         print(f"   ✓ {criterion}")
     
-    print("\n⚠️  RISK MITIGATION:")
+    print("\n RISK MITIGATION:")
     
     print("\n1. BACKUP PLAN:")
     print("   • Keep old feature calculation code as fallback")

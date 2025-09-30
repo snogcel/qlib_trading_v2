@@ -113,7 +113,7 @@ def main():
     
     if validation.warnings:
         for warning in validation.warnings:
-            print(f"     ⚠️  {warning}")
+            print(f"      {warning}")
     
     # List existing backups
     print(f"\n7. Listing existing backups...")

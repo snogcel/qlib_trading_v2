@@ -10,7 +10,7 @@ def analyze_quantile_magnitudes(df):
     Analyze the actual magnitudes in quantile predictions to set realistic thresholds
     """
     
-    print("🔍 QUANTILE MAGNITUDE ANALYSIS")
+    print(" QUANTILE MAGNITUDE ANALYSIS")
     print("=" * 60)
     
     if not all(col in df.columns for col in ['q10', 'q50', 'q90']):
@@ -28,7 +28,7 @@ def analyze_quantile_magnitudes(df):
     df['abs_q50'] = df['q50'].abs()
     df['spread'] = df['q90'] - df['q10']
     
-    print(f"\n📈 Magnitude Analysis:")
+    print(f"\n Magnitude Analysis:")
     print(f"   |Q50| mean: {df['abs_q50'].mean():.4f}")
     print(f"   |Q50| median: {df['abs_q50'].median():.4f}")
     print(f"   |Q50| 90th percentile: {df['abs_q50'].quantile(0.9):.4f}")
@@ -106,7 +106,7 @@ def calculate_expected_value_threshold(df, transaction_cost_bps=20):
     signals_above_current = (df['abs_q50'] > current_threshold).sum()
     signals_above_risk_adj = (df['abs_q50'] > df['risk_adjusted_threshold']).sum()
     
-    print(f"\n📈 Signal Frequency Comparison:")
+    print(f"\n Signal Frequency Comparison:")
     print(f"   Current threshold (0.002): {signals_above_current:,} signals ({signals_above_current/len(df)*100:.1f}%)")
     print(f"   Risk-adjusted threshold: {signals_above_risk_adj:,} signals ({signals_above_risk_adj/len(df)*100:.1f}%)")
     
@@ -235,7 +235,7 @@ def test_magnitude_approaches():
     for method, result in results.items():
         print(f"{method:<20} | {result['signal_count']:<8,} | {result['signal_rate']:<8.1%} | {result['avg_threshold']:<12.4f}")
     
-    print(f"\n💡 RECOMMENDATIONS:")
+    print(f"\n RECOMMENDATIONS:")
     print(f"1. 'adaptive_risk': Adjusts threshold based on prediction uncertainty")
     print(f"2. 'expected_value': Uses probability-weighted expected returns")
     print(f"3. 'percentile_based': Simple percentile of actual |q50| distribution")

@@ -88,7 +88,7 @@ def create_final_summary():
     
     print("   └─────────────────────┴─────────────────────────────────────┴─────────┴─────────────────────────────┴─────────────────────────────┘")
     
-    print("\n🔍 CORRELATION ANALYSIS RESULTS:")
+    print("\n CORRELATION ANALYSIS RESULTS:")
     
     correlations = [
         ("vol_momentum_old", "vol_momentum_new", 0.10, "Different signals - both valuable"),
@@ -136,7 +136,7 @@ def create_final_summary():
     ]
     
     for scenario in scenarios:
-        print(f"\n📈 {scenario['scenario'].upper()}:")
+        print(f"\n {scenario['scenario'].upper()}:")
         print(f"   Recommended: {scenario['recommended']}")
         print(f"   Reason: {scenario['reason']}")
         print(f"   Example: {scenario['example']}")
@@ -216,7 +216,7 @@ def create_final_summary():
     for metric in metrics:
         print(f"   ✓ {metric}")
     
-    print("\n⚠️  MONITORING CHECKLIST:")
+    print("\n MONITORING CHECKLIST:")
     
     monitoring = [
         "Feature calculation times (performance impact)",

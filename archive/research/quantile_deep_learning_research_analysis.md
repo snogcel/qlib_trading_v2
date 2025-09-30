@@ -8,7 +8,7 @@
 
 ---
 
-## 🔍 Key Findings Relevant to Your System
+##  Key Findings Relevant to Your System
 
 ### 1. **Quantile-Based Approach Validation**
 **Their Finding**: Quantile regression with deep learning outperforms traditional point prediction methods for Bitcoin price forecasting.
@@ -196,7 +196,7 @@ def enhance_quantile_features(df):
 
 ---
 
-## 💡 Key Insights for Your System
+##  Key Insights for Your System
 
 1. **Your Q50-Centric Approach is Cutting-Edge**: The research validates that quantile-based trading is superior to traditional methods.
 

@@ -249,7 +249,7 @@ The system validates changes to ensure they are enhancements, not replacements:
 - Empty or minimal new content
 - Modifications to critical sections without proper validation
 
-### ⚠️ Warnings
+### Warnings
 - Content removal detected
 - Significant content reduction
 - Critical section modifications

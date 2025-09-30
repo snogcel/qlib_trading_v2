@@ -128,7 +128,7 @@ def test_signal_analysis_output():
         print("\nReady for pivot table analysis!")
         
     except Exception as e:
-        print(f"   ⚠️  Could not preview results: {e}")
+        print(f"    Could not preview results: {e}")
 
 if __name__ == "__main__":
     test_signal_analysis_output()

@@ -86,7 +86,7 @@ Generated: 2025-08-08 02:03:19
 **Failed Tests:**
 - regime_dependency: Analysis for spread regime_dependency
 
-### ⚠️ Q90
+### Q90
 - Tests: 8/9 (88.9%)
 - Test Types: 5 (regime_dependency, economic_hypothesis, performance, implementation, failure_mode)
 - Priorities: critical, medium, high
@@ -104,7 +104,7 @@ Generated: 2025-08-08 02:03:19
 
 ## Priority Coverage
 
-- ⚠️ Critical: 14/15 (93.3%)
+- Critical: 14/15 (93.3%)
 - High: 5/7 (71.4%)
 - Medium: 4/12 (33.3%)
 - Low: 3/16 (18.8%)

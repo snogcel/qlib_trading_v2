@@ -156,7 +156,7 @@ This document tracks all features in the Q50-centric, variance-aware trading sys
 
 ---
 
-## 📈 Technical Features
+##  Technical Features
 
 ### Crypto Technical Indicators
 - **Type**: Optimized cryptocurrency technical analysis features
@@ -351,7 +351,7 @@ This document tracks all features in the Q50-centric, variance-aware trading sys
 
 - **Production Ready**: Fully implemented, tested, and validated
 - **Experimental**: Implemented but needs validation
-- 🔍 **Needs Review**: Requires analysis and documentation
+-  **Needs Review**: Requires analysis and documentation
 - **Deprecated**: No longer used
 - 🚧 **In Development**: Currently being built
 

@@ -10,12 +10,12 @@ Getting dizzy with all the files and concepts is totally understandable! Let me 
 
 ### Temporal Quantile Features in `src/features/regime_features.py`:
 
-1. **q50_momentum_3** - Information flow persistence ✅
+1. **q50_momentum_3** - Information flow persistence 
 2. **spread_momentum_3** - Market uncertainty evolution  
-3. **q50_stability_6** - Consensus stability measure ✅
-4. **q50_regime_persistence** - Behavioral momentum ✅
-5. **prediction_confidence** - Risk-adjusted confidence ✅
-6. **q50_direction_consistency** - Trend strength indicator ✅
+3. **q50_stability_6** - Consensus stability measure 
+4. **q50_regime_persistence** - Behavioral momentum 
+5. **prediction_confidence** - Risk-adjusted confidence 
+6. **q50_direction_consistency** - Trend strength indicator 
 
 **Status**: **DONE** - These are the temporal features from the quantile research, implemented with economic justification
 
@@ -94,7 +94,7 @@ Since we have overlap and it's getting confusing, here's what we should keep vs 
 
 ---
 
-## 💡 **Key Insight**
+##  **Key Insight**
 
 The research papers **validate your approach** and provide **future enhancement options**, but the **immediate value** was implementing the 6 temporal features with proper economic justification.
 

@@ -87,7 +87,7 @@ def analyze_spread_validation_results():
         elif decile in [2, 4, 6, 8]:
             print(f"   • Decile {decile}: {vol:.4f}")
     
-    print(f"\n   📈 Clear monotonic relationship: Higher spread → Higher future volatility")
+    print(f"\n    Clear monotonic relationship: Higher spread → Higher future volatility")
     
     print("\nSIGNAL THRESHOLD ANALYSIS:")
     
@@ -108,7 +108,7 @@ def analyze_spread_validation_results():
     
     print(f"\n   Signal threshold is HIGHLY effective at filtering trades!")
     
-    print("\n💡 WHAT THIS MEANS FOR YOUR TRADING:")
+    print("\n WHAT THIS MEANS FOR YOUR TRADING:")
     
     implications = [
         {
@@ -139,7 +139,7 @@ def analyze_spread_validation_results():
     ]
     
     for impl in implications:
-        print(f"\n📈 {impl['aspect']}:")
+        print(f"\n {impl['aspect']}:")
         print(f"   Finding: {impl['finding']}")
         print(f"   Action: {impl['action']}")
     

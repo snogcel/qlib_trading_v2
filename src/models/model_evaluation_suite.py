@@ -237,7 +237,7 @@ class QuantileModelEvaluator:
         save_path = Path(save_path)
         save_path.mkdir(exist_ok=True)
         
-        print("🔍 Starting comprehensive model evaluation...")
+        print(" Starting comprehensive model evaluation...")
         
         # 1. Quantile Performance
         print("Evaluating quantile performance...")
@@ -381,7 +381,7 @@ class QuantileModelEvaluator:
         plt.savefig(save_path / "prediction_intervals.png", dpi=300, bbox_inches='tight')
         plt.close()
         
-        print(f"📈 Plots saved to {save_path}")
+        print(f" Plots saved to {save_path}")
 
 
 def run_comprehensive_evaluation():

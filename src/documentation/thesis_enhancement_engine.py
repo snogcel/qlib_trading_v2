@@ -138,7 +138,7 @@ class ThesisEnhancementEngine:
         lines = self.feature_content.split('\n')
         
         # Find category sections (## with emoji)
-        category_pattern = r'^## [🎯📊🎲🔄📈🔧📊✅📋🔄📝] (.+)$'
+        category_pattern = r'^## [🎯📊🎲🔄🔧📊📋🔄📝] (.+)$'
         current_category = None
         current_features = []
         content_start = 0

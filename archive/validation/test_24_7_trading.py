@@ -138,12 +138,12 @@ def test_24_7_trading():
         if len(weekend_trades) > 0:
             print(f"   SUCCESS: Trading works on weekends!")
         else:
-            print(f"   ⚠️  No weekend trades (might be due to data coverage)")
+            print(f"    No weekend trades (might be due to data coverage)")
             
         if len(trades_df['hour'].unique()) > 10:
             print(f"   SUCCESS: Trading works across many hours!")
         else:
-            print(f"   ⚠️  Limited hour coverage")
+            print(f"    Limited hour coverage")
             
     else:
         print(f"   NO TRADES EXECUTED - investigating...")
@@ -163,7 +163,7 @@ def test_24_7_trading():
                 'thresh': row['signal_thresh_adaptive']
             })
         
-        print(f"\n🔍 SAMPLE SIGNALS:")
+        print(f"\n SAMPLE SIGNALS:")
         for sig in sample_signals:
             print(f"   {sig['timestamp']}: {sig['direction']} (str={sig['strength']:.3f}, conf={sig['confidence']:.1f}, target={sig['target_pct']:.3f})")
             print(f"      q50={sig['q50']:.4f}, abs_q50={sig['abs_q50']:.4f}, thresh={sig['thresh']:.4f}")

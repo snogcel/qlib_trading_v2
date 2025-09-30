@@ -263,7 +263,7 @@ def recommend_feature_selection(results):
     spread_features = {k: v for k, v in results.items() if k.startswith('spread_')}
     if spread_features:
         best_spread = max(spread_features.items(), key=lambda x: abs(x[1]['return_corr']))
-        print(f"  ⚠️  Best spread feature: {best_spread[0]} (corr: {best_spread[1]['return_corr']:+.4f})")
+        print(f"   Best spread feature: {best_spread[0]} (corr: {best_spread[1]['return_corr']:+.4f})")
         if abs(best_spread[1]['return_corr']) < 0.01:
             print(f"     (Still very weak - consider removing spread features entirely)")
     

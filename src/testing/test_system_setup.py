@@ -208,7 +208,7 @@ def main():
         print("All tests passed! System setup is complete.")
         return 0
     else:
-        print("⚠️  Some tests failed. Please review the errors above.")
+        print(" Some tests failed. Please review the errors above.")
         return 1
 
 

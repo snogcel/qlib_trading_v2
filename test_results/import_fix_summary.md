@@ -95,7 +95,7 @@ test_system_integration_with_real_data PASSED [100%]
 - **System Integration**: Q50-centric signal generation working correctly
 - **Real Data Compatibility**: Realistic validation suite working with actual data
 
-## 🔍 **Remaining Minor Issue**
+##  **Remaining Minor Issue**
 
 The single failing test (`test_signal_classification_tiers_validation`) is due to statistical noise in synthetic data:
 - **Issue**: Tier 2 performance (-0.104) slightly below tolerance (-0.1)

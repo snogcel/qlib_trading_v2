@@ -160,7 +160,7 @@ def test_momentum_features(df):
     ]
     
     for scenario in usage_scenarios:
-        print(f"\n📈 {scenario['scenario'].upper()}:")
+        print(f"\n {scenario['scenario'].upper()}:")
         print(f"   Recommended: {scenario['recommended']}")
         print(f"   Reason: {scenario['reason']}")
         print(f"   Example: {scenario['example']}")

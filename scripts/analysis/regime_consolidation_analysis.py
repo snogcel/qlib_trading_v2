@@ -9,7 +9,7 @@ import numpy as np
 def analyze_current_regime_features():
     """Analyze all regime-related features currently in the system"""
     
-    print("🔍 REGIME FEATURE LANDSCAPE ANALYSIS")
+    print(" REGIME FEATURE LANDSCAPE ANALYSIS")
     print("=" * 60)
     
     # Current regime feature categories found in codebase

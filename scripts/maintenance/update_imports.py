@@ -122,7 +122,7 @@ def main():
         except ImportError as e:
             print(f"   {import_name}: {e}")
         except Exception as e:
-            print(f"   ⚠️  {import_name}: {e}")
+            print(f"    {import_name}: {e}")
     
     print("\nImport update complete!")
     print("\nNext steps:")

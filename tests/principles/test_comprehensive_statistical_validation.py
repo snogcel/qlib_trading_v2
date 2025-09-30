@@ -41,14 +41,14 @@ try:
     REGIME_ENGINE_AVAILABLE = True
 except ImportError:
     REGIME_ENGINE_AVAILABLE = False
-    print("⚠️  RegimeFeatureEngine not available - some tests will be skipped")
+    print(" RegimeFeatureEngine not available - some tests will be skipped")
 
 try:
     from src.features.position_sizing import AdvancedPositionSizer
     POSITION_SIZER_AVAILABLE = True
 except ImportError:
     POSITION_SIZER_AVAILABLE = False
-    print("⚠️  AdvancedPositionSizer not available - some tests will be skipped")
+    print(" AdvancedPositionSizer not available - some tests will be skipped")
 
 # Helper function to ensure vol_risk is available
 def ensure_vol_risk_available(df):
@@ -488,7 +488,7 @@ class TestComprehensiveStatisticalValidation:
         
         # Test 1: Position size suggestion should be calculated (may not exist in all implementations)
         if 'position_size_suggestion' not in df_with_signals.columns:
-            print("⚠️  position_size_suggestion not found - using alternative validation")
+            print(" position_size_suggestion not found - using alternative validation")
             # Alternative: check that we can calculate position sizes
             base_position_size = 0.1 / np.maximum(df_with_signals['vol_risk'] * 1000, 0.1)
             df_with_signals['test_position_size'] = base_position_size.clip(0.01, 0.5)

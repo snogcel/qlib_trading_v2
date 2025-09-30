@@ -164,7 +164,7 @@ def print_executive_summary(report):
         print("STATUS: ALL TESTS PASSED")
         print("Phase 1 of Principle Coverage Framework COMPLETED")
     else:
-        print("⚠️  STATUS: SOME TESTS FAILED")
+        print(" STATUS: SOME TESTS FAILED")
         print("Action required to complete Phase 1")
     
     print(f"\nExecution Details:")
@@ -187,11 +187,11 @@ def print_executive_summary(report):
         print(f"   {rec}")
     
     print(f"\nStatistical Validation Requirements Met:")
-    print("   • Time-series aware cross-validation ✅")
-    print("   • Out-of-sample testing ✅")
-    print("   • Regime robustness testing ✅") 
-    print("   • Feature stability analysis ✅")
-    print("   • Economic logic validation ✅")
+    print("   • Time-series aware cross-validation ")
+    print("   • Out-of-sample testing ")
+    print("   • Regime robustness testing ") 
+    print("   • Feature stability analysis ")
+    print("   • Economic logic validation ")
     
     if status == "PASSED":
         print(f"\nNext Steps:")
@@ -220,7 +220,7 @@ def main():
         print("Phase 1 of Principle Coverage Framework COMPLETED!")
         return 0
     else:
-        print("\n⚠️  Statistical validation identified issues that need attention.")
+        print("\n Statistical validation identified issues that need attention.")
         return 1
 
 if __name__ == "__main__":

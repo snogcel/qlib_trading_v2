@@ -291,10 +291,10 @@ class TestResult:
             Executive summary string
         """
         status_emoji = {
-            TestStatus.PASSED: "✅",
+            TestStatus.PASSED: "",
             TestStatus.FAILED: "", 
             TestStatus.SKIPPED: "⏭️",
-            TestStatus.ERROR: "🚨",
+            TestStatus.ERROR: "",
             TestStatus.TIMEOUT: "⏰"
         }
         

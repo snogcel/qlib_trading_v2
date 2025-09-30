@@ -196,7 +196,7 @@ def validate_feature_quality(new_feature, existing_features, returns):
 
 ---
 
-## 🚨 Validation Gates
+##  Validation Gates
 
 ### Pre-Development Gate
 - [ ] Economic hypothesis documented

@@ -36,7 +36,7 @@ class ReportTemplates:
 | Metric | Value | Status |
 |--------|-------|--------|
 | Overall Success Rate | {success_rate}% | {success_status} |
-| Total Tests Executed | {total_tests} | ℹ️ |
+| Total Tests Executed | {total_tests} | |
 | Critical Failures | {critical_failures} | {critical_status} |
 | High Priority Issues | {high_priority_issues} | {priority_status} |
 
@@ -47,11 +47,11 @@ class ReportTemplates:
 - **Average Execution Time:** {avg_execution_time}s
 - **Test Coverage:** {coverage_percentage}%
 
-## 🚨 Critical Issues
+##  Critical Issues
 
 {critical_issues_section}
 
-## 📈 Recommendations
+##  Recommendations
 
 {recommendations_section}
 
@@ -81,7 +81,7 @@ class ReportTemplates:
 
 {execution_summary}
 
-## 🔍 Feature Analysis
+##  Feature Analysis
 
 {feature_analysis}
 
@@ -89,7 +89,7 @@ class ReportTemplates:
 
 {test_type_breakdown}
 
-## ⚠️ Failure Analysis
+## Failure Analysis
 
 {failure_analysis}
 
@@ -145,19 +145,19 @@ class ReportTemplates:
 
 {failed_tests_section}
 
-## 📈 Performance Analysis
+##  Performance Analysis
 
 {performance_analysis}
 
-## 🔍 Economic Hypothesis Validation
+##  Economic Hypothesis Validation
 
 {hypothesis_validation}
 
-## ⚠️ Risk Assessment
+## Risk Assessment
 
 {risk_assessment}
 
-## 💡 Recommendations
+##  Recommendations
 
 {feature_recommendations}
 
@@ -194,7 +194,7 @@ class ReportTemplates:
 
 {coverage_gaps}
 
-## 📈 Coverage Trends
+##  Coverage Trends
 
 {coverage_trends}
 
@@ -252,9 +252,9 @@ class ReportTemplates:
         )
         
         # Determine status indicators
-        success_status = "✅" if success_rate >= 95 else "⚠️" if success_rate >= 80 else ""
-        critical_status = "✅" if critical_failures == 0 else ""
-        priority_status = "✅" if high_priority_issues == 0 else "⚠️" if high_priority_issues <= 2 else ""
+        success_status = "" if success_rate >= 95 else "⚠️" if success_rate >= 80 else ""
+        critical_status = "" if critical_failures == 0 else ""
+        priority_status = "" if high_priority_issues == 0 else "⚠️" if high_priority_issues <= 2 else ""
         
         # Generate critical issues section
         critical_issues_section = ReportTemplates._format_critical_issues(results)
@@ -383,7 +383,7 @@ class ReportTemplates:
         unique_recommendations = list(set(all_recommendations))[:10]  # Top 10
         
         if not unique_recommendations:
-            return "⚠️ **Manual review required.** Failed tests need analysis and recommendations."
+            return "**Manual review required.** Failed tests need analysis and recommendations."
         
         recommendations = ["**Key recommendations for improvement:**\n"]
         for i, rec in enumerate(unique_recommendations, 1):
@@ -560,7 +560,7 @@ class ReportTemplates:
         
         validation = []
         for test in hypothesis_tests:
-            status_icon = "✅" if test.passed else ""
+            status_icon = "" if test.passed else ""
             validation.append(f"{status_icon} **Hypothesis Test:** {test.test_case.description or 'Economic behavior validation'}")
             
             if test.passed:
@@ -618,7 +618,7 @@ class ReportTemplates:
         unique_recommendations = list(set(all_recommendations))
         
         if not unique_recommendations:
-            return "⚠️ **Manual analysis required.** Failed tests need detailed review."
+            return "**Manual analysis required.** Failed tests need detailed review."
         
         recommendations = []
         for i, rec in enumerate(unique_recommendations, 1):

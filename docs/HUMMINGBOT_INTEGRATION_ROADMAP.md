@@ -321,7 +321,7 @@ def regime_aware_features(vol_scaled, signal_rel, fg_index):
 
 ---
 
-## 🚨 Files NOT Ready for Commit (Development/Experimental)
+##  Files NOT Ready for Commit (Development/Experimental)
 
 ### Experimental Analysis
 - `ppo_sweep_optuna.py` - Older version (superseded by v2)

@@ -63,7 +63,7 @@ class TestRealisticStatisticalValidation:
             missing_columns = [col for col in required_columns if col not in df.columns]
             
             if missing_columns:
-                print(f"⚠️  Missing columns: {missing_columns}")
+                print(f" Missing columns: {missing_columns}")
                 print(f"Available columns: {list(df.columns)}")
                 
                 # Create minimal required columns if missing
@@ -82,7 +82,7 @@ class TestRealisticStatisticalValidation:
             return df
             
         except Exception as e:
-            print(f"⚠️  Could not load real data: {e}")
+            print(f" Could not load real data: {e}")
             # Fallback to realistic synthetic data
             return self._create_realistic_fallback_data()
     
@@ -209,7 +209,7 @@ class TestRealisticStatisticalValidation:
             assert p_value < 1.0, f"P-value should be calculable: p={p_value:.4f}"
             print(f"   Framework validation: Correlation testing works with real data")
         else:
-            print("⚠️  Insufficient data for correlation testing")
+            print(" Insufficient data for correlation testing")
     
     def test_regime_features_with_real_data(self, real_data):
         """Test regime features using actual system data"""
@@ -287,7 +287,7 @@ class TestRealisticStatisticalValidation:
             assert len(created_signal_features) >= 2, f"Should create multiple signal features: {created_signal_features}"
             
         except Exception as e:
-            print(f"⚠️  Signal generation test encountered issue: {e}")
+            print(f" Signal generation test encountered issue: {e}")
             print("Framework is available for signal generation testing")
     
     def test_probability_calculations_with_real_data(self, real_data):
@@ -330,7 +330,7 @@ class TestRealisticStatisticalValidation:
             assert prob_array.std() > 0.01, f"Probabilities should have some variation: {prob_array.std():.4f}"
             
         else:
-            print("⚠️  No valid probability calculations - data may need preprocessing")
+            print(" No valid probability calculations - data may need preprocessing")
     
     def test_vol_raw_deciles_with_real_data(self, real_data):
         """Test vol_raw decile calculations using actual system data"""
@@ -358,9 +358,9 @@ class TestRealisticStatisticalValidation:
                 assert len(decile_distribution) >= 2, "Should use multiple deciles"
                 
             else:
-                print("⚠️  No valid vol_raw values found")
+                print(" No valid vol_raw values found")
         else:
-            print("⚠️  vol_raw column not found in real data")
+            print(" vol_raw column not found in real data")
     
     def test_system_integration_with_real_data(self, real_data):
         """Test overall system integration using actual data"""
@@ -385,7 +385,7 @@ class TestRealisticStatisticalValidation:
         if len(quantile_cols) >= 2:
             print("   Has quantile structure for testing")
         else:
-            print("   ⚠️  Limited quantile structure - using available data")
+            print("    Limited quantile structure - using available data")
         
         # Test basic statistical properties
         numeric_cols = df.select_dtypes(include=[np.number]).columns

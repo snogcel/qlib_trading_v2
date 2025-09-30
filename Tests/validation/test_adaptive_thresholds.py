@@ -18,7 +18,7 @@ def validate_adaptive_thresholds(df):
     """Test if adaptive thresholds improve signal quality"""
     
     # Debug: Check data quality first
-    print("🔍 DATA QUALITY & SCALE CHECK:")
+    print(" DATA QUALITY & SCALE CHECK:")
     print(f"abs_q50 range: {df['abs_q50'].min():.6f} to {df['abs_q50'].max():.6f}")
     print(f"abs_q50 NaN count: {df['abs_q50'].isna().sum()}")
     print(f"abs_q50 zero count: {(df['abs_q50'] == 0).sum()}")
@@ -61,7 +61,7 @@ def validate_adaptive_thresholds(df):
     rolling_adj2 = df['abs_q50'].rolling(30, min_periods=10).quantile(threshold_adjustments[2])  # Low vol
     
     # Debug: Check if rolling quantiles are working
-    print("🔍 ROLLING QUANTILE CHECK:")
+    print(" ROLLING QUANTILE CHECK:")
     print(f"Threshold adjustments: {threshold_adjustments}")
     print(f"rolling_adj0 ({threshold_adjustments[0]}) NaN count: {rolling_adj0.isna().sum()}")
     print(f"rolling_adj1 ({threshold_adjustments[1]}) NaN count: {rolling_adj1.isna().sum()}")
@@ -72,7 +72,7 @@ def validate_adaptive_thresholds(df):
     print()
     
     # Debug: Check condition matching
-    print("🔍 CONDITION MATCHING CHECK:")
+    print(" CONDITION MATCHING CHECK:")
     for i, cond in enumerate(conditions):
         print(f"Condition {i} matches: {cond.sum()} periods ({cond.mean():.1%})")
     print()
@@ -404,7 +404,7 @@ def validate_adaptive_thresholds(df):
     
     print(f"Exported {len(pivot_df)} rows to '{output_file}'")
     print(f"📋 Columns included: {len(available_columns)}")
-    print(f"🔍 Key pivot fields:")
+    print(f" Key pivot fields:")
     print(f"   • Regime analysis: regime, is_*_vol columns")
     print(f"   • Time analysis: year, month, quarter, hour")
     print(f"   • Performance: *_signal_return, *_hit columns")

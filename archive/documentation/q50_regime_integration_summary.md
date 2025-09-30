@@ -102,7 +102,7 @@ sell_mask = tradeable & (q50 < 0)
 - Higher selectivity in high volatility periods
 - Lower thresholds in trending markets (momentum helps)
 
-### 🔍 **Interpretability**
+###  **Interpretability**
 - Can explain every trading decision
 - Clear economic rationale for each threshold
 - Regime features help understand market context

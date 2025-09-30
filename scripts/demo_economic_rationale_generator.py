@@ -67,7 +67,7 @@ def demo_feature_enhancement(generator, feature_name, category, description=""):
     
     # Validate the thesis
     is_valid, issues = validate_economic_logic(enhancement.thesis_statement, "")
-    print(f"\n🔍 VALIDATION RESULT: {'VALID' if is_valid else 'ISSUES FOUND'}")
+    print(f"\n VALIDATION RESULT: {'VALID' if is_valid else 'ISSUES FOUND'}")
     if issues:
         for issue in issues:
             print(f"   - {issue}")
@@ -156,7 +156,7 @@ def demo_template_system():
         print(f"  {feature_pattern}: {mapping['template_type']} -> {mapping['primary_role'].value}")
     
     # Test classification for various feature names
-    print(f"\n🔍 FEATURE NAME CLASSIFICATION EXAMPLES:")
+    print(f"\n FEATURE NAME CLASSIFICATION EXAMPLES:")
     test_names = [
         "q50_signal", "volatility_risk", "regime_detector", "position_kelly",
         "momentum_trend", "sentiment_fear", "spread_analysis", "unknown_feature"

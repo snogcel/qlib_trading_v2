@@ -104,7 +104,7 @@ def create_implementation_summary():
     print("   • No runtime errors from scale mismatches")
     print("   • Entropy coefficient calculation preserved")
     
-    print("\n📈 NEXT STEPS:")
+    print("\n NEXT STEPS:")
     next_steps = [
         "Test with real data from your crypto loader",
         "Run backtest to verify performance",

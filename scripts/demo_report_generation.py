@@ -114,7 +114,7 @@ def create_sample_test_results() -> list:
 def demo_basic_reporter():
     """Demonstrate basic reporter functionality."""
     print("\n" + "="*60)
-    print("🔍 DEMO: Basic Reporter Functionality")
+    print(" DEMO: Basic Reporter Functionality")
     print("="*60)
     
     # Create sample results
@@ -324,7 +324,7 @@ def demo_advanced_features(results):
         f.write(exec_summary)
     print(f"💾 Executive summary saved to: {exec_path}")
     
-    print("\n🔍 Generating failure analysis...")
+    print("\n Generating failure analysis...")
     failure_analysis = reporter.generate_failure_analysis(results)
     
     failure_path = output_dir / "failure_analysis.md"
@@ -332,7 +332,7 @@ def demo_advanced_features(results):
         f.write(failure_analysis)
     print(f"💾 Failure analysis saved to: {failure_path}")
     
-    print("\n📈 Generating regime analysis...")
+    print("\n Generating regime analysis...")
     regime_analysis = reporter.generate_regime_analysis(results)
     
     regime_path = output_dir / "regime_analysis.md"
@@ -383,7 +383,7 @@ def main():
         print("   - test_results/reports/templates/")
         print("   - test_results/reports/exports/")
         print("   - test_results/reports/advanced/")
-        print("\n💡 Open the HTML files in a web browser to see interactive reports!")
+        print("\n Open the HTML files in a web browser to see interactive reports!")
         
     except Exception as e:
         print(f"\nDemo failed with error: {e}")

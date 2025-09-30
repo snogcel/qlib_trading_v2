@@ -176,7 +176,7 @@ def compare_with_old_approach():
     print("   Signal quality (information ratio filters low-quality signals)")
     print("   Interpretability (can explain every trading decision)")
     
-    print(f"\n📈 Expected Signal Quality:")
+    print(f"\n Expected Signal Quality:")
     print("   • Higher average information ratio for trading signals")
     print("   • More consistent performance across market regimes")
     print("   • Reduced false signals in high volatility periods")

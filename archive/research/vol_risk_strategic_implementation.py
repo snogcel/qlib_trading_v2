@@ -11,7 +11,7 @@ def analyze_vol_risk_as_variance(df):
     Analyze vol_risk as variance measure and its strategic applications
     """
     
-    print("🔍 VOL_RISK AS VARIANCE ANALYSIS")
+    print(" VOL_RISK AS VARIANCE ANALYSIS")
     print("=" * 60)
     
     if 'vol_risk' not in df.columns:
@@ -29,7 +29,7 @@ def analyze_vol_risk_as_variance(df):
     # Convert to standard deviation for intuition
     df['vol_risk_sqrt'] = np.sqrt(df['vol_risk'])  # This gives us back the std dev
     
-    print(f"\n📈 Converted to Std Dev (√vol_risk):")
+    print(f"\n Converted to Std Dev (√vol_risk):")
     vol_std_stats = df['vol_risk_sqrt'].describe()
     print(f"   Mean: {vol_std_stats['mean']:.4f} ({vol_std_stats['mean']*100:.2f}%)")
     print(f"   Std:  {vol_std_stats['std']:.4f}")

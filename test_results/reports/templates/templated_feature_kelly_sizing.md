@@ -38,7 +38,7 @@
   - Update failure_mode test criteria
 
 
-## 📈 Performance Analysis
+##  Performance Analysis
 
 ### Accuracy
 - **Average:** 0.932
@@ -53,11 +53,11 @@
 - **Range:** 0.671 - 0.671
 
 
-## 🔍 Economic Hypothesis Validation
+##  Economic Hypothesis Validation
 
 No economic hypothesis tests found for this feature.
 
-## ⚠️ Risk Assessment
+## Risk Assessment
 
 - **High Risk Issues:** 0
 - **Medium Risk Issues:** 2
@@ -65,7 +65,7 @@ No economic hypothesis tests found for this feature.
 
 **Overall Risk Level:** LOW - Acceptable risk
 
-## 💡 Recommendations
+##  Recommendations
 
 1. Review kelly_sizing implementation
 2. Update failure_mode test criteria

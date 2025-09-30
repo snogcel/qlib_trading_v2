@@ -13,7 +13,7 @@ def create_corrected_analysis():
     print("VOLATILITY FEATURES: CORRECTED ANALYSIS WITH HISTORICAL CONTEXT")
     print("=" * 100)
     
-    print("\n🔍 HISTORICAL IMPLEMENTATIONS (OLD):")
+    print("\n HISTORICAL IMPLEMENTATIONS (OLD):")
     
     print("\n1. vol_risk (formerly vol_scaled):")
     print("   DEFINITION: Quantile-normalized realized volatility")
@@ -98,7 +98,7 @@ def create_corrected_analysis():
     print("   NEW: Continuous 0-0.056 - needs new thresholds")
     print("   IMPACT: Regime flags (>=8, >=6, <=2, <=1) won't work!")
     
-    print("\n🚨 CRITICAL FIXES NEEDED:")
+    print("\n CRITICAL FIXES NEEDED:")
     
     print("\n1. IMMEDIATE (BREAKING CHANGES):")
     print("   • Position sizing: Rescale vol_risk or use different logic")

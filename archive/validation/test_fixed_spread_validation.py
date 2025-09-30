@@ -106,7 +106,7 @@ def compare_old_vs_new():
     # Test correlations with spread
     df['spread'] = df['q90'] - df['q10']
     
-    print(f"\n📈 CORRELATION WITH SPREAD:")
+    print(f"\n CORRELATION WITH SPREAD:")
     print(f"   Old method: {df['spread'].corr(df['future_vol_1h_old']):.4f} (NaN expected)")
     print(f"   New method 1: {df['spread'].corr(df['future_vol_1h_new']):.4f}")
     print(f"   New method 2: {df['spread'].corr(df['future_vol_2h_new']):.4f}")

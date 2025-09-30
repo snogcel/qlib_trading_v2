@@ -139,7 +139,7 @@ class TestPhase1Demo:
             
             assert stability_metric < 10.0, f"Feature should be reasonably stable: {stability_metric:.2f}"
         else:
-            print("⚠️  Not enough data for stability testing")
+            print(" Not enough data for stability testing")
     
     def test_economic_logic_validation(self, sample_data):
         """Test that features follow economic logic"""

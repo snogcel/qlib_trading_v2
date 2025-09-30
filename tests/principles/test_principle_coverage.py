@@ -30,7 +30,7 @@ def ensure_vol_risk_available(df):
     This represents the squared volatility = variance, which is key for risk measurement
     """
     if 'vol_risk' not in df.columns:
-        print("⚠️  vol_risk was not found in data - this should come from crypto_loader_optimized")
+        print(" vol_risk was not found in data - this should come from crypto_loader_optimized")
         print("   vol_risk = Std(Log($close / Ref($close, 1)), 6) * Std(Log($close / Ref($close, 1)), 6)")
         
         
@@ -295,7 +295,7 @@ class PrincipleCoverageValidator:
             # Check for key output files
             key_files = [
                 'df_all_macro_analysis.csv',
-                'data3/macro_features.pkl',
+                'macro_features.pkl',
                 'temp/correlation_matrix.csv'
             ]
             
@@ -355,7 +355,7 @@ class PrincipleCoverageValidator:
                     if 'rationale' in result:
                         print(f"     Rationale: {result['rationale']}")
                 else:
-                    print(f"  ⚠️ {test_name}: {status}")
+                    print(f"  {test_name}: {status}")
                     if 'error' in result:
                         print(f"     Error: {result['error']}")
         

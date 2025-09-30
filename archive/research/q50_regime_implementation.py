@@ -18,7 +18,7 @@ def calculate_vol_risk(df, vol_col='$realized_vol_6', rolling_window=168):
     """
     
     if vol_col not in df.columns:
-        print(f"⚠️  {vol_col} not found, using vol_raw as fallback")
+        print(f" {vol_col} not found, using vol_raw as fallback")
         vol_col = 'vol_raw' if 'vol_raw' in df.columns else '$realized_vol_3'
     
     # Calculate rolling quantiles for normalization

@@ -155,7 +155,7 @@ This resource serves as an excellent complement to our core principles, providin
 
 ---
 
-## 🚨 Anti-Patterns to Avoid
+##  Anti-Patterns to Avoid
 
 ### **Complexity Without Purpose**
 - Don't use neural networks just because they're trendy

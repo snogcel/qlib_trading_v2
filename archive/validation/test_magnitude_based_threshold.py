@@ -111,7 +111,7 @@ def test_magnitude_based_threshold():
             trad_count = df_result['economically_significant_traditional'].sum()
             exp_val_count = df_result['economically_significant_expected_value'].sum()
             
-            print(f"\n📈 Economic Significance Comparison:")
+            print(f"\n Economic Significance Comparison:")
             print(f"   Traditional approach: {trad_count:,} ({trad_count/len(df_result)*100:.1f}%)")
             print(f"   Expected value approach: {exp_val_count:,} ({exp_val_count/len(df_result)*100:.1f}%)")
             
@@ -123,7 +123,7 @@ def test_magnitude_based_threshold():
             if exp_val_count > trad_count:
                 print(f"   Expected value approach provides more trading opportunities")
             else:
-                print(f"   ⚠️  Expected value approach not providing more opportunities")
+                print(f"    Expected value approach not providing more opportunities")
         
         # Test final tradeable signals
         if 'tradeable' in df_result.columns:
@@ -150,9 +150,9 @@ def test_magnitude_based_threshold():
                 if positive_exp_val > 0.7:
                     print(f"   Most tradeable signals have positive expected value")
                 else:
-                    print(f"   ⚠️  Many tradeable signals have negative expected value")
+                    print(f"    Many tradeable signals have negative expected value")
             else:
-                print(f"   ⚠️  No tradeable signals generated - thresholds may be too strict")
+                print(f"    No tradeable signals generated - thresholds may be too strict")
         
         # Test signal generation
         if 'side' in df_result.columns:

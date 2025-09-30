@@ -41,7 +41,7 @@ def test_vol_scaled():
     # Check vol_scaled properties
     vol_scaled = df_with_features['vol_scaled'].dropna()
     
-    print(f"\n📈 vol_scaled analysis:")
+    print(f"\n vol_scaled analysis:")
     print(f"   Count: {len(vol_scaled)}")
     print(f"   Range: [{vol_scaled.min():.6f}, {vol_scaled.max():.6f}]")
     print(f"   Mean: {vol_scaled.mean():.6f}")
@@ -104,7 +104,7 @@ def test_regime_detection():
     medium_vol_count = ((vol_scaled > medium_vol_threshold) & (vol_scaled <= high_vol_threshold)).sum()
     low_vol_count = (vol_scaled < low_vol_threshold).sum()
     
-    print(f"\n📈 Regime classifications:")
+    print(f"\n Regime classifications:")
     print(f"   High vol: {high_vol_count} ({high_vol_count/len(vol_scaled)*100:.1f}%)")
     print(f"   Medium vol: {medium_vol_count} ({medium_vol_count/len(vol_scaled)*100:.1f}%)")
     print(f"   Low vol: {low_vol_count} ({low_vol_count/len(vol_scaled)*100:.1f}%)")

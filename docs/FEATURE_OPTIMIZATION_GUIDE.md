@@ -99,7 +99,7 @@ The system optimizes three levels of parameters:
 - Long/short thresholds
 - Risk management settings
 
-## 📈 Performance Metrics
+##  Performance Metrics
 
 Each experiment tracks:
 - **Total Return:** Absolute performance
@@ -159,7 +159,7 @@ python run_feature_optimization.py --mode optimize --config enhanced_volatility
 2. Modify the `objective()` function in optimization methods
 3. Adjust scoring weights (e.g., Sharpe vs. return vs. drawdown)
 
-## 🚨 Performance Expectations
+##  Performance Expectations
 
 Based on your baseline results:
 
@@ -174,7 +174,7 @@ Based on your baseline results:
 - **Feature Interactions:** +5-15% overall performance
 - **Full Optimization:** +20-40% combined improvement
 
-## 💡 Tips for Best Results
+##  Tips for Best Results
 
 1. **Start with quick test** - Don't jump to full optimization
 2. **Monitor feature importance** - Remove low-importance features

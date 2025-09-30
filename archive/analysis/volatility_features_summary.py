@@ -20,7 +20,7 @@ def create_detailed_summary():
     print("VOLATILITY FEATURES ANALYSIS SUMMARY")
     print("=" * 80)
     
-    print("\n🔍 IMPLEMENTATION CHANGES:")
+    print("\n IMPLEMENTATION CHANGES:")
     print("\n1. vol_raw_momentum:")
     print("   OLD: df['vol_raw'].pct_change(periods=3)")
     print("        → 3-period percentage change of some vol_raw measure")
@@ -62,7 +62,7 @@ def create_detailed_summary():
     print(f"  - New range: [{valid_decile['vol_raw_decile_new'].min():.6f}, {valid_decile['vol_raw_decile_new'].max():.6f}]")
     print(f"  - Scale difference: ~{abs(valid_decile['vol_raw_decile_old'].std() / valid_decile['vol_raw_decile_new'].std()):.0f}x")
     
-    print("\n⚠️  CRITICAL FINDINGS:")
+    print("\n CRITICAL FINDINGS:")
     print("\n1. SCALE MISMATCH:")
     print("   • All features have dramatically different scales between old and new")
     print("   • vol_raw_momentum: old values ~±500, new values ~±0.07")

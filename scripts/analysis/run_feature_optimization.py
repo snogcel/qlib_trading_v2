@@ -271,7 +271,7 @@ def main():
         
         if best_config:
             print(f"\n🏆 Best performing configuration: {best_config} (Sharpe: {best_score:.3f})")
-            print(f"💡 Recommendation: Run 'python run_feature_optimization.py --mode optimize --config {best_config}' for detailed optimization")
+            print(f" Recommendation: Run 'python run_feature_optimization.py --mode optimize --config {best_config}' for detailed optimization")
     
     elif args.mode == "full":
         print("\n🔬 Running full feature experiment suite...")

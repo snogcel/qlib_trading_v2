@@ -92,7 +92,7 @@ class TestReportTemplates(unittest.TestCase):
         self.assertIn("# Executive Summary", template)
         self.assertIn("## Key Metrics", template)
         self.assertIn("## Summary Statistics", template)
-        self.assertIn("## 🚨 Critical Issues", template)
+        self.assertIn("##  Critical Issues", template)
     
     def test_get_detailed_report_template(self):
         """Test detailed report template retrieval."""
@@ -107,8 +107,8 @@ class TestReportTemplates(unittest.TestCase):
         # Check that template has expected structure
         self.assertIn("# Detailed Test Coverage Report", template)
         self.assertIn("## 📋 Test Execution Summary", template)
-        self.assertIn("## 🔍 Feature Analysis", template)
-        self.assertIn("## ⚠️ Failure Analysis", template)
+        self.assertIn("##  Feature Analysis", template)
+        self.assertIn("## Failure Analysis", template)
     
     def test_get_feature_report_template(self):
         """Test feature report template retrieval."""
@@ -124,7 +124,7 @@ class TestReportTemplates(unittest.TestCase):
         self.assertIn("# Feature Report: {feature_name}", template)
         self.assertIn("## Feature Overview", template)
         self.assertIn("## Test Results Summary", template)
-        self.assertIn("## 💡 Recommendations", template)
+        self.assertIn("##  Recommendations", template)
     
     def test_get_coverage_matrix_template(self):
         """Test coverage matrix template retrieval."""
@@ -164,8 +164,8 @@ class TestReportTemplates(unittest.TestCase):
         self.assertIn("", summary)  # Should show critical status due to low success rate
         
         # Check sections are populated
-        self.assertIn("## 🚨 Critical Issues", summary)
-        self.assertIn("## 📈 Recommendations", summary)
+        self.assertIn("##  Critical Issues", summary)
+        self.assertIn("##  Recommendations", summary)
         self.assertIn("## 📋 Next Steps", summary)
     
     def test_format_feature_report_no_results(self):
@@ -191,7 +191,7 @@ class TestReportTemplates(unittest.TestCase):
         self.assertIn("## Feature Overview", report)
         self.assertIn("## Test Results Summary", report)
         self.assertIn("## Passed Tests", report)
-        self.assertIn("## 💡 Recommendations", report)
+        self.assertIn("##  Recommendations", report)
         
         # Check statistics
         self.assertIn("Total Tests: 1", report)

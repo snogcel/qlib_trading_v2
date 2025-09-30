@@ -5,7 +5,7 @@ Based on analysis of the codebase, several key features need standardization to 
 
 ---
 
-## 🚨 Priority 1: Signal Strength Standardization
+##  Priority 1: Signal Strength Standardization
 
 ### Current Issues
 - **Multiple implementations**: 3+ different calculation methods
@@ -58,7 +58,7 @@ def get_strength_bucket(signal_strength):
 
 ---
 
-## 🚨 Priority 2: Signal Tier Standardization
+##  Priority 2: Signal Tier Standardization
 
 ### Current Issues
 - **Multiple formats**: Numeric (0-3) vs Letter (A-D) systems
@@ -214,7 +214,7 @@ def calculate_signal_quality_score(signal_strength, tier_confidence, prob_direct
 
 ---
 
-## 🚨 Risk Mitigation
+##  Risk Mitigation
 
 ### Rollback Plan
 - Keep original implementations as `_legacy` functions

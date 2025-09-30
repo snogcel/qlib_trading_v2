@@ -8,9 +8,9 @@
 | Metric | Value | Status |
 |--------|-------|--------|
 | Overall Success Rate | 52.0% | |
-| Total Tests Executed | 50 | ℹ️ |
+| Total Tests Executed | 50 | |
 | Critical Failures | 1 | |
-| High Priority Issues | 2 | ⚠️ |
+| High Priority Issues | 2 | |
 
 ## Summary Statistics
 
@@ -19,7 +19,7 @@
 - **Average Execution Time:** 2.41s
 - **Test Coverage:** 52.0%
 
-## 🚨 Critical Issues
+##  Critical Issues
 
 **Critical issues requiring immediate attention:**
 
@@ -29,7 +29,7 @@
    - Action: Review kelly_sizing implementation
 
 
-## 📈 Recommendations
+##  Recommendations
 
 **Key recommendations for improvement:**
 

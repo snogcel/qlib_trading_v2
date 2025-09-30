@@ -60,10 +60,10 @@ graph TD
 |-------|-------|---------|--------|---------------|---------|
 | **Data Ingestion** | Raw market data | `crypto_loader.py` | Structured features | `test_data_alignment.py` | COVERED |
 | **Feature Engineering** | Structured data | `regime_features.py` | Enhanced features | `test_unified_regime_features.py` | COVERED |
-| **Model Training** | Enhanced features | `multi_quantile.py` | Q10/Q50/Q90 models | ⚠️ Missing ML tests | NEEDS_TEST |
+| **Model Training** | Enhanced features | `multi_quantile.py` | Q10/Q50/Q90 models | Missing ML tests | NEEDS_TEST |
 | **Signal Generation** | Model predictions | `q50_regime_aware_signals()` | Trading signals | `test_signal.py` | COVERED |
 | **Risk Management** | Signals + features | `vol_risk` calculations | Risk-adjusted signals | `test_volatility.py` | COVERED |
-| **Position Sizing** | Risk-adjusted signals | Kelly sizing | Position recommendations | ⚠️ Missing sizing tests | NEEDS_TEST |
+| **Position Sizing** | Risk-adjusted signals | Kelly sizing | Position recommendations | Missing sizing tests | NEEDS_TEST |
 | **Backtesting** | Positions + prices | `backtester.py` | Performance metrics | Validated (1.327 Sharpe) | COVERED |
 | **Performance Analysis** | Backtest results | Analysis suite | Reports & insights | Working | COVERED |
 
@@ -78,8 +78,8 @@ graph TD
 | **Python 3.9+** | Core language | System-wide | All tests | VALIDATED |
 | **Pandas** | Data manipulation | All modules | Data tests | VALIDATED |
 | **NumPy** | Numerical computing | All modules | Math tests | VALIDATED |
-| **LightGBM** | ML modeling | `src/models/multi_quantile.py` | ⚠️ Missing | NEEDS_TEST |
-| **XGBoost** | Feature selection | Training pipeline | ⚠️ Missing | NEEDS_TEST |
+| **LightGBM** | ML modeling | `src/models/multi_quantile.py` | Missing | NEEDS_TEST |
+| **XGBoost** | Feature selection | Training pipeline | Missing | NEEDS_TEST |
 | **QLib** | Financial ML framework | Data loading | Integration tests | VALIDATED |
 
 ### **Custom Components**
@@ -88,7 +88,7 @@ graph TD
 |-----------|---------|----------|--------------|---------------|
 | **CustomNestedDataLoader** | Multi-timeframe data | `src/data/nested_data_loader.py` | QLib, Pandas | Integration test |
 | **RegimeFeatureEngine** | Market regime detection | `src/features/regime_features.py` | NumPy, Pandas | Unit tests |
-| **MultiQuantileModel** | Q10/Q50/Q90 prediction | `src/models/multi_quantile.py` | LightGBM | ⚠️ Missing |
+| **MultiQuantileModel** | Q10/Q50/Q90 prediction | `src/models/multi_quantile.py` | LightGBM | Missing |
 | **QuantileBacktester** | Performance validation | `src/backtesting/quantile_backtester.py` | Pandas, NumPy | Validated |
 
 ### **External Dependencies**
@@ -96,7 +96,7 @@ graph TD
 | Dependency | Version | Purpose | Risk Level | Test Coverage |
 |------------|---------|---------|------------|---------------|
 | **QLib** | Latest | Financial ML framework | Medium | Integration tests |
-| **LightGBM** | 3.3+ | Gradient boosting | Low | ⚠️ Missing model tests |
+| **LightGBM** | 3.3+ | Gradient boosting | Low | Missing model tests |
 | **Scikit-learn** | 1.0+ | ML utilities | Low | Indirect coverage |
 | **Matplotlib** | 3.5+ | Visualization | Low | Plot generation |
 
@@ -156,14 +156,14 @@ class PipelineTestCoverage:
 | Critical Path | Components Involved | Test Status | Risk Level |
 |---------------|-------------------|-------------|------------|
 | **Raw Data → Features** | crypto_loader → regime_features | TESTED | Low |
-| **Features → Predictions** | multi_quantile → training_pipeline | ⚠️ PARTIAL | High |
+| **Features → Predictions** | multi_quantile → training_pipeline | PARTIAL | High |
 | **Predictions → Signals** | q50_regime_aware_signals | TESTED | Low |
-| **Signals → Positions** | Kelly sizing → backtester | ⚠️ PARTIAL | Medium |
+| **Signals → Positions** | Kelly sizing → backtester | PARTIAL | Medium |
 | **Positions → Performance** | backtester → analysis | VALIDATED | Low |
 
 ---
 
-## 📈 Visual Pipeline Monitoring
+##  Visual Pipeline Monitoring
 
 ### **Real-time Pipeline Health Dashboard**
 

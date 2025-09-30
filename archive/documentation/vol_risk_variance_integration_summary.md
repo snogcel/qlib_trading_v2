@@ -41,7 +41,7 @@ def calculate_vol_risk(df, vol_col='$realized_vol_6', rolling_window=168):
 def ensure_vol_risk_available(df):
     """Use existing vol_risk feature from crypto_loader_optimized"""
     if 'vol_risk' not in df.columns:
-        print("⚠️  vol_risk should come from crypto_loader_optimized")
+        print(" vol_risk should come from crypto_loader_optimized")
 ```
 
 ### 2. **Enhanced Information Ratio**

@@ -40,7 +40,7 @@ def run_alignment_tests():
         print(result.stdout)
         
         if result.stderr:
-            print("⚠️  Test Warnings/Errors:")
+            print(" Test Warnings/Errors:")
             print(result.stderr)
         
         return result.returncode == 0, result.stdout, result.stderr
@@ -78,7 +78,7 @@ def validate_feature_documentation():
 
 def check_parameter_alignment():
     """Check specific parameter alignment between requirements and implementation"""
-    print("\n🔍 Checking Parameter Alignment...")
+    print("\n Checking Parameter Alignment...")
     
     # Key parameters that should be aligned
     alignment_checks = {
@@ -187,7 +187,7 @@ def print_summary(report):
         print("STATUS: FULLY ALIGNED")
         print("Ready to proceed with NautilusTrader POC development")
     else:
-        print("⚠️  STATUS: NEEDS ATTENTION")
+        print(" STATUS: NEEDS ATTENTION")
         print("Action required before POC development")
     
     print(f"\nTest Results: {'PASSED' if report['test_results']['passed'] else 'FAILED'}")
@@ -224,7 +224,7 @@ def main():
         print("\nValidation completed successfully!")
         return 0
     else:
-        print("\n⚠️  Validation identified issues that need attention.")
+        print("\n Validation identified issues that need attention.")
         return 1
 
 if __name__ == "__main__":

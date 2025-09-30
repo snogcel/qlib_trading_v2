@@ -13,7 +13,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 def diagnose_btc_dom():
     """Run comprehensive btc_dom diagnostics."""
-    print("🔍 BTC Dominance Diagnostic Report")
+    print(" BTC Dominance Diagnostic Report")
     print("=" * 50)
     
     # TODO: Add actual btc_dom diagnostic logic

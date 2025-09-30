@@ -46,7 +46,7 @@ def print_backtest_summary():
     print("   • Aggressive: 3,532 trades, 51% win rate")
     print("   • Higher frequency → lower win rate but higher total returns")
     
-    print("\n📈 RECOMMENDED CONFIGURATION:")
+    print("\n RECOMMENDED CONFIGURATION:")
     print("• HUMMINGBOT_DEFAULT shows best risk-adjusted performance")
     print("• 8.96% return with 3.99 Sharpe ratio")
     print("• 0.54% max drawdown (excellent risk control)")

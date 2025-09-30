@@ -249,7 +249,7 @@ def ensure_vol_risk_available(df):
     This represents the squared volatility = variance, which is key for risk measurement
     """
     if 'vol_risk' not in df.columns:
-        print("⚠️  vol_risk not found in data - this should come from crypto_loader_optimized")
+        print(" vol_risk not found in data - this should come from crypto_loader_optimized")
         print("   vol_risk = Std(Log($close / Ref($close, 1)), 6) * Std(Log($close / Ref($close, 1)), 6)")
         
         # Fallback calculation if not available (but this shouldn't happen)
@@ -340,7 +340,7 @@ def q50_regime_aware_signals(df, transaction_cost_bps=20, base_info_ratio=1.5):
     # Calculate probability-weighted expected value
     # Use existing prob_up (already calculated with prob_up_piecewise)
     if 'prob_up' not in df.columns:
-        print("⚠️  prob_up not found, calculating...")
+        print(" prob_up not found, calculating...")
         df['prob_up'] = df.apply(prob_up_piecewise, axis=1)
     
     df['expected_value'] = (df['prob_up'] * df['potential_gain'] - 

@@ -12,7 +12,7 @@ This document tracks all import path changes made during the project reorganizat
 ## 📦 Major Folder Migrations
 
 ### 1. **qlib_custom/ → src/ Structure**
-**Status**: ⚠️ NEEDS IMPORT UPDATES
+**Status**: NEEDS IMPORT UPDATES
 
 **Old Structure:**
 ```
@@ -104,14 +104,14 @@ from qlib_custom.custom_train import CustomTrainer, backtest, train
 **Required New Imports:**
 ```python
 # NEW IMPORTS (TO IMPLEMENT)
-from qlib_custom.custom_order import Order  # ⚠️ CHECK IF MOVED
-from qlib_custom.custom_simulator import CustomSingleAssetOrderExecutionSimple  # ⚠️ CHECK IF MOVED
+from qlib_custom.custom_order import Order  # CHECK IF MOVED
+from qlib_custom.custom_simulator import CustomSingleAssetOrderExecutionSimple  # CHECK IF MOVED
 from src.rl_execution.components.meta_trigger.meta_dqn_policy import MetaDQNPolicy
 from src.rl_execution.components.meta_trigger.experience_buffer import ExperienceBuffer
 from src.rl_execution.components.meta_trigger.train_meta_dqn import train_meta_dqn_model
 from src.rl_execution.components.logger.custom_logger_callback import MetaDQNCheckpointManager
 from src.rl_execution.components.logger.tensorboard_logger import TensorboardLogger
-from qlib_custom.custom_train import CustomTrainer, backtest, train  # ⚠️ CHECK IF MOVED
+from qlib_custom.custom_train import CustomTrainer, backtest, train  # CHECK IF MOVED
 ```
 
 ### **Other Files Likely Needing Updates:**
@@ -135,11 +135,11 @@ from qlib_custom.custom_train import CustomTrainer, backtest, train  # ⚠️ CH
 
 ---
 
-## 🔍 Files to Check for Import Issues
+##  Files to Check for Import Issues
 
 ### **High Priority (Current Active Pipeline):**
-- [ ] **`src/training_pipeline.py`** ⚠️ **CRITICAL** - Main entry point (formerly ppo_sweep_optuna_tuned_v2.py)
-- [ ] **`src/backtesting/run_backtest.py`** ⚠️ **HIGH** - Depends on training_pipeline.py interim file output
+- [ ] **`src/training_pipeline.py`** **CRITICAL** - Main entry point (formerly ppo_sweep_optuna_tuned_v2.py)
+- [ ] **`src/backtesting/run_backtest.py`** **HIGH** - Depends on training_pipeline.py interim file output
 - [ ] `src/backtesting/quantile_backtester.py` - Core backtesting engine
 - [ ] `src/production/integrated_validated_pipeline.py` - Production integration
 - [ ] `src/models/model_evaluation_suite.py` - Model evaluation
@@ -159,7 +159,7 @@ from qlib_custom.custom_train import CustomTrainer, backtest, train  # ⚠️ CH
 
 ---
 
-## 🚨 Potential Remaining qlib_custom Dependencies
+##  Potential Remaining qlib_custom Dependencies
 
 **Files that might still be in qlib_custom/ and need migration:**
 

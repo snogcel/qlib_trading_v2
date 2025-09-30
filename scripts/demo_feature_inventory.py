@@ -17,7 +17,7 @@ from testing.parsers.feature_template_parser import FeatureTemplateParser
 
 def main():
     """Demonstrate feature inventory generation."""
-    print("🔍 Feature Inventory Generation Demo")
+    print(" Feature Inventory Generation Demo")
     print("=" * 50)
     
     # Initialize parser
@@ -103,7 +103,7 @@ def main():
         print(f"  • Warnings: {len(validation['warnings'])}")
         
         if validation['consistency_issues']:
-            print("\n⚠️  Consistency Issues:")
+            print("\n Consistency Issues:")
             for issue in validation['consistency_issues'][:3]:
                 print(f"    • {issue}")
             if len(validation['consistency_issues']) > 3:

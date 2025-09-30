@@ -421,7 +421,7 @@ All enhancements should follow the established protection pattern:
 ---
 
 #
-# 🚨 **Critical Data Pipeline Issues (Immediate Fix Required)**
+#  **Critical Data Pipeline Issues (Immediate Fix Required)**
 
 ### **vol_raw_decile Feature Corruption**
 

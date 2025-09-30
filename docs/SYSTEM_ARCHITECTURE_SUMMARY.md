@@ -343,7 +343,7 @@ reports/                # Validation and analysis reports
 
 ---
 
-## 🚨 Known Issues & Technical Debt
+##  Known Issues & Technical Debt
 
 ### **Critical Issues** (From Test Analysis)
 1. **btc_dom Feature**: Complete failure (0% test success)
@@ -430,7 +430,7 @@ reports/                # Validation and analysis reports
 
 ---
 
-## 💡 System Philosophy Summary
+##  System Philosophy Summary
 
 This system embodies **professional trading principles** with **systematic validation**:
 

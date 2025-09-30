@@ -8,7 +8,7 @@
 
 ---
 
-## 🔍 Key Findings Relevant to Your System
+##  Key Findings Relevant to Your System
 
 ### 1. **DQN Action Space Design**
 **Their Approach**: Discrete action space with BUY/SELL/HOLD decisions based on market state.

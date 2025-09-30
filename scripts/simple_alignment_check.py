@@ -13,7 +13,7 @@ if project_root not in sys.path:
 
 def check_training_pipeline_parameters():
     """Check key parameters in training pipeline"""
-    print("🔍 Checking Training Pipeline Parameters...")
+    print(" Checking Training Pipeline Parameters...")
     
     try:
         # Read the training pipeline file
@@ -47,7 +47,7 @@ def check_training_pipeline_parameters():
 
 def check_requirements_document():
     """Check requirements document for key parameters"""
-    print("\n🔍 Checking Requirements Document...")
+    print("\n Checking Requirements Document...")
     
     try:
         # Read the requirements file
@@ -81,7 +81,7 @@ def check_requirements_document():
 
 def check_feature_documentation():
     """Check feature documentation alignment"""
-    print("\n🔍 Checking Feature Documentation...")
+    print("\n Checking Feature Documentation...")
     
     try:
         # Read the feature documentation
@@ -146,7 +146,7 @@ def main():
         print("  • Performance target: 1.327+ Sharpe ratio")
         return 0
     else:
-        print("\n⚠️  OVERALL STATUS: NEEDS ATTENTION")
+        print("\n OVERALL STATUS: NEEDS ATTENTION")
         print("Some alignment issues need to be resolved")
         return 1
 

@@ -455,7 +455,7 @@ class TestComprehensiveStatisticalValidation:
         
         # Test 1: Position size suggestion should be calculated (may not exist in all implementations)
         if 'position_size_suggestion' not in df_with_signals.columns:
-            print("⚠️  position_size_suggestion not found - using alternative validation")
+            print(" position_size_suggestion not found - using alternative validation")
             # Alternative: check that we can calculate position sizes
             base_position_size = 0.1 / np.maximum(df_with_signals['vol_risk'] * 1000, 0.1)
             df_with_signals['test_position_size'] = base_position_size.clip(0.01, 0.5)

@@ -74,7 +74,7 @@ def test_sizing_methods():
     print(f"Unique position sizes generated: {unique_pcts}/{len(sizing_methods)}")
     
     if unique_pcts == 1:
-        print("⚠️  WARNING: All sizing methods produced identical results!")
+        print(" WARNING: All sizing methods produced identical results!")
         print("This suggests an issue with the sizing logic or data.")
     else:
         print("Different sizing methods are producing different results")

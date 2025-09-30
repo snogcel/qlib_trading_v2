@@ -342,7 +342,7 @@ class PipelineCoverageValidator:
                     'description': path_info['description'],
                     'components': path_info['components']
                 }
-                print(f"{'✅' if result else '❌'} {path_info['description']}: {'PASS' if result else 'FAIL'}")
+                print(f"{'' if result else ''} {path_info['description']}: {'PASS' if result else 'FAIL'}")
                 
             except Exception as e:
                 path_results[path_name] = {

@@ -79,7 +79,7 @@ def compare_with_current_approach(df):
     
     # Ensure we have the current approach columns
     if 'side' not in df.columns:
-        print("⚠️  Current approach 'side' column not found. Generating for comparison...")
+        print(" Current approach 'side' column not found. Generating for comparison...")
         
         # Recreate current approach logic
         df['abs_q50_current'] = df['q50'].abs()
@@ -135,7 +135,7 @@ def compare_with_current_approach(df):
     # Analyze disagreements
     disagreements = df[df['side'] != df['side_q50']]
     if len(disagreements) > 0:
-        print(f"\n🔍 Disagreement Analysis ({len(disagreements):,} cases):")
+        print(f"\n Disagreement Analysis ({len(disagreements):,} cases):")
         
         # Most common disagreement patterns
         df['disagreement_pattern'] = df['side'].astype(str) + ' -> ' + df['side_q50'].astype(str)
@@ -148,7 +148,7 @@ def compare_with_current_approach(df):
             print(f"   {current_name} -> {q50_name}: {count:,} ({count/len(disagreements)*100:.1f}%)")
     
     # Quality metrics comparison
-    print(f"\n📈 SIGNAL QUALITY METRICS")
+    print(f"\n SIGNAL QUALITY METRICS")
     print("=" * 50)
     
     # For current approach
@@ -247,7 +247,7 @@ def main():
     # Test with synthetic data
     test_q50_approach()
     
-    print(f"\n💡 KEY BENEFITS:")
+    print(f"\n KEY BENEFITS:")
     benefits = [
         "Economic Intuition: Q50 = expected return",
         "No Data Leakage: Uses only economically meaningful thresholds",

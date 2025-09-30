@@ -271,7 +271,7 @@ class RegimeFeatureEngine:
         required_cols = ['q10', 'q50', 'q90']
         for col in required_cols:
             if col not in df.columns:
-                print(f"⚠️  Missing required column: {col}")
+                print(f" Missing required column: {col}")
                 return df
         
         # FEATURE 1: MOMENTUM PERSISTENCE (Information Flow Theory)
@@ -390,7 +390,7 @@ class RegimeFeatureEngine:
                     'result': correlation > 0.7,
                     'value': f"{correlation:.3f}",
                     'economic_rationale': 'Information flow persistence theory',
-                    'status': '✅' if correlation > 0.7 else '⚠️'
+                    'status': '' if correlation > 0.7 else '⚠️'
                 })
         
         # Test 2: Prediction confidence should be lower during high volatility
@@ -406,7 +406,7 @@ class RegimeFeatureEngine:
                 'result': avg_confidence_high_vol < avg_confidence_low_vol,
                 'value': f"High vol: {avg_confidence_high_vol:.3f}, Low vol: {avg_confidence_low_vol:.3f}",
                 'economic_rationale': 'Market microstructure theory',
-                'status': '✅' if avg_confidence_high_vol < avg_confidence_low_vol else '⚠️'
+                'status': '' if avg_confidence_high_vol < avg_confidence_low_vol else '⚠️'
             })
         
         # Test 3: Regime persistence should be higher during trending periods
@@ -422,7 +422,7 @@ class RegimeFeatureEngine:
                 'result': avg_persistence_trending > avg_persistence_ranging,
                 'value': f"Trending: {avg_persistence_trending:.1f}, Ranging: {avg_persistence_ranging:.1f}",
                 'economic_rationale': 'Behavioral finance momentum theory',
-                'status': '✅' if avg_persistence_trending > avg_persistence_ranging else '⚠️'
+                'status': '' if avg_persistence_trending > avg_persistence_ranging else '⚠️'
             })
         
         # Test 4: Spread momentum should correlate with volatility changes
@@ -439,7 +439,7 @@ class RegimeFeatureEngine:
                     'result': correlation > 0.3,
                     'value': f"{correlation:.3f}",
                     'economic_rationale': 'Market microstructure uncertainty theory',
-                    'status': '✅' if correlation > 0.3 else '⚠️'
+                    'status': '' if correlation > 0.3 else '⚠️'
                 })
         
         # Print validation results
@@ -485,13 +485,13 @@ class RegimeFeatureEngine:
         # Binary regime statistics
         crisis_pct = df['regime_crisis'].mean() * 100
         opportunity_pct = df['regime_opportunity'].mean() * 100
-        print(f"\n🚨 Crisis periods: {crisis_pct:.2f}%")
+        print(f"\n Crisis periods: {crisis_pct:.2f}%")
         print(f"Opportunity periods: {opportunity_pct:.2f}%")
         
         # Stability and multiplier statistics
         stability_mean = df['regime_stability'].mean()
         multiplier_stats = df['regime_multiplier'].describe()
-        print(f"\n📈 Average regime stability: {stability_mean:.3f}")
+        print(f"\n Average regime stability: {stability_mean:.3f}")
         print(f"⚖️  Multiplier range: [{multiplier_stats['min']:.2f}, {multiplier_stats['max']:.2f}]")
         print(f"   Average multiplier: {multiplier_stats['mean']:.2f}")
         

@@ -146,10 +146,10 @@ class MQTTSignalStrategy(StrategyPyBase):
 **Market making focus** - Good for continuous trading strategies  
 
 ### **Hummingbot Challenges**
-⚠️ **Market making bias** - Designed for bid/ask spread strategies, not directional signals  
-⚠️ **Custom strategy complexity** - Requires deep understanding of Hummingbot internals  
-⚠️ **Performance limitations** - Not optimized for high-frequency systematic trading  
-⚠️ **Architecture mismatch** - Our Q50 system is directional, Hummingbot is market-making focused  
+**Market making bias** - Designed for bid/ask spread strategies, not directional signals  
+**Custom strategy complexity** - Requires deep understanding of Hummingbot internals  
+**Performance limitations** - Not optimized for high-frequency systematic trading  
+**Architecture mismatch** - Our Q50 system is directional, Hummingbot is market-making focused  
 
 ---
 
@@ -313,10 +313,10 @@ class Q50DataDrivenStrategy(Strategy):
 **Model integration** - Designed to work with ML models and quantitative strategies  
 
 ### **NautilusTrader Challenges**
-⚠️ **Learning curve** - More complex architecture, requires deeper understanding  
-⚠️ **Smaller community** - Less community support and fewer examples  
-⚠️ **Documentation complexity** - More technical, less beginner-friendly  
-⚠️ **Setup complexity** - More involved installation and configuration process  
+**Learning curve** - More complex architecture, requires deeper understanding  
+**Smaller community** - Less community support and fewer examples  
+**Documentation complexity** - More technical, less beginner-friendly  
+**Setup complexity** - More involved installation and configuration process  
 
 ---
 
