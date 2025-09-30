@@ -312,8 +312,9 @@ def q50_regime_aware_signals(df, transaction_cost_bps=20, base_info_ratio=1.5):
     
     # Calculate probability-weighted expected value
     # Use existing prob_up (throw exception if missing)
-    if prob_up is None:
-        raise ValueError("prob_up cannot be None.")
+    
+    # if prob_up is None:
+    #     raise ValueError("prob_up cannot be None.")
     
     df['expected_value'] = (df['prob_up'] * df['potential_gain'] - 
                            (1 - df['prob_up']) * df['potential_loss'])
@@ -809,8 +810,6 @@ if __name__ == '__main__':
     print(f"Technical indicators found: {[col for col in df_all.columns if any(x in col for x in ['ROC', 'STD', 'OPEN', 'VOLUME'])]}")
     
 
-    print(df_all.columns)
-    raise SystemExit()
 
     # df_all.apply function calls expect the following variables:
     # q10, q50, q90, tier_confidence, signal_thresh, prob_up = row["q10"], row["q50"], row["q90"], row["signal_tier"], row["signal_thresh_adaptive"], row["prob_up"]
@@ -818,13 +817,40 @@ if __name__ == '__main__':
     # fix:
     # q10, q50, q90, tier_confidence, signal_thresh, kelly_position_size, prob_up = row["q10"], row["q50"], row["q90"], row["signal_tier"], row["signal_thresh_adaptive"], row["prob_up"]    
 
-    # Standalone functions for now to allow pipeline clarity
+
+
+    # Bug: kelly_sizing function is expecting a variable to be in this dataframe: signal_thresh_adaptive
+    # this variable is added to the dataframe in this function call: q50_regime_aware_signals
+
+    # File "c:\Projects\qlib_trading_v2\src\training_pipeline_optuna.py", line 178, in kelly_sizing
+    # q10, q50, q90, tier_confidence, signal_thresh, signal_thresh_adaptive, prob_up = row["q10"], row["q50"], row["q90"], row["signal_tier"], row["signal_thresh_adaptive"], row["prob_up"]
+
+    """ Index(['q10', 'q50', 'q90', 'truth', '$btc_dom', '$fg_index', '$high_vol_flag',
+       '$momentum_10', '$momentum_25', '$momentum_5', '$realized_vol_6',
+       '$relative_volatility_index', 'OPEN1', 'RSV1', 'RSV2', 'RSV3',
+       'VOLUME1', 'btc_std_7d', 'btc_zscore_14d', 'fg_std_7d', 'fg_zscore_14d',
+       'vol_momentum_scaled', 'vol_raw', 'vol_raw_decile', 'vol_raw_momentum',
+       'vol_risk', 'vol_scaled'],
+      dtype='object') """
+        
+    # build interaction / regime signals    
     df_all["prob_up"] = df_all.apply(prob_up_piecewise, axis=1)
+
+    # To remove rows where 'col1' has null values
+    df_all.dropna(subset=['prob_up'], inplace=True)
+    print("\nDataFrame after dropping rows with nulls in 'prob_up':")
+    
+    # df_all.to_csv("./debug.csv")
+    # raise SystemExit()
+
+    df_all = q50_regime_aware_signals(df_all)
+
+    # Standalone functions for now to allow pipeline clarity
+    
     df_all["signal_tier"] = df_all.apply(signal_classification, axis=1)    
     df_all["kelly_position_size"] = df_all.apply(kelly_sizing, axis=1)    
 
-    # build interaction / regime signals    
-    df_all = q50_regime_aware_signals(df_all)
+    
     
     alpha = 1.0  # controls “steepness”
     cap = 3.0
