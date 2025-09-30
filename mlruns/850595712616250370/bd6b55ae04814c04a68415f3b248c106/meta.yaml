@@ -1,0 +1,15 @@
+artifact_uri: file:C:\Projects\qlib_trading_v2\mlruns/850595712616250370/bd6b55ae04814c04a68415f3b248c106/artifacts
+end_time: 1759206632410
+entry_point_name: ''
+experiment_id: '850595712616250370'
+lifecycle_stage: active
+run_id: bd6b55ae04814c04a68415f3b248c106
+run_name: mlflow_recorder
+run_uuid: bd6b55ae04814c04a68415f3b248c106
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759206609033
+status: 3
+tags: []
+user_id: Jon Kindel

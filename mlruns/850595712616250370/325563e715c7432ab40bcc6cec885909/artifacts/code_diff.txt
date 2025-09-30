@@ -1,0 +1,22 @@
+diff --git a/src/training_pipeline_optuna.py b/src/training_pipeline_optuna.py
+index 1a4e547..9951154 100644
+--- a/src/training_pipeline_optuna.py
++++ b/src/training_pipeline_optuna.py
+@@ -806,13 +806,15 @@ if __name__ == '__main__':
+     print(f"GDELT features found: {[col for col in df_all.columns if 'cwt_' in col]}")
+     print(f"Technical indicators found: {[col for col in df_all.columns if any(x in col for x in ['ROC', 'STD', 'OPEN', 'VOLUME'])]}")
+     
+-    # build interaction / regime signals    
+-    df_all = q50_regime_aware_signals(df_all)
++    
+ 
+     # Standalone functions for now to allow pipeline clarity
+     df_all["prob_up"] = df_all.apply(prob_up_piecewise, axis=1)
+     df_all["signal_tier"] = df_all.apply(signal_classification, axis=1)    
+     df_all["kelly_position_size"] = df_all.apply(kelly_sizing, axis=1)    
++
++    # build interaction / regime signals    
++    df_all = q50_regime_aware_signals(df_all)
+     
+     alpha = 1.0  # controls “steepness”
+     cap = 3.0

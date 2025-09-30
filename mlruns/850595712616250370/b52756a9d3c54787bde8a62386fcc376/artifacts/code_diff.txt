@@ -1,0 +1,37 @@
+diff --git a/src/training_pipeline_optuna.py b/src/training_pipeline_optuna.py
+index 1a4e547..735a845 100644
+--- a/src/training_pipeline_optuna.py
++++ b/src/training_pipeline_optuna.py
+@@ -173,7 +173,7 @@ def kelly_sizing(row) -> float:
+     """Validated Kelly Criterion sizing based on proven predictive features, pulled from hummingbot_backtester.py"""
+     
+     # aligned logic with hummingbot backtester
+-    q10, q50, q90, tier_confidence, signal_thresh, prob_up = row["q10"], row["q50"], row["q90"], row["signal_tier"], row["signal_thresh_adaptive"], row["prob_up"]
++    q10, q50, q90, tier_confidence, signal_thresh, signal_thresh_adaptive, prob_up = row["q10"], row["q50"], row["q90"], row["signal_tier"], row["signal_thresh_adaptive"], row["prob_up"]
+ 
+     spread_thresh = None
+   
+@@ -806,13 +806,21 @@ if __name__ == '__main__':
+     print(f"GDELT features found: {[col for col in df_all.columns if 'cwt_' in col]}")
+     print(f"Technical indicators found: {[col for col in df_all.columns if any(x in col for x in ['ROC', 'STD', 'OPEN', 'VOLUME'])]}")
+     
+-    # build interaction / regime signals    
+-    df_all = q50_regime_aware_signals(df_all)
++
++
++    # df_all.apply function calls expect the following variables:
++    # q10, q50, q90, tier_confidence, signal_thresh, prob_up = row["q10"], row["q50"], row["q90"], row["signal_tier"], row["signal_thresh_adaptive"], row["prob_up"]
++
++    # fix:
++    # q10, q50, q90, tier_confidence, signal_thresh, kelly_position_size, prob_up = row["q10"], row["q50"], row["q90"], row["signal_tier"], row["signal_thresh_adaptive"], row["prob_up"]    
+ 
+     # Standalone functions for now to allow pipeline clarity
+     df_all["prob_up"] = df_all.apply(prob_up_piecewise, axis=1)
+     df_all["signal_tier"] = df_all.apply(signal_classification, axis=1)    
+     df_all["kelly_position_size"] = df_all.apply(kelly_sizing, axis=1)    
++
++    # build interaction / regime signals    
++    df_all = q50_regime_aware_signals(df_all)
+     
+     alpha = 1.0  # controls “steepness”
+     cap = 3.0

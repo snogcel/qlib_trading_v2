@@ -1,0 +1,20 @@
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   src/training_pipeline_optuna.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	mlruns/850595712616250370/29a2bdea23f24ef4ac5f64b416077f92/
+	mlruns/850595712616250370/325563e715c7432ab40bcc6cec885909/
+	mlruns/850595712616250370/b52756a9d3c54787bde8a62386fcc376/
+	mlruns/850595712616250370/bd6b55ae04814c04a68415f3b248c106/
+	mlruns/850595712616250370/c57f1834f7864e86a21342bba1adfb2e/
+	mlruns/850595712616250370/f498b07e3c464bdab1cdcb6b2f3f8f17/
+	mlruns/850595712616250370/fa6872f7f07444529e9606d39d4cefec/
+	src/pyqlib/
+
+no changes added to commit (use "git add" and/or "git commit -a")
