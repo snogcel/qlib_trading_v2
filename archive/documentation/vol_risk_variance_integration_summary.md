@@ -152,7 +152,7 @@ position_size = base_size / max(vol_risk * 1000, 0.1)
 - Updated signal strength calculation to use enhanced info ratio
 - Added position size suggestions based on inverse variance scaling
 
-### 🎯 **Key Metrics to Monitor**
+### **Key Metrics to Monitor**
 - Enhanced info ratio vs traditional info ratio
 - Variance regime distribution
 - Position size suggestions vs actual performance

@@ -245,7 +245,7 @@ def main():
     commands = generate_cleanup_commands(categories)
     
     if commands:
-        print(f"\n🔧 SUGGESTED CLEANUP COMMANDS:")
+        print(f"\nSUGGESTED CLEANUP COMMANDS:")
         print("=" * 60)
         for cmd in commands:
             print(cmd)

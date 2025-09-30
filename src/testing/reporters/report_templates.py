@@ -31,7 +31,7 @@ class ReportTemplates:
 **Generated:** {timestamp}
 **Report Period:** {report_period}
 
-## 🎯 Key Metrics
+## Key Metrics
 
 | Metric | Value | Status |
 |--------|-------|--------|
@@ -93,11 +93,11 @@ class ReportTemplates:
 
 {failure_analysis}
 
-## 🎯 Performance Metrics
+## Performance Metrics
 
 {performance_metrics}
 
-## 🔄 Trend Analysis
+## Trend Analysis
 
 {trend_analysis}
 
@@ -182,7 +182,7 @@ class ReportTemplates:
 
 {coverage_overview}
 
-## 🎯 Feature Coverage Matrix
+## Feature Coverage Matrix
 
 {coverage_matrix}
 
@@ -198,7 +198,7 @@ class ReportTemplates:
 
 {coverage_trends}
 
-## 🎯 Coverage Goals
+## Coverage Goals
 
 {coverage_goals}
 

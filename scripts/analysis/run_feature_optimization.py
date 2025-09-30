@@ -285,7 +285,7 @@ def main():
             print("Error: --config required for optimize mode")
             sys.exit(1)
         
-        print(f"\n🎯 Running targeted optimization for {args.config}...")
+        print(f"\nRunning targeted optimization for {args.config}...")
         results = run_targeted_optimization(args.config)
     
     elif args.mode == "analyze":

@@ -4,7 +4,7 @@
 
 ---
 
-## 🎯 Core Signal Features
+## Core Signal Features
 
 ### Q50 (Primary Signal)
 **Current Documentation**: Primary directional signal based on 50th percentile probability
@@ -676,7 +676,7 @@ Unnormalized percentage return. If used as a regression target, range standardiz
 
 ---
 
-## 🔄 Regime & Market Features
+## Regime & Market Features
 
 ### Regime Multiplier (formerly Signal Strength)  
 **Current Documentation**: Unified regime-based position multiplier, range [0.1, 5.0]  

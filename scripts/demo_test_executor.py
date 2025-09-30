@@ -134,7 +134,7 @@ def demo_environment_setup(executor: TestExecutor):
     
     try:
         # Setup environment
-        print("\n🔧 Setting up test environment...")
+        print("\nSetting up test environment...")
         environment = executor.setup_test_environment(test_case)
         
         print(f"✓ Environment setup completed")

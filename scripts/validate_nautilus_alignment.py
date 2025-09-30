@@ -179,7 +179,7 @@ def generate_alignment_report():
 def print_summary(report):
     """Print executive summary of alignment status"""
     print("\n" + "="*60)
-    print("🎯 NAUTILUS TRADER POC REQUIREMENTS ALIGNMENT SUMMARY")
+    print("NAUTILUS TRADER POC REQUIREMENTS ALIGNMENT SUMMARY")
     print("="*60)
     
     status = report["alignment_status"]
@@ -188,17 +188,17 @@ def print_summary(report):
         print("Ready to proceed with NautilusTrader POC development")
     else:
         print("⚠️  STATUS: NEEDS ATTENTION")
-        print("🔧 Action required before POC development")
+        print("Action required before POC development")
     
     print(f"\nTest Results: {'PASSED' if report['test_results']['passed'] else 'FAILED'}")
     print(f"📚 Documentation: {'VALID' if report['documentation_valid'] else 'INVALID'}")
-    print(f"🔧 Parameters: {'ALIGNED' if report['parameters_aligned'] else 'MISALIGNED'}")
+    print(f"Parameters: {'ALIGNED' if report['parameters_aligned'] else 'MISALIGNED'}")
     
     print("\n📋 Recommendations:")
     for rec in report["recommendations"]:
         print(f"  {rec}")
     
-    print("\n🎯 Key Alignment Confirmations:")
+    print("\nKey Alignment Confirmations:")
     print("  • Transaction cost: 5 bps (0.0005)")
     print("  • Variance thresholds: 30th/70th/90th percentiles")
     print("  • Position limits: 1%-50% of capital")
@@ -210,7 +210,7 @@ def print_summary(report):
 
 def main():
     """Main validation workflow"""
-    print("🎯 NautilusTrader POC Requirements Alignment Validation")
+    print("NautilusTrader POC Requirements Alignment Validation")
     print("="*60)
     
     # Generate comprehensive report

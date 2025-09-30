@@ -1,6 +1,6 @@
 # Research Synthesis & Implementation Plan
 
-## 🎯 Research Integration Overview
+## Research Integration Overview
 
 Combining insights from two key research papers with your proven 1.327 Sharpe system:
 1. **Quantile Deep Learning for Bitcoin** - Validates your Q50-centric approach
@@ -168,7 +168,7 @@ class EnhancedRegimeFeatureEngine(RegimeFeatureEngine):
         """
         Add temporal features with economic justification
         """
-        print("⏰ Adding economically-justified temporal quantile features...")
+        print("Adding economically-justified temporal quantile features...")
         
         # Validate required columns
         required_cols = ['q10', 'q50', 'q90']
@@ -261,7 +261,7 @@ def validate_economic_logic(df):
 
 ---
 
-## 🎯 Success Metrics
+## Success Metrics
 
 ### Performance Benchmarks
 - **Sharpe Ratio**: Must maintain ≥1.327

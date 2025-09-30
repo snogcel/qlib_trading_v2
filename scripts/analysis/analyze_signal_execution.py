@@ -232,13 +232,13 @@ def generate_insights(signal_df: pd.DataFrame, summary_stats: dict):
     high_conf = signal_df[signal_df['high_confidence'] == True]['trade_executed'].mean()
     low_conf = signal_df[signal_df['high_confidence'] == False]['trade_executed'].mean()
     if high_conf - low_conf > 0.1:
-        insights.append(f"🎯 High confidence signals execute more often ({high_conf:.1%} vs {low_conf:.1%})")
+        insights.append(f"High confidence signals execute more often ({high_conf:.1%} vs {low_conf:.1%})")
     
     # Threshold insights
     above_thresh = signal_df[signal_df['above_threshold'] == True]['trade_executed'].mean()
     below_thresh = signal_df[signal_df['above_threshold'] == False]['trade_executed'].mean()
     if above_thresh - below_thresh > 0.1:
-        insights.append(f"🎯 Above-threshold signals execute more often ({above_thresh:.1%} vs {below_thresh:.1%})")
+        insights.append(f"Above-threshold signals execute more often ({above_thresh:.1%} vs {below_thresh:.1%})")
     
     # Hold pattern insights
     hold_data = signal_df[signal_df['action_taken'] == 'HOLD']

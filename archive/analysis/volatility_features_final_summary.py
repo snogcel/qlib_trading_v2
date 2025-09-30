@@ -66,7 +66,7 @@ def create_final_summary():
         print(f"   PROBLEM: {change['problem']}")
         print(f"   IMPACT: {change['impact']}")
     
-    print("\n🔧 IMMEDIATE FIXES REQUIRED:")
+    print("\nIMMEDIATE FIXES REQUIRED:")
     
     print("\n1. POSITION SIZING FIX (ppo_sweep_optuna_tuned_v2.py:460):")
     print("   OLD: vol_risk = row.get('vol_risk', 0.3)")
@@ -120,7 +120,7 @@ def create_final_summary():
     ]
     
     for step in steps:
-        print(f"\n🎯 {step['phase']} - {step['priority']} PRIORITY:")
+        print(f"\n{step['phase']} - {step['priority']} PRIORITY:")
         for task in step['tasks']:
             print(f"   • {task}")
     

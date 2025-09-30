@@ -83,7 +83,7 @@ Based on the analysis, the **expected value approach** should provide:
 5. **Adjusted variance scaling** for more trading opportunities
 6. **Added comprehensive comparison reporting**
 
-### 🎯 **Key Features**
+### **Key Features**
 - **Backward Compatible**: Still calculates traditional approach for comparison
 - **Flexible**: Can switch between different economic significance methods
 - **Transparent**: Reports improvement in trading opportunities

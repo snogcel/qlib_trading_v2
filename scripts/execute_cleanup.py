@@ -257,7 +257,7 @@ def main():
     cleanup_research_files()
     
     # Phase 5: Move utility files
-    print("\n🔧 Phase 5: Organizing utility files...")
+    print("\nPhase 5: Organizing utility files...")
     cleanup_utility_files()
     
     # Phase 6: Move core files

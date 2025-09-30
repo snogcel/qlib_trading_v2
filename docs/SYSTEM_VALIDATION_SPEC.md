@@ -1,6 +1,6 @@
 # System Validation & Testing Specification
 
-## 🎯 Objective
+## Objective
 
 Create a comprehensive validation framework that ensures every component of our trading system meets professional standards for explainability, robustness, and performance.
 
@@ -168,7 +168,7 @@ def validate_feature_quality(new_feature, existing_features, returns):
 
 ---
 
-## 🔄 Continuous Validation Process
+## Continuous Validation Process
 
 ### Daily Monitoring
 - [ ] Feature value distributions
@@ -252,7 +252,7 @@ def validate_feature_quality(new_feature, existing_features, returns):
 
 ---
 
-## 🎯 Success Criteria
+## Success Criteria
 
 ### Technical Success
 - [ ] All validation tests automated and passing

@@ -71,7 +71,7 @@ def test_with_actual_data():
                               any(keyword in col for keyword in ['vol_extreme', 'fg_extreme', 'btc_dom'])]
         
         if existing_regime_cols:
-            print(f"\n🔄 Existing regime-related features found:")
+            print(f"\nExisting regime-related features found:")
             for col in existing_regime_cols[:5]:
                 print(f"   • {col}")
             
@@ -107,7 +107,7 @@ def test_with_actual_data():
 def test_backward_compatibility():
     """Test that new regime features can replace old ones"""
     
-    print(f"\n🔄 TESTING BACKWARD COMPATIBILITY")
+    print(f"\nTESTING BACKWARD COMPATIBILITY")
     print("=" * 60)
     
     # Create sample data that mimics old regime features

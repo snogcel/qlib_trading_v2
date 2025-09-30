@@ -70,7 +70,7 @@ def update_imports_in_file(file_path):
 def main():
     """Update imports in all Python files"""
     
-    print("🔄 Updating import statements after reorganization...")
+    print("Updating import statements after reorganization...")
     
     # Directories to scan for Python files
     scan_dirs = [

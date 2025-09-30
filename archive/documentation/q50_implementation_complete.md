@@ -40,7 +40,7 @@ Successfully implemented a **Q50-centric, regime-aware signal generation system*
 - Verified regime distributions are realistic
 - Tested signal generation logic
 
-## 🎯 **Core Improvements**
+## **Core Improvements**
 
 ### **From Problematic Approach:**
 ```python
@@ -78,7 +78,7 @@ buy_mask = tradeable & (q50 > 0)  # Pure Q50 logic
 - Tunable parameters for different assets/strategies
 - Clear economic rationale for every decision
 
-## 🔧 **Tunable Parameters**
+## **Tunable Parameters**
 
 ### **Core Parameters:**
 - `transaction_cost_bps`: Base trading costs (default: 20 bps)
@@ -148,7 +148,7 @@ buy_mask = tradeable & (q50 > 0)  # Pure Q50 logic
 4. **Economic Thresholds Work**: Transaction cost-based thresholds are more meaningful than arbitrary percentiles
 5. **Simplicity Wins**: Pure Q50 logic is clearer than complex prob_up calculations
 
-## 🎯 **Bottom Line**
+## **Bottom Line**
 
 You now have a **robust, economically-driven, regime-aware signal generation system** that:
 

@@ -11,7 +11,7 @@ from pathlib import Path
 
 def fix_import_paths():
     """Fix import path issues in test files"""
-    print("🔧 Fixing import path issues...")
+    print("Fixing import path issues...")
     
     # Find all Python test files (exclude conda and other external directories)
     test_files = []
@@ -92,7 +92,7 @@ if project_root not in sys.path:
 
 def remove_problematic_emojis():
     """Replace problematic emojis with safe alternatives"""
-    print("🔧 Fixing encoding issues...")
+    print("Fixing encoding issues...")
     
     # Emoji replacements (problematic -> safe)
     emoji_replacements = {
@@ -159,7 +159,7 @@ def remove_problematic_emojis():
 
 def create_test_runner_wrapper():
     """Create a better test runner that handles imports properly"""
-    print("🔧 Creating improved test runner...")
+    print("Creating improved test runner...")
     
     wrapper_content = '''#!/usr/bin/env python3
 """
@@ -257,7 +257,7 @@ if __name__ == "__main__":
 
 def main():
     """Main fix function"""
-    print("🔧 COMPREHENSIVE TEST ISSUE FIX")
+    print("COMPREHENSIVE TEST ISSUE FIX")
     print("=" * 50)
     
     # Fix 1: Import path issues
@@ -276,7 +276,7 @@ def main():
     print(f"Fixed encoding in {len(fixed_encoding)} files")
     print(f"Created test runner wrapper: {wrapper_path}")
     
-    print("\n🎯 NEXT STEPS:")
+    print("\nNEXT STEPS:")
     print("1. Update run_all_tests.py to use the wrapper")
     print("2. Test a few files manually to verify fixes")
     print("3. Run the full test suite")

@@ -89,7 +89,7 @@ def demonstrate_economic_hypothesis_tests():
     features = create_sample_features()
     
     for feature in features:
-        print(f"🎯 FEATURE: {feature.name}")
+        print(f"FEATURE: {feature.name}")
         print(f"   Category: {feature.category}")
         print(f"   Tier: {feature.tier}")
         print(f"   Economic Hypothesis: {feature.economic_hypothesis[:100]}...")
@@ -133,7 +133,7 @@ def demonstrate_feature_specific_tests():
     generator = EconomicHypothesisTestGenerator()
     
     # Test Q50 specific tests
-    print("🎯 Q50 DIRECTIONAL BIAS TESTS")
+    print("Q50 DIRECTIONAL BIAS TESTS")
     print("-" * 40)
     
     q50_feature = FeatureSpec(
@@ -151,7 +151,7 @@ def demonstrate_feature_specific_tests():
     print()
     
     # Test vol_risk specific tests
-    print("🎯 VOL_RISK VARIANCE-BASED TESTS")
+    print("VOL_RISK VARIANCE-BASED TESTS")
     print("-" * 40)
     
     vol_risk_feature = FeatureSpec(
@@ -169,7 +169,7 @@ def demonstrate_feature_specific_tests():
     print()
     
     # Test sentiment feature tests
-    print("🎯 SENTIMENT FEATURE TESTS")
+    print("SENTIMENT FEATURE TESTS")
     print("-" * 40)
     
     sentiment_feature = FeatureSpec(
@@ -187,7 +187,7 @@ def demonstrate_feature_specific_tests():
     print()
     
     # Test Kelly sizing tests
-    print("🎯 KELLY SIZING TESTS")
+    print("KELLY SIZING TESTS")
     print("-" * 40)
     
     kelly_feature = FeatureSpec(

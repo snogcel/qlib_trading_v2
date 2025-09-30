@@ -84,7 +84,7 @@ def test_momentum_features():
                 }
                 feature_stats[feature] = stats
                 
-                print(f"\n🎯 {feature}:")
+                print(f"\n{feature}:")
                 print(f"   Count: {stats['count']}")
                 print(f"   Range: [{stats['min']:.6f}, {stats['max']:.6f}]")
                 print(f"   Mean: {stats['mean']:.6f}")
@@ -256,7 +256,7 @@ def test_usage_scenarios():
         print(f"   Trading ready: ✓ (strong, detectable signals)")
     
     # Scenario 4: Ensemble approach
-    print(f"\n🎯 SCENARIO 4: Ensemble Approach")
+    print(f"\nSCENARIO 4: Ensemble Approach")
     if 'vol_momentum_ensemble' in df.columns:
         ensemble_values = df['vol_momentum_ensemble'].dropna()
         
@@ -290,7 +290,7 @@ def main():
     print(f"   • Correlations show they capture different information")
     print(f"   • Ready for production testing")
     
-    print(f"\n🎯 NEXT STEPS:")
+    print(f"\nNEXT STEPS:")
     print(f"   1. Test with real crypto data from your loaders")
     print(f"   2. Run backtests comparing each feature variant")
     print(f"   3. Implement adaptive ensemble weighting")

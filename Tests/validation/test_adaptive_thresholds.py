@@ -107,7 +107,7 @@ def validate_adaptive_thresholds(df):
             print(f"{regime_name:12}: Static={static_freq:.3f}, Adaptive={adaptive_freq:.3f}, Diff={adaptive_freq-static_freq:+.3f}")
     
     # Test 2: Threshold values by regime
-    print(f"\n🎯 THRESHOLD VALUES BY REGIME:")
+    print(f"\nTHRESHOLD VALUES BY REGIME:")
     print("-" * 50)
     
     for regime_name, regime_mask in vol_regimes.items():
@@ -174,7 +174,7 @@ def validate_adaptive_thresholds(df):
         
         # Side-based performance (if available)
         if 'side' in df.columns:
-            print(f"\n🎯 DIRECTIONAL TRADING PERFORMANCE:")
+            print(f"\nDIRECTIONAL TRADING PERFORMANCE:")
             print("-" * 50)
             
             # Calculate directional returns
@@ -241,7 +241,7 @@ def validate_adaptive_thresholds(df):
         print(f"Hit Rate Improvement: {adaptive_hit_rate - static_hit_rate:+.1%}")
     
     # Test 4: Regime switching frequency and duration analysis
-    print(f"\n🔄 REGIME SWITCHING ANALYSIS:")
+    print(f"\nREGIME SWITCHING ANALYSIS:")
     print("-" * 50)
     
     # Create regime labels

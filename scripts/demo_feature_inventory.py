@@ -33,7 +33,7 @@ def main():
     
     try:
         # Generate inventory
-        print("🔄 Generating feature inventory...")
+        print("Generating feature inventory...")
         inventory = parser.generate_feature_inventory(template_path)
         
         # Display summary

@@ -93,7 +93,7 @@ def analyze_backtest_results():
         print(f"   Observation: {insight['observation']}")
         print(f"   Significance: {insight['significance']}")
     
-    print("\n🎯 WHAT THIS TELLS US ABOUT THE HYBRID FEATURES:")
+    print("\nWHAT THIS TELLS US ABOUT THE HYBRID FEATURES:")
     
     feature_implications = [
         "vol_scaled implementation working correctly (no position sizing issues)",
@@ -173,7 +173,7 @@ def analyze_backtest_results():
     ]
     
     for step in validation_steps:
-        print(f"\n🎯 {step['step']} ({step['priority']} priority):")
+        print(f"\n{step['step']} ({step['priority']} priority):")
         print(f"   {step['description']}")
     
     print("\nPRODUCTION READINESS ASSESSMENT:")

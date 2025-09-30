@@ -1173,7 +1173,7 @@ if __name__ == '__main__':
     df_all["signal_tanh"] = np.tanh(df_all["signal_rel"].clip(-cap, cap) / alpha)
 
     # Q50-CENTRIC SIGNAL GENERATION (replaces problematic threshold approach)
-    print("🔄 Generating Q50-centric regime-aware signals...")
+    print("Generating Q50-centric regime-aware signals...")
     
     # Generate signals using pure Q50 logic with regime awareness
     q50 = df_all["q50"]
@@ -1232,7 +1232,7 @@ if __name__ == '__main__':
         avg_vol_risk = trading_signals['vol_risk'].mean()
         avg_position_size = trading_signals['position_size_suggestion'].mean()
         
-        print(f"🎯 Trading signal quality:")
+        print(f"Trading signal quality:")
         print(f"   Average Info Ratio (traditional): {avg_info_ratio:.2f}")
         print(f"   Average Enhanced Info Ratio (variance-aware): {avg_enhanced_info_ratio:.2f}")
         print(f"   Average |Q50|: {avg_abs_q50:.4f}")

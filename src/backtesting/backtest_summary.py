@@ -24,7 +24,7 @@ def print_backtest_summary():
     print("Aggressive       | 11.45% |   3.69 |  0.69% |  3,532 |   50.91%")
     print("Hummingbot       |  8.96% |   3.99 |  0.54% |  3,532 |   50.91%")
     
-    print("\n🎯 KEY INSIGHTS:")
+    print("\nKEY INSIGHTS:")
     print("1. EXCELLENT MODEL CALIBRATION:")
     print("   • Quantile predictions are well-calibrated (90% coverage)")
     print("   • 81% directional accuracy is very strong")
@@ -53,7 +53,7 @@ def print_backtest_summary():
     print("• Thresholds: 0.5 for both long/short signals")
     print("• Position limit: 100% of capital")
     
-    print("\n🔄 HUMMINGBOT INTEGRATION READINESS:")
+    print("\nHUMMINGBOT INTEGRATION READINESS:")
     print("• Probability conversion logic validated")
     print("• Tier confidence → position sizing works well")
     print("• Real-time prediction pipeline ready")

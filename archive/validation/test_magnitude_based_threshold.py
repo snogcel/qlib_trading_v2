@@ -67,7 +67,7 @@ def test_magnitude_based_threshold():
         sys.path.append('.')
         from src.training_pipeline import q50_regime_aware_signals
         
-        print(f"\n🔄 Testing magnitude-based q50_regime_aware_signals...")
+        print(f"\nTesting magnitude-based q50_regime_aware_signals...")
         
         # Apply the magnitude-enhanced approach
         df_result = q50_regime_aware_signals(df_test.copy())
@@ -128,7 +128,7 @@ def test_magnitude_based_threshold():
         # Test final tradeable signals
         if 'tradeable' in df_result.columns:
             tradeable_count = df_result['tradeable'].sum()
-            print(f"\n🎯 Final Tradeable Signals:")
+            print(f"\nFinal Tradeable Signals:")
             print(f"   Tradeable signals: {tradeable_count:,} ({tradeable_count/len(df_result)*100:.1f}%)")
             
             if tradeable_count > 0:
@@ -156,7 +156,7 @@ def test_magnitude_based_threshold():
         
         # Test signal generation
         if 'side' in df_result.columns:
-            print(f"\n🎯 Signal Generation:")
+            print(f"\nSignal Generation:")
             signal_counts = df_result['side'].value_counts()
             for side, count in signal_counts.items():
                 side_name = {1: 'LONG', 0: 'SHORT', -1: 'HOLD'}[side]
@@ -174,7 +174,7 @@ def test_magnitude_based_threshold():
 def main():
     """Main test function"""
     
-    print("🎯 MAGNITUDE-BASED THRESHOLD TEST")
+    print("MAGNITUDE-BASED THRESHOLD TEST")
     print("=" * 70)
     print("Testing the implementation of magnitude-based economic significance")
     print("using expected value from quantile distribution")

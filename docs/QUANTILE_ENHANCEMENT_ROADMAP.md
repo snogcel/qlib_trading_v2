@@ -1,6 +1,6 @@
 # Quantile Enhancement Roadmap
 
-## 🎯 Overview
+## Overview
 Incremental enhancement of the proven Q50-centric trading system (1.327 Sharpe) using insights from quantile deep learning research.
 
 **Foundation**: Current system with 17.48% return, 1.327 Sharpe, -11.77% max drawdown  
@@ -186,7 +186,7 @@ class LSTMQuantileModel:
 
 ---
 
-## 🎯 Long-Term Vision
+## Long-Term Vision
 
 ### Multi-Horizon Extension
 - Extend quantile predictions to multiple time horizons

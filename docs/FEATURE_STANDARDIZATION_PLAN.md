@@ -1,6 +1,6 @@
 # Feature Standardization Plan
 
-## 🎯 Overview
+## Overview
 Based on analysis of the codebase, several key features need standardization to ensure consistency and maintainability. This plan addresses the most critical standardization needs.
 
 ---
@@ -52,9 +52,9 @@ def get_strength_bucket(signal_strength):
 
 ### Implementation Steps
 1. Create standardized function in `qlib_custom/signal_utils.py`
-2. 🔄 Update all modules to use standard function
-3. 🔄 Investigate data anomaly (all zeros)
-4. 🔄 Add validation tests
+2. Update all modules to use standard function
+3. Investigate data anomaly (all zeros)
+4. Add validation tests
 
 ---
 
@@ -112,13 +112,13 @@ def rule_based_classification(row):
 
 ### Implementation Steps
 1. Create standardized function in `qlib_custom/signal_utils.py`
-2. 🔄 Train/validate ML model for tier prediction
-3. 🔄 Update all modules to use standard format
-4. 🔄 Deprecate letter-based system
+2. Train/validate ML model for tier prediction
+3. Update all modules to use standard format
+4. Deprecate letter-based system
 
 ---
 
-## 🔄 Priority 3: Unified Signal Quality Score
+## Priority 3: Unified Signal Quality Score
 
 ### Proposal
 Create a single, comprehensive signal quality metric that combines strength and tier:

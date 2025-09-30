@@ -27,7 +27,7 @@ def create_impact_assessment():
     print("│ vol_raw_decile  │ 0-9          │ 0-0.056      │ 175x         │ 0.56 (MOD)   │")
     print("└─────────────────┴──────────────┴──────────────┴──────────────┴──────────────┘")
     
-    print("\n🎯 AFFECTED FILES & USAGE:")
+    print("\nAFFECTED FILES & USAGE:")
     
     affected_files = {
         'ppo_sweep_optuna_tuned_v2.py': {
@@ -113,7 +113,7 @@ def create_impact_assessment():
     print("3. Explore different volatility windows")
     print("4. Add new volatility-based features")
     
-    print("\n🔧 SPECIFIC CODE CHANGES NEEDED:")
+    print("\nSPECIFIC CODE CHANGES NEEDED:")
     
     changes_needed = [
         {
@@ -169,7 +169,7 @@ def create_impact_assessment():
     print("   • No runtime errors in production")
     print("   • Feature importance rankings are logical")
     
-    print("\n⏰ TIMELINE:")
+    print("\nTIMELINE:")
     print("   • Phase 1 (Critical): 1-2 days")
     print("   • Phase 2 (Validation): 3-5 days") 
     print("   • Phase 3 (Optimization): 1-2 weeks")

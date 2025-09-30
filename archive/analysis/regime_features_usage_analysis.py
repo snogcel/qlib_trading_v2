@@ -13,7 +13,7 @@ def analyze_regime_feature_approaches():
     print("REGIME FEATURES: STANDALONE vs MULTIPLICATIVE (MASK) ANALYSIS")
     print("=" * 100)
     
-    print("\n🎯 THE FUNDAMENTAL QUESTION:")
+    print("\nTHE FUNDAMENTAL QUESTION:")
     print("   Should regime features be:")
     print("   A) Standalone binary features (0/1)")
     print("   B) Multiplicative masks applied to other variables")
@@ -159,7 +159,7 @@ def analyze_regime_feature_approaches():
         print(f"   Recommendation: {case['recommendation']}")
         print(f"   Reason: {case['reason']}")
     
-    print("\n🎯 HYBRID APPROACH RECOMMENDATION:")
+    print("\nHYBRID APPROACH RECOMMENDATION:")
     
     hybrid_strategy = """
     BEST APPROACH: Create BOTH standalone AND multiplicative versions
@@ -183,7 +183,7 @@ def analyze_regime_feature_approaches():
     
     print(hybrid_strategy)
     
-    print("\n🔧 IMPLEMENTATION EXAMPLES:")
+    print("\nIMPLEMENTATION EXAMPLES:")
     
     implementation_code = '''
 def create_regime_multipliers(df):
@@ -256,7 +256,7 @@ def apply_regime_adjustments(df):
     for risk in risks:
         print(f"   ⚠️  {risk}")
     
-    print("\n🎯 FINAL RECOMMENDATION:")
+    print("\nFINAL RECOMMENDATION:")
     
     final_rec = """
     IMPLEMENT HYBRID APPROACH:

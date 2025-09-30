@@ -53,7 +53,7 @@ def test_fixed_validation():
     print(f"Created test data: {len(df)} rows")
     
     # Test the fixed validation function
-    print(f"\n🔧 Testing fixed spread validation...")
+    print(f"\nTesting fixed spread validation...")
     
     try:
         correlations = validate_spread_predictive_power(df)
@@ -63,7 +63,7 @@ def test_fixed_validation():
             print(f"   {target}: {corr:.4f}")
         
         # Test signal thresholds
-        print(f"\n🔧 Testing signal threshold validation...")
+        print(f"\nTesting signal threshold validation...")
         validate_signal_thresholds(df)
         
         print(f"\nALL TESTS PASSED!")

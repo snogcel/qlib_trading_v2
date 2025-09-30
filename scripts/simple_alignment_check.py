@@ -115,7 +115,7 @@ def check_feature_documentation():
 
 def main():
     """Main alignment check"""
-    print("🎯 Simple NautilusTrader Requirements Alignment Check")
+    print("Simple NautilusTrader Requirements Alignment Check")
     print("="*60)
     
     # Run all checks
@@ -137,7 +137,7 @@ def main():
     if overall_status:
         print("\nOVERALL STATUS: FULLY ALIGNED")
         print("Ready to proceed with NautilusTrader POC development!")
-        print("\n🎯 Key Confirmations:")
+        print("\nKey Confirmations:")
         print("  • Transaction cost: 5 bps (0.0005)")
         print("  • Variance thresholds: 30th/70th/90th percentiles")
         print("  • Position limits: 1%-50% of capital")
@@ -147,7 +147,7 @@ def main():
         return 0
     else:
         print("\n⚠️  OVERALL STATUS: NEEDS ATTENTION")
-        print("🔧 Some alignment issues need to be resolved")
+        print("Some alignment issues need to be resolved")
         return 1
 
 if __name__ == "__main__":

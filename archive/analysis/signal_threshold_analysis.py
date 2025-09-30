@@ -283,7 +283,7 @@ def main():
     # Show implementation
     code = create_implementation_example()
     
-    print(f"\n🎯 RECOMMENDATIONS")
+    print(f"\nRECOMMENDATIONS")
     print("=" * 60)
     print("1. **Immediate Fix**: Use economic significance threshold (e.g., 2x trading costs)")
     print("2. **Better Approach**: Implement risk-adjusted thresholds based on prediction uncertainty")

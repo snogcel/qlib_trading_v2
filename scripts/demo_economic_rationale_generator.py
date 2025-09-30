@@ -54,7 +54,7 @@ def demo_feature_enhancement(generator, feature_name, category, description=""):
     print(f"Chart Patterns: {', '.join(enhancement.chart_explanation.chart_patterns)}")
     
     # Display supply/demand classification
-    print(f"\n🎯 SUPPLY/DEMAND CLASSIFICATION:")
+    print(f"\nSUPPLY/DEMAND CLASSIFICATION:")
     print(f"Primary Role: {enhancement.supply_demand_classification.primary_role.value}")
     print(f"Market Layer: {enhancement.supply_demand_classification.market_layer.value}")
     print(f"Time Horizon: {enhancement.supply_demand_classification.time_horizon.value}")

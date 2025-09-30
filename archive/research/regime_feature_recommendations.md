@@ -1,6 +1,6 @@
 # Advanced Regime Feature Engineering - Recommendations
 
-## 🎯 **Top Performing Regime Features** (Validated Results)
+## **Top Performing Regime Features** (Validated Results)
 
 Based on your data analysis, here are the highest-value feature interactions:
 
@@ -119,7 +119,7 @@ signal_quality_score = (
 2. **Regime-adjusted Kelly sizing** - Your sophisticated approach
 3. **Ensemble regime scoring** - Combine multiple signals
 
-## 🎯 **Kelly Sizing Integration**
+## **Kelly Sizing Integration**
 
 Based on your regime-aware Kelly testing:
 

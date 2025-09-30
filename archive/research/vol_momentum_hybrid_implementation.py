@@ -10,7 +10,7 @@ def create_hybrid_implementation_plan():
     print("VOL_RAW_MOMENTUM HYBRID IMPLEMENTATION PLAN")
     print("=" * 100)
     
-    print("\n🎯 STRATEGY: Keep Both Features + Create Hybrid")
+    print("\nSTRATEGY: Keep Both Features + Create Hybrid")
     
     print("\n📋 IMPLEMENTATION STEPS:")
     
@@ -34,7 +34,7 @@ def create_hybrid_implementation_plan():
     print("   • Weight based on market conditions")
     print("   • Adaptive weighting based on performance")
     
-    print("\n🔧 CODE IMPLEMENTATION:")
+    print("\nCODE IMPLEMENTATION:")
     
     print("\n📁 optimize_feature_loaders.py additions:")
     code_additions = '''
@@ -130,7 +130,7 @@ def test_momentum_features(df):
     '''
     print(testing_code)
     
-    print("\n🎯 USAGE RECOMMENDATIONS:")
+    print("\nUSAGE RECOMMENDATIONS:")
     
     usage_scenarios = [
         {
@@ -165,7 +165,7 @@ def test_momentum_features(df):
         print(f"   Reason: {scenario['reason']}")
         print(f"   Example: {scenario['example']}")
     
-    print("\n🔄 ADAPTIVE WEIGHTING STRATEGY:")
+    print("\nADAPTIVE WEIGHTING STRATEGY:")
     
     adaptive_code = '''
 def adaptive_momentum_ensemble(df, lookback=30):
@@ -255,7 +255,7 @@ def adaptive_momentum_ensemble(df, lookback=30):
     ]
     
     for phase in rollout_phases:
-        print(f"\n🎯 {phase['phase']} ({phase['duration']}):")
+        print(f"\n{phase['phase']} ({phase['duration']}):")
         for task in phase['tasks']:
             print(f"   • {task}")
     

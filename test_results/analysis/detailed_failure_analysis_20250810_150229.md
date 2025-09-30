@@ -65,7 +65,7 @@ Target Features: btc_dom, regime_multiplier, vol_risk
 ### 🚨 Immediate Actions
 - Emergency fix required for btc_dom - 100% failure rate
 
-### 🔧 Short-term Fixes
+### Short-term Fixes
 - Address regime_multiplier failures (current rate: 60.0%)
 - Address vol_risk failures (current rate: 60.0%)
 - Performance optimization review across multiple features

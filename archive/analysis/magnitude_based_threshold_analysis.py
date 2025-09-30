@@ -50,7 +50,7 @@ def calculate_expected_value_threshold(df, transaction_cost_bps=20):
     Calculate threshold based on expected value considering full quantile distribution
     """
     
-    print(f"\n🎯 EXPECTED VALUE THRESHOLD CALCULATION")
+    print(f"\nEXPECTED VALUE THRESHOLD CALCULATION")
     print("=" * 60)
     
     transaction_cost = transaction_cost_bps / 10000
@@ -96,7 +96,7 @@ def calculate_expected_value_threshold(df, transaction_cost_bps=20):
     risk_premium_multiplier = 1.0  # 1x the estimated risk
     df['risk_adjusted_threshold'] = transaction_cost + risk_premium_multiplier * df['estimated_risk']
     
-    print(f"\n🎯 Threshold Recommendations:")
+    print(f"\nThreshold Recommendations:")
     print(f"   Fixed transaction cost: {transaction_cost:.4f} ({transaction_cost_bps} bps)")
     print(f"   Average risk-adjusted threshold: {df['risk_adjusted_threshold'].mean():.4f}")
     print(f"   Median risk-adjusted threshold: {df['risk_adjusted_threshold'].median():.4f}")
@@ -117,7 +117,7 @@ def magnitude_based_economic_significance(df, method='adaptive_risk'):
     Create magnitude-based economic significance using quantile information
     """
     
-    print(f"\n🎯 MAGNITUDE-BASED ECONOMIC SIGNIFICANCE")
+    print(f"\nMAGNITUDE-BASED ECONOMIC SIGNIFICANCE")
     print("=" * 60)
     
     # Ensure we have required columns
@@ -246,7 +246,7 @@ def test_magnitude_approaches():
 def main():
     """Main analysis function"""
     
-    print("🎯 MAGNITUDE-BASED THRESHOLD ANALYSIS")
+    print("MAGNITUDE-BASED THRESHOLD ANALYSIS")
     print("=" * 80)
     print("Analyzing quantile magnitudes to create realistic economic thresholds")
     

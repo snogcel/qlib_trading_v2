@@ -5,7 +5,7 @@ This document tracks all features in the Q50-centric, variance-aware trading sys
 
 ---
 
-## 🎯 Core Signal Features
+## Core Signal Features
 
 ### Q50 (Primary Signal)
 - **Type**: Quantile-based probability
@@ -83,7 +83,7 @@ This document tracks all features in the Q50-centric, variance-aware trading sys
 
 ---
 
-## 🔄 Regime & Market Features
+## Regime & Market Features
 
 ### Regime Features
 - **Type**: Market state classification
@@ -123,7 +123,7 @@ This document tracks all features in the Q50-centric, variance-aware trading sys
 
 ---
 
-## 🔧 Threshold & Control Features
+## Threshold & Control Features
 
 ### Magnitude-Based Thresholds
 - **Type**: Dynamic threshold system
@@ -199,7 +199,7 @@ This document tracks all features in the Q50-centric, variance-aware trading sys
    - Replaced: regime_variance_multiplier, various scattered multipliers
    - Implementation: Unified position scaling with all regime factors
 
-#### 🎯 Results Achieved:
+#### Results Achieved:
 - **23+ features → 7 features**: Massive simplification
 - **Repurposed unused namespace**: signal_strength/signal_tier now regime features
 - **Validated with actual data**: 53,978 samples tested successfully
@@ -227,7 +227,7 @@ This document tracks all features in the Q50-centric, variance-aware trading sys
 
 ---
 
-## 🔄 Next Steps
+## Next Steps
 
 1. **Immediate**: Document signal_strength and signal_tier features
 2. **Short-term**: Analyze performance impact of review items

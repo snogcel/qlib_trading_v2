@@ -1,6 +1,6 @@
 # Quantile Deep Learning Research Analysis
 
-## 🎯 Research Overview
+## Research Overview
 
 **Paper**: "Quantile Deep Learning for Bitcoin Price Prediction"  
 **GitHub**: https://github.com/sydney-machine-learning/quantiledeeplearning  
@@ -141,7 +141,7 @@ def multi_horizon_quantile_prediction(model, features, horizons=[1, 3, 6]):
 
 ---
 
-## 🎯 Integration Recommendations
+## Integration Recommendations
 
 ### Priority 1: Enhance Current System (Low Risk)
 ```python

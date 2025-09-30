@@ -108,7 +108,7 @@ Each experiment tracks:
 - **Win Rate:** Trade success rate
 - **Total Trades:** Strategy activity level
 
-## 🎯 Optimization Workflow
+## Optimization Workflow
 
 ### Recommended Sequence:
 
@@ -147,7 +147,7 @@ python run_feature_optimization.py --mode optimize --config enhanced_volatility
 - `optimized_[config]_[timestamp].json` - Final optimized configuration
 - `feature_importance_analysis_[timestamp].json` - Feature importance rankings
 
-## 🔧 Customization
+## Customization
 
 ### Adding New Feature Experiments:
 1. Edit `feature_experiment_suite.py`
@@ -182,7 +182,7 @@ Based on your baseline results:
 4. **Validate on out-of-sample data** - Use the test set for final validation
 5. **Balance complexity vs. performance** - More features ≠ always better
 
-## 🔄 Integration with Hummingbot
+## Integration with Hummingbot
 
 After optimization:
 1. Use optimized thresholds in `hummingbot_bridge.py`

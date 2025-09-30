@@ -1,6 +1,6 @@
 # Trading Principle Coverage Framework
 
-## 🎯 Overview
+## Overview
 This framework ensures every component of our trading system aligns with the principles in `TRADING_SYSTEM_PRINCIPLES.md` through systematic test coverage and validation.
 
 ---
@@ -161,7 +161,7 @@ def continuous_optimization(self):
 
 ---
 
-## 🎯 Implementation Roadmap
+## Implementation Roadmap
 
 ### **Immediate (Next 2 weeks):**
 1. **Create principle coverage tests** for existing components

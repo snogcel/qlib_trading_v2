@@ -136,7 +136,7 @@ def generate_realistic_validation_report():
     else:
         report["recommendations"] = [
             "Some realistic validation tests failed",
-            "🔧 Review failed tests - may indicate data preprocessing needs",
+            "Review failed tests - may indicate data preprocessing needs",
             "📋 Check data quality and column availability",
             "Consider data preprocessing pipeline improvements",
             "Validate data loading and transformation steps"
@@ -158,7 +158,7 @@ def generate_realistic_validation_report():
 def print_realistic_validation_summary(report):
     """Print executive summary of realistic validation results"""
     print("\n" + "="*70)
-    print("🎯 REALISTIC STATISTICAL VALIDATION SUMMARY")
+    print("REALISTIC STATISTICAL VALIDATION SUMMARY")
     print("="*70)
     
     status = report["overall_status"]
@@ -167,7 +167,7 @@ def print_realistic_validation_summary(report):
         print("Phase 1 validated with actual system data!")
     else:
         print("⚠️  STATUS: SOME TESTS FAILED")
-        print("🔧 May need data preprocessing improvements")
+        print("May need data preprocessing improvements")
     
     print(f"\nExecution Details:")
     print(f"   Duration: {report['execution_time_seconds']:.2f} seconds")
@@ -190,7 +190,7 @@ def print_realistic_validation_summary(report):
         print(f"   {rec}")
     
     if status == "PASSED":
-        print(f"\n🎯 Key Achievements:")
+        print(f"\nKey Achievements:")
         print("   • Statistical validation framework works with real data")
         print("   • All system components validated with actual patterns")
         print("   • Phase 1 of Principle Coverage Framework COMPLETED")
@@ -200,7 +200,7 @@ def print_realistic_validation_summary(report):
 
 def main():
     """Main realistic validation workflow"""
-    print("🎯 Realistic Statistical Validation")
+    print("Realistic Statistical Validation")
     print("Phase 1 of Principle Coverage Framework - Real Data Edition")
     print("="*70)
     

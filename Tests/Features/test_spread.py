@@ -89,7 +89,7 @@ if __name__ == "__main__":
     spread_results, spread_decile_analysis = validate_spread_predictive_power(df)
 
 """ 
-🎯 Key Insight: Spread is a Risk Measure, Not a Return Predictor
+Key Insight: Spread is a Risk Measure, Not a Return Predictor
 Looking at your decile analysis:
 
 Returns are essentially flat across all spread deciles (0.0000 to 0.0002)

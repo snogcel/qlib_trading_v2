@@ -61,7 +61,7 @@ This document tracks all features in the Q50-centric, variance-aware trading sys
 
 ---
 
-## 🎯 Core Signal Features
+## Core Signal Features
 
 ### Q50 (Primary Signal)
 - **Type**: Quantile-based probability
@@ -97,7 +97,7 @@ This document tracks all features in the Q50-centric, variance-aware trading sys
         """Sample trading principles content"""
         return """# Trading System Development Principles
 
-## 🎯 Core Philosophy
+## Core Philosophy
 
 ### 1. **Thesis-First Development**
 Every strategy must have a clear economic thesis explaining why it works.
@@ -479,7 +479,7 @@ Some basic content without thesis elements
         """Test reconstruction of category content"""
         category = FeatureCategory(
             name="Test Category",
-            section_title="## 🎯 Test Category",
+            section_title="## Test Category",
             features=[],
             content_start=0,
             content_end=10,
@@ -493,7 +493,7 @@ Some basic content without thesis elements
         
         result = engine._reconstruct_category_content(category, enhanced_features)
         
-        assert "## 🎯 Test Category" in result
+        assert "## Test Category" in result
         assert "### Feature 1" in result
         assert "### Feature 2" in result
         assert "---" in result  # Separator between features
@@ -513,7 +513,7 @@ class TestFeatureParsingEdgeCases:
         """Test parsing of malformed feature content"""
         malformed_content = """# Feature Documentation
 
-## 🎯 Core Features
+## Core Features
 
 ### Feature Without Properties
 
@@ -551,7 +551,7 @@ class TestFeatureParsingEdgeCases:
         """Test parsing of empty categories"""
         empty_content = """# Feature Documentation
 
-## 🎯 Empty Category
+## Empty Category
 
 ## Another Empty Category
 

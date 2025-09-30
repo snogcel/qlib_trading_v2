@@ -59,7 +59,7 @@ class FailureFixHelper:
         Args:
             analysis: Analysis data from detailed failure analysis
         """
-        print("🔧 Generating fix templates...")
+        print("Generating fix templates...")
         
         # Generate feature-specific fix templates
         for feature, feature_data in analysis['feature_analysis'].items():
@@ -548,7 +548,7 @@ if __name__ == "__main__":
         with open(script_path, 'w', encoding='utf-8') as f:
             f.write(script_content)
         
-        print(f"🔧 Created btc_dom diagnostic script: {script_path}")
+        print(f"Created btc_dom diagnostic script: {script_path}")
     
     def _create_performance_profiling_script(self) -> None:
         """Create performance profiling script."""
@@ -653,7 +653,7 @@ if __name__ == "__main__":
 
 def main():
     """Run the failure fix helper."""
-    print("🔧 Failure Fix Helper")
+    print("Failure Fix Helper")
     print("=" * 50)
     print("This script generates fix templates and helper tools based on failure analysis.")
     print()
@@ -676,7 +676,7 @@ def main():
         helper.create_fix_scripts(analysis)
         
         print("\n" + "=" * 50)
-        print("🎯 FIX HELPER SUMMARY")
+        print("FIX HELPER SUMMARY")
         print("=" * 50)
         print(f"📁 All fix resources generated in: {helper.fixes_dir}")
         print("\n📝 Generated Resources:")

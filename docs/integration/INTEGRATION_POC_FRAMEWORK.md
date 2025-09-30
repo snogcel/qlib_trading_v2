@@ -1,6 +1,6 @@
 # Integration Proof of Concept Framework
 
-## 🎯 Overview
+## Overview
 A systematic approach to validate both NautilusTrader and Hummingbot integration paths through minimal viable implementations, allowing data-driven platform selection.
 
 ---
@@ -667,7 +667,7 @@ class POCEvaluator:
 
 ---
 
-## 🎯 Success Criteria
+## Success Criteria
 
 ### **POC Must Demonstrate:**
 
@@ -712,7 +712,7 @@ class POCEvaluator:
 
 ---
 
-## 🎯 Expected Outcome
+## Expected Outcome
 
 **By end of Week 3, we'll have:**
 

@@ -135,7 +135,7 @@ def generate_validation_report():
     else:
         report["recommendations"] = [
             "Some statistical validation tests failed",
-            "🔧 Review failed tests and fix underlying issues",
+            "Review failed tests and fix underlying issues",
             "📋 Ensure all required dependencies are installed",
             "Re-run tests after fixes to verify resolution",
             "Consider reducing test complexity if data issues exist"
@@ -156,7 +156,7 @@ def generate_validation_report():
 def print_executive_summary(report):
     """Print executive summary of validation results"""
     print("\n" + "="*70)
-    print("🎯 STATISTICAL VALIDATION EXECUTIVE SUMMARY")
+    print("STATISTICAL VALIDATION EXECUTIVE SUMMARY")
     print("="*70)
     
     status = report["overall_status"]
@@ -165,7 +165,7 @@ def print_executive_summary(report):
         print("Phase 1 of Principle Coverage Framework COMPLETED")
     else:
         print("⚠️  STATUS: SOME TESTS FAILED")
-        print("🔧 Action required to complete Phase 1")
+        print("Action required to complete Phase 1")
     
     print(f"\nExecution Details:")
     print(f"   Duration: {report['execution_time_seconds']:.2f} seconds")
@@ -186,7 +186,7 @@ def print_executive_summary(report):
     for rec in report["recommendations"]:
         print(f"   {rec}")
     
-    print(f"\n🎯 Statistical Validation Requirements Met:")
+    print(f"\nStatistical Validation Requirements Met:")
     print("   • Time-series aware cross-validation ✅")
     print("   • Out-of-sample testing ✅")
     print("   • Regime robustness testing ✅") 
@@ -196,15 +196,15 @@ def print_executive_summary(report):
     if status == "PASSED":
         print(f"\nNext Steps:")
         print("   1. Phase 1 Complete: Statistical Validation")
-        print("   2. 🎯 Begin Phase 2: ML Governance Tests")
+        print("   2. Begin Phase 2: ML Governance Tests")
         print("   3. Implement continuous validation monitoring")
-        print("   4. 🔄 Consider RD-Agent integration for automated feature discovery")
+        print("   4. Consider RD-Agent integration for automated feature discovery")
     
     print("\n" + "="*70)
 
 def main():
     """Main validation workflow"""
-    print("🎯 Statistical Validation Test Suite")
+    print("Statistical Validation Test Suite")
     print("Phase 1 of Principle Coverage Framework")
     print("="*70)
     

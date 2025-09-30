@@ -10,7 +10,7 @@ def create_final_summary():
     print("MOMENTUM HYBRID IMPLEMENTATION - FINAL SUMMARY")
     print("=" * 100)
     
-    print("\n🎯 IMPLEMENTATION COMPLETED:")
+    print("\nIMPLEMENTATION COMPLETED:")
     
     print("\nFILES MODIFIED:")
     files_modified = [
@@ -100,7 +100,7 @@ def create_final_summary():
     for f1, f2, corr, interpretation in correlations:
         print(f"   • {f1} vs {f2}: {corr:.2f} - {interpretation}")
     
-    print("\n🎯 USAGE RECOMMENDATIONS:")
+    print("\nUSAGE RECOMMENDATIONS:")
     
     scenarios = [
         {
@@ -198,7 +198,7 @@ def create_final_summary():
     ]
     
     for phase in phases:
-        print(f"\n🎯 {phase['phase']}:")
+        print(f"\n{phase['phase']}:")
         for task in phase['tasks']:
             print(f"   • {task}")
     

@@ -66,7 +66,7 @@ def test_q50_integration():
         sys.path.append('.')
         from src.training_pipeline import q50_regime_aware_signals, prob_up_piecewise
         
-        print(f"\n🔄 Testing q50_regime_aware_signals function...")
+        print(f"\nTesting q50_regime_aware_signals function...")
         
         # Apply the Q50-centric approach
         df_result = q50_regime_aware_signals(df_test.copy())
@@ -96,13 +96,13 @@ def test_q50_integration():
         print(f"   Trending: {df_result['momentum_regime_trending'].sum():,} ({df_result['momentum_regime_trending'].mean()*100:.1f}%)")
         
         # Analyze signal quality
-        print(f"\n🎯 SIGNAL QUALITY:")
+        print(f"\nSIGNAL QUALITY:")
         print(f"   Economically Significant: {df_result['economically_significant'].sum():,} ({df_result['economically_significant'].mean()*100:.1f}%)")
         print(f"   High Quality: {df_result['high_quality'].sum():,} ({df_result['high_quality'].mean()*100:.1f}%)")
         print(f"   Tradeable: {df_result['tradeable'].sum():,} ({df_result['tradeable'].mean()*100:.1f}%)")
         
         # Test signal generation logic
-        print(f"\n🔄 Testing signal generation logic...")
+        print(f"\nTesting signal generation logic...")
         
         # Simulate the signal generation from main script
         q50_vals = df_result["q50"]
@@ -132,7 +132,7 @@ def test_q50_integration():
             avg_abs_q50 = trading_signals['abs_q50'].mean()
             avg_threshold = trading_signals['signal_thresh_adaptive'].mean()
             
-            print(f"\n🎯 Trading Signal Quality:")
+            print(f"\nTrading Signal Quality:")
             print(f"   Average Info Ratio: {avg_info_ratio:.2f}")
             print(f"   Average |Q50|: {avg_abs_q50:.4f}")
             print(f"   Average Threshold: {avg_threshold:.4f}")
@@ -164,7 +164,7 @@ def test_q50_integration():
 def compare_with_old_approach():
     """Compare the new approach with the old threshold method"""
     
-    print(f"\n🔄 COMPARING WITH OLD APPROACH")
+    print(f"\nCOMPARING WITH OLD APPROACH")
     print("=" * 60)
     
     # This would require the old logic, but we can simulate the comparison
@@ -185,7 +185,7 @@ def compare_with_old_approach():
 def main():
     """Main test function"""
     
-    print("🎯 Q50-CENTRIC REGIME-AWARE INTEGRATION TEST")
+    print("Q50-CENTRIC REGIME-AWARE INTEGRATION TEST")
     print("=" * 70)
     print("Testing the integration of Q50-centric signals with regime identification")
     print("and vol_risk scaling in the main training script.")
@@ -205,7 +205,7 @@ def main():
         print("5. Update backtesting and production systems")
         
     else:
-        print(f"\n🔧 TROUBLESHOOTING:")
+        print(f"\nTROUBLESHOOTING:")
         print("1. Ensure ppo_sweep_optuna_tuned_v2.py is in the current directory")
         print("2. Check that all required imports are available")
         print("3. Verify the integration was applied correctly")

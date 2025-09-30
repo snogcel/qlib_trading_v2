@@ -139,10 +139,10 @@ def demo_enhancement_generation(engine):
             print("No suitable category found for enhancement demo")
             return None
         
-        print(f"🎯 Enhancing category: {target_category}")
+        print(f"Enhancing category: {target_category}")
         
         # Generate enhancement
-        print("🔄 Generating enhancements...")
+        print("Generating enhancements...")
         result = engine.enhance_feature_category(target_category, preserve_existing=True)
         
         if result.success:
@@ -187,7 +187,7 @@ def demo_validation(engine):
         print("🔍 Testing validation with sample enhanced content...")
         
         sample_enhanced_content = """
-## 🎯 Core Signal Features
+## Core Signal Features
 
 ### Q50 (Primary Signal)
 - **Type**: Quantile-based probability
@@ -282,7 +282,7 @@ def demo_protection_integration(engine):
         if rollback_points:
             print_subsection("Rollback Points")
             for point in rollback_points[-3:]:  # Show last 3 rollback points
-                print(f"   🔄 {point.timestamp}: {point.description}")
+                print(f"   {point.timestamp}: {point.description}")
         
         return True
         
@@ -349,7 +349,7 @@ def main():
     results = {}
     for demo_name, demo_func in demos:
         try:
-            print(f"\n🔄 Running {demo_name} demo...")
+            print(f"\nRunning {demo_name} demo...")
             result = demo_func()
             results[demo_name] = result is not None and result is not False
             if results[demo_name]:

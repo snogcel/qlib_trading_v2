@@ -125,7 +125,7 @@ def test_signal_analysis_output():
         direction_dist = signal_df['signal_direction'].value_counts()
         print(f"   Signal directions: {dict(direction_dist)}")
         
-        print("\n🎯 Ready for pivot table analysis!")
+        print("\nReady for pivot table analysis!")
         
     except Exception as e:
         print(f"   ⚠️  Could not preview results: {e}")

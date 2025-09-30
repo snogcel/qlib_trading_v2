@@ -16,7 +16,7 @@ def create_fix_summary():
     print("   • .shift(1) operations introduced additional NaN values")
     print("   • Bitwise NOT operator (~) doesn't work on float/NaN values")
     
-    print("\n🔧 THE FIX:")
+    print("\nTHE FIX:")
     
     fixes_applied = [
         "Added safe_boolean_operation() function to handle mixed data types",
@@ -66,7 +66,7 @@ def create_fix_summary():
     
     print("   └─────────────────────────┴──────┴──────────┴─────────────────────────────────┘")
     
-    print("\n🎯 KEY INSIGHTS FROM VALIDATION:")
+    print("\nKEY INSIGHTS FROM VALIDATION:")
     
     insights = [
         {

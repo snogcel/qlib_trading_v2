@@ -6,7 +6,7 @@
 
 ---
 
-## 🎯 System Overview
+## System Overview
 
 ### Core Philosophy
 This is a **Q50-centric, variance-aware quantile trading system** built on professional trading principles:
@@ -315,7 +315,7 @@ reports/                # Validation and analysis reports
 
 ---
 
-## 🔧 Technology Stack
+## Technology Stack
 
 ### **Core Technologies**
 | Technology | Version | Purpose | Status |
@@ -369,7 +369,7 @@ reports/                # Validation and analysis reports
 
 ---
 
-## 🎯 System Strengths
+## System Strengths
 
 ### **Architectural Advantages**
 1. **Modular Design**: Clear separation of concerns

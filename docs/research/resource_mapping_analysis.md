@@ -19,7 +19,7 @@ For each trading concept/resource found, we'll analyze:
 
 ### 2. **Mapping Categories**
 - **Already Implemented**: We have this covered
-- 🔄 **Partially Implemented**: We have some aspects, could enhance
+- **Partially Implemented**: We have some aspects, could enhance
 - 🆕 **New Opportunity**: Not currently implemented, could add value
 - **Not Applicable**: Doesn't fit our thesis-first approach
 
@@ -31,25 +31,25 @@ For each trading concept/resource found, we'll analyze:
 
 | # | Concept | Definition | Current Coverage | Integration | Value | Notes |
 |---|---------|------------|------------------|-------------|-------|-------|
-| 1 | **Constraints** | Time, capital, lifestyle limits | 🔄 **Partial** | Easy | High | We have capital constraints (Kelly), need time/lifestyle framework |
+| 1 | **Constraints** | Time, capital, lifestyle limits | **Partial** | Easy | High | We have capital constraints (Kelly), need time/lifestyle framework |
 | 2 | **Market Type** | Mean reverting, trending, random | **Implemented** | N/A | High | Our regime features detect exactly this |
 | 3 | **Valid Trading Window** | Volume/volatility-based hours | 🆕 **New** | Medium | Medium | Could enhance with volume-based trading windows |
 | 4 | **Risk (R)** | Fixed capital per trade | **Implemented** | N/A | High | Kelly sizing provides this |
-| 5 | **RRR** | Risk-to-reward ratio | 🔄 **Partial** | Easy | High | We calculate but don't explicitly target RRR |
+| 5 | **RRR** | Risk-to-reward ratio | **Partial** | Easy | High | We calculate but don't explicitly target RRR |
 | 6 | **Order-Flow Mechanics** | Buyer/seller imbalance | **Implemented** | N/A | High | Core to our Q50 supply/demand thesis |
 | 7 | **3-Wick Setup** | Rule-based rejection signals | 🆕 **New** | Medium | Medium | Could add as specific pattern feature |
 | 8 | **Tick** | Smallest price increment | **Implemented** | N/A | Low | Basic market data concept |
 | 9 | **Execution Cost** | Spreads, commissions, slippage | **Implemented** | N/A | High | Built into our backtesting |
 | 10 | **Backtest** | Honest historical testing | **Implemented** | N/A | High | Our validation framework |
 | 11 | **Overfitting** | Strategy shaped to past data | **Implemented** | N/A | High | We actively guard against this |
-| 12 | **Stress Test** | Testing in bad conditions | 🔄 **Partial** | Easy | High | We test regimes, could formalize stress periods |
+| 12 | **Stress Test** | Testing in bad conditions | **Partial** | Easy | High | We test regimes, could formalize stress periods |
 | 13 | **Bar Replay** | Forward candle-by-candle testing | 🆕 **New** | Hard | Medium | Would require significant infrastructure |
 | 14 | **Scaling In** | Adding size after entry | 🆕 **New** | Medium | Low | Not aligned with our systematic approach |
 | 15 | **Hedge** | Opposite direction positions | 🆕 **New** | Hard | Low | Adds complexity without clear thesis |
 | 16 | **Breakeven/Partials** | Early exit strategies | 🆕 **New** | Medium | Medium | Could enhance exit logic |
 | 17 | **Ghost Liquidity** | Hidden order flow | 🆕 **New** | Hard | Low | Hard to detect systematically |
 | 18 | **Random Walk** | Noise-like price movement | **Implemented** | N/A | High | We filter for this with regime detection |
-| 19 | **Bracketed Limit Orders** | Pre-set entry/stop/target | 🔄 **Partial** | Easy | High | We have logic, could formalize order structure |
+| 19 | **Bracketed Limit Orders** | Pre-set entry/stop/target | **Partial** | Easy | High | We have logic, could formalize order structure |
 | 20 | **Institutional Narrative Fallacy** | "Smart money" marketing | **Implemented** | N/A | High | Our thesis-first approach avoids this |
 | 21 | **Data Snooping** | Over-analyzing for patterns | **Implemented** | N/A | High | We guard against this rigorously |
 | 22 | **Drawdown** | Peak-to-trough decline | **Implemented** | N/A | High | Tracked in our backtesting |
@@ -89,7 +89,7 @@ Our system already implements the most critical concepts:
 - **Validation Framework**: Proper backtesting, overfitting protection
 - **Logic-Driven Approach**: Thesis-first development
 
-### 🔄 **Enhancement Opportunities (4/25 concepts)**
+### **Enhancement Opportunities (4/25 concepts)**
 Areas where we have partial coverage that could be strengthened:
 
 1. **Constraints Framework** - Add formal time/lifestyle constraint modeling
@@ -180,9 +180,9 @@ Concepts we don't currently implement:
 | Concept | Our Position | Implementation | Strategic Value |
 |---------|--------------|----------------|-----------------|
 | **Random Walk Detection** | **Counter-thesis** | Regime features identify when markets are NOT random | **Critical** |
-| **Market Memory** | 🔄 **Selective** | We assume memory exists in specific conditions (regimes) | **High** |
+| **Market Memory** | **Selective** | We assume memory exists in specific conditions (regimes) | **High** |
 | **Technical Analysis Validity** | **Conditional** | Valid only when backed by supply/demand logic | **High** |
-| **Predictability** | 🔄 **Regime-dependent** | Predictable during certain market states, not others | **Critical** |
+| **Predictability** | **Regime-dependent** | Predictable during certain market states, not others | **Critical** |
 
 ### Key Insights for Our System
 
@@ -250,8 +250,8 @@ Concepts we don't currently implement:
 | Concept | Our Current State | Implementation Gap | Strategic Priority |
 |---------|-------------------|-------------------|-------------------|
 | **Alpha Decay Detection** | 🆕 **Missing** | No systematic monitoring of signal degradation | **Critical** |
-| **Signal Aging** | 🔄 **Partial** | We use temporal features but don't track decay | **High** |
-| **Non-Stationary Testing** | 🔄 **Partial** | Regime detection helps, but no explicit decay tests | **High** |
+| **Signal Aging** | **Partial** | We use temporal features but don't track decay | **High** |
+| **Non-Stationary Testing** | **Partial** | Regime detection helps, but no explicit decay tests | **High** |
 | **Strategy Longevity** | 🆕 **Missing** | No framework for strategy lifecycle management | **Medium** |
 
 ### Key Insights for Our System
@@ -371,7 +371,7 @@ Concepts we don't currently implement:
 |---------|------------------|-------------------|-----------------|
 | **Intraday Seasonality** | 🆕 **Missing** | No time-of-day features | **High** |
 | **Session-Based Rules** | 🆕 **Missing** | No trading hour restrictions | **Medium** |
-| **Volume/Volatility Patterns** | 🔄 **Partial** | We use volatility but not time-aware | **High** |
+| **Volume/Volatility Patterns** | **Partial** | We use volatility but not time-aware | **High** |
 | **U-Shape Pattern** | 🆕 **Missing** | Could enhance signal timing | **Medium** |
 
 ---
@@ -533,7 +533,7 @@ Grant et al.'s finding about transaction costs is crucial:
 | **Order Flow Analysis** | 🆕 **Missing** | No direct order book data | **High** |
 | **Bid-Ask Spread Impact** | **Implemented** | Built into execution costs | **High** |
 | **Market Depth** | 🆕 **Missing** | No depth-based position sizing | **Medium** |
-| **Price Resiliency** | 🔄 **Partial** | Regime detection captures some aspects | **Medium** |
+| **Price Resiliency** | **Partial** | Regime detection captures some aspects | **Medium** |
 | **HFT Impact** | 🆕 **Missing** | No HFT-aware signal filtering | **Low-Medium** |
 
 ### Strategic Insights for Our System

@@ -130,7 +130,7 @@ def compare_with_current_approach(df):
     
     # Agreement analysis
     agreement = (df['side'] == df['side_q50']).mean()
-    print(f"\n🎯 Signal Agreement: {agreement:.2%}")
+    print(f"\nSignal Agreement: {agreement:.2%}")
     
     # Analyze disagreements
     disagreements = df[df['side'] != df['side_q50']]
@@ -217,7 +217,7 @@ def test_q50_approach():
     ]
     
     for i, params in enumerate(settings, 1):
-        print(f"\n🔧 Test {i}: {params}")
+        print(f"\nTest {i}: {params}")
         
         df_test = q50_centric_signals(df.copy(), **params)
         
@@ -238,7 +238,7 @@ def test_q50_approach():
 def main():
     """Main function to demonstrate Q50-centric approach"""
     
-    print("🎯 Q50-CENTRIC TRADING SIGNALS")
+    print("Q50-CENTRIC TRADING SIGNALS")
     print("=" * 60)
     print("This approach uses Q50 directly as the primary signal,")
     print("combined with information ratio for quality filtering.")

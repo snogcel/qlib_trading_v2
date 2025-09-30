@@ -183,7 +183,7 @@ if __name__ == "__main__":
     print(f"\nTop features analysis completed!")
     
     # Recommendations
-    print(f"\n🎯 RECOMMENDATIONS:")
+    print(f"\nRECOMMENDATIONS:")
     print(f"1. Implement $momentum_1 and $momentum_3 immediately")
     print(f"2. Use signal_vol_adjusted instead of raw q50")
     print(f"3. Enhance tier_confidence with momentum + volatility")

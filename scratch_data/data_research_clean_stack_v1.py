@@ -653,7 +653,7 @@ if __name__ == '__main__':
     plt.figure(figsize=(14, 4))
     plt.scatter(df["date"], df["q50"], c=df["color"], label=None, s=25, alpha=0.8)
     plt.axhline(0, color="gray", linestyle="--", linewidth=1)
-    plt.title("🎯 Signal Tier Classification Over Time (Q50)")
+    plt.title("Signal Tier Classification Over Time (Q50)")
     plt.ylabel("Median Prediction (Q50)")
     plt.xlabel("Date")
 

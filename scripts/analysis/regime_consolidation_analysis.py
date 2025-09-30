@@ -70,7 +70,7 @@ def analyze_current_regime_features():
 def propose_unified_namespace():
     """Propose unified regime feature namespace"""
     
-    print("\n\n🎯 PROPOSED UNIFIED REGIME NAMESPACE")
+    print("\n\nPROPOSED UNIFIED REGIME NAMESPACE")
     print("=" * 60)
     
     unified_namespace = {
@@ -192,7 +192,7 @@ def create_implementation_plan():
     }
     
     for phase, details in phases.items():
-        print(f"\n🎯 {phase}")
+        print(f"\n{phase}")
         print(f"   Timeline: {details['timeline']}")
         print(f"   Tasks:")
         for task in details['tasks']:
@@ -238,7 +238,7 @@ def analyze_consolidation_benefits():
     }
     
     for category, items in benefits.items():
-        print(f"\n🎯 {category}")
+        print(f"\n{category}")
         for item in items:
             print(f"   {item}")
 

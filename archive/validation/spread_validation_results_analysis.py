@@ -66,7 +66,7 @@ def analyze_spread_validation_results():
     ]
     
     for validation in validations:
-        print(f"\n🎯 {validation['claim']}:")
+        print(f"\n{validation['claim']}:")
         print(f"   Result: {validation['result']}")
         print(f"   Status: {validation['status']}")
     
@@ -89,7 +89,7 @@ def analyze_spread_validation_results():
     
     print(f"\n   📈 Clear monotonic relationship: Higher spread → Higher future volatility")
     
-    print("\n🎯 SIGNAL THRESHOLD ANALYSIS:")
+    print("\nSIGNAL THRESHOLD ANALYSIS:")
     
     signal_results = {
         'above_threshold': {'count': 6469, 'mean_return': 0.000936, 'sharpe': 0.1085},
@@ -106,7 +106,7 @@ def analyze_spread_validation_results():
     print(f"   • Mean Return: {signal_results['below_threshold']['mean_return']:.6f}")
     print(f"   • Sharpe: {signal_results['below_threshold']['sharpe']:.4f} (NEGATIVE)")
     
-    print(f"\n   🎯 Signal threshold is HIGHLY effective at filtering trades!")
+    print(f"\n   Signal threshold is HIGHLY effective at filtering trades!")
     
     print("\n💡 WHAT THIS MEANS FOR YOUR TRADING:")
     

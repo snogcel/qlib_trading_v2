@@ -63,7 +63,7 @@ class FailureAnalyzer:
         
         # Analyze each target feature in detail
         for feature in self.target_features:
-            print(f"\n🎯 Analyzing feature: {feature}")
+            print(f"\nAnalyzing feature: {feature}")
             print("-" * 50)
             
             feature_results = [r for r in results if r.test_case.feature_name == feature]
@@ -801,7 +801,7 @@ class FailureAnalyzer:
             report_lines.append("")
         
         if recommendations['short_term_fixes']:
-            report_lines.append("### 🔧 Short-term Fixes")
+            report_lines.append("### Short-term Fixes")
             for fix in recommendations['short_term_fixes']:
                 report_lines.append(f"- {fix}")
             report_lines.append("")
@@ -1077,7 +1077,7 @@ def main():
         
         # Print summary
         print("\n" + "=" * 80)
-        print("🎯 ANALYSIS SUMMARY")
+        print("ANALYSIS SUMMARY")
         print("=" * 80)
         
         overview = analysis['overview']

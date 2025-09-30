@@ -1,6 +1,6 @@
 # Import Migration Tracker
 
-## 🎯 Overview
+## Overview
 This document tracks all import path changes made during the project reorganization to ensure nothing gets lost and all connections can be restored.
 
 **Date Created**: 2025-08-02  
@@ -67,7 +67,7 @@ src/
 
 ---
 
-## 🔧 Critical Import Updates Needed
+## Critical Import Updates Needed
 
 ### **Primary Pipeline Flow** (HIGHEST PRIORITY)
 
@@ -226,7 +226,7 @@ from qlib_custom.custom_train import CustomTrainer, backtest, train  # ⚠️ CH
 
 ---
 
-## 🔧 Quick Fix Commands
+## Quick Fix Commands
 
 **Find all files with qlib_custom imports:**
 ```bash
@@ -247,7 +247,7 @@ sed -i 's/csv_data\//data\/processed\//g' *.py
 
 ---
 
-## 🎯 Success Criteria
+## Success Criteria
 
 **Migration Complete When:**
 - [ ] No broken imports in any active files

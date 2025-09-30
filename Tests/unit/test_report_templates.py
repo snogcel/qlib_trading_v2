@@ -90,7 +90,7 @@ class TestReportTemplates(unittest.TestCase):
         
         # Check that template has expected structure
         self.assertIn("# Executive Summary", template)
-        self.assertIn("## 🎯 Key Metrics", template)
+        self.assertIn("## Key Metrics", template)
         self.assertIn("## Summary Statistics", template)
         self.assertIn("## 🚨 Critical Issues", template)
     
@@ -138,7 +138,7 @@ class TestReportTemplates(unittest.TestCase):
         # Check that template has expected structure
         self.assertIn("# Test Coverage Matrix", template)
         self.assertIn("## Coverage Overview", template)
-        self.assertIn("## 🎯 Feature Coverage Matrix", template)
+        self.assertIn("## Feature Coverage Matrix", template)
     
     def test_format_executive_summary_empty_results(self):
         """Test executive summary formatting with empty results."""

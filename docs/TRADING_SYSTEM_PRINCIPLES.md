@@ -1,6 +1,6 @@
 # Trading System Development Principles
 
-## 🎯 Core Philosophy
+## Core Philosophy
 
 Based on professional trading experience, these principles guide our systematic approach to building robust, explainable trading systems.
 
@@ -131,7 +131,7 @@ This resource serves as an excellent complement to our core principles, providin
 
 ---
 
-## 🎯 Implementation Guidelines
+## Implementation Guidelines
 
 ### Feature Development
 1. **Start with economic hypothesis**: Why should this feature predict returns?
@@ -195,7 +195,7 @@ This resource serves as an excellent complement to our core principles, providin
 
 ---
 
-## 🎯 Next Steps: Spec Development Framework
+## Next Steps: Spec Development Framework
 
 Based on these principles, our next spec should focus on:
 

@@ -1,6 +1,6 @@
 # NautilusTrader POC Requirements Alignment Summary
 
-## 🎯 Executive Summary
+## Executive Summary
 
 **STATUS: FULLY ALIGNED**
 
@@ -42,7 +42,7 @@ The NautilusTrader POC requirements have been successfully aligned with the actu
 
 ---
 
-## 🎯 Key Parameter Confirmations
+## Key Parameter Confirmations
 
 ### Signal Generation Logic
 ```python
@@ -122,7 +122,7 @@ enhanced_info_ratio = abs_q50 / max(total_risk, 0.001)
 4. **Data Pipeline**: Multi-frequency integration tested
 5. **Performance Target**: 1.327+ Sharpe ratio validated
 
-### 🎯 Key Integration Points
+### Key Integration Points
 1. **Signal Loading**: Load from `data3/macro_features.pkl`
 2. **Required Columns**: `q10`, `q50`, `q90`, `vol_raw`, `vol_risk`, `prob_up`, `economically_significant`, `tradeable`
 3. **Trading Logic**: Pure Q50-centric with tradeable filter

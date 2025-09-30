@@ -88,9 +88,9 @@ def test_24_7_trading():
     hours_covered = df.index.hour.unique()
     days_covered = df.index.day_name().unique()
     
-    print(f"⏰ Hours covered: {sorted(hours_covered)}")
+    print(f"Hours covered: {sorted(hours_covered)}")
     print(f"📅 Days covered: {list(days_covered)}")
-    print(f"🎯 Weekend data: {any(day in ['Saturday', 'Sunday'] for day in days_covered)}")
+    print(f"Weekend data: {any(day in ['Saturday', 'Sunday'] for day in days_covered)}")
     
     # Configure backtester with aggressive settings to encourage trading
     backtester = HummingbotQuantileBacktester(
@@ -124,7 +124,7 @@ def test_24_7_trading():
         trades_df['hour'] = trades_df['timestamp'].dt.hour
         trades_df['day_of_week'] = trades_df['timestamp'].dt.day_name()
         
-        print(f"\n⏰ TRADE TIMING ANALYSIS:")
+        print(f"\nTRADE TIMING ANALYSIS:")
         print(f"   Hours with trades: {sorted(trades_df['hour'].unique())}")
         print(f"   Days with trades: {list(trades_df['day_of_week'].unique())}")
         

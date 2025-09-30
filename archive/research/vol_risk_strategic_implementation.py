@@ -212,7 +212,7 @@ def enhanced_q50_with_variance_risk(df, transaction_cost_bps=20, base_info_ratio
     Enhanced Q50-centric approach using vol_risk (variance) for superior risk assessment
     """
     
-    print(f"\n🎯 ENHANCED Q50 WITH VARIANCE RISK")
+    print(f"\nENHANCED Q50 WITH VARIANCE RISK")
     print("=" * 60)
     
     # Ensure we have required data
@@ -292,7 +292,7 @@ def enhanced_q50_with_variance_risk(df, transaction_cost_bps=20, base_info_ratio
     # Quality metrics
     trading_signals = df[df['side_variance_enhanced'] != -1]
     if len(trading_signals) > 0:
-        print(f"\n🎯 Trading Signal Quality:")
+        print(f"\nTrading Signal Quality:")
         print(f"   Avg Enhanced Info Ratio: {trading_signals['enhanced_info_ratio'].mean():.2f}")
         print(f"   Avg Position Size: {trading_signals['position_size_variance_based'].mean():.3f}")
         print(f"   Avg Variance Level: {trading_signals['vol_risk'].mean():.6f}")
@@ -302,7 +302,7 @@ def enhanced_q50_with_variance_risk(df, transaction_cost_bps=20, base_info_ratio
 def main():
     """Test the variance-based implementation"""
     
-    print("🎯 VOL_RISK STRATEGIC IMPLEMENTATION")
+    print("VOL_RISK STRATEGIC IMPLEMENTATION")
     print("=" * 70)
     print("Using vol_risk as VARIANCE for enhanced position sizing and risk measurement")
     

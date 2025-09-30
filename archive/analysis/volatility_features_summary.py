@@ -79,7 +79,7 @@ def create_detailed_summary():
     print("   • Consistent 6-period volatility base")
     print("   • More standard financial volatility measures")
     
-    print("\n🎯 RECOMMENDATIONS:")
+    print("\nRECOMMENDATIONS:")
     print("\n1. IMMEDIATE ACTIONS:")
     print("   • Update any models/strategies using these features")
     print("   • Retrain models with new feature scales")

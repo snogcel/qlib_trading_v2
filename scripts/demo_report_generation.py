@@ -153,7 +153,7 @@ def demo_basic_reporter():
     print(f"💾 Coverage report saved to: {coverage_path}")
     
     # Generate feature-specific reports
-    print("\n🎯 Generating feature-specific reports...")
+    print("\nGenerating feature-specific reports...")
     features = list(set(r.test_case.feature_name for r in results))
     
     for feature in features[:3]:  # Demo first 3 features
@@ -194,7 +194,7 @@ def demo_html_reporter(results):
     print(f"💾 Interactive dashboard saved to: {dashboard_path}")
     
     # Generate feature HTML reports
-    print("\n🎯 Generating HTML feature reports...")
+    print("\nGenerating HTML feature reports...")
     features = list(set(r.test_case.feature_name for r in results))
     
     for feature in features[:2]:  # Demo first 2 features
@@ -236,7 +236,7 @@ def demo_report_templates(results):
         print(line)
     print("... (truncated)")
     
-    print("\n🎯 Generating templated feature reports...")
+    print("\nGenerating templated feature reports...")
     features = list(set(r.test_case.feature_name for r in results))
     
     for feature in features[:2]:  # Demo first 2 features

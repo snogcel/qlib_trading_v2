@@ -75,7 +75,7 @@ class TestFeatureInventoryGenerator:
         return """
 # Feature Knowledge Template
 
-## 🎯 Core Signal Features
+## Core Signal Features
 
 ### Q50 (Primary Signal)
 **Implementation**: qlib_custom/custom_multi_quantile.py

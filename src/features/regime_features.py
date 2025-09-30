@@ -265,7 +265,7 @@ class RegimeFeatureEngine:
         Returns:
             pd.DataFrame: df with economically-justified temporal features added
         """
-        print("⏰ Adding economically-justified temporal quantile features...")
+        print("Adding economically-justified temporal quantile features...")
         
         # Ensure required quantile columns exist
         required_cols = ['q10', 'q50', 'q90']
@@ -486,7 +486,7 @@ class RegimeFeatureEngine:
         crisis_pct = df['regime_crisis'].mean() * 100
         opportunity_pct = df['regime_opportunity'].mean() * 100
         print(f"\n🚨 Crisis periods: {crisis_pct:.2f}%")
-        print(f"🎯 Opportunity periods: {opportunity_pct:.2f}%")
+        print(f"Opportunity periods: {opportunity_pct:.2f}%")
         
         # Stability and multiplier statistics
         stability_mean = df['regime_stability'].mean()
@@ -501,7 +501,7 @@ class RegimeFeatureEngine:
         
         existing_temporal = [f for f in temporal_features if f in df.columns]
         if existing_temporal:
-            print(f"\n⏰ Temporal Features Summary:")
+            print(f"\nTemporal Features Summary:")
             for feature in existing_temporal:
                 stats = df[feature].describe()
                 print(f"   {feature}: mean={stats['mean']:.4f}, std={stats['std']:.4f}")

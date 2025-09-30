@@ -89,7 +89,7 @@ def kelly_with_vol_raw_deciles(vol_raw, signal_rel, base_size=0.1):
 
 ---
 
-## 🔄 **Migration Guide**
+## **Migration Guide**
 
 ### **Old Approach (Deprecated)**:
 ```python
@@ -154,7 +154,7 @@ vol_low = (regime_volatility.isin(['ultra_low', 'low']))
 
 ---
 
-## 🎯 **Replacement Feature Mapping**
+## **Replacement Feature Mapping**
 
 | **Deprecated Feature** | **Replacement** | **Location** |
 |------------------------|-----------------|--------------|
@@ -279,7 +279,7 @@ kelly_size = position_sizer.calculate_position_size(signal, vol_risk, regime_mul
 **Status**: Major cleanup completed - system now has clean separation between deprecated and active features.---
 
 
-## 🔄 **Additional Consolidation Opportunities Discovered**
+## **Additional Consolidation Opportunities Discovered**
 
 ### **kelly_sizing Function Consolidation**
 
@@ -358,7 +358,7 @@ kelly_size = position_sizer.calculate_position_size(signal, vol_risk, regime_mul
 
 ---
 
-## 🎯 **Cleanup Success Metrics**
+## **Cleanup Success Metrics**
 
 ### **Completed Cleanups**:
 - **vol_raw_decile deprecation** - Clean separation of deprecated vs active features
@@ -367,9 +367,9 @@ kelly_size = position_sizer.calculate_position_size(signal, vol_risk, regime_mul
 - **Code archiving** - Deprecated functions properly marked and explained
 
 ### **Discovered Opportunities**:
-- 🔄 **kelly_sizing consolidation** - Merge training pipeline and position_sizing implementations
-- 🔄 **Feature consistency audit** - Systematic review of duplicated functionality
-- 🔄 **Test coverage enhancement** - Comprehensive testing of consolidated features
+- **kelly_sizing consolidation** - Merge training pipeline and position_sizing implementations
+- **Feature consistency audit** - Systematic review of duplicated functionality
+- **Test coverage enhancement** - Comprehensive testing of consolidated features
 
 ### **System Health Improvements**:
 - **Cleaner codebase** - No confusion between deprecated and active features

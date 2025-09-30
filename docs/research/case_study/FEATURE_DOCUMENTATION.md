@@ -5,7 +5,7 @@ This document tracks all features in the Q50-centric, variance-aware trading sys
 
 ---
 
-## 🎯 Core Signal Features
+## Core Signal Features
 
 ### Q50 (Primary Signal)
 - **Type**: Quantile-based probability
@@ -111,7 +111,7 @@ This document tracks all features in the Q50-centric, variance-aware trading sys
 
 ---
 
-## 🔄 Regime & Market Features
+## Regime & Market Features
 
 ### Unified Regime Feature Engine
 - **Type**: Comprehensive market regime detection system
@@ -192,7 +192,7 @@ This document tracks all features in the Q50-centric, variance-aware trading sys
 
 ---
 
-## 🔧 Threshold & Control Features
+## Threshold & Control Features
 
 ### Magnitude-Based Economic Thresholds
 - **Type**: Expected value-based trading threshold system
@@ -339,7 +339,7 @@ This document tracks all features in the Q50-centric, variance-aware trading sys
 - **Interaction features**: Regime-signal combinations for enhanced model training
 - **Position scaling**: Unified regime multiplier system (0.1-5.0 range)
 
-#### 🎯 Results Achieved:
+#### Results Achieved:
 - **Simplified architecture**: From scattered features to unified system
 - **Enhanced performance**: Variance-based approach superior to std dev
 - **Production ready**: Integrated into training pipeline and RL system
@@ -394,7 +394,7 @@ src/
 
 ---
 
-## 🔄 Development Roadmap
+## Development Roadmap
 
 ### Completed (Current State)
 - Multi-quantile model training and validation

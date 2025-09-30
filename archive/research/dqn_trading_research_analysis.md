@@ -1,6 +1,6 @@
 # DQN Trading Research Analysis
 
-## 🎯 Research Overview
+## Research Overview
 
 **Paper**: "Deep Q-Network for Trading Strategy in Cryptocurrency Markets"  
 **Source**: Nature Scientific Reports (2024)  
@@ -118,7 +118,7 @@ class QuantileDQNTrader:
 
 ---
 
-## 🎯 Enhancement Opportunities
+## Enhancement Opportunities
 
 ### Enhancement 1: Quantile-DQN Hybrid Architecture
 ```python
@@ -240,7 +240,7 @@ combined_model = LSTMQuantileDQNTrader()
 
 ---
 
-## 🎯 Key Insights for Your System
+## Key Insights for Your System
 
 1. **Your RL Foundation is Solid**: PPO approach validated by DQN research success
 2. **Quantile-RL Synergy**: Combining quantile predictions with RL decision-making is cutting-edge

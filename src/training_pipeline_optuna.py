@@ -913,7 +913,7 @@ if __name__ == '__main__':
         avg_vol_risk = trading_signals['vol_risk'].mean()
         avg_position_size = trading_signals['position_size_suggestion'].mean()
         
-        print(f"🎯 Trading signal quality:")
+        print(f"Trading signal quality:")
         print(f"   Average Info Ratio (traditional): {avg_info_ratio:.2f}")
         print(f"   Average Enhanced Info Ratio (variance-aware): {avg_enhanced_info_ratio:.2f}")
         print(f"   Average |Q50|: {avg_abs_q50:.4f}")

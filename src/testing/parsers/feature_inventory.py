@@ -114,7 +114,7 @@ class FeatureInventoryGenerator:
         
         # Category mapping based on template structure
         self.category_patterns = {
-            "🎯 Core Signal Features": {
+            "Core Signal Features": {
                 "priority": "high",
                 "test_complexity": "complex",
                 "description": "Primary directional signals and quantile-based features"
@@ -129,7 +129,7 @@ class FeatureInventoryGenerator:
                 "test_complexity": "complex", 
                 "description": "Kelly sizing and position management features"
             },
-            "🔄 Regime & Market Features": {
+            "Regime & Market Features": {
                 "priority": "medium",
                 "test_complexity": "standard",
                 "description": "Market regime detection and classification features"

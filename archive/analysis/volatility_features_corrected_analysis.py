@@ -76,7 +76,7 @@ def create_corrected_analysis():
     print("   • Time horizon: 3-period → 6-period for base, 30-period → 180-period for ranking")
     print("   • Normalization: Quantile-based → Rank-based")
     
-    print("\n🎯 IMPACT ON USAGE:")
+    print("\nIMPACT ON USAGE:")
     
     print("\n1. POSITION SIZING (vol_risk):")
     print("   OLD: vol_risk ∈ [0, 1] - perfect for direct position scaling")

@@ -248,7 +248,7 @@ class QuantileModelEvaluator:
         interval_results = self.prediction_interval_analysis(y_true, predictions)
         
         # 3. Feature Importance
-        print("🎯 Analyzing feature importance...")
+        print("Analyzing feature importance...")
         feature_results = self.feature_importance_analysis(model, save_path / "feature_importance")
         
         # 4. Directional Accuracy
@@ -426,7 +426,7 @@ def run_comprehensive_evaluation():
         print("📋 EVALUATION SUMMARY")
         print("="*50)
         
-        print("\n🎯 Quantile Performance:")
+        print("\nQuantile Performance:")
         for q, perf in results['quantile_performance'].items():
             print(f"  Q{int(q*100):2d}: Loss={perf['loss']:.4f}, Coverage={perf['coverage']:.1%} (target: {perf['target_coverage']:.1%})")
         

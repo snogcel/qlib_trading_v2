@@ -3,14 +3,14 @@
 **Date**: 2025-08-10  
 **Status**: **RESOLVED**
 
-## 🎯 **Problem Solved**
+## **Problem Solved**
 
 The original error:
 ```
 ImportError: cannot import name 'kelly_with_vol_raw_deciles' from 'src.training_pipeline'
 ```
 
-## 🔧 **Root Cause Analysis**
+## **Root Cause Analysis**
 
 1. **Directory Structure Confusion**: Had both `Tests/` (capital T) and `tests/` (lowercase t) directories
 2. **Deprecated Function References**: Test files were importing `kelly_with_vol_raw_deciles` which was removed from the training pipeline

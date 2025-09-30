@@ -324,11 +324,11 @@ class DocumentProtectionSystem:
         
         # Define critical section markers for feature documentation
         critical_markers = [
-            "## 🎯 Core Signal Features",
+            "## Core Signal Features",
             "### Q50 (Primary Signal)",
             "## Risk & Volatility Features",
             "## 🎲 Position Sizing Features",
-            "## 🔄 Regime & Market Features"
+            "## Regime & Market Features"
         ]
         
         for marker in critical_markers:

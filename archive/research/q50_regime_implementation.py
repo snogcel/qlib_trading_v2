@@ -244,7 +244,7 @@ def replace_current_signal_logic(df_all):
     This function can directly replace the existing logic in your main script
     """
     
-    print("🔄 Replacing current signal logic with Q50-centric regime-aware approach...")
+    print("Replacing current signal logic with Q50-centric regime-aware approach...")
     
     # Generate Q50-centric signals with regime awareness
     df_all = q50_regime_aware_signals(
@@ -283,7 +283,7 @@ def replace_current_signal_logic(df_all):
     if len(trading_signals) > 0:
         avg_info_ratio = trading_signals['info_ratio'].mean()
         avg_excess_return = trading_signals['excess_return'].mean()
-        print(f"\n🎯 Signal Quality (trading signals only):")
+        print(f"\nSignal Quality (trading signals only):")
         print(f"   Average Info Ratio: {avg_info_ratio:.2f}")
         print(f"   Average Excess Return: {avg_excess_return:.4f}")
         print(f"   Average Confidence: {trading_signals['signal_confidence_q50'].mean():.2f}")
@@ -293,7 +293,7 @@ def replace_current_signal_logic(df_all):
 def main():
     """Test the implementation"""
     
-    print("🎯 Q50-CENTRIC REGIME-AWARE SIGNAL GENERATION")
+    print("Q50-CENTRIC REGIME-AWARE SIGNAL GENERATION")
     print("=" * 60)
     
     # Create synthetic test data

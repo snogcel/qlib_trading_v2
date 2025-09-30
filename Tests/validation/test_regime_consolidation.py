@@ -31,7 +31,7 @@ def load_test_data():
 def compare_old_vs_new_regime_logic(df):
     """Compare old scattered regime features vs new unified ones"""
     
-    print("🔄 COMPARING OLD VS NEW REGIME LOGIC")
+    print("COMPARING OLD VS NEW REGIME LOGIC")
     print("=" * 50)
     
     # Generate new unified regime features
@@ -197,7 +197,7 @@ def main():
     validations = validate_economic_logic(df_new)
     
     # Summary
-    print(f"\n🎯 VALIDATION SUMMARY")
+    print(f"\nVALIDATION SUMMARY")
     print("=" * 60)
     
     passed_validations = sum(1 for v in validations if v['result'])

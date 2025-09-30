@@ -87,7 +87,7 @@ sell_mask = tradeable & (q50 < 0)
 
 ## Key Benefits
 
-### 🎯 **Economic Intuition**
+### **Economic Intuition**
 - Thresholds based on actual trading costs (20 bps default)
 - Q50 directly represents expected return
 - Information ratio measures signal-to-noise quality

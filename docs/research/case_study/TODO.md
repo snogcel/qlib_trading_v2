@@ -9,7 +9,7 @@ Result: without a spec it mostly worked, but took shortcuts and did too much at 
 
 Output:
 
-🎯 Summary
+Summary
 I have successfully aligned the NautilusTrader POC requirements with the actual implementation in 
 training_pipeline.py
 . Here's what was accomplished:

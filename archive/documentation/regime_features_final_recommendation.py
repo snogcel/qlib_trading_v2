@@ -10,7 +10,7 @@ def create_final_recommendation():
     print("REGIME FEATURES: FINAL RECOMMENDATION")
     print("=" * 100)
     
-    print("\n🎯 THE ANSWER: HYBRID APPROACH IS OPTIMAL")
+    print("\nTHE ANSWER: HYBRID APPROACH IS OPTIMAL")
     
     print("\nWHAT WE'VE IMPLEMENTED:")
     
@@ -41,7 +41,7 @@ def create_final_recommendation():
     for stat in stats:
         print(f"   • {stat}")
     
-    print("\n🎯 USAGE RECOMMENDATIONS BY SCENARIO:")
+    print("\nUSAGE RECOMMENDATIONS BY SCENARIO:")
     
     scenarios = [
         {
@@ -118,7 +118,7 @@ def create_final_recommendation():
     ]
     
     for phase in priority_phases:
-        print(f"\n🎯 {phase['phase']}:")
+        print(f"\n{phase['phase']}:")
         print(f"   Features: {', '.join(phase['features'])}")
         print(f"   Reason: {phase['reason']}")
         print(f"   Timeline: {phase['timeline']}")
