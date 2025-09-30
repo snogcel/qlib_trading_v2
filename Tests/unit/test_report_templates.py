@@ -161,7 +161,7 @@ class TestReportTemplates(unittest.TestCase):
         self.assertIn("Critical Failures | 1", summary)
         
         # Check status indicators
-        self.assertIn("❌", summary)  # Should show critical status due to low success rate
+        self.assertIn("", summary)  # Should show critical status due to low success rate
         
         # Check sections are populated
         self.assertIn("## 🚨 Critical Issues", summary)

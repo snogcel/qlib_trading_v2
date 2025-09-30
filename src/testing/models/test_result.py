@@ -292,7 +292,7 @@ class TestResult:
         """
         status_emoji = {
             TestStatus.PASSED: "✅",
-            TestStatus.FAILED: "❌", 
+            TestStatus.FAILED: "", 
             TestStatus.SKIPPED: "⏭️",
             TestStatus.ERROR: "🚨",
             TestStatus.TIMEOUT: "⏰"

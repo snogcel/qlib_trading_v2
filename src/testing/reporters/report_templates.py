@@ -252,9 +252,9 @@ class ReportTemplates:
         )
         
         # Determine status indicators
-        success_status = "✅" if success_rate >= 95 else "⚠️" if success_rate >= 80 else "❌"
-        critical_status = "✅" if critical_failures == 0 else "❌"
-        priority_status = "✅" if high_priority_issues == 0 else "⚠️" if high_priority_issues <= 2 else "❌"
+        success_status = "✅" if success_rate >= 95 else "⚠️" if success_rate >= 80 else ""
+        critical_status = "✅" if critical_failures == 0 else ""
+        priority_status = "✅" if high_priority_issues == 0 else "⚠️" if high_priority_issues <= 2 else ""
         
         # Generate critical issues section
         critical_issues_section = ReportTemplates._format_critical_issues(results)
@@ -560,7 +560,7 @@ class ReportTemplates:
         
         validation = []
         for test in hypothesis_tests:
-            status_icon = "✅" if test.passed else "❌"
+            status_icon = "✅" if test.passed else ""
             validation.append(f"{status_icon} **Hypothesis Test:** {test.test_case.description or 'Economic behavior validation'}")
             
             if test.passed:

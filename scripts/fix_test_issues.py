@@ -100,7 +100,7 @@ def remove_problematic_emojis():
         '🔍': '[SEARCH]',
         '📊': '[CHART]',
         '✅': '[PASS]',
-        '❌': '[FAIL]',
+        '': '[FAIL]',
         '⚠️': '[WARN]',
         '🎯': '[TARGET]',
         '🔧': '[FIX]',

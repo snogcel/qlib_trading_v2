@@ -116,7 +116,7 @@ def check_parameter_alignment():
         print(f"    Requirements: {details['requirements']}")
         print(f"    Implementation: {details['implementation']}")
         
-        if "❌" in status:
+        if "" in status:
             all_aligned = False
     
     return all_aligned

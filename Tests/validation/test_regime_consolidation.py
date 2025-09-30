@@ -170,7 +170,7 @@ def validate_economic_logic(df_new):
     
     # Print validation results
     for validation in validations:
-        status = "✅" if validation['result'] else "❌"
+        status = "✅" if validation['result'] else ""
         print(f"   {status} {validation['test']}")
         print(f"      Value: {validation['value']}, Expected: {validation['expected']}")
     

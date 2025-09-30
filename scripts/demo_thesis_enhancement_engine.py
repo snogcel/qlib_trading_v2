@@ -76,7 +76,7 @@ def demo_feature_parsing(engine):
             if info:
                 print(f"\n📁 {info['name']}")
                 print(f"   Features: {info['feature_count']}")
-                print(f"   Enhanced: {'✅' if info['has_enhancements'] else '❌'}")
+                print(f"   Enhanced: {'✅' if info['has_enhancements'] else ''}")
                 print(f"   Feature list: {', '.join(info['features'][:3])}{'...' if len(info['features']) > 3 else ''}")
         
         return True
@@ -100,7 +100,7 @@ def demo_enhancement_status(engine):
         
         print_subsection("Category Status")
         for cat_info in status['categories']:
-            status_icon = "✅" if cat_info['enhanced'] else "❌"
+            status_icon = "✅" if cat_info['enhanced'] else ""
             print(f"   {status_icon} {cat_info['name']} ({cat_info['feature_count']} features)")
         
         if status['enhancement_history']:
@@ -262,10 +262,10 @@ def demo_protection_integration(engine):
         print("🛡️  Protection System Status:")
         status = protection.get_protection_status(str(engine.feature_doc_path))
         
-        print(f"   Protected: {'✅' if status['is_protected'] else '❌'}")
+        print(f"   Protected: {'✅' if status['is_protected'] else ''}")
         print(f"   Backups: {status['backup_count']}")
         print(f"   Rollback Points: {status['rollback_points']}")
-        print(f"   Version Tracking: {'✅' if status['version_tracking'] else '❌'}")
+        print(f"   Version Tracking: {'✅' if status['version_tracking'] else ''}")
         
         if status['last_backup']:
             print(f"   Last Backup: {status['last_backup'][:19]}")
@@ -367,7 +367,7 @@ def main():
     
     print(f"Demo Results: {successful}/{total} successful")
     for demo_name, success in results.items():
-        status = "✅" if success else "❌"
+        status = "✅" if success else ""
         print(f"   {status} {demo_name}")
     
     if successful == total:
