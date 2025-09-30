@@ -59,7 +59,7 @@ greenlet==3.2.2
 grpcio==1.73.1
 gym==0.26.2
 gym-notices==0.0.8
-gymnasium==0.29.1
+gymnasium>=0.29.1
 h11==0.16.0
 h5py==3.14.0
 httpcore==1.0.9
