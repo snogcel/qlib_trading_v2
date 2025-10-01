@@ -94,6 +94,8 @@ CORE_LGBM_PARAMS = {
 
 2. Align SEED parameter to align between optuna and training_pipeline
 
+3. Update Objective function in training_pipeline_optuna to target parameters for optimization.
+
 
 
 

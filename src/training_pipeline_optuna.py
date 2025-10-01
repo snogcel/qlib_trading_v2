@@ -673,7 +673,7 @@ if __name__ == '__main__':
             "device": "cpu",
             "verbose": -1,
             
-            "alpha": 0.1,                      
+            "alpha": 0.1, # this controls which percentile the predictive model is targeting - in this case, Q10                     
 
             # Regularization (moderate to prevent overfitting)
             #"lambda_l1": 0.1,
@@ -708,7 +708,7 @@ if __name__ == '__main__':
            
 
             # Early stopping
-            "early_stopping_rounds": 100,
+            "early_stopping_rounds": 1000, # increase from 100 to 1000 training rounds
             "num_boost_round": 1000,         # Let early stopping decide
 
             # Set seed for reproducibility
