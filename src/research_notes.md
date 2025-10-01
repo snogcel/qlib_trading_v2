@@ -92,6 +92,8 @@ CORE_LGBM_PARAMS = {
 # Run training_pipeline_optuna:
 1. TODO - refresh my memory on how this is transferred over to training_pipeline, and into backtester.
 
+2. Align SEED parameter to align between optuna and training_pipeline
+
 
 
 

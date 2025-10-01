@@ -55,7 +55,7 @@ fit_end_time = None
 
 provider_uri = "/Projects/qlib_trading_v2/qlib_data/CRYPTO_DATA"
 
-SEED = 42
+SEED = 42 # RANDOM SEED for Entropy Purposes
 MARKET = "all"
 BENCHMARK = "BTCUSDT"
 EXP_NAME = "crypto_exp_101"
