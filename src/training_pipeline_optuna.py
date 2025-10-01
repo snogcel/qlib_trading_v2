@@ -589,7 +589,7 @@ if __name__ == '__main__':
         "boosting_type": "gbdt",
         "device": "cpu",
         "verbose": -1,
-        "random_state": 43, # https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/
+        "random_state": 141551, # https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/
         "early_stopping_rounds": 500,
         "num_boost_round": 2250,         # Let early stopping decide
         "seed": SEED
@@ -597,27 +597,32 @@ if __name__ == '__main__':
 
     GENERIC_LGBM_PARAMS = {       
         # Conservative learning settings for feature exploration
-        # "learning_rate": 0.05,           # Moderate learning rate
+        "learning_rate": 0.05,           # Moderate learning rate
         # "num_leaves": 64,                # Balanced complexity
         # "max_depth": 8,                  # Reasonable depth for GDELT features
         
         # Regularization (moderate to prevent overfitting)
-        # "lambda_l1": 0.1,
-        # "lambda_l2": 0.1,
-        # "min_data_in_leaf": 20,
+        "lambda_l1": 0.1,
+        "lambda_l2": 0.1,
+        "min_data_in_leaf": 20,
         "feature_fraction": 0.8,         # Use 80% of features per tree
         "bagging_fraction": 0.8,         # Use 80% of data per iteration
         "bagging_freq": 5,
     }
 
     multi_quantile_params = {
-        0.1: {'learning_rate': 0.060555113429817814, 'colsample_bytree': 0.7214813020361056, 'subsample': 0.7849919729082881, 'lambda_l1': 8.722794281828277e-05, 'lambda_l2': 3.220667556916701e-05, 'max_depth': 10, 'num_leaves': 224, **GENERIC_LGBM_PARAMS},
-        0.5: {'learning_rate': 0.02753370821225369, 'max_depth': -1, 'lambda_l1': 0.1, 'lambda_l2': 0.1, **GENERIC_LGBM_PARAMS},
-        0.9: {'learning_rate': 0.09355380738420341, 'max_depth': 10, 'num_leaves': 249, 'lambda_l1': 0.1, 'lambda_l2': 0.1, **GENERIC_LGBM_PARAMS}
+        # 0.1: {'learning_rate': 0.060555113429817814, 'colsample_bytree': 0.7214813020361056, 'subsample': 0.7849919729082881, 'lambda_l1': 8.722794281828277e-05, 'lambda_l2': 3.220667556916701e-05, 'max_depth': 10, 'num_leaves': 224, **GENERIC_LGBM_PARAMS},
+        # 0.5: {'learning_rate': 0.02753370821225369, 'max_depth': -1, 'lambda_l1': 0.1, 'lambda_l2': 0.1, **GENERIC_LGBM_PARAMS},
+        # 0.9: {'learning_rate': 0.09355380738420341, 'max_depth': 10, 'num_leaves': 249, 'lambda_l1': 0.1, 'lambda_l2': 0.1, **GENERIC_LGBM_PARAMS}
 
         # 0.1: {**CORE_LGBM_PARAMS},
         # 0.5: {**CORE_LGBM_PARAMS},                
         # 0.9: {**CORE_LGBM_PARAMS} 
+
+        0.1: {'max_depth': 25, **CORE_LGBM_PARAMS},
+        0.5: {'max_depth': 25, **CORE_LGBM_PARAMS},                
+        0.9: {'max_depth': 25, **CORE_LGBM_PARAMS}
+
     }
 
     # finalized model after tuning
