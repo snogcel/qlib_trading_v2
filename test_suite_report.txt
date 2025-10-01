@@ -1,0 +1,84 @@
+NAUTILUS TRADER TEST SUITE REPORT
+==================================================
+
+Execution Date: 2025-09-30 20:11:54
+Total Execution Time: 3.38s
+Test Suites: 3 (3 passed, 0 failed, 0 skipped)
+
+Suite: Basic Functionality Tests
+Category: Unit Tests
+Status: PASSED
+Time: 1.04s
+Details:
+============================= test session starts =============================
+platform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\Users\ledni\anaconda3\envs\nautilus_trading\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Projects\qlib_trading_v2
+collecting ... collected 3 items
+
+test_simple.py::test_basic_functionality PASSED                          [ 33%]
+test_simple.py::test_transaction_cost_logic PASSED                       [ 66%]
+test_simple.py::test_variance_regime_thresholds PASSED                   [100%]
+
+============================== 3 passed in 0.51s ==============================
+
+--------------------------------------------------
+
+Suite: Requirements Alignment Tests (Mock)
+Category: Integration Tests
+Status: PASSED
+Time: 1.16s
+Details:
+============================= test session starts =============================
+platform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\Users\ledni\anaconda3\envs\nautilus_trading\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Projects\qlib_trading_v2
+collecting ... collected 10 items
+
+tests/integration/test_nautilus_requirements_alignment_mock.py::TestNautilusRequirementsAlignment::test_transaction_cost_parameter_alignment PASSED [ 10%]
+tests/integration/test_nautilus_requirements_alignment_mock.py::TestNautilusRequirementsAlignment::test_variance_regime_thresholds PASSED [ 20%]
+tests/integration/test_nautilus_requirements_alignment_mock.py::TestNautilusRequirementsAlignment::test_regime_multiplier_adjustments PASSED [ 30%]
+tests/integration/test_nautilus_requirements_alignment_mock.py::TestNautilusRequirementsAlignment::test_enhanced_info_ratio_calculation PASSED [ 40%]
+tests/integration/test_nautilus_requirements_alignment_mock.py::TestNautilusRequirementsAlignment::test_q50_centric_signal_logic PASSED [ 50%]
+tests/integration/test_nautilus_requirements_alignment_mock.py::TestNautilusRequirementsAlignment::test_position_sizing_parameters PASSED [ 60%]
+tests/integration/test_nautilus_requirements_alignment_mock.py::TestNautilusRequirementsAlignment::test_prob_up_piecewise_calculation PASSED [ 70%]
+tests/integration/test_nautilus_requirements_alignment_mock.py::TestNautilusRequirementsAlignment::test_data_pipeline_frequency_alignment PASSED [ 80%]
+tests/integration/test_nautilus_requirements_alignment_mock.py::TestNautilusRequirementsAlignment::test_performance_target_alignment PASSED [ 90%]
+tests/integration/test_nautilus_requirements_alignment_mock.py::TestNautilusRequirementsAlignment::test_vol_risk_variance_calculation PASSED [100%]
+
+============================= 10 passed in 0.59s ==============================
+
+--------------------------------------------------
+
+Suite: Q50 Comprehensive Integration Tests
+Category: Integration Tests
+Status: PASSED
+Time: 1.19s
+Details:
+============================= test session starts =============================
+platform win32 -- Python 3.11.13, pytest-8.4.2, pluggy-1.6.0 -- C:\Users\ledni\anaconda3\envs\nautilus_trading\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Projects\qlib_trading_v2
+collecting ... collected 16 items
+
+tests/integration/test_q50_comprehensive.py::TestQ50ComprehensiveIntegration::test_data_structure_validation PASSED [  6%]
+tests/integration/test_q50_comprehensive.py::TestQ50ComprehensiveIntegration::test_q50_regime_aware_signals_execution PASSED [ 12%]
+tests/integration/test_q50_comprehensive.py::TestQ50ComprehensiveIntegration::test_required_columns_creation PASSED [ 18%]
+tests/integration/test_q50_comprehensive.py::TestQ50ComprehensiveIntegration::test_regime_distribution PASSED [ 25%]
+tests/integration/test_q50_comprehensive.py::TestQ50ComprehensiveIntegration::test_signal_quality_metrics PASSED [ 31%]
+tests/integration/test_q50_comprehensive.py::TestQ50ComprehensiveIntegration::test_signal_generation_logic PASSED [ 37%]
+tests/integration/test_q50_comprehensive.py::TestQ50ComprehensiveIntegration::test_adaptive_threshold_logic PASSED [ 43%]
+tests/integration/test_q50_comprehensive.py::TestQ50ComprehensiveIntegration::test_interaction_features_creation PASSED [ 50%]
+tests/integration/test_q50_comprehensive.py::TestQ50ComprehensiveIntegration::test_vol_risk_calculation PASSED [ 56%]
+tests/integration/test_q50_comprehensive.py::TestQ50ComprehensiveIntegration::test_trading_signal_quality_analysis PASSED [ 62%]
+tests/integration/test_q50_comprehensive.py::TestQ50ComprehensiveIntegration::test_regime_performance_consistency PASSED [ 68%]
+tests/integration/test_q50_comprehensive.py::TestQ50ComprehensiveIntegration::test_parameter_sensitivity PASSED [ 75%]
+tests/integration/test_q50_comprehensive.py::TestQ50ComprehensiveIntegration::test_edge_cases_and_robustness PASSED [ 81%]
+tests/integration/test_q50_comprehensive.py::TestQ50ComprehensiveIntegration::test_performance_benchmarks PASSED [ 87%]
+tests/integration/test_q50_comprehensive.py::TestQ50IntegrationComparison::test_improvement_over_threshold_approach PASSED [ 93%]
+tests/integration/test_q50_comprehensive.py::TestQ50IntegrationComparison::test_expected_performance_characteristics PASSED [100%]
+
+============================= 16 passed in 0.66s ==============================
+
+--------------------------------------------------
+
