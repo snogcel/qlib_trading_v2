@@ -702,7 +702,7 @@ if __name__ == '__main__':
             "subsample": trial.suggest_float("subsample", 0.7, 1.0),
             "lambda_l1": trial.suggest_loguniform("lambda_l1", 1e-8, 10.0),
             "lambda_l2": trial.suggest_loguniform("lambda_l2", 1e-8, 10.0),
-            "max_depth": trial.suggest_int("max_depth", 4, 10),
+            "max_depth": trial.suggest_int("max_depth", 4, 25), # increase max depth to 25
             "num_leaves": trial.suggest_int("num_leaves", 20, 512),           
             # "max_depth": trial.suggest_int("max_depth", 4, 10),
            
