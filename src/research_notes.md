@@ -97,6 +97,16 @@ CORE_LGBM_PARAMS = {
 3. Update Objective function in training_pipeline_optuna to target parameters for optimization.
 
 
+# TODO:
+
+4. Identify the resulting updated params (goal of bringing Q10 closer to 10% coverage):
+
+Quantile Loss (Q90): 0.0010184848780716853, coverage: 85.19%
+Quantile Loss (Q50): 0.0018443741312067223, coverage: 50.49%
+Quantile Loss (Q10): 0.0010294973523945455, coverage: 14.08%
+{'max_depth': 25, 'objective': 'quantile', 'metric': ['l1', 'l2'], 'boosting_type': 'gbdt', 'device': 'cpu', 'verbose': -1, 'random_state': 141551, 'early_stopping_rounds': 500, 'num_boost_round': 2250, 'seed': 42}
+
+5. 
 
 
 

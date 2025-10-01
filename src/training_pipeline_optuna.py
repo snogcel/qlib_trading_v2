@@ -588,7 +588,7 @@ if __name__ == '__main__':
         "metric": ["l1", "l2"], # , "l2", "l1" # "rmse"
         "boosting_type": "gbdt",
         "device": "cpu",
-        "verbose": -1,
+        "verbose": 1, # set to verbose for more logs (this is outrageously complex lol)
         "random_state": 141551, # https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/
         "early_stopping_rounds": 500,
         "num_boost_round": 2250,         # Let early stopping decide
@@ -671,7 +671,7 @@ if __name__ == '__main__':
             "metric": ["l2", "l1"],
             "boosting_type": "gbdt",
             "device": "cpu",
-            "verbose": -1,
+            "verbose": 1,
             
             "alpha": 0.1, # this controls which percentile the predictive model is targeting - in this case, Q10                     
 
