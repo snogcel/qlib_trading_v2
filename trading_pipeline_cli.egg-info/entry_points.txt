@@ -1,0 +1,2 @@
+[console_scripts]
+trading-cli = src.cli.trading_cli:main
