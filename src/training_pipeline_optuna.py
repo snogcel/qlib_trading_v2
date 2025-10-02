@@ -55,7 +55,7 @@ fit_end_time = None
 
 provider_uri = "/Projects/qlib_trading_v2/qlib_data/CRYPTO_DATA"
 
-SEED = 42 # RANDOM SEED for Entropy Purposes
+SEED = 23020 # RANDOM SEED for Entropy Purposes, see: https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/
 MARKET = "all"
 BENCHMARK = "BTCUSDT"
 EXP_NAME = "crypto_exp_101"
@@ -630,9 +630,9 @@ if __name__ == '__main__':
         # 0.5: {**CORE_LGBM_PARAMS},                
         # 0.9: {**CORE_LGBM_PARAMS} 
 
-        0.1: {'max_depth': 5, **CORE_LGBM_PARAMS},
-        0.5: {'max_depth': 5, **CORE_LGBM_PARAMS},                
-        0.9: {'max_depth': 5, **CORE_LGBM_PARAMS}
+        0.1: {'max_depth': 15, **CORE_LGBM_PARAMS},
+        0.5: {'max_depth': 15, **CORE_LGBM_PARAMS},                
+        0.9: {'max_depth': 15, **CORE_LGBM_PARAMS}
 
     }
 
