@@ -604,7 +604,9 @@ if __name__ == '__main__':
         # Regularization (moderate to prevent overfitting)
         "lambda_l1": 0.1,
         "lambda_l2": 0.1,
-        "min_data_in_leaf": 20,
+        
+        # "min_data_in_leaf": 20, # remove constraint for tuning
+        
         "feature_fraction": 0.8,         # Use 80% of features per tree
         "bagging_fraction": 0.8,         # Use 80% of data per iteration
         "bagging_freq": 5,
@@ -692,7 +694,8 @@ if __name__ == '__main__':
             # "lambda_l1": 4.511969685016852, 
             # "lambda_l2": 0.0006936273081692159,
             
-            "min_data_in_leaf": 20,
+            # "min_data_in_leaf": 20, # remove constraint to prevent overfitting
+
             # "feature_fraction": 0.8,         # Use 80% of features per tree
             # "bagging_fraction": 0.8,         # Use 80% of data per iteration
             # "bagging_freq": 5,
@@ -702,8 +705,11 @@ if __name__ == '__main__':
             "subsample": trial.suggest_float("subsample", 0.7, 1.0),
             "lambda_l1": trial.suggest_loguniform("lambda_l1", 1e-8, 10.0),
             "lambda_l2": trial.suggest_loguniform("lambda_l2", 1e-8, 10.0),
-            "max_depth": trial.suggest_int("max_depth", 4, 25), # increase max depth to 25
-            "num_leaves": trial.suggest_int("num_leaves", 20, 512),           
+            "max_depth": trial.suggest_int("max_depth", 4, 50), # increase max depth to 50
+            "num_leaves": trial.suggest_int("num_leaves", 20, 512),    
+
+            "min_data_in_leaf": trial.suggest_int("min_data_in_leaf", 2, 512), # use optuna to find the optimilar data points within each point of decision tree (LGBM) - doesn't apply to LGBM model AFAIK          
+            
             # "max_depth": trial.suggest_int("max_depth", 4, 10),
            
 
