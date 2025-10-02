@@ -974,4 +974,5 @@ if __name__ == '__main__':
 
     df_cleaned = df_all.dropna(subset=["vol_risk","vol_scaled","vol_raw_momentum","signal_thresh_adaptive","signal_tanh","enhanced_info_ratio"])
 
+    # hypothesis -- backtester.py picks up this file, and thus results will display on the next execution.
     df_cleaned.to_pickle("./data3/macro_features.pkl") # pickled features used in "train_meta_wrapper.py" process
