@@ -81,7 +81,7 @@ def cross_validation_fcn(df_train, model, early_stopping_flag=True):
     tscv = TimeSeriesSplit(n_splits=5)
     X, y = df_train["feature"], df_train["label"]
 
-    print("debug_cross_validation")
+    print("_DEBUG_CROSS_VALIDATION_")
     raise SystemExit()
 
     mse_list = []
@@ -731,7 +731,7 @@ if __name__ == '__main__':
         model = lgbm.LGBMRegressor(**params)
 
         # perform cross-validation using the optimized LightGBM regressor
-        lgbm_model, mean_score = cross_validation_fcn(df_train, model, early_stopping_flag=True) # test disabling early_stopping_flag
+        lgbm_model, mean_score = cross_validation_fcn(df_train, model, early_stopping_flag=False) # test disabling early_stopping_flag
 
         # retrieve the best iteration of the model and store it as a user attribute in the trial object
         best_iteration = lgbm_model.best_iteration_
