@@ -618,6 +618,9 @@ if __name__ == '__main__':
         "bagging_freq": 5,
     }
 
+    # INIT_QLIB_INSTANCE
+    # pass multi_quantile_params into QLib architecture
+
     multi_quantile_params = {
         # 0.1: {'learning_rate': 0.060555113429817814, 'colsample_bytree': 0.7214813020361056, 'subsample': 0.7849919729082881, 'lambda_l1': 8.722794281828277e-05, 'lambda_l2': 3.220667556916701e-05, 'max_depth': 10, 'num_leaves': 224, **GENERIC_LGBM_PARAMS},
         # 0.5: {'learning_rate': 0.02753370821225369, 'max_depth': -1, 'lambda_l1': 0.1, 'lambda_l2': 0.1, **GENERIC_LGBM_PARAMS},
@@ -768,7 +771,6 @@ if __name__ == '__main__':
 
     print("_SPLIT_DATA_")    
     
-
     model.fit(dataset=dataset)
 
     print("_FIT_DATA_TO_LGBM_MODEL_")
