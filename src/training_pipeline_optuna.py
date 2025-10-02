@@ -725,7 +725,7 @@ if __name__ == '__main__':
         model = lgbm.LGBMRegressor(**params)
 
         # perform cross-validation using the optimized LightGBM regressor
-        lgbm_model, mean_score = cross_validation_fcn(df_train, model, early_stopping_flag=True)
+        lgbm_model, mean_score = cross_validation_fcn(df_train, model, early_stopping_flag=False) # test disabling early_stopping_flag
 
         # retrieve the best iteration of the model and store it as a user attribute in the trial object
         best_iteration = lgbm_model.best_iteration_
