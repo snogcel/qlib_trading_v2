@@ -71,7 +71,7 @@ def cross_validation_fcn(df_train, model, early_stopping_flag=True):
     Parameters:
     - X_train: the training data to use for cross-validation
     - model: the machine learning model to use for cross-validation
-    - early_stopping_flag: a boolean flag to indicate whether early stopping should be used
+    - early_stopping_flag: a boolean flag to indicate whether early stopping should be used (default is True)
 
     Returns:
     - model: the trained machine learning model
@@ -93,7 +93,7 @@ def cross_validation_fcn(df_train, model, early_stopping_flag=True):
         if early_stopping_flag:
             # Use early stopping if enabled
             model.fit(X_train, y_train, eval_set=[(X_val, y_val)],
-                      callbacks=[lgbm.early_stopping(stopping_rounds=100, verbose=True)])
+                      callbacks=[lgbm.early_stopping(stopping_rounds=1000, verbose=True)]) # increase default stopping_rounds = 1000 if flag is set to True
         else:
             model.fit(X_train, y_train)
 
@@ -714,7 +714,7 @@ if __name__ == '__main__':
            
 
             # Early stopping
-            "early_stopping_rounds": 1000, # increase from 100 to 1000 training rounds
+            "early_stopping_rounds": 1000, # increase from 100 to 1000 training rounds -- the variable is not being passed to cross_validation_fcn (AFAIK)
             "num_boost_round": 1000,         # Let early stopping decide
 
             # Set seed for reproducibility
@@ -725,10 +725,14 @@ if __name__ == '__main__':
         model = lgbm.LGBMRegressor(**params)
 
         # perform cross-validation using the optimized LightGBM regressor
-        lgbm_model, mean_score = cross_validation_fcn(df_train, model, early_stopping_flag=False) # test disabling early_stopping_flag
+        lgbm_model, mean_score = cross_validation_fcn(df_train, model, early_stopping_flag=True) # test disabling early_stopping_flag
 
         # retrieve the best iteration of the model and store it as a user attribute in the trial object
         best_iteration = lgbm_model.best_iteration_
+        
+        print("best_iteration: ")
+        print(best_iteration)
+        
         trial.set_user_attr('best_iteration', best_iteration)
             
         return mean_score
