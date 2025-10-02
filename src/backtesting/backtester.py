@@ -1329,7 +1329,7 @@ def run_hummingbot_backtest(price_file: str = None):
         price_file: Path to CSV with 60min price data
     """
     # Load prediction data
-    df = pd.read_csv("df_all_macro_analysis.csv")
+    df = pd.read_csv("./temp/df_all_macro_analysis.csv")
     
     # Set up datetime index
     if 'datetime' in df.columns:
