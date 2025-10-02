@@ -81,6 +81,9 @@ def cross_validation_fcn(df_train, model, early_stopping_flag=True):
     tscv = TimeSeriesSplit(n_splits=5)
     X, y = df_train["feature"], df_train["label"]
 
+    print("debug_cross_validation")
+    raise SystemExit()
+
     mse_list = []
     for fold, (train_idx, val_idx) in enumerate(tscv.split(X)):
         X_train, X_val = X.iloc[train_idx], X.iloc[val_idx]
@@ -515,6 +518,9 @@ def quantile_loss(y_true, y_pred, quantile):
 
 if __name__ == '__main__': 
 
+    print("_ENTER_MAIN_FUNCTION_")
+    
+
     _learn_processors = [{"class": "DropnaLabel"},]
     _infer_processors = []
 
@@ -749,8 +755,15 @@ if __name__ == '__main__':
     X_train, y_train = df_train["feature"], df_train["label"]
     X_val, y_val = df_valid["feature"], df_valid["label"]
     #X_test, y_test = df_test["feature"], df_test["label"]
+
+    print("_SPLIT_DATA_")    
     
+
     model.fit(dataset=dataset)
+
+    print("_FIT_DATA_TO_LGBM_MODEL_")
+    raise SystemExit()
+
     preds = model.predict(dataset, "valid")    
 
     # Calculate feature importance
