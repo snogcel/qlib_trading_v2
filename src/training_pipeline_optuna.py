@@ -729,10 +729,17 @@ if __name__ == '__main__':
 
         # Create model variable with params (essentially a pointer), then pass into cross_validation_fcn
         # create the LightGBM regressor with the optimized parameters
+
+        print("_DEFINE_MODEL_OBJECT_")
+        raise SystemExit()
+
         model = lgbm.LGBMRegressor(**params)
 
         # perform cross-validation using the optimized LightGBM regressor
         lgbm_model, mean_score = cross_validation_fcn(df_train, model, early_stopping_flag=True) # test disabling early_stopping_flag
+
+        print("_CROSS_VALIDATION_FUNCTION_2_")
+        raise SystemExit()
 
         # optimized lgbm_model should be returned from cross_validation_fcn
 

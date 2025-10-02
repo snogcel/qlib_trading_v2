@@ -1,7 +1,7 @@
 # Data directories
-data/
-results/
-logs/
+# data/
+# results/
+# logs/
 # temp/
 
 # Model files
