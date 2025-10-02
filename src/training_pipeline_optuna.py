@@ -630,9 +630,9 @@ if __name__ == '__main__':
         # 0.5: {**CORE_LGBM_PARAMS},                
         # 0.9: {**CORE_LGBM_PARAMS} 
 
-        0.1: {'max_depth': 15, **CORE_LGBM_PARAMS},
+        0.1: {'max_depth': 5, **CORE_LGBM_PARAMS},
         0.5: {'max_depth': 15, **CORE_LGBM_PARAMS},                
-        0.9: {'max_depth': 15, **CORE_LGBM_PARAMS}
+        0.9: {'max_depth': 5, **CORE_LGBM_PARAMS}
 
     }
 
