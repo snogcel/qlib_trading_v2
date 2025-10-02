@@ -727,11 +727,14 @@ if __name__ == '__main__':
             "seed": SEED
         }
 
+        # Create model variable with params (essentially a pointer), then pass into cross_validation_fcn
         # create the LightGBM regressor with the optimized parameters
         model = lgbm.LGBMRegressor(**params)
 
         # perform cross-validation using the optimized LightGBM regressor
-        lgbm_model, mean_score = cross_validation_fcn(df_train, model, early_stopping_flag=False) # test disabling early_stopping_flag
+        lgbm_model, mean_score = cross_validation_fcn(df_train, model, early_stopping_flag=True) # test disabling early_stopping_flag
+
+        # optimized lgbm_model should be returned from cross_validation_fcn
 
         # retrieve the best iteration of the model and store it as a user attribute in the trial object
         best_iteration = lgbm_model.best_iteration_
@@ -762,7 +765,6 @@ if __name__ == '__main__':
     model.fit(dataset=dataset)
 
     print("_FIT_DATA_TO_LGBM_MODEL_")
-    raise SystemExit()
 
     preds = model.predict(dataset, "valid")    
 
