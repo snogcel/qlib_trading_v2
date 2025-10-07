@@ -603,7 +603,7 @@ if __name__ == '__main__':
 
     GENERIC_LGBM_PARAMS = {       
         # Conservative learning settings for feature exploration
-        "learning_rate": 0.05,           # Moderate learning rate
+        "learning_rate": 0.1,           # Moderate learning rate
         # "num_leaves": 64,                # Balanced complexity
         # "max_depth": 8,                  # Reasonable depth for GDELT features
         
