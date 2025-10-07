@@ -15,25 +15,25 @@ POSITION MANAGEMENT:
 - Opposing Signal Threshold: 0.40
 
 PERFORMANCE SUMMARY:
-- Total Return: 26.85%
-- Annualized Return: 23.17%
-- Volatility: 11.41%
-- Sharpe Ratio: 1.88
-- Max Drawdown: -8.81%
+- Total Return: 26.71%
+- Annualized Return: 23.04%
+- Volatility: 12.86%
+- Sharpe Ratio: 1.68
+- Max Drawdown: -6.51%
 
 TRADING STATISTICS:
-- Total Trades: 3,009
-- Total Holds: 6,957
-- Trade Frequency: 30.09%
-- Hold Frequency: 69.57%
-- Win Rate: 7.34%
+- Total Trades: 3,522
+- Total Holds: 6,306
+- Trade Frequency: 35.22%
+- Hold Frequency: 63.06%
+- Win Rate: 8.83%
 
 HOLD ANALYSIS:
-- HOLD_POSITION: 6,957 periods
+- HOLD_POSITION: 6,306 periods
 
 FINAL STATE:
-- Final Balance: $126,849.55
+- Final Balance: $126,698.82
 - Final Position: 0.0000
-- Final Portfolio Value: $126,854.22
+- Final Portfolio Value: $126,709.94
 
 OBSERVATIONS: 10,000
