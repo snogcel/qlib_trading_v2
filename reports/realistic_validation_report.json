@@ -1,21 +1,15 @@
 {
-  "validation_timestamp": "2025-08-03T11:43:49.609943",
+  "validation_timestamp": "2025-10-05T23:43:40.136718",
   "validation_type": "realistic_data",
-  "execution_time_seconds": 10.868951559066772,
+  "execution_time_seconds": 13.715051174163818,
   "overall_status": "PASSED",
   "return_code": 0,
   "data_sources": [
     {
-      "path": "C:\\Projects\\qlib_trading_v2\\data3\\macro_features.pkl",
+      "path": "c:\\Projects\\qlib_trading_v2\\data3\\macro_features.pkl",
       "size": 53978,
-      "columns": 84,
-      "memory": 26.1325626373291
-    },
-    {
-      "path": "C:\\Projects\\qlib_trading_v2\\data\\macro_features.pkl",
-      "size": 2434,
-      "columns": 15,
-      "memory": 0.3752727508544922
+      "columns": 76,
+      "memory": 24.48528480529785
     }
   ],
   "test_categories": {
@@ -27,18 +21,18 @@
     "System Integration": "End-to-end data flow"
   },
   "validation_improvements": [
-    "\u2705 Uses actual system data (macro_features.pkl)",
-    "\u2705 Realistic correlation thresholds",
-    "\u2705 Proper handling of MultiIndex data",
-    "\u2705 Fallback to synthetic data if needed",
-    "\u2705 Robust error handling for missing columns"
+    "Uses actual system data (macro_features.pkl)",
+    "Realistic correlation thresholds",
+    "Proper handling of MultiIndex data",
+    "Fallback to synthetic data if needed",
+    "Robust error handling for missing columns"
   ],
   "recommendations": [
-    "\u2705 All realistic validation tests passed",
-    "\u2705 Phase 1 statistical validation framework validated with real data",
-    "\u2705 System components work correctly with actual data patterns",
-    "\ud83d\ude80 Ready for production deployment",
-    "\ud83d\udcca Consider implementing continuous validation monitoring"
+    "All realistic validation tests passed",
+    "Phase 1 statistical validation framework validated with real data",
+    "System components work correctly with actual data patterns",
+    "Ready for production deployment",
+    "Consider implementing continuous validation monitoring"
   ],
   "phase_1_status": "COMPLETED_WITH_REAL_DATA"
 }
