@@ -49,7 +49,7 @@ class crypto_dataloader_optimized(QlibDataLoader):
                 "windows": [1],  # Only OPEN1 (OPEN2/3 removed due to high correlation)
                 "feature": ['OPEN'],
             },
-            "volume": {
+            "Volume_USDT": {
                 "windows": [1],  # Only VOLUME1 (VOLUME2/3 removed due to high correlation)
             },
             "rolling": {

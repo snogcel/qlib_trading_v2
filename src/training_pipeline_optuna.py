@@ -572,7 +572,7 @@ if __name__ == '__main__':
     nested_dl = CustomNestedDataLoader(dataloader_l=[crypto_data_loader, gdelt_data_loader], join="left")    
     
     handler_config = {
-        "instruments": ["BTCUSDT", "GDELT_BTC_FEAT"],
+        "instruments": ["BTCUSDT", "GDELT_BTC_FEAT_V2"],
         "start_time": train_start_time,
         "end_time": test_end_time,                
         "data_loader": nested_dl,        
