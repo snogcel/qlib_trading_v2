@@ -799,7 +799,6 @@ if __name__ == '__main__':
     print(f"Quantile Loss (Q50): {loss}, coverage: {coverage:.2%}")
 
     loss, coverage = quantile_loss(y_val, preds["quantile_0.10"], 0.10)
-    feat_importance_low.to_csv("./temp/feat_importance_low.csv")
     feat_importance_low.to_csv(f"./temp/feat_importance_low_{loss}_{coverage}.csv")
     print(f"Quantile Loss (Q10): {loss}, coverage: {coverage:.2%}")    
 
