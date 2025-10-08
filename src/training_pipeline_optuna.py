@@ -53,7 +53,7 @@ test_end_time = "2025-04-01"
 fit_start_time = None
 fit_end_time = None
 
-provider_uri = "/Projects/qlib_trading_v2/qlib_data/CRYPTO_DATA"
+provider_uri = "/Projects/qlib_trading_v2/qlib_data/CRYPTODATA_VALIDATED_2"
 
 SEED = 23020 # RANDOM SEED for Entropy Purposes, see: https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/
 MARKET = "all"
