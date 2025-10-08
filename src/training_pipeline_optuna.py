@@ -82,7 +82,7 @@ def cross_validation_fcn(df_train, model, early_stopping_flag=True):
     X, y = df_train["feature"], df_train["label"]
 
     print("_DEBUG_CROSS_VALIDATION_")
-    raise SystemExit()
+    # raise SystemExit()
 
     mse_list = []
     for fold, (train_idx, val_idx) in enumerate(tscv.split(X)):
@@ -630,9 +630,11 @@ if __name__ == '__main__':
         # 0.5: {**CORE_LGBM_PARAMS},                
         # 0.9: {**CORE_LGBM_PARAMS} 
 
-        0.1: {'max_depth': 9, **CORE_LGBM_PARAMS},
-        0.5: {'max_depth': 15, **CORE_LGBM_PARAMS},                
-        0.9: {'max_depth': 9, **CORE_LGBM_PARAMS}
+        # 11 is a good, even tree depth (see: https://www.geeksforgeeks.org/machine-learning/lightgbm-light-gradient-boosting-machine/)
+
+        0.1: {'max_depth': 11, **CORE_LGBM_PARAMS},
+        0.5: {'max_depth': 11, **CORE_LGBM_PARAMS},                
+        0.9: {'max_depth': 11, **CORE_LGBM_PARAMS}
 
     }
 
@@ -734,7 +736,7 @@ if __name__ == '__main__':
         # create the LightGBM regressor with the optimized parameters
 
         print("_DEFINE_MODEL_OBJECT_")
-        raise SystemExit()
+        # raise SystemExit()
 
         model = lgbm.LGBMRegressor(**params)
 
@@ -742,7 +744,7 @@ if __name__ == '__main__':
         lgbm_model, mean_score = cross_validation_fcn(df_train, model, early_stopping_flag=True) # test disabling early_stopping_flag
 
         print("_CROSS_VALIDATION_FUNCTION_2_")
-        raise SystemExit()
+        # raise SystemExit()
 
         # optimized lgbm_model should be returned from cross_validation_fcn
 
